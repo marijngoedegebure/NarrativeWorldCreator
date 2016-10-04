@@ -8,7 +8,9 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
-            <Button x:Name="button" Content="Click here to load from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFile_Click"/>
+            <Button x:Name="button1" Content="Click here to problem from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileProblem_Click"/>
+            <Button x:Name="button2" Content="Click here to domain from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileDomain_Click"/>
+            <Button x:Name="button3" Content="Click here to load Pddl from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadPDDL_Click"/>
         </WrapPanel>
         <TextBox Name="txtEditor" Margin="0,53,0,0" />
     </Grid>

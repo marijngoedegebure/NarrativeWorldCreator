@@ -11,6 +11,9 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class MainWindow : Window
     {
+        public String domain;
+        public String problem;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -18,11 +21,30 @@ namespace NarrativeWorldCreator
             var graph = edges.ToAdjacencyGraph<int, SEdge<int>>(false);
         }
 
-        private void btnOpenFile_Click(object sender, RoutedEventArgs e)
+        private void btnOpenFileProblem_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
+            {
+                problem = openFileDialog.FileName;
                 txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+        }
+
+        private void btnOpenFileDomain_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                domain = openFileDialog.FileName;
+                txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+            }
+        }
+
+        private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
+        {
+            var pd = new PDDLNET.DomainProblem(domain, problem);
+            txtEditor.Text = pd.ToString();
         }
     }
 }
