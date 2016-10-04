@@ -1,0 +1,113 @@
+;; Red cap
+;; Objects, first objects are declared after which characters and lastly locations
+;; Types should include a hero or player
+(define (domain red-cap)
+	(:requirements :adl :domain-axioms :typing)
+	(:types location actor hero thing)
+	;; dead iff x is dead
+	;; disguised iff x is disguised as y
+	;; carry(x,y) if x is redcap y is basket or flowers
+	;; travel(x,y) if x is character, y is location
+	;; hears(x,y) if actor x hears actor y
+	(:predicates (dead ?x - actor) 
+		(disguised ?x - actor ?y - actor)
+		(carry ?x - actor ?y - thing)
+		(positioned-at ?x - actor ?y - location)
+		(positioned-at ?x - thing ?y - location)
+		(hears ?x - actor ?y -actor)
+	)
+	;; Not all actions are incorporated into the definition
+	(:action move
+	 :parameters (?actor - actor ?from ?to - location)
+	 :preconditions (and (positioned-at ?actor ?from) (not (positioned-at ?actor ?to)))
+	 :effect (and (positioned-at ?actor ?to) (not (positioned-at ?actor ?from)))
+	)
+	(:action pick-up
+	 :parameters (?actor - actor ?object - thing ?location - location)
+	 :preconditions (and (positioned-at ?object ?location) (positioned-at ?actor ?location))
+	 :effect (and (not (positioned-at ?object ?location) (carry ?actor ?object)))
+	)
+	(:action eat
+	 :parameters (?actor - actor ?subject - actor)
+	 :preconditions (and (positioned-at ?subject ?location) (positioned-at ?actor ?location))
+	 :effect (and (not (positioned-at ?subject ?location)) (carry ?actor ?subject))
+	)
+	(:action disguise
+	 :parameters (?actor - actor ?disguise - actor ?location - location)
+	 :preconditions ()
+	 :effect (disguised ?actor ?disguise)
+	)
+	(:action hears
+	 :parameters (?actor - actor ?noise - actor ?location - location)
+	 :preconditions (and (positioned-at ?actor ?location) (positioned-at ?noise ?location))
+	 :effect (hears ?actor ?noise)
+	)
+	;; Check how postconditions with variables work
+	(:action cuts-open
+	 :parameters (?actor - actor ?subject - actor ?location - location)
+	 :preconditions (and (positioned-at ?actor ?location) (positioned-at ?subject ?location))
+	 :postconditions (and (dead ?subject) (not (carry ?subject object)) (positioned-at object ?location)
+	)
+	;; Check creation of object from actor
+	(:action skin
+	 :parameters (?actor - actor ?subject - actor ?location - location)
+	 :preconditions (and (positioned-at ?actor ?location) (positioned-at ?subject ?location) dead(?subject))
+	 :postconditions (positioned-at ?wolfskin ?location)
+	)
+)
+
+(define (problem red-cap)
+	(:domain red-cap)
+	(:objects basket flowers clothes wolfskin
+			  grandmother redcap wolf woodman
+			  motherhouse grandmotherhouse wolfmeetingspot darkwoods woodsmanhouse)
+    (:init (location motherhouse)
+    	   (location insidegrandmotherhouse)
+    	   (location outsidegrandmotherhouse)
+    	   (location wolfmeetingspot)
+    	   (location flowerpickuplocation)
+    	   (location woodmanshouse)
+    	   (actor grandmother)
+    	   (actor redcap)
+    	   (actor wolf)
+    	   (actor woodman)
+    	   (hero redcap)
+    	   (thing goodies)
+    	   (thing flowers)
+    	   (thing wolfskin)
+    	   (positioned-at redcap motherhouse)
+    	   (positioned-at grandmother grandmotherhouse)
+    	   (positioned-at wolf wolfmeetingspot)
+    	   (positioned-at woodman woodmanshouse)
+    	   (carry redcap goodies)
+    )
+)
+
+;; My own stuff, trying to think up a way to define a total order planned set of actions
+;; Equal numbers mean that these are not ordered explicitly
+;; Do move actions declare new edges between regions or only if those regions were not connected yet
+(define (plan red-cap)
+	(:domain red-cap)
+	(:problem red-cap)
+	(:events
+		(1, move, redcap, motherhouse, wolfmeetingspot)
+		(2, talk, redcap, wolf, wolfmeetingspot)
+		(3, pick-up, redcap, flowers, flowerpickuplocation)
+		(4, move, wolf, wolfmeetingspot, insidegrandmotherhouse)
+		(5, eat, wolf, grandmother, insidegrandmotherhouse)
+		(6, disguise, wolf, grandmother, insidegrandmotherhouse)
+		(7, move, redcap, flowerpickuplocation, insidegrandmotherhouse)
+		(8, talk, redcap, wolf, insidegrandmotherhouse)
+		(9, eat, wolf, redcap, insidegrandmotherhouse)
+		(10, move, woodman, woodmanshouse, outsidegrandmotherhouse)
+		(11, hears, woodman, wolf, outsidegrandmotherhouse)
+		(12, move, woodman, insidegrandmotherhouse, outsidegrandmotherhouse)
+		(13, cuts-open, woodman, wolf, insidegrandmotherhouse)
+		(14, skin, woodman, wolf, insidegrandmotherhouse)
+		(15, pickup, woodman, wolfskin, insidegrandmotherhouse)
+		(16, move, woodman, insidegrandmotherhouse, outsidegrandmotherhouse)
+		(17, move, woodman, outsidegrandmotherhouse, woodmanshouse)
+		(18, eat, redcap, goodies, insidegrandmotherhouse)
+		(19, eat grandmother, goodies, insidegrandmotherhouse)
+	)
+)
