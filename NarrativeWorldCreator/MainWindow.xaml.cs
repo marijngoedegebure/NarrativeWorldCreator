@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using Microsoft.Win32;
 using QuickGraph;
+using NarrativeWorldCreator.PDDL;
 
 namespace NarrativeWorldCreator
 {
@@ -11,8 +12,16 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class MainWindow : Window
     {
-        public String domain;
-        public String problem;
+        /*
+        public String domainPath;
+        public String problemPath;
+        public String planPath;
+        */
+        public String domainPath = "C:\\Users\\marij\\Documents\\Master Thesis own folder\\Own application\\NarrativeWorldCreator\\examples-pddl\\red-cap-domain.pddl";
+        public String problemPath = "C:\\Users\\marij\\Documents\\Master Thesis own folder\\Own application\\NarrativeWorldCreator\\examples-pddl\\red-cap-problem.pddl";
+        public String planPath = "C:\\Users\\marij\\Documents\\Master Thesis own folder\\Own application\\NarrativeWorldCreator\\examples-pddl\\red-cap-plan.pddl";
+
+        private Parser parser = new Parser();
 
         public MainWindow()
         {
@@ -26,8 +35,7 @@ namespace NarrativeWorldCreator
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                problem = openFileDialog.FileName;
-                txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+                problemPath = openFileDialog.FileName;
             }
         }
 
@@ -36,15 +44,22 @@ namespace NarrativeWorldCreator
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
-                domain = openFileDialog.FileName;
-                txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+                domainPath = openFileDialog.FileName;
+            }
+        }
+
+        private void btnOpenFilePlan_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                planPath = openFileDialog.FileName;
             }
         }
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-            var pd = new PDDLNET.DomainProblem(domain, problem);
-            txtEditor.Text = pd.ToString();
+            parser.parseDomain(domainPath);
         }
     }
 }
