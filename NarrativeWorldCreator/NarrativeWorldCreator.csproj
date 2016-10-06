@@ -101,9 +101,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PDDL\NarrativeDataTypes\Narrative.cs" />
+    <Compile Include="PDDL\DomainParser.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\NarrativeAction.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\NarrativeEvent.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\NarrativeObject.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\NarrativePredicate.cs" />
     <Compile Include="PDDL\Parser.cs" />
-    <Compile Include="PDDL\Predicate.cs" />
-    <Compile Include="PDDL\Type.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\PredicateType.cs" />
+    <Compile Include="PDDL\PlanParser.cs" />
+    <Compile Include="PDDL\ProblemParser.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\Type.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

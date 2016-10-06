@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class Predicate
+    class PredicateType
     {
         public String name;
         public List<Argument> arguments = new List<Argument>();
 
-        public Predicate(String nm)
+        public PredicateType(String nm)
         {
             name = nm;
         }

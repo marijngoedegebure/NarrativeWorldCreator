@@ -60,6 +60,8 @@ namespace NarrativeWorldCreator
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
             parser.parseDomain(domainPath);
+            parser.parseProblem(problemPath);
+            parser.parsePlan(planPath);
         }
     }
 }

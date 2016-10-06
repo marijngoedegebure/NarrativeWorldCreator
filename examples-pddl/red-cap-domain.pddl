@@ -2,7 +2,7 @@
 	(:requirements :strips :typing)
 	(:types location actor hero thing)
 	(:predicates
-		(dead ?x - actor) 
+		(dead ?x - actor)
 		(disguised ?x - actor ?y - actor)
 		(carry ?x - actor ?y - thing)
 		(positioned-at ?x - actor ?y - location)
