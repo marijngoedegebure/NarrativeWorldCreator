@@ -20,7 +20,7 @@
 	 :effect (and (not (positioned-at ?object ?location) (carry ?actor ?object)))
 	)
 	(:action eat
-	 :parameters (?actor - actor ?subject - actor)
+	 :parameters (?actor - actor ?subject - actor ?location - location)
 	 :preconditions (and (positioned-at ?subject ?location) (positioned-at ?actor ?location))
 	 :effect (and (not (positioned-at ?subject ?location)) (carry ?actor ?subject))
 	)
@@ -43,5 +43,10 @@
 	 :parameters (?actor - actor ?subject - actor ?location - location)
 	 :preconditions (and (positioned-at ?actor ?location) (positioned-at ?subject ?location) dead(?subject))
 	 :postconditions (positioned-at ?wolfskin ?location)
+	)
+	(:action talk
+	 :parameters (?actor - actor ?subject - actor ?location - location)
+	 :preconditions (and (positioned-at ?actor ?location) (positioned-at ?subject ?location)
+	 :postconditions 
 	)
 )

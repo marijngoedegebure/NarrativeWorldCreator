@@ -13,8 +13,11 @@ namespace NarrativeWorldCreator.PDDL
         {
             string[] lines = Parser.parseText(File.ReadAllText(domainPath));
             bool readPredicatesMode = false;
+            bool readActionMode = true;
             List<PredicateType> predicateTypes = new List<PredicateType>();
             List<Type> types = new List<Type>();
+            List<NarrativeAction> narrativeActions = new List<NarrativeAction>();
+            NarrativeAction currentNarrativeAction = null;
             foreach (String line in lines)
             {
                 string[] words = line.Split(null);
@@ -37,17 +40,63 @@ namespace NarrativeWorldCreator.PDDL
                 if (words[0].Equals("action"))
                 {
                     readPredicatesMode = false;
-                    break;
+                    readActionMode = true;
+                    currentNarrativeAction = new NarrativeAction(words[1]);
+                    continue;
                 }
                 if (readPredicatesMode)
                 {
                     predicateTypes.Add(readPredicateTypes(words, types));
                     continue;
                 }
+                if (readActionMode)
+                {
+                    if(words[0].Equals("parameters"))
+                    {
+                        narrativeActions.Add(readParameters(words, currentNarrativeAction, types));
+                        continue;
+                    }
+                    if(words[0].Equals("preconditions"))
+                        continue;
+                    if (words[0].Equals("effect"))
+                        continue; 
+                }
             }
             narrative.predicateTypes = predicateTypes;
             narrative.types = types;
+            narrative.narrativeActions = narrativeActions;
             return narrative;
+        }
+
+        private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<Type> types)
+        {
+            List<String> arguments = new List<string>();
+            for (int i = 1; i < words.Length; i++)
+            {
+                if (words[i].Equals(""))
+                    continue;
+                if (words[i].First() == '?')
+                {
+                    arguments.Add(words[i]);
+                    continue;
+                }
+                if (words[i].Equals("-"))
+                    continue;
+
+                foreach (Type type in types)
+                {
+                    if (words[i].Equals(type.name))
+                    {
+                        foreach (String argument in arguments)
+                        {
+                            currentNarrativeAction.arguments.Add(new NarrativeArgument(type));
+                        }
+                        arguments.Clear();
+                        break;
+                    }
+                }
+            }
+            return currentNarrativeAction;
         }
 
         private static PredicateType readPredicateTypes(string[] words, List<Type> types)

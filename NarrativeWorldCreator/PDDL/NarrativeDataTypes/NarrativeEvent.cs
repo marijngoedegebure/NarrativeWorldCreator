@@ -9,12 +9,11 @@ namespace NarrativeWorldCreator.PDDL
     class NarrativeEvent
     {
         // Narrative action is not used in implementation and is thus not used
-        // NarrativeAction narrativeAction;
-        NarrativeObject location;
+        public NarrativeAction narrativeAction;
+        public List<NarrativeObject> narrativeObjects = new List<NarrativeObject>();
 
-        public NarrativeEvent(NarrativeObject loc)
+        public NarrativeEvent()
         {
-            location = loc;
         }
     }
 }

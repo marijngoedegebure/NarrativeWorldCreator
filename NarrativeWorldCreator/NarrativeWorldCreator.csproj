@@ -104,6 +104,7 @@
     <Compile Include="PDDL\NarrativeDataTypes\Narrative.cs" />
     <Compile Include="PDDL\DomainParser.cs" />
     <Compile Include="PDDL\NarrativeDataTypes\NarrativeAction.cs" />
+    <Compile Include="PDDL\NarrativeDataTypes\NarrativeArgument.cs" />
     <Compile Include="PDDL\NarrativeDataTypes\NarrativeEvent.cs" />
     <Compile Include="PDDL\NarrativeDataTypes\NarrativeObject.cs" />
     <Compile Include="PDDL\NarrativeDataTypes\NarrativePredicate.cs" />

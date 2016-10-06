@@ -9,7 +9,7 @@ namespace NarrativeWorldCreator.PDDL
     class PredicateType
     {
         public String name;
-        public List<Argument> arguments = new List<Argument>();
+        public List<NarrativeArgument> arguments = new List<NarrativeArgument>();
 
         public PredicateType(String nm)
         {
@@ -18,17 +18,7 @@ namespace NarrativeWorldCreator.PDDL
 
         public void addArgument(Type tp)
         {
-            arguments.Add(new Argument(tp));
-        }
-    }
-
-    class Argument
-    {
-        public Type type;
-
-        public Argument(Type tp)
-        {
-            type = tp;
+            arguments.Add(new NarrativeArgument(tp));
         }
     }
 }

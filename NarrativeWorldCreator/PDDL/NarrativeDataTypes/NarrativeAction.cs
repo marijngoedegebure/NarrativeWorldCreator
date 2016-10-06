@@ -8,6 +8,13 @@ namespace NarrativeWorldCreator.PDDL
 {
     class NarrativeAction
     {
+        public String name;
+        public List<NarrativeArgument> arguments = new List<NarrativeArgument>();
+        // Missing: preconditions, effects
 
+        public NarrativeAction(String nm)
+        {
+            name = nm;
+        }
     }
 }

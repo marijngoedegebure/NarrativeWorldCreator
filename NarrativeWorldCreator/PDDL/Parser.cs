@@ -9,7 +9,7 @@ namespace NarrativeWorldCreator.PDDL
 {
     class Parser
     {
-        public Narrative narrative = new Narrative();
+        public static Narrative narrative = new Narrative();
 
         public Parser()
         {
