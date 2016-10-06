@@ -17,9 +17,9 @@ namespace NarrativeWorldCreator
         public String problemPath;
         public String planPath;
         */
-        public String domainPath = "C:\\Users\\marij\\Documents\\Master Thesis own folder\\Own application\\NarrativeWorldCreator\\examples-pddl\\red-cap-domain.pddl";
-        public String problemPath = "C:\\Users\\marij\\Documents\\Master Thesis own folder\\Own application\\NarrativeWorldCreator\\examples-pddl\\red-cap-problem.pddl";
-        public String planPath = "C:\\Users\\marij\\Documents\\Master Thesis own folder\\Own application\\NarrativeWorldCreator\\examples-pddl\\red-cap-plan.pddl";
+        public String domainPath = "..\\..\\..\\examples-pddl\\red-cap-domain.pddl";
+        public String problemPath = "..\\..\\..\\examples-pddl\\red-cap-problem.pddl";
+        public String planPath = "..\\..\\..\\examples-pddl\\red-cap-plan.pddl";
 
         private Parser parser = new Parser();
 
