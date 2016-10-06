@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
 
 namespace NarrativeWorldCreator
 {
@@ -13,5 +14,6 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class App : Application
     {
+        static Graph graph;
     }
 }
