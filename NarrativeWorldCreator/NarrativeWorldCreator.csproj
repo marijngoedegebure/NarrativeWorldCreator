@@ -87,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RegionGraph\GraphDataTypes\Edge.cs" />
+    <Compile Include="RegionGraph\GraphDataTypes\Graph.cs" />
+    <Compile Include="RegionGraph\GraphDataTypes\Node.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
