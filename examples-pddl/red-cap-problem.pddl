@@ -3,7 +3,7 @@
 	(:objects 
         basket flowers clothes wolfskin - thing
 		grandmother redcap wolf woodman - actor
-		motherhouse insidegrandmotherhouse outsidegrandmotherhouse wolfmeetingspot darkwoods woodmanshouse flowerpickuplocation - location)
+		motherhouse insidegrandmotherhouse outsidegrandmotherhouse wolfmeetingspot woodmanshouse flowerpickuplocation - location)
     (:init 
             (positioned-at redcap motherhouse)
             (positioned-at grandmother grandmotherhouse)

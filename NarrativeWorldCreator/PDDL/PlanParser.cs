@@ -9,7 +9,7 @@ namespace NarrativeWorldCreator.PDDL
 {
     class PlanParser
     {
-        public static Narrative parsePlan(String planPath, Narrative narrative)
+        public static void parsePlan(String planPath)
         {
             string[] lines = Parser.parseText(File.ReadAllText(planPath));
             bool readEventMode = false;
@@ -32,12 +32,11 @@ namespace NarrativeWorldCreator.PDDL
                 }
                 if (readEventMode)
                 {
-                    narrativeEvents.Add(readEvent(words, narrative.narrativeActions, narrative.types));
+                    narrativeEvents.Add(readEvent(words, Parser.narrative.narrativeActions, Parser.narrative.types));
                     continue;
                 }
             }
-            narrative.narrativeEvents = narrativeEvents;
-            return narrative;
+            Parser.narrative.narrativeEvents = narrativeEvents;
         }
 
         private static NarrativeEvent readEvent(string[] words, List<NarrativeAction> narrativeActions, List<Type> types)
@@ -46,7 +45,7 @@ namespace NarrativeWorldCreator.PDDL
             NarrativeEvent narrativeEvent = new NarrativeEvent();
             foreach (NarrativeAction narrativeAction in narrativeActions)
             {
-                if (narrativeAction.name.Equals(words[1]))
+                if (narrativeAction.name.Equals(words.First()))
                 {
                     narrativeEvent.narrativeAction = narrativeAction;
                     break;
@@ -69,13 +68,13 @@ namespace NarrativeWorldCreator.PDDL
             if (locationOfEvent == null)
                 throw new Exception("Last argument is not a location");
             // Read words in
-            for(int i = 2; i < words.Length; i++)
+            for(int i = 1; i < words.Length; i++)
             {
                 foreach(NarrativeObject narrativeObject in Parser.narrative.narrativeObjects)
                 {
                     if (words[i].Equals(narrativeObject.name))
                     {
-                        if (narrativeEvent.narrativeAction.arguments[i - 2].type.name.Equals(narrativeObject.type.name))
+                        if (narrativeEvent.narrativeAction.arguments[i - 1].type.name.Equals(narrativeObject.type.name))
                         {
                             narrativeEvent.narrativeObjects.Add(narrativeObject);
                             break;

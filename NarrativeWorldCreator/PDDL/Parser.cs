@@ -7,23 +7,18 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class Parser
+    static class Parser
     {
         public static Narrative narrative = new Narrative();
 
-        public Parser()
+        public static void parseDomain(String domainPath)
         {
-            
+            DomainParser.parseDomain(domainPath);
         }
 
-        public void parseDomain(String domainPath)
+        public static void parseProblem(String problemPath)
         {
-            DomainParser.parseDomain(domainPath, narrative);
-        }
-
-        public void parseProblem(String problemPath)
-        {
-            ProblemParser.parseProblem(problemPath, narrative);
+            ProblemParser.parseProblem(problemPath);
         }
 
         public static String[] parseText(String text)
@@ -41,9 +36,9 @@ namespace NarrativeWorldCreator.PDDL
             return lines;
         }
 
-        internal void parsePlan(string planPath)
+        public static void parsePlan(string planPath)
         {
-            PlanParser.parsePlan(planPath, narrative);
+            PlanParser.parsePlan(planPath);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace NarrativeWorldCreator.PDDL
 {
     class DomainParser
     {
-        public static Narrative parseDomain(String domainPath, Narrative narrative)
+        public static void parseDomain(String domainPath)
         {
             string[] lines = Parser.parseText(File.ReadAllText(domainPath));
             bool readPredicatesMode = false;
@@ -62,10 +62,9 @@ namespace NarrativeWorldCreator.PDDL
                         continue; 
                 }
             }
-            narrative.predicateTypes = predicateTypes;
-            narrative.types = types;
-            narrative.narrativeActions = narrativeActions;
-            return narrative;
+            Parser.narrative.predicateTypes = predicateTypes;
+            Parser.narrative.types = types;
+            Parser.narrative.narrativeActions = narrativeActions;
         }
 
         private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<Type> types)

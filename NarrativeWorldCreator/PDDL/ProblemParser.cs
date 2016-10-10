@@ -9,7 +9,7 @@ namespace NarrativeWorldCreator.PDDL
 {
     class ProblemParser
     {
-        public static Narrative parseProblem(String problemPath, Narrative narrative)
+        public static void parseProblem(String problemPath)
         {
             string[] lines = Parser.parseText(File.ReadAllText(problemPath));
             bool readInitMode = false;
@@ -36,18 +36,17 @@ namespace NarrativeWorldCreator.PDDL
                 }
                 if (readObjectsMode)
                 {
-                    narrativeObjects.AddRange(readObjects(words, narrative.types));
+                    narrativeObjects.AddRange(readObjects(words, Parser.narrative.types));
                     continue;
                 }
                 if (readInitMode)
                 {
-                    narrativePredicates.Add(readNarrativePredicate(words, narrative.predicateTypes, narrative.types, narrativeObjects));
+                    narrativePredicates.Add(readNarrativePredicate(words, Parser.narrative.predicateTypes, Parser.narrative.types, narrativeObjects));
                     continue;
                 }
             }
-            narrative.narrativeObjects = narrativeObjects;
-            narrative.narrativePredicates = narrativePredicates;
-            return narrative;
+            Parser.narrative.narrativeObjects = narrativeObjects;
+            Parser.narrative.narrativePredicates = narrativePredicates;
         }
 
         private static NarrativePredicate readNarrativePredicate(string[] words, List<PredicateType> predicateTypes, List<Type> types, List<NarrativeObject> narrativeObjects)

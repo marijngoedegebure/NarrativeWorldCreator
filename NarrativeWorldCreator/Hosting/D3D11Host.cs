@@ -18,8 +18,8 @@ namespace NarrativeWorldCreator.Hosting
     /// </summary>
     public abstract class D3D11Host : System.Windows.Controls.Image
     {
-        private const int DefaultWidth = 1920;
-        private const int DefaultHeight = 1080;
+        public const int DefaultWidth = 1920;
+        public const int DefaultHeight = 1080;
 
         private static bool? _IsInDesignMode;
 
@@ -251,6 +251,11 @@ namespace NarrativeWorldCreator.Hosting
             {
                 return _RenderTarget;
             }
+        }
+
+        public int getHeight()
+        {
+            return _Height;
         }
 
         #region Game members

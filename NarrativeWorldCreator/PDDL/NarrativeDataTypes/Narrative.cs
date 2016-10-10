@@ -20,6 +20,27 @@ namespace NarrativeWorldCreator.PDDL
 
         }
 
+        public List<NarrativeEvent> getNarrativeMoveEvents()
+        {
+            List<NarrativeEvent> moveEvents = new List<NarrativeEvent>();
+            foreach(NarrativeEvent ev in narrativeEvents)
+            {
+                if(ev.narrativeAction.name.Equals("move"))
+                {
+                    moveEvents.Add(ev);
+                }
+            }
+            return moveEvents;
+        }
+
+        public List<NarrativeObject> getNarrativeObjectsOfType(String s)
+        {
+            Type t = getType(s);
+            if (t != null)
+                return getNarrativeObjectsOfType(t);
+            return null;
+        }
+
         public List<NarrativeObject> getNarrativeObjectsOfType(Type t)
         {
             List<NarrativeObject> filteredNarrativeObjects = new List<NarrativeObject>();

@@ -3,6 +3,8 @@ using System.IO;
 using System.Windows;
 using Microsoft.Win32;
 using NarrativeWorldCreator.PDDL;
+using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
+using NarrativeWorldCreator.RegionGraph;
 
 namespace NarrativeWorldCreator
 {
@@ -19,8 +21,6 @@ namespace NarrativeWorldCreator
         public String domainPath = "..\\..\\..\\examples-pddl\\red-cap-domain.pddl";
         public String problemPath = "..\\..\\..\\examples-pddl\\red-cap-problem.pddl";
         public String planPath = "..\\..\\..\\examples-pddl\\red-cap-plan.pddl";
-
-        private Parser parser = new Parser();
 
         public MainWindow()
         {
@@ -56,9 +56,14 @@ namespace NarrativeWorldCreator
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-            parser.parseDomain(domainPath);
-            parser.parseProblem(problemPath);
-            parser.parsePlan(planPath);
+            Parser.narrative = new Narrative();
+            Parser.parseDomain(domainPath);
+            Parser.parseProblem(problemPath);
+            Parser.parsePlan(planPath);
+            // Temporary trigger for when to trigger the graph generation:
+            GraphParser.createGraphBasedOnNarrative();
+            GraphParser.initForceDirectedGraph();
+            GraphParser.runForceDirectedGraph();
         }
     }
 }

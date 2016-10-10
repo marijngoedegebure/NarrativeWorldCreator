@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NarrativeWorldCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
             <Button x:Name="button1" Content="Click here to problem from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileProblem_Click"/>
@@ -13,7 +13,7 @@
             <Button x:Name="button3" Content="Click here to plan from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFilePlan_Click"/>
             <Button x:Name="button4" Content="Click here to load Pddl from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadPDDL_Click"/>
         </WrapPanel>
-        <Grid Margin="0,90,0,0">
+        <Grid Margin="0,90,0,10">
             <local:ProjectionHost x:Name="MainProjection" />
         </Grid>
     </Grid>

@@ -14,6 +14,5 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class App : Application
     {
-        static Graph graph;
     }
 }
