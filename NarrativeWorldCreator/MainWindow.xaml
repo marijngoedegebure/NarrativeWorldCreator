@@ -13,6 +13,8 @@
             <Button x:Name="button3" Content="Click here to plan from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFilePlan_Click"/>
             <Button x:Name="button4" Content="Click here to load Pddl from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadPDDL_Click"/>
         </WrapPanel>
-        <TextBox Name="txtEditor" Margin="0,79,0,0" />
+        <Grid Margin="0,90,0,0">
+            <local:ProjectionHost x:Name="MainProjection" />
+        </Grid>
     </Grid>
 </Window>
