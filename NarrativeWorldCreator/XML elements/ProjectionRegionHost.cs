@@ -29,6 +29,7 @@ namespace NarrativeWorldCreator
 
         public override void Draw(TimeSpan gameTime)
         {
+            base.GraphicsDeviceManager.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
             drawModelExampleFunction();
         }
 

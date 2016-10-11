@@ -33,7 +33,7 @@ namespace NarrativeWorldCreator
 
         public override void Draw(TimeSpan gameTime)
         {
-            base.GraphicsDeviceManager.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Purple);
+            base.GraphicsDeviceManager.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
             SpriteBatch spriteBatch = new SpriteBatch(base.GraphicsDeviceManager.GraphicsDevice);
             //drawModelExampleFunction();
             //drawSpriteExampleFunction(spriteBatch);
