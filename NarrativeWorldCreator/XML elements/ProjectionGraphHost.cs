@@ -120,37 +120,6 @@ namespace NarrativeWorldCreator
                 0);
         }
 
-        public void drawModelExampleFunction()
-        {
-            Model myModel = Content.Load<Model>("cylinder");
-            Matrix[] transforms = new Matrix[myModel.Bones.Count];
-            Vector3 modelPosition = Vector3.Zero;
-            float modelRotation = 0.0f;
-            Vector3 cameraPosition = new Vector3(0.0f, 50.0f, 5000.0f);
-            myModel.CopyAbsoluteBoneTransformsTo(transforms);
-
-            // Draw the model. A model can have multiple meshes, so loop.
-            foreach (ModelMesh mesh in myModel.Meshes)
-            {
-                // This is where the mesh orientation is set, as well 
-                // as our camera and projection.
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.EnableDefaultLighting();
-                    effect.World = transforms[mesh.ParentBone.Index] *
-                        Matrix.CreateRotationY(modelRotation)
-                        * Matrix.CreateTranslation(modelPosition);
-                    effect.View = Matrix.CreateLookAt(cameraPosition,
-                        Vector3.Zero, Vector3.Up);
-                    effect.Projection = Matrix.CreatePerspectiveFieldOfView(
-                        MathHelper.ToRadians(45.0f), base.GraphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
-                        1.0f, 10000.0f);
-                }
-                // Draw the mesh, using the effects set above.
-                mesh.Draw();
-            }
-        }
-
         public void drawSpriteExampleFunction(SpriteBatch spriteBatch)
         {
             Texture2D circle = Content.Load<Texture2D>("Sprites/Circle");
@@ -162,15 +131,14 @@ namespace NarrativeWorldCreator
         }
 
         private float elapsedSinceLastStep = 0f;
-        private float intervalStepTime = 1f;
+        private float intervalStepTime = 0.1f;
 
         public override void Update(TimeSpan gameTime)
         {
             float totalElapsed = (float)gameTime.TotalSeconds;
-            if (totalElapsed - elapsedSinceLastStep > intervalStepTime)
+            if (totalElapsed - elapsedSinceLastStep > intervalStepTime && GraphParser.temperature > GraphParser.DefaultMinimumTemperature)
             {
-                if (GraphParser.temperature > GraphParser.DefaultMinimumTemperature)
-                    GraphParser.stepForceDirectedGraph();
+                GraphParser.stepForceDirectedGraph();
                 elapsedSinceLastStep = totalElapsed;
             }            
         }
