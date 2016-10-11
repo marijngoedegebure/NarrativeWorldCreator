@@ -63,7 +63,8 @@ namespace NarrativeWorldCreator
             // Temporary trigger for when to trigger the graph generation:
             GraphParser.createGraphBasedOnNarrative();
             GraphParser.initForceDirectedGraph();
-            GraphParser.runForceDirectedGraph();
+            // Temporarily disabled to test force directed graph
+            // GraphParser.runForceDirectedGraph();
         }
     }
 }

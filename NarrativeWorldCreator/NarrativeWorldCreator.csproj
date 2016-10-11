@@ -98,7 +98,8 @@
     <Compile Include="Hosting\D3D11Image.cs" />
     <Compile Include="Hosting\D3D9.cs" />
     <Compile Include="RegionGraph\GraphParser.cs" />
-    <Compile Include="XML elements\ProjectionHost.cs" />
+    <Compile Include="XML elements\ProjectionGraphHost.cs" />
+    <Compile Include="XML elements\ProjectionRegionHost.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

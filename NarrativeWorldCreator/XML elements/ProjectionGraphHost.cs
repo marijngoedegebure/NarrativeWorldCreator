@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator
 {
-    public class ProjectionHost : D3D11Host
+    public class ProjectionGraphHost : D3D11Host
     {
         SpriteFont spriteFontCourierNew;
 
@@ -40,19 +40,48 @@ namespace NarrativeWorldCreator
             drawGraph(spriteBatch);
         }
 
+        private Dictionary<Node, Vector2> convertNodePositions( Dictionary<Node, Vector2> positions)
+        {
+            // Figure out min and max of X and Y
+            List<Node> nodeList = GraphParser.graph.getNodeList();
+            float minX = positions[nodeList[0]].X;
+            float maxX = positions[nodeList[0]].X;
+            float minY = positions[nodeList[0]].Y;
+            float maxY = positions[nodeList[0]].Y;
+            for (int i = 0; i < nodeList.Count; i++)
+            {
+                if (positions[nodeList[i]].X > maxX)
+                    maxX = positions[nodeList[i]].X;
+                if (positions[nodeList[i]].X < minX)
+                    minX = positions[nodeList[i]].X;
+                if (positions[nodeList[i]].Y > maxY)
+                    maxY = positions[nodeList[i]].Y;
+                if (positions[nodeList[i]].Y < minY)
+                    minY = positions[nodeList[i]].Y;
+            }
+            // Normalize
+            Dictionary<Node, Vector2> convertedPositions = new Dictionary<Node, Vector2>();
+            foreach (Node n in nodeList)
+            {
+                convertedPositions[n] = new Vector2((positions[n].X - minX) / (maxX - minX), (positions[n].Y - minY) / (maxY - minY));
+            }
+            return convertedPositions;
+        }
+
         private void drawGraph(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            int height = ProjectionHost.DefaultHeight - GraphParser.nodeHeight;
-            int width = ProjectionHost.DefaultWidth - GraphParser.nodeWidth;
+            int height = ProjectionGraphHost.DefaultHeight - GraphParser.nodeHeight;
+            int width = ProjectionGraphHost.DefaultWidth - GraphParser.nodeWidth;
             // Draw each node
             if (!GraphParser.graph.nodeCoordinatesGenerated)
                 return;
+            Dictionary<Node, Vector2> convertedPositions = convertNodePositions(GraphParser.NodePositions);
             foreach (Node n in GraphParser.graph.getNodeList())
             {
                 // Convert 0 to 1 float to screenposition (1920x1080)
-                float x = GraphParser.NodePositions[n].X * width;
-                float y = GraphParser.NodePositions[n].Y * height;
+                float x = convertedPositions[n].X * height;
+                float y = convertedPositions[n].Y * height;
                 spriteBatch.Draw(GraphParser.circleTexture, new Rectangle((int)x, (int)y, GraphParser.nodeHeight, GraphParser.nodeWidth), Color.White);
                 // Draw the location name
                 spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(x + (GraphParser.nodeWidth / 2), y + (GraphParser.nodeHeight / 2)), Color.Black,
@@ -62,8 +91,8 @@ namespace NarrativeWorldCreator
             foreach (Edge e in GraphParser.graph.getEdgeList())
             {
                 DrawLine(spriteBatch, //draw line
-                    new Vector2(GraphParser.NodePositions[e.from].X * width + (GraphParser.nodeWidth/2), GraphParser.NodePositions[e.from].Y * height + (GraphParser.nodeHeight/2)), //start of line
-                    new Vector2(GraphParser.NodePositions[e.to].X * width + (GraphParser.nodeWidth / 2), GraphParser.NodePositions[e.to].Y * height + (GraphParser.nodeHeight / 2)) //end of line
+                    new Vector2(convertedPositions[e.from].X * height + (GraphParser.nodeWidth/2), convertedPositions[e.from].Y * height + (GraphParser.nodeHeight/2)), //start of line
+                    new Vector2(convertedPositions[e.to].X * height + (GraphParser.nodeWidth / 2), convertedPositions[e.to].Y * height + (GraphParser.nodeHeight / 2)) //end of line
                 );
             }
             spriteBatch.End();
@@ -132,8 +161,18 @@ namespace NarrativeWorldCreator
             spriteBatch.End();
         }
 
+        private float elapsedSinceLastStep = 0f;
+        private float intervalStepTime = 1f;
+
         public override void Update(TimeSpan gameTime)
         {
+            float totalElapsed = (float)gameTime.TotalSeconds;
+            if (totalElapsed - elapsedSinceLastStep > intervalStepTime)
+            {
+                if (GraphParser.temperature > GraphParser.DefaultMinimumTemperature)
+                    GraphParser.stepForceDirectedGraph();
+                elapsedSinceLastStep = totalElapsed;
+            }            
         }
     }
 }

@@ -53,7 +53,6 @@ namespace NarrativeWorldCreator.RegionGraph
                 Node from = graph.getNode(ev.narrativeObjects[ev.narrativeObjects.Count - 2].name);
                 graph.addEdge(from, to);
             }
-            randomlyGenerateCoordinates();
         }
 
         public static void randomlyGenerateCoordinates()
@@ -112,28 +111,6 @@ namespace NarrativeWorldCreator.RegionGraph
         public static void runForceDirectedGraph(double minimumTemperature = DefaultMinimumTemperature)
         {
             while (temperature > minimumTemperature) stepForceDirectedGraph();
-            // Figure out min and max of X and Y
-            List<Node> nodeList = graph.getNodeList();
-            float minX = NodePositions[nodeList[0]].X;
-            float maxX = NodePositions[nodeList[0]].X;
-            float minY = NodePositions[nodeList[0]].Y;
-            float maxY = NodePositions[nodeList[0]].Y;
-            for (int i = 0; i < nodeList.Count; i++)
-            {
-                if (NodePositions[nodeList[i]].X > maxX)
-                    maxX = NodePositions[nodeList[i]].X;
-                if (NodePositions[nodeList[i]].X < minX)
-                    minX = NodePositions[nodeList[i]].X;
-                if (NodePositions[nodeList[i]].Y > maxY)
-                    maxY = NodePositions[nodeList[i]].Y;
-                if (NodePositions[nodeList[i]].Y < minY)
-                    minY = NodePositions[nodeList[i]].Y;
-            }
-            // Normalize
-            foreach(Node n in nodeList)
-            {
-                NodePositions[n] = new Vector2((NodePositions[n].X - minX) / (maxX - minX), (NodePositions[n].Y - minY) / (maxY - minY));
-            }
         }
     }
 }
