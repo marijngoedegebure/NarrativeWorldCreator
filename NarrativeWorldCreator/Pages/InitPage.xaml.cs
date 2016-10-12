@@ -43,6 +43,7 @@ namespace NarrativeWorldCreator.Pages
             if (openFileDialog.ShowDialog() == true)
             {
                 problemPath = openFileDialog.FileName;
+                problem_filename.Content = openFileDialog.SafeFileName;
             }
         }
 
@@ -52,6 +53,7 @@ namespace NarrativeWorldCreator.Pages
             if (openFileDialog.ShowDialog() == true)
             {
                 domainPath = openFileDialog.FileName;
+                domain_filename.Content = openFileDialog.SafeFileName;
             }
         }
 
@@ -61,6 +63,7 @@ namespace NarrativeWorldCreator.Pages
             if (openFileDialog.ShowDialog() == true)
             {
                 planPath = openFileDialog.FileName;
+                plan_filename.Content = openFileDialog.SafeFileName;
             }
         }
 

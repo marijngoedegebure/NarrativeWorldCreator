@@ -8,11 +8,22 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="InitPage">
     <Grid>
-        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
-            <Button x:Name="button1" Content="Click here to problem from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileProblem_Click"/>
-            <Button x:Name="button2" Content="Click here to domain from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileDomain_Click"/>
-            <Button x:Name="button3" Content="Click here to plan from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFilePlan_Click"/>
-            <Button x:Name="button4" Content="Click here to load Pddl from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadPDDL_Click"/>
-        </WrapPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Click here to problem from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileProblem_Click"/>
+        <Label Grid.Row="0" Grid.Column="1" Name="problem_filename" />
+        <Button Grid.Row="1" Grid.Column="0" x:Name="button2" Content="Click here to domain from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileDomain_Click"/>
+        <Label Grid.Row="1" Grid.Column="1" Name="domain_filename" />
+        <Button Grid.Row="2" Grid.Column="0" x:Name="button3" Content="Click here to plan from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFilePlan_Click"/>
+        <Label Grid.Row="2" Grid.Column="1" Name="plan_filename" />
+        <Button Grid.Row="3" Grid.Column="0" x:Name="button4" Content="Click here to load Pddl from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadPDDL_Click"/>
     </Grid>
 </Page>
