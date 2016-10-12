@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/Sprites/Circle.png</SourceFile>
-  <SourceTime>2016-10-11T09:05:19.4237902+02:00</SourceTime>
-  <DestFile>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/bin/Windows/Sprites/Circle.xnb</DestFile>
-  <DestTime>2016-10-11T09:10:58.1688636+02:00</DestTime>
+  <SourceFile>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/Sprites/Circle.png</SourceFile>
+  <SourceTime>2016-10-10T13:15:40.2604427+02:00</SourceTime>
+  <DestFile>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/bin/Windows/Sprites/Circle.xnb</DestFile>
+  <DestTime>2016-10-12T15:00:38.5541184+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

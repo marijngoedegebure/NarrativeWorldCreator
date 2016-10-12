@@ -41,5 +41,10 @@ namespace NarrativeWorldCreator.Pages
             // Re-initialize Force directed graph
             GraphParser.initForceDirectedGraph();
         }
+
+        private void btnInit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new InitPage());
+        }
     }
 }
