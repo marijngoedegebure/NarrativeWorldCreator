@@ -73,6 +73,21 @@ namespace NarrativeWorldCreator.Pages
             Parser.parseDomain(domainPath);
             Parser.parseProblem(problemPath);
             Parser.parsePlan(planPath);
+            // Show information on loaded narrative
+            fillDetailView();
+            loaded_narrative_detail_grid.Visibility = Visibility.Visible;
+        }
+
+        private void fillDetailView()
+        {
+            number_narrative_events.Content = Parser.narrative.narrativeEvents.Count;
+            number_narrative_characters.Content = Parser.narrative.getNarrativeObjectsOfType("actor").Count;
+            number_narrative_locations.Content = Parser.narrative.getNarrativeObjectsOfType("location").Count;
+            number_narrative_objects.Content = Parser.narrative.getNarrativeObjectsOfType("thing").Count;
+        }
+
+        private void btnGoToGraphPage_Click(object sender, RoutedEventArgs e)
+        {
             // Navigate to graph page
             this.NavigationService.Navigate(new GraphPage());
         }
