@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using NarrativeWorldCreator.Hosting;
 using NarrativeWorldCreator.RegionGraph;
 using NarrativeWorldCreator.RegionGraph.GraphDataTypes;

@@ -27,6 +27,7 @@ namespace NarrativeWorldCreator.RegionGraph
         public static float temperatureAttenuation;
 
         public static Dictionary<Node, Vector2> NodePositions = new Dictionary<Node, Vector2>();
+        public static Dictionary<Node, Rectangle> NodeCollisionBoxes = new Dictionary<Node, Rectangle>();
         public static Func<double, double> SpringForce { get; set; }
         public static Func<float, float> ElectricForce { get; set; }
 
@@ -65,6 +66,48 @@ namespace NarrativeWorldCreator.RegionGraph
             graph.nodeCoordinatesGenerated = true;
         }
 
+        public static void initCollisionboxes()
+        {
+            int height = ProjectionGraphHost.DefaultHeight - GraphParser.nodeHeight;
+            int width = ProjectionGraphHost.DefaultWidth - GraphParser.nodeWidth;
+            Dictionary<Node, Vector2> convertedPositions = convertNodePositions();
+            foreach (Node n in graph.getNodeList())
+            {
+                float x = convertedPositions[n].X * height;
+                float y = convertedPositions[n].Y * height;
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, GraphParser.nodeHeight, GraphParser.nodeWidth);
+                GraphParser.NodeCollisionBoxes[n] = collisionBox;
+            }
+        }
+
+        public static Dictionary<Node, Vector2> convertNodePositions()
+        {
+            // Figure out min and max of X and Y
+            List<Node> nodeList = graph.getNodeList();
+            float minX = NodePositions[nodeList[0]].X;
+            float maxX = NodePositions[nodeList[0]].X;
+            float minY = NodePositions[nodeList[0]].Y;
+            float maxY = NodePositions[nodeList[0]].Y;
+            for (int i = 0; i < graph.getNodeList().Count; i++)
+            {
+                if (NodePositions[nodeList[i]].X > maxX)
+                    maxX = NodePositions[nodeList[i]].X;
+                if (NodePositions[nodeList[i]].X < minX)
+                    minX = NodePositions[nodeList[i]].X;
+                if (NodePositions[nodeList[i]].Y > maxY)
+                    maxY = NodePositions[nodeList[i]].Y;
+                if (NodePositions[nodeList[i]].Y < minY)
+                    minY = NodePositions[nodeList[i]].Y;
+            }
+            // Normalize
+            Dictionary<Node, Vector2> convertedPositions = new Dictionary<Node, Vector2>();
+            foreach (Node n in graph.getNodeList())
+            {
+                convertedPositions[n] = new Vector2((NodePositions[n].X - minX) / (maxX - minX), (NodePositions[n].Y - minY) / (maxY - minY));
+            }
+            return convertedPositions;
+        }
+
         public static void initForceDirectedGraph()
         {
             temperature = DefaultStartingTemperature;
@@ -72,6 +115,7 @@ namespace NarrativeWorldCreator.RegionGraph
             SpringForce = (d => 2 * Math.Log(d));
             ElectricForce = (d => 1 / (d * d));
             randomlyGenerateCoordinates();
+            initCollisionboxes();
         }
 
         public static void stepForceDirectedGraph()

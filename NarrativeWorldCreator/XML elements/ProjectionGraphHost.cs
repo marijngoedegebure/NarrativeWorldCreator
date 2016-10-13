@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using NarrativeWorldCreator.Hosting;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.RegionGraph;
 using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
 using System;
@@ -8,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace NarrativeWorldCreator
 {
@@ -40,34 +43,6 @@ namespace NarrativeWorldCreator
             drawGraph(spriteBatch);
         }
 
-        private Dictionary<Node, Vector2> convertNodePositions( Dictionary<Node, Vector2> positions)
-        {
-            // Figure out min and max of X and Y
-            List<Node> nodeList = GraphParser.graph.getNodeList();
-            float minX = positions[nodeList[0]].X;
-            float maxX = positions[nodeList[0]].X;
-            float minY = positions[nodeList[0]].Y;
-            float maxY = positions[nodeList[0]].Y;
-            for (int i = 0; i < nodeList.Count; i++)
-            {
-                if (positions[nodeList[i]].X > maxX)
-                    maxX = positions[nodeList[i]].X;
-                if (positions[nodeList[i]].X < minX)
-                    minX = positions[nodeList[i]].X;
-                if (positions[nodeList[i]].Y > maxY)
-                    maxY = positions[nodeList[i]].Y;
-                if (positions[nodeList[i]].Y < minY)
-                    minY = positions[nodeList[i]].Y;
-            }
-            // Normalize
-            Dictionary<Node, Vector2> convertedPositions = new Dictionary<Node, Vector2>();
-            foreach (Node n in nodeList)
-            {
-                convertedPositions[n] = new Vector2((positions[n].X - minX) / (maxX - minX), (positions[n].Y - minY) / (maxY - minY));
-            }
-            return convertedPositions;
-        }
-
         private void drawGraph(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
@@ -76,23 +51,21 @@ namespace NarrativeWorldCreator
             // Draw each node
             if (!GraphParser.graph.nodeCoordinatesGenerated)
                 return;
-            Dictionary<Node, Vector2> convertedPositions = convertNodePositions(GraphParser.NodePositions);
             foreach (Node n in GraphParser.graph.getNodeList())
             {
-                // Convert 0 to 1 float to screenposition (1920x1080)
-                float x = convertedPositions[n].X * height;
-                float y = convertedPositions[n].Y * height;
-                spriteBatch.Draw(GraphParser.circleTexture, new Rectangle((int)x, (int)y, GraphParser.nodeHeight, GraphParser.nodeWidth), Color.White);
+                
+                spriteBatch.Draw(GraphParser.circleTexture, GraphParser.NodeCollisionBoxes[n], Color.White);
                 // Draw the location name
-                spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(x + (GraphParser.nodeWidth / 2), y + (GraphParser.nodeHeight / 2)), Color.Black,
+                spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(GraphParser.NodeCollisionBoxes[n].X + 
+                    (GraphParser.nodeWidth / 2), GraphParser.NodeCollisionBoxes[n].Y + (GraphParser.nodeHeight / 2)), Color.Black,
                     0, spriteFontCourierNew.MeasureString(n.getLocationName()) / 2, 1.0f, SpriteEffects.None, 0.5f);
             }
             // Draw each edge
             foreach (Edge e in GraphParser.graph.getEdgeList())
             {
                 DrawLine(spriteBatch, //draw line
-                    new Vector2(convertedPositions[e.from].X * height + (GraphParser.nodeWidth/2), convertedPositions[e.from].Y * height + (GraphParser.nodeHeight/2)), //start of line
-                    new Vector2(convertedPositions[e.to].X * height + (GraphParser.nodeWidth / 2), convertedPositions[e.to].Y * height + (GraphParser.nodeHeight / 2)) //end of line
+                    new Vector2(GraphParser.NodeCollisionBoxes[e.from].X * height + (GraphParser.nodeWidth/2), GraphParser.NodeCollisionBoxes[e.from].Y * height + (GraphParser.nodeHeight/2)), //start of line
+                    new Vector2(GraphParser.NodeCollisionBoxes[e.to].X * height + (GraphParser.nodeWidth / 2), GraphParser.NodeCollisionBoxes[e.to].Y * height + (GraphParser.nodeHeight / 2)) //end of line
                 );
             }
             spriteBatch.End();
@@ -140,7 +113,39 @@ namespace NarrativeWorldCreator
             {
                 GraphParser.stepForceDirectedGraph();
                 elapsedSinceLastStep = totalElapsed;
-            }            
+            }
+            // Convert positions and update collisionboxes
+            Dictionary<Node, Vector2> convertedPositions = GraphParser.convertNodePositions();
+            // Convert 0 to 1 float to screenposition (1080x1080)
+            int height = ProjectionGraphHost.DefaultHeight - GraphParser.nodeHeight;
+            int width = ProjectionGraphHost.DefaultWidth - GraphParser.nodeWidth;
+            foreach (Node n in GraphParser.graph.getNodeList())
+            {
+                float x = convertedPositions[n].X * height;
+                float y = convertedPositions[n].Y * height;
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, GraphParser.nodeHeight, GraphParser.nodeWidth);
+                GraphParser.NodeCollisionBoxes[n] = collisionBox;
+            }
+
+            // Check if mouse is inside node of graph
+            var mouseState = Mouse.GetState();
+            var mousePosition = new Point(mouseState.X, mouseState.Y);
+            foreach (Node n in GraphParser.graph.getNodeList())
+            {
+                if (GraphParser.NodeCollisionBoxes.Count == GraphParser.graph.getNodeList().Count)
+                {
+                    // Check if the mouse position is inside the rectangle
+                    if (mouseState.LeftButton == ButtonState.Released)
+                    {
+                        if (GraphParser.NodeCollisionBoxes[n].Contains(mousePosition))
+                        {
+                            continue;
+                            // var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+                            // mainWindow._mainFrame.NavigationService.Navigate(new RegionPage());
+                        }
+                    }
+                }
+            }
         }
     }
 }
