@@ -68,8 +68,8 @@ namespace NarrativeWorldCreator.RegionGraph
 
         public static void initCollisionboxes()
         {
-            int height = ProjectionGraphHost.DefaultHeight - GraphParser.nodeHeight;
-            int width = ProjectionGraphHost.DefaultWidth - GraphParser.nodeWidth;
+            int height = GraphScene.height - GraphParser.nodeHeight;
+            int width = GraphScene.width - GraphParser.nodeWidth;
             Dictionary<Node, Vector2> convertedPositions = convertNodePositions();
             foreach (Node n in graph.getNodeList())
             {

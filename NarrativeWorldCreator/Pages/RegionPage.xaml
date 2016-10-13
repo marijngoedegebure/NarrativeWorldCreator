@@ -12,7 +12,6 @@
             <Button x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToGraph_Click"/>
         </WrapPanel>
         <Grid Margin="0,49,0,0">
-            <local:ProjectionRegionHost x:Name="RegionProjection" />
         </Grid>
     </Grid>
 </Page>
