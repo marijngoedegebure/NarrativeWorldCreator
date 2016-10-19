@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class NarrativeArgument
+    public class NarrativeArgument
     {
-        public Type type;
+        public int NarrativeArgumentId { get; set; }
+        public NarrativeObjectType type;
 
-        public NarrativeArgument(Type tp)
+        public NarrativeArgument(NarrativeObjectType tp)
         {
             type = tp;
         }

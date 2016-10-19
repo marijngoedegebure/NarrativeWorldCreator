@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class Narrative
+    public class Narrative
     {
-        public List<Type> types = new List<Type>();
+        public int NarrativeId { get; set; }
+        public List<NarrativeObjectType> narrativeObjectTypes = new List<NarrativeObjectType>();
         public List<PredicateType> predicateTypes = new List<PredicateType>();
         public List<NarrativeObject> narrativeObjects = new List<NarrativeObject>();
         public List<NarrativePredicate> narrativePredicates = new List<NarrativePredicate>();
@@ -35,13 +36,13 @@ namespace NarrativeWorldCreator.PDDL
 
         public List<NarrativeObject> getNarrativeObjectsOfType(string s)
         {
-            Type t = getType(s);
+            NarrativeObjectType t = getNarrativeObjectType(s);
             if (t != null)
                 return getNarrativeObjectsOfType(t);
             return null;
         }
 
-        public List<NarrativeObject> getNarrativeObjectsOfType(Type t)
+        public List<NarrativeObject> getNarrativeObjectsOfType(NarrativeObjectType t)
         {
             List<NarrativeObject> filteredNarrativeObjects = new List<NarrativeObject>();
             foreach(NarrativeObject narrativeObject in narrativeObjects)
@@ -80,9 +81,9 @@ namespace NarrativeWorldCreator.PDDL
             return filteredNarrativeEvents;
         }
 
-        public Type getType(String name)
+        public NarrativeObjectType getNarrativeObjectType(String name)
         {
-            foreach(Type t in types)
+            foreach(NarrativeObjectType t in narrativeObjectTypes)
             {
                 if (t.name.Equals(name))
                     return t;

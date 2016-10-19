@@ -15,7 +15,7 @@ namespace NarrativeWorldCreator.PDDL
             bool readPredicatesMode = false;
             bool readActionMode = true;
             List<PredicateType> predicateTypes = new List<PredicateType>();
-            List<Type> types = new List<Type>();
+            List<NarrativeObjectType> types = new List<NarrativeObjectType>();
             List<NarrativeAction> narrativeActions = new List<NarrativeAction>();
             NarrativeAction currentNarrativeAction = null;
             foreach (String line in lines)
@@ -63,11 +63,11 @@ namespace NarrativeWorldCreator.PDDL
                 }
             }
             SystemStateTracker.narrative.predicateTypes = predicateTypes;
-            SystemStateTracker.narrative.types = types;
+            SystemStateTracker.narrative.narrativeObjectTypes = types;
             SystemStateTracker.narrative.narrativeActions = narrativeActions;
         }
 
-        private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<Type> types)
+        private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<NarrativeObjectType> types)
         {
             List<String> arguments = new List<string>();
             for (int i = 1; i < words.Length; i++)
@@ -82,7 +82,7 @@ namespace NarrativeWorldCreator.PDDL
                 if (words[i].Equals("-"))
                     continue;
 
-                foreach (Type type in types)
+                foreach (NarrativeObjectType type in types)
                 {
                     if (words[i].Equals(type.name))
                     {
@@ -98,7 +98,7 @@ namespace NarrativeWorldCreator.PDDL
             return currentNarrativeAction;
         }
 
-        private static PredicateType readPredicateTypes(string[] words, List<Type> types)
+        private static PredicateType readPredicateTypes(string[] words, List<NarrativeObjectType> types)
         {
             PredicateType predicate = new PredicateType(words[0]);
             List<String> arguments = new List<string>();
@@ -114,7 +114,7 @@ namespace NarrativeWorldCreator.PDDL
                 if (words[i].Equals("-"))
                     continue;
 
-                foreach (Type type in types)
+                foreach (NarrativeObjectType type in types)
                 {
                     if (words[i].Equals(type.name))
                     {
@@ -130,12 +130,18 @@ namespace NarrativeWorldCreator.PDDL
             return predicate;
         }
 
-        private static List<Type> readTypes(string[] words)
+        private static List<NarrativeObjectType> readTypes(string[] words)
         {
-            List<Type> types = new List<Type>();
+            List<NarrativeObjectType> types = new List<NarrativeObjectType>();
             for (int i = 1; i < words.Length; i++)
             {
-                types.Add(new Type(words[i]));
+                NarrativeObjectType type = new NarrativeObjectType(words[i]);
+                using (var db = new NarrativeContext())
+                {
+                    db.NarrativeObjectTypes.Add(type);
+                    db.SaveChanges();
+                }
+                types.Add(type);
             }
             return types;
         }

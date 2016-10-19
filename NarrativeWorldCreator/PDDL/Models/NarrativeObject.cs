@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class NarrativeObject
+    public class NarrativeObject
     {
+        public int NarrativeObjectId { get; set; }
         public String name;
-        public Type type;
+        public NarrativeObjectType type;
 
-        public NarrativeObject(String nm, Type tp)
+        public NarrativeObject(String nm, NarrativeObjectType tp)
         {
             name = nm;
             type = tp;

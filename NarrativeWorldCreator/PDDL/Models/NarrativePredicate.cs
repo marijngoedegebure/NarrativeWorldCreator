@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class NarrativePredicate
+    public class NarrativePredicate
     {
+        public int NarrativePredicateId { get; set; }
         public PredicateType predicateType;
         public List<NarrativeObject> narrativeObjects = new List<NarrativeObject>();
 

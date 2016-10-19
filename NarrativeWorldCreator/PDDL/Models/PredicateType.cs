@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class NarrativeAction
+    public class PredicateType
     {
+        public int PredicateTypeId { get; set; }
         public String name;
         public List<NarrativeArgument> arguments = new List<NarrativeArgument>();
-        // Missing: preconditions, effects
 
-        public NarrativeAction(String nm)
+        public PredicateType(String nm)
         {
             name = nm;
+        }
+
+        public void addArgument(NarrativeObjectType tp)
+        {
+            arguments.Add(new NarrativeArgument(tp));
         }
     }
 }

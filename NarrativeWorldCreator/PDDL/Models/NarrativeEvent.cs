@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.PDDL
 {
-    class NarrativeEvent
+    public class NarrativeEvent
     {
-        // Narrative action is not used in implementation and is thus not used
+        public int NarrativeEventId { get; set; }
         public NarrativeAction narrativeAction;
         public List<NarrativeObject> narrativeObjects = new List<NarrativeObject>();
 

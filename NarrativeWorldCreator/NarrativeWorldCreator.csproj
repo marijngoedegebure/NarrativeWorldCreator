@@ -36,8 +36,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\Monogame.Framework\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\SharpDX\SharpDX.dll</HintPath>
@@ -67,7 +83,10 @@
       <HintPath>..\SharpDX\SharpDX.XInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,6 +109,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201610191517548_Initial.cs" />
+    <Compile Include="Migrations\201610191517548_Initial.Designer.cs">
+      <DependentUpon>201610191517548_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610191546373_test.cs" />
+    <Compile Include="Migrations\201610191546373_test.Designer.cs">
+      <DependentUpon>201610191546373_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>
     </Compile>
@@ -99,9 +127,10 @@
     <Compile Include="Pages\RegionPage.xaml.cs">
       <DependentUpon>RegionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegionGraph\GraphDataTypes\Edge.cs" />
-    <Compile Include="RegionGraph\GraphDataTypes\Graph.cs" />
-    <Compile Include="RegionGraph\GraphDataTypes\Node.cs" />
+    <Compile Include="PDDL\NarrativeContext.cs" />
+    <Compile Include="RegionGraph\Models\Edge.cs" />
+    <Compile Include="RegionGraph\Models\Graph.cs" />
+    <Compile Include="RegionGraph\Models\Node.cs" />
     <Compile Include="RegionGraph\GraphParser.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="XML elements\Camera2d.cs" />
@@ -133,18 +162,18 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PDDL\NarrativeDataTypes\Narrative.cs" />
-    <Compile Include="PDDL\DomainParser.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\NarrativeAction.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\NarrativeArgument.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\NarrativeEvent.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\NarrativeObject.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\NarrativePredicate.cs" />
-    <Compile Include="PDDL\Parser.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\PredicateType.cs" />
-    <Compile Include="PDDL\PlanParser.cs" />
-    <Compile Include="PDDL\ProblemParser.cs" />
-    <Compile Include="PDDL\NarrativeDataTypes\Type.cs" />
+    <Compile Include="PDDL\Models\Narrative.cs" />
+    <Compile Include="PDDL\Parsers\DomainParser.cs" />
+    <Compile Include="PDDL\Models\NarrativeAction.cs" />
+    <Compile Include="PDDL\Models\NarrativeArgument.cs" />
+    <Compile Include="PDDL\Models\NarrativeEvent.cs" />
+    <Compile Include="PDDL\Models\NarrativeObject.cs" />
+    <Compile Include="PDDL\Models\NarrativePredicate.cs" />
+    <Compile Include="PDDL\Parsers\Parser.cs" />
+    <Compile Include="PDDL\Models\PredicateType.cs" />
+    <Compile Include="PDDL\Parsers\PlanParser.cs" />
+    <Compile Include="PDDL\Parsers\ProblemParser.cs" />
+    <Compile Include="PDDL\Models\NarrativeObjectType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -158,6 +187,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201610191517548_Initial.resx">
+      <DependentUpon>201610191517548_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610191546373_test.resx">
+      <DependentUpon>201610191546373_test.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -170,7 +205,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameSemantics\GameSemantics.csproj">
@@ -198,6 +235,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </MonoGameContentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>

@@ -36,12 +36,12 @@ namespace NarrativeWorldCreator.PDDL
                 }
                 if (readObjectsMode)
                 {
-                    narrativeObjects.AddRange(readObjects(words, SystemStateTracker.narrative.types));
+                    narrativeObjects.AddRange(readObjects(words, SystemStateTracker.narrative.narrativeObjectTypes));
                     continue;
                 }
                 if (readInitMode)
                 {
-                    narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.narrative.predicateTypes, SystemStateTracker.narrative.types, narrativeObjects));
+                    narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.narrative.predicateTypes, SystemStateTracker.narrative.narrativeObjectTypes, narrativeObjects));
                     continue;
                 }
             }
@@ -49,7 +49,7 @@ namespace NarrativeWorldCreator.PDDL
             SystemStateTracker.narrative.narrativePredicates = narrativePredicates;
         }
 
-        private static NarrativePredicate readNarrativePredicate(string[] words, List<PredicateType> predicateTypes, List<Type> types, List<NarrativeObject> narrativeObjects)
+        private static NarrativePredicate readNarrativePredicate(string[] words, List<PredicateType> predicateTypes, List<NarrativeObjectType> types, List<NarrativeObject> narrativeObjects)
         {
             // Check if predicatetype exists:
             PredicateType usedPredicateType = predicateTypes.First();
@@ -86,13 +86,13 @@ namespace NarrativeWorldCreator.PDDL
             return narrativePredicate;
         }
 
-        private static List<NarrativeObject> readObjects(string[] words, List<Type> types)
+        private static List<NarrativeObject> readObjects(string[] words, List<NarrativeObjectType> types)
         {
             List<NarrativeObject> narrativeObjects = new List<NarrativeObject>();
             bool typeExists = false;
-            Type typeToUse = types.First();
+            NarrativeObjectType typeToUse = types.First();
             // check if type exists
-            foreach(Type type in types)
+            foreach(NarrativeObjectType type in types)
             {
                 if(words.Last().Equals(type.name))
                 {
