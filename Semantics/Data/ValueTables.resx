@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbstractEntityChange" xml:space="preserve">
+    <value>abstract_entity_change</value>
+  </data>
+  <data name="AbstractEntityCondition" xml:space="preserve">
+    <value>abstract_entity_condition</value>
+  </data>
+  <data name="AbstractEntityValued" xml:space="preserve">
+    <value>abstract_entity_valued</value>
+  </data>
+  <data name="AbstractionChange" xml:space="preserve">
+    <value>abstraction_change</value>
+  </data>
+  <data name="AbstractionCondition" xml:space="preserve">
+    <value>abstraction_condition</value>
+  </data>
+  <data name="AbstractionValued" xml:space="preserve">
+    <value>abstraction_valued</value>
+  </data>
+  <data name="AttributeChange" xml:space="preserve">
+    <value>attribute_change</value>
+  </data>
+  <data name="AttributeCondition" xml:space="preserve">
+    <value>attribute_condition</value>
+  </data>
+  <data name="AttributeValued" xml:space="preserve">
+    <value>attribute_valued</value>
+  </data>
+  <data name="BoolValue" xml:space="preserve">
+    <value>bool_value</value>
+  </data>
+  <data name="BoolValueChange" xml:space="preserve">
+    <value>bool_value_change</value>
+  </data>
+  <data name="BoolValueCondition" xml:space="preserve">
+    <value>bool_value_condition</value>
+  </data>
+  <data name="BoolVariable" xml:space="preserve">
+    <value>bool_variable</value>
+  </data>
+  <data name="Chance" xml:space="preserve">
+    <value>chance</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>change</value>
+  </data>
+  <data name="CompoundChange" xml:space="preserve">
+    <value>compound_change</value>
+  </data>
+  <data name="CompoundChangeSubstanceChange" xml:space="preserve">
+    <value>compound_change_substance_change</value>
+  </data>
+  <data name="CompoundChangeSubstanceToAdd" xml:space="preserve">
+    <value>compound_change_substance_to_add</value>
+  </data>
+  <data name="CompoundChangeSubstanceToRemove" xml:space="preserve">
+    <value>compound_change_substance_to_remove</value>
+  </data>
+  <data name="CompoundCondition" xml:space="preserve">
+    <value>compound_condition</value>
+  </data>
+  <data name="CompoundConditionSubstanceCondition" xml:space="preserve">
+    <value>compound_condition_substance_condition</value>
+  </data>
+  <data name="CompoundValued" xml:space="preserve">
+    <value>compound_valued</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>condition</value>
+  </data>
+  <data name="ConnectionItem" xml:space="preserve">
+    <value>connection_item</value>
+  </data>
+  <data name="ConnectionItemChange" xml:space="preserve">
+    <value>connection_item_change</value>
+  </data>
+  <data name="ConnectionItemCondition" xml:space="preserve">
+    <value>connection_item_condition</value>
+  </data>
+  <data name="ConnectionReference" xml:space="preserve">
+    <value>connection_reference</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>cover</value>
+  </data>
+  <data name="CoverChange" xml:space="preserve">
+    <value>cover_change</value>
+  </data>
+  <data name="CoverCondition" xml:space="preserve">
+    <value>cover_condition</value>
+  </data>
+  <data name="CoverReference" xml:space="preserve">
+    <value>cover_reference</value>
+  </data>
+  <data name="Deletion" xml:space="preserve">
+    <value>deletion</value>
+  </data>
+  <data name="Effect" xml:space="preserve">
+    <value>effect</value>
+  </data>
+  <data name="ElementChange" xml:space="preserve">
+    <value>element_change</value>
+  </data>
+  <data name="ElementCondition" xml:space="preserve">
+    <value>element_condition</value>
+  </data>
+  <data name="ElementValued" xml:space="preserve">
+    <value>element_valued</value>
+  </data>
+  <data name="EntityChange" xml:space="preserve">
+    <value>entity_change</value>
+  </data>
+  <data name="EntityChangeAbstractEntityChange" xml:space="preserve">
+    <value>entity_change_abstract_entity_change</value>
+  </data>
+  <data name="EntityChangeAbstractEntityToAdd" xml:space="preserve">
+    <value>entity_change_abstract_entity_to_add</value>
+  </data>
+  <data name="EntityChangeAbstractEntityToRemove" xml:space="preserve">
+    <value>entity_change_abstract_entity_to_remove</value>
+  </data>
+  <data name="EntityChangeAttributeChange" xml:space="preserve">
+    <value>entity_change_attribute_change</value>
+  </data>
+  <data name="EntityChangeAttributeToAdd" xml:space="preserve">
+    <value>entity_change_attribute_to_add</value>
+  </data>
+  <data name="EntityChangeAttributeToRemove" xml:space="preserve">
+    <value>entity_change_attribute_to_remove</value>
+  </data>
+  <data name="EntityChangeRelationshipChange" xml:space="preserve">
+    <value>entity_change_relationship_change</value>
+  </data>
+  <data name="EntityChangeStateGroupChange" xml:space="preserve">
+    <value>entity_change_state_group_change</value>
+  </data>
+  <data name="EntityCondition" xml:space="preserve">
+    <value>entity_condition</value>
+  </data>
+  <data name="EntityConditionAbstractEntityCondition" xml:space="preserve">
+    <value>entity_condition_abstract_entity_condition</value>
+  </data>
+  <data name="EntityConditionAction" xml:space="preserve">
+    <value>entity_condition_action</value>
+  </data>
+  <data name="EntityConditionAttributeCondition" xml:space="preserve">
+    <value>entity_condition_attribute_condition</value>
+  </data>
+  <data name="EntityConditionRelationshipCondition" xml:space="preserve">
+    <value>entity_condition_relationship_condition</value>
+  </data>
+  <data name="EntityConditionStateGroupCondition" xml:space="preserve">
+    <value>entity_condition_state_group_condition</value>
+  </data>
+  <data name="EntityCreation" xml:space="preserve">
+    <value>entity_creation</value>
+  </data>
+  <data name="EntityValued" xml:space="preserve">
+    <value>entity_valued</value>
+  </data>
+  <data name="Equation" xml:space="preserve">
+    <value>equation</value>
+  </data>
+  <data name="FeatureChange" xml:space="preserve">
+    <value>feature_change</value>
+  </data>
+  <data name="FeatureCondition" xml:space="preserve">
+    <value>feature_condition</value>
+  </data>
+  <data name="FeatureValued" xml:space="preserve">
+    <value>feature_valued</value>
+  </data>
+  <data name="FilterApplication" xml:space="preserve">
+    <value>filter_application</value>
+  </data>
+  <data name="ItemReference" xml:space="preserve">
+    <value>item_reference</value>
+  </data>
+  <data name="Layer" xml:space="preserve">
+    <value>layer</value>
+  </data>
+  <data name="LayerChange" xml:space="preserve">
+    <value>layer_change</value>
+  </data>
+  <data name="LayerCondition" xml:space="preserve">
+    <value>layer_condition</value>
+  </data>
+  <data name="LayerReference" xml:space="preserve">
+    <value>layer_reference</value>
+  </data>
+  <data name="MaterialChange" xml:space="preserve">
+    <value>material_change</value>
+  </data>
+  <data name="MaterialCondition" xml:space="preserve">
+    <value>material_condition</value>
+  </data>
+  <data name="MaterialValued" xml:space="preserve">
+    <value>material_valued</value>
+  </data>
+  <data name="MatterChange" xml:space="preserve">
+    <value>matter_change</value>
+  </data>
+  <data name="MatterChangeElementChange" xml:space="preserve">
+    <value>matter_change_element_change</value>
+  </data>
+  <data name="MatterChangeElementToAdd" xml:space="preserve">
+    <value>matter_change_element_to_add</value>
+  </data>
+  <data name="MatterChangeElementToRemove" xml:space="preserve">
+    <value>matter_change_element_to_remove</value>
+  </data>
+  <data name="MatterCondition" xml:space="preserve">
+    <value>matter_condition</value>
+  </data>
+  <data name="MatterConditionElementCondition" xml:space="preserve">
+    <value>matter_condition_element_condition</value>
+  </data>
+  <data name="MatterReference" xml:space="preserve">
+    <value>matter_reference</value>
+  </data>
+  <data name="MatterValued" xml:space="preserve">
+    <value>matter_valued</value>
+  </data>
+  <data name="MixtureChange" xml:space="preserve">
+    <value>mixture_change</value>
+  </data>
+  <data name="MixtureChangeMixtureToAdd" xml:space="preserve">
+    <value>mixture_change_mixture_to_add</value>
+  </data>
+  <data name="MixtureChangeSubstanceChange" xml:space="preserve">
+    <value>mixture_change_substance_change</value>
+  </data>
+  <data name="MixtureChangeSubstanceToAdd" xml:space="preserve">
+    <value>mixture_change_substance_to_add</value>
+  </data>
+  <data name="MixtureChangeSubstanceToRemove" xml:space="preserve">
+    <value>mixture_change_substance_to_remove</value>
+  </data>
+  <data name="MixtureCondition" xml:space="preserve">
+    <value>mixture_condition</value>
+  </data>
+  <data name="MixtureConditionSubstanceCondition" xml:space="preserve">
+    <value>mixture_condition_substance_condition</value>
+  </data>
+  <data name="MixtureValued" xml:space="preserve">
+    <value>mixture_valued</value>
+  </data>
+  <data name="NodeChange" xml:space="preserve">
+    <value>node_change</value>
+  </data>
+  <data name="NodeCondition" xml:space="preserve">
+    <value>node_condition</value>
+  </data>
+  <data name="NodeValued" xml:space="preserve">
+    <value>node_valued</value>
+  </data>
+  <data name="NumericalValue" xml:space="preserve">
+    <value>numerical_value</value>
+  </data>
+  <data name="NumericalValueChange" xml:space="preserve">
+    <value>numerical_value_change</value>
+  </data>
+  <data name="NumericalValueCondition" xml:space="preserve">
+    <value>numerical_value_condition</value>
+  </data>
+  <data name="NumericalValueRange" xml:space="preserve">
+    <value>numerical_value_range</value>
+  </data>
+  <data name="NumericalVariable" xml:space="preserve">
+    <value>numerical_variable</value>
+  </data>
+  <data name="OwnerReference" xml:space="preserve">
+    <value>owner_reference</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>parameter</value>
+  </data>
+  <data name="ParameterValued" xml:space="preserve">
+    <value>parameter_valued</value>
+  </data>
+  <data name="Part" xml:space="preserve">
+    <value>part</value>
+  </data>
+  <data name="PartChange" xml:space="preserve">
+    <value>part_change</value>
+  </data>
+  <data name="PartCondition" xml:space="preserve">
+    <value>part_condition</value>
+  </data>
+  <data name="PartReference" xml:space="preserve">
+    <value>part_reference</value>
+  </data>
+  <data name="PhysicalEntityChange" xml:space="preserve">
+    <value>physical_entity_change</value>
+  </data>
+  <data name="PhysicalEntityCondition" xml:space="preserve">
+    <value>physical_entity_condition</value>
+  </data>
+  <data name="PhysicalEntityValued" xml:space="preserve">
+    <value>physical_entity_valued</value>
+  </data>
+  <data name="PhysicalObjectChange" xml:space="preserve">
+    <value>physical_object_change</value>
+  </data>
+  <data name="PhysicalObjectChangeSpaceChange" xml:space="preserve">
+    <value>physical_object_change_space_change</value>
+  </data>
+  <data name="PhysicalObjectChangeSpaceToAdd" xml:space="preserve">
+    <value>physical_object_change_space_to_add</value>
+  </data>
+  <data name="PhysicalObjectChangeSpaceToRemove" xml:space="preserve">
+    <value>physical_object_change_space_to_remove</value>
+  </data>
+  <data name="PhysicalObjectCondition" xml:space="preserve">
+    <value>physical_object_condition</value>
+  </data>
+  <data name="PhysicalObjectConditionSpaceCondition" xml:space="preserve">
+    <value>physical_object_condition_space_condition</value>
+  </data>
+  <data name="PhysicalObjectValued" xml:space="preserve">
+    <value>physical_object_valued</value>
+  </data>
+  <data name="RandomVariable" xml:space="preserve">
+    <value>random_variable</value>
+  </data>
+  <data name="Range" xml:space="preserve">
+    <value>range</value>
+  </data>
+  <data name="RangeSpecificTarget" xml:space="preserve">
+    <value>range_specific_target</value>
+  </data>
+  <data name="RawMaterialChange" xml:space="preserve">
+    <value>raw_material_change</value>
+  </data>
+  <data name="RawMaterialCondition" xml:space="preserve">
+    <value>raw_material_condition</value>
+  </data>
+  <data name="RawMaterialValued" xml:space="preserve">
+    <value>raw_material_valued</value>
+  </data>
+  <data name="Reaction" xml:space="preserve">
+    <value>reaction</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>reference</value>
+  </data>
+  <data name="RelationshipChange" xml:space="preserve">
+    <value>relationship_change</value>
+  </data>
+  <data name="RelationshipChangeAttributeChange" xml:space="preserve">
+    <value>relationship_change_attribute_change</value>
+  </data>
+  <data name="RelationshipCondition" xml:space="preserve">
+    <value>relationship_condition</value>
+  </data>
+  <data name="RelationshipConditionAttributeCondition" xml:space="preserve">
+    <value>relationship_condition_attribute_condition</value>
+  </data>
+  <data name="RelationshipEstablishment" xml:space="preserve">
+    <value>relationship_establishment</value>
+  </data>
+  <data name="RelationshipReference" xml:space="preserve">
+    <value>relationship_reference</value>
+  </data>
+  <data name="SceneValued" xml:space="preserve">
+    <value>scene_valued</value>
+  </data>
+  <data name="SemifinishedMaterialChange" xml:space="preserve">
+    <value>semifinished_material_change</value>
+  </data>
+  <data name="SemifinishedMaterialCondition" xml:space="preserve">
+    <value>semifinished_material_condition</value>
+  </data>
+  <data name="SemifinishedMaterialConditionRawMaterialCondition" xml:space="preserve">
+    <value>semifinished_material_condition_raw_material_condition</value>
+  </data>
+  <data name="SemifinishedMaterialValued" xml:space="preserve">
+    <value>semifinished_material_valued</value>
+  </data>
+  <data name="SetReference" xml:space="preserve">
+    <value>set_reference</value>
+  </data>
+  <data name="SpaceChange" xml:space="preserve">
+    <value>space_change</value>
+  </data>
+  <data name="SpaceChangeItem" xml:space="preserve">
+    <value>space_change_item</value>
+  </data>
+  <data name="SpaceChangeItemToAdd" xml:space="preserve">
+    <value>space_change_item_to_add</value>
+  </data>
+  <data name="SpaceChangeItemToRemove" xml:space="preserve">
+    <value>space_change_item_to_remove</value>
+  </data>
+  <data name="SpaceChangeTangibleMatter" xml:space="preserve">
+    <value>space_change_tangible_matter</value>
+  </data>
+  <data name="SpaceChangeTangibleMatterToAdd" xml:space="preserve">
+    <value>space_change_tangible_matter_to_add</value>
+  </data>
+  <data name="SpaceChangeTangibleMatterToRemove" xml:space="preserve">
+    <value>space_change_tangible_matter_to_remove</value>
+  </data>
+  <data name="SpaceCondition" xml:space="preserve">
+    <value>space_condition</value>
+  </data>
+  <data name="SpaceConditionItem" xml:space="preserve">
+    <value>space_condition_item</value>
+  </data>
+  <data name="SpaceConditionTangibleMatter" xml:space="preserve">
+    <value>space_condition_tangible_matter</value>
+  </data>
+  <data name="SpaceReference" xml:space="preserve">
+    <value>space_reference</value>
+  </data>
+  <data name="SpaceValued" xml:space="preserve">
+    <value>space_valued</value>
+  </data>
+  <data name="SpaceValuedItem" xml:space="preserve">
+    <value>space_valued_item</value>
+  </data>
+  <data name="SpaceValuedTangibleMatter" xml:space="preserve">
+    <value>space_valued_tangible_matter</value>
+  </data>
+  <data name="SpatialReference" xml:space="preserve">
+    <value>spatial_reference</value>
+  </data>
+  <data name="SpatialRequirement" xml:space="preserve">
+    <value>spatial_requirement</value>
+  </data>
+  <data name="StateGroupChange" xml:space="preserve">
+    <value>state_group_change</value>
+  </data>
+  <data name="StateGroupCondition" xml:space="preserve">
+    <value>state_group_condition</value>
+  </data>
+  <data name="StateGroupConditionState" xml:space="preserve">
+    <value>state_group_condition_state</value>
+  </data>
+  <data name="StringValue" xml:space="preserve">
+    <value>string_value</value>
+  </data>
+  <data name="StringValueChange" xml:space="preserve">
+    <value>string_value_change</value>
+  </data>
+  <data name="StringValueCondition" xml:space="preserve">
+    <value>string_value_condition</value>
+  </data>
+  <data name="StringVariable" xml:space="preserve">
+    <value>string_variable</value>
+  </data>
+  <data name="SubstanceChange" xml:space="preserve">
+    <value>substance_change</value>
+  </data>
+  <data name="SubstanceCondition" xml:space="preserve">
+    <value>substance_condition</value>
+  </data>
+  <data name="SubstanceValued" xml:space="preserve">
+    <value>substance_valued</value>
+  </data>
+  <data name="TangibleObjectChange" xml:space="preserve">
+    <value>tangible_object_change</value>
+  </data>
+  <data name="TangibleObjectChangeConnectionChange" xml:space="preserve">
+    <value>tangible_object_change_connection_item_change</value>
+  </data>
+  <data name="TangibleObjectChangeConnectionToAdd" xml:space="preserve">
+    <value>tangible_object_change_connection_item_to_add</value>
+  </data>
+  <data name="TangibleObjectChangeConnectionToRemove" xml:space="preserve">
+    <value>tangible_object_change_connection_item_to_remove</value>
+  </data>
+  <data name="TangibleObjectChangeCoverChange" xml:space="preserve">
+    <value>tangible_object_change_cover_change</value>
+  </data>
+  <data name="TangibleObjectChangeCoverToAdd" xml:space="preserve">
+    <value>tangible_object_change_cover_to_add</value>
+  </data>
+  <data name="TangibleObjectChangeCoverToRemove" xml:space="preserve">
+    <value>tangible_object_change_cover_to_remove</value>
+  </data>
+  <data name="TangibleObjectChangeLayerChange" xml:space="preserve">
+    <value>tangible_object_change_layer_change</value>
+  </data>
+  <data name="TangibleObjectChangeLayerToAdd" xml:space="preserve">
+    <value>tangible_object_change_layer_to_add</value>
+  </data>
+  <data name="TangibleObjectChangeLayerToRemove" xml:space="preserve">
+    <value>tangible_object_change_layer_to_remove</value>
+  </data>
+  <data name="TangibleObjectChangeMatterChange" xml:space="preserve">
+    <value>tangible_object_change_matter_change</value>
+  </data>
+  <data name="TangibleObjectChangeMatterToAdd" xml:space="preserve">
+    <value>tangible_object_change_matter_to_add</value>
+  </data>
+  <data name="TangibleObjectChangeMatterToRemove" xml:space="preserve">
+    <value>tangible_object_change_matter_to_remove</value>
+  </data>
+  <data name="TangibleObjectChangePartChange" xml:space="preserve">
+    <value>tangible_object_change_part_change</value>
+  </data>
+  <data name="TangibleObjectChangePartToAdd" xml:space="preserve">
+    <value>tangible_object_change_part_to_add</value>
+  </data>
+  <data name="TangibleObjectChangePartToRemove" xml:space="preserve">
+    <value>tangible_object_change_part_to_remove</value>
+  </data>
+  <data name="TangibleObjectCondition" xml:space="preserve">
+    <value>tangible_object_condition</value>
+  </data>
+  <data name="TangibleObjectConditionConnectionItem" xml:space="preserve">
+    <value>tangible_object_condition_connection_item</value>
+  </data>
+  <data name="TangibleObjectConditionCoverCondition" xml:space="preserve">
+    <value>tangible_object_condition_cover_condition</value>
+  </data>
+  <data name="TangibleObjectConditionLayerCondition" xml:space="preserve">
+    <value>tangible_object_condition_layer_condition</value>
+  </data>
+  <data name="TangibleObjectConditionMatterCondition" xml:space="preserve">
+    <value>tangible_object_condition_matter_condition</value>
+  </data>
+  <data name="TangibleObjectConditionPartCondition" xml:space="preserve">
+    <value>tangible_object_condition_part_condition</value>
+  </data>
+  <data name="TangibleObjectValued" xml:space="preserve">
+    <value>tangible_object_valued</value>
+  </data>
+  <data name="TermValue" xml:space="preserve">
+    <value>term_value</value>
+  </data>
+  <data name="TermVariable" xml:space="preserve">
+    <value>term_variable</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>time</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>transfer</value>
+  </data>
+  <data name="TransferItem" xml:space="preserve">
+    <value>transfer_item</value>
+  </data>
+  <data name="Transformation" xml:space="preserve">
+    <value>transformation</value>
+  </data>
+  <data name="TransformationEntity" xml:space="preserve">
+    <value>transformation_entity</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>value</value>
+  </data>
+  <data name="ValueChange" xml:space="preserve">
+    <value>value_change</value>
+  </data>
+  <data name="ValueCondition" xml:space="preserve">
+    <value>value_condition</value>
+  </data>
+  <data name="Variable" xml:space="preserve">
+    <value>variable</value>
+  </data>
+  <data name="VectorValue" xml:space="preserve">
+    <value>vector_value</value>
+  </data>
+  <data name="VectorValueChange" xml:space="preserve">
+    <value>vector_value_change</value>
+  </data>
+  <data name="VectorValueCondition" xml:space="preserve">
+    <value>vector_value_condition</value>
+  </data>
+  <data name="VectorVariable" xml:space="preserve">
+    <value>vector_variable</value>
+  </data>
+</root>

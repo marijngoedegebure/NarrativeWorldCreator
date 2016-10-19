@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Attribute" xml:space="preserve">
+    <value>attribute</value>
+  </data>
+  <data name="ChemicalSubstance" xml:space="preserve">
+    <value>chemical_substance</value>
+  </data>
+  <data name="MatterElement" xml:space="preserve">
+    <value>matter_element</value>
+  </data>
+  <data name="TangibleObjectPart" xml:space="preserve">
+    <value>tangible_object_part</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>element</value>
+  </data>
+  <data name="EntityAttribute" xml:space="preserve">
+    <value>entity_attribute</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>event</value>
+  </data>
+  <data name="EventEffect" xml:space="preserve">
+    <value>event_effect</value>
+  </data>
+  <data name="Feature" xml:space="preserve">
+    <value>feature</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>family</value>
+  </data>
+  <data name="Space" xml:space="preserve">
+    <value>space</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>material</value>
+  </data>
+  <data name="Mixture" xml:space="preserve">
+    <value>mixture</value>
+  </data>
+  <data name="MixtureSubstance" xml:space="preserve">
+    <value>mixture_substance</value>
+  </data>
+  <data name="MixtureMixture" xml:space="preserve">
+    <value>mixture_mixture</value>
+  </data>
+  <data name="Node" xml:space="preserve">
+    <value>node</value>
+  </data>
+  <data name="NodeParent" xml:space="preserve">
+    <value>node_parent</value>
+  </data>
+  <data name="NormalHolder" xml:space="preserve">
+    <value>normal_holder</value>
+  </data>
+  <data name="PhysicalObject" xml:space="preserve">
+    <value>physical_object</value>
+  </data>
+  <data name="TangibleObjectConnectionItem" xml:space="preserve">
+    <value>tangible_object_connection_item</value>
+  </data>
+  <data name="PhysicalObjectSpace" xml:space="preserve">
+    <value>physical_object_space</value>
+  </data>
+  <data name="PredicateType" xml:space="preserve">
+    <value>predicate_type</value>
+  </data>
+  <data name="Relationship" xml:space="preserve">
+    <value>relationship</value>
+  </data>
+  <data name="RelationshipInstance" xml:space="preserve">
+    <value>relationship_instance</value>
+  </data>
+  <data name="ScenePhysicalObject" xml:space="preserve">
+    <value>scene_physical_object</value>
+  </data>
+  <data name="SemifinishedMaterial" xml:space="preserve">
+    <value>semifinished_material</value>
+  </data>
+  <data name="SemifinishedMaterialRawMaterial" xml:space="preserve">
+    <value>semifinished_material_raw_material</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>state</value>
+  </data>
+  <data name="StateGroup" xml:space="preserve">
+    <value>state_group</value>
+  </data>
+  <data name="StateGroupState" xml:space="preserve">
+    <value>state_group_state</value>
+  </data>
+  <data name="Substance" xml:space="preserve">
+    <value>substance</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>unit</value>
+  </data>
+  <data name="UnitCategory" xml:space="preserve">
+    <value>unit_category</value>
+  </data>
+  <data name="EntityStateGroup" xml:space="preserve">
+    <value>entity_state_group</value>
+  </data>
+  <data name="GoalChange" xml:space="preserve">
+    <value>goal_change</value>
+  </data>
+  <data name="Procedure" xml:space="preserve">
+    <value>procedure</value>
+  </data>
+  <data name="TangibleObjectLayer" xml:space="preserve">
+    <value>tangible_object_layer</value>
+  </data>
+  <data name="SceneScene" xml:space="preserve">
+    <value>scene_scene</value>
+  </data>
+  <data name="AbstractEntity" xml:space="preserve">
+    <value>abstract_entity</value>
+  </data>
+  <data name="Abstraction" xml:space="preserve">
+    <value>abstraction</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>action</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>entity</value>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>goal</value>
+  </data>
+  <data name="PhysicalEntity" xml:space="preserve">
+    <value>physical_entity</value>
+  </data>
+  <data name="RawMaterial" xml:space="preserve">
+    <value>raw_material</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>scene</value>
+  </data>
+  <data name="TangibleObject" xml:space="preserve">
+    <value>tangible_object</value>
+  </data>
+  <data name="RelationshipType" xml:space="preserve">
+    <value>relationship_type</value>
+  </data>
+  <data name="RelationshipParameter" xml:space="preserve">
+    <value>relationship_parameter</value>
+  </data>
+  <data name="RelationshipTypeParameter" xml:space="preserve">
+    <value>relationship_type_parameter</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>filter</value>
+  </data>
+  <data name="Predicate" xml:space="preserve">
+    <value>predicate</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>service</value>
+  </data>
+  <data name="FamilyCondition" xml:space="preserve">
+    <value>family_condition</value>
+  </data>
+  <data name="Matter" xml:space="preserve">
+    <value>matter</value>
+  </data>
+  <data name="Compound" xml:space="preserve">
+    <value>compound</value>
+  </data>
+  <data name="CompoundSubstance" xml:space="preserve">
+    <value>compound_substance</value>
+  </data>
+  <data name="RelationshipTarget" xml:space="preserve">
+    <value>relationship_target</value>
+  </data>
+  <data name="SpaceItem" xml:space="preserve">
+    <value>space_item</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>group_</value>
+  </data>
+  <data name="GroupEntity" xml:space="preserve">
+    <value>group_entity</value>
+  </data>
+  <data name="Metadata" xml:space="preserve">
+    <value>metadata</value>
+  </data>
+  <data name="Context" xml:space="preserve">
+    <value>context</value>
+  </data>
+  <data name="ContextCondition" xml:space="preserve">
+    <value>context_condition</value>
+  </data>
+  <data name="ContextType" xml:space="preserve">
+    <value>context_type</value>
+  </data>
+  <data name="SpecialAttributes" xml:space="preserve">
+    <value>special_attributes</value>
+  </data>
+  <data name="Requirements" xml:space="preserve">
+    <value>requirements</value>
+  </data>
+  <data name="RequirementsContextType" xml:space="preserve">
+    <value>requirements_context_type</value>
+  </data>
+  <data name="RequirementsCondition" xml:space="preserve">
+    <value>requirements_condition</value>
+  </data>
+  <data name="TangibleObjectCover" xml:space="preserve">
+    <value>tangible_object_cover</value>
+  </data>
+  <data name="EventRequirements" xml:space="preserve">
+    <value>event_requirements</value>
+  </data>
+  <data name="SpecialUnitCategories" xml:space="preserve">
+    <value>special_unit_categories</value>
+  </data>
+  <data name="AddRemoveRequirements" xml:space="preserve">
+    <value>add_remove_requirements</value>
+  </data>
+  <data name="EventReference" xml:space="preserve">
+    <value>event_reference</value>
+  </data>
+  <data name="EventVariable" xml:space="preserve">
+    <value>event_variable</value>
+  </data>
+  <data name="EntityReference" xml:space="preserve">
+    <value>entity_reference</value>
+  </data>
+  <data name="EntityVariable" xml:space="preserve">
+    <value>entity_variable</value>
+  </data>
+  <data name="PredicateReference" xml:space="preserve">
+    <value>predicate_reference</value>
+  </data>
+  <data name="PredicateVariable" xml:space="preserve">
+    <value>predicate_variable</value>
+  </data>
+  <data name="RelationshipReferences" xml:space="preserve">
+    <value>relationship_references</value>
+  </data>
+  <data name="RelationshipVariable" xml:space="preserve">
+    <value>relationship_variable</value>
+  </data>
+  <data name="EntityOverriddenAttribute" xml:space="preserve">
+    <value>entity_overridden_attribute</value>
+  </data>
+  <data name="TangibleObjectOverriddenConnectionItem" xml:space="preserve">
+    <value>tangible_object_overridden_connection_item</value>
+  </data>
+  <data name="TangibleObjectOverriddenCover" xml:space="preserve">
+    <value>tangible_object_overridden_cover</value>
+  </data>
+  <data name="TangibleObjectOverriddenLayer" xml:space="preserve">
+    <value>tangible_object_overridden_layer</value>
+  </data>
+  <data name="TangibleObjectOverriddenPart" xml:space="preserve">
+    <value>tangible_object_overridden_part</value>
+  </data>
+  <data name="CompoundOverriddenSubstance" xml:space="preserve">
+    <value>compound_overridden_substance</value>
+  </data>
+  <data name="MatterOverriddenElement" xml:space="preserve">
+    <value>matter_overridden_element</value>
+  </data>
+  <data name="MixtureOverriddenMixture" xml:space="preserve">
+    <value>mixture_overridden_mixture</value>
+  </data>
+  <data name="MixtureOverriddenSubstance" xml:space="preserve">
+    <value>mixture_overridden_substance</value>
+  </data>
+  <data name="PhysicalObjectOverriddenSpace" xml:space="preserve">
+    <value>physical_object_overridden_space</value>
+  </data>
+  <data name="SceneOverriddenPhysicalObject" xml:space="preserve">
+    <value>scene_overridden_physical_object</value>
+  </data>
+  <data name="SceneOverriddenScene" xml:space="preserve">
+    <value>scene_overridden_scene</value>
+  </data>
+  <data name="TangibleObjectMatter" xml:space="preserve">
+    <value>tangible_object_matter</value>
+  </data>
+  <data name="TangibleObjectOverriddenMatter" xml:space="preserve">
+    <value>tangible_object_overridden_matter</value>
+  </data>
+  <data name="RelationshipAttribute" xml:space="preserve">
+    <value>relationship_attribute</value>
+  </data>
+  <data name="RelationshipTypeAttribute" xml:space="preserve">
+    <value>relationship_type_attribute</value>
+  </data>
+  <data name="FilterType" xml:space="preserve">
+    <value>filter_type</value>
+  </data>
+  <data name="FilterEffect" xml:space="preserve">
+    <value>filter_effect</value>
+  </data>
+  <data name="CombinedRelationship" xml:space="preserve">
+    <value>combined_relationship</value>
+  </data>
+  <data name="EntityCombinedRelationship" xml:space="preserve">
+    <value>entity_combined_relationship</value>
+  </data>
+  <data name="EventRequirementsReferenceRequirements" xml:space="preserve">
+    <value>event_requirements_reference_requirements</value>
+  </data>
+  <data name="RequirementsSpatialRequirement" xml:space="preserve">
+    <value>requirements_spatial_requirement</value>
+  </data>
+  <data name="EntityAbstractEntity" xml:space="preserve">
+    <value>entity_abstract_entity</value>
+  </data>
+  <data name="EntityOverriddenAbstractEntity" xml:space="preserve">
+    <value>entity_overridden_abstract_entity</value>
+  </data>
+</root>

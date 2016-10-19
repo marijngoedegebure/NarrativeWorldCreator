@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbstractEntity" xml:space="preserve">
+    <value>abstract_entity</value>
+  </data>
+  <data name="Animation" xml:space="preserve">
+    <value>animation</value>
+  </data>
+  <data name="AnimationName" xml:space="preserve">
+    <value>animation_name</value>
+  </data>
+  <data name="Argument" xml:space="preserve">
+    <value>argument</value>
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value>audio</value>
+  </data>
+  <data name="BoundingBox" xml:space="preserve">
+    <value>bounding_box</value>
+  </data>
+  <data name="ContentBehavior" xml:space="preserve">
+    <value>content_behavior</value>
+  </data>
+  <data name="ContentChange" xml:space="preserve">
+    <value>content_change</value>
+  </data>
+  <data name="ContentCondition" xml:space="preserve">
+    <value>content_condition</value>
+  </data>
+  <data name="ContentPerView" xml:space="preserve">
+    <value>content_per_view</value>
+  </data>
+  <data name="ContentValued" xml:space="preserve">
+    <value>content_valued</value>
+  </data>
+  <data name="ContextType" xml:space="preserve">
+    <value>context_type</value>
+  </data>
+  <data name="Cover" xml:space="preserve">
+    <value>cover</value>
+  </data>
+  <data name="Dimensions" xml:space="preserve">
+    <value>dimensions</value>
+  </data>
+  <data name="DynamicContentValued" xml:space="preserve">
+    <value>dynamic_content_valued</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>event</value>
+  </data>
+  <data name="EventContent" xml:space="preserve">
+    <value>event_content</value>
+  </data>
+  <data name="EventExtension" xml:space="preserve">
+    <value>event_extension</value>
+  </data>
+  <data name="EventState" xml:space="preserve">
+    <value>event_state</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>file</value>
+  </data>
+  <data name="FilterType" xml:space="preserve">
+    <value>filter_type</value>
+  </data>
+  <data name="GameAnimation" xml:space="preserve">
+    <value>game_animation</value>
+  </data>
+  <data name="GameAudio" xml:space="preserve">
+    <value>game_audio</value>
+  </data>
+  <data name="GameAudioValued" xml:space="preserve">
+    <value>game_audio_valued</value>
+  </data>
+  <data name="GameMaterialValued" xml:space="preserve">
+    <value>game_material_valued</value>
+  </data>
+  <data name="GameNode" xml:space="preserve">
+    <value>game_node</value>
+  </data>
+  <data name="GameObject" xml:space="preserve">
+    <value>game_object</value>
+  </data>
+  <data name="IconValued" xml:space="preserve">
+    <value>icon_valued</value>
+  </data>
+  <data name="Layer" xml:space="preserve">
+    <value>layer</value>
+  </data>
+  <data name="Loop" xml:space="preserve">
+    <value>loop</value>
+  </data>
+  <data name="MappingType" xml:space="preserve">
+    <value>mapping_type</value>
+  </data>
+  <data name="MatterValued" xml:space="preserve">
+    <value>matter_valued</value>
+  </data>
+  <data name="ModelAnimation" xml:space="preserve">
+    <value>model_animation</value>
+  </data>
+  <data name="ModelValued" xml:space="preserve">
+    <value>model_valued</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>music</value>
+  </data>
+  <data name="Node" xml:space="preserve">
+    <value>node</value>
+  </data>
+  <data name="Offset" xml:space="preserve">
+    <value>offset</value>
+  </data>
+  <data name="Part" xml:space="preserve">
+    <value>part</value>
+  </data>
+  <data name="ParticleEmitterValued" xml:space="preserve">
+    <value>particle_emitter_valued</value>
+  </data>
+  <data name="ParticleProperties" xml:space="preserve">
+    <value>particle_properties</value>
+  </data>
+  <data name="ParticlePropertiesChange" xml:space="preserve">
+    <value>particle_properties_change</value>
+  </data>
+  <data name="ParticlePropertiesCondition" xml:space="preserve">
+    <value>particle_properties_condition</value>
+  </data>
+  <data name="ParticlePropertiesValued" xml:space="preserve">
+    <value>particle_properties_valued</value>
+  </data>
+  <data name="ParticleQuantity" xml:space="preserve">
+    <value>particle_quantity</value>
+  </data>
+  <data name="ParticleRepresentation" xml:space="preserve">
+    <value>particle_representation</value>
+  </data>
+  <data name="ParticleSource" xml:space="preserve">
+    <value>particle_source</value>
+  </data>
+  <data name="ParticleVisualizationFile" xml:space="preserve">
+    <value>particle_visualization_file</value>
+  </data>
+  <data name="PredicateType" xml:space="preserve">
+    <value>predicate_type</value>
+  </data>
+  <data name="PredicateTypeToAdd" xml:space="preserve">
+    <value>predicate_type_to_add</value>
+  </data>
+  <data name="PredicateTypeToRemove" xml:space="preserve">
+    <value>predicate_type_to_remove</value>
+  </data>
+  <data name="Rotation" xml:space="preserve">
+    <value>rotation</value>
+  </data>
+  <data name="RotationChange" xml:space="preserve">
+    <value>rotation_change</value>
+  </data>
+  <data name="RotationSign" xml:space="preserve">
+    <value>rotation_sign</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>scale</value>
+  </data>
+  <data name="ScaleChange" xml:space="preserve">
+    <value>scale_change</value>
+  </data>
+  <data name="ScaleSign" xml:space="preserve">
+    <value>scale_sign</value>
+  </data>
+  <data name="Sound" xml:space="preserve">
+    <value>sound</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>speed</value>
+  </data>
+  <data name="SpeedChange" xml:space="preserve">
+    <value>speed_change</value>
+  </data>
+  <data name="SpeedSign" xml:space="preserve">
+    <value>speed_sign</value>
+  </data>
+  <data name="SpriteValued" xml:space="preserve">
+    <value>sprite_valued</value>
+  </data>
+  <data name="TangibleObject" xml:space="preserve">
+    <value>tangible_object</value>
+  </data>
+  <data name="Translation" xml:space="preserve">
+    <value>translation</value>
+  </data>
+  <data name="TranslationChange" xml:space="preserve">
+    <value>translation_change</value>
+  </data>
+  <data name="TranslationSign" xml:space="preserve">
+    <value>translation_sign</value>
+  </data>
+  <data name="Transparency" xml:space="preserve">
+    <value>transparency</value>
+  </data>
+  <data name="UseModelsFromParts" xml:space="preserve">
+    <value>use_models_from_parts</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>value</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>view_</value>
+  </data>
+  <data name="ViewsPerContextType" xml:space="preserve">
+    <value>views_per_context_type</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>volume</value>
+  </data>
+  <data name="VolumeChange" xml:space="preserve">
+    <value>volume_change</value>
+  </data>
+  <data name="VolumeSign" xml:space="preserve">
+    <value>volume_sign</value>
+  </data>
+  <data name="ZIndex" xml:space="preserve">
+    <value>z_index</value>
+  </data>
+  <data name="ZIndexChange" xml:space="preserve">
+    <value>z_index_change</value>
+  </data>
+  <data name="ZIndexSign" xml:space="preserve">
+    <value>z_index_sign</value>
+  </data>
+</root>

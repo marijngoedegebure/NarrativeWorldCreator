@@ -24,11 +24,7 @@ namespace NarrativeWorldCreator.Pages
         public GraphPage()
         {
             InitializeComponent();
-            // Temporary trigger for when to trigger the graph generation:
             GraphParser.createGraphBasedOnNarrative();
-            GraphParser.initForceDirectedGraph();
-            // Temporarily disabled to test force directed graph
-            // GraphParser.runForceDirectedGraph();
         }
 
         private void btnRegionSelection_Click(object sender, RoutedEventArgs e)
@@ -39,7 +35,7 @@ namespace NarrativeWorldCreator.Pages
         private void btnReloadGraph_Click(object sender, RoutedEventArgs e)
         {
             // Re-initialize Force directed graph
-            GraphParser.initForceDirectedGraph();
+            SystemStateTracker.graph.initForceDirectedGraph();
         }
 
         private void btnInit_Click(object sender, RoutedEventArgs e)

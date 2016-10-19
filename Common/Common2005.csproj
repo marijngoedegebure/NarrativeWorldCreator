@@ -1,0 +1,131 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{72017AEA-22BF-4C53-A5FD-0EDC1FDBA34F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug2005\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Release2005\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="QuickGraph, Version=2.0.30513.0, Culture=neutral, PublicKeyToken=f3fb40175eec2af3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\QuickGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicFunctionality.cs" />
+    <Compile Include="Box.cs" />
+    <Compile Include="Box2.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="CameraSetting.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="DataQuadTree.cs" />
+    <Compile Include="FunctionalObject.cs" />
+    <Compile Include="GConvexHull.cs" />
+    <Compile Include="Geometry\AbstractNode.cs" />
+    <Compile Include="Geometry\CustomRotationObject.cs" />
+    <Compile Include="Geometry\ExternalObject.cs" />
+    <Compile Include="Geometry\FileLoader3ds.cs" />
+    <Compile Include="Geometry\LoDNode.cs" />
+    <Compile Include="Geometry\MaterialMap.cs" />
+    <Compile Include="Geometry\ObjectInstance.cs" />
+    <Compile Include="Geometry\Shape.cs" />
+    <Compile Include="Geometry\SimpleShapes.cs" />
+    <Compile Include="GpcWrapper.cs" />
+    <Compile Include="Inequality.cs" />
+    <Compile Include="Interval.cs" />
+    <Compile Include="Lines.cs" />
+    <Compile Include="Geometry\Material.cs" />
+    <Compile Include="Geometry\Mesh.cs" />
+    <Compile Include="Geometry\Node.cs" />
+    <Compile Include="Geometry\NodeLocation.cs" />
+    <Compile Include="Geometry\Object.cs" />
+    <Compile Include="Geometry\Shader.cs" />
+    <Compile Include="Geometry\VertexInfo.cs" />
+    <Compile Include="ListDictionary.cs" />
+    <Compile Include="MathParser.cs" />
+    <Compile Include="MathUtilD.cs" />
+    <Compile Include="Shapes\BaseShape.cs" />
+    <Compile Include="LineVec2.cs" />
+    <Compile Include="MathUtil.cs" />
+    <Compile Include="Matrix3.cs" />
+    <Compile Include="Matrix4.cs" />
+    <Compile Include="Matrix4T.cs" />
+    <Compile Include="OrientedBoundingBox.cs" />
+    <Compile Include="Plane.cs" />
+    <Compile Include="Polygon.cs" />
+    <Compile Include="PriorityQueue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quaternion.cs" />
+    <Compile Include="RandomNumber.cs" />
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Shapes\ExtrudedLine.cs" />
+    <Compile Include="Shapes\ExtrudedPoint.cs" />
+    <Compile Include="Shapes\ExtrudedShape.cs" />
+    <Compile Include="Shapes\FlatLine.cs" />
+    <Compile Include="Shapes\FlatShape.cs" />
+    <Compile Include="Shapes\FunctionalBox.cs" />
+    <Compile Include="Shapes\Path.cs" />
+    <Compile Include="Shapes\Point.cs" />
+    <Compile Include="Shapes\ShapeGroup.cs" />
+    <Compile Include="Shapes\ShapeType.cs" />
+    <Compile Include="Shapes\TermEvaluation.cs" />
+    <Compile Include="Shapes\Transformations\ShapeNode.cs" />
+    <Compile Include="Shapes\Transformations\Transformation.cs" />
+    <Compile Include="Shapes\Transformations\TransformationNode.cs" />
+    <Compile Include="Shapes\Transformations\Transformations.cs" />
+    <Compile Include="Shapes\Transformations\TransformationType.cs" />
+    <Compile Include="Spline.cs" />
+    <Compile Include="Tuple.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Util\GpcWrapper.cs" />
+    <Compile Include="Util\PerlinNoise.cs" />
+    <Compile Include="Vec2.cs" />
+    <Compile Include="Vec2d.cs" />
+    <Compile Include="Vec2i.cs" />
+    <Compile Include="Vec3.cs" />
+    <Compile Include="Vec3d.cs" />
+    <Compile Include="Vec4.cs" />
+    <Compile Include="Shapes\Transformations\Group.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GPCWrap\GPCWrap2005.csproj">
+      <Project>{398E5AFC-4F94-4C99-8633-0FD6000D327F}</Project>
+      <Name>GPCWrap2005</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

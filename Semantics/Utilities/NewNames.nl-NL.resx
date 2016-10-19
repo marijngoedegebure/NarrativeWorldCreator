@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Event" xml:space="preserve">
+    <value>Gebeurtenis</value>
+  </data>
+  <data name="Attribute" xml:space="preserve">
+    <value>Attribuut</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Groep</value>
+  </data>
+  <data name="PhysicalObject" xml:space="preserve">
+    <value>Fysiek object</value>
+  </data>
+  <data name="Element" xml:space="preserve">
+    <value>Element</value>
+  </data>
+  <data name="Material" xml:space="preserve">
+    <value>Materiaal</value>
+  </data>
+  <data name="Mixture" xml:space="preserve">
+    <value>Mengsel</value>
+  </data>
+  <data name="PredicateType" xml:space="preserve">
+    <value>Predicaattype</value>
+  </data>
+  <data name="Service" xml:space="preserve">
+    <value>Dienst</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Staat</value>
+  </data>
+  <data name="Substance" xml:space="preserve">
+    <value>Substantie</value>
+  </data>
+  <data name="UnitCategory" xml:space="preserve">
+    <value>Eenheidscategorie</value>
+  </data>
+  <data name="Unit" xml:space="preserve">
+    <value>Eenheid</value>
+  </data>
+  <data name="Entity" xml:space="preserve">
+    <value>Entiteit</value>
+  </data>
+  <data name="Context" xml:space="preserve">
+    <value>Context</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Actie</value>
+  </data>
+  <data name="AbstractEntity" xml:space="preserve">
+    <value>Abstracte entiteit</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="RelationshipType" xml:space="preserve">
+    <value>Relatietype</value>
+  </data>
+  <data name="Goal" xml:space="preserve">
+    <value>Doel</value>
+  </data>
+  <data name="Space" xml:space="preserve">
+    <value>Ruimte</value>
+  </data>
+  <data name="Scene" xml:space="preserve">
+    <value>Scène</value>
+  </data>
+  <data name="StateGroup" xml:space="preserve">
+    <value>Staatgroep</value>
+  </data>
+  <data name="Predicate" xml:space="preserve">
+    <value>Predicaat</value>
+  </data>
+  <data name="Relationship" xml:space="preserve">
+    <value>Relatie</value>
+  </data>
+  <data name="Parameter" xml:space="preserve">
+    <value>Parameter</value>
+  </data>
+  <data name="Condition" xml:space="preserve">
+    <value>Voorwaarde</value>
+  </data>
+  <data name="NodeCondition" xml:space="preserve">
+    <value>Nodevoorwaarde</value>
+  </data>
+  <data name="Effect" xml:space="preserve">
+    <value>Effect</value>
+  </data>
+  <data name="NodeChange" xml:space="preserve">
+    <value>Nodeverandering</value>
+  </data>
+  <data name="Compound" xml:space="preserve">
+    <value>Samenstelling</value>
+  </data>
+  <data name="TangibleObject" xml:space="preserve">
+    <value>Tastbaar object</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Familie</value>
+  </data>
+  <data name="ContextType" xml:space="preserve">
+    <value>Contexttype</value>
+  </data>
+  <data name="StateGroupCondition" xml:space="preserve">
+    <value>Voorwaarde staatgroep</value>
+  </data>
+  <data name="EntityCreation" xml:space="preserve">
+    <value>Creatie</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Verandering</value>
+  </data>
+  <data name="Creation" xml:space="preserve">
+    <value>Creatie</value>
+  </data>
+  <data name="Deletion" xml:space="preserve">
+    <value>Verwijdering</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Overdracht</value>
+  </data>
+  <data name="Reaction" xml:space="preserve">
+    <value>Reactie</value>
+  </data>
+  <data name="RelationshipEstablishment" xml:space="preserve">
+    <value>Aanleg relatie</value>
+  </data>
+  <data name="StateGroupChange" xml:space="preserve">
+    <value>Verandering staatgroep</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Verwijzing</value>
+  </data>
+  <data name="Tag" xml:space="preserve">
+    <value>Sleutelwoord</value>
+  </data>
+  <data name="Variable" xml:space="preserve">
+    <value>Variabele</value>
+  </data>
+  <data name="FilterApplication" xml:space="preserve">
+    <value>Aanbreng filter</value>
+  </data>
+  <data name="BoolVariable" xml:space="preserve">
+    <value>Boolvariabele</value>
+  </data>
+  <data name="NumericalVariable" xml:space="preserve">
+    <value>Numerieke variabele</value>
+  </data>
+  <data name="StringVariable" xml:space="preserve">
+    <value>Stringvariabele</value>
+  </data>
+  <data name="VectorVariable" xml:space="preserve">
+    <value>Vectorvariabele</value>
+  </data>
+  <data name="RandomVariable" xml:space="preserve">
+    <value>Willekeurige variabele</value>
+  </data>
+  <data name="AbstractEntityChange" xml:space="preserve">
+    <value>Verandering abstracte entiteit</value>
+  </data>
+  <data name="AbstractEntityCondition" xml:space="preserve">
+    <value>Voorwaarde abstracte entiteit</value>
+  </data>
+  <data name="AttributeChange" xml:space="preserve">
+    <value>Verandering attribuut</value>
+  </data>
+  <data name="AttributeCondition" xml:space="preserve">
+    <value>Voorwaarde attribuut</value>
+  </data>
+  <data name="CompoundChange" xml:space="preserve">
+    <value>Verandering samenstelling</value>
+  </data>
+  <data name="CompoundCondition" xml:space="preserve">
+    <value>Voorwaarde samenstelling</value>
+  </data>
+  <data name="ElementChange" xml:space="preserve">
+    <value>Verandering element</value>
+  </data>
+  <data name="ElementCondition" xml:space="preserve">
+    <value>Voorwaarde element</value>
+  </data>
+  <data name="MaterialChange" xml:space="preserve">
+    <value>Verandering materiaal</value>
+  </data>
+  <data name="MaterialCondition" xml:space="preserve">
+    <value>Voorwaarde materiaal</value>
+  </data>
+  <data name="MixtureChange" xml:space="preserve">
+    <value>Verandering mengsel</value>
+  </data>
+  <data name="MixtureCondition" xml:space="preserve">
+    <value>Voorwaarde mengsel</value>
+  </data>
+  <data name="SpaceChange" xml:space="preserve">
+    <value>Verandering ruimte</value>
+  </data>
+  <data name="SpaceCondition" xml:space="preserve">
+    <value>Voorwaarde ruimte</value>
+  </data>
+  <data name="SubstanceChange" xml:space="preserve">
+    <value>Substantie</value>
+  </data>
+  <data name="SubstanceCondition" xml:space="preserve">
+    <value>Voorwaarde substantie</value>
+  </data>
+  <data name="TangibleObjectChange" xml:space="preserve">
+    <value>Verandering tastbaar object</value>
+  </data>
+  <data name="TangibleObjectCondition" xml:space="preserve">
+    <value>Voorwaarde tastbaar object</value>
+  </data>
+  <data name="ConnectionReference" xml:space="preserve">
+    <value>Verbindingsverwijzing</value>
+  </data>
+  <data name="CoverReference" xml:space="preserve">
+    <value>Bedekkingsverwijzing</value>
+  </data>
+  <data name="ItemReference" xml:space="preserve">
+    <value>Itemverwijzing</value>
+  </data>
+  <data name="LayerReference" xml:space="preserve">
+    <value>Laagverwijzing</value>
+  </data>
+  <data name="MatterReference" xml:space="preserve">
+    <value>Materieverwijzing</value>
+  </data>
+  <data name="PartReference" xml:space="preserve">
+    <value>Onderdeelverwijzing</value>
+  </data>
+  <data name="RelationshipReference" xml:space="preserve">
+    <value>Relatieverwijzing</value>
+  </data>
+  <data name="SpaceReference" xml:space="preserve">
+    <value>Ruimteverwijzing</value>
+  </data>
+  <data name="SpatialReference" xml:space="preserve">
+    <value>Ruimtelijke verwijzing</value>
+  </data>
+  <data name="Transformation" xml:space="preserve">
+    <value>Transformatie</value>
+  </data>
+  <data name="RelationshipChange" xml:space="preserve">
+    <value>Verandering relatie</value>
+  </data>
+  <data name="RelationshipCondition" xml:space="preserve">
+    <value>Voorwaarde relatie</value>
+  </data>
+  <data name="FilterType" xml:space="preserve">
+    <value>Filtertype</value>
+  </data>
+  <data name="TermVariable" xml:space="preserve">
+    <value>Termvariabele</value>
+  </data>
+  <data name="SetReference" xml:space="preserve">
+    <value>Setverwijzing</value>
+  </data>
+  <data name="ConnectionItemChange" xml:space="preserve">
+    <value>Verandering verbindingsitem</value>
+  </data>
+  <data name="ConnectionItemCondition" xml:space="preserve">
+    <value>Voorwaarde verbindingsitem</value>
+  </data>
+  <data name="CoverChange" xml:space="preserve">
+    <value>Verandering bedekking</value>
+  </data>
+  <data name="CoverCondition" xml:space="preserve">
+    <value>Voorwaarde bedekking</value>
+  </data>
+  <data name="LayerChange" xml:space="preserve">
+    <value>Verandering laag</value>
+  </data>
+  <data name="LayerCondition" xml:space="preserve">
+    <value>Voorwaarde laag</value>
+  </data>
+  <data name="PartChange" xml:space="preserve">
+    <value>Verandering onderdeel</value>
+  </data>
+  <data name="PartCondition" xml:space="preserve">
+    <value>Voorwaarde onderdeel</value>
+  </data>
+  <data name="CombinedRelationship" xml:space="preserve">
+    <value>Gecombineerde relatie</value>
+  </data>
+  <data name="OwnerReference" xml:space="preserve">
+    <value>Eigenaarsverwijzing</value>
+  </data>
+</root>

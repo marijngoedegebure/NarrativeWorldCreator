@@ -1,0 +1,17 @@
+C:\Users\marij\Documents\Master Thesis\Release\x64\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis\Release\x86\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis\Release\GameSemantics.dll
+C:\Users\marij\Documents\Master Thesis\Release\GameSemantics.pdb
+C:\Users\marij\Documents\Master Thesis\Release\nl-NL\GameSemantics.resources.dll
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Data.GameColumns.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Data.GameTables.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Data.GameValueTables.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Utilities.Enums.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Utilities.NewNames.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Utilities.Enums.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.Utilities.NewNames.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.csproj.GenerateResource.Cache
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\nl-NL\GameSemantics.resources.dll
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.dll
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.pdb
+C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Release\GameSemantics.csprojResolveAssemblyReference.cache

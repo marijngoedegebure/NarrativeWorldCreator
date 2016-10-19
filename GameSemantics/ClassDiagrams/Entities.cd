@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GameSemantics.Entities.GameAbstractEntity">
+    <Position X="2.25" Y="4" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\GameAbstractEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameAbstractEntityValued">
+    <Position X="7" Y="4" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\GameAbstractEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameMaterial">
+    <Position X="2" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAEAAAAAAAAACAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Entities\GameMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameMaterialValued">
+    <Position X="6" Y="0.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\GameMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameObject">
+    <Position X="1" Y="6.5" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>IEIMAAECgDTAJikNgrGEBmQQYQAGChOGBE3yCDKLJBA=</HashCode>
+      <FileName>Entities\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameObjectValued">
+    <Position X="7.25" Y="6.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

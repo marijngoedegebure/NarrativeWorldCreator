@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Semantics.Components.NodeValued">
+    <Position X="30.25" Y="2.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAEAAAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Components\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.AbstractionValued">
+    <Position X="5.5" Y="5.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Abstraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.AttributeValued">
+    <Position X="9.5" Y="8.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Abstractions\Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.FeatureValued">
+    <Position X="1.75" Y="8.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Abstractions\Feature.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.SceneValued">
+    <Position X="5.75" Y="8.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.AbstractEntityValued">
+    <Position X="57" Y="8.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\AbstractEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.ChemicalSubstanceValued">
+    <Position X="13.75" Y="20.25" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Entities\ChemicalSubstance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.CompoundObjectValued">
+    <Position X="43.25" Y="14.5" Width="6.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CompoundObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.ElementValued">
+    <Position X="30" Y="11.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Element.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.EntityValued">
+    <Position X="36" Y="5.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.MaterialValued">
+    <Position X="20" Y="11.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>CEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Material.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.MixtureValued">
+    <Position X="19.75" Y="20.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Mixture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.PhysicalEntityValued">
+    <Position X="33" Y="8.75" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PhysicalEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.PhysicalObjectValued">
+    <Position X="45.75" Y="11.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Entities\PhysicalObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.RawMaterialValued">
+    <Position X="16.5" Y="14.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Entities\RawMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.SemifinishedMaterialValued">
+    <Position X="23.75" Y="14.5" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\SemifinishedMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.SeparateObjectValued">
+    <Position X="50.25" Y="14.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\SeparateObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.SpaceValued">
+    <Position X="34" Y="11.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAiAAAQAACBAAAAAAAAACgAAAAAAEAQACAAAAAAA=</HashCode>
+      <FileName>Entities\Space.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.SubstanceValued">
+    <Position X="16.5" Y="17.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Substance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Artifact">
+    <Position X="39.75" Y="14.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Artifact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

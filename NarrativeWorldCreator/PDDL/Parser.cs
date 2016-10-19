@@ -9,8 +9,6 @@ namespace NarrativeWorldCreator.PDDL
 {
     static class Parser
     {
-        public static Narrative narrative = new Narrative();
-
         public static void parseDomain(String domainPath)
         {
             DomainParser.parseDomain(domainPath);

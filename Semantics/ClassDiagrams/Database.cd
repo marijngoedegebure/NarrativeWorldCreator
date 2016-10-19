@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Semantics.Data.Database">
+    <Position X="5.5" Y="3.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>IA9AIMAABCkABQgAAAAABAIDEAAwIDkQEAAAQBEAABA=</HashCode>
+      <FileName>Data\Database.CurrentDatabase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

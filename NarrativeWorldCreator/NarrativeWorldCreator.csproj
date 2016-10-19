@@ -36,8 +36,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common">
+      <HintPath>..\Entika\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GameSemantics">
+      <HintPath>..\Entika\GameSemantics.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\Monogame.Framework\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Semantics">
+      <HintPath>..\Entika\Semantics.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\SharpDX\SharpDX.dll</HintPath>
@@ -103,9 +112,10 @@
     <Compile Include="RegionGraph\GraphDataTypes\Graph.cs" />
     <Compile Include="RegionGraph\GraphDataTypes\Node.cs" />
     <Compile Include="RegionGraph\GraphParser.cs" />
+    <Compile Include="SystemStateTracker.cs" />
+    <Compile Include="XML elements\Camera2d.cs" />
     <Compile Include="XML elements\GraphScene.cs" />
-    <Compile Include="XML elements\ProjectionGraphHost.cs" />
-    <Compile Include="XML elements\ProjectionRegionHost.cs" />
+    <Compile Include="XML elements\RegionScene.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

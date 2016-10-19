@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Semantics.Components.Chance">
+    <Position X="21.75" Y="6.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAACAAAAEAAAAAAAAABAAACAQAAAgAQAAABE=</HashCode>
+      <FileName>Components\Chance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Context">
+    <Position X="8.25" Y="6.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAQABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.IdHolder">
+    <Position X="17.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAgAAAAAAAAAAAAIAAAAAAAAAAAgA=</HashCode>
+      <FileName>Components\IdHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Event">
+    <Position X="1" Y="9" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AhAAAAAAAgCAgYAAAAQAACAAAAQAAAAAAAAAAABAAQQ=</HashCode>
+      <FileName>Components\Event.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Service">
+    <Position X="3.25" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Components\Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Time">
+    <Position X="26.5" Y="6.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAUCAAAAAIAAAAAQAAAIAEAAAQAAAAAFAAA=</HashCode>
+      <FileName>Components\Time.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Equation">
+    <Position X="16.25" Y="6.5" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAEAAgAACAAACAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Components\Equation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.Procedure">
+    <Position X="5" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAA=</HashCode>
+      <FileName>Components\Procedure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.StateGroup">
+    <Position X="12.5" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAABEAAAAAAAgAAAAAAAAAAAABAAACAA=</HashCode>
+      <FileName>Components\StateGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.StateGroupInstance">
+    <Position X="31.25" Y="6.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAARAAAAAAAAAAAIAAAACAAAAEAAAABAAAAAA=</HashCode>
+      <FileName>Components\StateGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.PropertyChangedComponent">
+    <Position X="16.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\PropertyChangedComponent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

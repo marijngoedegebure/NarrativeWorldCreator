@@ -69,7 +69,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-            Parser.narrative = new Narrative();
+            SystemStateTracker.narrative = new Narrative();
             Parser.parseDomain(domainPath);
             Parser.parseProblem(problemPath);
             Parser.parsePlan(planPath);
@@ -80,10 +80,10 @@ namespace NarrativeWorldCreator.Pages
 
         private void fillDetailView()
         {
-            number_narrative_events.Content = Parser.narrative.narrativeEvents.Count;
-            number_narrative_characters.Content = Parser.narrative.getNarrativeObjectsOfType("actor").Count;
-            number_narrative_locations.Content = Parser.narrative.getNarrativeObjectsOfType("location").Count;
-            number_narrative_objects.Content = Parser.narrative.getNarrativeObjectsOfType("thing").Count;
+            number_narrative_events.Content = SystemStateTracker.narrative.narrativeEvents.Count;
+            number_narrative_characters.Content = SystemStateTracker.narrative.getNarrativeObjectsOfType("actor").Count;
+            number_narrative_locations.Content = SystemStateTracker.narrative.getNarrativeObjectsOfType("location").Count;
+            number_narrative_objects.Content = SystemStateTracker.narrative.getNarrativeObjectsOfType("thing").Count;
         }
 
         private void btnGoToGraphPage_Click(object sender, RoutedEventArgs e)

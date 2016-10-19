@@ -32,11 +32,11 @@ namespace NarrativeWorldCreator.PDDL
                 }
                 if (readEventMode)
                 {
-                    narrativeEvents.Add(readEvent(words, Parser.narrative.narrativeActions, Parser.narrative.types));
+                    narrativeEvents.Add(readEvent(words, SystemStateTracker.narrative.narrativeActions, SystemStateTracker.narrative.types));
                     continue;
                 }
             }
-            Parser.narrative.narrativeEvents = narrativeEvents;
+            SystemStateTracker.narrative.narrativeEvents = narrativeEvents;
         }
 
         private static NarrativeEvent readEvent(string[] words, List<NarrativeAction> narrativeActions, List<Type> types)
@@ -54,8 +54,8 @@ namespace NarrativeWorldCreator.PDDL
             if (narrativeEvent.narrativeAction == null)
                 throw new Exception("Second argument is not a narrative action");
             // Check if last word is a location
-            Type locationType = Parser.narrative.getType("location");
-            List<NarrativeObject> objectsFilteredOnLocationType = Parser.narrative.getNarrativeObjectsOfType(locationType);
+            Type locationType = SystemStateTracker.narrative.getType("location");
+            List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.narrative.getNarrativeObjectsOfType(locationType);
             NarrativeObject locationOfEvent = null;
             foreach( NarrativeObject filteredObject in objectsFilteredOnLocationType)
             {
@@ -70,7 +70,7 @@ namespace NarrativeWorldCreator.PDDL
             // Read words in
             for(int i = 1; i < words.Length; i++)
             {
-                foreach(NarrativeObject narrativeObject in Parser.narrative.narrativeObjects)
+                foreach(NarrativeObject narrativeObject in SystemStateTracker.narrative.narrativeObjects)
                 {
                     if (words[i].Equals(narrativeObject.name))
                     {

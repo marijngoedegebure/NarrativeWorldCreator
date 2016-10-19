@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
-using NarrativeWorldCreator.RegionGraph;
 using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
 using System;
 using System.Collections.Generic;
@@ -17,11 +16,16 @@ namespace NarrativeWorldCreator
         private IGraphicsDeviceService _graphicsDeviceManager;
         private WpfKeyboard _keyboard;
         private KeyboardState _keyboardState;
+
         private WpfMouse _mouse;
         private MouseState _mouseState;
+        private MouseState _previousMouseState;
+
         private SpriteBatch _spriteBatch;
 
         private SpriteFont spriteFontCourierNew;
+
+        private Camera2d cam = new Camera2d();
 
         public static int height;
         public static int width;
@@ -46,7 +50,7 @@ namespace NarrativeWorldCreator
             SpriteBatch spriteBatch = new SpriteBatch(_graphicsDeviceManager.GraphicsDevice);
             //drawModelExampleFunction();
             //drawSpriteExampleFunction(spriteBatch);
-            drawGraph(spriteBatch);
+            drawGraph(spriteBatch, SystemStateTracker.graph);
 
             // this base.Draw call will draw "all" components (we only added one)
             // since said component will use a spritebatch to render we need to let it draw before we reset the GraphicsDevice
@@ -60,27 +64,33 @@ namespace NarrativeWorldCreator
 
         }
 
-        private void drawGraph(SpriteBatch spriteBatch)
+        private void drawGraph(SpriteBatch spriteBatch, Graph graph)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float) this.ActualWidth, (float) this.ActualHeight));
             // Draw each node
-            if (!GraphParser.graph.nodeCoordinatesGenerated)
+            if (!SystemStateTracker.graph.nodeCoordinatesGenerated)
                 return;
-            foreach (Node n in GraphParser.graph.getNodeList())
+            foreach (Node n in graph.getNodeList())
             {
 
-                spriteBatch.Draw(GraphParser.circleTexture, GraphParser.NodeCollisionBoxes[n], Color.White);
+                spriteBatch.Draw(graph.circleTexture, graph.NodeCollisionBoxes[n], Color.White);
                 // Draw the location name
-                spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(GraphParser.NodeCollisionBoxes[n].X +
-                    (GraphParser.nodeWidth / 2), GraphParser.NodeCollisionBoxes[n].Y + (GraphParser.nodeHeight / 2)), Color.Black,
+                spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(graph.NodeCollisionBoxes[n].X +
+                    (graph.nodeWidth / 2), graph.NodeCollisionBoxes[n].Y + (graph.nodeHeight / 2)), Color.Black,
                     0, spriteFontCourierNew.MeasureString(n.getLocationName()) / 2, 1.0f, SpriteEffects.None, 0.5f);
             }
             // Draw each edge
-            foreach (Edge e in GraphParser.graph.getEdgeList())
+            foreach (Edge e in graph.getEdgeList())
             {
                 DrawLine(spriteBatch, //draw line
-                    new Vector2(GraphParser.NodeCollisionBoxes[e.from].X + (GraphParser.nodeWidth / 2), GraphParser.NodeCollisionBoxes[e.from].Y + (GraphParser.nodeHeight / 2)), //start of line
-                    new Vector2(GraphParser.NodeCollisionBoxes[e.to].X + (GraphParser.nodeWidth / 2), GraphParser.NodeCollisionBoxes[e.to].Y + (GraphParser.nodeHeight / 2)) //end of line
+                    new Vector2(graph.NodeCollisionBoxes[e.from].X + (graph.nodeWidth / 2), graph.NodeCollisionBoxes[e.from].Y + (graph.nodeHeight / 2)), //start of line
+                    new Vector2(graph.NodeCollisionBoxes[e.to].X + (graph.nodeWidth / 2), graph.NodeCollisionBoxes[e.to].Y + (graph.nodeHeight / 2)) //end of line
                 );
             }
             spriteBatch.End();
@@ -94,7 +104,7 @@ namespace NarrativeWorldCreator
                 (float)Math.Atan2(edge.Y, edge.X);
 
 
-            sb.Draw(GraphParser.lineTexture,
+            sb.Draw(SystemStateTracker.graph.lineTexture,
                 new Rectangle(// rectangle defines shape of line and position of start of line
                     (int)start.X,
                     (int)start.Y,
@@ -112,21 +122,21 @@ namespace NarrativeWorldCreator
         {
             base.Initialize();
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
+            cam.Pos = new Vector2(500.0f, 200.0f);
 
-            GraphParser.circleTexture = Content.Load<Texture2D>("Sprites/Circle");
-            GraphParser.lineTexture = new Texture2D(_graphicsDeviceManager.GraphicsDevice, 1, 1);
-            GraphParser.lineTexture.SetData<Color>(new Color[] { Color.Black });
+            SystemStateTracker.graph.circleTexture = Content.Load<Texture2D>("Sprites/Circle");
+            SystemStateTracker.graph.lineTexture = new Texture2D(_graphicsDeviceManager.GraphicsDevice, 1, 1);
+            SystemStateTracker.graph.lineTexture.SetData<Color>(new Color[] { Color.Black });
             spriteFontCourierNew = Content.Load<SpriteFont>("Spritefonts/Courier New");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _keyboard = new WpfKeyboard(this);
             _mouse = new WpfMouse(this);
+            _previousMouseState = _mouse.GetState();
 
-            height = (int)this.ActualHeight - GraphParser.nodeHeight;
-            width = (int)this.ActualWidth - GraphParser.nodeWidth;
-
-            //Components.Add(new DrawMeComponent(this));
+            height = (int)this.ActualHeight - SystemStateTracker.graph.nodeHeight;
+            width = (int)this.ActualWidth - SystemStateTracker.graph.nodeWidth;
         }
 
         private float elapsedSinceLastStep = 0f;
@@ -134,50 +144,76 @@ namespace NarrativeWorldCreator
 
         protected override void Update(GameTime time)
         {
+            _previousMouseState = _mouseState;
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
+            Graph graph = SystemStateTracker.graph;
 
             float totalElapsed = (float)time.TotalGameTime.TotalSeconds;
-            if (totalElapsed - elapsedSinceLastStep > intervalStepTime && GraphParser.temperature > GraphParser.DefaultMinimumTemperature)
+            if (totalElapsed - elapsedSinceLastStep > intervalStepTime && graph.temperature > Graph.DefaultMinimumTemperature)
             {
-                GraphParser.stepForceDirectedGraph();
+                graph.stepForceDirectedGraph();
                 elapsedSinceLastStep = totalElapsed;
             }
             // Convert positions and update collisionboxes
-            Dictionary<Node, Vector2> convertedPositions = GraphParser.convertNodePositions();
-            // Convert 0 to 1 float to screenposition (1080x1080)
-            height = (int)this.ActualHeight - GraphParser.nodeHeight;
-            width = (int)this.ActualWidth - GraphParser.nodeWidth;
-            foreach (Node n in GraphParser.graph.getNodeList())
+            foreach (Node n in graph.getNodeList())
             {
-                float x = convertedPositions[n].X * height;
-                float y = convertedPositions[n].Y * height;
-                Rectangle collisionBox = new Rectangle((int)x, (int)y, GraphParser.nodeHeight, GraphParser.nodeWidth);
-                GraphParser.NodeCollisionBoxes[n] = collisionBox;
+                float x = graph.NodePositions[n].X * Graph.energyToDrawConversion;
+                float y = graph.NodePositions[n].Y * Graph.energyToDrawConversion;
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, graph.nodeHeight, graph.nodeWidth);
+                graph.NodeCollisionBoxes[n] = collisionBox;
             }
 
-            // Check if mouse is inside node of graph
-            var mouseState = Mouse.GetState();
-            var mousePosition = new Point(mouseState.X, mouseState.Y);
-            foreach (Node n in GraphParser.graph.getNodeList())
+            // Collision detection of mouse with one of the regions
+            if (graph.NodeCollisionBoxes.Count == graph.getNodeList().Count && _previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
             {
-                if (GraphParser.NodeCollisionBoxes.Count == GraphParser.graph.getNodeList().Count)
-                {
-                    // Check if the mouse position is inside the rectangle
-                    if (mouseState.LeftButton == ButtonState.Released)
-                    {
-                        if (GraphParser.NodeCollisionBoxes[n].Contains(mousePosition))
-                        {
-                            continue;
-                            // var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-                            // mainWindow._mainFrame.NavigationService.Navigate(new RegionPage());
-                        }
-                    }
-                }
+                // Incorporate translation into collision
+                    Matrix inverseViewMatrix = Matrix.Invert(cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float)this.ActualWidth, (float)this.ActualHeight));
+                    graph.checkCollisions(Vector2.Transform(_mouseState.Position.ToVector2(), inverseViewMatrix));
             }
+            handleCamMovementKeyboardInput();
+            handleCamMoovementMouseInput();
             base.Update(time);
         }
 
+        private void handleCamMoovementMouseInput()
+        {
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed)
+            {
+                // Dragging mode enabled, move camera with delta of previous en current mousestate
+                Vector2 delta = Vector2.Subtract(_previousMouseState.Position.ToVector2(), _mouseState.Position.ToVector2());
+                cam.Move(delta);
+            }
+        }
+
+        private void handleCamMovementKeyboardInput()
+        {
+            // Handle Cam movement en zoom
+            if (_keyboardState.IsKeyDown(Keys.Left))
+            {
+                cam.Move(new Vector2(-Camera2d.DEFAULTMOVE, 0.0f));
+            }
+            if (_keyboardState.IsKeyDown(Keys.Right))
+            {
+                cam.Move(new Vector2(Camera2d.DEFAULTMOVE, 0.0f));
+            }
+            if (_keyboardState.IsKeyDown(Keys.Down))
+            {
+                cam.Move(new Vector2(0.0f, Camera2d.DEFAULTMOVE));
+            }
+            if (_keyboardState.IsKeyDown(Keys.Up))
+            {
+                cam.Move(new Vector2(0.0f, -Camera2d.DEFAULTMOVE));
+            }
+            if (_keyboardState.IsKeyDown(Keys.OemMinus))
+            {
+                cam.Zoom = cam.Zoom - Camera2d.DEFAULTZOOM;
+            }
+            if (_keyboardState.IsKeyDown(Keys.OemPlus))
+            {
+                cam.Zoom = cam.Zoom + Camera2d.DEFAULTZOOM;
+            }
+        }
         #endregion
     }
 }

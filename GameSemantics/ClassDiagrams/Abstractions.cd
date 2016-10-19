@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="GameSemantics.Entities.GameAnimation">
+    <Position X="1.5" Y="2" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEggAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\GameAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameAnimationValued">
+    <Position X="5.75" Y="2" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\GameAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameAudio">
+    <Position X="2" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAEAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\GameAudio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSemantics.Entities.GameAudioValued">
+    <Position X="5.75" Y="5.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAABAAAAAACAAAIAAAAAAAA=</HashCode>
+      <FileName>Abstractions\GameAudio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

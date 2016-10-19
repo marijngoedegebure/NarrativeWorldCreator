@@ -62,9 +62,9 @@ namespace NarrativeWorldCreator.PDDL
                         continue; 
                 }
             }
-            Parser.narrative.predicateTypes = predicateTypes;
-            Parser.narrative.types = types;
-            Parser.narrative.narrativeActions = narrativeActions;
+            SystemStateTracker.narrative.predicateTypes = predicateTypes;
+            SystemStateTracker.narrative.types = types;
+            SystemStateTracker.narrative.narrativeActions = narrativeActions;
         }
 
         private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<Type> types)

@@ -1,0 +1,846 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ValueChangeType_Decrease" xml:space="preserve">
+    <value>Decrease by</value>
+  </data>
+  <data name="EqualitySignExtended_Equal" xml:space="preserve">
+    <value>==</value>
+  </data>
+  <data name="DurationType_Fixed" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="EqualitySignExtended_Greater" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="EqualitySignExtended_GreaterOrEqual" xml:space="preserve">
+    <value>&gt;=</value>
+  </data>
+  <data name="ValueChangeType_Increase" xml:space="preserve">
+    <value>Increase by</value>
+  </data>
+  <data name="DurationType_Infinite" xml:space="preserve">
+    <value>Infinite</value>
+  </data>
+  <data name="EqualitySignExtended_Lower" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="EqualitySignExtended_LowerOrEqual" xml:space="preserve">
+    <value>&lt;=</value>
+  </data>
+  <data name="ValueType_Numerical" xml:space="preserve">
+    <value>Numerical</value>
+  </data>
+  <data name="EqualitySignExtended_NotEqual" xml:space="preserve">
+    <value>!=</value>
+  </data>
+  <data name="ValueType_Term" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="TimeType_Continuous" xml:space="preserve">
+    <value>Continuous</value>
+  </data>
+  <data name="TimeType_Discrete" xml:space="preserve">
+    <value>Discrete</value>
+  </data>
+  <data name="Prefix_Yocto" xml:space="preserve">
+    <value>yocto</value>
+  </data>
+  <data name="Prefix_Zepto" xml:space="preserve">
+    <value>zepto</value>
+  </data>
+  <data name="Prefix_Atto" xml:space="preserve">
+    <value>atto</value>
+  </data>
+  <data name="Prefix_Femto" xml:space="preserve">
+    <value>femto</value>
+  </data>
+  <data name="Prefix_Pico" xml:space="preserve">
+    <value>pico</value>
+  </data>
+  <data name="Prefix_Nano" xml:space="preserve">
+    <value>nano</value>
+  </data>
+  <data name="Prefix_Micro" xml:space="preserve">
+    <value>micro</value>
+  </data>
+  <data name="Prefix_Milli" xml:space="preserve">
+    <value>milli</value>
+  </data>
+  <data name="Prefix_Centi" xml:space="preserve">
+    <value>centi</value>
+  </data>
+  <data name="Prefix_Deci" xml:space="preserve">
+    <value>deci</value>
+  </data>
+  <data name="Prefix_None" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Prefix_Deca" xml:space="preserve">
+    <value>deca</value>
+  </data>
+  <data name="Prefix_Hecto" xml:space="preserve">
+    <value>hecto</value>
+  </data>
+  <data name="Prefix_Kilo" xml:space="preserve">
+    <value>kilo</value>
+  </data>
+  <data name="Prefix_Mega" xml:space="preserve">
+    <value>mega</value>
+  </data>
+  <data name="Prefix_Giga" xml:space="preserve">
+    <value>giga</value>
+  </data>
+  <data name="Prefix_Tera" xml:space="preserve">
+    <value>tera</value>
+  </data>
+  <data name="Prefix_Peta" xml:space="preserve">
+    <value>peta</value>
+  </data>
+  <data name="Prefix_Exa" xml:space="preserve">
+    <value>exa</value>
+  </data>
+  <data name="Prefix_Zetta" xml:space="preserve">
+    <value>zetta</value>
+  </data>
+  <data name="Prefix_Yotta" xml:space="preserve">
+    <value>yotta</value>
+  </data>
+  <data name="LogicalOperator_And" xml:space="preserve">
+    <value>&amp;</value>
+  </data>
+  <data name="LogicalOperator_None" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LogicalOperator_Or" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="EqualitySign_Equal" xml:space="preserve">
+    <value>==</value>
+  </data>
+  <data name="EqualitySign_NotEqual" xml:space="preserve">
+    <value>!=</value>
+  </data>
+  <data name="ValueChangeType_Equate" xml:space="preserve">
+    <value>Equate to</value>
+  </data>
+  <data name="SpaceType_Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="SpaceType_Open" xml:space="preserve">
+    <value>Opened</value>
+  </data>
+  <data name="ValueType_Vector" xml:space="preserve">
+    <value>Vector</value>
+  </data>
+  <data name="ValueType_Boolean" xml:space="preserve">
+    <value>Boolean</value>
+  </data>
+  <data name="BooleanType_False" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="BooleanType_True" xml:space="preserve">
+    <value>True</value>
+  </data>
+  <data name="ValueType_String" xml:space="preserve">
+    <value>String</value>
+  </data>
+  <data name="StateOfMatter_Gas" xml:space="preserve">
+    <value>Gas</value>
+  </data>
+  <data name="StateOfMatter_Liquid" xml:space="preserve">
+    <value>Liquid</value>
+  </data>
+  <data name="StateOfMatter_Plasma" xml:space="preserve">
+    <value>Plasma</value>
+  </data>
+  <data name="StateOfMatter_Solid" xml:space="preserve">
+    <value>Solid</value>
+  </data>
+  <data name="Composition_Heterogeneous" xml:space="preserve">
+    <value>Heterogeneous</value>
+  </data>
+  <data name="Composition_Homogeneous" xml:space="preserve">
+    <value>Homogeneous</value>
+  </data>
+  <data name="MixtureType_Alloy" xml:space="preserve">
+    <value>Alloy</value>
+  </data>
+  <data name="MixtureType_Colloid" xml:space="preserve">
+    <value>Colloid</value>
+  </data>
+  <data name="MixtureType_Solution" xml:space="preserve">
+    <value>Solution</value>
+  </data>
+  <data name="MixtureType_Suspension" xml:space="preserve">
+    <value>Suspension</value>
+  </data>
+  <data name="ElementBlock_D" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="ElementBlock_F" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="ElementBlock_G" xml:space="preserve">
+    <value>G</value>
+  </data>
+  <data name="ElementBlock_P" xml:space="preserve">
+    <value>P</value>
+  </data>
+  <data name="ElementBlock_S" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="ElementGroup_Eight" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="ElementGroup_Eighteen" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="ElementGroup_Eleven" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="ElementGroup_Fifteen" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="ElementGroup_Five" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="ElementGroup_Four" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ElementGroup_Fourteen" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="ElementGroup_Nine" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="ElementGroup_One" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ElementGroup_Seven" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ElementGroup_Seventeen" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="ElementGroup_Six" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ElementGroup_Sixteen" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="ElementGroup_Ten" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="ElementGroup_Thirteen" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ElementGroup_Three" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ElementGroup_Twelve" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="ElementGroup_Two" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ElementPeriod_Eight" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="ElementPeriod_Five" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="ElementPeriod_Four" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ElementPeriod_One" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ElementPeriod_Seven" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ElementPeriod_Six" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ElementPeriod_Three" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ElementPeriod_Two" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ElementType_Metal" xml:space="preserve">
+    <value>Metal</value>
+  </data>
+  <data name="ElementType_Metalloid" xml:space="preserve">
+    <value>Metalloid</value>
+  </data>
+  <data name="ElementType_Nonmetal" xml:space="preserve">
+    <value>Non-metal</value>
+  </data>
+  <data name="MetalType_Base" xml:space="preserve">
+    <value>Base</value>
+  </data>
+  <data name="MetalType_Ferrous" xml:space="preserve">
+    <value>Ferrous</value>
+  </data>
+  <data name="MetalType_Noble" xml:space="preserve">
+    <value>Noble</value>
+  </data>
+  <data name="MetalType_Precious" xml:space="preserve">
+    <value>Precious</value>
+  </data>
+  <data name="Function_Cosine" xml:space="preserve">
+    <value>cos</value>
+  </data>
+  <data name="Function_Sine" xml:space="preserve">
+    <value>sin</value>
+  </data>
+  <data name="Function_Tangent" xml:space="preserve">
+    <value>tan</value>
+  </data>
+  <data name="Operator_Addition" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="Operator_Division" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="Operator_Multiplication" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="Operator_Power" xml:space="preserve">
+    <value>^</value>
+  </data>
+  <data name="Operator_Subtraction" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="DurationType_InfiniteDependentOnRequirements" xml:space="preserve">
+    <value>Infinite, dependent on requirements</value>
+  </data>
+  <data name="Necessity_Optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="Necessity_Mandatory" xml:space="preserve">
+    <value>Mandatory</value>
+  </data>
+  <data name="Presence_Attached" xml:space="preserve">
+    <value>Attached</value>
+  </data>
+  <data name="Presence_Present" xml:space="preserve">
+    <value>Present</value>
+  </data>
+  <data name="SourceTarget_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="SourceTarget_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="EventBehavior_Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="EventBehavior_Manual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="DeletionType_DefinedAtQuantity" xml:space="preserve">
+    <value>Defined at quantity</value>
+  </data>
+  <data name="DeletionType_DeleteAll" xml:space="preserve">
+    <value>Delete all</value>
+  </data>
+  <data name="RangeType_EntitiesInRadius" xml:space="preserve">
+    <value>Entities in radius</value>
+  </data>
+  <data name="RangeType_EntitiesOnly" xml:space="preserve">
+    <value>Entities only</value>
+  </data>
+  <data name="RangeType_RadiusOnly" xml:space="preserve">
+    <value>Radius only</value>
+  </data>
+  <data name="StorageType_Capacity" xml:space="preserve">
+    <value>Capacity</value>
+  </data>
+  <data name="StorageType_MaximumNumberOfItems" xml:space="preserve">
+    <value>Max. nr. of items</value>
+  </data>
+  <data name="StorageType_MaximumNumberOfItemsAndCapacity" xml:space="preserve">
+    <value>Nr. of items and capacity</value>
+  </data>
+  <data name="StorageType_Unlimited" xml:space="preserve">
+    <value>Unlimited</value>
+  </data>
+  <data name="DesiredValueType_Between" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="DesiredValueType_Decrease" xml:space="preserve">
+    <value>Decrease</value>
+  </data>
+  <data name="DesiredValueType_DecreaseBetween" xml:space="preserve">
+    <value>Decrease between</value>
+  </data>
+  <data name="DesiredValueType_DecreaseByAtLeast" xml:space="preserve">
+    <value>Decrease by at least</value>
+  </data>
+  <data name="DesiredValueType_DecreaseByAtMost" xml:space="preserve">
+    <value>Decrease by at most</value>
+  </data>
+  <data name="DesiredValueType_Equal" xml:space="preserve">
+    <value>Equal to</value>
+  </data>
+  <data name="DesiredValueType_Greater" xml:space="preserve">
+    <value>Greater than</value>
+  </data>
+  <data name="DesiredValueType_GreaterOrEqual" xml:space="preserve">
+    <value>Greater than or equal to</value>
+  </data>
+  <data name="DesiredValueType_Increase" xml:space="preserve">
+    <value>Increase</value>
+  </data>
+  <data name="DesiredValueType_IncreaseBetween" xml:space="preserve">
+    <value>Increase between</value>
+  </data>
+  <data name="DesiredValueType_IncreaseByAtLeast" xml:space="preserve">
+    <value>Increase by at least</value>
+  </data>
+  <data name="DesiredValueType_IncreaseByAtMost" xml:space="preserve">
+    <value>Increase by at most</value>
+  </data>
+  <data name="DesiredValueType_Lower" xml:space="preserve">
+    <value>Lower than</value>
+  </data>
+  <data name="DesiredValueType_LowerOrEqual" xml:space="preserve">
+    <value>Lower than or equal to</value>
+  </data>
+  <data name="DesiredValueType_NotEqual" xml:space="preserve">
+    <value>Not equal to</value>
+  </data>
+  <data name="EqualitySignExtendedDual_Between" xml:space="preserve">
+    <value>[...]</value>
+  </data>
+  <data name="EqualitySignExtendedDual_Equal" xml:space="preserve">
+    <value>==</value>
+  </data>
+  <data name="EqualitySignExtendedDual_Greater" xml:space="preserve">
+    <value>&gt;</value>
+  </data>
+  <data name="EqualitySignExtendedDual_GreaterOrEqual" xml:space="preserve">
+    <value>&gt;=</value>
+  </data>
+  <data name="EqualitySignExtendedDual_Lower" xml:space="preserve">
+    <value>&lt;</value>
+  </data>
+  <data name="EqualitySignExtendedDual_LowerOrEqual" xml:space="preserve">
+    <value>&lt;=</value>
+  </data>
+  <data name="EqualitySignExtendedDual_NotEqual" xml:space="preserve">
+    <value>!=</value>
+  </data>
+  <data name="SpecialAttributes_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="SpecialAttributes_Rotation" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="FrequencyType_Fixed" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="Destination_ActorCovers" xml:space="preserve">
+    <value>Covers of actor</value>
+  </data>
+  <data name="Destination_ActorItems" xml:space="preserve">
+    <value>Items of actor</value>
+  </data>
+  <data name="Destination_ActorLayers" xml:space="preserve">
+    <value>Layers of actor</value>
+  </data>
+  <data name="Destination_ActorParts" xml:space="preserve">
+    <value>Parts of actor</value>
+  </data>
+  <data name="Destination_TargetCovers" xml:space="preserve">
+    <value>Covers of target</value>
+  </data>
+  <data name="Destination_TargetItems" xml:space="preserve">
+    <value>Items of target</value>
+  </data>
+  <data name="Destination_TargetLayers" xml:space="preserve">
+    <value>Layers of target</value>
+  </data>
+  <data name="Destination_TargetParts" xml:space="preserve">
+    <value>Parts of target</value>
+  </data>
+  <data name="Destination_World" xml:space="preserve">
+    <value>World</value>
+  </data>
+  <data name="AttributeType_Constant" xml:space="preserve">
+    <value>Constant</value>
+  </data>
+  <data name="AttributeType_Dependent" xml:space="preserve">
+    <value>Dependent</value>
+  </data>
+  <data name="AttributeType_Mutable" xml:space="preserve">
+    <value>Mutable</value>
+  </data>
+  <data name="EqualitySignExtendedDual_NotBetween" xml:space="preserve">
+    <value>! [...]</value>
+  </data>
+  <data name="ActorTarget_Actor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="ActorTarget_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="TransferDirection_ActorToTarget" xml:space="preserve">
+    <value>Actor to target</value>
+  </data>
+  <data name="TransferDirection_TargetToActor" xml:space="preserve">
+    <value>Target to actor</value>
+  </data>
+  <data name="CreationRelationshipSourceTarget_RelateEntityAsSourceAndActorAsTarget" xml:space="preserve">
+    <value>Entity as source, actor as target</value>
+  </data>
+  <data name="CreationRelationshipSourceTarget_RelateEntityAsSourceAndTargetAsTarget" xml:space="preserve">
+    <value>Entity as source, target as target</value>
+  </data>
+  <data name="CreationRelationshipSourceTarget_RelateEntityAsTargetAndActorAsSource" xml:space="preserve">
+    <value>Entity as target, actor as source</value>
+  </data>
+  <data name="CreationRelationshipSourceTarget_RelateEntityAsTargetAndTargetAsSource" xml:space="preserve">
+    <value>Entity as target, target as source</value>
+  </data>
+  <data name="SpecialUnitCategories_Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="SpecialUnitCategories_Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="SpecialUnitCategories_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="FrequencyType_Infinite" xml:space="preserve">
+    <value>Infinite</value>
+  </data>
+  <data name="Cardinality_ManyToMany" xml:space="preserve">
+    <value>Many-to-many</value>
+  </data>
+  <data name="Cardinality_ManyToOne" xml:space="preserve">
+    <value>Many-to-one</value>
+  </data>
+  <data name="Cardinality_OneToMany" xml:space="preserve">
+    <value>One-to-many</value>
+  </data>
+  <data name="Cardinality_OneToOne" xml:space="preserve">
+    <value>One-to-one</value>
+  </data>
+  <data name="ActorTargetArtifactReference_Actor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="ActorTargetArtifactReference_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="ActorTargetArtifactReference_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+  <data name="VariableType_Attribute" xml:space="preserve">
+    <value>Attribute</value>
+  </data>
+  <data name="VariableType_Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="VariableType_Fixed" xml:space="preserve">
+    <value>Fixed</value>
+  </data>
+  <data name="VariableType_Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="VariableType_RequiresManualInput" xml:space="preserve">
+    <value>Requires manual input</value>
+  </data>
+  <data name="SelectionType_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="SelectionType_Farthest" xml:space="preserve">
+    <value>Farthest</value>
+  </data>
+  <data name="SelectionType_Nearest" xml:space="preserve">
+    <value>Nearest</value>
+  </data>
+  <data name="SelectionType_Random" xml:space="preserve">
+    <value>Random</value>
+  </data>
+  <data name="SpecialAttributes_Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="ValueChangeType_Divide" xml:space="preserve">
+    <value>Divide by</value>
+  </data>
+  <data name="ValueChangeType_Multiply" xml:space="preserve">
+    <value>Multiply by</value>
+  </data>
+  <data name="CountType_Connections" xml:space="preserve">
+    <value>Connections</value>
+  </data>
+  <data name="CountType_Covers" xml:space="preserve">
+    <value>Covers</value>
+  </data>
+  <data name="CountType_Everything" xml:space="preserve">
+    <value>Everything</value>
+  </data>
+  <data name="CountType_Layers" xml:space="preserve">
+    <value>Layers</value>
+  </data>
+  <data name="CountType_Parts" xml:space="preserve">
+    <value>Parts</value>
+  </data>
+  <data name="CountType_SpaceItems" xml:space="preserve">
+    <value>Space items</value>
+  </data>
+  <data name="CountType_Spaces" xml:space="preserve">
+    <value>Spaces</value>
+  </data>
+  <data name="Function_Absolute" xml:space="preserve">
+    <value>abs</value>
+  </data>
+  <data name="Function_Acosine" xml:space="preserve">
+    <value>acos</value>
+  </data>
+  <data name="Function_Asine" xml:space="preserve">
+    <value>asin</value>
+  </data>
+  <data name="Function_Atangent" xml:space="preserve">
+    <value>atan</value>
+  </data>
+  <data name="Function_Ceiling" xml:space="preserve">
+    <value>ceiling</value>
+  </data>
+  <data name="Function_Exponent" xml:space="preserve">
+    <value>exp</value>
+  </data>
+  <data name="Function_Floor" xml:space="preserve">
+    <value>floor</value>
+  </data>
+  <data name="Function_Log10" xml:space="preserve">
+    <value>log10</value>
+  </data>
+  <data name="Function_NaturalLogarithm" xml:space="preserve">
+    <value>ln</value>
+  </data>
+  <data name="Function_Round" xml:space="preserve">
+    <value>round</value>
+  </data>
+  <data name="Function_SquareRoot" xml:space="preserve">
+    <value>sqrt</value>
+  </data>
+  <data name="DurationType_FixedDependentOnRequirements" xml:space="preserve">
+    <value>Fixed, dependent on requirements</value>
+  </data>
+  <data name="VariableType_Sum" xml:space="preserve">
+    <value>Sum</value>
+  </data>
+  <data name="BinaryOperator_Complement" xml:space="preserve">
+    <value>Complement</value>
+  </data>
+  <data name="BinaryOperator_Intersection" xml:space="preserve">
+    <value>Intersection</value>
+  </data>
+  <data name="BinaryOperator_SymmetricDifference" xml:space="preserve">
+    <value>Symmetric difference</value>
+  </data>
+  <data name="BinaryOperator_Union" xml:space="preserve">
+    <value>Union</value>
+  </data>
+  <data name="EventState_Starts" xml:space="preserve">
+    <value>Event starts</value>
+  </data>
+  <data name="EventState_Stops" xml:space="preserve">
+    <value>Event stops</value>
+  </data>
+  <data name="Destination_ActorElements" xml:space="preserve">
+    <value>Elements of actor</value>
+  </data>
+  <data name="Destination_ActorSpaces" xml:space="preserve">
+    <value>Spaces of actor</value>
+  </data>
+  <data name="Destination_ActorSubstances" xml:space="preserve">
+    <value>Substances of actor</value>
+  </data>
+  <data name="Destination_TargetElements" xml:space="preserve">
+    <value>Elements of target</value>
+  </data>
+  <data name="Destination_TargetSpaces" xml:space="preserve">
+    <value>Spaces of target</value>
+  </data>
+  <data name="Destination_TargetSubstances" xml:space="preserve">
+    <value>Substances of target</value>
+  </data>
+  <data name="OwnerType_ApplicantOfLayer" xml:space="preserve">
+    <value>Applicant of layer</value>
+  </data>
+  <data name="OwnerType_CompoundOfSubstance" xml:space="preserve">
+    <value>Compound of substance</value>
+  </data>
+  <data name="OwnerType_CoveredObjectOfCover" xml:space="preserve">
+    <value>Covered object of cover</value>
+  </data>
+  <data name="OwnerType_MixtureOfSubstance" xml:space="preserve">
+    <value>Mixture of substance</value>
+  </data>
+  <data name="OwnerType_PhysicalObjectOfSpace" xml:space="preserve">
+    <value>Physical object of space</value>
+  </data>
+  <data name="OwnerType_SpaceOfItem" xml:space="preserve">
+    <value>Space of item</value>
+  </data>
+  <data name="OwnerType_WholeOfPart" xml:space="preserve">
+    <value>Whole of part</value>
+  </data>
+  <data name="OwnerType_SpaceOfMatter" xml:space="preserve">
+    <value>Space of matter</value>
+  </data>
+  <data name="OwnerType_TangibleObjectOfMatter" xml:space="preserve">
+    <value>Tangible object of matter</value>
+  </data>
+  <data name="VariableType_Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="TransferDirection_ActorToActor" xml:space="preserve">
+    <value>Actor to actor</value>
+  </data>
+  <data name="TransferDirection_TargetToTarget" xml:space="preserve">
+    <value>Target to target</value>
+  </data>
+  <data name="TransferType_ActorToTarget" xml:space="preserve">
+    <value>Actor to target</value>
+  </data>
+  <data name="TransferType_Items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="TransferType_TargetToActor" xml:space="preserve">
+    <value>Target to actor</value>
+  </data>
+  <data name="ActorTargetArtifactReference_Artifact" xml:space="preserve">
+    <value>Artifact</value>
+  </data>
+  <data name="ActorTargetArtifact_Actor" xml:space="preserve">
+    <value>Actor</value>
+  </data>
+  <data name="ActorTargetArtifact_Artifact" xml:space="preserve">
+    <value>Artifact</value>
+  </data>
+  <data name="ActorTargetArtifact_Target" xml:space="preserve">
+    <value>Target</value>
+  </data>
+</root>

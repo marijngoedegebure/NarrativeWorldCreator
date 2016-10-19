@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Semantics.Components.Node" BaseTypeListCollapsed="true">
+    <Position X="124.5" Y="10.5" Width="5.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgAAgAAAAAQoAAUEEAAGlAAACJABAEEBEYxAoECoAIg=</HashCode>
+      <FileName>Components\Node.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Semantics.Abstractions.Abstraction">
+    <Position X="117.75" Y="19.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Abstraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Action">
+    <Position X="129.25" Y="22.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAgRAAAAABAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Action.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semantics.Abstractions.Animation">
+    <Position X="126.25" Y="29" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Animation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Attribute">
+    <Position X="118" Y="29" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Abstractions\Attribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Audio">
+    <Position X="108" Y="29" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Audio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Filter">
+    <Position X="115.5" Y="29" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Filter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Goal">
+    <Position X="110.75" Y="22.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAAQAAAAgAAAAABAAAAQAAgAAAAEAAAAAAQAA=</HashCode>
+      <FileName>Abstractions\Goal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Group">
+    <Position X="115.25" Y="22.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAQABAABAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Group.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Scene">
+    <Position X="119.5" Y="22.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAgAAABAAQAEQQAIAAAAgQAAAEEIA=</HashCode>
+      <FileName>Abstractions\Scene.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.State">
+    <Position X="129.5" Y="29" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\State.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.Unit">
+    <Position X="125.25" Y="22.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AEAABAAAAAAAAAAAAAAAAAAAAAAQAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\Unit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.UnitCategory">
+    <Position X="107" Y="22.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAAAAACAAQAAAAAAFAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\UnitCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.AbstractEntity">
+    <Position X="141.75" Y="27.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\AbstractEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.Matter">
+    <Position X="152.25" Y="30" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAAAAAAQBAAABIACAABAAAAAAQAAAAA=</HashCode>
+      <FileName>Entities\Matter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.Element">
+    <Position X="143.5" Y="30" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAEBEAAAAAAAAAAAAAgAAAAAAAAIAAAAAAAABAACAI=</HashCode>
+      <FileName>Entities\Element.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.Entity">
+    <Position X="143.75" Y="19.75" Width="5" />
+    <TypeIdentifier>
+      <HashCode>gAQAQAABAAAAgDAEQAAEBDAQCgCAECABAADAAAAEAAA=</HashCode>
+      <FileName>Entities\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.Material">
+    <Position X="160" Y="34.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Material.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semantics.Entities.Mixture">
+    <Position X="146.25" Y="34.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAEAAADACAAAAACARAAAAIAAAAAAAABCACACIAA=</HashCode>
+      <FileName>Entities\Mixture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.PhysicalEntity">
+    <Position X="146.5" Y="27.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PhysicalEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.PhysicalObject">
+    <Position X="135" Y="30" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQACAAAAAAAAQAQAAEBgAiAAAABAAAAAAAAAIBAAA=</HashCode>
+      <FileName>Entities\PhysicalObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Semantics.Entities.Space">
+    <Position X="138.75" Y="35.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAACAAAAAAABAAAgAAAAAAFAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Space.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.Substance">
+    <Position X="151.5" Y="34.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Substance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.TangibleObject">
+    <Position X="131.75" Y="35.25" Width="6.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAQBgGAABBABAIAABAEgAAEgUAAACIBBIA=</HashCode>
+      <FileName>Entities\TangibleObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.RelationshipType">
+    <Position X="110.5" Y="29" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAgAAAABAAyAAAAABAAAIIAAAIQAAA=</HashCode>
+      <FileName>Abstractions\RelationshipType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Entities.Compound">
+    <Position X="154.75" Y="34.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAADAAAAAAAAARAAAAIAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Entities\Compound.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Components.IdHolder">
+    <Position X="121" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAgAAABAAAAAAAAIAAAAAAAAAAAgA=</HashCode>
+      <FileName>Components\IdHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Semantics.Abstractions.PredicateType">
+    <Position X="122" Y="29" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAKYAAAAABAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Abstractions\PredicateType.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Enum Name="Semantics.Utilities.Message" Collapsed="true">
+    <Position X="8.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAiAEAAFAAAEAAAAAAAAAAAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ErrorType" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.WarningType" Collapsed="true">
+    <Position X="11.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.RangeType" Collapsed="true">
+    <Position X="10" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAQAAAAAAAAACEAQAQAAIAQAAAAAAAAIAAAAAAAAAE=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ValueType" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAABAAAAQAAAAAQAAAAEAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.Prefix" Collapsed="true">
+    <Position X="18.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CgcBAAQAEAAAgACAAQAAAAICQIABAQEACQAAABAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ServiceBehavior" Collapsed="true">
+    <Position X="13.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.RatioQuantity" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.EqualitySign" Collapsed="true">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.EqualitySignExtended" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAggAAAAABAAAQAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.LogicalOperator" Collapsed="true">
+    <Position X="18.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAgIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ChangeType" Collapsed="true">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.EquationType" Collapsed="true">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAEAAAAAAAAAAAAAAAAAAAIAAAAAAAAQAACAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.SpaceType" Collapsed="true">
+    <Position X="15.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.IntelligenceType" Collapsed="true">
+    <Position X="13.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.BooleanType" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ParticleSource" Collapsed="true">
+    <Position X="15.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.InfoBehavior" Collapsed="true">
+    <Position X="11.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.SpatialRequirementSource" Collapsed="true">
+    <Position X="17" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.LinkType" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAQAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.PhysicalPropertyType" Collapsed="true">
+    <Position X="17" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.StateOfMatter" Collapsed="true">
+    <Position X="18.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAEAAAAAAAAIAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.Composition" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.MixtureType" Collapsed="true">
+    <Position X="11.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABCAAAAAAAAAAAAAAAAAAAAIAAAAAIAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ElementType" Collapsed="true">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.MetalType" Collapsed="true">
+    <Position X="10" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEABAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ElementGroup" Collapsed="true">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAABABQAIAiAAACAAAIAISAAAAAABCQIBAABA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ElementPeriod" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABABAAAAiAAAAAAAIAACAAAAAAAAQABAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ElementBlock" Collapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHADAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.Function" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAACAAAAACAAAAAAAAAgA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.Operator" Collapsed="true">
+    <Position X="13.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAUAAABA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ArtifactUsage" Collapsed="true">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAEAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ArtifactSource" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.TimeType" Collapsed="true">
+    <Position X="8.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.DelayType" Collapsed="true">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.DurationType" Collapsed="true">
+    <Position X="18.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAABAAAAAAAAAAAAAAAAIAAAgEAgAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.IntervalType" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Semantics.Utilities.ProcedureType" Collapsed="true">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Utilities\Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

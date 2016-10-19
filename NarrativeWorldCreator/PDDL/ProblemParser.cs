@@ -36,17 +36,17 @@ namespace NarrativeWorldCreator.PDDL
                 }
                 if (readObjectsMode)
                 {
-                    narrativeObjects.AddRange(readObjects(words, Parser.narrative.types));
+                    narrativeObjects.AddRange(readObjects(words, SystemStateTracker.narrative.types));
                     continue;
                 }
                 if (readInitMode)
                 {
-                    narrativePredicates.Add(readNarrativePredicate(words, Parser.narrative.predicateTypes, Parser.narrative.types, narrativeObjects));
+                    narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.narrative.predicateTypes, SystemStateTracker.narrative.types, narrativeObjects));
                     continue;
                 }
             }
-            Parser.narrative.narrativeObjects = narrativeObjects;
-            Parser.narrative.narrativePredicates = narrativePredicates;
+            SystemStateTracker.narrative.narrativeObjects = narrativeObjects;
+            SystemStateTracker.narrative.narrativePredicates = narrativePredicates;
         }
 
         private static NarrativePredicate readNarrativePredicate(string[] words, List<PredicateType> predicateTypes, List<Type> types, List<NarrativeObject> narrativeObjects)
