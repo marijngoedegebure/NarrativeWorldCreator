@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.RegionGraph;
+using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace NarrativeWorldCreator.Pages
     /// </summary>
     public partial class GraphPage : Page
     {
+        public Node selectedNode;
+
         public GraphPage()
         {
             InitializeComponent();
@@ -41,6 +44,18 @@ namespace NarrativeWorldCreator.Pages
         private void btnInit_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new InitPage());
+        }
+
+        private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new RegionPage());
+        }
+
+        internal void fillDetailView(Node location)
+        {
+            number_narrative_events.Content = SystemStateTracker.narrative.getNarrativeEventsOfLocation(location.getLocationName()).Count;
+            number_narrative_characters.Content = SystemStateTracker.narrative.getNarrativeObjectsOfTypeOfLocation("actor", location.getLocationName()).Count;
+            number_narrative_objects.Content = SystemStateTracker.narrative.getNarrativeObjectsOfTypeOfLocation("thing", location.getLocationName()).Count;
         }
     }
 }

@@ -57,7 +57,7 @@ namespace NarrativeWorldCreator.PDDL
             Type locationType = SystemStateTracker.narrative.getType("location");
             List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.narrative.getNarrativeObjectsOfType(locationType);
             NarrativeObject locationOfEvent = null;
-            foreach( NarrativeObject filteredObject in objectsFilteredOnLocationType)
+            foreach(NarrativeObject filteredObject in objectsFilteredOnLocationType)
             {
                 if (filteredObject.name.Equals(words.Last()))
                 {

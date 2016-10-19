@@ -2,3 +2,8 @@ C:\Users\marij\Documents\Master Thesis\Debug\Common.dll
 C:\Users\marij\Documents\Master Thesis\Debug\Common.pdb
 C:\Users\marij\Documents\Master Thesis\Common\obj\Debug\Common.dll
 C:\Users\marij\Documents\Master Thesis\Common\obj\Debug\Common.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\Common.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\Common.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Common\obj\Debug\Common.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Common\obj\Debug\Common.pdb

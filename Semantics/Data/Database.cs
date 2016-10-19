@@ -479,7 +479,7 @@ namespace Semantics.Data
         /// <summary>
         /// Creates a new database.
         /// </summary>
-        protected Database()
+        public Database()
         {
             Thread.CurrentThread.CurrentCulture = CommonSettings.Culture;
 
@@ -1770,7 +1770,7 @@ namespace Semantics.Data
         /// <param name="table">The table to select the items from.</param>
         /// <param name="column">The column to look in.</param>
         /// <returns>The objects that were found.</returns>
-        protected internal List<T> SelectAll<T>(uint id, string table, string column)
+        public List<T> SelectAll<T>(uint id, string table, string column)
         {
             // Example:
             // --------------------------------
@@ -1799,7 +1799,7 @@ namespace Semantics.Data
         /// <typeparam name="T">The type the items should be of.</typeparam>
         /// <param name="table">The table to select the items from.</param>
         /// <returns>The objects that were found.</returns>
-        protected internal List<T> SelectAll<T>(string table)
+        public List<T> SelectAll<T>(string table)
         {
             return ConvertObjects<T>(this.IDatabase.QuerySelectAll(GetDatabaseType(table), "SELECT " + Columns.ID + " FROM " + table + ";"), typeof(T));
         }

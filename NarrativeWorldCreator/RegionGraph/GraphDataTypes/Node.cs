@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.RegionGraph.GraphDataTypes
 {
-    class Node
+    public class Node
     {
         String locationName;
 

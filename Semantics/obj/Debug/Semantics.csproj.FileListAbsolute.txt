@@ -18,3 +18,23 @@ C:\Users\marij\Documents\Master Thesis\Semantics\obj\Debug\Semantics.csproj.Gene
 C:\Users\marij\Documents\Master Thesis\Semantics\obj\Debug\nl-NL\Semantics.resources.dll
 C:\Users\marij\Documents\Master Thesis\Semantics\obj\Debug\Semantics.dll
 C:\Users\marij\Documents\Master Thesis\Semantics\obj\Debug\Semantics.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\x64\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\x86\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\Semantics.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\Semantics.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\nl-NL\Semantics.resources.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Data.Columns.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Data.GenericTables.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Data.LocalizationTables.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Data.ValueTables.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Utilities.Exceptions.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Utilities.NewNames.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Utilities.Enums.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Utilities.Enums.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Utilities.Exceptions.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.Utilities.NewNames.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.csproj.GenerateResource.Cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\nl-NL\Semantics.resources.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Semantics\obj\Debug\Semantics.pdb

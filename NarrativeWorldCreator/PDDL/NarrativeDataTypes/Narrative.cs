@@ -33,7 +33,7 @@ namespace NarrativeWorldCreator.PDDL
             return moveEvents;
         }
 
-        public List<NarrativeObject> getNarrativeObjectsOfType(String s)
+        public List<NarrativeObject> getNarrativeObjectsOfType(string s)
         {
             Type t = getType(s);
             if (t != null)
@@ -50,6 +50,34 @@ namespace NarrativeWorldCreator.PDDL
                     filteredNarrativeObjects.Add(narrativeObject);
             }
             return filteredNarrativeObjects;
+        }
+
+        internal List<NarrativeObject> getNarrativeObjectsOfTypeOfLocation(string s, string location)
+        {
+            List<NarrativeEvent> narrativeEventsOfLocation = getNarrativeEventsOfLocation(location);
+            List<NarrativeObject> filteredNarrativeObjects = new List<NarrativeObject>();
+            foreach(NarrativeEvent narrativeEvent in narrativeEventsOfLocation)
+            {
+                foreach (NarrativeObject narrativeObject in narrativeEvent.narrativeObjects)
+                {
+                    if (narrativeObject.type.name.Equals(s))
+                        filteredNarrativeObjects.Add(narrativeObject);
+                }
+            }
+            return filteredNarrativeObjects;
+        }
+
+        internal List<NarrativeEvent> getNarrativeEventsOfLocation(string location)
+        {
+            List<NarrativeEvent> filteredNarrativeEvents = new List<NarrativeEvent>();
+            foreach (NarrativeEvent narrativeEvent in narrativeEvents)
+            {
+                if(narrativeEvent.narrativeObjects.Last().name.Equals(location))
+                {
+                    filteredNarrativeEvents.Add(narrativeEvent);
+                }
+            }
+            return filteredNarrativeEvents;
         }
 
         public Type getType(String name)

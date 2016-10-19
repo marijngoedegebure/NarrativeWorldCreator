@@ -36,17 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common">
-      <HintPath>..\Entika\Common.dll</HintPath>
-    </Reference>
-    <Reference Include="GameSemantics">
-      <HintPath>..\Entika\GameSemantics.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\Monogame.Framework\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Semantics">
-      <HintPath>..\Entika\Semantics.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
       <HintPath>..\SharpDX\SharpDX.dll</HintPath>
@@ -182,9 +173,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameSemantics\GameSemantics.csproj">
+      <Project>{461cd61b-7803-44f1-a7d7-3f18cb05e21b}</Project>
+      <Name>GameSemantics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MonoGame.Framework.WpfInterop\MonoGame.Framework.WpfInterop.csproj">
       <Project>{809f0d79-aedc-4754-a213-fdbe97ccd6d6}</Project>
       <Name>MonoGame.Framework.WpfInterop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Semantics\Semantics.csproj">
+      <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>
+      <Name>Semantics</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

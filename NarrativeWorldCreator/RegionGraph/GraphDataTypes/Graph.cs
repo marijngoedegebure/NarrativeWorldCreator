@@ -167,7 +167,9 @@ namespace NarrativeWorldCreator.RegionGraph.GraphDataTypes
                 if (this.NodeCollisionBoxes[n].Contains(mousePosition))
                 {
                     var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-                    mainWindow._mainFrame.NavigationService.Navigate(new RegionPage());
+                    var graphPage = (GraphPage) mainWindow._mainFrame.NavigationService.Content;
+                    graphPage.selectedNode = n;
+                    graphPage.fillDetailView(n);
                 }
             }
         }

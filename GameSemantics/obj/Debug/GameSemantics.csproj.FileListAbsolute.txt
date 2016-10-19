@@ -15,3 +15,20 @@ C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Debug\GameSemantics.csp
 C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Debug\nl-NL\GameSemantics.resources.dll
 C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Debug\GameSemantics.dll
 C:\Users\marij\Documents\Master Thesis\GameSemantics\obj\Debug\GameSemantics.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\x64\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\x86\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\GameSemantics.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\GameSemantics.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\nl-NL\GameSemantics.resources.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Data.GameColumns.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Data.GameTables.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Data.GameValueTables.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Utilities.Enums.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Utilities.NewNames.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Utilities.Enums.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.Utilities.NewNames.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.csproj.GenerateResource.Cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\nl-NL\GameSemantics.resources.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemantics\obj\Debug\GameSemantics.pdb

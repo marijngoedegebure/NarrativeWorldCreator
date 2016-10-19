@@ -112,7 +112,7 @@ namespace Semantics.Components
         /// <summary>
         /// Gets the dictionary that stores the space of the target that is used in the relationship; only valid for physical objects.
         /// </summary>
-        public ReadOnlyDictionary<Entity, SpaceValued> TargetSpaces
+        public Common.ReadOnlyDictionary<Entity, SpaceValued> TargetSpaces
         {
             get
             {
@@ -123,7 +123,7 @@ namespace Semantics.Components
                     if (targetSpace != null)
                         targetSpaces.Add(target, targetSpace);
                 }
-                return new ReadOnlyDictionary<Entity,SpaceValued>(targetSpaces);
+                return new Common.ReadOnlyDictionary<Entity,SpaceValued>(targetSpaces);
             }
         }
         #endregion Property: TargetSpaces
