@@ -1,4 +1,4 @@
-﻿using NarrativeWorldCreator.PDDL;
+﻿using Narratives;
 using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
 using System;
 using System.Collections.Generic;

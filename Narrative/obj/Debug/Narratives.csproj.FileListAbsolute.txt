@@ -1,0 +1,14 @@
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\obj\Debug\Narratives.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\Narrative.dll.config
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\Narrative.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\Narrative.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\EntityFramework.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\MySql.Data.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\EntityFramework.xml
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\obj\Debug\Narrative.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\obj\Debug\Narrative.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\obj\Debug\Narratives.Migrations.Initial.resources
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Narrative\obj\Debug\Narratives.csproj.GenerateResource.Cache

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NarrativeWorldCreator.PDDL;
+using Narratives;
 using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
 using System;
 using System.Collections.Generic;
@@ -24,15 +24,15 @@ namespace NarrativeWorldCreator.RegionGraph
             {
                 foreach (NarrativeObject location in locations)
                 {
-                    SystemStateTracker.graph.addNode(location.name);
+                    SystemStateTracker.graph.addNode(location.Name);
                 }
             }
             // Create edges based on move actions
             List<NarrativeEvent> moveEvents = SystemStateTracker.narrative.getNarrativeMoveEvents();
             foreach (NarrativeEvent ev in moveEvents)
             {
-                Node to = SystemStateTracker.graph.getNode(ev.narrativeObjects.Last().name);
-                Node from = SystemStateTracker.graph.getNode(ev.narrativeObjects[ev.narrativeObjects.Count - 2].name);
+                Node to = SystemStateTracker.graph.getNode(ev.NarrativeObjects.Last().Name);
+                Node from = SystemStateTracker.graph.getNode(ev.NarrativeObjects[ev.NarrativeObjects.Count - 2].Name);
                 SystemStateTracker.graph.addEdge(from, to);
             }
             SystemStateTracker.graph.initForceDirectedGraph();

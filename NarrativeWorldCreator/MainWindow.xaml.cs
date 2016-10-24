@@ -2,9 +2,6 @@
 using System.IO;
 using System.Windows;
 using Microsoft.Win32;
-using NarrativeWorldCreator.PDDL;
-using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
-using NarrativeWorldCreator.RegionGraph;
 using NarrativeWorldCreator.Pages;
 using Semantics.Data;
 

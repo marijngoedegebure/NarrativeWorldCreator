@@ -1,20 +1,10 @@
 ﻿using Microsoft.Win32;
-using NarrativeWorldCreator.PDDL;
-using NarrativeWorldCreator.RegionGraph;
+using Narratives;
+using NarrativeWorldCreator.Parsers;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NarrativeWorldCreator.Pages
 {
@@ -80,7 +70,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void fillDetailView()
         {
-            number_narrative_events.Content = SystemStateTracker.narrative.narrativeEvents.Count;
+            number_narrative_events.Content = SystemStateTracker.narrative.NarrativeEvents.Count;
             number_narrative_characters.Content = SystemStateTracker.narrative.getNarrativeObjectsOfType("actor").Count;
             number_narrative_locations.Content = SystemStateTracker.narrative.getNarrativeObjectsOfType("location").Count;
             number_narrative_objects.Content = SystemStateTracker.narrative.getNarrativeObjectsOfType("thing").Count;
