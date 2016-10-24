@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A111" sourceStoryID="Story From File">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, #StateTimeType.Present;0.75, #StateTimeType.Present;0.875, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;4.0, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0, #StateTimeType.Present;6.5, #StateTimeType.Present;6.75, #StateTimeType.Present;7.0, #StateTimeType.Present;8.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<EVERY>"(CharacterGender.Neutral, """<noun10002760:demonstrator_2>"(CharacterGender.Neutral)""->"Ahraini protester")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9981092:crown prince>"(CharacterGender.Male)"", "Salman bin Khalifa");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10002760:demonstrator_2>"(CharacterGender.Male)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10467179:president>"(CharacterGender.Male)"", "Barack Obama");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun8404188:Opposition_2>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<GENERIC>"(CharacterGender.Neutral, """<noun8404188:Opposition_2>"(CharacterGender.Neutral)"")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "anon_GENERIC(CharacterGender.Neutral, noun8404188:Opposition_2(CharacterGender.Neutral))_1");]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "anon_noun8404188:Opposition_2(CharacterGender.Neutral)_1");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<EVERY>"(CharacterGender.Neutral, """<noun10622053:soldier>"(CharacterGender.Neutral)""->"Bahraini security forces")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<GROUP>"(CharacterGender.Neutral, """<noun10002760:demonstrator_2>"(CharacterGender.Neutral)"", ())"", "Protesters");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun8897065:Egypt>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun9037394:Tunisia>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun8848094:Bahrain>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, %%%<noun801125:war>%()%%, %Revolution%);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**, span146-192, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb717358_react_something_reacts("Salman bin Khalifa")**, span555-694, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun2703275:ammunition>$()$$, $Live ammunition$);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("Protesters")**, span1230-1353, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb717358_react_something_reacts("Protesters")**, span2596-2802, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, "anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1", NULL, """<EVERY>"(CharacterGender.Neutral, """<noun10002760:demonstrator_2>"(CharacterGender.Neutral)""->"Bahraini protester")"");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun8404188:Opposition>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**, span3486-3615, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**, span3243-3369, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, #StateTimeType.Present;5.0==>#StateTimeType.Present;7.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;0.5, **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**, span3243-3369, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun3763403:military post>$()$$, $Key US Naval Base$);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**, span3616-3705, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Protesters")**, span3925-4127, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**, span4244-4376, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;6.0, #StateTimeType.Present;6.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;6.5, **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**, span5172-5338, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;6.5, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**, span5340-5452, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;6.5, #StateTimeType.Present;6.75, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.5==>#StateTimeType.Present;6.75, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**, span5340-5452, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.5, #StateTimeType.Present;0.75, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.5==>#StateTimeType.Present;0.75, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1")**, span6089-6303, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun4907991:defiance_2>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, %%%<noun446493:fight>%()%%, %Revolt%);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2627934_need_something_needs_something_from_something("Barack Obama", $Key US Naval Base$, Preposition.From, @anon_noun8848094:Bahrain()_1@)**, NULL, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**}, point301-99);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**}, InterpretativeArcType.InterpretedAs, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point580-80);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1")**}, point300-224);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<GROUP>"(CharacterGender.Neutral, """<Root Level>"(CharacterGender.Neutral)"", ())"", "Rebels");]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "Rebels");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<EVERY>"(CharacterGender.Neutral, """<noun10210137:insurgent_8>"(CharacterGender.Neutral)""->"Egyptian and Tusisian")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1812720_inspire_something_inspires_something("anon_EVERY(CharacterGender.Neutral, noun10210137:insurgent_8(CharacterGender.Neutral)-Egyptian and Tusisian)_1", "Protesters")**, NULL, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point590-212);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun8404188:Opposition(CharacterGender.Neutral)_1", NULL, interp-interp_3, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2401809_oust_something_ousts_something("anon_noun8404188:Opposition(CharacterGender.Neutral)_1", "Salman bin Khalifa")**, NULL, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_4, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, point87-7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point584-370);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point586-372);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_3, InterpretativeArcType.Because, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point619-364);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point590-210);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point620-365);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-interp_3, InterpretativeArcType.Because, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point590-211);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point619-362);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.PreconditionFor, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point612-363);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point630-311);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.75, #StateTimeType.Present;0.875, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.75==>#StateTimeType.Present;0.875, **5:actionAssert:verb717358_react_something_reacts("Protesters")**, span208-262, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point608-322);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point632-317);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, point300-408);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2084380_march_something_marches("Protesters")**, NULL, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point621-425);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point632-318);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_3, InterpretativeArcType.PreconditionFor, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, point301-409);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point606-413);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point625-310);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point592-403);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point594-413);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", NULL, interp-interp_6, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb117985_stay_something_stays("Barack Obama")**, NULL, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_7, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb117985_stay_something_stays("Salman bin Khalifa")**, NULL, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_8, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point570-470);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.Implies, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point571-455);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point450-479);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point689-418);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1", NULL, interp-interp_9, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point557-584);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point595-413);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point385-277);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point591-407);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point527-451);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb910135_protest_something_protests_against_something("anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1", Preposition.Against, "Salman bin Khalifa")**, NULL, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_10, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, point85-5);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2009433_leave_something_leaves_something("Salman bin Khalifa", @anon_noun8848094:Bahrain()_1@)**, NULL, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_11, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "anon_EVERY(CharacterGender.Neutral, noun10002760:demonstrator_2(CharacterGender.Neutral)-Ahraini protester)_1", interp-interp_9, interp-interp_12, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point144-192);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point96-89);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_10, InterpretativeArcType.WouldCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point78-89);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_11, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point114-147);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point414-298);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", NULL, interp-interp_13, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1781180_intimidate_something_intimidates_something("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", "Protesters")**, NULL, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_14, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, point78-11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point599-707);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb117985_remain_something_remains("Salman bin Khalifa")**, NULL, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_15, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, point78-71);]]></storyPoint>
+		<storyPoint><![CDATA[redefineAction(=reality=, interp-action_15, **5:actionAssert:verb117985_stay_something_stays("Salman bin Khalifa")**);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point531-696);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Justice, "Salman bin Khalifa", interp-interp_13, interp-interp_16, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_16, point115-128);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, point78-82);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_16);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "Salman bin Khalifa", NULL, interp-interp_17, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "Salman bin Khalifa", interp-interp_13, interp-interp_18, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point107-108);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, point79-5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_14, InterpretativeArcType.WouldCause, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_15, InterpretativeArcType.ProvidesFor, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point435-703);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point414-300);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point506-719);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point412-300);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_6, InterpretativeArcType.PreconditionFor, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point515-739);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point384-287);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, point301-490);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.Implies, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, point301-491);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point534-736);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Salman bin Khalifa", NULL, interp-interp_19, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point467-904);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point634-728);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point483-822);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Salman bin Khalifa", interp-interp_19, interp-interp_20, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb117985_stay_something_stays("Salman bin Khalifa")**, NULL, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point483-812);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb117985_stay_something_stays("Salman bin Khalifa")**, NULL, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_22, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point618-662);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point468-894);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point80-5);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "Salman bin Khalifa", interp-interp_19, interp-interp_23, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point81-5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_22, InterpretativeArcType.ProvidesFor, interp-interp_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_23, point125-85);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point495-876);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Salman bin Khalifa")**}, InterpretativeArcType.AttemptToCause, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Salman bin Khalifa")**}, point300-575);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Salman bin Khalifa")**}, InterpretativeArcType.Implies, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point530-873);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point620-717);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point494-974);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point569-754);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, #StateTimeType.Present;2.0==>#StateTimeType.Present;4.0);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToPrevent, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToPrevent, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point560-456);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point639-313);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point600-406);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_3, InterpretativeArcType.PreconditionFor, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point585-470);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.WouldCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.Actualizes, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.Actualizes, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point629-785);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point575-1058);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToPrevent, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;6.75: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point580-81);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point607-72);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Barack Obama", NULL, interp-interp_24, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point542-497);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point533-427);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point515-108);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point568-62);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2627934_need_something_needs_something("Barack Obama", $Key US Naval Base$)**, NULL, interp-action_25);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_25, interp-interp_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**}, InterpretativeArcType.Implies, interp-interp_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point79-43);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point557-89);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.75==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**}, point300-1554);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **-5:actionAssert:verb746718_order_something_orders_something_forfromon_something("Barack Obama", "Salman bin Khalifa", Preposition.From, @anon_noun8848094:Bahrain()_1@)**, NULL, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point628-530);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point616-790);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point609-1427);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point609-1426);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;6.75: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, point300-1443);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;6.75: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point557-91);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_24, InterpretativeArcType.PreconditionFor, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point605-1484);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point604-1482);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;6.75: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-interp_24, InterpretativeArcType.PreconditionFor, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point598-1538);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.75==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**}, point301-1553);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.75==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Barack Obama")**}, InterpretativeArcType.Implies, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point557-92);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_24, InterpretativeArcType.PreconditionFor, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point572-1528);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point542-1543);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point541-1539);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point609-857);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point434-282);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point650-780);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1137138_shoot_something_shoots_something("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", "Protesters")**, NULL, interp-action_27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point656-1320);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point585-981);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point582-722);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point729-730);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point699-724);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point760-1116);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point652-1687);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun8404188:Opposition(CharacterGender.Neutral)_1", NULL, interp-interp_28, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_28, point512-1644);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_28);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_27, point698-1463);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", interp-interp_28, interp-interp_29, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_29);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1137138_shoot_something_shoots_something("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", "Protesters")**, NULL, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_28, point507-1647);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1137138_shoot_something_shoots_something("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1", "Protesters")**, NULL, interp-action_31);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_31, interp-interp_28);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_31, point115-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point697-1391);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_31, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_28, point526-1629);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_31, point79-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_31, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1817938_embolden_something_emboldens("Protesters")**, NULL, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_32, interp-interp_28);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_31, InterpretativeArcType.WouldCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point78-70);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun10622053:soldier(CharacterGender.Neutral)-Bahraini security forces)_1")**}, InterpretativeArcType.Actualizes, interp-action_31);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Protesters")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun8404188:Opposition(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point640-1405);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Wealth, "Barack Obama", NULL, interp-interp_33, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_33, point664-1513);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_33, point709-1510);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_33, point710-1510);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_33);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point632-1292);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Barack Obama", NULL, interp-interp_34, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_34, point613-1425);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_34, point643-1443);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_34);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point583-1296);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point78-7);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Wealth, "Barack Obama", interp-interp_24, interp-interp_35, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_25, InterpretativeArcType.ProvidesFor, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point121-72);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point631-1361);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point659-226);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_28, point606-1478);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point78-81);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point490-44);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point685-1359);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, point490-44);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point688-1370);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-interp_24, InterpretativeArcType.PreconditionFor, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_26, InterpretativeArcType.Because, interp-action_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point706-1293);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_26, InterpretativeArcType.WouldPrevent, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point565-785);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point1004-342);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point1033-190);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point1037-553);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point716-486);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, point759-250);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point1078-1083);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point915-1714);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_28, point636-1493);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point994-1021);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point1121-1037);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point900-1029);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_22, InterpretativeArcType.WouldPrevent, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point541-482);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point685-497);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point781-1054);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_28, point642-1456);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_31, point78-6);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+Bahrain Protesters Say Security Forces Fire on Crowds
+By JOE PARKINSON, Wall Street Journal, 2/18/2011
+
+MANAMA, Bahrain- Bahraini protesters said security services opened fire on demonstrators Friday evening as they marched toward the capital's Pearl roundabout, dramatically escalating the standoff between the country's Sunni Muslim rulers and its Shiite majority population.
+
+Doctors at a hospital in the capital where wounded were being sent said x-rays showed security forces had used live bullets. Protesters said security forces shot into crowds.
+
+The country's crown prince, in an emotional TV appearance, appealed for calm and asked protesters to leave the square to begin "dialogue."
+
+In the early evening Friday, sporadic gun fire rang out in the vicinity of the capital's Pearl roundabout, as Bahraini security forces fired tear gas near the square, the site where police the previous day violently cleared protesters.
+
+Ambulances rushed toward the square, while protesters rushed from the scene, toward one of Bahrain's hospitals.
+
+Feras Hashim, an orthopaedic surgeon at the hospital which wounded were arriving late Friday, said eight were in the facility's trauma unit, and "still (wounded) are coming," he said.
+
+He held up an x-ray of a wounded man's leg to show what he said was proof that security forces were using live ammunition.
+
+Other men, fresh from the scene of the shooting, walked through the emergency room ward, covered in blood.
+
+"We were walking holding a Bahraini flag, more than 2,000 people... Suddenly they shot at us," said Nabeel Ali, a 22-year old student. He said marchers were walking from Daih village to the Pearl roundabout, in central Manama, to commemorate the third day since the first death from clashes.
+
+Protesters streaming into a hospital nearby reported many casualties after security forces opened fire. Protesters said security officials also blocked access for ambulances responding to emergency calls.
+
+"We encountered the army at Dana Mall, many people fell," said one protester who identifed himself as Ahmed. "They didn't let the ambulances get through," he said, waving a tear gas cannister he collected while retreating.
+
+Bahrain's Crown Prince Salman bin Khalifa, also deputy commander of Bahrain's armed forces, issued an emotional appeal for calm on state TV minutes after reports of the violence. He called for all protesters to leave the streets and said if they leave, the army will leave as well and "dialogue" will start.
+
+"Today everybody must calm down," he said, adding: "I am appealing for calm, give us time to think."
+
+In the aftermath of the shooting, thousands of angry protesters swarmed the nearby hospital entrance, chanting antigovernment slogans and banging plastic barricades erected to keep them away from the door.
+
+"This is the first time ... I can say this: This is Palestine in Bahrain," said Najla Wahab Hasan, a 24-year-old pharmacist. "What do they want? Are we human?"
+
+Video appears to show Bahraini security forces firing tear gas at protesters near Thursday's protest epicenter of Pearl Square. Gunshots are also heard. Video and image courtesy of Reuters.
+
+The violence came on the fifth consecutive day of mass antigovernment demonstrations in the tiny and prosperous banking hub on the Persian Gulf, which has little oil wealth but is the home of a key U.S. naval base. Four funerals took place simultaneously around the capital Friday for those who had died in the protests this week. Opposition leaders said the government's violent crackdown had strengthened their demands for an immediate change of government.
+
+U.S. President Barack Obama said Friday he is deeply concerned about violence in Bahrain, as well as in Libya and Yemen, other countries in the region where antigovernment protests have turned violent, the Associated Press reported.
+
+In Sitra, a poverty-stricken Shiite area of 150,000 people outside Manama, tens of thousands gathered to bury three men killed in clashes early Thursday. The gathering appeared to be the biggest public demonstration since organized antigovernment protests began here on Monday. Military helicopters circled overhead, but soldiers and riot police appeared to remain confined to central Manama.
+
+Opposition leaders at the funeral said the government's crackdown had bolstered their demands for an immediate change of government.
+
+"We urgently need to change this government now... If you use force like this you will lose. The people will not stop trying to get their rights," said Sheikh Ali Salman, the leader of Al-Wafaq, the largest opposition bloc, as he walked behind the coffins, carrying a Bahraini flag.
+
+Early Thursday, Bahraini security forces violently cleared a public square at a traffic roundabout, killing four, according to hospital officials. That brought the total death toll in clashes between protesters and government forces here to six since demonstrations began here earlier in the week, inspired by uprisings in Tunisia and Egypt.
+
+Bahrain has acknowledged three deaths, accused journalists of exaggerating the violence, and defended the use of force as necessary to protect the national interest.
+
+Al-Wafaq lawmakers, who hold 18 of 40 seats in parliament's lower house, said Thursday they would resigned en masse from parliament in solidarity with the protesters.
+
+Bahrain's military sent tanks and armored personnel carriers into the streets on Thursday to extend its control, while neighboring monarchies of the Persian Gulf endorsed the country's violent response.
+
+At the Sitra funeral marches, tens of thousands marched behind bodies carried in wooden bed frames, which locals hoisted on their shoulders. Mourners shouted "God is great" and "down with Al-Khalifa," a reference to the ruling Khalifa family. Mourners craned to touch the bodies, sending the crowds surging left and right, before forming a huge column, which turbaned clerics led in prayer.
+
+Kareem Halwachi, a retired banker whose son was hospitalized in the raid on the roundabout Thursday, said the demonstrations were entering a new phase.
+
+A succession of rallies and demonstrations, in Egypt, Jordan, Yemen, Algeria, Bahrain and Iran have been inspired directly by the popular outpouring of anger that toppled Tunisian President Zine al-Abidine Ben Ali. See how these uprisings have progressed.
+
+"We have a regime talking of Bahraini unity, and it is beating its own people... They should know now that we are staying here, we're not going anywhere," Mr. Hawachi said. "My son says he cannot wait to get out of hospital and protest again."
+
+As afternoon prayers finished in Sitra, tens of thousands lined up behind Al-Attar mosque, to be addressed by senior opposition leaders, who decried the government crackdown as illegal and called for sweeping political change.
+
+In a speech, senior opposition leader Abdul Wahab Hussain called for the scrapping of the constitution, the resignation of the government and the trial of the interior minister. "The government have failed to bring down your will... The government is not stable and opportunity should not be lost," he said.
+
+In a statement, the national democratic action group said, "We want real political collaboration between the people and the royal family."
+
+The crowd responded with the chants of "down with the government" and "revolution to victory."

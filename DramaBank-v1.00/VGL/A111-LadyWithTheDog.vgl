@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A111" sourceStoryID="Story From File">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, #StateTimeType.Present;0.75, #StateTimeType.Present;0.875, #StateTimeType.Present;0.9375, #StateTimeType.Present;0.96875, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;5.0, #StateTimeType.Present;8.0, #StateTimeType.Present;10.0, #StateTimeType.Present;11.0, #StateTimeType.Present;12.0, #StateTimeType.Present;13.0, #StateTimeType.Present;14.0, #StateTimeType.Present;15.0, #StateTimeType.Present;16.0, #StateTimeType.Present;17.0, #StateTimeType.Present;18.0, #StateTimeType.Present;19.0, #StateTimeType.Present;22.0, #StateTimeType.Present;23.0, #StateTimeType.Present;24.0, #StateTimeType.Present;25.0, #StateTimeType.Present;26.0, #StateTimeType.Present;27.0, #StateTimeType.Present;28.0, #StateTimeType.Present;29.0, #StateTimeType.Present;30.0, #StateTimeType.Present;31.0, #StateTimeType.Present;32.0, #StateTimeType.Present;33.0, #StateTimeType.Present;34.0, #StateTimeType.Present;35.0, #StateTimeType.Present;36.0, #StateTimeType.Present;37.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9989290:dame_9>"(CharacterGender.Female)"", "Ann Sergeyevna");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9837824:banker>"(CharacterGender.Male)"", "Dmitri Dmitritch Gurov");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10780632:wife_7>"(CharacterGender.Female)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10193967:husband_4>"(CharacterGender.Male)"", "Von Diderits");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span260-432, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span434-520, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span696-812, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb717358_react_something_reacts("Ann Sergeyevna")**, span2787-2895, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;0.5, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span906-932, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.5, #StateTimeType.Present;0.75, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.5==>#StateTimeType.Present;0.75, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span1235-1346, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.75, #StateTimeType.Present;0.875, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.75==>#StateTimeType.Present;0.875, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span1347-1578, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.875, #StateTimeType.Present;0.9375, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.875==>#StateTimeType.Present;0.9375, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span1761-2011, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb717358_react_something_reacts("Ann Sergeyevna")**, span3797-3892, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, "Ann Sergeyevna", "Anna Sergeyevna", """<noun9989290:dame_9>"(CharacterGender.Female)"");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span5518-5650, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span6147-6224, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span7853-7950, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span8018-8101, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;9.0==>#StateTimeType.Present;10.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span8103-8145, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;10.0==>#StateTimeType.Present;11.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span8150-8170, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span8510-8623, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span8332-9131, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;12.0==>#StateTimeType.Present;13.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span9711-9777, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.9375, #StateTimeType.Present;0.96875, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.9375==>#StateTimeType.Present;0.96875, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span10725-10809, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;13.0==>#StateTimeType.Present;14.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span14080-14200, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;14.0==>#StateTimeType.Present;15.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span14455-14511, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;15.0==>#StateTimeType.Present;16.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span15496-15581, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;16.0==>#StateTimeType.Present;17.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span16032-16103, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;17.0==>#StateTimeType.Present;18.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span16547-16656, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;18.0==>#StateTimeType.Present;19.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span18801-18902, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;19.0==>#StateTimeType.Present;20.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span19776-19885, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;20.0==>#StateTimeType.Present;21.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span22183-22239, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;21.0==>#StateTimeType.Present;22.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span22463-22520, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;22.0==>#StateTimeType.Present;23.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span23635-23673, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;23.0==>#StateTimeType.Present;24.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span23674-23754, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;24.0==>#StateTimeType.Present;25.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span24254-24314, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;25.0==>#StateTimeType.Present;26.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span25231-25301, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;26.0==>#StateTimeType.Present;27.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span25899-25929, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;27.0==>#StateTimeType.Present;28.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span27117-27174, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;28.0==>#StateTimeType.Present;29.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span28954-29076, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;29.0==>#StateTimeType.Present;30.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span29656-29690, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;30.0==>#StateTimeType.Present;31.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span30168-30222, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;31.0==>#StateTimeType.Present;32.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span32767-32843, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;32.0==>#StateTimeType.Present;33.0, **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**, span32960-33065, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;33.0==>#StateTimeType.Present;34.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span33534-33641, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;34.0==>#StateTimeType.Present;35.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span34810-34917, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;35.0==>#StateTimeType.Present;36.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span35785-35979, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;36.0==>#StateTimeType.Present;37.0, **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**, span36240-36365, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-101);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Dmitri Dmitritch Gurov", NULL, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point638-168);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point604-169);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-100);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point606-168);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-98);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point599-94);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point598-85);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point597-91);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point597-85);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Dmitri Dmitritch Gurov", NULL, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Love, point704-129);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point597-87);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point597-85);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Ceases, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;0.9375: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-550);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Dmitri Dmitritch Gurov", NULL, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point624-448);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point600-466);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point629-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point604-179);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point589-190);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point555-386);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point582-381);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point581-342);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point626-167);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Obligation, "Dmitri Dmitritch Gurov", interp-interp_1, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point78-51);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Obligation, "Dmitri Dmitritch Gurov", interp-interp_1, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point172-58);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point78-36);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point155-24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point521-126);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point279-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point358-157);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point221-93);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:faithful#adj00958880.1("Dmitri Dmitritch Gurov")]], NULL, interp-condition_4);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_4, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point198-65);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point520-124);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point151-42);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point545-120);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point544-118);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-290);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Ceases, interp-condition_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point673-319);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point568-315);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:unfaithful#adj00024139.1("Dmitri Dmitritch Gurov")]], NULL, interp-condition_5);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_5, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point173-57);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point298-290);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-condition_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point172-55);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-96);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point148-129);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point570-343);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point577-286);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point598-342);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point546-351);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point139-56);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point188-112);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point135-96);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point556-380);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-161);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point577-356);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;0.9375: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point136-38);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point145-56);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Anna Sergeyevna", NULL, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point584-330);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point529-586);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point582-738);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.9375==>#StateTimeType.Present;0.96875: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Actualizes, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point622-742);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point622-741);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point555-699);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2708707_vacation_something_vacations_awayFromnearontoward_something("Anna Sergeyevna", Preposition.AwayFrom, "Von Diderits")**, NULL, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_7, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point108-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point310-165);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point163-43);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point554-700);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point142-8);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2421374_free_something_frees_something_from_something("Anna Sergeyevna", "Anna Sergeyevna", Preposition.From, "Von Diderits")**, NULL, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_8, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point152-121);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.WouldCause, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point77-63);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point87-64);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point122-135);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point596-462);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Von Diderits", NULL, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point608-650);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point577-898);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point565-914);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_2, InterpretativeArcType.PreconditionFor, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point586-864);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2588677_befriend_something_befriends_with_something("Von Diderits", Preposition.With, "Anna Sergeyevna")**, NULL, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_10, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point105-20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point129-39);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1567653_bed_something_beds_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point609-898);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point77-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point488-802);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point690-1013);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point544-891);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point272-192);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point705-963);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point184-98);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point641-882);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point546-889);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1567653_bed_something_beds_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_11, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point81-30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point137-9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point148-106);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_10, InterpretativeArcType.WouldCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point138-81);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point77-51);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point98-43);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point77-7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point170-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point128-75);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Enlightenment, "Dmitri Dmitritch Gurov", interp-interp_3, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point116-60);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_4, InterpretativeNodeType.InterpCondition, point77-19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point118-113);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Enlightenment, "Dmitri Dmitritch Gurov", interp-interp_1, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point117-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point229-187);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point116-5);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Enlightenment, "Dmitri Dmitritch Gurov", NULL, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point542-814);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point543-836);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point765-250);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point764-250);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point133-21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point717-293);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point542-116);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point729-278);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point100-201);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point111-26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point729-277);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Enlightenment, "Dmitri Dmitritch Gurov", interp-interp_1, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point241-206);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Enlightenment, point247-225);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point126-112);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point115-127);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point117-75);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point124-128);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Dmitri Dmitritch Gurov", interp-interp_3, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Love, point136-135);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point77-51);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point153-73);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point541-114);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point297-291);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point154-82);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point152-5);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Leisure, "Dmitri Dmitritch Gurov", interp-interp_2, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point208-187);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point198-133);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point197-133);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point559-889);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Leisure, "Dmitri Dmitritch Gurov", NULL, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point478-1017);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point519-850);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point537-946);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point174-884);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point700-549);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point555-1022);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point594-460);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point560-376);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point641-493);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point561-728);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point151-118);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point98-110);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Leisure, "Dmitri Dmitritch Gurov", NULL, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point264-756);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point855-697);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Leisure, "Dmitri Dmitritch Gurov", interp-interp_6, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point160-259);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Leisure, point152-230);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point233-84);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point523-879);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point122-79);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point237-5);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "Dmitri Dmitritch Gurov", interp-interp_6, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "Anna Sergeyevna", interp-interp_6, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "Anna Sergeyevna", interp-interp_6, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point110-233);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point96-108);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point521-832);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point181-64);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point424-760);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point283-303);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point537-1102);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point536-1104);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point526-871);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point508-1457);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point508-1459);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point545-1256);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point574-1261);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point698-1294);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point610-1049);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point605-843);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point223-156);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Leisure, "Dmitri Dmitritch Gurov", interp-interp_9, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, InterpretativeNodeType.Leisure, point138-94);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, InterpretativeNodeType.Leisure, point303-288);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_11, InterpretativeArcType.ProvidesFor, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point77-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point229-175);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point50-1062);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-1069);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point141-60);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point532-879);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point533-878);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point456-975);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Dmitri Dmitritch Gurov", NULL, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point601-839);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point616-849);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2588677_befriend_something_befriends_with_something("Dmitri Dmitritch Gurov", Preposition.With, "Anna Sergeyevna")**, NULL, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_15, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point553-799);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, InterpretativeNodeType.InterpAction, point154-9);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1567653_bed_something_beds_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_16, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point137-125);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point180-156);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Leisure, "Dmitri Dmitritch Gurov", interp-interp_14, interp-interp_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point489-1142);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point159-80);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point224-195);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point166-114);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point561-376);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_2, InterpretativeArcType.PreconditionFor, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, InterpretativeNodeType.Goal, point489-1159);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-1070);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point166-110);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_16, InterpretativeArcType.ProvidesFor, interp-interp_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_15, InterpretativeArcType.WouldCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point299-876);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-1181);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Ceases, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point560-902);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point604-557);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point622-599);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point564-1179);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point632-881);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point221-200);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point558-854);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point304-252);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_8, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point558-853);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Anna Sergeyevna", "Dmitri Dmitritch Gurov")**, NULL, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point98-108);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point173-144);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point600-101);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point558-851);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Anna Sergeyevna", "Dmitri Dmitritch Gurov")**, NULL, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_18, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point181-90);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point204-185);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_7, InterpretativeArcType.WouldCause, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.PreconditionFor, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point142-15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.PreconditionFor, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point203-205);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point142-118);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point242-284);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point143-208);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point178-275);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point228-24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point25-1066);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point299-877);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point299-878);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.96875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-875);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.9375==>#StateTimeType.Present;0.96875: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-782);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.9375==>#StateTimeType.Present;0.96875: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Actualizes, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point161-115);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point151-115);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point557-854);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point532-1254);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point162-120);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point587-1273);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point153-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point189-197);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point583-1288);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Implies, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point167-113);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point233-230);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-1552);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-1559);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point303-1562);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point303-1672);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point304-2522);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point283-2355);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point285-2434);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point284-2485);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point283-2545);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-2630);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point204-393);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point175-81);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point681-1399);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point568-568);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point216-333);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point228-592);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point652-151);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point550-114);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point562-115);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point309-63);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point931-310);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point951-318);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point967-339);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point304-184);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point36-202);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point304-195);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-297);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point294-196);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-3069);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToPrevent, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3310);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Dmitri Dmitritch Gurov", "Dmitri Dmitritch Gurov")**, NULL, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1137-837);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1110-852);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1180-1096);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1120-1840);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point973-2244);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point811-3132);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point738-3358);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-3309);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;20.0==>#StateTimeType.Present;21.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;21.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;21.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point24-3432);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point528-660);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point163-318);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point669-3255);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point901-2527);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point727-2352);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point853-2308);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point712-2310);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point876-2190);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_15, InterpretativeArcType.WouldCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point819-2197);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point817-2194);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point679-1395);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point633-729);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point816-2196);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point684-1396);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point682-1395);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point787-2289);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point685-732);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point744-2304);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_20, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point291-592);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point681-1393);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point315-618);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point289-523);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point288-561);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point723-2295);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point288-564);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point727-2296);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point691-751);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point747-2331);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_20, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point288-550);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, InterpretativeNodeType.InterpAction, point154-13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point747-2332);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.Damages, interp-interp_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point721-796);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Dmitri Dmitritch Gurov", NULL, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Love, point1024-2353);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point747-2334);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.ProvidesFor, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Love, point1026-2353);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Dmitri Dmitritch Gurov", NULL, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point447-307);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point202-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point133-39);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Love, point979-2472);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point79-7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point127-66);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point120-57);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2493030_visit_something_visits_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_22, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, InterpretativeNodeType.InterpAction, point174-34);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point120-54);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2248465_find_something_finds_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_23, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, InterpretativeNodeType.InterpAction, point205-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, InterpretativeNodeType.InterpAction, point172-136);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point117-123);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point294-3315);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point294-3316);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point678-1044);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point936-639);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point774-565);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point927-1312);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point922-1344);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point295-3310);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;21.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point54-3444);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point294-3313);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point295-3312);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-3309);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Ceases, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Love, point957-2470);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Love, point957-2467);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point864-2485);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Dmitri Dmitritch Gurov", NULL, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point1065-2605);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point865-2484);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point885-2494);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.PreconditionFor, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2493030_visit_something_visits_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_21, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point225-63);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point888-2493);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point225-18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point1062-2602);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb769553_convince_something_convinces_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_220);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_220, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point256-87);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point1095-2658);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point235-84);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2247977_regain_something_regains_something("Dmitri Dmitritch Gurov", "Anna Sergeyevna")**, NULL, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_230, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_230, InterpretativeNodeType.InterpAction, point262-204);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Dmitri Dmitritch Gurov", interp-interp_20, interp-interp_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, InterpretativeNodeType.Love, point321-408);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point241-121);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point223-18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_21, InterpretativeArcType.WouldCause, interp-action_220);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_220, InterpretativeArcType.WouldCause, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_230, InterpretativeArcType.ProvidesFor, interp-interp_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, InterpretativeNodeType.Love, point322-346);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;22.0==>#StateTimeType.Present;23.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3538);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;22.0==>#StateTimeType.Present;23.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;23.0==>#StateTimeType.Present;24.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;24.0==>#StateTimeType.Present;25.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToPrevent, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point817-3594);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point640-4009);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;25.0==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point223-18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;25.0==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point298-3816);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;25.0==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;25.0==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-3916);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;27.0==>#StateTimeType.Present;28.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;28.0==>#StateTimeType.Present;29.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Source, point39-4068);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;28.0==>#StateTimeType.Present;29.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_220);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;29.0==>#StateTimeType.Present;30.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-4195);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;29.0==>#StateTimeType.Present;30.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Actualizes, interp-action_220);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-4261);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Actualizes, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, InterpretativeNodeType.Love, point334-406);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;31.0==>#StateTimeType.Present;32.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-4344);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Actualizes, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Actualizes, interp-action_220);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;31.0==>#StateTimeType.Present;32.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point298-4344);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;31.0==>#StateTimeType.Present;32.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;33.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point301-4443);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;33.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToPrevent, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;33.0==>#StateTimeType.Present;34.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;34.0==>#StateTimeType.Present;35.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-action_230);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;35.0==>#StateTimeType.Present;36.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-4827);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;36.0==>#StateTimeType.Present;37.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;35.0==>#StateTimeType.Present;36.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;36.0==>#StateTimeType.Present;37.0, #StateTimeType.Present;35.0==>#StateTimeType.Present;37.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, #StateTimeType.Present;6.0==>#StateTimeType.Present;8.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;8.0, #StateTimeType.Present;5.0==>#StateTimeType.Present;8.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;9.0==>#StateTimeType.Present;10.0, #StateTimeType.Present;8.0==>#StateTimeType.Present;10.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;21.0==>#StateTimeType.Present;22.0, #StateTimeType.Present;20.0==>#StateTimeType.Present;22.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point889-234);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point319-99);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point256-244);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point36-114);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point39-184);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point289-127);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point303-211);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point286-126);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Implies, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.InterpretedAs, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point651-429);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point613-432);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point811-543);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point682-400);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point876-1371);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-1071);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point264-1195);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point243-1197);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point283-1354);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point921-1327);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point241-1197);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Ceases, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point1111-1378);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, InterpretativeNodeType.InterpAction, point181-52);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.Implies, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeArcType.AttemptToCause, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point282-1354);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point303-1563);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point301-1761);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point295-1914);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point279-2611);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point298-2703);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point282-2664);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point304-2803);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point258-2799);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-2943);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point301-3040);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-3067);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3079);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3063);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3193);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3307);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point277-3316);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point274-3318);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;20.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point295-3441);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-3190);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;20.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point295-3441);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point894-3964);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point223-40);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point924-3456);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-3918);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;27.0==>#StateTimeType.Present;28.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point301-3985);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;29.0==>#StateTimeType.Present;30.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-4195);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-4261);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;33.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Proposition, point300-4444);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;33.0==>#StateTimeType.Present;34.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-4605);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;34.0==>#StateTimeType.Present;35.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.Actualizes, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point1711-1428);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point1420-1402);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point942-1434);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point48-163);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point60-86);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point307-74);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point859-139);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point717-148);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, InterpretativeNodeType.Belief, point636-393);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Goal, point945-549);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point1144-1240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point660-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point81-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point81-16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point81-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_5, InterpretativeNodeType.InterpCondition, point81-14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point84-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point84-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point81-213);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point110-321);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point194-489);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point180-237);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, InterpretativeNodeType.Leisure, point216-343);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1192-3388);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1173-3264);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point1104-3631);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point216-180);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_230, InterpretativeNodeType.InterpAction, point216-324);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point220-187);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, InterpretativeNodeType.Love, point242-504);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point86-86);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point86-199);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_230, InterpretativeNodeType.InterpAction, point81-328);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, InterpretativeNodeType.Love, point112-448);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_230, InterpretativeNodeType.InterpAction, point84-326);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point88-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, InterpretativeNodeType.InterpAction, point81-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point84-129);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_230, InterpretativeNodeType.InterpAction, point84-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_24, InterpretativeNodeType.Love, point117-362);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_220, InterpretativeNodeType.InterpAction, point81-127);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_230, InterpretativeNodeType.InterpAction, point81-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point96-208);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Freedom, point132-328);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point89-32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_4, InterpretativeNodeType.InterpCondition, point109-56);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Obligation, point97-78);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Belief, point659-110);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:faithful#adj00958880.1("Dmitri Dmitritch Gurov")]], NULL, interp-condition_25);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_25, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_25, InterpretativeNodeType.InterpCondition, point90-35);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Dmitri Dmitritch Gurov", interp-interp_1, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, InterpretativeNodeType.Love, point186-111);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_25, InterpretativeNodeType.InterpCondition, point89-34);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_25, InterpretativeArcType.ProvidesFor, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point300-296);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point273-3316);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point24-3315);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point323-3285);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point37-3228);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Proposition, point297-3206);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Source, point27-3168);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point23-3097);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Source, point28-3013);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point23-2892);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point23-2764);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Source, point22-2974);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point18-3057);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Anna Sergeyevna")**}, InterpretativeNodeType.Source, point17-3144);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeNodeType.Source, point20-3215);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;20.0==>#StateTimeType.Present;22.0, #StateTimeType.Present;19.0==>#StateTimeType.Present;22.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point498-547);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point618-1338);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point997-2310);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point829-2833);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, InterpretativeNodeType.Goal, point735-3114);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.WouldCause, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("Dmitri Dmitritch Gurov")**}, InterpretativeArcType.AttemptToCause, interp-action_21);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+THE LADY WITH THE DOG
+
+I
+
+IT was said that a new person had appeared on the sea-front: a lady
+with a little dog. Dmitri Dmitritch Gurov, who had by then been a
+fortnight at Yalta, and so was fairly at home there, had begun to
+take an interest in new arrivals. Sitting in Verney's pavilion, he
+saw, walking on the sea-front, a fair-haired young lady of medium
+height, wearing a _b?ret_; a white Pomeranian dog was running behind
+her.
+
+And afterwards he met her in the public gardens and in the square
+several times a day. She was walking alone, always wearing the same
+_b?ret_, and always with the same white dog; no one knew who she
+was, and every one called her simply "the lady with the dog."
+
+"If she is here alone without a husband or friends, it wouldn't be
+amiss to make her acquaintance," Gurov reflected.
+
+He was under forty, but he had a daughter already twelve years old,
+and two sons at school. He had been married young, when he was a
+student in his second year, and by now his wife seemed half as old
+again as he. She was a tall, erect woman with dark eyebrows, staid
+and dignified, and, as she said of herself, intellectual. She read
+a great deal, used phonetic spelling, called her husband, not Dmitri,
+but Dimitri, and he secretly considered her unintelligent, narrow,
+inelegant, was afraid of her, and did not like to be at home. He
+had begun being unfaithful to her long ago--had been unfaithful
+to her often, and, probably on that account, almost always spoke
+ill of women, and when they were talked about in his presence, used
+to call them "the lower race."
+
+It seemed to him that he had been so schooled by bitter experience
+that he might call them what he liked, and yet he could not get on
+for two days together without "the lower race." In the society of
+men he was bored and not himself, with them he was cold and
+uncommunicative; but when he was in the company of women he felt
+free, and knew what to say to them and how to behave; and he was
+at ease with them even when he was silent. In his appearance, in
+his character, in his whole nature, there was something attractive
+and elusive which allured women and disposed them in his favour;
+he knew that, and some force seemed to draw him, too, to them.
+
+Experience often repeated, truly bitter experience, had taught him
+long ago that with decent people, especially Moscow people--always
+slow to move and irresolute--every intimacy, which at first so
+agreeably diversifies life and appears a light and charming adventure,
+inevitably grows into a regular problem of extreme intricacy, and
+in the long run the situation becomes unbearable. But at every fresh
+meeting with an interesting woman this experience seemed to slip
+out of his memory, and he was eager for life, and everything seemed
+simple and amusing.
+
+One evening he was dining in the gardens, and the lady in the _b?ret_
+came up slowly to take the next table. Her expression, her gait,
+her dress, and the way she did her hair told him that she was a
+lady, that she was married, that she was in Yalta for the first
+time and alone, and that she was dull there. . . . The stories told
+of the immorality in such places as Yalta are to a great extent
+untrue; he despised them, and knew that such stories were for the
+most part made up by persons who would themselves have been glad
+to sin if they had been able; but when the lady sat down at the
+next table three paces from him, he remembered these tales of easy
+conquests, of trips to the mountains, and the tempting thought of
+a swift, fleeting love affair, a romance with an unknown woman,
+whose name he did not know, suddenly took possession of him.
+
+He beckoned coaxingly to the Pomeranian, and when the dog came up
+to him he shook his finger at it. The Pomeranian growled: Gurov
+shook his finger at it again.
+
+The lady looked at him and at once dropped her eyes.
+
+"He doesn't bite," she said, and blushed.
+
+"May I give him a bone?" he asked; and when she nodded he asked
+courteously, "Have you been long in Yalta?"
+
+"Five days."
+
+"And I have already dragged out a fortnight here."
+
+There was a brief silence.
+
+"Time goes fast, and yet it is so dull here!" she said, not looking
+at him.
+
+"That's only the fashion to say it is dull here. A provincial will
+live in Belyov or Zhidra and not be dull, and when he comes here
+it's 'Oh, the dulness! Oh, the dust!' One would think he came from
+Grenada."
+
+She laughed. Then both continued eating in silence, like strangers,
+but after dinner they walked side by side; and there sprang up
+between them the light jesting conversation of people who are free
+and satisfied, to whom it does not matter where they go or what
+they talk about. They walked and talked of the strange light on the
+sea: the water was of a soft warm lilac hue, and there was a golden
+streak from the moon upon it. They talked of how sultry it was after
+a hot day. Gurov told her that he came from Moscow, that he had
+taken his degree in Arts, but had a post in a bank; that he had
+trained as an opera-singer, but had given it up, that he owned two
+houses in Moscow. . . . And from her he learnt that she had grown
+up in Petersburg, but had lived in S---- since her marriage two
+years before, that she was staying another month in Yalta, and that
+her husband, who needed a holiday too, might perhaps come and fetch
+her. She was not sure whether her husband had a post in a Crown
+Department or under the Provincial Council--and was amused by her
+own ignorance. And Gurov learnt, too, that she was called Anna
+Sergeyevna.
+
+Afterwards he thought about her in his room at the hotel--thought
+she would certainly meet him next day; it would be sure to happen.
+As he got into bed he thought how lately she had been a girl at
+school, doing lessons like his own daughter; he recalled the
+diffidence, the angularity, that was still manifest in her laugh
+and her manner of talking with a stranger. This must have been the
+first time in her life she had been alone in surroundings in which
+she was followed, looked at, and spoken to merely from a secret
+motive which she could hardly fail to guess. He recalled her slender,
+delicate neck, her lovely grey eyes.
+
+"There's something pathetic about her, anyway," he thought, and
+fell asleep.
+
+II
+
+A week had passed since they had made acquaintance. It was a holiday.
+It was sultry indoors, while in the street the wind whirled the
+dust round and round, and blew people's hats off. It was a thirsty
+day, and Gurov often went into the pavilion, and pressed Anna
+Sergeyevna to have syrup and water or an ice. One did not know what
+to do with oneself.
+
+In the evening when the wind had dropped a little, they went out
+on the groyne to see the steamer come in. There were a great many
+people walking about the harbour; they had gathered to welcome some
+one, bringing bouquets. And two peculiarities of a well-dressed
+Yalta crowd were very conspicuous: the elderly ladies were dressed
+like young ones, and there were great numbers of generals.
+
+Owing to the roughness of the sea, the steamer arrived late, after
+the sun had set, and it was a long time turning about before it
+reached the groyne. Anna Sergeyevna looked through her lorgnette
+at the steamer and the passengers as though looking for acquaintances,
+and when she turned to Gurov her eyes were shining. She talked a
+great deal and asked disconnected questions, forgetting next moment
+what she had asked; then she dropped her lorgnette in the crush.
+
+The festive crowd began to disperse; it was too dark to see people's
+faces. The wind had completely dropped, but Gurov and Anna Sergeyevna
+still stood as though waiting to see some one else come from the
+steamer. Anna Sergeyevna was silent now, and sniffed the flowers
+without looking at Gurov.
+
+"The weather is better this evening," he said. "Where shall we go
+now? Shall we drive somewhere?"
+
+She made no answer.
+
+Then he looked at her intently, and all at once put his arm round
+her and kissed her on the lips, and breathed in the moisture and
+the fragrance of the flowers; and he immediately looked round him,
+anxiously wondering whether any one had seen them.
+
+"Let us go to your hotel," he said softly. And both walked quickly.
+
+The room was close and smelt of the scent she had bought at the
+Japanese shop. Gurov looked at her and thought: "What different
+people one meets in the world!" From the past he preserved memories
+of careless, good-natured women, who loved cheerfully and were
+grateful to him for the happiness he gave them, however brief it
+might be; and of women like his wife who loved without any genuine
+feeling, with superfluous phrases, affectedly, hysterically, with
+an expression that suggested that it was not love nor passion, but
+something more significant; and of two or three others, very
+beautiful, cold women, on whose faces he had caught a glimpse of a
+rapacious expression--an obstinate desire to snatch from life
+more than it could give, and these were capricious, unreflecting,
+domineering, unintelligent women not in their first youth, and when
+Gurov grew cold to them their beauty excited his hatred, and the
+lace on their linen seemed to him like scales.
+
+But in this case there was still the diffidence, the angularity of
+inexperienced youth, an awkward feeling; and there was a sense of
+consternation as though some one had suddenly knocked at the door.
+The attitude of Anna Sergeyevna--"the lady with the dog"--to
+what had happened was somehow peculiar, very grave, as though it
+were her fall--so it seemed, and it was strange and inappropriate.
+Her face dropped and faded, and on both sides of it her long hair
+hung down mournfully; she mused in a dejected attitude like "the
+woman who was a sinner" in an old-fashioned picture.
+
+"It's wrong," she said. "You will be the first to despise me now."
+
+There was a water-melon on the table. Gurov cut himself a slice and
+began eating it without haste. There followed at least half an hour
+of silence.
+
+Anna Sergeyevna was touching; there was about her the purity of a
+good, simple woman who had seen little of life. The solitary candle
+burning on the table threw a faint light on her face, yet it was
+clear that she was very unhappy.
+
+"How could I despise you?" asked Gurov. "You don't know what you
+are saying."
+
+"God forgive me," she said, and her eyes filled with tears. "It's
+awful."
+
+"You seem to feel you need to be forgiven."
+
+"Forgiven? No. I am a bad, low woman; I despise myself and don't
+attempt to justify myself. It's not my husband but myself I have
+deceived. And not only just now; I have been deceiving myself for
+a long time. My husband may be a good, honest man, but he is a
+flunkey! I don't know what he does there, what his work is, but I
+know he is a flunkey! I was twenty when I was married to him. I
+have been tormented by curiosity; I wanted something better. 'There
+must be a different sort of life,' I said to myself. I wanted to
+live! To live, to live! . . . I was fired by curiosity . . . you
+don't understand it, but, I swear to God, I could not control myself;
+something happened to me: I could not be restrained. I told my
+husband I was ill, and came here. . . . And here I have been walking
+about as though I were dazed, like a mad creature; . . . and now I
+have become a vulgar, contemptible woman whom any one may despise."
+
+Gurov felt bored already, listening to her. He was irritated by the
+na?ve tone, by this remorse, so unexpected and inopportune; but for
+the tears in her eyes, he might have thought she was jesting or
+playing a part.
+
+"I don't understand," he said softly. "What is it you want?"
+
+She hid her face on his breast and pressed close to him.
+
+"Believe me, believe me, I beseech you . . ." she said. "I love a
+pure, honest life, and sin is loathsome to me. I don't know what I
+am doing. Some people say: 'The Evil One has beguiled me.' And I
+may say of myself now that the Evil One has beguiled me."
+
+"Hush, hush! . . ." he muttered.
+
+He looked at her fixed, scared eyes, kissed her, talked softly and
+affectionately, and by degrees she was comforted, and her gaiety
+returned; they both began laughing.
+
+Afterwards when they went out there was not a soul on the sea-front.
+The town with its cypresses had quite a deathlike air, but the sea
+still broke noisily on the shore; a single barge was rocking on the
+waves, and a lantern was blinking sleepily on it.
+
+They found a cab and drove to Oreanda.
+
+"I found out your surname in the hall just now: it was written on
+the board--Von Diderits," said Gurov. "Is your husband a German?"
+
+"No; I believe his grandfather was a German, but he is an Orthodox
+Russian himself."
+
+At Oreanda they sat on a seat not far from the church, looked down
+at the sea, and were silent. Yalta was hardly visible through the
+morning mist; white clouds stood motionless on the mountain-tops.
+The leaves did not stir on the trees, grasshoppers chirruped, and
+the monotonous hollow sound of the sea rising up from below, spoke
+of the peace, of the eternal sleep awaiting us. So it must have
+sounded when there was no Yalta, no Oreanda here; so it sounds now,
+and it will sound as indifferently and monotonously when we are all
+no more. And in this constancy, in this complete indifference to
+the life and death of each of us, there lies hid, perhaps, a pledge
+of our eternal salvation, of the unceasing movement of life upon
+earth, of unceasing progress towards perfection. Sitting beside a
+young woman who in the dawn seemed so lovely, soothed and spellbound
+in these magical surroundings--the sea, mountains, clouds, the
+open sky--Gurov thought how in reality everything is beautiful
+in this world when one reflects: everything except what we think
+or do ourselves when we forget our human dignity and the higher
+aims of our existence.
+
+A man walked up to them--probably a keeper--looked at them and
+walked away. And this detail seemed mysterious and beautiful, too.
+They saw a steamer come from Theodosia, with its lights out in the
+glow of dawn.
+
+"There is dew on the grass," said Anna Sergeyevna, after a silence.
+
+"Yes. It's time to go home."
+
+They went back to the town.
+
+Then they met every day at twelve o'clock on the sea-front, lunched
+and dined together, went for walks, admired the sea. She complained
+that she slept badly, that her heart throbbed violently; asked the
+same questions, troubled now by jealousy and now by the fear that
+he did not respect her sufficiently. And often in the square or
+gardens, when there was no one near them, he suddenly drew her to
+him and kissed her passionately. Complete idleness, these kisses
+in broad daylight while he looked round in dread of some one's
+seeing them, the heat, the smell of the sea, and the continual
+passing to and fro before him of idle, well-dressed, well-fed people,
+made a new man of him; he told Anna Sergeyevna how beautiful she
+was, how fascinating. He was impatiently passionate, he would not
+move a step away from her, while she was often pensive and continually
+urged him to confess that he did not respect her, did not love her
+in the least, and thought of her as nothing but a common woman.
+Rather late almost every evening they drove somewhere out of town,
+to Oreanda or to the waterfall; and the expedition was always a
+success, the scenery invariably impressed them as grand and beautiful.
+
+They were expecting her husband to come, but a letter came from
+him, saying that there was something wrong with his eyes, and he
+entreated his wife to come home as quickly as possible. Anna
+Sergeyevna made haste to go.
+
+"It's a good thing I am going away," she said to Gurov. "It's the
+finger of destiny!"
+
+She went by coach and he went with her. They were driving the whole
+day. When she had got into a compartment of the express, and when
+the second bell had rung, she said:
+
+"Let me look at you once more . . . look at you once again. That's
+right."
+
+She did not shed tears, but was so sad that she seemed ill, and her
+face was quivering.
+
+"I shall remember you . . . think of you," she said. "God be with
+you; be happy. Don't remember evil against me. We are parting forever
+--it must be so, for we ought never to have met. Well, God be with
+you."
+
+The train moved off rapidly, its lights soon vanished from sight,
+and a minute later there was no sound of it, as though everything
+had conspired together to end as quickly as possible that sweet
+delirium, that madness. Left alone on the platform, and gazing into
+the dark distance, Gurov listened to the chirrup of the grasshoppers
+and the hum of the telegraph wires, feeling as though he had only
+just waked up. And he thought, musing, that there had been another
+episode or adventure in his life, and it, too, was at an end, and
+nothing was left of it but a memory. . . . He was moved, sad, and
+conscious of a slight remorse. This young woman whom he would never
+meet again had not been happy with him; he was genuinely warm and
+affectionate with her, but yet in his manner, his tone, and his
+caresses there had been a shade of light irony, the coarse condescension
+of a happy man who was, besides, almost twice her age. All the time
+she had called him kind, exceptional, lofty; obviously he had seemed
+to her different from what he really was, so he had unintentionally
+deceived her. . . .
+
+Here at the station was already a scent of autumn; it was a cold
+evening.
+
+"It's time for me to go north," thought Gurov as he left the platform.
+"High time!"
+
+III
+
+At home in Moscow everything was in its winter routine; the stoves
+were heated, and in the morning it was still dark when the children
+were having breakfast and getting ready for school, and the nurse
+would light the lamp for a short time. The frosts had begun already.
+When the first snow has fallen, on the first day of sledge-driving
+it is pleasant to see the white earth, the white roofs, to draw
+soft, delicious breath, and the season brings back the days of one's
+youth. The old limes and birches, white with hoar-frost, have a
+good-natured expression; they are nearer to one's heart than cypresses
+and palms, and near them one doesn't want to be thinking of the sea
+and the mountains.
+
+Gurov was Moscow born; he arrived in Moscow on a fine frosty day,
+and when he put on his fur coat and warm gloves, and walked along
+Petrovka, and when on Saturday evening he heard the ringing of the
+bells, his recent trip and the places he had seen lost all charm
+for him. Little by little he became absorbed in Moscow life, greedily
+read three newspapers a day, and declared he did not read the Moscow
+papers on principle! He already felt a longing to go to restaurants,
+clubs, dinner-parties, anniversary celebrations, and he felt flattered
+at entertaining distinguished lawyers and artists, and at playing
+cards with a professor at the doctors' club. He could already eat
+a whole plateful of salt fish and cabbage.
+
+In another month, he fancied, the image of Anna Sergeyevna would
+be shrouded in a mist in his memory, and only from time to time
+would visit him in his dreams with a touching smile as others did.
+But more than a month passed, real winter had come, and everything
+was still clear in his memory as though he had parted with Anna
+Sergeyevna only the day before. And his memories glowed more and
+more vividly. When in the evening stillness he heard from his study
+the voices of his children, preparing their lessons, or when he
+listened to a song or the organ at the restaurant, or the storm
+howled in the chimney, suddenly everything would rise up in his
+memory: what had happened on the groyne, and the early morning with
+the mist on the mountains, and the steamer coming from Theodosia,
+and the kisses. He would pace a long time about his room, remembering
+it all and smiling; then his memories passed into dreams, and in
+his fancy the past was mingled with what was to come. Anna Sergeyevna
+did not visit him in dreams, but followed him about everywhere like
+a shadow and haunted him. When he shut his eyes he saw her as though
+she were living before him, and she seemed to him lovelier, younger,
+tenderer than she was; and he imagined himself finer than he had
+been in Yalta. In the evenings she peeped out at him from the
+bookcase, from the fireplace, from the corner--he heard her
+breathing, the caressing rustle of her dress. In the street he
+watched the women, looking for some one like her.
+
+He was tormented by an intense desire to confide his memories to
+some one. But in his home it was impossible to talk of his love,
+and he had no one outside; he could not talk to his tenants nor to
+any one at the bank. And what had he to talk of? Had he been in
+love, then? Had there been anything beautiful, poetical, or edifying
+or simply interesting in his relations with Anna Sergeyevna? And
+there was nothing for him but to talk vaguely of love, of woman,
+and no one guessed what it meant; only his wife twitched her black
+eyebrows, and said:
+
+"The part of a lady-killer does not suit you at all, Dimitri."
+
+One evening, coming out of the doctors' club with an official with
+whom he had been playing cards, he could not resist saying:
+
+"If only you knew what a fascinating woman I made the acquaintance
+of in Yalta!"
+
+The official got into his sledge and was driving away, but turned
+suddenly and shouted:
+
+"Dmitri Dmitritch!"
+
+"What?"
+
+"You were right this evening: the sturgeon was a bit too strong!"
+
+These words, so ordinary, for some reason moved Gurov to indignation,
+and struck him as degrading and unclean. What savage manners, what
+people! What senseless nights, what uninteresting, uneventful days!
+The rage for card-playing, the gluttony, the drunkenness, the
+continual talk always about the same thing. Useless pursuits and
+conversations always about the same things absorb the better part
+of one's time, the better part of one's strength, and in the end
+there is left a life grovelling and curtailed, worthless and trivial,
+and there is no escaping or getting away from it--just as though
+one were in a madhouse or a prison.
+
+Gurov did not sleep all night, and was filled with indignation. And
+he had a headache all next day. And the next night he slept badly;
+he sat up in bed, thinking, or paced up and down his room. He was
+sick of his children, sick of the bank; he had no desire to go
+anywhere or to talk of anything.
+
+In the holidays in December he prepared for a journey, and told his
+wife he was going to Petersburg to do something in the interests
+of a young friend--and he set off for S----. What for? He did not
+very well know himself. He wanted to see Anna Sergeyevna and to
+talk with her--to arrange a meeting, if possible.
+
+He reached S---- in the morning, and took the best room at the
+hotel, in which the floor was covered with grey army cloth, and on
+the table was an inkstand, grey with dust and adorned with a figure
+on horseback, with its hat in its hand and its head broken off. The
+hotel porter gave him the necessary information; Von Diderits lived
+in a house of his own in Old Gontcharny Street--it was not far
+from the hotel: he was rich and lived in good style, and had his
+own horses; every one in the town knew him. The porter pronounced
+the name "Dridirits."
+
+Gurov went without haste to Old Gontcharny Street and found the
+house. Just opposite the house stretched a long grey fence adorned
+with nails.
+
+"One would run away from a fence like that," thought Gurov, looking
+from the fence to the windows of the house and back again.
+
+He considered: to-day was a holiday, and the husband would probably
+be at home. And in any case it would be tactless to go into the
+house and upset her. If he were to send her a note it might fall
+into her husband's hands, and then it might ruin everything. The
+best thing was to trust to chance. And he kept walking up and down
+the street by the fence, waiting for the chance. He saw a beggar
+go in at the gate and dogs fly at him; then an hour later he heard
+a piano, and the sounds were faint and indistinct. Probably it was
+Anna Sergeyevna playing. The front door suddenly opened, and an old
+woman came out, followed by the familiar white Pomeranian. Gurov
+was on the point of calling to the dog, but his heart began beating
+violently, and in his excitement he could not remember the dog's
+name.
+
+He walked up and down, and loathed the grey fence more and more,
+and by now he thought irritably that Anna Sergeyevna had forgotten
+him, and was perhaps already amusing herself with some one else,
+and that that was very natural in a young woman who had nothing to
+look at from morning till night but that confounded fence. He went
+back to his hotel room and sat for a long while on the sofa, not
+knowing what to do, then he had dinner and a long nap.
+
+"How stupid and worrying it is!" he thought when he woke and looked
+at the dark windows: it was already evening. "Here I've had a good
+sleep for some reason. What shall I do in the night?"
+
+He sat on the bed, which was covered by a cheap grey blanket, such
+as one sees in hospitals, and he taunted himself in his vexation:
+
+"So much for the lady with the dog . . . so much for the adventure
+. . . . You're in a nice fix. . . ."
+
+That morning at the station a poster in large letters had caught
+his eye. "The Geisha" was to be performed for the first time. He
+thought of this and went to the theatre.
+
+"It's quite possible she may go to the first performance," he
+thought.
+
+The theatre was full. As in all provincial theatres, there was a
+fog above the chandelier, the gallery was noisy and restless; in
+the front row the local dandies were standing up before the beginning
+of the performance, with their hands behind them; in the Governor's
+box the Governor's daughter, wearing a boa, was sitting in the front
+seat, while the Governor himself lurked modestly behind the curtain
+with only his hands visible; the orchestra was a long time tuning
+up; the stage curtain swayed. All the time the audience were coming
+in and taking their seats Gurov looked at them eagerly.
+
+Anna Sergeyevna, too, came in. She sat down in the third row, and
+when Gurov looked at her his heart contracted, and he understood
+clearly that for him there was in the whole world no creature so
+near, so precious, and so important to him; she, this little woman,
+in no way remarkable, lost in a provincial crowd, with a vulgar
+lorgnette in her hand, filled his whole life now, was his sorrow
+and his joy, the one happiness that he now desired for himself, and
+to the sounds of the inferior orchestra, of the wretched provincial
+violins, he thought how lovely she was. He thought and dreamed.
+
+A young man with small side-whiskers, tall and stooping, came in
+with Anna Sergeyevna and sat down beside her; he bent his head at
+every step and seemed to be continually bowing. Most likely this
+was the husband whom at Yalta, in a rush of bitter feeling, she had
+called a flunkey. And there really was in his long figure, his
+side-whiskers, and the small bald patch on his head, something of
+the flunkey's obsequiousness; his smile was sugary, and in his
+buttonhole there was some badge of distinction like the number on
+a waiter.
+
+During the first interval the husband went away to smoke; she
+remained alone in her stall. Gurov, who was sitting in the stalls,
+too, went up to her and said in a trembling voice, with a forced
+smile:
+
+"Good-evening."
+
+She glanced at him and turned pale, then glanced again with horror,
+unable to believe her eyes, and tightly gripped the fan and the
+lorgnette in her hands, evidently struggling with herself not to
+faint. Both were silent. She was sitting, he was standing, frightened
+by her confusion and not venturing to sit down beside her. The
+violins and the flute began tuning up. He felt suddenly frightened;
+it seemed as though all the people in the boxes were looking at
+them. She got up and went quickly to the door; he followed her, and
+both walked senselessly along passages, and up and down stairs, and
+figures in legal, scholastic, and civil service uniforms, all wearing
+badges, flitted before their eyes. They caught glimpses of ladies,
+of fur coats hanging on pegs; the draughts blew on them, bringing
+a smell of stale tobacco. And Gurov, whose heart was beating
+violently, thought:
+
+"Oh, heavens! Why are these people here and this orchestra! . . ."
+
+And at that instant he recalled how when he had seen Anna Sergeyevna
+off at the station he had thought that everything was over and they
+would never meet again. But how far they were still from the end!
+
+On the narrow, gloomy staircase over which was written "To the
+Amphitheatre," she stopped.
+
+"How you have frightened me!" she said, breathing hard, still pale
+and overwhelmed. "Oh, how you have frightened me! I am half dead.
+Why have you come? Why?"
+
+"But do understand, Anna, do understand . . ." he said hastily in
+a low voice. "I entreat you to understand. . . ."
+
+She looked at him with dread, with entreaty, with love; she looked
+at him intently, to keep his features more distinctly in her memory.
+
+"I am so unhappy," she went on, not heeding him. "I have thought
+of nothing but you all the time; I live only in the thought of you.
+And I wanted to forget, to forget you; but why, oh, why, have you
+come?"
+
+On the landing above them two schoolboys were smoking and looking
+down, but that was nothing to Gurov; he drew Anna Sergeyevna to
+him, and began kissing her face, her cheeks, and her hands.
+
+"What are you doing, what are you doing!" she cried in horror,
+pushing him away. "We are mad. Go away to-day; go away at once. . . .
+I beseech you by all that is sacred, I implore you. . . . There
+are people coming this way!"
+
+Some one was coming up the stairs.
+
+"You must go away," Anna Sergeyevna went on in a whisper. "Do you
+hear, Dmitri Dmitritch? I will come and see you in Moscow. I have
+never been happy; I am miserable now, and I never, never shall be
+happy, never! Don't make me suffer still more! I swear I'll come
+to Moscow. But now let us part. My precious, good, dear one, we
+must part!"
+
+She pressed his hand and began rapidly going downstairs, looking
+round at him, and from her eyes he could see that she really was
+unhappy. Gurov stood for a little while, listened, then, when all
+sound had died away, he found his coat and left the theatre.
+
+IV
+
+And Anna Sergeyevna began coming to see him in Moscow. Once in two
+or three months she left S----, telling her husband that she was
+going to consult a doctor about an internal complaint--and her
+husband believed her, and did not believe her. In Moscow she stayed
+at the Slaviansky Bazaar hotel, and at once sent a man in a red cap
+to Gurov. Gurov went to see her, and no one in Moscow knew of it.
+
+Once he was going to see her in this way on a winter morning (the
+messenger had come the evening before when he was out). With him
+walked his daughter, whom he wanted to take to school: it was on
+the way. Snow was falling in big wet flakes.
+
+"It's three degrees above freezing-point, and yet it is snowing,"
+said Gurov to his daughter. "The thaw is only on the surface of the
+earth; there is quite a different temperature at a greater height
+in the atmosphere."
+
+"And why are there no thunderstorms in the winter, father?"
+
+He explained that, too. He talked, thinking all the while that he
+was going to see her, and no living soul knew of it, and probably
+never would know. He had two lives: one, open, seen and known by
+all who cared to know, full of relative truth and of relative
+falsehood, exactly like the lives of his friends and acquaintances;
+and another life running its course in secret. And through some
+strange, perhaps accidental, conjunction of circumstances, everything
+that was essential, of interest and of value to him, everything in
+which he was sincere and did not deceive himself, everything that
+made the kernel of his life, was hidden from other people; and all
+that was false in him, the sheath in which he hid himself to conceal
+the truth--such, for instance, as his work in the bank, his
+discussions at the club, his "lower race," his presence with his
+wife at anniversary festivities--all that was open. And he judged
+of others by himself, not believing in what he saw, and always
+believing that every man had his real, most interesting life under
+the cover of secrecy and under the cover of night. All personal
+life rested on secrecy, and possibly it was partly on that account
+that civilised man was so nervously anxious that personal privacy
+should be respected.
+
+After leaving his daughter at school, Gurov went on to the Slaviansky
+Bazaar. He took off his fur coat below, went upstairs, and softly
+knocked at the door. Anna Sergeyevna, wearing his favourite grey
+dress, exhausted by the journey and the suspense, had been expecting
+him since the evening before. She was pale; she looked at him, and
+did not smile, and he had hardly come in when she fell on his breast.
+Their kiss was slow and prolonged, as though they had not met for
+two years.
+
+"Well, how are you getting on there?" he asked. "What news?"
+
+"Wait; I'll tell you directly. . . . I can't talk."
+
+She could not speak; she was crying. She turned away from him, and
+pressed her handkerchief to her eyes.
+
+"Let her have her cry out. I'll sit down and wait," he thought, and
+he sat down in an arm-chair.
+
+Then he rang and asked for tea to be brought him, and while he drank
+his tea she remained standing at the window with her back to him.
+She was crying from emotion, from the miserable consciousness that
+their life was so hard for them; they could only meet in secret,
+hiding themselves from people, like thieves! Was not their life
+shattered?
+
+"Come, do stop!" he said.
+
+It was evident to him that this love of theirs would not soon be
+over, that he could not see the end of it. Anna Sergeyevna grew
+more and more attached to him. She adored him, and it was unthinkable
+to say to her that it was bound to have an end some day; besides,
+she would not have believed it!
+
+He went up to her and took her by the shoulders to say something
+affectionate and cheering, and at that moment he saw himself in the
+looking-glass.
+
+His hair was already beginning to turn grey. And it seemed strange
+to him that he had grown so much older, so much plainer during the
+last few years. The shoulders on which his hands rested were warm
+and quivering. He felt compassion for this life, still so warm and
+lovely, but probably already not far from beginning to fade and
+wither like his own. Why did she love him so much? He always seemed
+to women different from what he was, and they loved in him not
+himself, but the man created by their imagination, whom they had
+been eagerly seeking all their lives; and afterwards, when they
+noticed their mistake, they loved him all the same. And not one of
+them had been happy with him. Time passed, he had made their
+acquaintance, got on with them, parted, but he had never once loved;
+it was anything you like, but not love.
+
+And only now when his head was grey he had fallen properly, really
+in love--for the first time in his life.
+
+Anna Sergeyevna and he loved each other like people very close and
+akin, like husband and wife, like tender friends; it seemed to them
+that fate itself had meant them for one another, and they could not
+understand why he had a wife and she a husband; and it was as though
+they were a pair of birds of passage, caught and forced to live in
+different cages. They forgave each other for what they were ashamed
+of in their past, they forgave everything in the present, and felt
+that this love of theirs had changed them both.
+
+In moments of depression in the past he had comforted himself with
+any arguments that came into his mind, but now he no longer cared
+for arguments; he felt profound compassion, he wanted to be sincere
+and tender. . . .
+
+"Don't cry, my darling," he said. "You've had your cry; that's
+enough. . . . Let us talk now, let us think of some plan."
+
+Then they spent a long while taking counsel together, talked of how
+to avoid the necessity for secrecy, for deception, for living in
+different towns and not seeing each other for long at a time. How
+could they be free from this intolerable bondage?
+
+"How? How?" he asked, clutching his head. "How?"
+
+And it seemed as though in a little while the solution would be
+found, and then a new and splendid life would begin; and it was
+clear to both of them that they had still a long, long road before
+them, and that the most complicated and difficult part of it was
+only just beginning.

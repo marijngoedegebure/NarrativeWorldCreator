@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A106" sourceStoryID="The Milkmaid and Her Pail">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0</visibleStates>
+		<visibleStates timelineID="Milkmaid musing">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0, #StateTimeType.Present;7.0, #StateTimeType.Present;8.0, #StateTimeType.Present;9.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9988216:dairymaid_2>"(CharacterGender.Female)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<GROUP>"(CharacterGender.Neutral, """<noun2403454:cow>"(CharacterGender.Neutral)"", ())"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun3159535:dairy>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun5399034:milk>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun2909870:bucket_2>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun7847198:cream>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun7848338:butter>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun3722288:marketplace_4>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun7840804:egg_2>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<GROUP>"(CharacterGender.Neutral, """<noun1791625:chicken>"(CharacterGender.Neutral)"", ())"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun3450230:gown_2>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun8614632:fairground>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<EVERY>"(CharacterGender.Neutral, """<noun9908025:chap_2>"(CharacterGender.Neutral)"")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;-1.0==>#StateTimeType.Unbounded;*, **5:actionAssert:verb194170_milk_something_milks_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_GROUP(CharacterGender.Neutral, noun2403454:cow(CharacterGender.Neutral), ())_1")**, span0-50, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb1904930_walk_something_walks_aroundawayFromontooverthroughtotowardunder_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", Preposition.Toward, @anon_noun3159535:dairy()_1@)**, span51-81, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb2079933_carry_something_carries_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun2909870:bucket_2()_1$)**, span82-107, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<prop the part of something>$($$$<noun5538625:head>$()$$, "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1")$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb2079933_carry_something_carries_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun2909870:bucket_2()_1$)**}, ^^^<on/around/over/etc. something>^(Preposition.On, $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)^^, ModifierScope.Entire, span108-123);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb2629535_contain_something_contains_something($anon_noun2909870:bucket_2()_1$, $anon_noun5399034:milk()_1$)**, span100-107, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[newTimeline(=Milkmaid musing=, TimelineType.RelativeRefReal, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setAttachmentPoint(=Milkmaid musing=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb544011_transform_something_transforms_into_something($anon_noun5399034:milk()_1$, Preposition.Into, $anon_noun7847198:cream()_1$)**, NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb120316_make_something_makes_something_into_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7847198:cream()_1$, Preposition.Into, $anon_noun7848338:butter()_1$)**, NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignAction(=Milkmaid musing=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb120316_make_something_makes_something_into_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7847198:cream()_1$, Preposition.Into, $anon_noun7848338:butter()_1$)**}, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=Milkmaid musing=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb544011_transform_something_transforms_into_something($anon_noun5399034:milk()_1$, Preposition.Into, $anon_noun7847198:cream()_1$)**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb544011_transform_something_transforms_into_something($anon_noun5399034:milk()_1$, Preposition.Into, $anon_noun7847198:cream()_1$)**, span183-233, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=Milkmaid musing=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb120316_make_something_makes_something_into_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7847198:cream()_1$, Preposition.Into, $anon_noun7848338:butter()_1$)**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb120316_make_something_makes_something_into_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7847198:cream()_1$, Preposition.Into, $anon_noun7848338:butter()_1$)**, span234-263, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb2242464_sell_something_sells_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7848338:butter()_1$)**, span264-291, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=Milkmaid musing=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb2242464_sell_something_sells_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7848338:butter()_1$)**}, ^^^<on/around/over/etc. something>^(Preposition.At, @anon_noun3722288:marketplace_4()_1@)^^, ModifierScope.Entire, span273-282);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb2207206_buy_something_buys_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7840804:egg_2()_1$)**, span292-335, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb1634142_hatch_something_hatches_fromoutOf_something("anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1", Preposition.From, $anon_noun7840804:egg_2()_1$)**, span336-383, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignAction(=Milkmaid musing=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1634142_hatch_something_hatches_fromoutOf_something("anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1", Preposition.From, $anon_noun7840804:egg_2()_1$)**}, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=Milkmaid musing=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb1634142_hatch_something_hatches_fromoutOf_something("anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1", Preposition.From, $anon_noun7840804:egg_2()_1$)**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb1634142_hatch_something_hatches_fromoutOf_something("anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1", Preposition.From, $anon_noun7840804:egg_2()_1$)**, span336-438, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb2242464_sell_something_sells_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1")**, span439-474, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb2207206_buy_something_buys_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun3450230:gown_2()_1$)**, span475-548, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb52374_wear_something_wears_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun3450230:gown_2()_1$)**, span549-590, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=Milkmaid musing=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb52374_wear_something_wears_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun3450230:gown_2()_1$)**}, ^^^<on/around/over/etc. something>^(Preposition.At, @anon_noun8614632:fairground()_1@)^^, ModifierScope.Entire, span568-590);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb1827858_admire_something_admires_something("anon_EVERY(CharacterGender.Neutral, noun9908025:chap_2(CharacterGender.Neutral))_1", $anon_noun3450230:gown_2()_1$)**, span591-632, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb2534492_court_something_courts_something("anon_EVERY(CharacterGender.Neutral, noun9908025:chap_2(CharacterGender.Neutral))_1", "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1")**, span633-662, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb1512625_toss_something_tosses_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)**, span663-687, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=Milkmaid musing=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb1512625_toss_something_tosses_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb1889610_shake_something_shakes_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)**, span663-687, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Milkmaid musing=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb1059564_ignore_something_ignores_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_EVERY(CharacterGender.Neutral, noun9908025:chap_2(CharacterGender.Neutral))_1")**, span688-721, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:conditionBegins([[5:conditionAssert:planTimeline("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", =Milkmaid musing:PredicateMode.TimelineAssert=)]])**, span124-721, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb1889610_shake_something_shakes_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)**, span723-810, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb2304507_fall_something_falls($anon_noun2909870:bucket_2()_1$)**, span811-830, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb1542207_spill_something_spills($anon_noun5399034:milk()_1$)**, span831-856, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:conditionBegins([[-5:conditionAssert:timelinePossible(=Milkmaid musing:PredicateMode.TimelineAssert=)]])**, span857-914, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {#StateTimeType.Present;-1.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb194170_milk_something_milks_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_GROUP(CharacterGender.Neutral, noun2403454:cow(CharacterGender.Neutral), ())_1")**}, true);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb1904930_walk_something_walks_aroundawayFromontooverthroughtotowardunder_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", Preposition.Toward, @anon_noun3159535:dairy()_1@)**}, InterpretativeNodeType.Proposition, point300-167);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", NULL, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2681795_keep_something_keeps_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun5399034:milk()_1$)**, NULL, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_2, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point626-167);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb1904930_walk_something_walks_aroundawayFromontooverthroughtotowardunder_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", Preposition.Toward, @anon_noun3159535:dairy()_1@)**}, InterpretativeNodeType.Proposition, point299-167);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb1904930_walk_something_walks_aroundawayFromontooverthroughtotowardunder_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", Preposition.Toward, @anon_noun3159535:dairy()_1@)**}, true);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb2079933_carry_something_carries_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun2909870:bucket_2()_1$)**}, InterpretativeArcType.AttemptToCause, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {{#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb2079933_carry_something_carries_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun2909870:bucket_2()_1$)**}:^^^<on/around/over/etc. something>^(Preposition.On, $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)^^}, true);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb2629535_contain_something_contains_something($anon_noun2909870:bucket_2()_1$, $anon_noun5399034:milk()_1$)**}, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", NULL, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb544011_transform_something_transforms_into_something($anon_noun5399034:milk()_1$, Preposition.Into, $anon_noun7847198:cream()_1$)**, NULL, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point618-291);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point641-520);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point669-287);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point559-379);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb120316_make_something_makes_something_into_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7847198:cream()_1$, Preposition.Into, $anon_noun7848338:butter()_1$)**, NULL, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_5, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2242464_sell_something_sells_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7848338:butter()_1$)**, NULL, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_6, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2207206_buy_something_buys_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun7840804:egg_2()_1$)**, NULL, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_7, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1634142_hatch_something_hatches_fromoutOf_something("anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1", Preposition.From, $anon_noun7840804:egg_2()_1$)**, NULL, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point824-453);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point560-380);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:ownSomething("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1")]], NULL, interp-condition_9);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_9, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point79-213);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-125);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point78-185);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2242464_sell_something_sells_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1")**, NULL, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_10, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2207206_buy_something_buys_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun3450230:gown_2()_1$)**, NULL, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_11, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point78-257);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-107);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point78-133);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point87-343);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point78-226);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point87-287);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point81-191);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point86-129);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point832-541);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point669-286);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb544011_transform_something_transforms_into_something($anon_noun5399034:milk()_1$, Preposition.Into, $anon_noun7847198:cream()_1$)**, NULL, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_12, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point85-37);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, InterpretativeNodeType.InterpAction, point97-84);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point88-41);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point558-379);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1634142_hatch_something_hatches_fromoutOf_something("anon_GROUP(CharacterGender.Neutral, noun1791625:chicken(CharacterGender.Neutral), ())_1", Preposition.From, $anon_noun7840804:egg_2()_1$)**, NULL, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_13, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point82-164);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point87-221);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point90-176);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, InterpretativeNodeType.InterpCondition, point87-228);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedCondition(=reality=, interp-condition_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point86-233);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point87-311);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb52374_wear_something_wears_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_noun3450230:gown_2()_1$)**, NULL, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_14, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, InterpretativeNodeType.InterpAction, point85-362);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point87-291);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1827858_admire_something_admires_something("anon_EVERY(CharacterGender.Neutral, noun9908025:chap_2(CharacterGender.Neutral))_1", $anon_noun3450230:gown_2()_1$)**, NULL, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_15, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2534492_court_something_courts_something("anon_EVERY(CharacterGender.Neutral, noun9908025:chap_2(CharacterGender.Neutral))_1", "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1")**, NULL, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_16, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point87-496);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, InterpretativeNodeType.InterpAction, point78-419);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1889610_shake_something_shakes_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)**, NULL, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_17, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point86-544);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point87-479);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1059564_ignore_something_ignores_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", "anon_EVERY(CharacterGender.Neutral, noun9908025:chap_2(CharacterGender.Neutral))_1")**, NULL, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_18, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-13);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.PreconditionFor, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point88-49);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, InterpretativeNodeType.InterpAction, point86-90);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_12, InterpretativeArcType.PreconditionFor, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.PreconditionFor, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-72);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, InterpretativeNodeType.InterpAction, point78-118);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_6, InterpretativeArcType.PreconditionFor, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point79-169);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point78-213);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point78-259);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point78-314);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, InterpretativeNodeType.InterpAction, point78-376);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, InterpretativeNodeType.InterpAction, point78-379);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, InterpretativeNodeType.InterpAction, point79-434);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point78-495);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point78-556);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point78-613);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, InterpretativeNodeType.InterpAction, point78-130);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-192);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point78-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point78-290);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point79-257);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point78-312);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point78-303);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point78-367);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point78-312);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, InterpretativeNodeType.InterpAction, point78-419);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, InterpretativeNodeType.InterpAction, point78-480);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point78-543);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point78-600);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point78-665);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.PreconditionFor, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_10, InterpretativeArcType.PreconditionFor, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_11, InterpretativeArcType.PreconditionFor, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_14, InterpretativeArcType.PreconditionFor, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_15, InterpretativeArcType.PreconditionFor, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point78-542);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_16, InterpretativeArcType.PreconditionFor, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.PreconditionFor, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:conditionBegins([[5:conditionAssert:planTimeline("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", =Milkmaid musing:PredicateMode.TimelineAssert=)]])**}, InterpretativeArcType.InterpretedAs, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1889610_shake_something_shakes_something("anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", $anon_prop the part of something(noun5538625:head(), anon_noun9988216:dairymaid_2(CharacterGender.Female)_1)_1$)**}, InterpretativeArcType.Actualizes, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb2304507_fall_something_falls($anon_noun2909870:bucket_2()_1$)**}, true);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb1542207_spill_something_spills($anon_noun5399034:milk()_1$)**}, InterpretativeArcType.Ceases, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[-5:conditionAssert:timelinePossible(=Milkmaid musing:PredicateMode.TimelineAssert=)]])**}, InterpretativeArcType.Ceases, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point696-549);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[-5:conditionAssert:timelinePossible(=Milkmaid musing:PredicateMode.TimelineAssert=)]])**}, InterpretativeArcType.Ceases, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[-5:conditionAssert:timelinePossible(=Milkmaid musing:PredicateMode.TimelineAssert=)]])**}, InterpretativeArcType.Ceases, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.PreconditionFor, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_2, InterpretativeArcType.PreconditionFor, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Ego, "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", NULL, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.ProvidesFor, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, InterpretativeNodeType.Ego, point815-1315);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.PreconditionFor, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Wealth, "anon_noun9988216:dairymaid_2(CharacterGender.Female)_1", NULL, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Wealth, point683-780);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point688-505);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Goal, point697-497);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Wealth, point934-519);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Wealth, point752-81);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.ProvidesFor, interp-interp_20);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+A farmer's daughter had been out to milk the cows, and was returning to the dairy carrying her pail of milk upon her head.
+
+As she walked along, she fell a-musing after this fashion: "The milk in this pail will provide me with cream, which I will make into butter and take to market to sell. With the money I will buy a number of eggs, and these, when hatched, will produce chickens, and by and by I shall have quite a large poultry-yard. Then I shall sell some of my fowls, and with the money which they will bring in I will buy myself a new gown, which I shall wear when I go to the fair; and all the young fellows will admire it, and come and make love to me, but I shall toss my head and have nothing to say to them."
+
+Forgetting all about the pail, and suiting the action to the word, she tossed her head. Down went the pail, all the milk was spilled, and all her fine castles in the air vanished in a moment!

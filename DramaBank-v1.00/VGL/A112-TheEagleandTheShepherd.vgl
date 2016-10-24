@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A112" sourceStoryID="Story From File">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;4.5, #StateTimeType.Present;5.25, #StateTimeType.Present;6.0, #StateTimeType.Present;7.0, #StateTimeType.Present;8.0, #StateTimeType.Present;9.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10587605:sheepherder_2>"(CharacterGender.Male)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun1579578:jackdaw>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9992837:daughter_3>"(CharacterGender.Neutral)"", "The Shepherds Children");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun1613294:eagle>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun15104217:wool>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun1613294:eagle(CharacterGender.Neutral)_1")**, span22-83, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**, span84-135, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**, span257-282, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**, span288-382, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**, span446-477, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**, span534-617, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;5.0, #StateTimeType.Present;5.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;5.5, **-5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**, span478-533, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb717358_react_something_reacts("The Shepherds Children")**, span677-723, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**, span724-781, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**, span782-821, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, #StateTimeType.Present;3.0==>#StateTimeType.Present;5.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**, span288-326, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.0, #StateTimeType.Present;4.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;4.5, **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**, span327-382, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun4618070:identity>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1011031_assert_something_asserts_something("anon_noun1613294:eagle(CharacterGender.Neutral)_1", |anon_noun4618070:identity()_1|)**, NULL, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point402-359);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point506-112);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point503-100);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1613294:eagle(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point498-69);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2539334_dominate_something_dominates_something("anon_noun1613294:eagle(CharacterGender.Neutral)_1", $anon_noun15104217:wool()_1$)**, NULL, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point402-359);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point512-105);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point503-105);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1613294:eagle(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point494-102);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point498-102);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", NULL, interp-interp_3, point402-359);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point582-251);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Ego, "anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", interp-interp_3, interp-interp_4, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point560-215);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2539334_dominate_something_dominates_something("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", $anon_noun15104217:wool()_1$)**, NULL, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_6, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point78-15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_6, InterpretativeArcType.ProvidesFor, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point78-9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point558-215);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1742886_imitate_something_imitates_something("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", "anon_noun1613294:eagle(CharacterGender.Neutral)_1")**, NULL, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_7, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point78-9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point78-46);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point79-133);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point78-82);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.PreconditionFor, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point583-172);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point628-177);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_1, InterpretativeArcType.PreconditionFor, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, point301-181);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**}, InterpretativeArcType.AttemptToPrevent, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Ceases, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Ceases, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2213074_deny_something_denies_something("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", |anon_noun4618070:identity()_1|)**, NULL, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point402-378);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point484-280);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point484-272);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point497-272);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Actualizes, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.WouldPrevent, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.Damages, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point507-254);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun10587605:sheepherder_2(CharacterGender.Male)_1", NULL, interp-interp_9, point405-482);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point563-478);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:foolish#adj00439905.4("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")]], NULL, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_10, interp-interp_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_10, point78-49);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_10, InterpretativeArcType.Because, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_9, InterpretativeArcType.Because, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-interp_9, InterpretativeArcType.Because, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_9, InterpretativeArcType.Because, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-interp_9, InterpretativeArcType.Because, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_10, InterpretativeArcType.Because, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;5.5: **-5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;5.5==>#StateTimeType.Present;6.0, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, #StateTimeType.Present;4.5==>#StateTimeType.Present;6.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point299-460);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point563-443);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun10587605:sheepherder_2(CharacterGender.Male)_1", NULL, interp-interp_11, point405-437);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point565-602);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Legacy, "anon_noun10587605:sheepherder_2(CharacterGender.Male)_1", interp-interp_11, interp-interp_12, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb829107_teach_something_teaches_something("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1", "The Shepherds Children")**, NULL, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_14, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_14, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point566-547);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.5, #StateTimeType.Present;5.25, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.5==>#StateTimeType.Present;5.25, **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**, span478-533, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point300-418);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.25==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point26-482);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point25-422);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point300-437);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.25==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point307-501);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.25==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point26-504);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point25-437);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.25==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point302-502);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.25==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point302-503);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1011031_assert_something_asserts_something("The Shepherds Children", |anon_noun4618070:identity()_1|)**, NULL, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_15, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_15, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_14, InterpretativeArcType.WouldCause, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point567-547);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point300-745);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point617-532);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1825237_desire_something_desires_some_proposition("The Shepherds Children", **5:actionInfinitive:verb829107_teach_something_teaches_something("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1", |anon_noun4618070:identity()_1|)**)**, NULL, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point455-504);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point471-530);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point669-530);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point475-579);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("The Shepherds Children")**}, InterpretativeArcType.InterpretedAs, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point474-589);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_16, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("The Shepherds Children")**}, InterpretativeArcType.InterpretedAs, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_16, InterpretativeArcType.PreconditionFor, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("The Shepherds Children")**}, InterpretativeArcType.InterpretedAs, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Ceases, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point473-38);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point511-112);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point481-33);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1613294:eagle(CharacterGender.Neutral)_1")**}, point300-101);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, point797-189);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, point292-449);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point707-424);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point106-21);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_3, InterpretativeArcType.Because, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point480-100);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Actualization, "anon_noun1613294:eagle(CharacterGender.Neutral)_1", NULL, interp-interp_17, point540-448);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, point743-31);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, point481-101);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.ProvidesFor, interp-interp_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_17, point743-77);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point493-207);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1613294:eagle(CharacterGender.Neutral)_1")**}, point252-101);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, point253-180);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, point260-263);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**}, point250-331);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point112-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point152-170);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_8, InterpretativeArcType.Damages, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**}, point274-331);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Actualizes, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point109-38);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1799235_fail_something_fails("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**, NULL, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, point540-448);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, point521-329);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**}, InterpretativeArcType.InterpretedAs, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.Because, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, point500-328);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.WouldPrevent, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**}, point273-331);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1835496_move_something_moves($anon_noun15104217:wool()_1$)**}, InterpretativeArcType.Ceases, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point104-97);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, point505-336);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_8, InterpretativeArcType.WouldPrevent, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_9, point620-424);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_10, point144-49);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point668-536);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, point78-31);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point300-191);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, point91-100);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point281-181);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, point690-541);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point520-648);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_14, point112-31);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.PreconditionFor, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10587605:sheepherder_2(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-action_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, point251-180);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Freedom, "anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", NULL, interp-interp_19, point540-448);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.Damages, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point526-393);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point508-249);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[-5:conditionAssert:ableToAct("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", **5:actionAssert:verb2539334_dominate_something_dominates_something("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1", $anon_noun15104217:wool()_1$)**)]], NULL, interp-condition_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point540-448);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point495-185);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.Because, interp-condition_20);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun1579578:jackdaw(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_20);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+One day a Jackdaw saw an Eagle swoop down on a lamb and carry it off in its talons. "My word," said the Jackdaw, "I'll do that myself." So it flew high up into the air, and then came shooting down with a great whirring of wings on to the back of a big ram. It had no sooner alighted than its claws got caught fast in the wool, and nothing it could do was of any use: there it stuck, flapping away, and only making things worse instead of better. By and by up came the Shepherd. "Oho," he said, "so that's what you'd be doing, is it?" And he took the Jackdaw, and clipped its wings and carried it home to his children. It looked so odd that they didn't know what to make of it. "What sort of bird is it, father?" they asked. "It's a Jackdaw," he replied, "and nothing but a Jackdaw: but it wants to be taken for an Eagle."

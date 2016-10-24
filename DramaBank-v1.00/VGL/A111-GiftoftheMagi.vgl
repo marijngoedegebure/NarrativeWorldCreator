@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A111" sourceStoryID="Story From File">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, #StateTimeType.Present;0.625, #StateTimeType.Present;0.75, #StateTimeType.Present;0.8125, #StateTimeType.Present;0.875, #StateTimeType.Present;1.0, #StateTimeType.Present;1.5, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0, #StateTimeType.Present;6.5, #StateTimeType.Present;7.0, #StateTimeType.Present;8.0, #StateTimeType.Present;9.0, #StateTimeType.Present;10.0, #StateTimeType.Present;12.0, #StateTimeType.Present;13.0, #StateTimeType.Present;14.5, #StateTimeType.Present;16.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10193967:husband_4>"(CharacterGender.Male)"", "James Dillingham Young");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10780632:wife_7>"(CharacterGender.Female)"", "Della Young");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun3374838:fob_2>$()$$, $The chain of James$);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun5254393:hair>$()$$, $The hair of Della$);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun13384877:money>$()$$, $One dollar and 87 cents$);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun3973839:pocket watch>$()$$, $Watch of James$);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<EVERY>$($$$<noun3075097:comb>$()$$->$Comb from James$)$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span319-505, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span506-522, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;0.5, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span1131-1383, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.0, #StateTimeType.Present;0.25, true);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;0.25==>#StateTimeType.Present;0.5, #StateTimeType.Present;0.0==>#StateTimeType.Present;0.5);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.5, #StateTimeType.Present;0.75, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.5==>#StateTimeType.Present;0.75, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span1853-2013, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.75, #StateTimeType.Present;0.875, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.75==>#StateTimeType.Present;0.875, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span2077-2268, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span2582-2806, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span2807-2984, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span2807-2984, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span2985-3012, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span3893-3967, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span4090-4126, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span4440-4488, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span4490-4566, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span4490-4560, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span4987-5032, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun13395296:twenty dollar bill>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;9.0==>#StateTimeType.Present;10.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span7197-7305, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;10.0==>#StateTimeType.Present;11.0, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span8855-8940, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span9212-9309, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;12.0==>#StateTimeType.Present;13.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span9562-9652, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;13.0==>#StateTimeType.Present;14.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span9908-9958, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;14.0==>#StateTimeType.Present;15.0, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span10452-10504, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<GENERIC>"(CharacterGender.Neutral, """<noun10345804:narrator>"(CharacterGender.Neutral)""->"O Henry")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;15.0==>#StateTimeType.Present;16.0, **5:actionAssert:verb717358_react_something_reacts("anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1")**, span11002-11221, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point299-880);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point24-880);]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, $One dollar and 87 cents$, NULL, $$$<noun13384877:money>$()$$);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2287789_lose_something_loses_something("James Dillingham Young", $anon_noun13384877:money()_1$)**, NULL, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point298-109);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.InterpretedAs, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point600-105);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point600-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_1, point600-106);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-460);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point27-457);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point26-459);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.875: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.5, #StateTimeType.Present;0.625, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.5==>#StateTimeType.Present;0.625, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span2077-2268, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Della Young", NULL, interp-interp_2, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point586-301);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.625: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-328);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.625: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun19613:substance>$()$$, $A gift$);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2207206_buy_something_buys_something_for_something("Della Young", $A gift$, Preposition.For, "James Dillingham Young")**, NULL, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_3, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, point89-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point296-108);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Actualizes, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.InterpretedAs, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Actualizes, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point295-104);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.InterpretedAs, interp-action_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point584-298);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.AttemptToPrevent, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point585-297);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point516-295);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point295-105);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point295-107);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.AttemptToPrevent, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_1, InterpretativeArcType.WouldPrevent, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, point89-6);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;0.625==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.625==>#StateTimeType.Present;0.75, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span1853-1906, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.75==>#StateTimeType.Present;0.8125, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span1925-2013, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.625==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.AttemptToCause, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.8125: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.AttemptToPrevent, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point298-693);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Ceases, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Della Young", NULL, interp-interp_4, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point489-757);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Implies, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_2, InterpretativeArcType.PreconditionFor, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point503-741);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb695226_value_something_values_something("James Dillingham Young", $Watch of James$)**, NULL, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_5, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb695226_value_something_values_something("James Dillingham Young", $Watch of James$)**, NULL, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point683-525);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point571-1035);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point527-1083);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-880);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Actualizes, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point527-1080);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point584-825);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[10:conditionAssert:valuable#adj02500884.1($The hair of Della$)]], NULL, interp-condition_7);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_7, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_7, point86-10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point584-879);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-1252);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-condition_7);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2242464_sell_something_sells_something("Della Young", $The hair of Della$)**, NULL, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_8, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-62);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point86-68);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point584-878);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2210119_receive_something_receives_something("Della Young", $anon_noun13395296:twenty dollar bill()_1$)**, NULL, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_9, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-69);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_7, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-66);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-55);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2207206_purchase_something_purchases_something_for_something("Della Young", $The chain of James$, Preposition.For, $anon_noun13384877:money()_1$)**, NULL, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_10, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point579-1151);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, point78-224);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point621-834);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, point78-147);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, point78-91);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, point78-98);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point625-837);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-1598);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Actualizes, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2235842_give_something_gives_something_to_something("Della Young", $The chain of James$, Preposition.To, "James Dillingham Young")**, NULL, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_11, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, point81-182);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, point83-137);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point626-867);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point89-70);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point78-243);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, point78-184);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, point78-135);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-76);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_7, point79-29);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point623-822);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "James Dillingham Young", interp-interp_4, interp-interp_12, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point124-337);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point619-653);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_7, point79-28);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_7, InterpretativeArcType.PreconditionFor, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-74);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.WouldCause, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_9, InterpretativeArcType.WouldCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_10, InterpretativeArcType.WouldCause, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_11, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point114-323);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point532-1074);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_6, InterpretativeArcType.PreconditionFor, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point560-1082);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.AttemptToCause, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;6.0, #StateTimeType.Present;6.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;6.5, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span4251-4358, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point300-1082);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point553-1083);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-1385);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point24-1530);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point301-1745);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1")**}, point303-2311);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point301-2189);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point308-2129);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point304-2038);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point311-1943);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point302-1825);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point302-1827);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point307-1748);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point311-1568);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point370-1670);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point307-1626);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point304-1762);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point309-1681);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-1708);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-1645);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point299-1568);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-1253);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-1320);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-1568);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.AttemptToCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point23-1868);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Actualizes, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point708-1206);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point706-1198);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb466651_integrate_something_integrates_something_with_something("James Dillingham Young", $The chain of James$, Preposition.With, $Watch of James$)**, NULL, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_13, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point78-242);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_11, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point135-455);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, point78-315);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point117-399);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, point78-300);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point78-246);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, point78-311);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point78-248);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_11, InterpretativeArcType.WouldCause, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, point78-313);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point301-2188);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Ceases, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point302-2187);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point670-1071);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-1251);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-1709);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point302-1828);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point311-1944);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point303-1828);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "James Dillingham Young", NULL, interp-interp_14, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point600-1787);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point301-1828);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Implies, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point601-1785);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2260362_trade_something_trades_something_for_something("James Dillingham Young", $Watch of James$, Preposition.For, $anon_EVERY(noun3075097:comb()-Comb from James)_1$)**, NULL, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_15, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, point83-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point601-1784);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2235842_give_something_gives_something_to_something("James Dillingham Young", $anon_EVERY(noun3075097:comb()-Comb from James)_1$, Preposition.To, "Della Young")**, NULL, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_16, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb466651_incorporate_something_incorporates_something_intotowith_something("Della Young", $anon_EVERY(noun3075097:comb()-Comb from James)_1$, Preposition.With, $The hair of Della$)**, NULL, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_17, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-123);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-141);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point78-76);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point601-1785);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Della Young", interp-interp_14, interp-interp_18, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point124-260);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-148);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point78-83);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point303-2187);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point308-2193);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;1.0, #StateTimeType.Present;1.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;1.5, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span10452-10504, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point299-790);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point302-990);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point25-858);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point20-1043);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point303-1019);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point296-843);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point298-997);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-929);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point298-814);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point32-663);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point23-25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point65-36);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;0.625: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point74-272);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.625==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point82-460);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.625==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point293-477);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.8125: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point92-527);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.8125: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point81-529);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point86-626);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point296-666);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point297-768);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point30-918);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point91-792);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point51-994);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point79-867);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point63-905);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point65-1087);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point23-2193);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;15.0==>#StateTimeType.Present;16.0, #StateTimeType.Present;14.0==>#StateTimeType.Present;16.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1")**}, point310-2225);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1")**}, point22-2196);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point606-1815);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point24-1864);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point297-769);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Actualizes, interp-action_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Implies, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Implies, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Ceases, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point307-1936);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.InterpretedAs, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_15, InterpretativeArcType.WouldCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point78-84);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_16, InterpretativeArcType.WouldCause, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point304-2030);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Ceases, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point125-253);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-147);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.ProvidesFor, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point114-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point308-2119);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point307-2098);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point299-769);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Ceases, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1")**}, point311-2224);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point85-175);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point99-83);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_15, point80-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point78-85);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10345804:narrator>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[redefineAction(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1")**}, **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**);]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "anon_GENERIC(CharacterGender.Neutral, noun10345804:narrator(CharacterGender.Neutral)-O Henry)_1");]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point299-2213);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "Della Young", NULL, interp-interp_19, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point601-2163);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point299-2211);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point658-2137);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "James Dillingham Young", NULL, interp-interp_20, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point737-2247);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point606-2266);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("James Dillingham Young", "Della Young")**, NULL, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point681-2192);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point609-1265);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point811-1850);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point527-2137);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_21, InterpretativeArcType.ProvidesFor, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point564-2219);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point523-2205);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point557-2272);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("Della Young", "James Dillingham Young")**, NULL, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point703-2198);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_22, InterpretativeArcType.ProvidesFor, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point738-2256);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point700-2207);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point561-2259);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point299-2212);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Implies, interp-action_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Implies, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point120-255);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-176);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point78-92);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point82-87);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point80-84);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-146);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point115-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point298-2212);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, point113-399);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, point78-249);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point298-2210);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_21, InterpretativeArcType.ProvidesFor, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point559-2260);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_21, InterpretativeArcType.ProvidesFor, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, point558-2260);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, point735-2259);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point711-2205);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_22, InterpretativeArcType.ProvidesFor, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point792-2289);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point561-1773);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point564-1803);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-156);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point81-156);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point79-157);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, point79-83);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-157);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point114-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point513-2152);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point526-2152);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point639-2147);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point777-2203);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point294-111);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point294-104);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.625==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point294-478);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.8125: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-560);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point88-618);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point76-906);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point83-1092);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-929);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point300-868);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point298-969);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point68-1250);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point300-1083);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point301-1070);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point671-1071);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point75-1087);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point294-1246);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point302-1246);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point295-1246);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-condition_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-condition_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point295-1245);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_7, point78-28);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_7, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, point78-65);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point295-1244);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb695226_value_something_values_something("Della Young", $The hair of Della$)**, NULL, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point625-1675);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point575-1253);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point537-1258);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.PreconditionFor, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point776-1127);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-1320);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point296-1311);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-1384);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point48-1373);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-1523);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-1711);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Actualizes, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Ceases, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point25-2023);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-2030);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Ceases, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, point78-163);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Ceases, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-2099);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, point78-329);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point707-1196);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, point708-1196);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point22-2262);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point28-2161);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point306-2100);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Actualizes, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;14.0==>#StateTimeType.Present;16.0, #StateTimeType.Present;13.0==>#StateTimeType.Present;16.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point304-2056);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point24-2052);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.875==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point297-664);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point300-767);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-868);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point304-1763);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;10.0==>#StateTimeType.Present;11.0, #StateTimeType.Present;9.0==>#StateTimeType.Present;11.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point657-1763);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point298-2211);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point22-1797);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point301-1805);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point25-1906);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point300-1908);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point26-2014);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point297-2027);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point31-2100);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point304-2168);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.625==>#StateTimeType.Present;0.75: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point295-477);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.75==>#StateTimeType.Present;0.8125: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-560);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;1.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point300-769);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.5==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-867);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point302-1384);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point61-1521);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point305-1612);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point307-1698);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point298-2151);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;13.0, #StateTimeType.Present;14.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;13.0==>#StateTimeType.Present;14.5, **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**, span10333-10504, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.5==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point292-2237);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point28-2068);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.5==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point18-2181);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.5==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point35-2290);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.5==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point301-2273);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point306-2161);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point40-2149);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point17-2118);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point615-1738);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point260-2147);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, %%%<doing some action>%(**5:actionGerund:verb2242464_sell_something_sells_something("James Dillingham Young", $Watch of James$)**)%%, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb720961_tell_something_tells_something("James Dillingham Young", "Della Young")**, NULL, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point615-2148);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point501-2157);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point260-2146);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.5: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.InterpretedAs, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point466-2126);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_24, InterpretativeArcType.Damages, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point467-2125);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_24, InterpretativeArcType.Damages, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.5==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10345804:narrator(CharacterGender.Neutral)_1")**}, point351-2350);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point638-2181);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point553-2207);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, point703-2340);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "James Dillingham Young", NULL, interp-interp_25, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point530-1749);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point603-1139);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point682-661);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point500-747);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.Implies, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2632167_possess_something_possesses_something("Della Young", $The hair of Della$)**, NULL, interp-action_26);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_26, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point112-16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point502-732);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point295-1245);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_26, point78-10);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Della Young", NULL, interp-interp_27, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point592-1802);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point730-1848);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point551-1445);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point599-959);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point579-936);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point580-937);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2632167_possess_something_possesses_something("James Dillingham Young", $Watch of James$)**, NULL, interp-action_28);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_28, interp-interp_27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_28, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point552-867);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, InterpretativeArcType.Implies, interp-interp_27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point502-733);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point553-868);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_27, InterpretativeArcType.PreconditionFor, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, point500-730);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_25, InterpretativeArcType.PreconditionFor, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_21, point788-2299);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_24, InterpretativeArcType.WouldPrevent, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_24, InterpretativeArcType.WouldPrevent, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_24, InterpretativeArcType.WouldPrevent, interp-interp_27);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.0, #StateTimeType.Present;4.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;4.5, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span7197-7305, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point297-1340);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point301-1443);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point47-1390);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point40-1365);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point50-1287);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point299-1193);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point329-1268);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point111-1341);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point71-1235);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point67-1326);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point63-1363);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;6.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point55-1403);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point58-1557);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point55-1611);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("Della Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;4.5==>#StateTimeType.Present;5.0, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;9.0, #StateTimeType.Present;10.0, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;9.0==>#StateTimeType.Present;10.0, **5:actionAssert:verb717358_react_something_reacts("Della Young")**, span7197-7305, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point72-1297);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point303-1837);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point25-1730);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point22-1829);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point21-1843);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point33-1660);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point57-1729);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point29-1813);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point28-1827);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb720961_tell_something_tells_something("Della Young", "James Dillingham Young")**, NULL, interp-action_29);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point445-1701);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point440-1741);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point553-1753);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, InterpretativeArcType.InterpretedAs, interp-action_29);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point514-2134);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point554-1753);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_29, InterpretativeArcType.WouldPrevent, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point330-1840);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point60-1823);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**}, point332-1840);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("James Dillingham Young")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, #StateTimeType.Present;10.0==>#StateTimeType.Present;12.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point51-1735);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point452-1798);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point229-1674);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point265-1600);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.5==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point270-1529);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Della Young")**}, point248-1787);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+THE GIFT OF THE MAGI
+by O. Henry
+
+One dollar and eighty-seven cents. That was all. And sixty cents of it was in pennies. Pennies saved one and two at a time by bulldozing the grocer and the vegetable man and the butcher until one's cheeks burned with the silent imputation of parsimony that such close dealing implied. Three times Della counted it. One dollar and eighty- seven cents. And the next day would be Christmas.
+
+There was clearly nothing to do but flop down on the shabby little couch and howl. So Della did it. Which instigates the moral reflection that life is made up of sobs, sniffles, and smiles, with sniffles predominating.
+
+While the mistress of the home is gradually subsiding from the first stage to the second, take a look at the home. A furnished flat at $8 per week. It did not exactly beggar description, but it certainly had that word on the lookout for the mendicancy squad.
+
+In the vestibule below was a letter-box into which no letter would go, and an electric button from which no mortal finger could coax a ring. Also appertaining thereunto was a card bearing the name "Mr. James Dillingham Young."
+
+The "Dillingham" had been flung to the breeze during a former period of prosperity when its possessor was being paid $30 per week. Now, when the income was shrunk to $20, though, they were thinking seriously of contracting to a modest and unassuming D. But whenever Mr. James Dillingham Young came home and reached his flat above he was called "Jim" and greatly hugged by Mrs. James Dillingham Young, already introduced to you as Della. Which is all very good.
+
+Della finished her cry and attended to her cheeks with the powder rag. She stood by the window and looked out dully at a gray cat walking a gray fence in a gray backyard. Tomorrow would be Christmas Day, and she had only $1.87 with which to buy Jim a present. She had been saving every penny she could for months, with this result. Twenty dollars a week doesn't go far. Expenses had been greater than she had calculated. They always are. Only $1.87 to buy a present for Jim. Her Jim. Many a happy hour she had spent planning for something nice for him. Something fine and rare and sterling--something just a little bit near to being worthy of the honor of being owned by Jim.
+
+There was a pier-glass between the windows of the room. Perhaps you have seen a pier-glass in an $8 flat. A very thin and very agile person may, by observing his reflection in a rapid sequence of longitudinal strips, obtain a fairly accurate conception of his looks. Della, being slender, had mastered the art.
+
+Suddenly she whirled from the window and stood before the glass. her eyes were shining brilliantly, but her face had lost its color within twenty seconds. Rapidly she pulled down her hair and let it fall to its full length.
+
+Now, there were two possessions of the James Dillingham Youngs in which they both took a mighty pride. One was Jim's gold watch that had been his father's and his grandfather's. The other was Della's hair. Had the queen of Sheba lived in the flat across the airshaft, Della would have let her hair hang out the window some day to dry just to depreciate Her Majesty's jewels and gifts. Had King Solomon been the janitor, with all his treasures piled up in the basement, Jim would have pulled out his watch every time he passed, just to see him pluck at his beard from envy.
+
+So now Della's beautiful hair fell about her rippling and shining like a cascade of brown waters. It reached below her knee and made itself almost a garment for her. And then she did it up again nervously and quickly. Once she faltered for a minute and stood still while a tear or two splashed on the worn red carpet.
+
+On went her old brown jacket; on went her old brown hat. With a whirl of skirts and with the brilliant sparkle still in her eyes, she fluttered out the door and down the stairs to the street.
+
+Where she stopped the sign read: "Mne. Sofronie. Hair Goods of All Kinds." One flight up Della ran, and collected herself, panting. Madame, large, too white, chilly, hardly looked the "Sofronie."
+
+"Will you buy my hair?" asked Della.
+
+"I buy hair," said Madame. "Take yer hat off and let's have a sight at the looks of it."
+
+Down rippled the brown cascade.
+
+"Twenty dollars," said Madame, lifting the mass with a practised hand.
+
+"Give it to me quick," said Della.
+
+Oh, and the next two hours tripped by on rosy wings. Forget the hashed metaphor. She was ransacking the stores for Jim's present.
+
+She found it at last. It surely had been made for Jim and no one else. There was no other like it in any of the stores, and she had turned all of them inside out. It was a platinum fob chain simple and chaste in design, properly proclaiming its value by substance alone and not by meretricious ornamentation--as all good things should do. It was even worthy of The Watch. As soon as she saw it she knew that it must be Jim's. It was like him. Quietness and value--the description applied to both. Twenty-one dollars they took from her for it, and she hurried home with the 87 cents. With that chain on his watch Jim might be properly anxious about the time in any company. Grand as the watch was, he sometimes looked at it on the sly on account of the old leather strap that he used in place of a chain.
+
+When Della reached home her intoxication gave way a little to prudence and reason. She got out her curling irons and lighted the gas and went to work repairing the ravages made by generosity added to love. Which is always a tremendous task, dear friends--a mammoth task.
+
+Within forty minutes her head was covered with tiny, close-lying curls that made her look wonderfully like a truant schoolboy. She looked at her reflection in the mirror long, carefully, and critically.
+
+"If Jim doesn't kill me," she said to herself, "before he takes a second look at me, he'll say I look like a Coney Island chorus girl. But what could I do--oh! what could I do with a dollar and eighty- seven cents?"
+
+At 7 o'clock the coffee was made and the frying-pan was on the back of the stove hot and ready to cook the chops.
+
+Jim was never late. Della doubled the fob chain in her hand and sat on the corner of the table near the door that he always entered. Then she heard his step on the stair away down on the first flight, and she turned white for just a moment. She had a habit for saying little silent prayer about the simplest everyday things, and now she whispered: "Please God, make him think I am still pretty."
+
+The door opened and Jim stepped in and closed it. He looked thin and very serious. Poor fellow, he was only twenty-two--and to be burdened with a family! He needed a new overcoat and he was without gloves.
+
+Jim stopped inside the door, as immovable as a setter at the scent of quail. His eyes were fixed upon Della, and there was an expression in them that she could not read, and it terrified her. It was not anger, nor surprise, nor disapproval, nor horror, nor any of the sentiments that she had been prepared for. He simply stared at her fixedly with that peculiar expression on his face.
+
+Della wriggled off the table and went for him.
+
+"Jim, darling," she cried, "don't look at me that way. I had my hair cut off and sold because I couldn't have lived through Christmas without giving you a present. It'll grow out again--you won't mind, will you? I just had to do it. My hair grows awfully fast. Say `Merry Christmas!' Jim, and let's be happy. You don't know what a nice-- what a beautiful, nice gift I've got for you."
+
+"You've cut off your hair?" asked Jim, laboriously, as if he had not arrived at that patent fact yet even after the hardest mental labor.
+
+"Cut it off and sold it," said Della. "Don't you like me just as well, anyhow? I'm me without my hair, ain't I?"
+
+Jim looked about the room curiously.
+
+"You say your hair is gone?" he said, with an air almost of idiocy.
+
+"You needn't look for it," said Della. "It's sold, I tell you--sold and gone, too. It's Christmas Eve, boy. Be good to me, for it went for you. Maybe the hairs of my head were numbered," she went on with sudden serious sweetness, "but nobody could ever count my love for you. Shall I put the chops on, Jim?"
+
+Out of his trance Jim seemed quickly to wake. He enfolded his Della. For ten seconds let us regard with discreet scrutiny some inconsequential object in the other direction. Eight dollars a week or a million a year--what is the difference? A mathematician or a wit would give you the wrong answer. The magi brought valuable gifts, but that was not among them. This dark assertion will be illuminated later on.
+
+Jim drew a package from his overcoat pocket and threw it upon the table.
+
+"Don't make any mistake, Dell," he said, "about me. I don't think there's anything in the way of a haircut or a shave or a shampoo that could make me like my girl any less. But if you'll unwrap that package you may see why you had me going a while at first."
+
+White fingers and nimble tore at the string and paper. And then an ecstatic scream of joy; and then, alas! a quick feminine change to hysterical tears and wails, necessitating the immediate employment of all the comforting powers of the lord of the flat.
+
+For there lay The Combs-- the set of combs, side and back, that Della had worshipped long in a Broadway window. Beautiful combs, pure tortoise shell, with jewelled rims-- just the shade to wear in the beautiful vanished hair. They were expensive combs, she knew, and her heart had simply craved and yearned over them without the least hope of possession. And now, they were hers, but the tresses that should have adorned the coveted adornments were gone.
+
+But she hugged them to her bosom, and at length she was able to look up with dim eyes and a smile and say: "My hair grows so fast, Jim!"
+
+And them Della leaped up like a little singed cat and cried, "Oh, oh!"
+
+Jim had not yet seen his beautiful present. She held it out to him eagerly upon her open palm. The dull precious metal seemed to flash with a reflection of her bright and ardent spirit.
+
+"Isn't it a dandy, Jim? I hunted all over town to find it. You'll have to look at the time a hundred times a day now. Give me your watch. I want to see how it looks on it."
+
+Instead of obeying, Jim tumbled down on the couch and put his hands under the back of his head and smiled.
+
+"Dell," said he, "let's put our Christmas presents away and keep 'em a while. They're too nice to use just at present. I sold the watch to get the money to buy your combs. And now suppose you put the chops on."
+
+The magi, as you know, were wise men -- wonderfully wise men -- who brought gifts to the Babe in the manger. They invented the art of giving Christmas presents. Being wise, their gifts were no doubt wise ones, possibly bearing the privilege of exchange in case of duplication. And here I have lamely related to you the uneventful chronicle of two foolish children in a flat who most unwisely sacrificed for each other the greatest treasures of their house. But in a last word to the wise of these days let it be said that of all who give gifts these two were the wisest. O all who give and receive gifts, such as they are wisest. Everywhere they are wisest. They are the magi.

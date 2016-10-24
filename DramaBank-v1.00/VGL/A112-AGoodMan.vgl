@@ -1,0 +1,1462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A112" sourceStoryID="Story From File">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;4.25, #StateTimeType.Present;4.5, #StateTimeType.Present;4.75, #StateTimeType.Present;4.875, #StateTimeType.Present;6.0, #StateTimeType.Present;7.0, #StateTimeType.Present;7.5, #StateTimeType.Present;8.0, #StateTimeType.Present;9.0, #StateTimeType.Present;10.0, #StateTimeType.Present;11.0, #StateTimeType.Present;12.0, #StateTimeType.Present;13.0, #StateTimeType.Present;14.0, #StateTimeType.Present;15.0, #StateTimeType.Present;15.5, #StateTimeType.Present;15.75, #StateTimeType.Present;16.0, #StateTimeType.Present;17.0, #StateTimeType.Present;18.0, #StateTimeType.Present;19.0, #StateTimeType.Present;20.5, #StateTimeType.Present;22.0, #StateTimeType.Present;23.0, #StateTimeType.Present;24.0, #StateTimeType.Present;25.0, #StateTimeType.Present;25.5, #StateTimeType.Present;26.0, #StateTimeType.Present;27.0, #StateTimeType.Present;28.0, #StateTimeType.Present;29.0, #StateTimeType.Present;30.0, #StateTimeType.Present;31.0, #StateTimeType.Present;32.0, #StateTimeType.Present;34.0, #StateTimeType.Present;35.0, #StateTimeType.Present;36.0, #StateTimeType.Present;37.0, #StateTimeType.Present;38.0, #StateTimeType.Present;39.0, #StateTimeType.Present;40.0, #StateTimeType.Present;41.0, #StateTimeType.Present;42.0, #StateTimeType.Present;43.0, #StateTimeType.Present;44.0, #StateTimeType.Present;45.0, #StateTimeType.Present;46.0, #StateTimeType.Present;47.0, #StateTimeType.Present;48.0, #StateTimeType.Present;49.0, #StateTimeType.Present;49.5, #StateTimeType.Present;50.0, #StateTimeType.Present;51.0, #StateTimeType.Present;52.0, #StateTimeType.Present;53.0, #StateTimeType.Present;54.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10142747:grandma_2>"(CharacterGender.Female)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9977660:criminal_4>"(CharacterGender.Male)"", "The Misfit");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9917593:child>"(CharacterGender.Neutral)"", "John and June");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10624074:son_3>"(CharacterGender.Male)"", "Bailey");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9761068:accomplice>"(CharacterGender.Male)"", "Hiram and Bobby Lee");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10388924:owner_2>"(CharacterGender.Male)"", "Red Sam");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span33-203, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;1.5==>#StateTimeType.Present;2.0, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;0.0, #StateTimeType.Present;0.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;0.5, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span553-675, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span1515-1578, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("Bailey")**, span2177-2252, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span3670-3772, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span4899-5083, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9636339:Black_9>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**, span7502-7558, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.0, #StateTimeType.Present;4.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;4.5, **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**, span5276-5326, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.5, #StateTimeType.Present;4.75, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.5==>#StateTimeType.Present;4.75, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span5327-5376, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.75, #StateTimeType.Present;4.875, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.75==>#StateTimeType.Present;4.875, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span5497-5539, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span7559-7677, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts("Red Sam")**, span9652-9760, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span9762-9804, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, "Red Sam", "Red Sam and his wife", """<noun10388924:owner_2>"(CharacterGender.Male)"");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;9.0==>#StateTimeType.Present;10.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span9979-10023, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;10.0==>#StateTimeType.Present;11.0, **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**, span10342-10525, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span10526-10602, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;10.0==>#StateTimeType.Present;11.0, **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**, span11778-11856, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span11946-12156, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;7.0, #StateTimeType.Present;7.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;7.5, **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**, span8510-8596, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;12.0==>#StateTimeType.Present;13.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span12229-12331, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;13.0==>#StateTimeType.Present;14.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**, span12332-12444, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;14.0==>#StateTimeType.Present;15.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span12610-12949, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;15.0==>#StateTimeType.Present;16.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span13459-13501, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;16.0==>#StateTimeType.Present;17.0, **5:actionAssert:verb717358_react_something_reacts("Bailey")**, span13910-13996, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;17.0==>#StateTimeType.Present;18.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span13998-14097, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;18.0==>#StateTimeType.Present;19.0, **5:actionAssert:verb717358_react_something_reacts("Bailey")**, span14452-14638, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;19.0==>#StateTimeType.Present;20.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span15600-15703, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;20.0==>#StateTimeType.Present;21.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span16562-16810, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;21.0==>#StateTimeType.Present;22.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span17090-17365, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;22.0==>#StateTimeType.Present;23.0, **5:actionAssert:verb717358_react_something_reacts("Bailey")**, span17481-17554, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;23.0==>#StateTimeType.Present;24.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span19131-19370, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;23.0==>#StateTimeType.Present;24.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;23.0==>#StateTimeType.Present;24.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span19760-19840, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;23.0==>#StateTimeType.Present;24.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;23.0==>#StateTimeType.Present;24.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span20057-20144, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;24.0==>#StateTimeType.Present;25.0, **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**, span20145-20172, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;25.0==>#StateTimeType.Present;26.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span20223-20417, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;26.0==>#StateTimeType.Present;27.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span20862-20943, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;27.0==>#StateTimeType.Present;28.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span21382-21511, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;28.0==>#StateTimeType.Present;29.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span21513-21695, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;29.0==>#StateTimeType.Present;30.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span21977-22124, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;29.0==>#StateTimeType.Present;30.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;29.0==>#StateTimeType.Present;30.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span22270-22429, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;30.0==>#StateTimeType.Present;31.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span22430-22624, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;31.0==>#StateTimeType.Present;32.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span23144-23281, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;32.0==>#StateTimeType.Present;33.0, **5:actionAssert:verb717358_react_something_reacts("Bailey")**, span23282-23443, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;33.0==>#StateTimeType.Present;34.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span23796-23915, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;34.0==>#StateTimeType.Present;35.0, **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**, span24320-24389, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;35.0==>#StateTimeType.Present;36.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span24889-24970, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;36.0==>#StateTimeType.Present;37.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span24972-25124, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;37.0==>#StateTimeType.Present;38.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span26657-26688, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;38.0==>#StateTimeType.Present;39.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span26690-26792, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;39.0==>#StateTimeType.Present;40.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span26793-27027, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;40.0==>#StateTimeType.Present;41.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span27541-27801, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;41.0==>#StateTimeType.Present;42.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span28310-28373, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;42.0==>#StateTimeType.Present;43.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span28374-28441, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;42.0==>#StateTimeType.Present;43.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;42.0==>#StateTimeType.Present;43.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span28374-28442, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;43.0==>#StateTimeType.Present;44.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span28866-28930, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;44.0==>#StateTimeType.Present;45.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span28965-29106, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;45.0==>#StateTimeType.Present;46.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span30399-30472, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;45.0==>#StateTimeType.Present;46.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;45.0==>#StateTimeType.Present;46.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span30673-30822, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;46.0==>#StateTimeType.Present;47.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span30824-31055, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;47.0==>#StateTimeType.Present;48.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span31613-31711, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;48.0==>#StateTimeType.Present;49.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span31712-31916, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;49.0==>#StateTimeType.Present;50.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span32225-32729, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;50.0==>#StateTimeType.Present;51.0, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span33410-33521, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;51.0==>#StateTimeType.Present;52.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span33522-33706, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;52.0==>#StateTimeType.Present;53.0, **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**, span34375-34402, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;53.0==>#StateTimeType.Present;54.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span34404-34476, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun10142747:grandma_2(CharacterGender.Female)_1", NULL, interp-interp_1, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Legacy, "anon_noun10142747:grandma_2(CharacterGender.Female)_1", interp-interp_1, interp-interp_2, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point162-117);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point78-123);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point594-149);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun2958343:car_3>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;20.0, #StateTimeType.Present;20.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;20.0==>#StateTimeType.Present;20.5, **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**, span16401-16556, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point300-225);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point629-375);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2074677_escape_something_escapes("The Misfit")**, NULL, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun8078020:family_6>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun9140148:Tennessee>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2129289_see_something_sees_something("anon_noun8078020:family_6(CharacterGender.Neutral)_1", @anon_noun9140148:Tennessee()_1@)**, NULL, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_5, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point78-18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point83-39);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point81-15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point97-20);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point79-24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, point78-63);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.ProvidesFor, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point627-216);]]></storyPoint>
+		<storyPoint><![CDATA[redefineAction(=reality=, interp-action_4, **5:actionAssert:verb2074677_escape_something_escapes("The Misfit")**);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun9071690:Florida>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2723951_goback_something_goes_to_something("The Misfit", Preposition.To, @anon_noun9071690:Florida()_1@)**, NULL, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;0.5: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_6, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point672-252);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**}, InterpretativeArcType.Actualizes, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2723951_goback_something_goes_to_something("anon_noun8078020:family_6(CharacterGender.Neutral)_1", Preposition.To, @anon_noun9071690:Florida()_1@)**, NULL, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.5==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_6, InterpretativeArcType.WouldPrevent, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.WouldPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**}, InterpretativeArcType.Ceases, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point846-258);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point631-358);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point595-314);]]></storyPoint>
+		<storyPoint><![CDATA[redefineAction(=reality=, interp-action_5, **5:actionAssert:verb2723951_goback_something_goes_to_something("anon_noun8078020:family_6(CharacterGender.Neutral)_1", Preposition.To, @anon_noun9140148:Tennessee()_1@)**);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point300-589);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:ignored#adj01608656.1("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")]], NULL, interp-condition_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_8, point510-639);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_8, point576-746);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.0, #StateTimeType.Present;4.25, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;4.25, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span5082-5236, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun4829182:humanity>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedCondition(=reality=, interp-condition_8);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:ignored#adj01608656.1("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")]], NULL, interp-condition_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_9, point594-760);]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, |anon_noun4829182:humanity()_1|);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Legacy, "anon_noun9636339:Black_9(CharacterGender.Neutral)_1", NULL, interp-interp_10, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_10, point626-678);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedCondition(=reality=, interp-condition_9);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:acknowledged#adj00027247.1("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")]], NULL, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point587-607);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:unacknowledged#adj00028672.1("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")]], NULL, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point589-637);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point614-561);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point593-623);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point595-747);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point590-628);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_11, InterpretativeArcType.ProvidesFor, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_12, InterpretativeArcType.Damages, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point595-744);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point591-745);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;4.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.25==>#StateTimeType.Present;4.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.5==>#StateTimeType.Present;4.75: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Ceases, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Actualizes, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_2, point79-123);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_1, InterpretativeArcType.Damages, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_12, InterpretativeArcType.ProvidesFor, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point604-758);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point302-1093);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point295-1093);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point300-1093);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Ceases, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Ceases, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;4.875==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, #StateTimeType.Present;4.875==>#StateTimeType.Present;6.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;4.875, #StateTimeType.Present;5.4375, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.875==>#StateTimeType.Present;5.4375, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span6921-7488, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;7.0, #StateTimeType.Present;7.25, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;7.25, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span7751-7965, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;4.875==>#StateTimeType.Present;5.4375: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;5.4375==>#StateTimeType.Present;6.0, #StateTimeType.Present;4.875==>#StateTimeType.Present;6.0);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.875==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;7.25: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;7.25==>#StateTimeType.Present;7.5, #StateTimeType.Present;7.0==>#StateTimeType.Present;7.5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;7.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;7.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.AttemptToCause, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;7.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.5==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Red Sam and his wife", NULL, interp-interp_13, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point617-1056);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Legacy, "Red Sam and his wife", interp-interp_13, interp-interp_14, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point110-92);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, point109-92);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**}, point26-1818);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:metaphorical#adj01419784.1("The Misfit")]], NULL, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_15, interp-interp_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_15, point78-429);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_15, point78-59);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point625-1431);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point613-1775);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point578-1804);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**}, InterpretativeArcType.InterpretedAs, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point575-1784);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_13, InterpretativeArcType.WouldCause, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_13, InterpretativeArcType.WouldPrevent, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_13, InterpretativeArcType.ProvidesFor, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point576-1756);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**}, InterpretativeArcType.InterpretedAs, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**}, InterpretativeArcType.InterpretedAs, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:hypocritical#adj02182562.1("anon_noun10142747:grandma_2(CharacterGender.Female)_1")]], NULL, interp-condition_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point608-927);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_16, InterpretativeArcType.ProvidesFor, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point733-993);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point652-1258);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point711-1364);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point650-1558);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point564-1966);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point491-1869);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point500-1900);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point561-1962);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point550-1542);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.75==>#StateTimeType.Present;4.875: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point535-1589);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_16, InterpretativeArcType.Damages, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_16, point503-1583);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[-5:conditionAssert:hypocritical#adj02182562.1("John and June")]], NULL, interp-condition_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point467-2052);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point464-2095);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point536-2095);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_17, InterpretativeArcType.WouldCause, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_17, InterpretativeArcType.WouldPrevent, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point526-2096);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point519-2104);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point509-2084);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point514-2099);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_17, InterpretativeArcType.Damages, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_17, InterpretativeArcType.ProvidesFor, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point25-2357);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point24-2357);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Ceases, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Actualizes, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun9636339:Black_9(CharacterGender.Neutral)_1")**}, InterpretativeArcType.Ceases, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point825-705);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point452-705);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_10, point708-682);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point914-703);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_10, point649-702);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point468-702);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point583-202);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, point590-202);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_6, point598-144);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point297-2468);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point300-2467);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;15.0, #StateTimeType.Present;15.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;15.0==>#StateTimeType.Present;15.5, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span12945-13228, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;15.5, #StateTimeType.Present;15.75, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;15.5==>#StateTimeType.Present;15.75, **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, span13222-13453, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;15.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point30-2700);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun10142747:grandma_2(CharacterGender.Female)_1", NULL, interp-interp_18, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point632-1922);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point588-1779);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_13, point685-1923);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point582-2337);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point589-2721);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun3463832:grove_4>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2723951_goback_something_goes_to_something("anon_noun8078020:family_6(CharacterGender.Neutral)_1", Preposition.To, @anon_noun3463832:grove_4()_1@)**, NULL, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_19, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, point104-66);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.ProvidesFor, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, point100-32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_18, point630-2602);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;15.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;15.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;15.5: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, point99-30);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.Damages, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.5==>#StateTimeType.Present;15.75: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.5==>#StateTimeType.Present;15.75: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point300-3072);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;15.5==>#StateTimeType.Present;15.75: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.5==>#StateTimeType.Present;15.75: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.75==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToCause, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToCause, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;18.0==>#StateTimeType.Present;19.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToCause, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;15.5==>#StateTimeType.Present;15.75: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;15.75==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToCause, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.5==>#StateTimeType.Present;15.75: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.75==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**}, InterpretativeArcType.AttemptToPrevent, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;20.0==>#StateTimeType.Present;20.5, #StateTimeType.Present;19.0==>#StateTimeType.Present;20.5);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;20.5==>#StateTimeType.Present;21.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;21.0==>#StateTimeType.Present;22.0, #StateTimeType.Present;20.5==>#StateTimeType.Present;22.0);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.5: **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**}, InterpretativeArcType.AttemptToPrevent, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.5: **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**}, InterpretativeArcType.AttemptToPrevent, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.5: **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**}, InterpretativeArcType.Ceases, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.5: **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**}, InterpretativeArcType.Ceases, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.5: **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**}, InterpretativeArcType.AttemptToPrevent, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;20.5==>#StateTimeType.Present;22.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Ceases, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;22.0==>#StateTimeType.Present;23.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;22.0==>#StateTimeType.Present;23.0, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span17696-17767, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:ignorant#adj00830981.1("John and June")]], NULL, interp-condition_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point584-2304);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_20, InterpretativeArcType.WouldCause, interp-condition_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point484-2532);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point564-3003);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point564-3030);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point534-3602);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point525-4194);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_20, point500-4306);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;22.0==>#StateTimeType.Present;23.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_20);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "The Misfit", NULL, interp-interp_21, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, point670-4197);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, point673-4417);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Justice, "The Misfit", interp-interp_21, interp-interp_22, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, point648-4411);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, point153-93);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, point646-4410);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, point152-91);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, point224-145);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2482425_murder_something_murders_something("The Misfit", "anon_noun8078020:family_6(CharacterGender.Neutral)_1")**, NULL, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_23, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point142-75);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;19.0==>#StateTimeType.Present;20.5: **5:actionAssert:verb1835496_move_something_moves($anon_noun2958343:car_3()_1$)**}, InterpretativeArcType.AttemptToCause, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.ProvidesFor, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.Damages, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;24.0==>#StateTimeType.Present;25.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point300-4546);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;25.0, #StateTimeType.Present;25.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;25.0==>#StateTimeType.Present;25.5, **5:actionAssert:verb717358_react_something_reacts("John and June")**, span20169-20217, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;25.0==>#StateTimeType.Present;25.5: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.InterpretedAs, interp-condition_20);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2423183_allow_something_allows_some_proposition("Hiram and Bobby Lee", **5:actionGerund:verb2482425_murder_something_murders_something("The Misfit", "anon_noun8078020:family_6(CharacterGender.Neutral)_1")**)**, NULL, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point603-512);]]></storyPoint>
+		<storyPoint><![CDATA[redefineAction(=reality=, interp-action_24, **5:actionAssert:verb2547586_help_something_helps_something_some_proposition("Hiram and Bobby Lee", "The Misfit", **5:actionImperative:verb2482425_murder_something_murders_something("The Misfit", "anon_noun8078020:family_6(CharacterGender.Neutral)_1")**)**);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point609-1016);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point702-1477);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point716-1940);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point691-2256);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point631-2775);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point639-3180);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point654-3427);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point598-3712);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point602-4068);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point512-4476);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, point222-120);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, point222-121);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point141-28);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, point140-31);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_24, point510-4476);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_24, InterpretativeArcType.WouldCause, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-condition_20, InterpretativeArcType.WouldCause, interp-condition_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_20, InterpretativeArcType.Because, interp-condition_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_20, InterpretativeArcType.PreconditionFor, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_24, InterpretativeArcType.ProvidesFor, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;24.0==>#StateTimeType.Present;25.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, InterpretativeArcType.InterpretedAs, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;23.0==>#StateTimeType.Present;24.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Implies, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;24.0==>#StateTimeType.Present;25.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, InterpretativeArcType.InterpretedAs, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;24.0==>#StateTimeType.Present;25.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, InterpretativeArcType.Implies, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb728617_recognize_something_recognizes_something("anon_noun10142747:grandma_2(CharacterGender.Female)_1", "The Misfit")**, NULL, interp-action_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point594-4191);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point595-4401);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point573-4707);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;25.5==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_25);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;25.5==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Actualizes, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;25.5==>#StateTimeType.Present;26.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Actualizes, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_25, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_25, InterpretativeArcType.PreconditionFor, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.Actualizes, interp-condition_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;26.0==>#StateTimeType.Present;27.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, point28-4922);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;27.0==>#StateTimeType.Present;28.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Actualizes, interp-action_25);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;28.0==>#StateTimeType.Present;29.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Actualizes, interp-action_25);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun10142747:grandma_2(CharacterGender.Female)_1", NULL, interp-interp_26, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point595-4519);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, point718-4422);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point609-4791);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point600-5142);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point565-5383);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Life, "anon_noun8078020:family_6(CharacterGender.Neutral)_1", interp-interp_26, interp-interp_27, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point158-75);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point565-5382);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb759657_entreat_something_entreats_something("anon_noun10142747:grandma_2(CharacterGender.Female)_1", "The Misfit")**, NULL, interp-action_29);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_29, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point78-27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point199-92);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point116-26);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_26, InterpretativeArcType.PreconditionFor, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point88-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point561-5383);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **-5:actionAssert:verb2482425_murder_something_murders_something("The Misfit", "anon_noun8078020:family_6(CharacterGender.Neutral)_1")**, NULL, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_30, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point78-56);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point238-117);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point90-67);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_29, InterpretativeArcType.WouldCause, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point90-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point86-66);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point93-66);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_30, InterpretativeArcType.ProvidesFor, interp-interp_27);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_30, InterpretativeArcType.Damages, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_30, InterpretativeArcType.Damages, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_26, InterpretativeArcType.Damages, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point640-5338);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun13947415:social station_2>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb772189_argue_something_argues_something("anon_noun10142747:grandma_2(CharacterGender.Female)_1", |anon_noun13947415:social station_2()_1|)**, NULL, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point613-4560);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point589-4902);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point535-5132);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point517-5503);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_32, InterpretativeArcType.WouldPrevent, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_32, InterpretativeArcType.WouldCause, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point438-5478);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point500-5292);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;29.0==>#StateTimeType.Present;30.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **-5:actionAssert:verb1824736_care_something_cares("The Misfit")**, NULL, interp-action_33);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_33, point642-4963);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_33, point561-5348);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_33, point490-5552);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_33, InterpretativeArcType.WouldPrevent, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_33, point480-5632);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_33);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_4, InterpretativeArcType.PreconditionFor, interp-action_6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_4, InterpretativeArcType.PreconditionFor, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_15, point78-57);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_21, InterpretativeArcType.ProvidesFor, interp-interp_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_21, point718-4422);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.ProvidesFor, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;31.0==>#StateTimeType.Present;32.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;29.0==>#StateTimeType.Present;30.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;31.0==>#StateTimeType.Present;32.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;33.0: **5:actionAssert:verb717358_react_something_reacts("Bailey")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;33.0==>#StateTimeType.Present;34.0, #StateTimeType.Present;32.0==>#StateTimeType.Present;34.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;34.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point301-6003);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;34.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToCause, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;34.0==>#StateTimeType.Present;35.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, InterpretativeArcType.AttemptToCause, interp-action_24);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:polite#adj00641158.1("The Misfit")]], NULL, interp-condition_34);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point520-5060);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point532-5486);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point639-5354);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point511-5685);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point553-5947);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point552-5966);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;32.0==>#StateTimeType.Present;34.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-condition_34);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point568-6000);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_34, InterpretativeArcType.ProvidesFor, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_34, InterpretativeArcType.Because, interp-action_33);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_34, point550-6000);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;35.0==>#StateTimeType.Present;36.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;35.0==>#StateTimeType.Present;36.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-condition_34);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;36.0==>#StateTimeType.Present;37.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;36.0==>#StateTimeType.Present;37.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToPrevent, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "The Misfit", NULL, interp-interp_35, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point622-5617);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point650-5906);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point661-6210);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point660-6224);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point660-6314);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point660-6356);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:hypocritical#adj02182562.1("anon_noun8078020:family_6(CharacterGender.Neutral)_1")]], NULL, interp-condition_36);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_36, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:metaphorical#adj01419784.1("anon_noun8078020:family_6(CharacterGender.Neutral)_1")]], NULL, interp-condition_37);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_37, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_37, point78-57);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point79-80);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_36, InterpretativeArcType.WouldCause, interp-condition_37);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_37, point81-85);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_35, InterpretativeArcType.ProvidesFor, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_35, InterpretativeArcType.Because, interp-condition_16);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-interp_35, InterpretativeArcType.Because, interp-condition_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_36, InterpretativeArcType.Because, interp-condition_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_37, InterpretativeArcType.WouldCause, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_36, InterpretativeArcType.Because, interp-condition_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;36.0==>#StateTimeType.Present;37.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun6226057:Christianity_2>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb772189_argue_something_argues_something("anon_noun10142747:grandma_2(CharacterGender.Female)_1", |anon_noun6226057:Christianity_2()_1|)**, NULL, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point572-4708);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point582-5134);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point524-5753);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point561-6164);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point573-6416);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point510-6573);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point529-6536);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point525-6566);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point524-6557);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;37.0==>#StateTimeType.Present;38.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_38, InterpretativeArcType.WouldPrevent, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_38, InterpretativeArcType.WouldCause, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;38.0==>#StateTimeType.Present;39.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_33);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_33, InterpretativeArcType.WouldPrevent, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;38.0==>#StateTimeType.Present;39.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Implies, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;36.0==>#StateTimeType.Present;37.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;36.0==>#StateTimeType.Present;37.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Implies, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2482425_murder_something_murders_something("Hiram and Bobby Lee", "Bailey")**, NULL, interp-action_39);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point604-5550);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point617-5933);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point638-6378);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point636-6524);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point533-6793);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;39.0==>#StateTimeType.Present;40.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.Actualizes, interp-action_39);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;39.0==>#StateTimeType.Present;40.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;39.0==>#StateTimeType.Present;40.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_39, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_38, InterpretativeArcType.WouldPrevent, interp-action_39);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_38, point534-6554);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_39, InterpretativeArcType.Damages, interp-interp_27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point532-6809);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;40.0==>#StateTimeType.Present;41.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Implies, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;40.0==>#StateTimeType.Present;41.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Actualizes, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point529-6808);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point530-6776);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_10, point528-604);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point533-690);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point729-693);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_11, point521-693);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_12, InterpretativeArcType.WouldPrevent, interp-condition_11);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun13990064:purity_4>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb772189_argue_something_argues_something("anon_noun10142747:grandma_2(CharacterGender.Female)_1", |anon_noun13990064:purity_4()_1|)**, NULL, interp-action_40);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point600-5728);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point602-6161);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point529-6914);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point489-7062);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point514-7349);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point512-7346);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;41.0==>#StateTimeType.Present;42.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_40);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;41.0==>#StateTimeType.Present;42.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_40, InterpretativeArcType.ProvidesFor, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;42.0==>#StateTimeType.Present;43.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point300-7452);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;42.0==>#StateTimeType.Present;43.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_40);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;43.0==>#StateTimeType.Present;44.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;44.0==>#StateTimeType.Present;45.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;44.0==>#StateTimeType.Present;45.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point300-7672);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point502-4768);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;30.0==>#StateTimeType.Present;31.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_32, point442-5294);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;38.0==>#StateTimeType.Present;39.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToPrevent, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point508-7342);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;44.0==>#StateTimeType.Present;45.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Actualizes, interp-action_33);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;45.0==>#StateTimeType.Present;46.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;45.0==>#StateTimeType.Present;46.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;46.0==>#StateTimeType.Present;47.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_38);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;46.0==>#StateTimeType.Present;47.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;46.0==>#StateTimeType.Present;47.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_35);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_37, point78-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;46.0==>#StateTimeType.Present;47.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-condition_36);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;48.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;48.0==>#StateTimeType.Present;49.0, #StateTimeType.Present;47.0==>#StateTimeType.Present;49.0);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;49.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;49.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point298-8268);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun14491271:wealth>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Property;PROPERTY, [[5:conditionAssert:instantaneous#adj00979031.1(|anon_noun14491271:wealth()_1|)]], NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb772189_argue_something_argues_something("anon_noun10142747:grandma_2(CharacterGender.Female)_1", |anon_noun14491271:wealth()_1|)**, NULL, interp-action_41);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point600-6001);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point653-5886);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_41, InterpretativeArcType.Because, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_41, InterpretativeArcType.Because, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point542-5798);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_41, InterpretativeArcType.PreconditionFor, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point480-5869);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_41, InterpretativeArcType.WouldPrevent, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_41, InterpretativeArcType.WouldCause, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point526-6172);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point524-6549);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point537-6736);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point494-6981);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point508-7277);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point508-7484);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point548-7770);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point497-8025);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point492-8272);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;49.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_41);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point494-8270);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point494-8265);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point494-8264);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_41, InterpretativeArcType.WouldCause, interp-condition_36);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point480-8252);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;49.0==>#StateTimeType.Present;50.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;49.0, #StateTimeType.Present;49.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;49.0==>#StateTimeType.Present;49.5, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span31912-32033, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;49.0==>#StateTimeType.Present;49.5: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_41);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;50.0==>#StateTimeType.Present;51.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-40);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point166-40);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_36, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_38, InterpretativeArcType.WouldCause, interp-condition_36);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_17, InterpretativeArcType.WouldPrevent, interp-condition_36);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point484-2160);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_17, point484-2150);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_12, point714-693);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.WouldPrevent, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point81-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point78-82);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point161-168);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point186-168);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_26, point645-5352);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point80-92);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point80-162);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point78-10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point78-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point78-225);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_33, point477-5653);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_30, InterpretativeArcType.WouldCause, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point545-6813);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_40, InterpretativeArcType.Because, interp-action_39);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point565-7353);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_40, InterpretativeArcType.Because, interp-action_39);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point564-6804);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point564-6797);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_39, point530-6802);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point508-7385);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point501-7392);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_40, point504-7384);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;50.0==>#StateTimeType.Present;51.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point301-9140);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;50.0==>#StateTimeType.Present;51.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, point294-9148);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point284-9241);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point284-9289);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point286-9500);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point292-9500);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point293-9285);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point296-9473);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point294-9492);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point293-9284);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point284-9484);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point300-9566);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point265-9560);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point280-9570);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point282-9577);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Actualizes, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point78-32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point113-108);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point106-29);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Actualizes, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2482425_murder_something_murders_something("The Misfit", "anon_noun10142747:grandma_2(CharacterGender.Female)_1")**, NULL, interp-action_42);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point872-5645);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point869-6101);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point829-6541);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point819-7140);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point574-7589);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point593-8254);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point557-8765);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point553-9269);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_42);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point552-9277);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;51.0==>#StateTimeType.Present;52.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Actualizes, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, point593-99);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_42, point531-9279);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:inhumane#adj01262611.1("Hiram and Bobby Lee")]], NULL, interp-condition_43);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point687-5741);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point696-6104);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point694-6888);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point581-7390);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point579-7582);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point550-7914);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point558-8432);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point507-9030);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point540-9437);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, InterpretativeArcType.Implies, interp-condition_43);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point541-9481);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_43, InterpretativeArcType.ProvidesFor, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_43, InterpretativeArcType.Because, interp-action_42);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point528-9480);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-condition_43);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-condition_43);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;49.5==>#StateTimeType.Present;50.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.Ceases, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point531-9481);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_33);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_42, InterpretativeArcType.Damages, interp-interp_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.AttemptToPrevent, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "The Misfit", NULL, interp-interp_44, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point740-6404);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point658-6361);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_35, point668-6128);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point807-6624);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point771-7443);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point776-7861);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point857-8739);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point771-9459);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[-5:conditionAssert:absolute#adj00005205.1("anon_noun8078020:family_6(CharacterGender.Neutral)_1")]], NULL, interp-condition_45);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_45, interp-interp_44);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_45, point104-48);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_44);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point738-9524);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-interp_44);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-condition_45);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point742-9510);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_44, InterpretativeArcType.WouldPrevent, interp-interp_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_43, InterpretativeArcType.WouldPrevent, interp-interp_44);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("John and June")**}, InterpretativeArcType.AttemptToCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_45, InterpretativeArcType.WouldPrevent, interp-condition_37);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_45, point78-46);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-condition_45, InterpretativeArcType.WouldPrevent, interp-condition_37);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_44, InterpretativeArcType.WouldPrevent, interp-condition_37);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point726-9509);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;47.0, #StateTimeType.Present;48.0, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;47.0==>#StateTimeType.Present;48.0, **5:actionAssert:verb717358_react_something_reacts("The Misfit")**, span31527-31706, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;48.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point297-8377);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2482425_murder_something_murders_something("Hiram and Bobby Lee", "John and June")**, NULL, interp-action_46);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point554-8292);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point489-8700);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point475-9144);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;50.0==>#StateTimeType.Present;51.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_46);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;50.0==>#StateTimeType.Present;51.0: **5:actionAssert:verb717358_react_something_reacts("anon_noun10142747:grandma_2(CharacterGender.Female)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_46);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point484-8697);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;48.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point27-8325);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point487-8372);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;47.0==>#StateTimeType.Present;48.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, InterpretativeArcType.InterpretedAs, interp-action_46);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point487-8354);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_46, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_41, point477-8254);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point483-8367);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_41, InterpretativeArcType.WouldPrevent, interp-action_46);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point469-8366);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_46, point475-8365);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_25, point522-4767);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point508-9489);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_44, point726-9518);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_29, point116-14);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_29, InterpretativeArcType.WouldCause, interp-action_30);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_29);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;53.0==>#StateTimeType.Present;54.0: **5:actionAssert:verb717358_react_something_reacts("The Misfit")**}, point282-9577);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_27, point78-160);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_30, point84-33);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_43, point532-9486);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;52.0==>#StateTimeType.Present;53.0: **5:actionAssert:verb717358_react_something_reacts("Hiram and Bobby Lee")**}, point292-9483);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, point817-325);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_10, point955-787);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("Red Sam and his wife")**}, point290-1819);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+A Good Man Is Hard To Find
+
+The grandmother didn't want to go to Florida. She wanted to visit some
+of her connections in east Tennes- see and she was seizing at every
+chance to change Bailey's mind. Bailey was the son she lived with, her
+only boy. He was sitting on the edge of his chair at the table, bent
+over the orange sports section of the Journal. "Now look here, Bailey,"
+she said, "see here, read this," and she stood with one hand on her thin
+hip and the other rattling the newspaper at his bald head. "Here this
+fellow that calls himself The Misfit is aloose from the Federal Pen and
+headed toward Florida and you read here what it says he did to these
+people. Just you read it. I wouldn't take my children in any direction
+with a criminal like that aloose in it. I couldn't answer to my
+conscience if I did."
+
+Bailey didn't look up from his reading so she wheeled around then and
+faced the children's mother, a young woman in slacks, whose face was as
+broad and innocent as a cabbage and was tied around with a green
+head-kerchief that had two points on the top like rabbit's ears. She was
+sitting on the sofa, feeding the baby his apricots out of a jar. "The
+children have been to Florida before," the old lady said. "You all ought
+to take them somewhere else for a change so they would see different
+parts of the world and be broad. They never have been to east Tennessee."
+
+The children's mother didn't seem to hear her but the eight-year-old
+boy, John Wesley, a stocky child with glasses, said, "If you don't want
+to go to Florida, why dontcha stay at home?" He and the little girl,
+June Star, were reading the funny papers on the floor.
+
+"She wouldn't stay at home to be queen for a day," June Star said
+without raising her yellow head.
+
+"Yes and what would you do if this fellow, The Misfit, caught you?" the
+grandmother asked.
+
+"I'd smack his face," John Wesley said.
+
+"She wouldn't stay at home for a million bucks," June Star said. "Afraid
+she'd miss something. She has to go everywhere we go."
+
+"All right, Miss," the grandmother said. "Just re- member that the next
+time you want me to curl your hair."
+
+June Star said her hair was naturally curly.
+
+The next morning the grandmother was the first one in the car, ready to
+go. She had her big black valise that looked like the head of a
+hippopotamus in one corner, and underneath it she was hiding a basket
+with Pitty Sing, the cat, in it. She didn't intend for the cat to be
+left alone in the house for three days because he would miss her too
+much and she was afraid he might brush against one of her gas burners
+and accidentally asphyxiate himself. Her son, Bailey, didn't like to
+arrive at a motel with a cat.
+
+She sat in the middle of the back seat with John Wesley and June Star on
+either side of her. Bailey and the children's mother and the baby sat in
+front and they left Atlanta at eight forty-five with the mileage on the
+car at 55890. The grandmother wrote this down because she thought it
+would be interesting to say how many miles they had been when they got
+back. It took them twenty minutes to reach the outskirts of the city.
+
+The old lady settled herself comfortably, removing her white cotton
+gloves and putting them up with her purse on the shelf in front of the
+back window. The children's mother still had on slacks and still had her
+head tied up in a green kerchief, but the grandmother had on a navy blue
+straw sailor hat with a bunch of white violets on the brim and a navy
+blue dress with a small white dot in the print. Her collars and cuffs
+were white organdy trimmed with lace and at her neckline she had pinned
+a purple spray of cloth violets containing a sachet. In case of an
+accident, anyone seeing her dead on the highway would know at once that
+she was a lady.
+
+She said she thought it was going to be a good day for driving, neither
+too hot nor too cold, and she cautioned Bailey that the speed limit was
+fifty-five miles an hour and that the patrolmen hid themselves behind
+billboards and small clumps of trees and sped out after you before you
+had a chance to slow down. She pointed out interesting details of the
+scenery: Stone Mountain; the blue granite that in some places came up to
+both sides of the highway; the brilliant red clay banks slightly
+streaked with purple; and the various crops that made rows of green
+lace-work on the ground. The trees were full of silver-white sunlight
+and the meanest of them sparkled. The children were reading comic
+magazines and their mother and gone back to sleep.
+
+"Let's go through Georgia fast so we won't have to look at it much,"
+John Wesley said.
+
+"If I were a little boy," said the grandmother, "I wouldn't talk about
+my native state that way. Tennessee has the mountains and Georgia has
+the hills."
+
+"Tennessee is just a hillbilly dumping ground," John Wesley said, "and
+Georgia is a lousy state too."
+
+"You said it," June Star said.
+
+"In my time," said the grandmother, folding her thin veined fingers,
+"children were more respectful of their native states and their parents
+and everything else. People did right then. Oh look at the cute little
+pickaninny!" she said and pointed to a Negro child standing in the door
+of a shack. "Wouldn't that make a picture, now?" she asked and they all
+turned and looked at the little Negro out of the back window. He waved
+
+"He didn't have any britches on," June Star said.
+
+"He probably didn't have any," the grandmother explained. "Little
+riggers in the country don't have things like we do. If I could paint,
+I'd paint that picture," she said.
+
+The children exchanged comic books.
+
+The grandmother offered to hold the baby and the children's mother
+passed him over the front seat to her. She set him on her knee and
+bounced him and told him about the things they were passing. She rolled
+her eyes and screwed up her mouth and stuck her leathery thin face into
+his smooth bland one. Occasionally he gave her a faraway smile. They
+passed a large cotton field with five or fix graves fenced in the middle
+of it, like a small island. "Look at the graveyard!" the grandmother
+said, pointing it out. "That was the old family burying ground. That
+belonged to the plantation."
+
+"Where's the plantation?" John Wesley asked.
+
+"Gone With the Wind" said the grandmother. "Ha. Ha."
+
+When the children finished all the comic books they had brought, they
+opened the lunch and ate it. The grandmother ate a peanut butter
+sandwich and an olive and would not let the children throw the box and
+the paper napkins out the window. When there was nothing else to do they
+played a game by choosing a cloud and making the other two guess what
+shape it suggested. John Wesley took one the shape of a cow and June
+Star guessed a cow and John Wesley said, no, an automobile, and June
+Star said he didn't play fair, and they began to slap each other over
+the grandmother.
+
+The grandmother said she would tell them a story if they would keep
+quiet. When she told a story, she rolled her eyes and waved her head and
+was very dramatic. She said once when she was a maiden lady she had been
+courted by a Mr. Edgar Atkins Teagarden from Jasper, Georgia. She said
+he was a very good-looking man and a gentleman and that he brought her a
+watermelon every Saturday afternoon with his initials cut in it, E. A.
+T. Well, one Saturday, she said, Mr. Teagarden brought the watermelon
+and there was nobody at home and he left it on the front porch and
+returned in his buggy to Jasper, but she never got the watermelon, she
+said, because a nigger boy ate it when he saw the initials, E. A. T. !
+This story tickled John Wesley's funny bone and he giggled and giggled
+but June Star didn't think it was any good. She said she wouldn't marry
+a man that just brought her a watermelon on Saturday. The grandmother
+said she would have done well to marry Mr. Teagarden because he was a
+gentle man and had bought Coca-Cola stock when it first came out and
+that he had died only a few years ago, a very wealthy man.
+
+They stopped at The Tower for barbecued sand- wiches. The Tower was a
+part stucco and part wood filling station and dance hall set in a
+clearing outside of Timothy. A fat man named Red Sammy Butts ran it and
+there were signs stuck here and there on the building and for miles up
+and down the highway saying, TRY RED SAMMY'S FAMOUS BARBECUE. NONE LIKE
+FAMOUS RED SAMMY'S! RED SAM! THE FAT BOY WITH THE HAPPY LAUGH. A
+VETERAN! RED SAMMY'S YOUR MAN!
+
+Red Sammy was lying on the bare ground outside The Tower with his head
+under a truck while a gray monkey about a foot high, chained to a small
+chinaberry tree, chattered nearby. The monkey sprang back into the tree
+and got on the highest limb as soon as he saw the children jump out of
+the car and run toward him.
+
+Inside, The Tower was a long dark room with a counter at one end and
+tables at the other and dancing space in the middle. They all sat down
+at a board table next to the nickelodeon and Red Sam's wife, a tall
+burnt-brown woman with hair and eyes lighter than her skin, came and
+took their order. The children's mother put a dime in the machine and
+played "The Tennessee Waltz," and the grandmother said that tune always
+made her want to dance. She asked Bailey if he would like to dance but
+he only glared at her. He didn't have a naturally sunny disposition like
+she did and trips made him nervous. The grandmother's brown eyes were
+very bright. She swayed her head from side to side and pretended she was
+dancing in her chair. June Star said play something she could tap to so
+the children's mother put in another dime and played a fast number and
+June Star stepped out onto the dance floor and did her tap routine.
+
+"Ain't she cute?" Red Sam's wife said, leaning over the counter. "Would
+you like to come be my little girl?"
+
+"No I certainly wouldn't," June Star said. "I wouldn't live in a
+broken-down place like this for a million bucks!" and she ran back to
+the table.
+
+"Ain't she cute?" the woman repeated, stretching her mouth politely.
+
+"Arn't you ashamed?" hissed the grandmother.
+
+Red Sam came in and told his wife to quit lounging on the counter and
+hurry up with these people's order. His khaki trousers reached just to
+his hip bones and his stomach hung over them like a sack of meal swaying
+under his shirt. He came over and sat down at a table nearby and let out
+a combination sigh and yodel. "You can't win," he said. "You can't win,"
+and he wiped his sweating red face off with a gray handkerchief. "These
+days you don't know who to trust," he said. "Ain't that the truth?"
+
+"People are certainly not nice like they used to be," said the grandmother.
+
+"Two fellers come in here last week," Red Sammy said, "driving a
+Chrysler. It was a old beat-up car but it was a good one and these boys
+looked all right to me. Said they worked at the mill and you know I let
+them fellers charge the gas they bought? Now why did I do that?"
+
+"Because you're a good man!" the grandmother said at once.
+
+"Yes'm, I suppose so," Red Sam said as if he were struck with this answer.
+
+His wife brought the orders, carrying the five plates all at once
+without a tray, two in each hand and one balanced on her arm. "It isn't
+a soul in this green world of God's that you can trust," she said. "And
+I don't count nobody out of that, not nobody," she repeated, looking at
+Red Sammy.
+
+"Did you read about that criminal, The Misfit, that's escaped?" asked
+the grandmother.
+
+"I wouldn't be a bit surprised if he didn't attack this place right
+here," said the woman. "If he hears about it being here, I wouldn't be
+none surprised to see him. If he hears it's two cent in the cash
+register, I wouldn't be a tall surprised if he . . ."
+
+"That'll do," Red Sam said. "Go bring these people their Co'-Colas," and
+the woman went off to get the rest of the order.
+
+"A good man is hard to find," Red Sammy said. "Everything is getting
+terrible. I remember the day you could go off and leave your screen door
+unlatched. Not no more."
+
+He and the grandmother discussed better times. The old lady said that in
+her opinion Europe was entirely to blame for the way things were now.
+She said the way Europe acted you would think we were made of money and
+Red Sam said it was no use talking about it, she was exactly right. The
+children ran outside into the white sunlight and looked at the monkey in
+the lacy chinaberry tree. He was busy catching fleas on himself and
+biting each one carefully between his teeth as if it were a delicacy.
+
+They drove off again into the hot afternoon. The grandmother took cat
+naps and woke up every few minutes with her own snoring. Outside of
+Toombsboro she woke up and recalled an old plantation that she had
+visited in this neighborhood once when she was a young lady. She said
+the house had six white columns across the front and that there was an
+avenue of oaks leading up to it and two little wooden trellis arbors on
+either side in front where you sat down with your suitor after a stroll
+in the garden. She recalled exactly which road to turn off to get to it.
+She knew that Bailey would not be willing to lose any time looking at an
+old house, but the more she talked about it, the more she wanted to see
+it once again and find out if the little twin arbors were still
+standing. "There was a secret:-panel in this house," she said craftily,
+not telling the truth but wishing that she were, "and the story went
+that all the family silver was hidden in it when Sherman came through
+but it was never found . . ."
+
+"Hey!" John Wesley said. "Let's go see it! We'll find it! We'll poke all
+the woodwork and find it! Who lives there? Where do you turn off at? Hey
+Pop, can't we turn off there?"
+
+"We never have seen a house with a secret panel!" June Star shrieked.
+"Let's go to the house with the secret panel! Hey Pop, can't we go see
+the house with the secret panel!"
+
+"It's not far from here, I know," the grandmother said. "It wouldn't
+take over twenty minutes."
+
+Bailey was looking straight ahead. His jaw was as rigid as a horseshoe.
+"No," he said.
+
+The children began to yell and scream that they wanted to see the house
+with the secret panel. John Wesley kicked the back of the front seat and
+June Star hung over her mother's shoulder and whined desperately into
+her ear that they never had any fun even on their vacation, that they
+could never do what THEY wanted to do. The baby began to scream and John
+Wesley kicked the back of the seat so hard that his father could feel
+the blows in his kidney.
+
+"All right!" he shouted and drew the car to a stop at the side of the
+road. "Will you all shut up? Will you all just shut up for one second?
+If you don't shut up, we won't go anywhere."
+
+"It would be very educational for them," the grandmother murmured.
+
+"All right," Bailey said, "but get this: this is the only time we're
+going to stop for anything like this. This is the one and only time."
+
+"The dirt road that you have to turn down is about a mile back," the
+grandmother directed. "I marked it when we passed."
+
+"A dirt road," Bailey groaned.
+
+After they had turned around and were headed toward the dirt road, the
+grandmother recalled other points about the house, the beautiful glass
+over the front doorway and the candle-lamp in the hall. John Wesley said
+that the secret panel was probably in the fireplace.
+
+"You can't go inside this house," Bailey said. "You don't know who lives
+there."
+
+"While you all talk to the people in front, I'll run around behind and
+get in a window," John Wesley suggested.
+
+"We'll all stay in the car," his mother said.
+
+They turned onto the dirt road and the car raced roughly along in a
+swirl of pink dust. The grandmother recalled the times when there were
+no paved roads and thirty miles was a day's journey. The dirt road was
+hilly and there were sudden washes in it and sharp curves on dangerous
+embankments. All at once they would be on a hill, looking down over the
+blue tops of trees for miles around, then the next minute, they would be
+in a red depression with the dust-coated trees looking down on them.
+
+"This place had better turn up in a minute," Bailey said, "or I'm going
+to turn around."
+
+The road looked as if no one had traveled on it in months.
+
+"It's not much farther," the grandmother said and just as she said it, a
+horrible thought came to her. The thought was so embarrassing that she
+turned red in the face and her eyes dilated and her feet jumped up,
+upsetting her valise in the corner. The instant the valise moved, the
+newspaper top she had over the basket under it rose with a snarl and
+Pitty Sing, the cat, sprang onto Bailey's shoulder.
+
+The children were thrown to the floor and their mother, clutching the
+baby, was thrown out the door onto the ground; the old lady was thrown
+into the front seat. The car turned over once and landed right-side-up
+in a gulch off the side of the road. Bailey remained in the driver's
+seat with the cat gray-striped with a broad white face and an orange
+nose clinging to his neck like a caterpillar.
+
+As soon as the children saw they could move their arms and legs, they
+scrambled out of the car, shouting, "We've had an ACCIDENT!" The
+grandmother was curled up under the dashboard, hoping she was injured so
+that Bailey's wrath would not come down on her all at once. The horrible
+thought she had had before the accident was that the house she had
+remembered so vividly was not in Georgia but in Tennessee.
+
+Bailey removed the cat from his neck with both hands and flung it out
+the window against the side of a pine tree. Then he got out of the car
+and started looking for the children's mother. She was sitting against
+the side of the red gutted ditch, holding the screaming baby, but she
+only had a cut down her face and a broken shoulder. "We've had an
+ACCIDENT!" the children screamed in a frenzy of delight.
+
+"But nobody's killed," June Star said with disappointment as the
+grandmother limped out of the car, her hat still pinned to her head but
+the broken front brim standing up at a jaunty angle and the violet spray
+hanging off the side. They all sat down in the ditch, except the
+children, to recover from the shock. They were all shaking.
+
+"Maybe a car will come along," said the children's mother hoarsely.
+
+"I believe I have injured an organ," said the grandmother, pressing her
+side, but no one answered her. Bailey's teeth were clattering. He had on
+a yellow sport shirt with bright blue parrots designed in it and his
+face was as yellow as the shirt. The grandmother decided that she would
+not mention that the house was in Tennessee.
+
+The road was about ten feet above and they could see only the tops of
+the trees on the other side of it. Behind the ditch they were sitting in
+there were more woods, tall and dark and deep. In a few minutes they saw
+a car some distance away on top of a hill, coming slowly as if the
+occupants were watching them. The grandmother stood up and waved both
+arms dramatically to attract their attention. The car continued to come
+on slowly, disappeared around a bend and appeared again, moving even
+slower, on top of the hill they had gone over. It was a big black
+battered hearselike automobile. There were three men in it.
+
+It came to a stop just over them and for some minutes, the driver looked
+down with a steady expressionless gaze to where they were sitting, and
+didn't speak. Then he turned his head and muttered something to the
+other two and they got out. One was a fat boy in black trousers and a
+red sweat shirt with a silver stallion embossed on the front of it. He
+moved around on the right side of them and stood staring, his mouth
+partly open in a kind of loose grin. The other had on khaki pants and a
+blue striped coat and a gray hat pulled down very low, hiding most of
+his face. He came around slowly on the left side. Neither spoke.
+
+The driver got out of the car and stood by the side of it, looking down
+at them. He was an older man than the other two. His hair was just
+beginning to gray and he wore silver-rimmed spectacles that gave him a
+scholarly look. He had a long creased face and didn't have on any shirt
+or undershirt. He had on blue jeans that were too tight for him and was
+holding a black hat and a gun. The two boys also had guns.
+
+"We've had an ACCIDENT!" the children screamed.
+
+The grandmother had the peculiar feeling that the bespectacled man was
+someone she knew. His face was as familiar to her as if she had known
+him all her life but she could not recall who he was. He moved away from
+the car and began to come down the embankment, placing his feet
+carefully so that he wouldn't slip. He had on tan and white shoes and no
+socks, and his ankles were red and thin. "Good afternoon," he said. "I
+see you all had you a little spill."
+
+"We turned over twice!" said the grandmother.
+
+"Once", he corrected. "We seen it happen. Try their car and see will it
+run, Hiram," he said quietly to the boy with the gray hat.
+
+"What you got that gun for?" John Wesley asked. "Whatcha gonna do with
+that gun?"
+
+"Lady," the man said to the children's mother, "would you mind calling
+them children to sit down by you? Children make me nervous. I want all
+you all to sit down right together there where you're at."
+
+"What are you telling US what to do for?" June Star asked.
+
+Behind them the line of woods gaped like a dark open mouth. "Come here,"
+said their mother.
+
+"Look here now," Bailey began suddenly, "we're in a predicament! We're
+in . . ."
+
+The grandmother shrieked. She scrambled to her feet and stood staring.
+"You're The Misfit!" she said. "I recognized you at once!"
+
+"Yes'm," the man said, smiling slightly as if he were pleased in spite
+of himself to be known, "but it would have been better for all of you,
+lady, if you hadn't of reckernized me."
+
+Bailey turned his head sharply and said something to his mother that
+shocked even the children. The old lady began to cry and The Misfit
+reddened.
+
+"Lady," he said, "don't you get upset. Sometimes a man says things he
+don't mean. I don't reckon he meant to talk to you thataway."
+
+"You wouldn't shoot a lady, would you?" the grandmother said and removed
+a clean handkerchief from her cuff and began to slap at her eyes with it.
+
+The Misfit pointed the toe of his shoe into the ground and made a little
+hole and then covered it up again. "I would hate to have to," he said.
+
+"Listen," the grandmother almost screamed, "I know you're a good man.
+You don't look a bit like you have common blood. I know you must come
+from nice people!"
+
+"Yes mam," he said, "finest people in the world." When he smiled he
+showed a row of strong white teeth. "God never made a finer woman than
+my mother and my daddy's heart was pure gold," he said. The boy with the
+red sweat shirt had come around behind them and was standing with his
+gun at his hip. The Misfit squatted down on the ground. "Watch them
+children, Bobby Lee," he said. "You know they make me nervous." He
+looked at the six of them huddled together in front of him and he seemed
+to be embarrassed as if he couldn't think of anything to say. "Ain't a
+cloud in the sky," he remarked, looking up at it. "Don't see no sun but
+don't see no cloud neither."
+
+"Yes, it's a beautiful day," said the grandmother. "Listen," she said,
+"you shouldn't call yourself The Misfit because I know you're a good man
+at heart. I can just look at you and tell."
+
+"Hush!" Bailey yelled. "Hush! Everybody shut up and let me handle this!"
+He was squatting in the position of a runner about to sprint forward but
+he didn't move.
+
+"I pre-chate that, lady," The Misfit said and drew a little circle in
+the ground with the butt of his gun.
+
+"It'll take a half a hour to fix this here car," Hiram called, looking
+over the raised hood of it.
+
+"Well, first you and Bobby Lee get him and that little boy to step over
+yonder with you," The Misfit said, pointing to Bailey and John Wesley.
+"The boys want to ast you something," he said to Bailey. "Would you mind
+stepping back in them woods there with them?"
+
+"Listen," Bailey began, "we're in a terrible predicament! Nobody
+realizes what this is," and his voice cracked. His eyes were as blue and
+intense as the parrots in his shirt and he remained perfectly still.
+
+The grandmother reached up to adjust her hat brim as if she were going
+to the woods with him but it came off in her hand. She stood staring at
+it and after a second she let it fall on the ground. Hiram pulled Bailey
+up by the arm as if he were assisting an old man. John Wesley caught
+hold of his father's hand and Bobby I,ee followed. They went off toward
+the woods and just as they reached the dark edge, Bailey turned and
+supporting himself against a gray naked pine trunk, he shouted, "I'll be
+back in a minute, Mamma, wait on me!"
+
+"Come back this instant!" his mother shrilled but they all disappeared
+into the woods.
+
+"Bailey Boy!" the grandmother called in a tragic voice but she found she
+was looking at The Misfit squatting on the ground in front of her. "I
+just know you're a good man," she said desperately. "You're not a bit
+common!"
+
+"Nome, I ain't a good man," The Misfit said after a second ah if he had
+considered her statement carefully, "but I ain't the worst in the world
+neither. My daddy said I was a different breed of dog from my brothers
+and sisters. 'You know,' Daddy said, 'it's some that can live their
+whole life out without asking about it and it's others has to know why
+it is, and this boy is one of the latters. He's going to be into
+everything!"' He put on his black hat and looked up suddenly and then
+away deep into the woods as if he were embarrassed again. "I'm sorry I
+don't have on a shirt before you ladies," he said, hunching his
+shoulders slightly. "We buried our clothes that we had on when we
+escaped and we're just making do until we can get better. We borrowed
+these from some folks we met," he explained.
+
+"That's perfectly all right," the grandmother said. "Maybe Bailey has an
+extra shirt in his suitcase."
+
+"I'll look and see terrectly," The Misfit said.
+
+"Where are they taking him?" the children's mother screamed.
+
+"Daddy was a card himself," The Misfit said. "You couldn't put anything
+over on him. He never got in trouble with the Authorities though. Just
+had the knack of handling them."
+
+"You could be honest too if you'd only try," said the grandmother.
+"Think how wonderful it would be to settle down and live a comfortable
+life and not have to think about somebody chasing you all the time."
+
+The Misfit kept scratching in the ground with the butt of his gun as if
+he were thinking about it. "Yestm, somebody is always after you," he
+murmured.
+
+The grandmother noticed how thin his shoulder blades were just behind
+his hat because she was standing up looking down on him. "Do you every
+pray?" she asked.
+
+He shook his head. All she saw was the black hat wiggle between his
+shoulder blades. "Nome," he said.
+
+There was a pistol shot from the woods, followed closely by another.
+Then silence. The old lady's head jerked around. She could hear the wind
+move through the tree tops like a long satisfied insuck of breath.
+"Bailey Boy!" she called.
+
+"I was a gospel singer for a while," The Misfit said. "I been most
+everything. Been in the arm service both land and sea, at home and
+abroad, been twict married, been an undertaker, been with the railroads,
+plowed Mother Earth, been in a tornado, seen a man burnt alive oncet,"
+and he looked up at the children's mother and the little girl who were
+sitting close together, their faces white and their eyes glassy; "I even
+seen a woman flogged," he said.
+
+"Pray, pray," the grandmother began, "pray, pray . . ."
+
+I never was a bad boy that I remember of," The Misfit said in an almost
+dreamy voice, "but somewheres along the line I done something wrong and
+got sent to the penitentiary. I was buried alive," and he looked up and
+held her attention to him by a steady stare.
+
+"That's when you should have started to pray," she said. "What did you
+do to get sent to the penitentiary that first time?"
+
+"Turn to the right, it was a wall," The Misfit said, looking up again at
+the cloudless sky. "Turn to the left, it was a wall. Look up it was a
+ceiling, look down it was a floor. I forget what I done, lady. I set
+there and set there, trying to remember what it was I done and I ain't
+recalled it to this day. Oncet in a while, I would think it was coming
+to me, but it never come."
+
+"Maybe they put you in by mistake," the old lady said vaguely.
+
+"Nome," he said. "It wasn't no mistake. They had the papers on me."
+
+"You must have stolen something," she said.
+
+The Misfit sneered slightly. "Nobody had nothing I wanted," he said. "It
+was a head-doctor at the penitentiary said what I had done was kill my
+daddy but I known that for a lie. My daddy died in nineteen ought
+nineteen of the epidemic flu and I never had a thing to do with it. He
+was buried in the Mount Hopewell Baptist churchyard and you can go there
+and see for yourself."
+
+"If you would pray," the old lady said, "Jesus would help you."
+
+"That's right," The Misfit said.
+
+"Well then, why don't you pray?" she asked trembling with delight suddenly.
+
+"I don't want no hep," he said. "I'm doing all right by myself."
+
+Bobby Lee and Hiram came ambling back from the woods. Bobby Lee was
+dragging a yellow shirt with bright blue parrots in it.
+
+"Thow me that shirt, Bobby Lee," The Misfit said. The shirt came flying
+at him and landed on his shoulder and he put it on. The grandmother
+couldn't name what the shirt reminded her of. "No, lady," The Misfit
+said while he was buttoning it up, "I found out the crime don't matter.
+You can do one thing or you can do another, kill a man or take a tire
+off his car, because sooner or later you're going to forget what it was
+you done and just be punished for it."
+
+The children's mother had begun to make heaving noises as if she
+couldn't get her breath. "Lady," he asked, "would you and that little
+girl like to step off yonder with Bobby Lee and Hiram and join your
+husband?"
+
+"Yes, thank you," the mother said faintly. Her left arm dangled
+helplessly and she was holding the baby, who had gone to sleep, in the
+other. "Hep that lady up, Hiram," The Misfit said as she struggled to
+climb out of the ditch, "and Bobby Lee, you hold onto that little girl's
+hand."
+
+"I don't want to hold hands with him," June Star said. "He reminds me of
+a pig."
+
+The fat boy blushed and laughed and caught her by the arm and pulled her
+off into the woods after Hiram and her mother.
+
+Alone with The Misfit, the grandmother found that she had lost her
+voice. There was not a cloud in the sky nor any sun. There was nothing
+around her but woods. She wanted to tell him that he must pray. She
+opened and closed her mouth several times before anything came out.
+Finally she found herself saying, "Jesus. Jesus," meaning, Jesus will
+help you, but the way she was saying it, it sounded as if she might be
+cursing.
+
+"Yes'm, The Misfit said as if he agreed. "Jesus shown everything off
+balance. It was the same case with Him as with me except He hadn't
+committed any crime and they could prove I had committed one because
+they had the papers on me. Of course," he said, "they never shown me my
+papers. That's why I sign myself now. I said long ago, you get you a
+signature and sign everything you do and keep a copy of it. Then you'll
+know what you done and you can hold up the crime to the punishment and
+see do they match and in the end you'll have something to prove you
+ain't been treated right. I call myself The Misfit," he said, "because I
+can't make what all I done wrong fit what all I gone through in
+punishment."
+
+There was a piercing scream from the woods, followed closely by a pistol
+report. "Does it seem right to you, lady, that one is punished a heap
+and another ain't punished at all?"
+
+"Jesus!" the old lady cried. "You've got good blood! I know you wouldn't
+shoot a lady! I know you come from nice people! Pray! Jesus, you ought
+not to shoot a lady. I'll give you all the money I've got!"
+
+"Lady," The Misfit said, looking beyond her far into the woods, "there
+never was a body that give the undertaker a tip."
+
+There were two more pistol reports and the grandmother raised her head
+like a parched old turkey hen crying for water and called, "Bailey Boy,
+Bailey Boy!" as if her heart would break.
+
+"Jesus was the only One that ever raised the dead," The Misfit
+continued, "and He shouldn't have done it. He shown everything off
+balance. If He did what He said, then it's nothing for you to do but
+thow away everything and follow Him, and if He didn't, then it's nothing
+for you to do but enjoy the few minutes you got left the best way you
+can by killing somebody or burning down his house or doing some other
+meanness to him. No pleasure but meanness," he said and his voice had
+become almost a snarl.
+
+"Maybe He didn't raise the dead," the old lady mumbled, not knowing what
+she was saying and feeling so dizzy that she sank down in the ditch with
+her legs twisted under her.
+
+"I wasn't there so I can't say He didn't," The Misfit said. "I wisht I
+had of been there," he said, hitting the ground with his fist. "It ain't
+right I wasn't there because if I had of been there I would of known.
+Listen lady," he said in a high voice, "if I had of been there I would
+of known and I wouldn't be like I am now." His voice seemed about to
+crack and the grandmother's head cleared for an instant. She saw the
+man's face twisted close to her own as if he were going to cry and she
+murmured, "Why you're one of my babies. You're one of my own children !"
+She reached out and touched him on the shoulder. The Misfit sprang back
+as if a snake had bitten him and shot her three times through the chest.
+Then he put his gun down on the ground and took off his glasses and
+began to clean them.
+
+Hiram and Bobby Lee returned from the woods and stood over the ditch,
+looking down at the grandmother who half sat and half lay in a puddle of
+blood with her legs crossed under her like a child's and her face
+smiling up at the cloudless sky.
+
+Without his glasses, The Misfit's eyes were red-rimmed and pale and
+defenseless-looking. "Take her off and thow her where you thown the
+others," he said, picking up the cat that was rubbing itself against his
+leg.
+
+"She was a talker, wasn't she?" Bobby Lee said, sliding down the ditch
+with a yodel.
+
+"She would of been a good woman," The Misfit said, "if it had been
+somebody there to shoot her every minute of her life."
+
+"Some fun!" Bobby Lee said.
+
+"Shut up, Bobby Lee," The Misfit said. "It's no real pleasure in life."

@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A111" sourceStoryID="Story From File">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0, #StateTimeType.Present;7.0, #StateTimeType.Present;8.0, #StateTimeType.Present;9.0, #StateTimeType.Present;10.0, #StateTimeType.Present;11.0, #StateTimeType.Present;12.0, #StateTimeType.Present;13.0, #StateTimeType.Present;14.0, #StateTimeType.Present;15.0, #StateTimeType.Present;16.0, #StateTimeType.Present;16.5, #StateTimeType.Present;17.0, #StateTimeType.Present;18.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10768585:warrior>"(CharacterGender.Male)"", "Brithnoth");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<EVERY>"(CharacterGender.Neutral, """<noun9730383:Viking>"(CharacterGender.Neutral)"")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10311021:messenger>"(CharacterGender.Male)"", "Viking messenger");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9702134:Anglo-Saxon>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "anon_noun9702134:Anglo-Saxon(CharacterGender.Neutral)_1");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<EVERY>"(CharacterGender.Neutral, """<noun9702134:Anglo-Saxon>"(CharacterGender.Neutral)"")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10204921:infantryman_3>"(CharacterGender.Male)"", "Kinsman of Offa");]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, "Kinsman of Offa", "Kinsman of Offa", """<noun10204921:infantryman_3>"(CharacterGender.Male)"");]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, "Kinsman of Offa", "Kinsman of Offa", """<noun10204921:infantryman_3>"(CharacterGender.Male)"");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10204921:infantryman_3>"(CharacterGender.Male)"", "Edric");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun15008847:seawater_2>$()$$, $The Tide$);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;0.0==>#StateTimeType.Present;1.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span108-194, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[redefineNoun(=reality=, "Edric", "Edric", """<noun10317007:military officer>"(CharacterGender.Male)"");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:verb717358_react_something_reacts("Kinsman of Offa")**, span254-320, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb717358_react_something_reacts("Kinsman of Offa")**, span321-387, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb717358_react_something_reacts("Edric")**, span536-568, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span841-992, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**, span1323-1375, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**, span1585-1835, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span2352-2546, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**, NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**});]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;7.0==>#StateTimeType.Present;8.0, **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**, span3080-3204, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;8.0==>#StateTimeType.Present;9.0, **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**, span3462-3551, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;9.0==>#StateTimeType.Present;10.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span3593-3669, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;10.0==>#StateTimeType.Present;11.0, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**, span4219-4308, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;11.0==>#StateTimeType.Present;12.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span4351-4437, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;12.0==>#StateTimeType.Present;13.0, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**, span4752-4854, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;13.0==>#StateTimeType.Present;14.0, **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", Preposition.To, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**, span5320-5398, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;14.0==>#StateTimeType.Present;15.0, **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1")**, span6026-6047, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;15.0==>#StateTimeType.Present;16.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span6048-6150, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10055847:enemy>"(CharacterGender.Male)"", "Viking 1");]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10055847:enemy>"(CharacterGender.Male)"", "Viking 2");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;16.0==>#StateTimeType.Present;17.0, **5:actionAssert:verb717358_react_something_reacts("Viking 2")**, span7100-7237, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransitionsAroundState(=reality=, #StateTimeType.Present;16.0, #StateTimeType.Present;16.5, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;16.0==>#StateTimeType.Present;16.5, **5:actionAssert:verb717358_react_something_reacts("Viking 1")**, span6361-6441, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;17.0==>#StateTimeType.Present;18.0, **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**, span8124-8440, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Brithnoth", NULL, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point599-100);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.InterpretedAs, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point530-81);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1385643_rally_something_rallies_something("Brithnoth", "anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1")**, NULL, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_2, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-21);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1090335_fight_something_fights_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**, NULL, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_3, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point159-119);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, @@@<noun9217230:beach>@()@@, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1478002_block_something_blocks_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", @anon_noun9217230:beach()_1@)**, NULL, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_4, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point111-67);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point157-122);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1323958_kill_something_kills_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**, NULL, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_5, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point180-180);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point529-81);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:safe#adj00066933.1(@anon_noun9217230:beach()_1@)]], NULL, interp-condition_6);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_6, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point191-256);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point110-22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_4, InterpretativeArcType.WouldCause, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_4, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point529-81);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point238-128);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point178-180);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_4, InterpretativeArcType.WouldCause, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_4, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point187-127);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point110-65);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_4, InterpretativeArcType.WouldCause, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_3, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.WouldCause, interp-condition_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point213-268);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point527-80);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Wealth, "anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", interp-interp_1, interp-interp_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_7, InterpretativeNodeType.Wealth, point242-344);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point214-267);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_6, InterpretativeArcType.ProvidesFor, interp-interp_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point479-88);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point78-63);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point78-116);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-166);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point78-224);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_7, InterpretativeNodeType.Wealth, point114-269);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point300-102);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Present;1.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.AttemptToCause, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point547-158);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "Kinsman of Offa", NULL, interp-interp_8);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1090335_fight_something_fights("Kinsman of Offa")**, NULL, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_9, interp-interp_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point95-58);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point573-510);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:verb717358_react_something_reacts("Kinsman of Offa")**}, InterpretativeArcType.InterpretedAs, interp-interp_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb717358_react_something_reacts("Kinsman of Offa")**}, InterpretativeArcType.Actualizes, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point547-514);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point78-74);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point78-126);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-185);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point80-238);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb798539_snub_something_snubs_something("Brithnoth", "Viking messenger")**, NULL, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_10, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point78-75);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-178);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point570-114);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_7, InterpretativeNodeType.Wealth, point154-406);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point80-325);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point86-240);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point90-38);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point86-98);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point87-189);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point85-302);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_7, InterpretativeNodeType.Wealth, point117-336);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point85-116);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_10, InterpretativeNodeType.InterpAction, point81-60);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_4, InterpretativeNodeType.InterpAction, point78-116);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_3, InterpretativeNodeType.InterpAction, point78-189);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-242);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_6, InterpretativeNodeType.InterpCondition, point78-301);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_7, InterpretativeNodeType.Wealth, point109-336);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.WouldCause, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_10, InterpretativeArcType.WouldCause, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point517-554);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point94-58);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point517-554);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point93-55);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_9, InterpretativeArcType.WouldCause, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, InterpretativeNodeType.Proposition, point301-646);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, InterpretativeArcType.AttemptToPrevent, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point301-870);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Actualizes, interp-action_10);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", NULL, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point588-667);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point705-579);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point608-949);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point608-619);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point606-836);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**}, InterpretativeArcType.InterpretedAs, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1090335_fight_something_fights_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", "anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1")**, NULL, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_12, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point85-25);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1101734_triumph_something_triumphes_over_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.Over, "anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1")**, NULL, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_13, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point78-90);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Wealth, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", interp-interp_11, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Wealth, point156-194);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point617-844);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point116-86);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point78-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point78-85);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Wealth, point78-161);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point154-90);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point616-846);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Wealth, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", interp-interp_11, interp-interp_15);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_15);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2284096_bribe_something_bribes_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**, NULL, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_16, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_16, InterpretativeNodeType.InterpAction, point266-6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_12, InterpretativeArcType.WouldCause, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point149-89);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point146-89);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.ProvidesFor, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Wealth, point180-182);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_16, InterpretativeArcType.WouldCause, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point78-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point618-845);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, InterpretativeNodeType.Proposition, point300-648);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, InterpretativeArcType.AttemptToCause, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point616-844);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point93-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, InterpretativeNodeType.Proposition, point300-645);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, InterpretativeArcType.InterpretedAs, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point301-868);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Ceases, interp-action_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**}, InterpretativeArcType.AttemptToPrevent, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point553-1276);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point300-1344);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_8, InterpretativeNodeType.Belief, point675-855);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point672-354);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Actualizes, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeNodeType.Proposition, point300-1456);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeArcType.AttemptToPrevent, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeArcType.AttemptToCause, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Ceases, interp-action_4);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeArcType.AttemptToCause, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeNodeType.Proposition, point301-1665);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeArcType.AttemptToPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", Preposition.To, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeArcType.Actualizes, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", Preposition.To, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, InterpretativeArcType.Actualizes, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point651-1566);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1")**}, InterpretativeArcType.AttemptToCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point672-352);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point300-1978);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.AttemptToCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point301-1977);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.AttemptToPrevent, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1137138_shoot_something_shoots_something("Viking 1", "Brithnoth")**, NULL, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point1074-481);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point915-1144);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point697-1945);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;16.5: **5:actionAssert:verb717358_react_something_reacts("Viking 1")**}, InterpretativeNodeType.Proposition, point300-2089);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;16.5: **5:actionAssert:verb717358_react_something_reacts("Viking 1")**}, InterpretativeArcType.InterpretedAs, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point693-1945);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point897-2079);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1137138_shoot_something_shoots_something("Viking 2", "Brithnoth")**, NULL, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point805-144);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point561-2184);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point472-2080);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point474-2182);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;16.5==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Viking 2")**}, InterpretativeNodeType.Proposition, point300-2184);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.5==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Viking 2")**}, InterpretativeArcType.InterpretedAs, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.WouldCause, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point474-2179);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.WouldPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Ceases, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Actualizes, interp-interp_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point147-88);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point652-1566);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point312-2361);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Source, point39-2314);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point726-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_11, InterpretativeNodeType.Goal, point772-1360);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Brithnoth", interp-interp_11, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_19, InterpretativeNodeType.Goal, point94-600);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_19);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "Brithnoth", NULL, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point649-2290);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:brave#adj00262792.1("Brithnoth")]], NULL, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_21, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point721-2220);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_21, InterpretativeNodeType.InterpCondition, point141-7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point720-2223);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb358431_die_something_dies("Brithnoth")**, NULL, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_22, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, InterpretativeNodeType.InterpAction, point135-37);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point723-2223);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Membership, "Brithnoth", interp-interp_20, interp-interp_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_23, InterpretativeNodeType.Membership, point198-130);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_22, InterpretativeNodeType.InterpAction, point133-72);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_21, InterpretativeNodeType.InterpCondition, point141-7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_21, InterpretativeArcType.WouldCause, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_22, InterpretativeArcType.ProvidesFor, interp-interp_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Actualizes, interp-interp_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Proposition, point312-2358);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Actualizes, interp-action_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.AttemptToCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;16.5: **5:actionAssert:verb717358_react_something_reacts("Viking 1")**}, InterpretativeArcType.AttemptToCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;16.5==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Viking 2")**}, InterpretativeArcType.AttemptToCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_20, InterpretativeNodeType.Goal, point723-2245);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Edric")**}, InterpretativeNodeType.Proposition, point298-421);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeArcType.Actualizes, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point1017-631);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**}, InterpretativeArcType.AttemptToCause, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**}, InterpretativeArcType.AttemptToCause, interp-action_3);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb717358_react_something_reacts("Edric")**});]]></storyPoint>
+		<storyPoint><![CDATA[reassignTransition(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, #StateTimeType.Present;3.0==>#StateTimeType.Present;5.0);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point1036-696);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, InterpretativeNodeType.Source, point55-2356);]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "Edric");]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, span840-991);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:verb717358_react_something_reacts("Viking messenger")**}, span1583-1833);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, span2350-2544);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;7.0==>#StateTimeType.Present;8.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**}, span3077-3201);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;8.0==>#StateTimeType.Present;9.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1", Preposition.To, $The Tide$)**}, span3459-3548);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;9.0==>#StateTimeType.Present;10.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, span3589-3665);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;10.0==>#StateTimeType.Present;11.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, span4214-4303);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;11.0==>#StateTimeType.Present;12.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, span4345-4431);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;12.0==>#StateTimeType.Present;13.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, span4746-4848);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;13.0==>#StateTimeType.Present;14.0: **5:actionAssert:verb717358_react_something_reacts_to_something("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1", Preposition.To, "anon_EVERY(CharacterGender.Neutral, noun9730383:Viking(CharacterGender.Neutral))_1")**}, span5314-5392);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;14.0==>#StateTimeType.Present;15.0: **5:actionAssert:verb717358_react_something_reacts("anon_EVERY(CharacterGender.Neutral, noun9702134:Anglo-Saxon(CharacterGender.Neutral))_1")**}, span6019-6040);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;15.0==>#StateTimeType.Present;16.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, span6041-6143);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;16.0==>#StateTimeType.Present;16.5: **5:actionAssert:verb717358_react_something_reacts("Viking 1")**}, span6353-6433);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;16.5==>#StateTimeType.Present;17.0: **5:actionAssert:verb717358_react_something_reacts("Viking 2")**}, span7091-7228);]]></storyPoint>
+		<storyPoint><![CDATA[setSourceTextSpan(=reality=, {#StateTimeType.Present;17.0==>#StateTimeType.Present;18.0: **5:actionAssert:verb717358_react_something_reacts("Brithnoth")**}, span8114-8430);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+The Battle of Maldon
+Translated from the Anglo-Saxon by Wilfrid Berridge
+
+
+BRITHNOTH DECIDES TO FIGHT
+
+Then he ordered each of his warriors his horse to loose
+Far off to send it and forth to go,
+To be mindful of his hands and of his high heart.
+Then did Offa's Kinsman first know
+That the earl would not brook cowardice,
+Loosed he from his hands his darling to fly,
+His Hawk to the wood, and to the battle strode.
+From that one could tell that the chieftain would never
+Weaken in the warfare - when he his weapons seized.
+And after him Edric chose his chief to follow,
+His friend in the fight - then 'gan he forth to bear
+The spear to the strife - high spirit had he,
+So long as he with his hands to hold was able
+His buckler and broadsword; his boast he fulfilled
+That he by his friend's side should fight.
+
+
+BRITHNOTH PREPARES HIS ARRAY
+
+Then did Brithnoth begin his men to bestow -
+He rode up and counselled them - his soldiers he taught
+How they should stand, and their standing to keep,
+And bade them their round shields rightly to hold
+Fast to their forearms, that they flinch not at all.
+And when he had his folk fairly bestowed
+He lighted there with his people, where he would liefest be
+Where he knew his own troops were most to be trusted.
+
+
+THE VIKINGS PARLEY
+
+Then stood forth on the strand and sternly spake
+The messenger of the Vikings, delivered his tidings;
+He boastfully spoke, for the seafarers
+Their sentence to the earl, where he stood on the shore.
+"They sent me to thee, those bold seamen,
+And bade me to say that thou must send swiftly
+Ring-money for pledges. For you were it better
+That you buy off this spear-rush with your tax,
+Than that we should have so hard a battle.
+What need we to vex us, if you will agree?
+We will for this gold a sure compact make
+If thou wilt agree to it - thou that art strongest.
+If that thou be willing thy people to redeem,
+To yield to the seamen at their own choice
+Tribute for a truce, and so take peace of us,
+Then will we with the tax to ship betake us
+To sail on the sea - and hold truce with you.
+Brithnoth made answer - his buckler he grasped,
+Brandished his slender spear - and spoke.
+"Hearest thou, sea-robber, what this people say?
+For tribute they're ready to give you their spears,
+The edge poison-bitter, and the ancient sword.
+War-gear that will bring you no profit in the fight.
+Thou messenger of the seamen, back with thy message.
+Tell to thy people, these far more hateful tidings,
+There stands here a good earl in the midst of his men,
+Who will this country ever defend,
+The kingdom of Aethelred, mine overlord,
+The folk and the ground - but they shall fall,
+The foemen in the fight; too shameful methinks
+That ye with our tribute, to ship should be gone
+Without a blow struck - now that ye have thus far
+Made your incoming into our land.
+Nor shall ye so softly carry off our riches.
+Sooner shall point and edge reconcile us,
+Grim warplay indeed - before we give tribute."
+Bade he then to bear the shields, the warriors to go,
+So that they on the river's bank all stood.
+
+
+THE TIDE DELAYS THE FIGHTING
+
+Nor could for the water, the army come at the other,
+For there came flowing, flood after ebb;
+Locked were the ocean-streams, and too long it seemed
+Until they together might carry their spears.
+There by Panta's stream in array they bestood,
+Essex men's rank, and the men from the ships,
+Nor might any one of them injure the other
+Except where from arrow's flight one had his death.
+The flood went out - the pirates stood ready.
+Full many of the Vikings, eager for battle.
+
+
+BRITHNOTH SETS A GUARD OVER THE FORD
+
+Then bade the men's saviour, one to hold the bridge,
+A warrior war-hardened, that was Wulfstan hight,
+Courageous mid his kin - he was Ceola's son,
+Who the first foeman with his spear did fell
+That bravest stepped forth upon the bridge.
+There stood with Wulfstan warriors goodly
+Aelfere and Maccus, high hearted both,
+That never at the ford would turn them to flight,
+But they steadfastly 'gainst their foes made defence,
+While their weapons to wield they were able.
+
+
+THE VIKINGS ARE BAULKED
+
+When they saw that, and keenly espied
+That bitter bridge-guardians there they met
+Then began they to feign - those loathed guests -
+And begged that they might some foothold get,
+To fare over the ford - the foemen to lead.
+
+
+BRITHNOTH ALLOWS THE VIKINGS TO CROSS
+
+Then did the earl, in his overweening heart
+Lend land too much to that loathed people.
+Then 'gan he call out - across the cold water
+Brighthelm's son, and all the band listened.
+"Now room is meted you, come swiftly to us,
+Warriors to war. Only God knows
+Who at the end shall possess this fight's field".
+Then went the war wolves - for water they recked not.
+The troop of the pirates, west over Panta.
+Over the shining water they carried their shields
+Seamen to the shore, their bucklers they shouldered.
+There against the raiders ready stood
+Brithnoth with his band, and with the bucklers bade
+Form the shield wall, and make firm the ranks
+Fast against the foes. Then was fighting nigh,
+Fame in the fight - now was the hour come
+When that the feymen must fall.
+
+
+THE BATTLE IS JOINED
+
+Now was riot raised, the ravens wheeled,
+The eagle, eager for carrion, there was a cry on earth.
+Then loosed they from their hands the file-hard lance,
+The sharp-ground spears to fly.
+Bows were busied - buckler met point
+Bitter was the battle-rush, warriors fell
+On either hand, the young men lay!
+Wounded was Wulfmur, a war bed he chose,
+Even Brithnoth's kinsman, he with swords
+Was straight cut down, his sister's son.
+Then to the Vikings was requital given.
+I heard that Edward did slay one
+Straightly with his sword, nor stinted the blow,
+That at his feet fell - the fey warrior.
+For this his thane did to him give thanks,
+Even to his chamberlain - when he had a space.
+
+
+THE ESSEX MEN STAND FAST
+
+So stood firm the stout-hearted
+Warriors in the war - they did keenly strive
+Who with his point first should be able
+From fey men to win life.
+Warriors with weapons: wrack fell on earth.
+They stood steadfast; Brithnoth stirred them,
+Bade each of his men intend to the strife
+That would from the Danes win glory.
+
+
+A VIKING ATTACKS BRITHNOTH
+
+Went one stern in battle - his weapon upheaved,
+His shield for safety - and 'gainst the chief strode -
+As resolute against him the earl did go,
+Each to the other did evil intend.
+Sent then the seafarer a southern dart,
+And wounded was the warriors' chieftain.
+But he shoved with his shield - so that the shaft burst,
+And the spear broke, and it sprang away.
+Wroth was the chieftain, he pierced with his spear
+That proud Viking who gave him that wound.
+Yet prudent was the chieftain; he aimed his shaft to go
+Through the man's neck - his hand guided it
+So that he reached his sudden enemy's life.
+Then he a second swiftly sent
+That the breastplate burst - in the heart was he wounded
+Through the ring-harness - and at his heart stood
+The poisoned point; the earl was the blither:-
+Laughed then that high-heart - made thanks to God
+For his day's work - that his Saviour granted him.
+
+
+A SECOND VIKING WOUNDS BRITHNOTH
+
+Loosed then one of the foemen a dart from his hands,
+To fly from his finders - that it rushed forth
+Through the noble thane of Aethelred.
+Close to his side stood a youth not yet grown
+Wulfstan's child - even Wulfmeer the younger.
+He plucked from his chieftain that bloody spear
+Then loosed the hard spear 'gainst that other to go;
+In ran the point - so that he on earth lay
+Who ere had sorely wounded his chief.
+Went an armed Viking against the earl
+Who wished the earl's jewels to plunder,
+His armour and rings - and well-adorned sword.
+Then Brithnoth drew his sword from sheath
+Broad and brown edged - and at his breast-plate smote.
+Too soon hindered him one of the seamen,
+So that the earl's arm he did injure.
+Fell then to earth the fallow-hilted sword,
+Nor could he hold the hard brand
+Or wield his weapon.
+
+
+BRITHNOTH'S DYING WORDS
+
+Yet then this word did speak
+The old warrior; cheered on his men
+Ordered to go forward - his good brethren.
+No longer could he firmly on his feet stand.
+He looked up to heaven........
+"I thank Thee, Lord of all peoples
+For all those joys that I on earth have known.
+Now, my Maker mild - I have most need
+That thou to my ghost should grant good.
+That my soul to Thee may journey,
+Into thy kingdom - O lord of the Angels,
+May pass with peace - I do desire of Thee
+That the hell-fiends may not hurt it."
+Then hewed at him those heathen men
+And at both those men that stood him beside,
+Aelfnoth and Wulfmeer - both fell;
+Then beside their liege - their lives they yielded.

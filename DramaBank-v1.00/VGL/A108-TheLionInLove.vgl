@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE help [
+		<!ELEMENT schSavedStory (sourceStory?, visibleStatesSet, storyPoints)>
+		<!ELEMENT sourceStory (#PCDATA)>
+		<!ELEMENT visibleStatesSet (visibleStates+)>
+		<!ELEMENT visibleStates (#PCDATA)>
+		<!ELEMENT storyPoints (storyPoint*)>
+		<!ELEMENT storyPoint (#PCDATA)>
+]>
+<schSavedStory configKey="835742799" UID="A108" sourceStoryID="The Lion In Love">
+	<visibleStatesSet>
+		<visibleStates timelineID="reality">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0, #StateTimeType.Present;5.0, #StateTimeType.Present;6.0, #StateTimeType.Present;7.0</visibleStates>
+		<visibleStates timelineID="Marriage requirements">#StateTimeType.Present;-1.0, #StateTimeType.Present;0.0, #StateTimeType.Present;1.0, #StateTimeType.Present;2.0, #StateTimeType.Present;3.0, #StateTimeType.Present;4.0</visibleStates>
+	</visibleStatesSet>
+	<storyPoints>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun2129165:lion>"(CharacterGender.Male)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9968549:cottager>"(CharacterGender.Male)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun9992837:daughter_3>"(CharacterGender.Female)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<character the role of something>"(CharacterGender.Female, """<noun9992837:daughter_3>"(CharacterGender.Neutral)"", "anon_noun9968549:cottager(CharacterGender.Male)_1")"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[undefineNoun(=reality=, "anon_noun9992837:daughter_3(CharacterGender.Female)_1");]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;-1.0==>#StateTimeType.Unbounded;*, **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, span0-58, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;-1.0==>#StateTimeType.Unbounded;*, **5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", **5:actionInfinitive:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**, span59-83, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignAction(=reality=, {#StateTimeType.Present;-1.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", **5:actionInfinitive:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**}, #StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*);]]></storyPoint>
+		<storyPoint><![CDATA[reassignAction(=reality=, {#StateTimeType.Present;-1.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, #StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**, span84-115, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, ^^becauseCondition([[5:conditionAssert:beliefConditionPresent("anon_noun9968549:cottager(CharacterGender.Male)_1", [[5:conditionAssert:frightful#adj01677200.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])]])^^, ModifierScope.Entire, span116-150);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0, **-5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionAssert:verb2566528_offend_something_offends_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**)**, span151-190, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[reassignAction(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **-5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionAssert:verb2566528_offend_something_offends_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**)**}, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0);]]></storyPoint>
+		<storyPoint><![CDATA[reassignAction(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **-5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionAssert:verb2566528_offend_something_offends_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**)**}, #StateTimeType.Present;1.0==>#StateTimeType.Present;2.0);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, |||<noun5661668:solution>|()||, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;2.0==>#StateTimeType.Present;3.0, **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**, span191-230, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**}, ^^^<as follows>^()^^, ModifierScope.Entire, span210-219);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb2053941_approach_something_approaches_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, span232-251, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[newTimeline(=Marriage requirements=, TimelineType.RelativeRefReal, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setAttachmentPoint(=Marriage requirements=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<prop the part of something>$($$$<noun5282746:tooth>$()$$, "anon_noun2129165:lion(CharacterGender.Male)_1")$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<prop the part of something>$($$$<noun5581693:nail>$()$$, "anon_noun2129165:lion(CharacterGender.Male)_1")$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Marriage requirements=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb2423183_allow_something_allows_something_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionImperative:verb1459392_extract_something_extracts_something("anon_noun9968549:cottager(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)**, NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setConditionality(=Marriage requirements=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb2423183_allow_something_allows_something_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionImperative:verb1459392_extract_something_extracts_something("anon_noun9968549:cottager(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)**}, Conditionality.If);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Marriage requirements=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb2423183_allow_something_allows_something_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionImperative:verb1552519_cut_something_cuts_something("anon_noun9968549:cottager(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)**, NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[setConditionality(=Marriage requirements=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb2423183_allow_something_allows_something_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionImperative:verb1552519_cut_something_cuts_something("anon_noun9968549:cottager(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)**}, Conditionality.If);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=Marriage requirements=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb806502_approve_something_approves_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionGerund:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**, NULL, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, """<noun10193967:husband_4>"(CharacterGender.Neutral)"", NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;3.0==>#StateTimeType.Present;4.0, **5:actionAssert:verb1009240_say_something_says_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", =Marriage requirements:PredicateMode.TimelineAssert=)**, span326-456, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, span459-487, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, ^^greatly()^^, ModifierScope.Entire, span472-479);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;4.0==>#StateTimeType.Present;5.0, **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**, span488-536, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;5.0==>#StateTimeType.Present;6.0, **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**, span538-579, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}, ^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^, ModifierScope.Entire, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}, ^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^, ModifierScope.Entire, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:conditionBegins([[5:conditionAssert:unafraid#adj00081671.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**, span580-621, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[defineNoun(=reality=, $$$<noun3053474:club>$()$$, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Present;6.0==>#StateTimeType.Present;7.0, **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, span622-655, NULL);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, ^^away()^^, ModifierScope.Entire, span636-640);]]></storyPoint>
+		<storyPoint><![CDATA[assignModifier(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, ^^withProp($anon_noun3053474:club()_1$)^^, ModifierScope.Entire, span641-654);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun2129165:lion(CharacterGender.Male)_1", NULL, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, NULL, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_2, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point85-154);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-43);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point479-12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point512-62);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_1, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Love, point78-131);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point512-61);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point526-31);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point78-53);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", **5:actionInfinitive:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**}, InterpretativeArcType.InterpretedAs, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, true);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun9968549:cottager(CharacterGender.Male)_1", NULL, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point577-284);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2450505_prevent_something_prevents_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionGerund:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**, NULL, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_5, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-83);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "anon_noun9968549:cottager(CharacterGender.Male)_1", interp-interp_4, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Love, point130-15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-94);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point576-381);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point540-42);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point141-34);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**, NULL, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_7, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**, NULL, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_8, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-214);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point78-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-26);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point122-234);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_3, InterpretativeNodeType.Love, point78-121);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point245-27);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point472-35);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_7, InterpretativeNodeType.InterpAction, point78-28);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.PreconditionFor, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.PreconditionFor, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point272-25);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2575723_trick_something_tricks_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, NULL, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_9, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point96-236);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_9, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-109);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point78-77);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_9, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point82-121);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, NULL, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point124-143);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, NULL, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_9, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point126-233);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_9, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point103-110);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:weakened#adj02326621.1("anon_noun2129165:lion(CharacterGender.Male)_1")]], NULL, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_10, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_10, InterpretativeNodeType.InterpCondition, point109-308);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_10, InterpretativeArcType.PreconditionFor, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1009240_say_something_says_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", =Marriage requirements:PredicateMode.TimelineAssert=)**}, InterpretativeArcType.AttemptToCause, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.ProvidesFor, interp-interp_3);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.ProvidesFor, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_5, InterpretativeArcType.ProvidesFor, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.ProvidesFor, interp-interp_6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_8, InterpretativeNodeType.InterpAction, point272-40);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, NULL, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_11, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point282-161);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_2, InterpretativeArcType.Because, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_8, InterpretativeArcType.Because, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_7, InterpretativeArcType.Because, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point400-154);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, false);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2266920_save_something_saves_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, NULL, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_12, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point244-22);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point654-381);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_4, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Goal, point78-364);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point569-368);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_12, InterpretativeNodeType.Goal, point80-362);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point677-371);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1780729_fear_something_fears_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, NULL, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point107-109);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point541-468);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **-5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionAssert:verb2566528_offend_something_offends_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**)**}, InterpretativeNodeType.Proposition, point300-410);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **-5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionAssert:verb2566528_offend_something_offends_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**)**}, InterpretativeArcType.Implies, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point574-501);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_12, InterpretativeArcType.WouldPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_12, InterpretativeArcType.WouldPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_12, InterpretativeArcType.WouldPrevent, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {{#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}:^^greatly()^^}, true);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}, InterpretativeArcType.Actualizes, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unafraid#adj00081671.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.Ceases, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {{#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}:^^away()^^}, true);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {{#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}:^^withProp($anon_noun3053474:club()_1$)^^}, true);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point122-234);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_11, InterpretativeNodeType.InterpAction, point421-165);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_11);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, NULL, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point909-153);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point853-255);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point933-234);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point939-294);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb1775164_love_something_loves_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_13);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1119-380);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1256-380);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1067-344);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_4, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point78-175);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_10, InterpretativeNodeType.InterpCondition, point110-313);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point685-370);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point78-179);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point106-177);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedCondition(=reality=, interp-condition_10);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:weakened#adj02326621.1("anon_noun2129165:lion(CharacterGender.Male)_1")]], NULL, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_15, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_15, InterpretativeNodeType.InterpCondition, point120-9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point113-332);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_15, InterpretativeArcType.Because, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}, InterpretativeArcType.Actualizes, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point188-192);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point164-200);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_14, interp-interp_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_16, InterpretativeNodeType.Love, point161-70);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_15, InterpretativeArcType.ProvidesFor, interp-interp_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_16, InterpretativeNodeType.Love, point171-65);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}:^^becauseCondition([[5:conditionAssert:beliefConditionPresent("anon_noun9968549:cottager(CharacterGender.Male)_1", [[5:conditionAssert:frightful#adj01677200.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])]])^^}, InterpretativeArcType.Implies, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {{#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}:^^becauseCondition([[5:conditionAssert:beliefConditionPresent("anon_noun9968549:cottager(CharacterGender.Male)_1", [[5:conditionAssert:frightful#adj01677200.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])]])^^}, InterpretativeArcType.Implies, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}:^^becauseCondition([[5:conditionAssert:beliefConditionPresent("anon_noun9968549:cottager(CharacterGender.Male)_1", [[5:conditionAssert:frightful#adj01677200.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])]])^^}, InterpretativeArcType.InterpretedAs, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.AttemptToPrevent, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2575723_trick_something_tricks_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**, NULL, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_17, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point339-91);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point243-175);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point305-452);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**}, InterpretativeArcType.Actualizes, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setNoInterpretation(=reality=, {{#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**}:^^^<as follows>^()^^}, true);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb2053941_approach_something_approaches_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, InterpretativeArcType.AttemptToCause, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1009240_say_something_says_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", =Marriage requirements:PredicateMode.TimelineAssert=)**}, InterpretativeArcType.AttemptToCause, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**}, InterpretativeArcType.Actualizes, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**}, InterpretativeArcType.AttemptToCause, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point538-2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point707-655);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**, NULL, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_18, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point110-171);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**, NULL, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point203-156);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point190-158);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1110-947);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point171-197);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point1073-661);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**, NULL, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_19, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point172-147);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point842-6);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1131-404);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1141-499);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point286-79);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point181-171);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_8);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point923-69);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, NULL, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_20, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point366-138);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.WouldCause, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.WouldCause, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point111-236);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point298-260);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point114-163);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point292-87);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_20, InterpretativeArcType.ProvidesFor, interp-interp_16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point548-4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_2, InterpretativeNodeType.InterpAction, point110-16);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_2);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point698-624);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point87-222);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point252-275);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_15, InterpretativeNodeType.InterpCondition, point133-8);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedCondition(=reality=, interp-condition_15);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:weakened#adj02326621.1("anon_noun2129165:lion(CharacterGender.Male)_1")]], NULL, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_21, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_21, InterpretativeNodeType.InterpCondition, point279-5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_21, InterpretativeArcType.WouldCause, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}, InterpretativeArcType.Actualizes, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.WouldCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.WouldCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point698-624);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point102-182);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point698-624);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point174-519);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point698-624);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point105-385);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point292-87);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point508-73);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point800-582);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point851-77);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point265-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point821-550);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_1, InterpretativeNodeType.Goal, point1198-79);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1157-378);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_1);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", **5:actionInfinitive:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**}, InterpretativeArcType.InterpretedAs, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.AttemptToPrevent, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point317-553);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_21, InterpretativeNodeType.InterpCondition, point332-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point315-292);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldPrevent, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point336-5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point336-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point336-99);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_9, InterpretativeNodeType.InterpAction, point175-386);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-condition_21, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_9);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, InterpretativeArcType.Implies, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_21, InterpretativeNodeType.InterpCondition, point329-46);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point336-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point372-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_20, InterpretativeNodeType.InterpAction, point372-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point354-140);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.WouldPrevent, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1157-377);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point1157-377);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point843-591);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point356-144);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Goal, "anon_noun2129165:lion(CharacterGender.Male)_1", NULL, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, InterpretativeNodeType.Goal, point1274-593);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point910-768);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, InterpretativeNodeType.Goal, point1271-223);]]></storyPoint>
+		<storyPoint><![CDATA[assignAction(=reality=, #StateTimeType.Interp;INTERP==>#StateTimeType.Interp;INTERP, **5:actionAssert:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**, NULL, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-action_23, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Love, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_22, interp-interp_24);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_23, InterpretativeNodeType.InterpAction, point183-5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_23, InterpretativeArcType.ProvidesFor, interp-interp_24);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_13, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, InterpretativeNodeType.Goal, point1091-148);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point350-140);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_20);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point399-116);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point427-128);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_16, InterpretativeNodeType.Love, point356-183);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_16);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point162-25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point452-110);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_19, InterpretativeNodeType.InterpAction, point179-134);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point446-130);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_14, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point491-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point846-914);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point782-945);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point739-985);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, InterpretativeNodeType.Goal, point694-161);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_13, InterpretativeNodeType.InterpAction, point625-387);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_22, InterpretativeNodeType.Goal, point493-68);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;0.0==>#StateTimeType.Unbounded;*: **5:actionAssert:verb1825237_want_something_wants_some_proposition("anon_noun2129165:lion(CharacterGender.Male)_1", **5:actionInfinitive:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)**}, InterpretativeArcType.InterpretedAs, interp-interp_22);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.Implies, interp-action_12);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point699-877);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point642-679);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point609-653);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point857-634);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_17, InterpretativeNodeType.InterpAction, point237-305);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point361-90);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point729-602);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point475-126);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point703-602);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun2129165:lion(CharacterGender.Male)_1", NULL, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point1153-466);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point782-286);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point615-272);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_4, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point320-202);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:ableToAct("anon_noun2129165:lion(CharacterGender.Male)_1", **5:actionAssert:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)]], NULL, interp-condition_26);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_26, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point478-344);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point703-600);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun2129165:lion(CharacterGender.Male)_1", interp-interp_4, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point403-397);]]></storyPoint>
+		<storyPoint><![CDATA[assignInterpNode(=reality=, InterpretativeNodeType.Belief, "anon_noun9968549:cottager(CharacterGender.Male)_1", interp-interp_25, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[removeInterpNode(=reality=, interp-interp_26);]]></storyPoint>
+		<storyPoint><![CDATA[assignCondition(=reality=, #StateTimeType.Interp;INTERP, [[5:conditionAssert:desireAction("anon_noun9968549:cottager(CharacterGender.Male)_1", **5:actionAssert:verb2488834_marry_something_marries_something("anon_noun2129165:lion(CharacterGender.Male)_1", "anon_character the role of something(CharacterGender.Female, noun9992837:daughter_3(CharacterGender.Neutral), anon_noun9968549:cottager(CharacterGender.Male)_1)_1")**)]], NULL, interp-condition_26);]]></storyPoint>
+		<storyPoint><![CDATA[attachInterpPredicate(=reality=, interp-condition_26, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point429-340);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, interp-action_17, InterpretativeArcType.WouldCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_25, InterpretativeArcType.WouldCause, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb1009240_say_something_says_some_proposition("anon_noun9968549:cottager(CharacterGender.Male)_1", =Marriage requirements:PredicateMode.TimelineAssert=)**}, InterpretativeArcType.AttemptToCause, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;3.0==>#StateTimeType.Present;4.0: **5:actionAssert:verb2053941_approach_something_approaches_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, InterpretativeArcType.AttemptToCause, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;2.0==>#StateTimeType.Present;3.0: **5:actionAssert:verb971999_find_something_finds_something("anon_noun9968549:cottager(CharacterGender.Male)_1", |anon_noun5661668:solution()_1|)**}, InterpretativeArcType.AttemptToCause, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-interp_25);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedAction(=reality=, interp-action_17);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point139-188);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point298-317);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point470-164);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point470-129);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.PreconditionFor, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.PreconditionFor, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_18, InterpretativeNodeType.InterpAction, point188-5);]]></storyPoint>
+		<storyPoint><![CDATA[removeAssignedCondition(=reality=, interp-condition_21);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unafraid#adj00081671.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.InterpretedAs, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point388-8);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point386-7);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point398-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_4, InterpretativeNodeType.Goal, point615-618);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point630-481);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_12, InterpretativeNodeType.InterpAction, point639-494);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point146-103);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Love, point214-173);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point102-34);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;1.0==>#StateTimeType.Present;2.0: **5:actionAssert:conditionBegins([[5:conditionAssert:unwilling#adj02522164.1("anon_noun9968549:cottager(CharacterGender.Male)_1")]])**}, InterpretativeArcType.Implies, interp-interp_4);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point352-308);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point437-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-condition_26, InterpretativeNodeType.InterpCondition, point89-41);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point397-147);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point121-397);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point319-263);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-action_5, InterpretativeNodeType.InterpAction, point354-5);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_6, InterpretativeNodeType.Love, point567-32);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_25, InterpretativeNodeType.Belief, point110-336);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point293-187);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-interp_14, InterpretativeArcType.WouldCause, interp-action_5);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-interp_14);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;4.0==>#StateTimeType.Present;5.0: **5:actionAssert:verb804139_acquiesce_something_acquiesces_to_something("anon_noun2129165:lion(CharacterGender.Male)_1", Preposition.To, "anon_noun9968549:cottager(CharacterGender.Male)_1")**}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[setInterpPosition(=reality=, interp-interp_14, InterpretativeNodeType.Goal, point310-188);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[unlinkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {#StateTimeType.Present;6.0==>#StateTimeType.Present;7.0: **5:actionAssert:verb2003480_shoo_something_shooes_something("anon_noun9968549:cottager(CharacterGender.Male)_1", "anon_noun2129165:lion(CharacterGender.Male)_1")**}, InterpretativeArcType.Ceases, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5581693:nail(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_18);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, {{#StateTimeType.Present;5.0==>#StateTimeType.Present;6.0: **5:actionAssert:conditionBegins([[5:conditionAssert:weak#adj00441523.1("anon_noun2129165:lion(CharacterGender.Male)_1")]])**}:^^becauseAction(**5:actionAssert:verb2287789_lose_something_loses_something("anon_noun2129165:lion(CharacterGender.Male)_1", $anon_prop the part of something(noun5282746:tooth(), anon_noun2129165:lion(CharacterGender.Male)_1)_1$)**)^^}, InterpretativeArcType.Actualizes, interp-action_19);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_5, InterpretativeArcType.WouldPrevent, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_18, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+		<storyPoint><![CDATA[linkInterpElements(=reality=, interp-action_19, InterpretativeArcType.PreconditionFor, interp-action_23);]]></storyPoint>
+	</storyPoints>
+</schSavedStory>
+
+---SOURCE STORY BELOW---
+A Lion fell deeply in love with the daughter of a cottager and wanted to marry her; but her father was unwilling to give her to so fearsome a husband, and yet didn't want to offend the Lion; so he hit upon the following expedient.
+
+He went to the Lion and said, "I think you will make a very good husband for my daughter: but I cannot consent to your union unless you let me draw your teeth and pare your nails, for my daughter is terribly afraid of them." 
+
+The Lion was so much in love that he readily agreed that this should be done.
+
+When once, however, he was thus disarmed, the Cottager was afraid of him no longer, but drove him away with his club.
