@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
-using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
+using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Collections.Generic;
 
@@ -50,7 +50,7 @@ namespace NarrativeWorldCreator
             SpriteBatch spriteBatch = new SpriteBatch(_graphicsDeviceManager.GraphicsDevice);
             //drawModelExampleFunction();
             //drawSpriteExampleFunction(spriteBatch);
-            drawGraph(spriteBatch, SystemStateTracker.graph);
+            drawGraph(spriteBatch, SystemStateTracker.NarrativeWorld.Graph);
 
             // this base.Draw call will draw "all" components (we only added one)
             // since said component will use a spritebatch to render we need to let it draw before we reset the GraphicsDevice
@@ -74,7 +74,7 @@ namespace NarrativeWorldCreator
                         null,
                         cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float) this.ActualWidth, (float) this.ActualHeight));
             // Draw each node
-            if (!SystemStateTracker.graph.nodeCoordinatesGenerated)
+            if (!SystemStateTracker.NarrativeWorld.Graph.nodeCoordinatesGenerated)
                 return;
             foreach (Node n in graph.getNodeList())
             {
@@ -104,7 +104,7 @@ namespace NarrativeWorldCreator
                 (float)Math.Atan2(edge.Y, edge.X);
 
 
-            sb.Draw(SystemStateTracker.graph.lineTexture,
+            sb.Draw(SystemStateTracker.NarrativeWorld.Graph.lineTexture,
                 new Rectangle(// rectangle defines shape of line and position of start of line
                     (int)start.X,
                     (int)start.Y,
@@ -124,9 +124,9 @@ namespace NarrativeWorldCreator
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
             cam.Pos = new Vector2(500.0f, 200.0f);
 
-            SystemStateTracker.graph.circleTexture = Content.Load<Texture2D>("Sprites/Circle");
-            SystemStateTracker.graph.lineTexture = new Texture2D(_graphicsDeviceManager.GraphicsDevice, 1, 1);
-            SystemStateTracker.graph.lineTexture.SetData<Color>(new Color[] { Color.Black });
+            SystemStateTracker.NarrativeWorld.Graph.circleTexture = Content.Load<Texture2D>("Sprites/Circle");
+            SystemStateTracker.NarrativeWorld.Graph.lineTexture = new Texture2D(_graphicsDeviceManager.GraphicsDevice, 1, 1);
+            SystemStateTracker.NarrativeWorld.Graph.lineTexture.SetData<Color>(new Color[] { Color.Black });
             spriteFontCourierNew = Content.Load<SpriteFont>("Spritefonts/Courier New");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -135,8 +135,8 @@ namespace NarrativeWorldCreator
             _mouse = new WpfMouse(this);
             _previousMouseState = _mouse.GetState();
 
-            height = (int)this.ActualHeight - SystemStateTracker.graph.nodeHeight;
-            width = (int)this.ActualWidth - SystemStateTracker.graph.nodeWidth;
+            height = (int)this.ActualHeight - SystemStateTracker.NarrativeWorld.Graph.nodeHeight;
+            width = (int)this.ActualWidth - SystemStateTracker.NarrativeWorld.Graph.nodeWidth;
         }
 
         private float elapsedSinceLastStep = 0f;
@@ -147,7 +147,7 @@ namespace NarrativeWorldCreator
             _previousMouseState = _mouseState;
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
-            Graph graph = SystemStateTracker.graph;
+            Graph graph = SystemStateTracker.NarrativeWorld.Graph;
 
             float totalElapsed = (float)time.TotalGameTime.TotalSeconds;
             if (totalElapsed - elapsedSinceLastStep > intervalStepTime && graph.temperature > Graph.DefaultMinimumTemperature)

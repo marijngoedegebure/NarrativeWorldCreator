@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator.RegionGraph.GraphDataTypes
+namespace NarrativeWorldCreator.RegionGraph
 {
-    class Graph
+    public class Graph
     {
         List<Node> nodeList = new List<Node>();
         List<Edge> edgeList = new List<Edge>();

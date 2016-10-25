@@ -1,5 +1,5 @@
 ﻿using NarrativeWorldCreator.RegionGraph;
-using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
+using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +38,7 @@ namespace NarrativeWorldCreator.Pages
         private void btnReloadGraph_Click(object sender, RoutedEventArgs e)
         {
             // Re-initialize Force directed graph
-            SystemStateTracker.graph.initForceDirectedGraph();
+            SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
         }
 
         private void btnInit_Click(object sender, RoutedEventArgs e)
@@ -53,9 +53,9 @@ namespace NarrativeWorldCreator.Pages
 
         internal void fillDetailView(Node location)
         {
-            number_narrative_events.Content = SystemStateTracker.narrative.getNarrativeEventsOfLocation(location.getLocationName()).Count;
-            number_narrative_characters.Content = SystemStateTracker.narrative.getNarrativeObjectsOfTypeOfLocation("actor", location.getLocationName()).Count;
-            number_narrative_objects.Content = SystemStateTracker.narrative.getNarrativeObjectsOfTypeOfLocation("thing", location.getLocationName()).Count;
+            number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(location.getLocationName()).Count;
+            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("actor", location.getLocationName()).Count;
+            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("thing", location.getLocationName()).Count;
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
 using NarrativeWorldCreator.RegionGraph;
-using NarrativeWorldCreator.RegionGraph.GraphDataTypes;
+using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Collections.Generic;
 
@@ -87,10 +87,6 @@ namespace NarrativeWorldCreator
         {
             base.Initialize();
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
-
-            SystemStateTracker.graph.circleTexture = Content.Load<Texture2D>("Sprites/Circle");
-            SystemStateTracker.graph.lineTexture = new Texture2D(_graphicsDeviceManager.GraphicsDevice, 1, 1);
-            SystemStateTracker.graph.lineTexture.SetData<Color>(new Color[] { Color.Black });
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
