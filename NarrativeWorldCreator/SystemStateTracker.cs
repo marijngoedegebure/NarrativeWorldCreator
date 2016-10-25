@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator
 {
-    static class SystemStateTracker
+    public static class SystemStateTracker
     {
-        public static NarrativeWorld NarrativeWorld { get; set; }
+        public static NarrativeWorld NarrativeWorld = new NarrativeWorld();
     }
 }

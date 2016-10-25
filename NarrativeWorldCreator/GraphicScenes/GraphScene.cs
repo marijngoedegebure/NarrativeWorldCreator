@@ -171,48 +171,9 @@ namespace NarrativeWorldCreator
                     Matrix inverseViewMatrix = Matrix.Invert(cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float)this.ActualWidth, (float)this.ActualHeight));
                     graph.checkCollisions(Vector2.Transform(_mouseState.Position.ToVector2(), inverseViewMatrix));
             }
-            handleCamMovementKeyboardInput();
-            handleCamMoovementMouseInput();
+            cam.handleCamMovementKeyboardInput(_keyboardState);
+            cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState);
             base.Update(time);
-        }
-
-        private void handleCamMoovementMouseInput()
-        {
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed)
-            {
-                // Dragging mode enabled, move camera with delta of previous en current mousestate
-                Vector2 delta = Vector2.Subtract(_previousMouseState.Position.ToVector2(), _mouseState.Position.ToVector2());
-                cam.Move(delta);
-            }
-        }
-
-        private void handleCamMovementKeyboardInput()
-        {
-            // Handle Cam movement en zoom
-            if (_keyboardState.IsKeyDown(Keys.Left))
-            {
-                cam.Move(new Vector2(-Camera2d.DEFAULTMOVE, 0.0f));
-            }
-            if (_keyboardState.IsKeyDown(Keys.Right))
-            {
-                cam.Move(new Vector2(Camera2d.DEFAULTMOVE, 0.0f));
-            }
-            if (_keyboardState.IsKeyDown(Keys.Down))
-            {
-                cam.Move(new Vector2(0.0f, Camera2d.DEFAULTMOVE));
-            }
-            if (_keyboardState.IsKeyDown(Keys.Up))
-            {
-                cam.Move(new Vector2(0.0f, -Camera2d.DEFAULTMOVE));
-            }
-            if (_keyboardState.IsKeyDown(Keys.OemMinus))
-            {
-                cam.Zoom = cam.Zoom - Camera2d.DEFAULTZOOM;
-            }
-            if (_keyboardState.IsKeyDown(Keys.OemPlus))
-            {
-                cam.Zoom = cam.Zoom + Camera2d.DEFAULTZOOM;
-            }
         }
         #endregion
     }

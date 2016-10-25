@@ -12,5 +12,9 @@ namespace NarrativeWorldCreator.Models
     {
         public Narrative Narrative { get; set; }
         public Graph Graph { get; set; }
+
+        public NarrativeWorld ()
+        {
+        }
     }
 }

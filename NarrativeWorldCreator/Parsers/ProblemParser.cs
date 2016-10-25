@@ -37,17 +37,17 @@ namespace NarrativeWorldCreator.Parsers
                 }
                 if (readObjectsMode)
                 {
-                    narrativeObjects.AddRange(readObjects(words, SystemStateTracker.narrative.NarrativeObjectTypes));
+                    narrativeObjects.AddRange(readObjects(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
                     continue;
                 }
                 if (readInitMode)
                 {
-                    narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.narrative.PredicateTypes, SystemStateTracker.narrative.NarrativeObjectTypes, narrativeObjects));
+                    narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes, narrativeObjects));
                     continue;
                 }
             }
-            SystemStateTracker.narrative.NarrativeObjects = narrativeObjects;
-            SystemStateTracker.narrative.NarrativePredicates = narrativePredicates;
+            SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjects = narrativeObjects;
+            SystemStateTracker.NarrativeWorld.Narrative.NarrativePredicates = narrativePredicates;
         }
 
         private static NarrativePredicate readNarrativePredicate(string[] words, ICollection<PredicateType> predicateTypes, ICollection<NarrativeObjectType> types, ICollection<NarrativeObject> narrativeObjects)
@@ -113,9 +113,9 @@ namespace NarrativeWorldCreator.Parsers
                     NarrativeObject narrativeObject = new NarrativeObject();
                     narrativeObject.Name = words[i];
                     narrativeObject.Type = typeToUse;
+                    narrativeObject.Placed = false;
                     narrativeObjects.Add(narrativeObject);
                 }
-
             }
             return narrativeObjects;
         }

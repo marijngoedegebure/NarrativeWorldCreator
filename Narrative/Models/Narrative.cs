@@ -86,6 +86,20 @@ namespace Narratives
             return filteredNarrativeEvents;
         }
 
+        public List<NarrativeObject> getNarrativeObjectsOfLocation(string location)
+        {
+            List<NarrativeEvent> narrativeEventsOfLocation = getNarrativeEventsOfLocation(location);
+            List<NarrativeObject> filteredNarrativeObjects = new List<NarrativeObject>();
+            foreach (NarrativeEvent narrativeEvent in narrativeEventsOfLocation)
+            {
+                foreach (NarrativeObject narrativeObject in narrativeEvent.NarrativeObjects)
+                {
+                    filteredNarrativeObjects.Add(narrativeObject);
+                }
+            }
+            return filteredNarrativeObjects;
+        }
+
         public NarrativeObjectType getNarrativeObjectType(String name)
         {
             foreach(NarrativeObjectType t in NarrativeObjectTypes)

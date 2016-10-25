@@ -41,9 +41,12 @@ namespace NarrativeWorldCreator.RegionGraph
             nodeCoordinatesGenerated = false;
         }
 
-        public void addNode(String locationName)
+        public void addNode(string locationName)
         {
-            nodeList.Add(new GraphDataTypes.Node(locationName));
+            Node node = new Node(locationName);
+            node.NarrativeEvents = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(locationName);
+            node.NarrativeObjects = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfLocation(locationName);
+            nodeList.Add(node);
         }
 
         public void addEdge(Node from, Node to)
@@ -57,7 +60,7 @@ namespace NarrativeWorldCreator.RegionGraph
             edgeList.Add(newEdge);
         }
 
-        public Node getNode(String nm)
+        public Node getNode(string nm)
         {
             foreach(Node n in nodeList)
             {
@@ -93,7 +96,7 @@ namespace NarrativeWorldCreator.RegionGraph
         public void randomlyGenerateCoordinates()
         {
             Random r = new Random();
-            foreach (Node n in SystemStateTracker.graph.getNodeList())
+            foreach (Node n in SystemStateTracker.NarrativeWorld.Graph.getNodeList())
             {
                 NodePositions[n] = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
             }
@@ -102,11 +105,11 @@ namespace NarrativeWorldCreator.RegionGraph
 
         public void initCollisionboxes()
         {
-            foreach (Node n in SystemStateTracker.graph.getNodeList())
+            foreach (Node n in SystemStateTracker.NarrativeWorld.Graph.getNodeList())
             {
                 float x = NodePositions[n].X * energyToDrawConversion;
                 float y = NodePositions[n].Y * energyToDrawConversion;
-                Rectangle collisionBox = new Rectangle((int)x, (int)y, SystemStateTracker.graph.nodeHeight, SystemStateTracker.graph.nodeWidth);
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, SystemStateTracker.NarrativeWorld.Graph.nodeHeight, SystemStateTracker.NarrativeWorld.Graph.nodeWidth);
                 this.NodeCollisionBoxes[n] = collisionBox;
             }
         }

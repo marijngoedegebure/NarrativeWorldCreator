@@ -1,5 +1,4 @@
 ﻿using NarrativeWorldCreator.RegionGraph;
-using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnRegionSelection_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RegionPage());
+            this.NavigationService.Navigate(new RegionPage(selectedNode));
         }
 
         private void btnReloadGraph_Click(object sender, RoutedEventArgs e)
@@ -48,7 +47,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RegionPage());
+            this.NavigationService.Navigate(new RegionPage(selectedNode));
         }
 
         internal void fillDetailView(Node location)

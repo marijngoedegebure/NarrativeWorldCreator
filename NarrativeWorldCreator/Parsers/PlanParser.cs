@@ -33,11 +33,11 @@ namespace NarrativeWorldCreator.Parsers
                 }
                 if (readEventMode)
                 {
-                    narrativeEvents.Add(readEvent(words, SystemStateTracker.narrative.NarrativeActions, SystemStateTracker.narrative.NarrativeObjectTypes));
+                    narrativeEvents.Add(readEvent(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeActions, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
                     continue;
                 }
             }
-            SystemStateTracker.narrative.NarrativeEvents = narrativeEvents;
+            SystemStateTracker.NarrativeWorld.Narrative.NarrativeEvents = narrativeEvents;
         }
 
         private static NarrativeEvent readEvent(string[] words, ICollection<NarrativeAction> narrativeActions, ICollection<NarrativeObjectType> types)
@@ -55,8 +55,8 @@ namespace NarrativeWorldCreator.Parsers
             if (narrativeEvent.NarrativeAction == null)
                 throw new Exception("Second argument is not a narrative action");
             // Check if last word is a location
-            NarrativeObjectType locationType = SystemStateTracker.narrative.getNarrativeObjectType("location");
-            List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.narrative.getNarrativeObjectsOfType(locationType);
+            NarrativeObjectType locationType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType("location");
+            List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(locationType);
             NarrativeObject locationOfEvent = null;
             foreach(NarrativeObject filteredObject in objectsFilteredOnLocationType)
             {
@@ -71,7 +71,7 @@ namespace NarrativeWorldCreator.Parsers
             // Read words in
             for(int i = 1; i < words.Length; i++)
             {
-                foreach(NarrativeObject narrativeObject in SystemStateTracker.narrative.NarrativeObjects)
+                foreach(NarrativeObject narrativeObject in SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjects)
                 {
                     if (words[i].Equals(narrativeObject.Name))
                     {

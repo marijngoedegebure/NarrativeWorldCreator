@@ -64,9 +64,9 @@ namespace NarrativeWorldCreator.Parsers
                         continue; 
                 }
             }
-            SystemStateTracker.narrative.PredicateTypes = predicateTypes;
-            SystemStateTracker.narrative.NarrativeObjectTypes = types;
-            SystemStateTracker.narrative.NarrativeActions = narrativeActions;
+            SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes = predicateTypes;
+            SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes = types;
+            SystemStateTracker.NarrativeWorld.Narrative.NarrativeActions = narrativeActions;
         }
 
         private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<NarrativeObjectType> types)

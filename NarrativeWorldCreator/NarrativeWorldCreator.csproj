@@ -109,6 +109,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="Models\NarrativeWorld.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>
@@ -128,9 +129,9 @@
     <Compile Include="RegionGraph\Models\Node.cs" />
     <Compile Include="RegionGraph\GraphParser.cs" />
     <Compile Include="SystemStateTracker.cs" />
-    <Compile Include="XML elements\Camera2d.cs" />
-    <Compile Include="XML elements\GraphScene.cs" />
-    <Compile Include="XML elements\RegionScene.cs" />
+    <Compile Include="GraphicScenes\Camera2d.cs" />
+    <Compile Include="GraphicScenes\GraphScene.cs" />
+    <Compile Include="GraphicScenes\RegionScene.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201610201210203_Initial.Designer.cs">
       <DependentUpon>201610201210203_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610250842435_Object addition.cs" />
+    <Compile Include="Migrations\201610250842435_Object addition.Designer.cs">
+      <DependentUpon>201610250842435_Object addition.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Narrative.cs" />
     <Compile Include="Models\NarrativeAction.cs" />
@@ -80,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201610201210203_Initial.resx">
       <DependentUpon>201610201210203_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610250842435_Object addition.resx">
+      <DependentUpon>201610250842435_Object addition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

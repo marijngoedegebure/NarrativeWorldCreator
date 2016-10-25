@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.RegionGraph;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,12 @@ namespace NarrativeWorldCreator.Pages
     /// </summary>
     public partial class RegionPage : Page
     {
-        public RegionPage()
+        public Node selectedNode;
+
+        public RegionPage(Node selectedNode)
         {
             InitializeComponent();
+            this.selectedNode = selectedNode;
         }
 
         private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)

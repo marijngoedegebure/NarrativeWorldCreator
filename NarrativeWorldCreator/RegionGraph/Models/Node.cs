@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Narratives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,16 @@ namespace NarrativeWorldCreator.RegionGraph
     public class Node
     {
         String locationName;
+        public List<Vector3> RegionOutlinePoints { get; set; }
+        public List<NarrativeEvent> NarrativeEvents { get; set; }
+        public List<NarrativeObject> NarrativeObjects { get; set; }
 
         public Node(String locationName)
         {
             this.locationName = locationName;
+            RegionOutlinePoints = new List<Vector3>();
+            NarrativeEvents = new List<NarrativeEvent>();
+            NarrativeObjects = new List<NarrativeObject>();
         }
 
         public String getLocationName()
