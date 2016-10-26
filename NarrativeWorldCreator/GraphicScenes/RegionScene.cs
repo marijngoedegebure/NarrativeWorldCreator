@@ -27,6 +27,10 @@ namespace NarrativeWorldCreator
 
         private VertexPositionColor[] vertices;
         private VertexBuffer vertexBuffer;
+
+        private Matrix view;
+        private Matrix proj;
+        private Matrix world;
         #endregion
 
         #region Methods
@@ -37,7 +41,7 @@ namespace NarrativeWorldCreator
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            cam.Pos = new Vector3(0.0f, 100.0f, 500.0f);
+            cam.Pos = new Vector3(0.0f, 0.0f, 200.0f);
 
             _keyboard = new WpfKeyboard(this);
             _mouse = new WpfMouse(this);
@@ -66,7 +70,11 @@ namespace NarrativeWorldCreator
         protected override void Draw(GameTime time)
         {
             GraphicsDevice.Clear(_mouseState.LeftButton == ButtonState.Pressed ? Color.Black : Color.CornflowerBlue);
+            world = Matrix.Identity;
+            view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
 
+            proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
+                                              Camera3d.NEARCLIP, Camera3d.FARCLIP);
             // since we share the GraphicsDevice with all hosts, we need to save and reset the states
             // this has to be done because spriteBatch internally sets states and doesn't reset themselves, fucking over any 3D rendering (which happens in the DemoScene)
 
@@ -77,38 +85,65 @@ namespace NarrativeWorldCreator
 
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
             SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
-            drawPolygonExampleFunction();
+            drawRegionPolygon();
 
-            // this base.Draw call will draw "all" components (we only added one)
-            // since said component will use a spritebatch to render we need to let it draw before we reset the GraphicsDevice
-            // otherwise it will just alter the state again and fuck over all the other hosts
+            // this base.Draw call will draw "all" components
             base.Draw(time);
 
             GraphicsDevice.BlendState = blend;
             GraphicsDevice.DepthStencilState = depth;
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
-
         }
 
-        public void drawPolygonExampleFunction()
+        public void drawRegionPolygon()
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
 
-            basicEffect.World = Matrix.Identity;
-            basicEffect.View = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
-
-            basicEffect.Projection = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
-                                              Camera3d.NEARCLIP, Camera3d.FARCLIP);
+            basicEffect.World = world;
+            basicEffect.View = view;
+            basicEffect.Projection = proj;
             basicEffect.VertexColorEnabled = true;
-
-            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            // Triangles should be defined clockwise
+            GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            // Only draw triangles when there is 3 or more vertices
+            if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 2)
             {
-                // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                pass.Apply();
-                GraphicsDevice.SetVertexBuffer(vertexBuffer);
-                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip, vertices, 0, 3);
+                vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, _currentRegionPage.selectedNode.RegionOutlinePoints.Count, BufferUsage.WriteOnly);
+                vertexBuffer.SetData(_currentRegionPage.selectedNode.RegionOutlinePoints.ToArray());
+                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                {
+                    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                    pass.Apply();
+                    GraphicsDevice.SetVertexBuffer(vertexBuffer);
+                    GraphicsDevice.DrawUserIndexedPrimitives<VertexPositionColor>(
+                        PrimitiveType.TriangleList,
+                        _currentRegionPage.selectedNode.RegionOutlinePoints.ToArray(),
+                        0,
+                        _currentRegionPage.selectedNode.RegionOutlinePoints.Count,
+                        _currentRegionPage.selectedNode.triangleListIndices.ToArray(),
+                        0,
+                        _currentRegionPage.selectedNode.triangleListIndices.Count / 3);
+                }
+            }
+
+            // Always draw the vertices
+            if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 0) {
+                // Create quads based off vertex points
+                foreach(VertexPositionColor vertex in _currentRegionPage.selectedNode.RegionOutlinePoints)
+                {
+                    Quad quad = new Quad(vertex.Position, new Vector3(vertex.Position.X, vertex.Position.Y, 1), Vector3.Up, 1, 1);
+                    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                    {
+                        pass.Apply();
+                        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                            PrimitiveType.TriangleStrip,
+                            quad.Vertices,
+                            0,
+                            2);
+                    }
+                }
+                
             }
         }
 
@@ -120,11 +155,10 @@ namespace NarrativeWorldCreator
             float modelRotation = 90.0f;
             myModel.CopyAbsoluteBoneTransformsTo(transforms);
             // Set up the view matrix and projection matrix.
-            Matrix view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
+            view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
 
-            Matrix proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
+            proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
                                               Camera3d.NEARCLIP, Camera3d.FARCLIP);
-            //var proj = Matrix.CreateOrthographic(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 1.0f, 1000.0f);
 
             // Draw the model. A model can have multiple meshes, so loop.
             foreach (ModelMesh mesh in myModel.Meshes)
@@ -152,6 +186,30 @@ namespace NarrativeWorldCreator
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
             cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState);
+
+            // Handle region creation:
+            // First step, check whether left button has been clicked
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+            {
+                // Retrieve world coordinates of current mouse position
+                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
+                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+
+                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
+                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+
+                // Create ray using far and near point
+                Vector3 direction = farPoint - nearPoint;
+                direction.Normalize();
+                Ray ray = new Ray(nearPoint, direction);
+
+                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
+                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
+                _currentRegionPage.selectedNode.RegionOutlinePoints.Add(new VertexPositionColor(planeHit, Color.Black));
+                _currentRegionPage.selectedNode.triangulatePolygon();
+            }
+
             base.Update(time);
         }
 

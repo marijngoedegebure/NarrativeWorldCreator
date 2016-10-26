@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Narratives;
 using NarrativeWorldCreator.Parsers;
+using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Linq;
 using System.Windows;
@@ -66,6 +67,7 @@ namespace NarrativeWorldCreator.Pages
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
+            GraphParser.createGraphBasedOnNarrative();
         }
 
         private void fillDetailView()

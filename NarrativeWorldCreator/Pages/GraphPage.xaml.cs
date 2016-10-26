@@ -26,7 +26,7 @@ namespace NarrativeWorldCreator.Pages
         public GraphPage()
         {
             InitializeComponent();
-            GraphParser.createGraphBasedOnNarrative();
+            SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
         }
 
         private void btnRegionSelection_Click(object sender, RoutedEventArgs e)
