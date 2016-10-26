@@ -17,6 +17,7 @@ namespace NarrativeWorldCreator
         public const float NEARCLIP = 1.0f;
         public const float FARCLIP = 2000.0f;
         public static float VIEWANGLE = MathHelper.ToRadians(45.0f);
+        public static float MAXZOOM = 0.1f;
 
         protected float _zoom; // Camera Zoom
         public Matrix _transform; // Matrix Transform
@@ -46,6 +47,10 @@ namespace NarrativeWorldCreator
         public void Move(Vector3 amount)
         {
             _pos += amount;
+            if (_pos.Z < Camera3d.MAXZOOM)
+            {
+                _pos.Z = Camera3d.MAXZOOM;
+            }
         }
         // Get set position
         public Vector3 Pos

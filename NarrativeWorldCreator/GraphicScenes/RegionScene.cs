@@ -24,6 +24,9 @@ namespace NarrativeWorldCreator
         private Camera3d cam = new Camera3d();
 
         private RegionPage _currentRegionPage;
+
+        private VertexPositionColor[] vertices;
+        private VertexBuffer vertexBuffer;
         #endregion
 
         #region Methods
@@ -38,6 +41,22 @@ namespace NarrativeWorldCreator
 
             _keyboard = new WpfKeyboard(this);
             _mouse = new WpfMouse(this);
+
+            vertices = new VertexPositionColor[5];
+
+            vertices[0] = new VertexPositionColor(new Vector3(-0.5f, 0.5f, 0), Color.Red);
+            vertices[1] = new VertexPositionColor(new Vector3(-0.5f, -0.5f, 0), Color.Blue);
+            vertices[2] = new VertexPositionColor(new Vector3(0.5f, 0.5f, 0), Color.Green);
+            vertices[3] = new VertexPositionColor(new Vector3(0.5f, -0.5f, 0), Color.Brown);
+            vertices[4] = new VertexPositionColor(new Vector3(0.7f, 0.5f, 0.5f), Color.Azure);
+
+            vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
+            vertexBuffer.SetData(vertices);
+
+            RasterizerState state = new RasterizerState();
+            state.CullMode = CullMode.CullClockwiseFace;
+            state.FillMode = FillMode.WireFrame;
+            GraphicsDevice.RasterizerState = state;
 
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             _currentRegionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
@@ -56,9 +75,9 @@ namespace NarrativeWorldCreator
             var raster = GraphicsDevice.RasterizerState;
             var sampler = GraphicsDevice.SamplerStates[0];
 
-            _graphicsDeviceManager.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
-            SpriteBatch spriteBatch = new SpriteBatch(_graphicsDeviceManager.GraphicsDevice);
-            drawModelExampleFunction();
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
+            SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
+            drawPolygonExampleFunction();
 
             // this base.Draw call will draw "all" components (we only added one)
             // since said component will use a spritebatch to render we need to let it draw before we reset the GraphicsDevice
@@ -70,6 +89,27 @@ namespace NarrativeWorldCreator
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
 
+        }
+
+        public void drawPolygonExampleFunction()
+        {
+            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
+
+            basicEffect.World = Matrix.Identity;
+            basicEffect.View = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
+
+            basicEffect.Projection = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
+                                              Camera3d.NEARCLIP, Camera3d.FARCLIP);
+            basicEffect.VertexColorEnabled = true;
+
+            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            {
+                // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                pass.Apply();
+                GraphicsDevice.SetVertexBuffer(vertexBuffer);
+                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(PrimitiveType.TriangleStrip, vertices, 0, 3);
+            }
         }
 
         public void drawModelExampleFunction()
