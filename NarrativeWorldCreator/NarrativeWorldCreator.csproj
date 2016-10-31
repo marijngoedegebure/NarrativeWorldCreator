@@ -128,7 +128,6 @@
     <Compile Include="RegionGraph\Models\Edge.cs" />
     <Compile Include="RegionGraph\Models\Graph.cs" />
     <Compile Include="RegionGraph\Models\Node.cs" />
-    <Compile Include="RegionGraph\GraphParser.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />

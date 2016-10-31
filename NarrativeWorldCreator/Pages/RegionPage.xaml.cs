@@ -28,11 +28,20 @@ namespace NarrativeWorldCreator.Pages
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
+            fillDetailView();
         }
 
         private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new GraphPage());
+        }
+
+        internal void fillDetailView()
+        {
+            narrative_location_name.Content = selectedNode.getLocationName();
+            number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(selectedNode.getLocationName()).Distinct().Count();
+            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("actor", selectedNode.getLocationName()).Distinct().Count();
+            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("thing", selectedNode.getLocationName()).Distinct().Count();
         }
     }
 }

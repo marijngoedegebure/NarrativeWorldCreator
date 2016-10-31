@@ -74,9 +74,9 @@ namespace NarrativeWorldCreator
             return new Vector3(this.Pos.X, this.Pos.Y, 0.0f);
         }
 
-        public void handleCamMoovementMouseInput(MouseState _mouseState, MouseState _previousMouseState)
+        public void handleCamMoovementMouseInput(MouseState _mouseState, MouseState _previousMouseState, KeyboardState _keyboardState)
         {
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed)
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && !_keyboardState.IsKeyDown(Keys.LeftShift))
             {
                 // Dragging mode enabled, move camera with delta of previous en current mousestate
                 Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));

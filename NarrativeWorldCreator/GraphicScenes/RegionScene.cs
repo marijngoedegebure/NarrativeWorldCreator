@@ -185,11 +185,11 @@ namespace NarrativeWorldCreator
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
-            cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState);
+            cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
 
             // Handle region creation:
             // First step, check whether left button has been clicked
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftShift))
             {
                 // Retrieve world coordinates of current mouse position
                 Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);

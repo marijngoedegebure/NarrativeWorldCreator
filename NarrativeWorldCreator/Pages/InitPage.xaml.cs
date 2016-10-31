@@ -67,7 +67,7 @@ namespace NarrativeWorldCreator.Pages
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
-            GraphParser.createGraphBasedOnNarrative();
+            Parser.createGraphBasedOnNarrative();
         }
 
         private void fillDetailView()

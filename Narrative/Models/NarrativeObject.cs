@@ -16,5 +16,15 @@ namespace Narratives
         public NarrativeObject()
         {
         }
+
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            NarrativeObject p = (NarrativeObject)obj;
+            return (NarrativeObjectId == p.NarrativeObjectId);
+        }
     }
 }

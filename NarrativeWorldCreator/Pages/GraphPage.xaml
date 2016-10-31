@@ -31,8 +31,8 @@
             <local:GraphScene Grid.Row="0" Grid.Column="0"/>
             <Grid Name="selected_region_detail_grid" Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -43,17 +43,20 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"></ColumnDefinition>
                         <ColumnDefinition Width="150"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Name="narrative_events_text" Content="# of narrative events" />
-                    <Label Grid.Row="0" Grid.Column="1" Name="number_narrative_events" />
-                    <Label Grid.Row="1" Grid.Column="0" Name="narrative_characters" Content="# of narrative characters" />
-                    <Label Grid.Row="1" Grid.Column="1" Name="number_narrative_characters" />
-                    <Label Grid.Row="2" Grid.Column="0" Name="narrative_objects" Content="# of narrative objects" />
-                    <Label Grid.Row="2" Grid.Column="1" Name="number_narrative_objects" />
+                    <Label Grid.Row="0" Grid.Column="0" Name="narrative_location_name_label" Content="Selected location" />
+                    <Label Grid.Row="0" Grid.Column="1" Name="narrative_location_name" />
+                    <Label Grid.Row="1" Grid.Column="0" Name="narrative_events_text" Content="# of narrative events" />
+                    <Label Grid.Row="1" Grid.Column="1" Name="number_narrative_events" />
+                    <Label Grid.Row="2" Grid.Column="0" Name="narrative_characters" Content="# of narrative characters" />
+                    <Label Grid.Row="2" Grid.Column="1" Name="number_narrative_characters" />
+                    <Label Grid.Row="3" Grid.Column="0" Name="narrative_objects" Content="# of narrative objects" />
+                    <Label Grid.Row="3" Grid.Column="1" Name="number_narrative_objects" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <Button x:Name="button5" Content="Click here see the region." HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToRegionPage_Click"/>
