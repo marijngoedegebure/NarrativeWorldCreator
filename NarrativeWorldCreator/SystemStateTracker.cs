@@ -11,5 +11,6 @@ namespace NarrativeWorldCreator
     public static class SystemStateTracker
     {
         public static NarrativeWorld NarrativeWorld = new NarrativeWorld();
+        public static string LoadedFileName;
     }
 }

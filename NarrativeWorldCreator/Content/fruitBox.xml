@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<MainLayout name="Fruit or vegetable crate">
+
+  <RequiredInput name="boxWidth" comment="Width of the crate" />
+  <RequiredInput name="boxLength" comment="Length of the crate" />
+
+  <Material id="0" file="..\\content\\textures\\fruit.dds" remap="0.00;0.00;0.25;0.25" />
+  <Material id="1" file="..\\content\\textures\\fruit.dds" remap="0.25;0.00;0.25;0.25" />
+  <Material id="2" file="..\\content\\textures\\fruit.dds" remap="0.50;0.00;0.25;0.25" />
+  <Material id="3" file="..\\content\\textures\\fruit.dds" remap="0.75;0.00;0.25;0.25" />
+  <Material id="4" file="..\\content\\textures\\fruit.dds" remap="0.00;0.25;0.25;0.25" />
+  <Material id="5" file="..\\content\\textures\\fruit.dds" remap="0.25;0.25;0.25;0.25" />
+  <Material id="6" file="..\\content\\textures\\fruit.dds" remap="0.50;0.25;0.25;0.25" />
+  <Material id="7" file="..\\content\\textures\\fruit.dds" remap="0.75;0.25;0.25;0.25" />
+
+  <Material id="8" file="..\\content\\textures\\fruit.dds" remap="0.00;0.50;0.50;0.50" />
+  <Material id="9" file="..\\content\\textures\\fruit.dds" remap="0.50;0.50;0.50;0.50" />
+
+  <Variable name="fruitTex" value="rand('dice',0,7)" />
+  <Variable name="crateTex" value="rand('dice',8,9)" />
+  <Variable name="boxheight" value="rand('const',0.15,0.25)" />
+  <Variable name="height" value="rand('const',0.65,0.85)*boxheight" />
+
+  <Layout>
+    <Instruction value="BO:Mesh:'list';((-0.5*boxWidth;0;-0.5*boxLength;0;0);(-0.5*boxWidth;boxheight;-0.5*boxLength;0;1);( 0.5*boxWidth;boxheight;-0.5*boxLength;1;1);( 0.5*boxWidth;0;-0.5*boxLength;1;0);
+                                        ( 0.5*boxWidth;0;-0.5*boxLength;1;0);( 0.5*boxWidth;boxheight;-0.5*boxLength;1;1);( 0.5*boxWidth;boxheight; 0.5*boxLength;0;1);( 0.5*boxWidth;0; 0.5*boxLength;0;0);
+                                        ( 0.5*boxWidth;0; 0.5*boxLength;0;0);( 0.5*boxWidth;boxheight; 0.5*boxLength;0;1);(-0.5*boxWidth;boxheight; 0.5*boxLength;1;1);(-0.5*boxWidth;0; 0.5*boxLength;1;0);
+                                        (-0.5*boxWidth;0; 0.5*boxLength;1;0);(-0.5*boxWidth;boxheight; 0.5*boxLength;1;1);(-0.5*boxWidth;boxheight;-0.5*boxLength;0;1);(-0.5*boxWidth;0;-0.5*boxLength;0;0));
+                                        (0;1;2;2;3;0;4;5;6;6;7;4;8;9;10;10;11;8;12;13;14;14;15;12);crateTex" />
+    <Instruction value="BO:Mesh:'list';((-0.5*boxWidth;0;-0.5*boxLength;0;0);(-0.5*boxWidth;boxheight;-0.5*boxLength;0;1);( 0.5*boxWidth;boxheight;-0.5*boxLength;1;1);( 0.5*boxWidth;0;-0.5*boxLength;1;0);
+                                        ( 0.5*boxWidth;0;-0.5*boxLength;1;0);( 0.5*boxWidth;boxheight;-0.5*boxLength;1;1);( 0.5*boxWidth;boxheight; 0.5*boxLength;0;1);( 0.5*boxWidth;0; 0.5*boxLength;0;0);
+                                        ( 0.5*boxWidth;0; 0.5*boxLength;0;0);( 0.5*boxWidth;boxheight; 0.5*boxLength;0;1);(-0.5*boxWidth;boxheight; 0.5*boxLength;1;1);(-0.5*boxWidth;0; 0.5*boxLength;1;0);
+                                        (-0.5*boxWidth;0; 0.5*boxLength;1;0);(-0.5*boxWidth;boxheight; 0.5*boxLength;1;1);(-0.5*boxWidth;boxheight;-0.5*boxLength;0;1);(-0.5*boxWidth;0;-0.5*boxLength;0;0));
+                                        (0;2;1;2;0;3;4;6;5;6;4;7;8;10;9;10;8;11;12;14;13;14;12;15);crateTex" />
+    <Instruction value="BO:Mesh:'list';((-0.5*boxWidth;height;-0.5*boxLength;0;0);(-0.5*boxWidth;height; 0.5*boxLength;0;1);( 0.5*boxWidth;height; 0.5*boxLength;1;1);( 0.5*boxWidth;height;-0.5*boxLength;1;0));
+                                        (0;1;2;2;3;0);fruitTex" />
+  </Layout>
+</MainLayout>

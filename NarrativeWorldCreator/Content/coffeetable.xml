@@ -1,0 +1,20 @@
+<MainLayout name="coffee table">
+  <Material id="1" file="..\\content\\textures\\wood01.png" />
+  <Material id="2" file="..\\content\\textures\\wood02.png" />
+
+  <Variable name="color" value="(1;1;1;1)" />
+  <Variable name="height" value="0.5" />
+  <Variable name="depth" value="rand(normal,0.75,0.25)" />
+  <Variable name="width" value="rand(normal,0.6,0.15)" />
+  <Variable name="tex" value="rand(dice,1,2)" />
+
+  <Instruction value="BO:Box:-width / 2 + 0.05;height / 2;-depth / 2 + 0.05;0.05;height;0.05;tex;color" />
+  <Instruction value="BO:Box:width / 2 - 0.05;height / 2;-depth / 2 + 0.05;0.05;height;0.05;tex;color" />
+  <Instruction value="BO:Box:width / 2 - 0.05;height / 2;depth / 2 - 0.05;0.05;height;0.05;tex;color" />
+  <Instruction value="BO:Box:-width / 2 + 0.05;height / 2;depth / 2 - 0.05;0.05;height;0.05;tex;color" />
+  <Instruction value="BO:Box:0;height;0;width;0.025;depth;tex;color" />
+
+  <Semantics class="Table">
+  </Semantics>
+
+</MainLayout>

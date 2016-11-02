@@ -1,0 +1,66 @@
+<MainLayout name="Pallet of cardboard boxes">
+  <RequiredInput name="addThirdStack" comment="Does it need an extra third stack of boxes" />
+
+  <Layout type="fileinstance" instancename="..\\content\\models\\empty pallet.xml" />
+
+  <Layout pos="0;0.1;0" rot="0;(rand(dice,0,4)*0.5*pi);0">
+    <Layout pos="0.47;0;0.3525" rot="0;(rand(dice,0,1)*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="0;0;0.3525" rot="0;(rand(dice,0,1)*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="-0.47;0;0.3525" rot="0;(rand(dice,0,1)*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="0.47;0;-0.3525" rot="0;(rand(dice,0,1)*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="0;0;-0.3525" rot="0;(rand(dice,0,1)*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="-0.47;0;-0.3525" rot="0;(rand(dice,0,1)*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+
+    <Layout pos="0.3525;0.5;-0.47" rot="0;((0.5+rand(dice,0,1))*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="-0.3525;0.5;-0.47" rot="0;((0.5+rand(dice,0,1))*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="0.3525;0.5;0" rot="0;((0.5+rand(dice,0,1))*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="-0.3525;0.5;0" rot="0;((0.5+rand(dice,0,1))*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="0.3525;0.5;0.47" rot="0;((0.5+rand(dice,0,1))*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+    <Layout pos="-0.3525;0.5;0.47" rot="0;((0.5+rand(dice,0,1))*pi);0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+    </Layout>
+
+    <Layout pos="0;1;0" type="conditional" condition="addThirdStack">
+      <Layout pos="0.47;0;0.3525" rot="0;(rand(dice,0,1)*pi);0">
+        <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+      </Layout>
+      <Layout pos="0;0;0.3525" rot="0;(rand(dice,0,1)*pi);0">
+        <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+      </Layout>
+      <Layout pos="-0.47;0;0.3525" rot="0;(rand(dice,0,1)*pi);0">
+        <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+      </Layout>
+      <Layout pos="0.47;0;-0.3525" rot="0;(rand(dice,0,1)*pi);0">
+        <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+      </Layout>
+      <Layout pos="0;0;-0.3525" rot="0;(rand(dice,0,1)*pi);0">
+        <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+      </Layout>
+      <Layout pos="-0.47;0;-0.3525" rot="0;(rand(dice,0,1)*pi);0">
+        <Layout type="fileinstance" instancename="..\\content\\models\\cardboard box.xml" />
+      </Layout>
+    </Layout>
+  </Layout>
+</MainLayout>

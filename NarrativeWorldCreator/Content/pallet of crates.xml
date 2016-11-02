@@ -1,0 +1,37 @@
+<MainLayout name="Pallet of crates">
+
+  <Material id="1" file="..\\content\\textures\\crate.jpg" />
+  <Variable name="Color" value="(1;1;1;1)" />
+
+  <Layout type="fileinstance" instancename="..\\content\\models\\empty pallet.xml" />
+
+  <Layout pos="0;0.1;0" rot="0;(rand(dice,0,4)*0.5*pi);0">
+    <Layout pos="0.35;0.35;0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+    <Layout pos="-0.35;0.35;0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+    <Layout pos="-0.35;0.35;-0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+    <Layout pos="0.35;0.35;-0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+  </Layout>
+  <Layout pos="0;0.8;0" rot="0;(rand(dice,0,4)*0.5*pi);0">
+    <Layout pos="0.35;0.35;0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+    <Layout pos="-0.35;0.35;0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+    <Layout pos="-0.35;0.35;-0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+    <Layout pos="0.35;0.35;-0.35" scl="0.7;0.7;0.7" rot="0;(rand(dice,0,1)*pi);0">
+      <Instruction value="BO:Box:(0.0;0;0);(1;1;1);1;Color" />
+    </Layout>
+  </Layout>
+
+</MainLayout>

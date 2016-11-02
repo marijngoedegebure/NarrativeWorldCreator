@@ -1,0 +1,19 @@
+<MainLayout name="Paper chain">
+
+  <Variable name="len" value="rewriteShape->length()" />
+  <Material id="1" file="..\\content\\textures\\poppetjesslinger3.png" transparency="0.01" />
+  <Material id="2" file="..\\content\\textures\\paperchain1.png" transparency="0.01" />
+  <Material id="3" file="..\\content\\textures\\mariochain.png" transparency="0.01" />
+
+  <Variable name="texId" value="rand(dice,1,3)" />
+  <Variable name="texLen" value="if(texId==1,1/3,if(texId==2,1/3,1/2))" />
+  <Variable name="height" value="rand(const,0.15, 0.25)" />
+  <Variable name="h2" value="height/2" />
+
+  <Instruction value="BO:Mesh:'list';(  (-len*0.5;-h2;0;0.0;0);
+                                      (-len*0.5; h2;0;0.0;1);
+                                      (len*0.5; h2;0;len/texLen;1);
+                                      (len*0.5;-h2;0;len/texLen;0));
+                                      (0;1;2; 2;3;0; 0;2;1; 2;0;3);texId" />
+
+</MainLayout>

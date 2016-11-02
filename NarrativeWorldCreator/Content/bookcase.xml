@@ -1,0 +1,33 @@
+<MainLayout name="Book case">
+
+  <Material id="1" file="..\\content\\textures\\wood01.png" />
+  <Material id="2" file="..\\content\\textures\\wood02.png" />
+  <Material id="3" file="..\\content\\textures\\wood03.png" />
+  <Material id="4" file="..\\content\\textures\\wood04.png" />
+
+  <Variable name="texid" value="rand(dice,1,2)" />
+  <Variable name="numShelves" value="rand(dice,2,4)" />
+  <Variable name="shelfHeight" value="rand(const,0.35, 0.4)" />
+  <Variable name="Width" value="rand(const,0.95, 1.75)" />
+  <Variable name="Depth" value="rand(const,0.37, 0.4)" />
+  <Variable name="Height" value="(numShelves+1) * shelfHeight" />
+  <Variable name="Color" value="(1;1;1;1)" />
+
+  <!--Instruction value="BO:Box:0;/(height,2);0;width;height;thickness;2;color" /-->
+  <Instruction value="BO:Box:(0;Height/2;-Width/2);(Depth;Height;0.01);texid;Color" />
+  <Instruction value="BO:Box:(0;Height/2;Width/2);(Depth;Height;0.01);texid;Color" />
+  <Feature reachable="false" type="Off limits" position="0;Height/2;-Width/2" dimension="Depth;Height;0.01" direction="-1;0;0" />
+  <Feature reachable="false" type="Off limits" position="0;Height/2;Width/2" dimension="Depth;Height;0.01" direction="-1;0;0" />
+
+  <Layout pos="0;shelfHeight/2;0">
+    <Layout name="Book shelf"  type="array" param1="numShelves" variables="0;shelfHeight;0;0;0;0">
+      <Instruction value="BO:Box:(0;0;0);(Depth;0.01;Width);texid;Color" />
+      <Feature reachable="false" type="Off limits" position="0;0;0" dimension="Depth;0.01;Width" direction="-1;0;0" />
+      <Feature reachable="false" type="BookStack" position="0;0.005;0" dimension="Depth-0.02;0;Width-0.01" direction="0;1;0" />
+    </Layout>
+    <Instruction value="BO:Box:(0;numShelves*shelfHeight;0);(Depth;0.01;Width);texid;Color" />
+  </Layout>
+
+  <Semantics class="BookCase" />
+
+</MainLayout>

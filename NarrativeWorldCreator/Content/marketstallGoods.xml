@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MainLayout name="Goods of a market stall">
+  
+  <RequiredInput name="width" comment="Width of the stall" />
+  <RequiredInput name="length" comment="Length of the stall" />
+
+  <Variable name="typeOfGoods" value="rand('dice',0,1)" />
+
+  <Layout type="conditional" condition="typeOfGoods==0">
+    <Layout>
+      <Variable name="nrOfSpiceBoxes" value="int((length-0.1)/0.35)" />
+      <Variable name="nrOfRows" value="int((width-0.1)/0.35)" />
+      <Variable name="nrOfRows" value="if(nrOfRows!>4,nrOfRows,3)" />
+      <Layout type="array" param1="nrOfRows" pos="0;0;(nrOfRows*0.35)*-0.5 + (0.5*0.35)" variables="0;0;0.35;0;0;0">
+        <Layout type="array" param1="nrOfSpiceBoxes" pos="(nrOfSpiceBoxes*0.35)*-0.5 + 0.175;0;0" variables="0.35;0;0;0;0;0">
+          <Layout pos="rand('const',-0.02,0.02);0;rand('const',-0.02,0.02)" rot="0;rand('const',-0.05,0.05);0">
+            <Layout type="fileinstance" instancename="..\\content\\models\\spiceBox.xml" />
+          </Layout>
+        </Layout>
+      </Layout>
+    </Layout>
+  </Layout>
+  
+  <Layout type="conditional" condition="typeOfGoods==1">
+    <Variable name="fruitboxWidth" value="rand('const',0.3,0.45)" />
+    <Variable name="fruitboxLength" value="rand('const',0.45,0.6)" />
+    <Layout>
+      <Variable name="nrOfFruitBoxes" value="int((length-0.1)/(fruitboxWidth + 0.05))" />
+      <Variable name="nrOfRows" value="int((width-0.1)/(fruitboxLength + 0.05))" />
+      <Layout type="array" param1="nrOfRows" pos="0;0;(nrOfRows*(fruitboxLength + 0.05))*-0.5 + (0.5*(fruitboxLength + 0.05))" variables="0;0;(fruitboxLength + 0.05);0;0;0">
+        <Layout type="array" param1="nrOfFruitBoxes" pos="(nrOfFruitBoxes*(fruitboxWidth + 0.05))*-0.5 + (0.5*(fruitboxWidth + 0.05));0;0" variables="(fruitboxWidth + 0.05);0;0;0;0;0">
+          <Layout pos="rand('const',-0.02,0.02);0;rand('const',-0.02,0.02)" rot="0;rand('const',-0.05,0.05);0">
+            <Layout type="fileinstance" instancename="..\\content\\models\\fruitBox.xml">
+              <Input name="boxWidth" value="fruitboxWidth" />
+              <Input name="boxLength" value="fruitboxLength" />
+            </Layout>
+          </Layout>
+        </Layout>
+      </Layout>
+    </Layout>
+  </Layout>
+  
+</MainLayout>

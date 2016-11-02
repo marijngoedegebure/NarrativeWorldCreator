@@ -1,0 +1,27 @@
+<MainLayout name="a book">
+  <Material id="1" file="..\\content\\textures\\metal01.png" />
+  <Material id="2" file="..\\content\\textures\\empty.png" />
+
+  <Variable name="width" value="rand(const,0.15,0.25)" />
+  <Variable name="height" value="rand(const,0.2,0.35)" />
+  <Variable name="thickness" value="rand(const,0.01,0.05)" />
+  <Variable name="color" value="(rand(const,0.2,0.8);rand(const,0.2,0.8);rand(const,0.2,0.8);1)" />
+  <Variable name="coverThickness" value="rand(const,0.001,0.003)" />
+  <Variable name="cth" value="coverThickness/2" />
+  <Variable name="random" value="2" />
+
+  <!--Instruction value="BO:Box:0;/(height,2);0;width;height;thickness;2;color" /-->
+  <Layout material="Cardboard" pos="0;0;0">
+    <Instruction value="BO:Box:(0;0.5*height;thickness/2 - cth);(width;height;coverThickness);2;color" />
+    <Instruction value="BO:Box:(0;0.5*height;-thickness/2 + cth);(width;height;coverThickness);2;color" />
+    <Instruction value="BO:Box:((width/2+cth);0.5*height;0);(coverThickness;height;thickness);2;color" />
+  </Layout>
+  <Layout material="Paper" pos="0;0;0">
+    <Instruction value="BO:Box:(0;0.5*height;0);(width-coverThickness*2;height-coverThickness*2;thickness-coverThickness*2);2;(1;1;1;1)" />
+  </Layout>
+
+  <Semantics class="Book">
+    <Property name="Pages" value="int(thickness*10000)" />
+  </Semantics>
+
+</MainLayout>

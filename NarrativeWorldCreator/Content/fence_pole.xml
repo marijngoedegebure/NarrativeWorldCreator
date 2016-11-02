@@ -1,0 +1,8 @@
+<MainLayout name="Fence pole">
+  <Material id="1" file="..\\content\\textures\\metal03.jpg" />
+
+  <Variable name="texid" value="1" />
+  <Variable name="Color" value="(1;1;1;1)" />
+
+  <Instruction value="BO:Cylinder:0;0;0;2.2;0.05;0.05;16;1;Color" />
+</MainLayout>

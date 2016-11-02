@@ -1,0 +1,38 @@
+<MainLayout name="Kitchen cabinet type 01">
+  <RequiredInput name="leftOpening" comment="Do the doors of the cabinets open to the left?" />
+  <Variable name="zPositionOfHandle" value="if(leftOpening==true,-0.25,0.25)" />
+  <Variable name="height" value="0.6" />
+
+  <Material id="1" name="Kitchen cabinet door wood" file="..\\content\\textures\\wood04.jpg">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\default.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\kitchenCabinetFinish.frag">
+      <SemanticParameter name="DoorWidth" type="Double" defaultValue="0" />
+      <SemanticParameter name="DoorHeight" type="Double" defaultValue="0" />
+      <SemanticParameter name="CabinetFinishType" type="Double" defaultValue="0" />
+    </Shader>-->
+  </Material>
+
+  <Material id="0" name="Kitchen cabinet wood" file="..\\content\\textures\\wood04.jpg" />
+
+  <Material id="2" name="Black" ambient="0.1;0.1;0.1;1" diffuse="0.9;0.9;0.9;1" />
+
+  <Instruction value="BO:Box:(0;0.5 * height;-0.29);(0.4;height;0.02);0;(1;1;1;1)" />
+  <Instruction value="BO:Box:(0;0.5 * height; 0.29);(0.4;height;0.02);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.0;0.01;0);(0.4;0.02;0.56);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.0;height-0.01;0);(0.4;0.02;0.56);0;(1;1;1;1)" />
+  
+  <Instruction value="BO:Box:(-0.19;height * 0.5;0);(0.02;height - 0.04;0.56);0;(1;1;1;1)" />
+  
+  <Instruction value="BO:Box:(0.205;height * 0.5;0);(0.01;height - 0.01;0.59);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.22;0.1;zPositionOfHandle);(0.02;0.07;0.02);2;(0;0;0;1)" />
+
+  <Semantics class="TopKitchenCabinet">
+    <Property name="DoorWidth" value="0.6" />
+    <Property name="DoorHeight" value="height" />
+    <Property name="CabinetFinishType" value="1" />
+  </Semantics>
+
+</MainLayout>

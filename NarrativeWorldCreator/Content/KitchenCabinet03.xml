@@ -1,0 +1,51 @@
+<MainLayout name="Kitchen cabinet type 01">
+  <Variable name="counterHeight" value="optional(counterHeight, 0.85)" />
+  <Variable name="realHeight" value="counterHeight - 0.1" />
+  <Variable name="chmiddle" value="(counterHeight - 0.1) * 0.5 + 0.1" />
+
+  <Variable name="drawerHeights" value="(0.22 * realHeight; 0.22 * realHeight; 0.22 * realHeight; 0.34 * realHeight)" />
+  <Variable name="drawerPos" value="(0.1+0.89*realHeight;0.1+0.67*realHeight;0.1+0.45*realHeight;0.1+0.17*realHeight)" />
+  <Variable name="count" value="-1" />
+
+  <Material id="1" name="Kitchen cabinet door wood" file="..\\content\\textures\\wood04.jpg">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\default.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\kitchenCabinetFinish.frag">
+      <SemanticParameter name="DoorWidth" type="Double" defaultValue="0" />
+      <SemanticParameter name="DoorHeight" type="Double" defaultValue="0" />
+      <SemanticParameter name="CabinetFinishType" type="Double" defaultValue="0" />
+    </Shader>-->
+  </Material>
+
+  <Material id="0" name="Kitchen cabinet wood" file="..\\content\\textures\\wood04.jpg" />
+
+  <Material id="2" name="Black" ambient="0.1;0.1;0.1;1" diffuse="0.1;0.1;0.1;1" />
+  <Material id="3" name="Kitchen cabinet wood" file="..\\content\\textures\\marble03.dds" />
+
+
+  <Instruction value="BO:Box:(-0.05;0.5 * counterHeight;-0.29);(0.6;counterHeight;0.02);0;(1;1;1;1)" />
+  <Instruction value="BO:Box:(-0.05;0.5 * counterHeight; 0.29);(0.6;counterHeight;0.02);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.3;chmiddle;-0.29);(0.1;counterHeight - 0.1;0.02);0;(1;1;1;1)" />
+  <Instruction value="BO:Box:(0.3;chmiddle; 0.29);(0.1;counterHeight - 0.1;0.02);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.24;0.05;0);(0.02;0.1;0.56);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.0;0.11;0);(0.7;0.02;0.56);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(0.0;counterHeight-0.01;0);(0.7;0.02;0.56);0;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(-0.34;chmiddle;0);(0.02;counterHeight - 0.14;0.56);0;(1;1;1;1)" />
+
+  <Layout type="array" param1="4" variables="0;0;0;0;0;0">
+    <Variable name="count" value="count+1" />
+    <Instruction value="BO:Box:(0.355;drawerPos[count];0);(0.01;drawerHeights[count] - 0.01;0.59);0;(1;1;1;1)" />
+    <Instruction value="BO:Box:(0.37;drawerPos[count]+0.5*drawerHeights[count]-0.05;0);(0.02;0.02;0.06);2;(0;0;0;1)" />
+    <Layout type="conditional" condition="count !> 3">
+      <Instruction value="BO:Box:(0.01;drawerPos[count]-0.5*drawerHeights[count];0);(0.68;0.02;0.56);0;(1;1;1;1)" />
+    </Layout>
+  </Layout>
+          
+  <Instruction value="BO:Box:(0.025;counterHeight + 0.015;0);(0.75;0.03;0.6);3;(1;1;1;1)" />
+
+  <!--<Instruction value="BO:Box:(0.22;0.1;zPositionOfHandle);(0.02;0.07;0.02);2;(1;1;1;1)" />-->
+</MainLayout>

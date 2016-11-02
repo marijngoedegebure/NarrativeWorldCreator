@@ -1,0 +1,29 @@
+<MainLayout name="pallet racking beam sidewall">
+  <RequiredInput name="width" comment="Width of the sidewall" />
+
+  <Material id="1" file="..\\content\\textures\\metal03.jpg" />
+  <Variable name="height" value="optional(height, rewriteShape->height())" />
+  <Variable name="nrOfSupportBeams" value="int((height - 0.5)/1.5)" />
+  <Variable name="crossBeamLen" value="sqrt(2*(width - 0.06)*(width - 0.06))" />
+
+  <Layout pos="0.5*width;0;0">
+    <Layout type="fileinstance" instancename="..\\content\\models\\pallet racking beam.xml">
+      <Input name="height" value="height" />
+    </Layout>
+  </Layout>
+  <Layout pos="-0.5*width;0;0" rot="0;pi;0">
+    <Layout type="fileinstance" instancename="..\\content\\models\\pallet racking beam.xml">
+      <Input name="height" value="height" />
+    </Layout>
+  </Layout>
+
+  <Layout pos="0;0.25;0" type="array" param1="nrOfSupportBeams + 1" variables="0;1.5;0;0;0;0">
+    <Instruction value="BO:Box:(0;0;0);(width;0.079;0.079);1;(1;1;1;1)" />
+  </Layout>
+  <Layout pos="0;1.0;0" type="array" param1="nrOfSupportBeams" variables="0;1.5;0;0;0;0">
+    <Layout rot="0;0;0.25*pi">
+      <Instruction value="BO:Box:(0;0;0);(crossBeamLen;0.079;0.079);1;(1;1;1;1)" />
+    </Layout>
+  </Layout>
+
+</MainLayout>

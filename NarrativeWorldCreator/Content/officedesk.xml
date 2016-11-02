@@ -1,0 +1,121 @@
+<MainLayout name="office desk">
+
+  <Variable name="width" value="rand(const,1,1.8)" />
+  <Variable name="depth" value="rand(const,0.75,0.85)" />
+  <Variable name="height" value="0.75" />
+  <Variable name="fullSides" value="rand(dice,0,1)" />
+  <Variable name="backType" value="if(fullSides==0,0,rand(dice,0,2))" />
+  <Variable name="pawType" value="rand(dice,0,2)" />
+  <Variable name="bottomTex" value="if(fullSides==0,rand(dice,5,6),rand(dice,1,4))" />
+  <Variable name="topTex" value="if(bottomTex!>3,rand(dice,1,2),if(bottomTex!>5,rand(dice,3,4),rand(dice,5,6)))" />
+  <Variable name="desktopTex" value="if(rand(dice,0,2)==0,rand(dice,5,6),if(bottomTex!>3,rand(dice,1,2),if(bottomTex!>5,rand(dice,3,4),rand(dice,1,6))))" />
+  <Variable name="backHeight" value="rand(const,0.15,height*0.8)" />
+  <Variable name="drawers" value="if(fullSides==0,0,if(rand(dice,0,2)==0,0,1))" />
+
+  <Material id="1">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\NormalSpecular.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\NormalSpecular.frag" />-->
+    <Texture file="..\\content\\textures\\wood01.dds" />
+    <!--<Texture file="..\\content\\textures\\defaultnormal.dds" />-->
+  </Material>
+  <Material id="2">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\NormalSpecular.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\NormalSpecular.frag" />-->
+    <Texture file="..\\content\\textures\\wood02.dds" />
+    <!--<Texture file="..\\content\\textures\\defaultnormal.dds" />-->
+  </Material>
+  <Material id="3">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\NormalSpecular.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\NormalSpecular.frag" />-->
+    <Texture file="..\\content\\textures\\wood04b.jpg" />
+    <!--<Texture file="..\\content\\textures\\wood04n.jpg" />-->
+  </Material>
+  <Material id="4" scale="1.75">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\NormalSpecular.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\NormalSpecular.frag" />-->
+    <Texture file="..\\content\\textures\\wood04.jpg" />
+    <!--<Texture file="..\\content\\textures\\wood04n.jpg" />-->
+  </Material>
+  <Material id="5">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\NormalSpecular.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\NormalSpecular.frag" />-->
+    <Texture file="..\\content\\textures\\metal01.png" />
+    <!--<Texture file="..\\content\\textures\\defaultnormal.dds" />-->
+  </Material>
+  <Material id="6">
+    <!--<Shader type="Vertex" filename="..\\content\\shaders\\NormalSpecular.vert" />
+    <Shader type="Fragment" filename="..\\content\\shaders\\NormalSpecular.frag" />-->
+    <Texture file="..\\content\\textures\\metal02.png" />
+    <!--<Texture file="..\\content\\textures\\defaultnormal.dds" />-->
+  </Material>
+
+  <LayoutDeclare name="drawer">
+    <Instruction value="BO:Box:-0.01;drawerH/2;0;0.02;drawerH-0.001;drawerWidth;topTex" />
+    <Layout type="conditional" condition="handleType==0" pos="0;drawerH/2;0" rot="0;0;PI/2">
+      <Instruction value="BO:Cylinder:0;0;0;0.03;0.01;0.01;8;5" />
+    </Layout>
+    <Layout type="conditional" condition="handleType==1" pos="0;drawerH/2;0">
+      <Instruction value="BO:Box:0.005;0;0;0.01;0.02;0.08;6" />
+    </Layout>
+  </LayoutDeclare>
+
+  <Layout name="bottom">
+    <Layout name="leftandright" param1="2"  type="array" pos="0;0;-width/2+0.05"  variables="0;0;width-0.1;0;0;0">
+      <Layout name="fullside"  type="conditional" condition="fullSides==1">
+        <Instruction value="BO:Box:0;height/2;0;depth-0.1;height;0.02;bottomTex" />
+      </Layout>
+      <Layout name="nonfullside"  type="conditional" condition="fullSides==0">
+        <Layout name="ifroundPaws" type="conditional" condition="pawType==0">
+          <Layout name="roundPaws" type="array" param1="2"  pos="-depth/2+0.05;0;0" variables="depth-0.1;0;0;0;0;0">
+            <Instruction value="BO:Cylinder:0;0;0;height;0.02;0.02;8;bottomTex;1;1;1;1" />
+          </Layout>
+        </Layout>
+        <Layout name="ifotherPaws" type="conditional" condition="pawType>0">
+          <Instruction value="BO:Box:0;0.01;0;depth;0.02;0.05;bottomTex" />
+          <Instruction value="BO:Box:-(pawType-1)*depth/4;height/2;0;0.1;height;0.025;bottomTex" />
+        </Layout>
+      </Layout>
+    </Layout>
+    <Layout type="conditional" condition="backType>0">
+      <Instruction value="BO:Box:-depth/2+0.1;(height-0.1)-backHeight/2;0;0.02;backHeight;width-0.12;bottomTex" />
+    </Layout>
+  </Layout>
+
+  <Layout type="conditional" condition="drawers==1" pos="0;height;0">
+    <Variable name="nrOfDrawers" value="rand(dice,2,3)" />
+    <Variable name="drawerHeight" value="rand(const,0.08,0.12)" />
+    <Variable name="bottomDrawerHeight" value="if(rand(dice,0,1)==1,drawerHeight,drawerHeight*1.5)" />
+    <Variable name="drawerWidth" value="rand(const,0.3,0.45)" />
+    <Variable name="side" value="rand(dice,0,1)*2-1" />
+    <Variable name="drawerDepth" value="0.4" />
+    <Variable name="drawersHeight" value="(nrOfDrawers-1)*drawerHeight+bottomDrawerHeight" />
+    <Variable name="handleType" value="rand(dice,0,1)" />
+    
+    <Layout pos="depth/2-0.06;0;side*((width/2-0.05)-drawerWidth/2)">
+      <Instruction value="BO:Box:-drawerDepth+0.01;-drawersHeight/2;0;0.02;drawersHeight;drawerWidth;bottomTex" />
+      <Instruction value="BO:Box:-drawerDepth/2;-drawersHeight/2-0.01;-side*drawerWidth/2+0.01;drawerDepth;drawersHeight+0.02;0.02;bottomTex" />
+      <Instruction value="BO:Box:-drawerDepth/2;-drawersHeight-0.01;0;drawerDepth;0.02;drawerWidth;bottomTex" />
+      <Variable name="drawerH" value="drawerHeight" />
+      <Layout name="drawers" pos="0;-drawerHeight;0"  type="array" param1="nrOfDrawers-1" variables="0;-drawerHeight;0;0;0;0">
+        <Layout type="instance" instancename="drawer" />
+      </Layout>
+      <Layout name="bottomdrawer" pos="0;-drawersHeight;0">
+        <Variable name="drawerH" value="bottomDrawerHeight" />
+        <Layout type="instance" instancename="drawer" />
+      </Layout>
+    </Layout>
+
+  </Layout>
+
+  <Layout name="desktop" pos="0;height;0">
+
+    <Variable name="chairPos" value="if(drawers==1, -side * (width * 0.5 - 0.35), 0)" />
+    <Feature reachable="false" type="OfficeChairPosition" position="depth*0.5+0.05;-height;chairPos" dimension="0.10; 0; 0.10" direction="-1;0;0" />
+    <Feature reachable="false" type="Off limits" position="0; 0; 0" dimension="depth; 0.02; width" direction="0;1;0" />
+
+    <Instruction value="BO:Box:0;0.01;0;depth;0.02;width;desktopTex" />
+  </Layout>
+  <Feature reachable="false" type="Off limits" position="0; height * 0.5 - 0.02; width * 0.5 - 0.05" dimension="depth; height - 0.02; 0.1" direction="0;1;0" />
+  <Feature reachable="false" type="Off limits" position="0; height * 0.5 - 0.02; -width * 0.5 + 0.05" dimension="depth; height - 0.02; 0.1" direction="0;1;0" />
+
+</MainLayout>

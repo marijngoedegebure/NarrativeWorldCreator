@@ -1,0 +1,12 @@
+C:\Users\marij\Documents\Master Thesis\Release\x64\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis\Release\x86\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis\Release\SemanticsEngine.dll
+C:\Users\marij\Documents\Master Thesis\Release\SemanticsEngine.pdb
+C:\Users\marij\Documents\Master Thesis\Release\nl-NL\SemanticsEngine.resources.dll
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\SemanticsEngine.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\SemanticsEngine.Tools.Enums.resources
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\SemanticsEngine.Tools.Enums.nl-NL.resources
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\SemanticsEngine.csproj.GenerateResource.Cache
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\nl-NL\SemanticsEngine.resources.dll
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\SemanticsEngine.dll
+C:\Users\marij\Documents\Master Thesis\SemanticsEngine\obj\Release\SemanticsEngine.pdb

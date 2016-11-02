@@ -1,0 +1,43 @@
+<MainLayout name="pallet racking bottom">
+  <RequiredInput name="width" />
+  <RequiredInput name="length" />
+
+  <Variable name="w2" value="0.5*width" />
+  <Variable name="l2" value="0.5*length" />
+
+  <Material id="1">
+    <Texture file="..\\content\\textures\\metal03.jpg" />
+  </Material>
+  <Material id="2" file="..\\content\\textures\\oranje-achtig-iets.jpg" />
+  <Material id="3" file="..\\content\\textures\\metal02.png" />
+
+
+  <Instruction value="BO:Box:(0;-0.01;0);(width;0.02;length-0.081);1;(1;1;1;1)" />
+  <Instruction value="BO:Box:(w2+0.005;-0.03;0);(0.01;0.08;length-0.081);2;(1;1;1;1)" />
+  <Instruction value="BO:Box:(-w2-0.005;-0.03;0);(0.01;0.08;length-0.081);2;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(w2+0.015;-0.04;l2-0.0425);(0.03;0.11;0.005);2;(1;1;1;1)" />
+  <Instruction value="BO:Box:(-w2-0.015;-0.04;l2-0.0425);(0.03;0.11;0.005);2;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(w2+0.015;-0.04;-l2+0.0425);(0.03;0.11;0.005);2;(1;1;1;1)" />
+  <Instruction value="BO:Box:(-w2-0.015;-0.04;-l2+0.0425);(0.03;0.11;0.005);2;(1;1;1;1)" />
+
+  <Instruction value="BO:Box:(w2+0.0325;-0.04;l2-0.0225);(0.005;0.11;0.045);2;(1;1;1;1)" />
+  <Layout pos="w2+0.03;-0.03;l2-0.02" rot="0;0;0.5*pi">
+    <Instruction value="BO:Cylinder:0;0;0;0.01;0.013;0.013;6;3" />
+  </Layout>
+  <Instruction value="BO:Box:(-w2-0.0325;-0.04;l2-0.0225);(0.005;0.11;0.045);2;(1;1;1;1)" />
+  <Layout pos="-w2-0.03;-0.03;l2-0.02" rot="0;0;-0.5*pi">
+    <Instruction value="BO:Cylinder:0;0;0;0.01;0.013;0.013;6;3" />
+  </Layout>
+
+  <Instruction value="BO:Box:(w2+0.0325;-0.04;-l2+0.0225);(0.005;0.11;0.045);2;(1;1;1;1)" />
+  <Layout pos="w2+0.03;-0.03;-l2+0.02" rot="0;0;0.5*pi">
+    <Instruction value="BO:Cylinder:0;0;0;0.01;0.013;0.013;6;3" />
+  </Layout>
+  <Instruction value="BO:Box:(-w2-0.0325;-0.04;-l2+0.0225);(0.005;0.11;0.045);2;(1;1;1;1)" />
+  <Layout pos="-w2-0.03;-0.03;-l2+0.02" rot="0;0;-0.5*pi">
+    <Instruction value="BO:Cylinder:0;0;0;0.01;0.013;0.013;6;3" />
+  </Layout>
+
+</MainLayout>

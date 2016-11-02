@@ -1,0 +1,14 @@
+C:\Users\marij\Documents\Master Thesis\Debug\x64\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis\Debug\x86\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis\Debug\GameSemanticsEngine.dll
+C:\Users\marij\Documents\Master Thesis\Debug\GameSemanticsEngine.pdb
+C:\Users\marij\Documents\Master Thesis\GameSemanticsEngine\obj\Debug\GameSemanticsEngine.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis\GameSemanticsEngine\obj\Debug\GameSemanticsEngine.dll
+C:\Users\marij\Documents\Master Thesis\GameSemanticsEngine\obj\Debug\GameSemanticsEngine.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\x64\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\x86\SQLite.Interop.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\GameSemanticsEngine.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\Debug\GameSemanticsEngine.pdb
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemanticsEngine\obj\Debug\GameSemanticsEngine.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemanticsEngine\obj\Debug\GameSemanticsEngine.dll
+C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\GameSemanticsEngine\obj\Debug\GameSemanticsEngine.pdb

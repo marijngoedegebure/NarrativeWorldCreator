@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MainLayout name="Top of a market stall">
+  <RequiredInput name="width" comment="Width of the stall" />
+  <RequiredInput name="length" comment="Length of the stall" />
+  <RequiredInput name="height" comment="Height of the stall top" />
+
+  <Material id="1" file="..\\content\\textures\\black.dds" />
+  
+  <Material id="3" file="..\\content\\textures\\thedoors.dds" remap="0.75;0.25;0.25;0.25" />
+  <Material id="4" file="..\\content\\textures\\thedoors.dds" remap="0;0.5;0.25;0.25" />
+  <Material id="5" file="..\\content\\textures\\thedoors.dds" remap="0.25;0.5;0.25;0.25" />
+  <Material id="6" file="..\\content\\textures\\thedoors.dds" remap="0.5;0.5;0.25;0.25" />
+  <Material id="7" file="..\\content\\textures\\thedoors.dds" remap="0.75;0.5;0.25;0.25" />
+  
+  <Material id="8" file="..\\content\\textures\\wood02.dds" />
+  <Material id="9" file="..\\content\\textures\\wood02b.dds" />
+  <Material id="10" file="..\\content\\textures\\wood05.dds" />
+
+  <Variable name="clothTex" value="rand('dice',3,7)" />
+  <Variable name="woodTex" value="rand('dice',8,10)" />
+  <Variable name="roofType" value="rand('dice',0,2)" />
+  <Variable name="addedHeight" value="if(roofType==2,0.1,0)" />
+
+  <Layout>
+    <Layout type="array" pos="-length*0.5+0.02;0;0" param1="2" variables="length-0.04;0;0;0;0;0">
+      <Instruction value="BO:Box:(0;height*0.5;-width*0.5+0.02);(0.01;height;0.01);1;(1;1;1;1)" />
+      <Instruction value="BO:Box:(0;(height+addedHeight)*0.5;width*0.5-0.02);(0.01;height+addedHeight;0.01);1;(1;1;1;1)" />
+    </Layout>
+  </Layout>
+
+  <Layout type="conditional" condition="roofType!>2">
+    <Layout type="array" pos="-length*0.5+0.02;height;0" param1="2" variables="length-0.04;0;0;0;0;0">
+      <Layout type="array" pos="0;0;0" param1="2" variables="0;0.04;0;0;0;0">
+        <Instruction value="BO:Box:(0;0.01;0);(0.05;0.02;width);woodTex;(1;1;1;1)" />
+      </Layout>
+    </Layout>
+    <Layout pos="0;height+0.02;-width*0.45" rot="0;rand('const',-0.05,0.05);0">
+      <Instruction value="BO:Box:(0;0.01;0);(length*1.1;0.02;0.05);woodTex;(1;1;1;1)" />
+    </Layout>
+    <Layout pos="0;height+0.02;width*0.45" rot="0;rand('const',-0.05,0.05);0">
+      <Instruction value="BO:Box:(0;0.01;0);(length*1.1;0.02;0.05);woodTex;(1;1;1;1)" />
+    </Layout>
+  </Layout>
+
+  <Layout type="conditional" condition="roofType==0">
+    <Variable name="nrOfPlanks" value="int((length-0.1)/0.1)" />
+    <Layout type="array" param1="nrOfPlanks" pos="-nrOfPlanks*0.1*0.5+0.05;height+0.05;0" variables="0.1;0;0;0;0;0">
+      <Layout pos="0;0;rand('const',-0.02,0.02)" rot="rand('dice',0,1)*pi;0;0">
+        <Instruction value="BO:Box:(0;0;0);(0.09;0.02;rand('const',0.93,1.02)*width);woodTex;(1;1;1;1)" />
+      </Layout>
+    </Layout>
+  </Layout>
+  <Layout type="conditional" condition="roofType==1">
+    <Instruction value="BO:Mesh:'grid';6;(-length*0.5;height+0.04;-width*0.45);(-length*0.5;height+0.04; width*0.45);( length*0.5;height+0.04; width*0.45);( length*0.5;height+0.04;-width*0.45);(('j==size');('j==0'));'-sin(x/width*pi)*0.045*width';clothTex" />
+  </Layout>
+  <Layout type="conditional" condition="roofType==2">
+    <Variable name="ang" value="atan(0.1/width)" />
+    <Layout type="array" pos="-0.5*length+0.02;height+0.05;0" rot="ang;0;0" param1="2" variables="length-0.04;0;0;0;0;0">
+      <Instruction value="BO:Box:(0;0;0);(0.02;0.02;width);woodTex;(1;1;1;1)" />
+    </Layout>
+    <Instruction value="BO:Mesh:'grid';6;(-length*0.5+0.02;height;-width*0.45);(-length*0.5+0.02;height+0.1; width*0.45);( length*0.5-0.02;height+0.1; width*0.45);( length*0.5-0.02;height;-width*0.45);(('i==size');('i==0'));'-sin(x/length*pi)*0.045*length';clothTex" />
+  </Layout>
+  
+</MainLayout>

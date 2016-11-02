@@ -1,0 +1,13 @@
+<MainLayout name="soda can">
+  <Variable name="Color" value="(1;1;1;1)" />
+
+  <Material id="0" file="..\\content\\textures\\can_bottom.jpg" />
+  <Material id="1" file="..\\content\\textures\\can_top.jpg" />
+  
+  <Material id="2" file="..\\content\\textures\\coke_can.jpg" />
+
+  <Layout scl="1;0.122;1">
+    <Instruction value="BO:Cylinder:0;0;0;1;0.0317;0.0317;16;2;Color;true;1;false" />
+  </Layout>
+
+</MainLayout>

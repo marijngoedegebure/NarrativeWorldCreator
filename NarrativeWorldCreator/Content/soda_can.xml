@@ -1,0 +1,28 @@
+<MainLayout name="soda can">
+  <RequiredInput name="wrapper" comment="wrapper type (1=coke, 2=pepsi, 3=nuke cola, 4=empty)" />
+  <RequiredInput name="down" comment="should the can be knocked over? (true/false)" />
+  
+  <Variable name="Color" value="(1;1;1;1)" />
+
+  <Material id="0" file="..\\content\\textures\\can_bottom.jpg" />
+  <Material id="1" file="..\\content\\textures\\can_top.jpg" />
+  
+  <Material id="2" file="..\\content\\textures\\coke_can.jpg" />
+  <Material id="3" file="..\\content\\textures\\pepsi_can.jpg" />
+  <Material id="4" file="..\\content\\textures\\nuke_cola_can.png" />
+  <Material id="5" file="..\\content\\textures\\empty_can.jpg" />
+
+  <Layout type="conditional" condition="down==false">
+    <Layout scl="1;0.122;1">
+      <Instruction value="BO:Cylinder:0;0;0;1;0.0317;0.0317;16;wrapper+1;Color;true;1;false" />
+    </Layout>
+  </Layout>
+  <Layout type="conditional" condition="down">
+    <Layout pos="0.061;0.0317;0" rot="0;0;-0.5*pi">
+      <Layout scl="1;0.122;1">
+        <Instruction value="BO:Cylinder:0;0;0;1;0.0317;0.0317;16;wrapper+1;Color;true;1;true;0" />
+      </Layout>
+    </Layout>
+  </Layout>
+
+</MainLayout>

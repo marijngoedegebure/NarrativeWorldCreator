@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Narratives;
+using NarrativeWorldCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace NarrativeWorldCreator.RegionGraph
         public List<int> triangleListIndices { get; set; }
         public List<NarrativeEvent> NarrativeEvents { get; set; }
         public List<NarrativeObject> NarrativeObjects { get; set; }
+        public List<InstancedEntikaObject> InstancedEntikaObjects { get; set; }
 
         public Node(String locationName)
         {
@@ -24,6 +26,7 @@ namespace NarrativeWorldCreator.RegionGraph
             triangleListIndices = new List<int>();
             NarrativeEvents = new List<NarrativeEvent>();
             NarrativeObjects = new List<NarrativeObject>();
+            InstancedEntikaObjects = new List<InstancedEntikaObject>();
         }
 
         public String getLocationName()

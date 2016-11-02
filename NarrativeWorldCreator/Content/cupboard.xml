@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<MainLayout name="a cupboard" boundingbox="(0.01; 0.43; 0);(0.46; 0.86; 0.69)">
+  <Material id="0" file="..\content\textures\empty.png" />
+  <Layout pos="0; 0; 0" rot="0;-0.5*PI;0" scl="0.0085;0.0085;0.0085">
+    <Instruction value="BO:external_object:Str:..\models\cuh066.3DS;0" />
+  </Layout>
+</MainLayout>

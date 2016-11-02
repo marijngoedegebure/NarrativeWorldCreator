@@ -1,0 +1,35 @@
+<MainLayout name="pallet rack">
+
+  <Variable name="len" value="rewriteShape->length()" />
+  <Variable name="nrOfParts" value="int(len / 4)" />
+  <Variable name="partLen" value="len/nrOfParts" />
+  <Variable name="h1" value="rand(const,0.3,0.4) * rewriteShape->height()" />
+  <Variable name="h2" value="rand(const,0.7,0.95) * rewriteShape->height()" />
+
+  <Layout pos="-len*0.5;0;0" rot="0;pi*0.5;0">
+    <Layout type="array" pos="0;0;0.5*partLen" param1="nrOfParts" variables="0;0;partLen;0;0;0">
+      <Feature reachable="false" type="PalletStorage" position="0;(h1 - 0.1)*0.5;0" dimension="1.45;(h1 - 0.1);partLen-0.1" direction="0;1;0" />
+      <Layout pos="0;h1;0">
+        <Feature reachable="false" type="PalletStorage" position="0;((h2 - h1) - 0.1)*0.5;0" dimension="1.45;((h2 - h1) - 0.1);partLen-0.1" direction="0;1;0" />
+        <Layout type="fileinstance" instancename="..\\content\\models\\pallet racking bottom.xml">
+          <Input name="width" value="1.5" />
+          <Input name="length" value="partLen" />
+        </Layout>
+      </Layout>
+      <Layout pos="0;h2;0">
+        <Feature reachable="false" type="PalletStorage" position="0;(rewriteShape->height() - h2)*0.5;0" dimension="1.45;rewriteShape->height() - h2;partLen-0.1" direction="0;1;0" />
+        <Layout type="fileinstance" instancename="..\\content\\models\\pallet racking bottom.xml">
+          <Input name="width" value="1.5" />
+          <Input name="length" value="partLen" />
+        </Layout>
+      </Layout>
+    </Layout>
+    <Layout type="array" pos="0;0;0" param1="nrOfParts+1" variables="0;0;partLen;0;0;0">
+      <Layout type="fileinstance" instancename="..\\content\\models\\pallet racking beam sidewall.xml">
+        <Input name="width" value="1.5" />
+        <Input name="height" value="rewriteShape->height()" />
+      </Layout>
+    </Layout>
+  </Layout>
+  
+</MainLayout>

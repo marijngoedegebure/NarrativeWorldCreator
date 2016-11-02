@@ -111,6 +111,7 @@
     </ApplicationDefinition>
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
+    <Compile Include="Models\InstancedEntikaObject.cs" />
     <Compile Include="Models\NarrativeWorld.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>
@@ -188,6 +189,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameSemanticsEngine\GameSemanticsEngine.csproj">
+      <Project>{2da1975f-2bd3-456f-8431-fad58c70525b}</Project>
+      <Name>GameSemanticsEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameSemantics\GameSemantics.csproj">
       <Project>{461cd61b-7803-44f1-a7d7-3f18cb05e21b}</Project>
       <Name>GameSemantics</Name>
@@ -199,6 +204,10 @@
     <ProjectReference Include="..\Narrative\Narratives.csproj">
       <Project>{5ff6f1bc-9868-475b-8826-42c9ab958418}</Project>
       <Name>Narratives</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemanticsEngine\SemanticsEngine.csproj">
+      <Project>{40c5f219-444a-4f6e-9ba2-4dd10471c288}</Project>
+      <Name>SemanticsEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\Semantics\Semantics.csproj">
       <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>

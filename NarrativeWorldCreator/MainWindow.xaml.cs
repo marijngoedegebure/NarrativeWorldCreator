@@ -6,6 +6,16 @@ using NarrativeWorldCreator.Pages;
 using Semantics.Data;
 using System.Collections.Generic;
 using Semantics.Entities;
+using GameSemantics.Data;
+using GameSemantics.Components;
+using System.Collections.ObjectModel;
+using SemanticsEngine.Entities;
+using GameSemanticsEngine.Tools;
+using GameSemanticsEngine.GameContent;
+using Semantics.Components;
+using GameSemanticsEngine.Interfaces;
+using SemanticsEngine.Components;
+using GameSemanticsEngine.Components;
 
 namespace NarrativeWorldCreator
 {
@@ -18,12 +28,28 @@ namespace NarrativeWorldCreator
         {
             InitializeComponent();
             _mainFrame.Navigate(new InitPage());
-            Database.Initialize();
-            Database.LoadProject("C://Users//marij//Documents//Master Thesis own folder//Entika test databases//gamesimple.edp");
-            var names = Database.Current.SelectAll<String>(LocalizationTables.NodeName);
-            Database.Current.SelectAll<String>(3, LocalizationTables.NodeName, Columns.Name);
+            GameDatabase.Initialize();
+            SystemStateTracker.LoadedFileName = "gamesimple.edp";
+            GameDatabase.LoadProject("C://Users//marij//Documents//Master Thesis own folder//Entika test databases//gamesimple.edp");
+
+            GameSemanticsEngine.GameSemanticsEngine.Initialize();
+
             List<PhysicalEntity> allPhysicalEntities = DatabaseSearch.GetNodes<PhysicalEntity>(true);
             List<PhysicalObject> allPhysicalObjects = DatabaseSearch.GetNodes<PhysicalObject>(true);
+            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
+            TangibleObject specificTangibleObject = DatabaseSearch.GetNode<TangibleObject>("couch");
+            List<Space> allSpaces = DatabaseSearch.GetNodes<Space>(true);
+            ReadOnlyCollection<GameObject> gameObjectForFirstPhysicalObject = GameDatabaseSearch.GetGameObjects(specificTangibleObject);
+            
+            TangibleObjectInstance semanticInstance = GameInstanceManager.Current.Create(gameObjectForFirstPhysicalObject[0]);
+            ContentWrapper contentWrapper;
+            Dictionary<ModelInstance, Node> geometry = new Dictionary<ModelInstance, Node>();
+            bool truth = ContentManager.TryGetContentWrapper(semanticInstance, out contentWrapper);
+            if (ContentManager.TryGetContentWrapper(semanticInstance, out contentWrapper))
+            {
+                foreach (ModelInstance modelInstance in contentWrapper.GetContent<ModelInstance>())
+                    continue;
+            }
         }
     }
 }

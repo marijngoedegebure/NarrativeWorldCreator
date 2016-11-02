@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Pages;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace NarrativeWorldCreator
 {
@@ -25,12 +27,13 @@ namespace NarrativeWorldCreator
 
         private RegionPage _currentRegionPage;
 
-        private VertexPositionColor[] vertices;
         private VertexBuffer vertexBuffer;
 
         private Matrix view;
         private Matrix proj;
         private Matrix world;
+
+        private Effect effect;
         #endregion
 
         #region Methods
@@ -46,16 +49,7 @@ namespace NarrativeWorldCreator
             _keyboard = new WpfKeyboard(this);
             _mouse = new WpfMouse(this);
 
-            vertices = new VertexPositionColor[5];
-
-            vertices[0] = new VertexPositionColor(new Vector3(-0.5f, 0.5f, 0), Color.Red);
-            vertices[1] = new VertexPositionColor(new Vector3(-0.5f, -0.5f, 0), Color.Blue);
-            vertices[2] = new VertexPositionColor(new Vector3(0.5f, 0.5f, 0), Color.Green);
-            vertices[3] = new VertexPositionColor(new Vector3(0.5f, -0.5f, 0), Color.Brown);
-            vertices[4] = new VertexPositionColor(new Vector3(0.7f, 0.5f, 0.5f), Color.Azure);
-
-            vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, vertices.Length, BufferUsage.WriteOnly);
-            vertexBuffer.SetData(vertices);
+            effect = Content.Load<Effect>("Effects/Textured");
 
             RasterizerState state = new RasterizerState();
             state.CullMode = CullMode.CullClockwiseFace;
@@ -66,15 +60,28 @@ namespace NarrativeWorldCreator
             _currentRegionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
+        private Model LoadModel(string assetName)
+        {
+            Model newModel = Content.Load<Model>(assetName);
+            foreach (ModelMesh mesh in newModel.Meshes)
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                    meshPart.Effect = effect;
+            return newModel;
+        }
+
+        private void UpdateViewAndProj()
+        {
+            view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
+
+            proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
+                                              Camera3d.NEARCLIP, Camera3d.FARCLIP);
+        }
 
         protected override void Draw(GameTime time)
         {
             GraphicsDevice.Clear(_mouseState.LeftButton == ButtonState.Pressed ? Color.Black : Color.CornflowerBlue);
             world = Matrix.Identity;
-            view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
-
-            proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
-                                              Camera3d.NEARCLIP, Camera3d.FARCLIP);
+            UpdateViewAndProj();
             // since we share the GraphicsDevice with all hosts, we need to save and reset the states
             // this has to be done because spriteBatch internally sets states and doesn't reset themselves, fucking over any 3D rendering (which happens in the DemoScene)
 
@@ -86,6 +93,12 @@ namespace NarrativeWorldCreator
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
             SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
             drawRegionPolygon();
+
+            // Draw all objects that have been added to the scene
+            foreach(InstancedEntikaObject instance in _currentRegionPage.selectedNode.InstancedEntikaObjects)
+            {
+                drawEntikaInstance(instance);
+            }
 
             // this base.Draw call will draw "all" components
             base.Draw(time);
@@ -147,6 +160,42 @@ namespace NarrativeWorldCreator
             }
         }
 
+        public void drawEntikaInstance(InstancedEntikaObject instance)
+        {
+            Model myModel = LoadModel(Path.GetFileNameWithoutExtension(instance.ModelInstance.Name));
+            Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
+            Matrix[] transforms = new Matrix[myModel.Bones.Count];
+            // Vector3 modelPosition = instance.Position;
+            Vector3 modelPosition = Vector3.Zero;
+            float modelRotation = 90.0f;
+            myModel.CopyAbsoluteBoneTransformsTo(transforms);
+            // Draw the model. A model can have multiple meshes, so loop.
+            foreach (ModelMesh mesh in myModel.Meshes)
+            {
+                foreach (Effect effect in mesh.Effects)
+                {
+                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationY(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
+                    effect.Parameters["Texture"].SetValue(texture);
+                    effect.CurrentTechnique = effect.Techniques["Textured"];
+                    //foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+                    //{
+                    //    pass.Apply();
+                    //    //effect.EnableDefaultLighting();
+                    //    //effect.World = transforms[mesh.ParentBone.Index] *
+                    //    //    Matrix.CreateRotationY(modelRotation)
+                    //    //    * Matrix.CreateTranslation(modelPosition);
+                    //    //effect.View = view;
+                    //    //effect.Projection = proj;
+                    //    //effect.TextureEnabled = true;
+                    //    //effect.Texture = texture;
+                    //    // Draw the mesh, using the effects set above.
+
+                    //}
+                    mesh.Draw();
+                }
+            }
+        }
+
         public void drawModelExampleFunction()
         {
             Model myModel = Content.Load<Model>("cylinder");
@@ -154,12 +203,6 @@ namespace NarrativeWorldCreator
             Vector3 modelPosition = Vector3.Zero;
             float modelRotation = 90.0f;
             myModel.CopyAbsoluteBoneTransformsTo(transforms);
-            // Set up the view matrix and projection matrix.
-            view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
-
-            proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
-                                              Camera3d.NEARCLIP, Camera3d.FARCLIP);
-
             // Draw the model. A model can have multiple meshes, so loop.
             foreach (ModelMesh mesh in myModel.Meshes)
             {
@@ -210,7 +253,27 @@ namespace NarrativeWorldCreator
                 _currentRegionPage.selectedNode.triangulatePolygon();
             }
 
-            base.Update(time);
+            // Handle object placement
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftControl))
+            {
+                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
+                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+
+                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
+                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+
+                // Create ray using far and near point
+                Vector3 direction = farPoint - nearPoint;
+                direction.Normalize();
+                Ray ray = new Ray(nearPoint, direction);
+
+                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
+                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
+                _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", planeHit));
+            }
+
+                base.Update(time);
         }
 
         #endregion
