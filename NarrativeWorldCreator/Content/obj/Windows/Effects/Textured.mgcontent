@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/Effects/Textured.fx</SourceFile>
-  <SourceTime>2016-11-02T17:08:14.3060718+01:00</SourceTime>
-  <DestFile>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/bin/Windows/Effects/Textured.xnb</DestFile>
-  <DestTime>2016-11-02T17:08:28.5872165+01:00</DestTime>
+  <SourceFile>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/Effects/Textured.fx</SourceFile>
+  <SourceTime>2016-11-03T13:31:35.3054488+01:00</SourceTime>
+  <DestFile>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/bin/Windows/Effects/Textured.xnb</DestFile>
+  <DestTime>2016-11-03T14:12:10.3609701+01:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>EffectProcessor</Processor>

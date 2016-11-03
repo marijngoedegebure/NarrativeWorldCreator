@@ -51,3 +51,4 @@ C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorld
 C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\MonoGame.Framework.WpfInterop\obj\Debug\MonoGame.Framework.WpfInterop.csprojResolveAssemblyReference.cache
 C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\MonoGame.Framework.WpfInterop\obj\Debug\MonoGame.Framework.WpfInterop.dll
 C:\Users\marij\Documents\Master Thesis own folder\Own application\NarrativeWorldCreator\MonoGame.Framework.WpfInterop\obj\Debug\MonoGame.Framework.WpfInterop.pdb
+C:\Users\marij\Documents\Master Thesis Own project\narrativeworldcreator\MonoGame.Framework.WpfInterop\obj\Debug\MonoGame.Framework.WpfInterop.csprojResolveAssemblyReference.cache
