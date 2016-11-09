@@ -160,21 +160,26 @@ namespace NarrativeWorldCreator
             }
         }
 
+        private float ConvertToRadians(float angle)
+        {
+            return (float) (Math.PI / 180f) * angle;
+        }
+
         public void drawEntikaInstance(InstancedEntikaObject instance)
         {
             Model myModel = LoadModel(Path.GetFileNameWithoutExtension(instance.ModelInstance.Name));
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
             Matrix[] transforms = new Matrix[myModel.Bones.Count];
-            // Vector3 modelPosition = instance.Position;
-            Vector3 modelPosition = Vector3.Zero;
-            float modelRotation = 90.0f;
+            Vector3 modelPosition = instance.Position;
+            // Rotation should be in radians, rotates model to top down view
+            float modelRotation = ConvertToRadians(90.0f);
             myModel.CopyAbsoluteBoneTransformsTo(transforms);
             // Draw the model. A model can have multiple meshes, so loop.
             foreach (ModelMesh mesh in myModel.Meshes)
             {
                 foreach (Effect effect in mesh.Effects)
                 {
-                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationY(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
+                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationX(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
                     effect.Parameters["Texture"].SetValue(texture);
                     effect.CurrentTechnique = effect.Techniques["Textured"];
                     //foreach (EffectPass pass in effect.CurrentTechnique.Passes)
