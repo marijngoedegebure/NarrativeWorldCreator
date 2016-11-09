@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NarrativeWorldCreator.RegionGraph
 {
@@ -163,18 +164,20 @@ namespace NarrativeWorldCreator.RegionGraph
             while (temperature > minimumTemperature) stepForceDirectedGraph();
         }
 
-        public  void checkCollisions(Vector2 mousePosition)
+        public void checkCollisions(Vector2 mousePosition)
         {
+            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+            var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
             foreach (Node n in this.getNodeList())
             {
                 if (this.NodeCollisionBoxes[n].Contains(mousePosition))
                 {
-                    var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-                    var graphPage = (GraphPage) mainWindow._mainFrame.NavigationService.Content;
                     graphPage.selectedNode = n;
                     graphPage.fillDetailView(n);
+                    return;
                 }
             }
+            graphPage.selected_region_detail_grid.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.RegionGraph;
+using Semantics.Data;
+using Semantics.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +31,14 @@ namespace NarrativeWorldCreator.Pages
             InitializeComponent();
             this.selectedNode = selectedNode;
             fillDetailView();
+            fillItemList();
+        }
+
+        private void fillItemList()
+        {
+            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
+            List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
+            lvDataBinding.ItemsSource = filteredList;
         }
 
         private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)

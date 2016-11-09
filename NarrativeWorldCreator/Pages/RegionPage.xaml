@@ -15,9 +15,41 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
-            <Button x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToGraph_Click"/>
-        </WrapPanel>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Row="0" Grid.Column="0" DockPanel.Dock="Top">
+                <Button x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToGraph_Click"/>
+            </WrapPanel>
+            <WrapPanel Grid.Row="0" Grid.Column="1" Margin="0, 0, 10, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                    <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0" Name="narrative_location_name_label" Content="Selected location" />
+                    <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="1" Name="narrative_location_name" />
+                    <Label HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0" Name="narrative_events_text" Content="# of narrative events" />
+                    <Label HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Name="number_narrative_events" />
+                    <Label HorizontalAlignment="Right" Grid.Row="2" Grid.Column="0" Name="narrative_characters" Content="# of narrative characters" />
+                    <Label HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" Name="number_narrative_characters" />
+                    <Label HorizontalAlignment="Right" Grid.Row="3" Grid.Column="0" Name="narrative_objects" Content="# of narrative objects" />
+                    <Label HorizontalAlignment="Right" Grid.Row="3" Grid.Column="1" Name="number_narrative_objects" />
+            </Grid>
+            </WrapPanel>
+        </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -34,27 +66,30 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" Name="narrative_location_name_label" Content="Selected location" />
-                    <Label Grid.Row="0" Grid.Column="1" Name="narrative_location_name" />
-                    <Label Grid.Row="1" Grid.Column="0" Name="narrative_events_text" Content="# of narrative events" />
-                    <Label Grid.Row="1" Grid.Column="1" Name="number_narrative_events" />
-                    <Label Grid.Row="2" Grid.Column="0" Name="narrative_characters" Content="# of narrative characters" />
-                    <Label Grid.Row="2" Grid.Column="1" Name="number_narrative_characters" />
-                    <Label Grid.Row="3" Grid.Column="0" Name="narrative_objects" Content="# of narrative objects" />
-                    <Label Grid.Row="3" Grid.Column="1" Name="number_narrative_objects" />
-                </Grid>
+                <ScrollViewer Grid.Row="0" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <ListView Margin="10" Name="lvDataBinding">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                <!--<ItemsControl Name="icTodoList">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding DefaultName}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>-->
+                </ScrollViewer>
             </Grid>
         </Grid>
     </Grid>

@@ -15,11 +15,19 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
-            <Button x:Name="GotoRegionPageButton" Content="Click here to go to Region page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnRegionSelection_Click"/>
-            <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
-            <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReloadGraph_Click"/>
-        </WrapPanel>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0,0,0,10">
+                <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
+                <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
+            </WrapPanel>
+        </Grid>        
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -29,7 +37,7 @@
                 <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:GraphScene Grid.Row="0" Grid.Column="0"/>
-            <Grid Name="selected_region_detail_grid" Grid.Row="0" Grid.Column="1">
+            <Grid Name="selected_region_detail_grid" Grid.Row="0" Grid.Column="1" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>

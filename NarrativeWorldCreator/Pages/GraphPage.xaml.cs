@@ -29,7 +29,7 @@ namespace NarrativeWorldCreator.Pages
             SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
         }
 
-        private void btnRegionSelection_Click(object sender, RoutedEventArgs e)
+        private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new RegionPage(selectedNode));
         }
@@ -45,17 +45,13 @@ namespace NarrativeWorldCreator.Pages
             this.NavigationService.Navigate(new InitPage());
         }
 
-        private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new RegionPage(selectedNode));
-        }
-
         internal void fillDetailView(Node location)
         {
             narrative_location_name.Content = location.getLocationName();
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(location.getLocationName()).Distinct().Count();
             number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("actor", location.getLocationName()).Distinct().Count();
             number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("thing", location.getLocationName()).Distinct().Count();
+            selected_region_detail_grid.Visibility = Visibility.Visible;
         }
     }
 }
