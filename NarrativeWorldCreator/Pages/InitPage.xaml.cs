@@ -19,9 +19,9 @@ namespace NarrativeWorldCreator.Pages
         public String problemPath;
         public String planPath;
         */
-        public String domainPath = "..\\..\\..\\examples-pddl\\red-cap-domain.pddl";
-        public String problemPath = "..\\..\\..\\examples-pddl\\red-cap-problem.pddl";
-        public String planPath = "..\\..\\..\\examples-pddl\\red-cap-plan.pddl";
+        public String domainPath = "..\\..\\..\\Narratives\\examples-pddl\\red-cap-domain.pddl";
+        public String problemPath = "..\\..\\..\\Narratives\\examples-pddl\\red-cap-problem.pddl";
+        public String planPath = "..\\..\\..\\Narratives\\examples-pddl\\red-cap-plan.pddl";
 
         public InitPage()
         {

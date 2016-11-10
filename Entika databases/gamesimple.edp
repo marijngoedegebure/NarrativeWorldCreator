@@ -1,0 +1,9 @@
+<Databases>
+  <Semantics Database="gamesimple" />
+  <Values>
+    <Database>gamesimple</Database>
+  </Values>
+  <Localization>
+    <Database>gamesimple</Database>
+  </Localization>
+</Databases>

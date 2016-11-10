@@ -30,27 +30,29 @@ namespace NarrativeWorldCreator
             InitializeComponent();
             _mainFrame.Navigate(new InitPage());
             GameDatabase.Initialize();
+            SystemStateTracker.EntikaPath = "..\\..\\..\\Entika databases\\";
             SystemStateTracker.LoadedFileName = "gamesimple.edp";
-            GameDatabase.LoadProject("C://Users//marij//Documents//Master Thesis own folder//Entika test databases//gamesimple.edp");
+            GameDatabase.LoadProject(SystemStateTracker.EntikaPath + SystemStateTracker.LoadedFileName);
 
             GameSemanticsEngine.GameSemanticsEngine.Initialize();
 
-            List<PhysicalEntity> allPhysicalEntities = DatabaseSearch.GetNodes<PhysicalEntity>(true);
-            List<PhysicalObject> allPhysicalObjects = DatabaseSearch.GetNodes<PhysicalObject>(true);
-            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
-            TangibleObject specificTangibleObject = DatabaseSearch.GetNode<TangibleObject>("couch");
-            List<Space> allSpaces = DatabaseSearch.GetNodes<Space>(true);
-            ReadOnlyCollection<GameObject> gameObjectForFirstPhysicalObject = GameDatabaseSearch.GetGameObjects(specificTangibleObject);
+            // Entika test code
+            //List<PhysicalEntity> allPhysicalEntities = DatabaseSearch.GetNodes<PhysicalEntity>(true);
+            //List<PhysicalObject> allPhysicalObjects = DatabaseSearch.GetNodes<PhysicalObject>(true);
+            //List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
+            //TangibleObject specificTangibleObject = DatabaseSearch.GetNode<TangibleObject>("couch");
+            //List<Space> allSpaces = DatabaseSearch.GetNodes<Space>(true);
+            //ReadOnlyCollection<GameObject> gameObjectForFirstPhysicalObject = GameDatabaseSearch.GetGameObjects(specificTangibleObject);
             
-            TangibleObjectInstance semanticInstance = GameInstanceManager.Current.Create(gameObjectForFirstPhysicalObject[0]);
-            ContentWrapper contentWrapper;
-            Dictionary<ModelInstance, Node> geometry = new Dictionary<ModelInstance, Node>();
-            bool truth = ContentManager.TryGetContentWrapper(semanticInstance, out contentWrapper);
-            if (ContentManager.TryGetContentWrapper(semanticInstance, out contentWrapper))
-            {
-                foreach (ModelInstance modelInstance in contentWrapper.GetContent<ModelInstance>())
-                    continue;
-            }
+            //TangibleObjectInstance semanticInstance = GameInstanceManager.Current.Create(gameObjectForFirstPhysicalObject[0]);
+            //ContentWrapper contentWrapper;
+            //Dictionary<ModelInstance, Node> geometry = new Dictionary<ModelInstance, Node>();
+            //bool truth = ContentManager.TryGetContentWrapper(semanticInstance, out contentWrapper);
+            //if (ContentManager.TryGetContentWrapper(semanticInstance, out contentWrapper))
+            //{
+            //    foreach (ModelInstance modelInstance in contentWrapper.GetContent<ModelInstance>())
+            //        continue;
+            //}
         }
     }
 }

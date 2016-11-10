@@ -12,5 +12,6 @@ namespace NarrativeWorldCreator
     {
         public static NarrativeWorld NarrativeWorld = new NarrativeWorld();
         public static string LoadedFileName;
+        public static string EntikaPath;
     }
 }
