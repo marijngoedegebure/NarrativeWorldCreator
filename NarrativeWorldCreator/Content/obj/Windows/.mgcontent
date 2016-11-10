@@ -4,10 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/cylinder.fbx</File>
-    <File>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/Sprites/Circle.png</File>
-    <File>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/SpriteFonts/Courier New.spritefont</File>
-    <File>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/maps/couch_diff.jpg</File>
-    <File>C:/Users/marij/Documents/Master Thesis Own project/narrativeworldcreator/NarrativeWorldCreator/Content/Effects/Textured.fx</File>
+    <File>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/cylinder.fbx</File>
+    <File>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/Sprites/Circle.png</File>
+    <File>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/SpriteFonts/Courier New.spritefont</File>
+    <File>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/couch.obj</File>
+    <File>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/maps/couch_diff.jpg</File>
+    <File>C:/Users/marij/Documents/Master Thesis own folder/Own application/NarrativeWorldCreator/NarrativeWorldCreator/Content/Effects/Textured.fx</File>
   </SourceFiles>
 </SourceFileCollection>

@@ -13,6 +13,7 @@ using SemanticsEngine.Entities;
 using GameSemanticsEngine.Tools;
 using GameSemanticsEngine.GameContent;
 using Semantics.Components;
+using Semantics.Abstractions;
 using GameSemanticsEngine.Interfaces;
 using SemanticsEngine.Components;
 using GameSemanticsEngine.Components;
