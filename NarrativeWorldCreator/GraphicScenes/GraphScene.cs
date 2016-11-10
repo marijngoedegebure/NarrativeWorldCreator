@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Collections.Generic;
@@ -76,10 +77,19 @@ namespace NarrativeWorldCreator
             // Draw each node
             if (!SystemStateTracker.NarrativeWorld.Graph.nodeCoordinatesGenerated)
                 return;
+            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+            var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
             foreach (Node n in graph.getNodeList())
             {
-
-                spriteBatch.Draw(graph.circleTexture, graph.NodeCollisionBoxes[n], Color.White);
+                // check if node is selected node
+                if (graphPage.selectedNode != null && graphPage.selectedNode.Equals(n))
+                {
+                    spriteBatch.Draw(graph.circleSelectedTexture, null, graph.NodeCollisionBoxes[n]);
+                }
+                else
+                {
+                    spriteBatch.Draw(graph.circleTexture, null, graph.NodeCollisionBoxes[n]);
+                }
                 // Draw the location name
                 spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(graph.NodeCollisionBoxes[n].X +
                     (graph.nodeWidth / 2), graph.NodeCollisionBoxes[n].Y + (graph.nodeHeight / 2)), Color.Black,
@@ -125,6 +135,7 @@ namespace NarrativeWorldCreator
             cam.Pos = new Vector2(500.0f, 200.0f);
 
             SystemStateTracker.NarrativeWorld.Graph.circleTexture = Content.Load<Texture2D>("Sprites/Circle");
+            SystemStateTracker.NarrativeWorld.Graph.circleSelectedTexture = Content.Load<Texture2D>("Sprites/Circle-selected");
             SystemStateTracker.NarrativeWorld.Graph.lineTexture = new Texture2D(_graphicsDeviceManager.GraphicsDevice, 1, 1);
             SystemStateTracker.NarrativeWorld.Graph.lineTexture.SetData<Color>(new Color[] { Color.Black });
             spriteFontCourierNew = Content.Load<SpriteFont>("Spritefonts/Courier New");

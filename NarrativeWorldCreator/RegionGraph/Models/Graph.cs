@@ -18,6 +18,7 @@ namespace NarrativeWorldCreator.RegionGraph
 
         // Drawing information
         public Texture2D circleTexture;
+        public Texture2D circleSelectedTexture;
         public int nodeWidth = 100;
         public int nodeHeight = 100;
         public Texture2D lineTexture;
@@ -177,7 +178,9 @@ namespace NarrativeWorldCreator.RegionGraph
                     return;
                 }
             }
+            // If no collision, reset selectedNode and interface
             graphPage.selected_region_detail_grid.Visibility = Visibility.Collapsed;
+            graphPage.selectedNode = null;
         }
     }
 }
