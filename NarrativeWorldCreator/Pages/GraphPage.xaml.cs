@@ -26,7 +26,8 @@ namespace NarrativeWorldCreator.Pages
         public GraphPage()
         {
             InitializeComponent();
-            SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
+            if (!SystemStateTracker.NarrativeWorld.Graph.nodeCoordinatesGenerated)
+                SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
         }
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
