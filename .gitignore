@@ -31,6 +31,8 @@ Narrative/bin/
 Narrative/obj/
 GameSemantics/obj/
 Semantics/obj/
+NarrativeWorldCreator/Content/obj/
+NarrativeWorldCreator/Content/bin/
 
 
 # Visual Studio 2015 cache/options directory
