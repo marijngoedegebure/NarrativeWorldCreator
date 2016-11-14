@@ -109,5 +109,12 @@ namespace PDDLNarrativeParser
             }
             return null;
         }
+
+        public List<NarrativePredicate> getNarrativePredicates(String predicateType)
+        {
+            return (from a in NarrativePredicates
+                    where a.PredicateType.Name.Equals(predicateType)
+                    select a).ToList();
+        }
     }
 }

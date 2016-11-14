@@ -61,7 +61,13 @@ namespace NarrativeWorldCreator
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
             Narrative narrative = PDDLNarrativeParser.Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
-            SystemStateTracker.NarrativeWorld = NarrativeWorldParser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, narrative);
+            NarrativeWorldParser.staticInput(
+                SystemStateTracker.LocationTypeName,
+                SystemStateTracker.CharacterTypeName,
+                SystemStateTracker.ObjectTypeName,
+                SystemStateTracker.MoveActionName,
+                SystemStateTracker.AtPredicateName);
+            SystemStateTracker.NarrativeWorld = NarrativeWorldParser.parse(narrative);
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;

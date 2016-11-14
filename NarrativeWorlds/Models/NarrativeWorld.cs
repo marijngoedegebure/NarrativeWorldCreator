@@ -20,5 +20,19 @@ namespace NarrativeWorlds
             NarrativeCharacters = new List<NarrativeCharacter>();
             NarrativeThings = new List<NarrativeThing>();
         }
+
+        public NarrativeCharacter getNarrativeCharacter(string name)
+        {
+            return (from nc in NarrativeCharacters
+                    where nc.Name.Equals(name)
+                    select nc).Single();
+        }
+
+        internal NarrativeThing getNarrativeThing(string name)
+        {
+            return (from nt in NarrativeThings
+                    where nt.Name.Equals(name)
+                    select nt).Single();
+        }
     }
 }

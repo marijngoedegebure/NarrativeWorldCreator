@@ -6,9 +6,10 @@
 		motherhouse insidegrandmotherhouse outsidegrandmotherhouse wolfmeetingspot woodmanshouse flowerpickuplocation - place)
     (:init 
             (at redcap motherhouse)
-            (at grandmother grandmotherhouse)
+            (at grandmother insidegrandmotherhouse)
             (at wolf wolfmeetingspot)
             (at woodman woodmanshouse)
+            (has grandmother clothes)
             (has redcap goodies)
     )
 )

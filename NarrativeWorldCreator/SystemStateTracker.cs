@@ -15,6 +15,7 @@ namespace NarrativeWorldCreator
         public const string CharacterTypeName = "character";
         public const string ObjectTypeName = "thing";
         public const string MoveActionName = "move";
+        public const string AtPredicateName = "at";
 
         public static NarrativeWorld NarrativeWorld = new NarrativeWorld();
         public static string LoadedFileName;

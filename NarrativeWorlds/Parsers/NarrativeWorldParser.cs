@@ -14,23 +14,29 @@ namespace NarrativeWorlds
         public static string CharacterTypeName { get; set; }
         public static string ObjectTypeName { get; set; }
         public static string MoveActionName { get; set; }
+        public static string AtPredicateName { get; set; }
 
         public static NarrativeWorld NarrativeWorld { get; set; }
 
-        public static NarrativeWorld parse(string LocationTypeName, string CharacterTypeName, string ObjectTypeName, string MoveActionName, Narrative narrative)
+
+        public static void staticInput(string locationTypeName, string characterTypeName, string objectTypeName, string moveActionName, string atPredicateName)
         {
-            NarrativeWorldParser.LocationTypeName = LocationTypeName;
-            NarrativeWorldParser.CharacterTypeName = CharacterTypeName;
-            NarrativeWorldParser.ObjectTypeName = ObjectTypeName;
-            NarrativeWorldParser.MoveActionName = MoveActionName;
+            NarrativeWorldParser.LocationTypeName = locationTypeName;
+            NarrativeWorldParser.CharacterTypeName = characterTypeName;
+            NarrativeWorldParser.ObjectTypeName = objectTypeName;
+            NarrativeWorldParser.MoveActionName = moveActionName;
+            NarrativeWorldParser.AtPredicateName = atPredicateName;
+        }
+
+        public static NarrativeWorld parse(Narrative narrative)
+        {
+            
             NarrativeWorldParser.NarrativeWorld = new NarrativeWorld();
             NarrativeWorldParser.NarrativeWorld.Graph = new Graph();
             NarrativeWorldParser.NarrativeWorld.NarrativeTimeline = new NarrativeTimeline();
             NarrativeWorldParser.NarrativeWorld.Narrative = narrative;
-            // Empty current graph
-            
-            createNarrativeTimeline();
             createGraphBasedOnNarrative();
+            createNarrativeTimeline();
             return NarrativeWorldParser.NarrativeWorld;
         }
 
@@ -51,20 +57,69 @@ namespace NarrativeWorlds
             }
 
             // Determine starting locations for each character and object using at() predicate add this as the first timepoint
+            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint();
+            List<NarrativePredicate> predicates = NarrativeWorld.Narrative.getNarrativePredicates(AtPredicateName);
+            foreach(NarrativePredicate predicate in predicates)
+            {
+                if(predicate.NarrativeObjects[0].Type.Name.Equals(CharacterTypeName))
+                {
+                    // Narrative character
+                    NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(predicate.NarrativeObjects[0].Name);
+                    initialTimePoint.LocationOfNarrativeCharacters[nc] = NarrativeWorld.Graph.getNode(predicate.NarrativeObjects[1].Name);
+                }
+                else
+                {
+                    // Narrative object
+                    NarrativeThing nt = NarrativeWorld.getNarrativeThing(predicate.NarrativeObjects[0].Name);
+                    initialTimePoint.LocationOfNarrativeThings[nt] = NarrativeWorld.Graph.getNode(predicate.NarrativeObjects[1].Name);
+                }
+            }
+            NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(initialTimePoint);
+            // Check has predicate for objects that have no location yet
+            // Add to timeline object, an object either has to be on a location or has to be carried by someone
 
             // Copy previous timepoint and adjust location of narrative objects according to action
             foreach (NarrativeEvent nevent in NarrativeWorld.Narrative.NarrativeEvents)
             {
                 NarrativeTimePoint timePoint = new NarrativeTimePoint();
+                timePoint.copy(initialTimePoint);
+                timePoint.NarrativeEvent = nevent;
                 // Check if move action
                 // Do stuff based on this move action
-
+                if(nevent.NarrativeAction.Name.Equals(MoveActionName))
+                {
+                    NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[0].Name);
+                    timePoint.LocationOfNarrativeCharacters[nc] = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
+                }
 
                 // Check if pickup action
-                // Do stuff based on this action
+                // Remove object from locations list, insert when dropped
 
-                // Check if object is used while still in other location -> update to new location (might be also good idea for pickup action)
+                // Check for drop action
 
+                // Check if object/character is used in unknown action while still in other location -> update to new location (might be also good idea for pickup action)
+                else
+                {
+                    // Skip the last narrative object of the action, that is the location
+                    for(int i = 0; i < nevent.NarrativeObjects.Count-1; i++)
+                    {
+                        if(nevent.NarrativeObjects[i].Type.Name.Equals(CharacterTypeName))
+                        {
+                            NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[i].Name);
+                            timePoint.LocationOfNarrativeCharacters[nc] = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
+                        }
+                        else if(nevent.NarrativeObjects[i].Type.Name.Equals(ObjectTypeName))
+                        {
+                            NarrativeThing nt = NarrativeWorld.getNarrativeThing(nevent.NarrativeObjects[i].Name);
+                            timePoint.LocationOfNarrativeThings[nt] = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                }
+                NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(timePoint);
             }
         }
 
