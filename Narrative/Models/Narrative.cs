@@ -26,12 +26,12 @@ namespace Narratives
             NarrativeEvents = new List<NarrativeEvent>();
         }
 
-        public List<NarrativeEvent> getNarrativeMoveEvents()
+        public List<NarrativeEvent> getNarrativeMoveEvents(string moveActionName)
         {
             List<NarrativeEvent> moveEvents = new List<NarrativeEvent>();
             foreach(NarrativeEvent ev in NarrativeEvents)
             {
-                if(ev.NarrativeAction.Name.Equals("move"))
+                if(ev.NarrativeAction.Name.Equals(moveActionName))
                 {
                     moveEvents.Add(ev);
                 }
@@ -78,7 +78,7 @@ namespace Narratives
             List<NarrativeEvent> filteredNarrativeEvents = new List<NarrativeEvent>();
             foreach (NarrativeEvent narrativeEvent in NarrativeEvents)
             {
-                if(narrativeEvent.NarrativeObjects.Last().Name.Equals(location))
+                if(narrativeEvent.Location.Name.Equals(location))
                 {
                     filteredNarrativeEvents.Add(narrativeEvent);
                 }

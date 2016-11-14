@@ -68,8 +68,9 @@ namespace NarrativeWorldCreator.Parsers
             }
             if (locationOfEvent == null)
                 throw new Exception("Last argument is not a location");
+            narrativeEvent.Location = locationOfEvent;
             // Read words in
-            for(int i = 1; i < words.Length; i++)
+            for (int i = 1; i < words.Length; i++)
             {
                 foreach(NarrativeObject narrativeObject in SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjects)
                 {

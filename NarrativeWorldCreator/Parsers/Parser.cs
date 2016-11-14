@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Parsers
 {
-    static class Parser
+    public static class Parser
     {
         public const string LocationTypeName = "place";
         public const string CharacterTypeName = "character";
         public const string ObjectTypeName = "thing";
+        public const string MoveActionName = "move";
 
         public static void parseDomain(String domainPath)
         {
@@ -60,10 +61,11 @@ namespace NarrativeWorldCreator.Parsers
                 }
             }
             // Create edges based on move actions
-            List<NarrativeEvent> moveEvents = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeMoveEvents();
+            // Get events based on Parser.MoveActionName
+            List<NarrativeEvent> moveEvents = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeMoveEvents(Parser.MoveActionName);
             foreach (NarrativeEvent ev in moveEvents)
             {
-                Node to = SystemStateTracker.NarrativeWorld.Graph.getNode(ev.NarrativeObjects.Last().Name);
+                Node to = SystemStateTracker.NarrativeWorld.Graph.getNode(ev.Location.Name);
                 Node from = SystemStateTracker.NarrativeWorld.Graph.getNode(ev.NarrativeObjects[ev.NarrativeObjects.Count - 2].Name);
                 SystemStateTracker.NarrativeWorld.Graph.addEdge(from, to);
             }

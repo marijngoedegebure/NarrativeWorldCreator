@@ -11,6 +11,7 @@ namespace Narratives
         public int NarrativeEventId { get; set; }
         public NarrativeAction NarrativeAction { get; set; }
         public IList<NarrativeObject> NarrativeObjects { get; set; }
+        public NarrativeObject Location { get; set; }
 
         public NarrativeEvent()
         {
