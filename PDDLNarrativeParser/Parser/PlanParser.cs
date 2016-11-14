@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Narratives;
 
-namespace NarrativeWorldCreator.Parsers
+namespace PDDLNarrativeParser
 {
     class PlanParser
     {
@@ -28,16 +28,16 @@ namespace NarrativeWorldCreator.Parsers
                 {
                     readEventMode = true;
                     if(words.Length > 1)
-                        narrativeEvents.Add(readEvent(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeActions, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
+                        narrativeEvents.Add(readEvent(words, Parser.narrative.NarrativeActions, Parser.narrative.NarrativeObjectTypes));
                     continue;
                 }
                 if (readEventMode)
                 {
-                    narrativeEvents.Add(readEvent(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeActions, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
+                    narrativeEvents.Add(readEvent(words, Parser.narrative.NarrativeActions, Parser.narrative.NarrativeObjectTypes));
                     continue;
                 }
             }
-            SystemStateTracker.NarrativeWorld.Narrative.NarrativeEvents = narrativeEvents;
+            Parser.narrative.NarrativeEvents = narrativeEvents;
         }
 
         private static NarrativeEvent readEvent(string[] words, ICollection<NarrativeAction> narrativeActions, ICollection<NarrativeObjectType> types)
@@ -55,8 +55,8 @@ namespace NarrativeWorldCreator.Parsers
             if (narrativeEvent.NarrativeAction == null)
                 throw new Exception("Second argument is not a narrative action");
             // Check if last word is a location
-            NarrativeObjectType placeType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType(Parser.LocationTypeName);
-            List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(placeType);
+            NarrativeObjectType placeType = Parser.narrative.getNarrativeObjectType(Parser.LocationTypeName);
+            List<NarrativeObject> objectsFilteredOnLocationType = Parser.narrative.getNarrativeObjectsOfType(placeType);
             NarrativeObject locationOfEvent = null;
             foreach(NarrativeObject filteredObject in objectsFilteredOnLocationType)
             {
@@ -72,7 +72,7 @@ namespace NarrativeWorldCreator.Parsers
             // Read words in
             for (int i = 1; i < words.Length; i++)
             {
-                foreach(NarrativeObject narrativeObject in SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjects)
+                foreach(NarrativeObject narrativeObject in Parser.narrative.NarrativeObjects)
                 {
                     if (words[i].Equals(narrativeObject.Name))
                     {

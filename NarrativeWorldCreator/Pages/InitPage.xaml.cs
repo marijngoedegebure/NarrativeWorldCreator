@@ -60,22 +60,20 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-            SystemStateTracker.NarrativeWorld.Narrative = new Narrative();
-            Parser.parseDomain(domainPath);
-            Parser.parseProblem(problemPath);
-            Parser.parsePlan(planPath);
+
+            GraphParser.parse(domainPath, problemPath, planPath);
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
-            Parser.createGraphBasedOnNarrative();
+            GraphParser.createGraphBasedOnNarrative();
         }
 
         private void fillDetailView()
         {
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.NarrativeEvents.Count;
-            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.CharacterTypeName).Count;
-            number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.LocationTypeName).Count;
-            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.ObjectTypeName).Count;
+            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.CharacterTypeName).Count;
+            number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.LocationTypeName).Count;
+            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.ObjectTypeName).Count;
         }
 
         private void btnGoToGraphPage_Click(object sender, RoutedEventArgs e)

@@ -7,8 +7,8 @@
     <ProjectGuid>{5FF6F1BC-9868-475B-8826-42C9AB958418}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Narrative</RootNamespace>
-    <AssemblyName>Narrative</AssemblyName>
+    <RootNamespace>PDDLNarrativeParser</RootNamespace>
+    <AssemblyName>PDDLNarrativeParser</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -75,6 +75,10 @@
     <Compile Include="Models\NarrativePredicate.cs" />
     <Compile Include="Models\PredicateType.cs" />
     <Compile Include="Models\NarrativeContext.cs" />
+    <Compile Include="Parser\DomainParser.cs" />
+    <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Parser\PlanParser.cs" />
+    <Compile Include="Parser\ProblemParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,11 +1,11 @@
-namespace Narratives.Migrations
+namespace PDDLNarrativeParser.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Narratives.NarrativeContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PDDLNarrativeParser.NarrativeContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@ namespace Narratives.Migrations
             SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
         }
 
-        protected override void Seed(Narratives.NarrativeContext context)
+        protected override void Seed(PDDLNarrativeParser.NarrativeContext context)
         {
             //  This method will be called after migrating to the latest version.
 

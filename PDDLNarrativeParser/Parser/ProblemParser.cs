@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator.Parsers
+namespace PDDLNarrativeParser
 {
     class ProblemParser
     {
@@ -30,7 +30,7 @@ namespace NarrativeWorldCreator.Parsers
                 {
                     readObjectsMode = true;
                     if (words.Length > 1)
-                        narrativeObjects.AddRange(readObjects(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
+                        narrativeObjects.AddRange(readObjects(words, Parser.narrative.NarrativeObjectTypes));
                     continue;
                 }
                 if (words[0].Equals("init"))
@@ -38,23 +38,23 @@ namespace NarrativeWorldCreator.Parsers
                     readObjectsMode = false;
                     readInitMode = true;
                     if (words.Length > 1)
-                        narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes, narrativeObjects));
+                        narrativePredicates.Add(readNarrativePredicate(words, Parser.narrative.PredicateTypes, Parser.narrative.NarrativeObjectTypes, narrativeObjects));
                     continue;
                 }
                 if (readObjectsMode)
                 {
-                    narrativeObjects.AddRange(readObjects(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
+                    narrativeObjects.AddRange(readObjects(words, Parser.narrative.NarrativeObjectTypes));
                     continue;
                 }
 
                 if (readInitMode)
                 {
-                    narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes, narrativeObjects));
+                    narrativePredicates.Add(readNarrativePredicate(words, Parser.narrative.PredicateTypes, Parser.narrative.NarrativeObjectTypes, narrativeObjects));
                     continue;
                 }
             }
-            SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjects = narrativeObjects;
-            SystemStateTracker.NarrativeWorld.Narrative.NarrativePredicates = narrativePredicates;
+            Parser.narrative.NarrativeObjects = narrativeObjects;
+            Parser.narrative.NarrativePredicates = narrativePredicates;
         }
 
         private static NarrativePredicate readNarrativePredicate(string[] words, ICollection<PredicateType> predicateTypes, ICollection<NarrativeObjectType> types, ICollection<NarrativeObject> narrativeObjects)

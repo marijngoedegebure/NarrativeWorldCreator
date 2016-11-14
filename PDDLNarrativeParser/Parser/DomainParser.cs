@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Narratives;
 
-namespace NarrativeWorldCreator.Parsers
+namespace PDDLNarrativeParser
 {
     class DomainParser
     {
@@ -75,9 +75,9 @@ namespace NarrativeWorldCreator.Parsers
                         continue; 
                 }
             }
-            SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes = predicateTypes;
-            SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes = types;
-            SystemStateTracker.NarrativeWorld.Narrative.NarrativeActions = narrativeActions;
+            Parser.narrative.PredicateTypes = predicateTypes;
+            Parser.narrative.NarrativeObjectTypes = types;
+            Parser.narrative.NarrativeActions = narrativeActions;
         }
 
         private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<NarrativeObjectType> types)

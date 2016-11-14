@@ -1,5 +1,5 @@
-﻿ using Narratives;
-using NarrativeWorldCreator.RegionGraph;
+﻿using NarrativeWorldCreator.RegionGraph;
+using PDDLNarrativeParser;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,41 +9,16 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Parsers
 {
-    public static class Parser
+    public static class GraphParser
     {
         public const string LocationTypeName = "place";
         public const string CharacterTypeName = "character";
         public const string ObjectTypeName = "thing";
         public const string MoveActionName = "move";
 
-        public static void parseDomain(String domainPath)
+        public static void parse(string domainPath, string problemPath, string planPath)
         {
-            DomainParser.parseDomain(domainPath);
-        }
-
-        public static void parseProblem(String problemPath)
-        {
-            ProblemParser.parseProblem(problemPath);
-        }
-
-        public static String[] parseText(String text)
-        {
-            text = text.Replace("(", "");
-            text = text.Replace(")", "");
-            text = text.Replace(":", "");
-            text = text.Replace("\t", "");
-            text = text.Replace("\r", "");
-            String[] lines = text.Split(new char[] { '\n' });
-            for (int i = 0; i < lines.Length; i++)
-            {
-                lines[i] = lines[i].Trim();
-            }
-            return lines;
-        }
-
-        public static void parsePlan(string planPath)
-        {
-            PlanParser.parsePlan(planPath);
+            SystemStateTracker.NarrativeWorld.Narrative = PDDLNarrativeParser.Parser.parse(LocationTypeName, CharacterTypeName, ObjectTypeName, MoveActionName, domainPath, problemPath, planPath);
         }
 
         public static void createGraphBasedOnNarrative()
@@ -52,7 +27,7 @@ namespace NarrativeWorldCreator.Parsers
             SystemStateTracker.NarrativeWorld.Graph = new Graph();
 
             // Create nodes based on locations
-            List<NarrativeObject> locations = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.LocationTypeName);
+            List<NarrativeObject> locations = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.LocationTypeName);
             if (locations != null)
             {
                 foreach (NarrativeObject location in locations)
@@ -62,7 +37,7 @@ namespace NarrativeWorldCreator.Parsers
             }
             // Create edges based on move actions
             // Get events based on Parser.MoveActionName
-            List<NarrativeEvent> moveEvents = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeMoveEvents(Parser.MoveActionName);
+            List<NarrativeEvent> moveEvents = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeMoveEvents(GraphParser.MoveActionName);
             foreach (NarrativeEvent ev in moveEvents)
             {
                 Node to = SystemStateTracker.NarrativeWorld.Graph.getNode(ev.Location.Name);
