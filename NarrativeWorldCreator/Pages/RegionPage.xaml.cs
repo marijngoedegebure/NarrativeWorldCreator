@@ -57,8 +57,8 @@ namespace NarrativeWorldCreator
         {
             narrative_location_name.Content = selectedNode.getLocationName();
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(selectedNode.getLocationName()).Distinct().Count();
-            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("actor", selectedNode.getLocationName()).Distinct().Count();
-            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation("thing", selectedNode.getLocationName()).Distinct().Count();
+            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, selectedNode.getLocationName()).Distinct().Count();
+            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, selectedNode.getLocationName()).Distinct().Count();
         }
     }
 }

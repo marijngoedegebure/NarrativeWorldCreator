@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorlds
 {
-    public static class GraphParser
+    public static class NarrativeWorldParser
     {
         public static string LocationTypeName { get; set; }
         public static string CharacterTypeName { get; set; }
@@ -21,38 +21,38 @@ namespace NarrativeWorlds
 
         public static Graph parse(string LocationTypeName, string CharacterTypeName, string ObjectTypeName, string MoveActionName, Narrative narrative)
         {
-            GraphParser.LocationTypeName = LocationTypeName;
-            GraphParser.CharacterTypeName = CharacterTypeName;
-            GraphParser.ObjectTypeName = ObjectTypeName;
-            GraphParser.MoveActionName = MoveActionName;
-            GraphParser.Narrative = narrative;
+            NarrativeWorldParser.LocationTypeName = LocationTypeName;
+            NarrativeWorldParser.CharacterTypeName = CharacterTypeName;
+            NarrativeWorldParser.ObjectTypeName = ObjectTypeName;
+            NarrativeWorldParser.MoveActionName = MoveActionName;
+            NarrativeWorldParser.Narrative = narrative;
             // Empty current graph
-            GraphParser.Graph = new Graph();
+            NarrativeWorldParser.Graph = new Graph();
             createGraphBasedOnNarrative(narrative);
-            return GraphParser.Graph;
+            return NarrativeWorldParser.Graph;
         }
 
         public static void createGraphBasedOnNarrative(Narrative narrative)
         {
             // Create nodes based on locations
-            List<NarrativeObject> locations = narrative.getNarrativeObjectsOfType(GraphParser.LocationTypeName);
+            List<NarrativeObject> locations = narrative.getNarrativeObjectsOfType(NarrativeWorldParser.LocationTypeName);
             if (locations != null)
             {
                 foreach (NarrativeObject location in locations)
                 {
-                    GraphParser.Graph.addNode(location.Name);
+                    NarrativeWorldParser.Graph.addNode(location.Name);
                 }
             }
             // Create edges based on move actions
             // Get events based on Parser.MoveActionName
-            List<NarrativeEvent> moveEvents = narrative.getNarrativeMoveEvents(GraphParser.MoveActionName);
+            List<NarrativeEvent> moveEvents = narrative.getNarrativeMoveEvents(NarrativeWorldParser.MoveActionName);
             foreach (NarrativeEvent ev in moveEvents)
             {
-                Node to = GraphParser.Graph.getNode(ev.Location.Name);
-                Node from = GraphParser.Graph.getNode(ev.NarrativeObjects[ev.NarrativeObjects.Count - 2].Name);
-                GraphParser.Graph.addEdge(from, to);
+                Node to = NarrativeWorldParser.Graph.getNode(ev.Location.Name);
+                Node from = NarrativeWorldParser.Graph.getNode(ev.NarrativeObjects[ev.NarrativeObjects.Count - 2].Name);
+                NarrativeWorldParser.Graph.addEdge(from, to);
             }
-            GraphParser.Graph.initForceDirectedGraph();
+            NarrativeWorldParser.Graph.initForceDirectedGraph();
         }
     }
 }

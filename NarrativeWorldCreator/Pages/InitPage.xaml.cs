@@ -60,7 +60,7 @@ namespace NarrativeWorldCreator
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
             SystemStateTracker.NarrativeWorld.Narrative = PDDLNarrativeParser.Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
-            SystemStateTracker.NarrativeWorld.Graph = GraphParser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, SystemStateTracker.NarrativeWorld.Narrative);
+            SystemStateTracker.NarrativeWorld.Graph = NarrativeWorldParser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, SystemStateTracker.NarrativeWorld.Narrative);
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
@@ -69,9 +69,9 @@ namespace NarrativeWorldCreator
         private void fillDetailView()
         {
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.NarrativeEvents.Count;
-            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.CharacterTypeName).Count;
-            number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.LocationTypeName).Count;
-            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(GraphParser.ObjectTypeName).Count;
+            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(SystemStateTracker.CharacterTypeName).Count;
+            number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(SystemStateTracker.LocationTypeName).Count;
+            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(SystemStateTracker.ObjectTypeName).Count;
         }
 
         private void btnGoToGraphPage_Click(object sender, RoutedEventArgs e)

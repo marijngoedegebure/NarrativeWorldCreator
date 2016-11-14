@@ -11,6 +11,7 @@ namespace NarrativeWorlds
     {
         public Narrative Narrative { get; set; }
         public Graph Graph { get; set; }
+        public NarrativeTimeline NarrativeTimeline { get; set; }
 
         public NarrativeWorld ()
         {

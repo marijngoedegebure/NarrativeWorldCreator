@@ -9,7 +9,7 @@ namespace NarrativeWorlds
 {
     public class NarrativeTimePoint
     {
-        // Narrative event associated with this timepoint
+        // Narrative event associated with this timepoint, just for potential later reference, should not be necessary
         NarrativeEvent NarrativeEvent { get; set; }
         // List of narrative characters and their location when this event needs to occur
         public Dictionary<NarrativeCharacter, Node> LocationOfNarrativeCharacters { get; set; }
