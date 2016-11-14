@@ -73,9 +73,9 @@ namespace NarrativeWorldCreator.Pages
         private void fillDetailView()
         {
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.NarrativeEvents.Count;
-            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType("actor").Count;
-            number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType("location").Count;
-            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType("thing").Count;
+            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.CharacterTypeName).Count;
+            number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.LocationTypeName).Count;
+            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.ObjectTypeName).Count;
         }
 
         private void btnGoToGraphPage_Click(object sender, RoutedEventArgs e)

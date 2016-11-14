@@ -24,15 +24,21 @@ namespace NarrativeWorldCreator.Parsers
                     continue;
                 if (words[0].Equals("define"))
                     continue;
+                if (words[0].Equals("domain"))
+                    continue;
                 if (words[0].Equals("objects"))
                 {
                     readObjectsMode = true;
+                    if (words.Length > 1)
+                        narrativeObjects.AddRange(readObjects(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
                     continue;
                 }
                 if (words[0].Equals("init"))
                 {
                     readObjectsMode = false;
                     readInitMode = true;
+                    if (words.Length > 1)
+                        narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes, narrativeObjects));
                     continue;
                 }
                 if (readObjectsMode)
@@ -40,6 +46,7 @@ namespace NarrativeWorldCreator.Parsers
                     narrativeObjects.AddRange(readObjects(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
                     continue;
                 }
+
                 if (readInitMode)
                 {
                     narrativePredicates.Add(readNarrativePredicate(words, SystemStateTracker.NarrativeWorld.Narrative.PredicateTypes, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes, narrativeObjects));
@@ -55,9 +62,12 @@ namespace NarrativeWorldCreator.Parsers
             // Check if predicatetype exists:
             PredicateType usedPredicateType = predicateTypes.First();
             NarrativePredicate narrativePredicate = new NarrativePredicate();
+            int startIndex = 0;
+            if (words[0].Equals("init"))
+                startIndex = 1;
             foreach(PredicateType predicateType in predicateTypes)
             {
-                if (predicateType.Name.Equals(words[0]))
+                if (predicateType.Name.Equals(words[startIndex]))
                 {
                     narrativePredicate.PredicateType = predicateType;
                     break;
@@ -65,7 +75,7 @@ namespace NarrativeWorldCreator.Parsers
             }
             if (narrativePredicate.PredicateType == null)
                 throw new Exception("Predicate type does not exist");
-            for (int i = 1; i < words.Length; i++)
+            for (int i = startIndex + 1; i < words.Length; i++)
             {
                 // Check if narrative object exists and whether type of it is equal to one of predicateType
                 foreach(NarrativeObject narrativeObject in narrativeObjects)
@@ -104,7 +114,10 @@ namespace NarrativeWorldCreator.Parsers
             }
             if (!typeExists)
                 throw new Exception("Narrative type does not exist");
-            for (int i = 0; i < words.Length; i++)
+            int startIndex = 0;
+            if (words[0].Equals("objects"))
+                startIndex = 1;
+            for (int i = startIndex; i < words.Length; i++)
             {
                 if (words[i].Equals("-"))
                     break;

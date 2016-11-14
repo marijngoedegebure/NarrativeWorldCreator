@@ -1,7 +1,6 @@
 (define (plan red-cap)
-	(:domain red-cap)
 	(:problem red-cap)
-	(:events
+	(:steps
 		(move redcap motherhouse wolfmeetingspot)
 		(talk redcap wolf wolfmeetingspot)
 		(move redcap wolfmeetingspot flowerpickuplocation)

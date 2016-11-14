@@ -1,4 +1,4 @@
-﻿using Narratives;
+﻿ using Narratives;
 using NarrativeWorldCreator.RegionGraph;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,10 @@ namespace NarrativeWorldCreator.Parsers
 {
     static class Parser
     {
+        public const string LocationTypeName = "place";
+        public const string CharacterTypeName = "character";
+        public const string ObjectTypeName = "thing";
+
         public static void parseDomain(String domainPath)
         {
             DomainParser.parseDomain(domainPath);
@@ -47,7 +51,7 @@ namespace NarrativeWorldCreator.Parsers
             SystemStateTracker.NarrativeWorld.Graph = new Graph();
 
             // Create nodes based on locations
-            List<NarrativeObject> locations = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType("location");
+            List<NarrativeObject> locations = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(Parser.LocationTypeName);
             if (locations != null)
             {
                 foreach (NarrativeObject location in locations)

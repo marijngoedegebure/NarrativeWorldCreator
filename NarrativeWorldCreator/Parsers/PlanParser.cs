@@ -22,13 +22,13 @@ namespace NarrativeWorldCreator.Parsers
                     continue;
                 if (words[0].Equals("define"))
                     continue;
-                if (words[0].Equals("domain"))
-                    continue;
                 if (words[0].Equals("problem"))
                     continue;
-                if (words[0].Equals("events"))
+                if (words[0].Equals("steps"))
                 {
                     readEventMode = true;
+                    if(words.Length > 1)
+                        narrativeEvents.Add(readEvent(words, SystemStateTracker.NarrativeWorld.Narrative.NarrativeActions, SystemStateTracker.NarrativeWorld.Narrative.NarrativeObjectTypes));
                     continue;
                 }
                 if (readEventMode)
@@ -55,8 +55,8 @@ namespace NarrativeWorldCreator.Parsers
             if (narrativeEvent.NarrativeAction == null)
                 throw new Exception("Second argument is not a narrative action");
             // Check if last word is a location
-            NarrativeObjectType locationType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType("location");
-            List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(locationType);
+            NarrativeObjectType placeType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType(Parser.LocationTypeName);
+            List<NarrativeObject> objectsFilteredOnLocationType = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(placeType);
             NarrativeObject locationOfEvent = null;
             foreach(NarrativeObject filteredObject in objectsFilteredOnLocationType)
             {

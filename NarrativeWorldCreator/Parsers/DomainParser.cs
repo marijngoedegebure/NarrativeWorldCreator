@@ -14,7 +14,8 @@ namespace NarrativeWorldCreator.Parsers
         {
             string[] lines = Parser.parseText(File.ReadAllText(domainPath));
             bool readPredicatesMode = false;
-            bool readActionMode = true;
+            bool readActionMode = false;
+            bool readTypeMode = false;
             List<PredicateType> predicateTypes = new List<PredicateType>();
             List<NarrativeObjectType> types = new List<NarrativeObjectType>();
             List<NarrativeAction> narrativeActions = new List<NarrativeAction>();
@@ -30,12 +31,17 @@ namespace NarrativeWorldCreator.Parsers
                     continue;
                 if (words[0].Equals("types"))
                 {
-                    types = readTypes(words);
+                    readTypeMode = true;
+                    if (words.Length > 1)
+                        types = readTypes(words, types);
                     continue;
                 }
                 if (words[0].Equals("predicates"))
                 {
+                    readTypeMode = false;
                     readPredicatesMode = true;
+                    if (words.Length > 1)
+                        predicateTypes.Add(readPredicateTypes(words, types));
                     continue;
                 }
                 if (words[0].Equals("action"))
@@ -44,6 +50,11 @@ namespace NarrativeWorldCreator.Parsers
                     readActionMode = true;
                     currentNarrativeAction = new NarrativeAction();
                     currentNarrativeAction.Name = words[1];
+                    continue;
+                }
+                if (readTypeMode)
+                {
+                    types.AddRange(readTypes(words, types));
                     continue;
                 }
                 if (readPredicatesMode)
@@ -107,7 +118,10 @@ namespace NarrativeWorldCreator.Parsers
             PredicateType predicate = new PredicateType();
             predicate.Name = words[0];
             List<String> arguments = new List<string>();
-            for (int i = 1; i < words.Length; i++)
+            int startIndex = 0;
+            if (words[0].Equals("predicates"))
+                startIndex = 1;
+            for (int i = startIndex; i < words.Length; i++)
             {
                 if (words[i].Equals(""))
                     continue;
@@ -137,21 +151,44 @@ namespace NarrativeWorldCreator.Parsers
             return predicate;
         }
 
-        private static List<NarrativeObjectType> readTypes(string[] words)
+        private static List<NarrativeObjectType> readTypes(string[] words, List<NarrativeObjectType> types)
         {
-            List<NarrativeObjectType> types = new List<NarrativeObjectType>();
-            for (int i = 1; i < words.Length; i++)
+            List<NarrativeObjectType> outputTypes = new List<NarrativeObjectType>();
+            int startIndex = 0;
+            if (words[0].Equals("types"))
+                startIndex = 1;
+            bool parentTypeMode = false;
+            for (int i = startIndex; i < words.Length; i++)
             {
+                if (words[i].Equals("-"))
+                {
+                    parentTypeMode = true;
+                    continue;
+                }
                 NarrativeObjectType type = new NarrativeObjectType();
                 type.Name = words[i];
-                using (var db = new NarrativeContext())
+                if (parentTypeMode)
                 {
-                    db.NarrativeObjectTypes.Add(type);
-                    db.SaveChanges();
+                    NarrativeObjectType parentType = type;
+                    bool typeAlreadyExist = false;
+                    foreach (NarrativeObjectType potentialParentType in types)
+                    {
+                        if (type.Equals(potentialParentType))
+                        {
+                            parentType = potentialParentType;
+                            typeAlreadyExist = true;
+                        }
+                    }
+                    foreach (NarrativeObjectType ntype in outputTypes)
+                    {
+                        ntype.ParentType = parentType;
+                    }
+                    if (typeAlreadyExist)
+                        continue;
                 }
-                types.Add(type);
+                outputTypes.Add(type);
             }
-            return types;
+            return outputTypes;
         }
     }
 }
