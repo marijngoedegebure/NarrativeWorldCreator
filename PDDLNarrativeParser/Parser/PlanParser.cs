@@ -54,21 +54,6 @@ namespace PDDLNarrativeParser
             }
             if (narrativeEvent.NarrativeAction == null)
                 throw new Exception("Second argument is not a narrative action");
-            // Check if last word is a location
-            NarrativeObjectType placeType = Parser.narrative.getNarrativeObjectType(Parser.LocationTypeName);
-            List<NarrativeObject> objectsFilteredOnLocationType = Parser.narrative.getNarrativeObjectsOfType(placeType);
-            NarrativeObject locationOfEvent = null;
-            foreach(NarrativeObject filteredObject in objectsFilteredOnLocationType)
-            {
-                if (filteredObject.Name.Equals(words.Last()))
-                {
-                    locationOfEvent = filteredObject;
-                    break;
-                }
-            }
-            if (locationOfEvent == null)
-                throw new Exception("Last argument is not a location");
-            narrativeEvent.Location = locationOfEvent;
             // Read words in
             for (int i = 1; i < words.Length; i++)
             {

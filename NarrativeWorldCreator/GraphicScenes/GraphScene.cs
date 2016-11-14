@@ -91,9 +91,9 @@ namespace NarrativeWorldCreator
                     spriteBatch.Draw(graph.circleTexture, null, graph.NodeCollisionBoxes[n]);
                 }
                 // Draw the location name
-                spriteBatch.DrawString(spriteFontCourierNew, n.getLocationName(), new Vector2(graph.NodeCollisionBoxes[n].X +
+                spriteBatch.DrawString(spriteFontCourierNew, n.LocationName, new Vector2(graph.NodeCollisionBoxes[n].X +
                     (graph.nodeWidth / 2), graph.NodeCollisionBoxes[n].Y + (graph.nodeHeight / 2)), Color.Black,
-                    0, spriteFontCourierNew.MeasureString(n.getLocationName()) / 2, 1.0f, SpriteEffects.None, 0.5f);
+                    0, spriteFontCourierNew.MeasureString(n.LocationName) / 2, 1.0f, SpriteEffects.None, 0.5f);
             }
             // Draw each edge
             foreach (Edge e in graph.getEdgeList())

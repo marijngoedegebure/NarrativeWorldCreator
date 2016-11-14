@@ -53,7 +53,7 @@
     <Compile Include="Models\NarrativeTimePoint.cs" />
     <Compile Include="Models\NarrativeWorld.cs" />
     <Compile Include="Models\Node.cs" />
-    <Compile Include="Parsers\GraphParser.cs" />
+    <Compile Include="Parsers\NarrativeWorldParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

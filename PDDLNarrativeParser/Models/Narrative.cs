@@ -78,7 +78,7 @@ namespace PDDLNarrativeParser
             List<NarrativeEvent> filteredNarrativeEvents = new List<NarrativeEvent>();
             foreach (NarrativeEvent narrativeEvent in NarrativeEvents)
             {
-                if(narrativeEvent.Location.Name.Equals(location))
+                if(narrativeEvent.NarrativeObjects.Last().Name.Equals(location))
                 {
                     filteredNarrativeEvents.Add(narrativeEvent);
                 }

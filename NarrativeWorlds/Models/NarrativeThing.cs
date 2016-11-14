@@ -10,5 +10,10 @@ namespace NarrativeWorlds
     {
         public string Name { get; set; }
         public bool Placed { get; set; }
+
+        public NarrativeThing(string Name)
+        {
+            this.Name = Name;
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace NarrativeWorlds
 {
     public class Node
     {
-        String locationName;
+        public String LocationName { get; set; }
         public List<VertexPositionColor> RegionOutlinePoints { get; set; }
         public List<int> triangleListIndices { get; set; }
         public List<NarrativeEvent> NarrativeEvents { get; set; }
@@ -20,17 +20,12 @@ namespace NarrativeWorlds
 
         public Node(String locationName)
         {
-            this.locationName = locationName;
+            this.LocationName = locationName;
             RegionOutlinePoints = new List<VertexPositionColor>();
             triangleListIndices = new List<int>();
             NarrativeEvents = new List<NarrativeEvent>();
             NarrativeObjects = new List<NarrativeObject>();
             InstancedEntikaObjects = new List<InstancedEntikaObject>();
-        }
-
-        public String getLocationName()
-        {
-            return locationName;
         }
 
         public override bool Equals(Object obj)
@@ -40,7 +35,7 @@ namespace NarrativeWorlds
                 return false;
 
             Node n = (Node)obj;
-            return locationName.Equals(n.locationName);
+            return LocationName.Equals(n.LocationName);
         }
 
         public void triangulatePolygon()

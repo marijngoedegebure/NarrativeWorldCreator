@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Narratives;
 using NarrativeWorlds;
+using PDDLNarrativeParser;
 using System;
 using System.Linq;
 using System.Windows;
@@ -59,8 +60,8 @@ namespace NarrativeWorldCreator
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-            SystemStateTracker.NarrativeWorld.Narrative = PDDLNarrativeParser.Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
-            SystemStateTracker.NarrativeWorld.Graph = NarrativeWorldParser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, SystemStateTracker.NarrativeWorld.Narrative);
+            Narrative narrative = PDDLNarrativeParser.Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
+            SystemStateTracker.NarrativeWorld = NarrativeWorldParser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, narrative);
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;

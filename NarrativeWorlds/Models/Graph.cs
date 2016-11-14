@@ -45,8 +45,8 @@ namespace NarrativeWorlds
         public void addNode(string locationName)
         {
             Node node = new Node(locationName);
-            node.NarrativeEvents = NarrativeWorldParser.Narrative.getNarrativeEventsOfLocation(locationName);
-            node.NarrativeObjects = NarrativeWorldParser.Narrative.getNarrativeObjectsOfLocation(locationName);
+            node.NarrativeEvents = NarrativeWorldParser.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(locationName);
+            node.NarrativeObjects = NarrativeWorldParser.NarrativeWorld.Narrative.getNarrativeObjectsOfLocation(locationName);
             nodeList.Add(node);
         }
 
@@ -65,7 +65,7 @@ namespace NarrativeWorlds
         {
             foreach(Node n in nodeList)
             {
-                if (n.getLocationName().Equals(nm))
+                if (n.LocationName.Equals(nm))
                     return n;
             }
             return null;
@@ -97,7 +97,7 @@ namespace NarrativeWorlds
         public void randomlyGenerateCoordinates()
         {
             Random r = new Random();
-            foreach (Node n in NarrativeWorldParser.Graph.getNodeList())
+            foreach (Node n in NarrativeWorldParser.NarrativeWorld.Graph.getNodeList())
             {
                 NodePositions[n] = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
             }
@@ -106,11 +106,11 @@ namespace NarrativeWorlds
 
         public void initCollisionboxes()
         {
-            foreach (Node n in NarrativeWorldParser.Graph.getNodeList())
+            foreach (Node n in NarrativeWorldParser.NarrativeWorld.Graph.getNodeList())
             {
                 float x = NodePositions[n].X * energyToDrawConversion;
                 float y = NodePositions[n].Y * energyToDrawConversion;
-                Rectangle collisionBox = new Rectangle((int)x, (int)y, NarrativeWorldParser.Graph.nodeHeight, NarrativeWorldParser.Graph.nodeWidth);
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, NarrativeWorldParser.NarrativeWorld.Graph.nodeHeight, NarrativeWorldParser.NarrativeWorld.Graph.nodeWidth);
                 this.NodeCollisionBoxes[n] = collisionBox;
             }
         }
