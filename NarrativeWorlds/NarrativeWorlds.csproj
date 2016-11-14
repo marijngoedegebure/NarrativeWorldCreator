@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NarrativeWorld</RootNamespace>
+    <AssemblyName>NarrativeWorld</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Monogame.Framework\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Edge.cs" />
+    <Compile Include="Models\Graph.cs" />
+    <Compile Include="Models\InstancedEntikaObject.cs" />
+    <Compile Include="Models\NarrativeCharacter.cs" />
+    <Compile Include="Models\NarrativeThing.cs" />
+    <Compile Include="Models\NarrativeTimeline.cs" />
+    <Compile Include="Models\NarrativeTimePoint.cs" />
+    <Compile Include="Models\NarrativeWorld.cs" />
+    <Compile Include="Models\Node.cs" />
+    <Compile Include="Parsers\GraphParser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameSemanticsEngine\GameSemanticsEngine.csproj">
+      <Project>{2da1975f-2bd3-456f-8431-fad58c70525b}</Project>
+      <Name>GameSemanticsEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameSemantics\GameSemantics.csproj">
+      <Project>{461cd61b-7803-44f1-a7d7-3f18cb05e21b}</Project>
+      <Name>GameSemantics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PDDLNarrativeParser\PDDLNarrativeParser.csproj">
+      <Project>{5ff6f1bc-9868-475b-8826-42c9ab958418}</Project>
+      <Name>PDDLNarrativeParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SemanticsEngine\SemanticsEngine.csproj">
+      <Project>{40c5f219-444a-4f6e-9ba2-4dd10471c288}</Project>
+      <Name>SemanticsEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Semantics\Semantics.csproj">
+      <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>
+      <Name>Semantics</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

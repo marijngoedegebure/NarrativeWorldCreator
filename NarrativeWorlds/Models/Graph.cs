@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NarrativeWorldCreator.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NarrativeWorldCreator.RegionGraph
+namespace NarrativeWorlds
 {
     public class Graph
     {
@@ -46,8 +45,8 @@ namespace NarrativeWorldCreator.RegionGraph
         public void addNode(string locationName)
         {
             Node node = new Node(locationName);
-            node.NarrativeEvents = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(locationName);
-            node.NarrativeObjects = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfLocation(locationName);
+            node.NarrativeEvents = GraphParser.Narrative.getNarrativeEventsOfLocation(locationName);
+            node.NarrativeObjects = GraphParser.Narrative.getNarrativeObjectsOfLocation(locationName);
             nodeList.Add(node);
         }
 
@@ -98,7 +97,7 @@ namespace NarrativeWorldCreator.RegionGraph
         public void randomlyGenerateCoordinates()
         {
             Random r = new Random();
-            foreach (Node n in SystemStateTracker.NarrativeWorld.Graph.getNodeList())
+            foreach (Node n in GraphParser.Graph.getNodeList())
             {
                 NodePositions[n] = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
             }
@@ -107,11 +106,11 @@ namespace NarrativeWorldCreator.RegionGraph
 
         public void initCollisionboxes()
         {
-            foreach (Node n in SystemStateTracker.NarrativeWorld.Graph.getNodeList())
+            foreach (Node n in GraphParser.Graph.getNodeList())
             {
                 float x = NodePositions[n].X * energyToDrawConversion;
                 float y = NodePositions[n].Y * energyToDrawConversion;
-                Rectangle collisionBox = new Rectangle((int)x, (int)y, SystemStateTracker.NarrativeWorld.Graph.nodeHeight, SystemStateTracker.NarrativeWorld.Graph.nodeWidth);
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, GraphParser.Graph.nodeHeight, GraphParser.Graph.nodeWidth);
                 this.NodeCollisionBoxes[n] = collisionBox;
             }
         }
@@ -165,22 +164,16 @@ namespace NarrativeWorldCreator.RegionGraph
             while (temperature > minimumTemperature) stepForceDirectedGraph();
         }
 
-        public void checkCollisions(Vector2 mousePosition)
+        public Node checkCollisions(Vector2 mousePosition)
         {
-            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
             foreach (Node n in this.getNodeList())
             {
                 if (this.NodeCollisionBoxes[n].Contains(mousePosition))
                 {
-                    graphPage.selectedNode = n;
-                    graphPage.fillDetailView(n);
-                    return;
+                    return n;
                 }
             }
-            // If no collision, reset selectedNode and interface
-            graphPage.selected_region_detail_grid.Visibility = Visibility.Collapsed;
-            graphPage.selectedNode = null;
+            return null;
         }
     }
 }

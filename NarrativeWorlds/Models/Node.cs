@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using NarrativeWorldCreator.Models;
 using PDDLNarrativeParser;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator.RegionGraph
+namespace NarrativeWorlds
 {
     public class Node
     {

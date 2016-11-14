@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticsEngine", "Semantic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDDLNarrativeParser", "PDDLNarrativeParser\PDDLNarrativeParser.csproj", "{5FF6F1BC-9868-475B-8826-42C9AB958418}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeWorlds", "NarrativeWorlds\NarrativeWorlds.csproj", "{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Renderer|Any CPU = Debug Renderer|Any CPU
@@ -193,6 +195,26 @@ Global
 		{5FF6F1BC-9868-475B-8826-42C9AB958418}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5FF6F1BC-9868-475B-8826-42C9AB958418}.Release|x86.ActiveCfg = Release|Any CPU
 		{5FF6F1BC-9868-475B-8826-42C9AB958418}.Release|x86.Build.0 = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug Renderer|Any CPU.ActiveCfg = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug Renderer|Any CPU.Build.0 = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug Renderer|x86.ActiveCfg = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug Renderer|x86.Build.0 = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug_contained|Any CPU.ActiveCfg = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug_contained|Any CPU.Build.0 = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug_contained|x86.ActiveCfg = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug_contained|x86.Build.0 = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Debug|x86.Build.0 = Debug|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release Interface|Any CPU.ActiveCfg = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release Interface|Any CPU.Build.0 = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release Interface|x86.ActiveCfg = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release Interface|x86.Build.0 = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|x86.ActiveCfg = Release|Any CPU
+		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

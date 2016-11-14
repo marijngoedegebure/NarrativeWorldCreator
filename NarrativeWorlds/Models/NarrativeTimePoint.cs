@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator.RegionGraph.Models
+namespace NarrativeWorlds
 {
     public class NarrativeTimePoint
     {

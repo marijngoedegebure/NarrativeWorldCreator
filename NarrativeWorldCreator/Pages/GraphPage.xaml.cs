@@ -1,4 +1,4 @@
-﻿using NarrativeWorldCreator.RegionGraph;
+﻿using NarrativeWorlds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NarrativeWorldCreator.Pages
+namespace NarrativeWorldCreator
 {
     /// <summary>
     /// Interaction logic for GraphPage.xaml

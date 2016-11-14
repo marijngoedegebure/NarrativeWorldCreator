@@ -1,5 +1,4 @@
-﻿using NarrativeWorldCreator.Models;
-using NarrativeWorldCreator.RegionGraph;
+﻿using NarrativeWorlds;
 using Semantics.Abstractions;
 using Semantics.Data;
 using Semantics.Entities;
@@ -18,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NarrativeWorldCreator.Pages
+namespace NarrativeWorldCreator
 {
     /// <summary>
     /// Interaction logic for RegionPage.xaml

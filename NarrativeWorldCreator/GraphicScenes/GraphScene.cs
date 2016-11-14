@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
-using NarrativeWorldCreator.Pages;
-using NarrativeWorldCreator.RegionGraph;
+using NarrativeWorlds;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace NarrativeWorldCreator
 {
@@ -179,8 +179,21 @@ namespace NarrativeWorldCreator
             if (graph.NodeCollisionBoxes.Count == graph.getNodeList().Count && _previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
             {
                 // Incorporate translation into collision
-                    Matrix inverseViewMatrix = Matrix.Invert(cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float)this.ActualWidth, (float)this.ActualHeight));
-                    graph.checkCollisions(Vector2.Transform(_mouseState.Position.ToVector2(), inverseViewMatrix));
+                Matrix inverseViewMatrix = Matrix.Invert(cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float)this.ActualWidth, (float)this.ActualHeight));
+                Node collisionNode = graph.checkCollisions(Vector2.Transform(_mouseState.Position.ToVector2(), inverseViewMatrix));
+                var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+                var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
+                if (collisionNode != null)
+                {
+                    graphPage.selectedNode = collisionNode;
+                    graphPage.fillDetailView(collisionNode);
+                }
+                else
+                {
+                    // If no collision, reset selectedNode and interface
+                    graphPage.selected_region_detail_grid.Visibility = Visibility.Collapsed;
+                    graphPage.selectedNode = null;
+                }
             }
             cam.handleCamMovementKeyboardInput(_keyboardState);
             cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState);

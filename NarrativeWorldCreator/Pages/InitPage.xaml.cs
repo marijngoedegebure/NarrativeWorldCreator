@@ -1,13 +1,12 @@
 ﻿using Microsoft.Win32;
 using Narratives;
-using NarrativeWorldCreator.Parsers;
-using NarrativeWorldCreator.RegionGraph;
+using NarrativeWorlds;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace NarrativeWorldCreator.Pages
+namespace NarrativeWorldCreator
 {
     /// <summary>
     /// Interaction logic for InitPage.xaml
@@ -60,12 +59,11 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-
-            GraphParser.parse(domainPath, problemPath, planPath);
+            SystemStateTracker.NarrativeWorld.Narrative = PDDLNarrativeParser.Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
+            SystemStateTracker.NarrativeWorld.Graph = GraphParser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, SystemStateTracker.NarrativeWorld.Narrative);
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
-            GraphParser.createGraphBasedOnNarrative();
         }
 
         private void fillDetailView()
