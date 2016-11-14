@@ -33,6 +33,7 @@ GameSemantics/obj/
 Semantics/obj/
 NarrativeWorldCreator/Content/obj/
 NarrativeWorldCreator/Content/bin/
+Entika databases/*.temp
 
 
 # Visual Studio 2015 cache/options directory
