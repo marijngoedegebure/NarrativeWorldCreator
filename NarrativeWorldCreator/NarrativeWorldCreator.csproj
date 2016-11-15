@@ -120,6 +120,9 @@
     <Compile Include="Pages\RegionPage.xaml.cs">
       <DependentUpon>RegionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PopupWindowTangibleClassSelector.xaml.cs">
+      <DependentUpon>PopupWindowTangibleClassSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
@@ -145,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RegionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PopupWindowTangibleClassSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

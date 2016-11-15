@@ -17,6 +17,7 @@ namespace NarrativeWorlds
         public List<NarrativeEvent> NarrativeEvents { get; set; }
         public List<NarrativeObject> NarrativeObjects { get; set; }
         public List<InstancedEntikaObject> InstancedEntikaObjects { get; set; }
+        public List<NarrativeCharacterInstance> InstancedNarrativeCharacters { get; set; }
 
         public Node(String locationName)
         {

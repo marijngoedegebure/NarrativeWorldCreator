@@ -1,0 +1,28 @@
+﻿<Window x:Class="NarrativeWorldCreator.PopupWindowTangibleClassSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NarrativeWorldCreator"
+        mc:Ignorable="d"
+        Title="PopupWindowTangibleClassSelector" Height="600" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="0" Grid.Column="0" VerticalScrollBarVisibility="Visible">
+            <ItemsControl Margin="10" Name="lvClassSelectorDataBinding">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Button Content="{Binding DefaultName}" FontWeight="Bold" Click="TangibleClass_Click"/>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>

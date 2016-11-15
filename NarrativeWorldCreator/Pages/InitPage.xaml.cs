@@ -71,6 +71,10 @@ namespace NarrativeWorldCreator
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
+
+            // Ask user to associate entika class with characters
+            PopupWindowTangibleClassSelector popup = new PopupWindowTangibleClassSelector();
+            popup.ShowDialog();
         }
 
         private void fillDetailView()

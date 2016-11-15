@@ -48,6 +48,7 @@
     <Compile Include="Models\Graph.cs" />
     <Compile Include="Models\InstancedEntikaObject.cs" />
     <Compile Include="Models\NarrativeCharacter.cs" />
+    <Compile Include="Models\NarrativeCharacterInstance.cs" />
     <Compile Include="Models\NarrativeThing.cs" />
     <Compile Include="Models\NarrativeTimeline.cs" />
     <Compile Include="Models\NarrativeTimePoint.cs" />

@@ -18,15 +18,35 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0,0,0,10">
                 <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
                 <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
             </WrapPanel>
+            <ScrollViewer x:Name="ScrollViewerTimeLine" Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Visible" Mouse.PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                <ItemsControl Name="lvTimePointsDataBinding">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Click="TimePointButton_Click">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding TimePoint}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding NarrativeEvent.NarrativeAction.Name}" />
+                                    <TextBlock Text="{Binding Location.LocationName}" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>        
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>

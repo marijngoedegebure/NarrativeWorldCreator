@@ -185,14 +185,11 @@ namespace NarrativeWorldCreator
                 var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
                 if (collisionNode != null)
                 {
-                    graphPage.selectedNode = collisionNode;
-                    graphPage.fillDetailView(collisionNode);
+                    graphPage.selectNode(collisionNode);
                 }
                 else
                 {
-                    // If no collision, reset selectedNode and interface
-                    graphPage.selected_region_detail_grid.Visibility = Visibility.Collapsed;
-                    graphPage.selectedNode = null;
+                    graphPage.unselectNode();
                 }
             }
             cam.handleCamMovementKeyboardInput(_keyboardState);

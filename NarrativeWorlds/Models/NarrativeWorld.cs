@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Semantics.Entities;
 
 namespace NarrativeWorlds
 {
@@ -33,6 +34,14 @@ namespace NarrativeWorlds
             return (from nt in NarrativeThings
                     where nt.Name.Equals(name)
                     select nt).Single();
+        }
+
+        public void SetTangibleClassNarrativeCharacters(TangibleObject tangibleObject)
+        {
+            foreach(NarrativeCharacter nc in NarrativeCharacters)
+            {
+                nc.TangibleObject = tangibleObject;
+            }
         }
     }
 }

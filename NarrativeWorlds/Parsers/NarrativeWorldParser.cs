@@ -42,22 +42,11 @@ namespace NarrativeWorlds
 
         public static void createNarrativeTimeline()
         {
-            // Create narrative characters for each narrative object with CharacterTypeName
-            List<NarrativeObject> characters = NarrativeWorld.Narrative.getNarrativeObjectsOfType(CharacterTypeName);
-            foreach(NarrativeObject character in characters)
-            {
-                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name));
-            }
-
-            // Create narrative things for each narrative object with ObjectTypeName
-            List<NarrativeObject> things = NarrativeWorld.Narrative.getNarrativeObjectsOfType(ObjectTypeName);
-            foreach (NarrativeObject thing in things)
-            {
-                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name));
-            }
-
+            setupCharactersAndThings();
             // Determine starting locations for each character and object using at() predicate add this as the first timepoint
-            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint();
+            int timePointCount = 0;
+            // InitialTimePoint does not have a location node associated with it, possible solution would be the addition of annotation of a starting node for the story
+            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(timePointCount);
             List<NarrativePredicate> predicates = NarrativeWorld.Narrative.getNarrativePredicates(AtPredicateName);
             foreach(NarrativePredicate predicate in predicates)
             {
@@ -75,21 +64,23 @@ namespace NarrativeWorlds
                 }
             }
             NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(initialTimePoint);
+            timePointCount++;
             // Check has predicate for objects that have no location yet
             // Add to timeline object, an object either has to be on a location or has to be carried by someone
 
             // Copy previous timepoint and adjust location of narrative objects according to action
             foreach (NarrativeEvent nevent in NarrativeWorld.Narrative.NarrativeEvents)
             {
-                NarrativeTimePoint timePoint = new NarrativeTimePoint();
+                NarrativeTimePoint timePoint = new NarrativeTimePoint(timePointCount);
                 timePoint.copy(initialTimePoint);
                 timePoint.NarrativeEvent = nevent;
+                timePoint.Location = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
                 // Check if move action
                 // Do stuff based on this move action
                 if(nevent.NarrativeAction.Name.Equals(MoveActionName))
                 {
                     NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[0].Name);
-                    timePoint.LocationOfNarrativeCharacters[nc] = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
+                    timePoint.LocationOfNarrativeCharacters[nc] = timePoint.Location;
                 }
 
                 // Check if pickup action
@@ -106,12 +97,12 @@ namespace NarrativeWorlds
                         if(nevent.NarrativeObjects[i].Type.Name.Equals(CharacterTypeName))
                         {
                             NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[i].Name);
-                            timePoint.LocationOfNarrativeCharacters[nc] = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
+                            timePoint.LocationOfNarrativeCharacters[nc] = timePoint.Location;
                         }
                         else if(nevent.NarrativeObjects[i].Type.Name.Equals(ObjectTypeName))
                         {
                             NarrativeThing nt = NarrativeWorld.getNarrativeThing(nevent.NarrativeObjects[i].Name);
-                            timePoint.LocationOfNarrativeThings[nt] = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
+                            timePoint.LocationOfNarrativeThings[nt] = timePoint.Location;
                         }
                         else
                         {
@@ -120,6 +111,24 @@ namespace NarrativeWorlds
                     }
                 }
                 NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(timePoint);
+                timePointCount++;
+            }
+        }
+
+        private static void setupCharactersAndThings()
+        {
+            // Create narrative characters for each narrative object with CharacterTypeName
+            List<NarrativeObject> characters = NarrativeWorld.Narrative.getNarrativeObjectsOfType(CharacterTypeName);
+            foreach (NarrativeObject character in characters)
+            {
+                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name));
+            }
+
+            // Create narrative things for each narrative object with ObjectTypeName
+            List<NarrativeObject> things = NarrativeWorld.Narrative.getNarrativeObjectsOfType(ObjectTypeName);
+            foreach (NarrativeObject thing in things)
+            {
+                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name));
             }
         }
 
