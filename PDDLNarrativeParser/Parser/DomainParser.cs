@@ -26,7 +26,10 @@ namespace PDDLNarrativeParser
                 if (words[0].Equals(""))
                     continue;
                 if (words[0].Equals("define"))
+                {
+                    Parser.narrative.Name = words.Last();
                     continue;
+                }
                 if (words[0].Equals("requirements"))
                     continue;
                 if (words[0].Equals("types"))

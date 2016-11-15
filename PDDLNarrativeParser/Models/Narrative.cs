@@ -9,6 +9,7 @@ namespace PDDLNarrativeParser
     public class Narrative
     {
         public int NarrativeId { get; set; }
+        public string Name { get; set; }
         public IList<NarrativeObjectType> NarrativeObjectTypes { get; set; }
         public IList<PredicateType> PredicateTypes { get; set; }
         public IList<NarrativeObject> NarrativeObjects { get; set; }

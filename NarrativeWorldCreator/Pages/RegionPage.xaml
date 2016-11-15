@@ -63,27 +63,12 @@
                 <TabItem Header="Item addition">
                     <Grid Name="selected_region_detail_grid">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <ScrollViewer Grid.Row="0" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                            <ListView Margin="10" Name="lvObjectsDataBinding">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <WrapPanel>
-                                            <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
-                                        </WrapPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </ScrollViewer>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Group addition">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <ListView Margin="10" Name="lvGroupsDataBinding">
+                        <ListView Margin="10" Name="lvObjectsDataBinding">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
@@ -92,7 +77,18 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
-                    </ScrollViewer>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Group addition">
+                    <ListView Margin="10" Name="lvGroupsDataBinding">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </TabItem>
             </TabControl>
         </Grid>
