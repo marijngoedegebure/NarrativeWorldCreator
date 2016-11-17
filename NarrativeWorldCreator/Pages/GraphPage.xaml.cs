@@ -1,6 +1,7 @@
 ﻿using NarrativeWorlds;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace NarrativeWorldCreator
     public partial class GraphPage : Page
     {
         public Node selectedNode;
+        public NarrativeTimePoint selectedTimePoint;
 
         public GraphPage()
         {
@@ -52,40 +54,57 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new InitPage());
         }
 
-        private void TimePointButton_Click(object sender, RoutedEventArgs e)
+        private void TimeLineListViewItemChanged(object sender, SelectionChangedEventArgs e)
         {
-            Button button = sender as Button;
-            NarrativeTimePoint timePoint = button.DataContext as NarrativeTimePoint;
-            selectNode(timePoint.Location);
+            // Button button = sender as Button;
+            var addedItems = e.AddedItems;
+            if (addedItems.Count > 0)
+            {
+                NarrativeTimePoint timePoint = addedItems[0] as NarrativeTimePoint;
+                if (timePoint.TimePoint != 0)
+                {
+                    selectedTimePoint = timePoint;
+                    fillDetailView(timePoint.Location);
+                }
+            }
         }
 
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
+            Border scroll_border = VisualTreeHelper.GetChild(lvTimePointsDataBinding, 0) as Border;
+            ScrollViewer scroll = scroll_border.Child as ScrollViewer;
             if (e.Delta < 0) // wheel down
             {
-                if (ScrollViewerTimeLine.HorizontalOffset + e.Delta > 0)
+                if (scroll.ExtentWidth > scroll.HorizontalOffset + e.Delta)
                 {
-                    ScrollViewerTimeLine.ScrollToHorizontalOffset(ScrollViewerTimeLine.HorizontalOffset + e.Delta);
+                    scroll.ScrollToHorizontalOffset(scroll.HorizontalOffset - e.Delta);
                 }
                 else
                 {
-                    ScrollViewerTimeLine.ScrollToLeftEnd();
+                    scroll.ScrollToRightEnd();
                 }
             }
             else //wheel up
             {
-                if (ScrollViewerTimeLine.ExtentWidth > ScrollViewerTimeLine.HorizontalOffset + e.Delta)
+                if (scroll.HorizontalOffset + e.Delta > 0)
                 {
-                    ScrollViewerTimeLine.ScrollToHorizontalOffset(ScrollViewerTimeLine.HorizontalOffset + e.Delta);
+                    scroll.ScrollToHorizontalOffset(scroll.HorizontalOffset - e.Delta);
                 }
                 else
                 {
-                    ScrollViewerTimeLine.ScrollToRightEnd();
+                    scroll.ScrollToLeftEnd();
                 }
             }
         }
 
-        internal void selectNode(Node location)
+        internal void RegionPressed(Node pressed)
+        {
+            lvTimePointsDataBinding.SelectedItem = null;
+            selectedTimePoint = null;
+            fillDetailView(pressed);
+        }
+
+        internal void fillDetailView(Node location)
         {
             this.selectedNode = location;
             narrative_location_name.Content = location.LocationName;
@@ -100,6 +119,23 @@ namespace NarrativeWorldCreator
             // If no collision, reset selectedNode and interface
             this.selected_region_detail_grid.Visibility = Visibility.Collapsed;
             this.selectedNode = null;
+        }
+
+        public class NarrativeTimePointViewModel
+        {
+            private NarrativeTimePoint obj;
+            private bool isSelected = false;
+
+            public NarrativeTimePoint NarrativeTimePoint
+            {
+                get { return this.obj; }
+            }
+
+            public bool IsSelected
+            {
+                get { return this.isSelected; }
+                set { this.isSelected = value; }
+            }
         }
     }
 }

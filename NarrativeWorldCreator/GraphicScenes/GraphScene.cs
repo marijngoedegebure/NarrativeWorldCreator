@@ -185,7 +185,7 @@ namespace NarrativeWorldCreator
                 var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
                 if (collisionNode != null)
                 {
-                    graphPage.selectNode(collisionNode);
+                    graphPage.RegionPressed(collisionNode);
                 }
                 else
                 {

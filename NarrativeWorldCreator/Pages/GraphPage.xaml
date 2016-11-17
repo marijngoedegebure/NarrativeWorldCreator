@@ -9,7 +9,7 @@
       Title="GraphPage">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -27,26 +27,54 @@
                 <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
                 <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
             </WrapPanel>
-            <ScrollViewer x:Name="ScrollViewerTimeLine" Grid.Row="1" Grid.Column="0" HorizontalScrollBarVisibility="Visible" Mouse.PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
-                <ItemsControl Name="lvTimePointsDataBinding">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"></StackPanel>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Click="TimePointButton_Click">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding TimePoint}" FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding NarrativeEvent.NarrativeAction.Name}" />
-                                    <TextBlock Text="{Binding Location.LocationName}" />
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <ListView
+                Grid.Row="1" 
+                Grid.Column="0"
+                Margin="10"
+                Name="lvTimePointsDataBinding" 
+                Mouse.PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                SelectionMode="Single"
+                SelectionChanged="TimeLineListViewItemChanged" >
+                <ListView.Resources>
+                    <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
+                        <Border BorderThickness="3" BorderBrush="DarkGray" Background="#FF92C6F9" Padding="2" HorizontalAlignment="Left" Margin="5" Cursor="Hand">
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding TimePoint}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding NarrativeEvent.NarrativeAction.Name}" />
+                                <TextBlock Text="{Binding Location.LocationName}" />
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <Border BorderThickness="1" BorderBrush="DarkGray" Background="WhiteSmoke" Padding="2" HorizontalAlignment="Left" Margin="5" Cursor="Hand" >
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding TimePoint}" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding NarrativeEvent.NarrativeAction.Name}" />
+                                            <TextBlock Text="{Binding Location.LocationName}" />
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
         </Grid>        
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
