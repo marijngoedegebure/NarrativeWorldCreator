@@ -127,6 +127,15 @@
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionScene.cs" />
+    <Compile Include="ViewModel\GraphDetailTimePointListViewModel.cs" />
+    <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
+    <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
+    <Compile Include="Views\GraphDetailTimePointListView.xaml.cs">
+      <DependentUpon>GraphDetailTimePointListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NarrativeTimelineView.xaml.cs">
+      <DependentUpon>NarrativeTimelineView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -152,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PopupWindowTangibleClassSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GraphDetailTimePointListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NarrativeTimelineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

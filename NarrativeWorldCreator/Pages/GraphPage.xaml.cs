@@ -1,6 +1,7 @@
 ﻿using NarrativeWorlds;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -23,19 +24,30 @@ namespace NarrativeWorldCreator
     public partial class GraphPage : Page
     {
         public Node selectedNode;
-        public NarrativeTimePoint selectedTimePoint;
 
         public GraphPage()
         {
             InitializeComponent();
             if (!SystemStateTracker.NarrativeWorld.Graph.nodeCoordinatesGenerated)
                 SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
-            fillListViews();
         }
 
-        private void fillListViews()
+        private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
         {
-            lvTimePointsDataBinding.ItemsSource = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.NarrativeTimePoints orderby a.TimePoint select a).ToList();
+            // Fill control with stuff
+            NarrativeTimelineViewModel narrativeTimelineViewModelObject =
+               new NarrativeTimelineViewModel();
+            narrativeTimelineViewModelObject.LoadTimePoints();
+
+            NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
+        }
+
+        private void GraphDetailTimePointListControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Fill control with stuff
+            GraphDetailTimePointListViewModel timePointListViewModelObject =
+               new GraphDetailTimePointListViewModel();
+            GraphDetailTimePointListControl.DataContext = timePointListViewModelObject;
         }
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
@@ -54,53 +66,8 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new InitPage());
         }
 
-        private void TimeLineListViewItemChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Button button = sender as Button;
-            var addedItems = e.AddedItems;
-            if (addedItems.Count > 0)
-            {
-                NarrativeTimePoint timePoint = addedItems[0] as NarrativeTimePoint;
-                if (timePoint.TimePoint != 0)
-                {
-                    selectedTimePoint = timePoint;
-                    fillDetailView(timePoint.Location);
-                }
-            }
-        }
-
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            Border scroll_border = VisualTreeHelper.GetChild(lvTimePointsDataBinding, 0) as Border;
-            ScrollViewer scroll = scroll_border.Child as ScrollViewer;
-            if (e.Delta < 0) // wheel down
-            {
-                if (scroll.ExtentWidth > scroll.HorizontalOffset + e.Delta)
-                {
-                    scroll.ScrollToHorizontalOffset(scroll.HorizontalOffset - e.Delta);
-                }
-                else
-                {
-                    scroll.ScrollToRightEnd();
-                }
-            }
-            else //wheel up
-            {
-                if (scroll.HorizontalOffset + e.Delta > 0)
-                {
-                    scroll.ScrollToHorizontalOffset(scroll.HorizontalOffset - e.Delta);
-                }
-                else
-                {
-                    scroll.ScrollToLeftEnd();
-                }
-            }
-        }
-
         internal void RegionPressed(Node pressed)
         {
-            lvTimePointsDataBinding.SelectedItem = null;
-            selectedTimePoint = null;
             fillDetailView(pressed);
         }
 
@@ -111,6 +78,9 @@ namespace NarrativeWorldCreator
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(location.LocationName).Distinct().Count();
             number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, location.LocationName).Distinct().Count();
             number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, location.LocationName).Distinct().Count();
+            // Get NarrativeTimePoints associated with the node
+            List<NarrativeTimePoint> narrativeTimePointsOfNode = SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(location);
+            (GraphDetailTimePointListControl.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints = new ObservableCollection<NarrativeTimePoint>(narrativeTimePointsOfNode);
             selected_region_detail_grid.Visibility = Visibility.Visible;
         }
 
@@ -119,23 +89,6 @@ namespace NarrativeWorldCreator
             // If no collision, reset selectedNode and interface
             this.selected_region_detail_grid.Visibility = Visibility.Collapsed;
             this.selectedNode = null;
-        }
-
-        public class NarrativeTimePointViewModel
-        {
-            private NarrativeTimePoint obj;
-            private bool isSelected = false;
-
-            public NarrativeTimePoint NarrativeTimePoint
-            {
-                get { return this.obj; }
-            }
-
-            public bool IsSelected
-            {
-                get { return this.isSelected; }
-                set { this.isSelected = value; }
-            }
         }
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NarrativeWorldCreator"
+      xmlns:views = "clr-namespace:NarrativeWorldCreator.Views"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="GraphPage">
@@ -27,54 +28,9 @@
                 <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
                 <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
             </WrapPanel>
-            <ListView
-                Grid.Row="1" 
-                Grid.Column="0"
-                Margin="10"
-                Name="lvTimePointsDataBinding" 
-                Mouse.PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
-                SelectionMode="Single"
-                SelectionChanged="TimeLineListViewItemChanged" >
-                <ListView.Resources>
-                    <ControlTemplate x:Key="SelectedTemplate" TargetType="ListViewItem">
-                        <Border BorderThickness="3" BorderBrush="DarkGray" Background="#FF92C6F9" Padding="2" HorizontalAlignment="Left" Margin="5" Cursor="Hand">
-                            <StackPanel Orientation="Vertical">
-                                <TextBlock Text="{Binding TimePoint}" FontWeight="Bold"/>
-                                <TextBlock Text="{Binding NarrativeEvent.NarrativeAction.Name}" />
-                                <TextBlock Text="{Binding Location.LocationName}" />
-                            </StackPanel>
-                        </Border>
-                    </ControlTemplate>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListViewItem">
-                                    <Border BorderThickness="1" BorderBrush="DarkGray" Background="WhiteSmoke" Padding="2" HorizontalAlignment="Left" Margin="5" Cursor="Hand" >
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Text="{Binding TimePoint}" FontWeight="Bold"/>
-                                            <TextBlock Text="{Binding NarrativeEvent.NarrativeAction.Name}" />
-                                            <TextBlock Text="{Binding Location.LocationName}" />
-                                        </StackPanel>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="true" />
-                                </MultiTrigger.Conditions>
-                                <Setter Property="Template" Value="{StaticResource SelectedTemplate}" />
-                            </MultiTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.Resources>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"></StackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <views:NarrativeTimelineView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
+            </Grid>
         </Grid>        
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
@@ -115,7 +71,15 @@
                     <Label Grid.Row="3" Grid.Column="1" Name="number_narrative_objects" />
                 </Grid>
                 <Grid Grid.Row="1" Grid.Column="0">
-                    <Button x:Name="button5" Content="Click here see the region." HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToRegionPage_Click"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <views:GraphDetailTimePointListView Grid.Column="0" Grid.Row="0" x:Name="GraphDetailTimePointListControl" Loaded = "GraphDetailTimePointListControl_Loaded"/>
+                    <Button x:Name="button5" Grid.Column="0" Grid.Row="1" Content="Click here see the region." HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToRegionPage_Click"/>
                 </Grid>
             </Grid>
         </Grid>
