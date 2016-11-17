@@ -34,6 +34,11 @@ Semantics/obj/
 NarrativeWorldCreator/Content/obj/
 NarrativeWorldCreator/Content/bin/
 Entika databases/*.temp
+Common/obj/
+GameSemanticsEngine/obj/
+SemanticsEngine/obj/
+MonoGame.Framework/WpfInterop/bin/
+MonoGame.Framework/WpfInterop/obj/
 
 
 # Visual Studio 2015 cache/options directory
