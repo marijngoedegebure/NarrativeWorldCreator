@@ -1,7 +1,0 @@
-C:\Users\marij\Documents\Master Thesis\Release\x64\SQLite.Interop.dll
-C:\Users\marij\Documents\Master Thesis\Release\x86\SQLite.Interop.dll
-C:\Users\marij\Documents\Master Thesis\Release\GameSemanticsEngine.dll
-C:\Users\marij\Documents\Master Thesis\Release\GameSemanticsEngine.pdb
-C:\Users\marij\Documents\Master Thesis\GameSemanticsEngine\obj\Release\GameSemanticsEngine.csprojResolveAssemblyReference.cache
-C:\Users\marij\Documents\Master Thesis\GameSemanticsEngine\obj\Release\GameSemanticsEngine.dll
-C:\Users\marij\Documents\Master Thesis\GameSemanticsEngine\obj\Release\GameSemanticsEngine.pdb
