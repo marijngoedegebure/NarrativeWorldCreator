@@ -39,9 +39,19 @@ namespace NarrativeWorldCreator
             InitializeComponent();
             this.selectedNode = selectedNode;
             CurrentMode = RegionPageMode.RegionCreation;
-            fillDetailView();
+            //fillDetailView();
             fillItemList();
             fillGroupCombobox();
+        }
+
+        private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Fill control with stuff
+            NarrativeTimelineViewModel narrativeTimelineViewModelObject =
+               new NarrativeTimelineViewModel();
+            narrativeTimelineViewModelObject.LoadFilteredTimePoints(selectedNode);
+
+            NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
         }
 
         private void fillItemList()
@@ -49,6 +59,11 @@ namespace NarrativeWorldCreator
             List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
             List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
             lvObjectsDataBinding.ItemsSource = filteredList;
+        }
+
+        internal void fillDetailView(NarrativeTimePoint narrativeTimePoint)
+        {
+            // Update detailtab
         }
 
         private void fillGroupCombobox()
@@ -62,13 +77,13 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new GraphPage());
         }
 
-        internal void fillDetailView()
-        {
-            narrative_location_name.Content = selectedNode.LocationName;
-            number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(selectedNode.LocationName).Distinct().Count();
-            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, selectedNode.LocationName).Distinct().Count();
-            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, selectedNode.LocationName).Distinct().Count();
-        }
+        //internal void fillDetailView()
+        //{
+        //    narrative_location_name.Content = selectedNode.LocationName;
+        //    number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(selectedNode.LocationName).Distinct().Count();
+        //    number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, selectedNode.LocationName).Distinct().Count();
+        //    number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, selectedNode.LocationName).Distinct().Count();
+        //}
 
         private void btnSwitchModeToRegionFilling(object sender, RoutedEventArgs e)
         {

@@ -36,5 +36,17 @@ namespace NarrativeWorldCreator
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
+
+        internal void LoadFilteredTimePoints(Node selectedNode)
+        {
+            ObservableCollection<NarrativeTimePointViewModel> ntpsVM = new ObservableCollection<NarrativeTimePointViewModel>();
+            List<NarrativeTimePoint> ntps = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
+            // Load timepoint viewmodels based on narrative timepoints
+            foreach (NarrativeTimePoint ntp in ntps)
+            {
+                ntpsVM.Add(new NarrativeTimePointViewModel(ntp));
+            }
+            NarrativeTimePoints = ntpsVM;
+        }
     }
 }

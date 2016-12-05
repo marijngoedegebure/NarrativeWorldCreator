@@ -36,8 +36,16 @@ namespace NarrativeWorldCreator.Views
                 {
                     timePoint.Selected = true;
                     var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-                    var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
-                    graphPage.fillDetailView(timePoint.NarrativeTimePoint.Location);
+                    if (mainWindow._mainFrame.NavigationService.Content.GetType().Equals(typeof(GraphPage)))
+                    {
+                        var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
+                        graphPage.fillDetailView(timePoint.NarrativeTimePoint.Location);
+                    }
+                    else
+                    {
+                        var regionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+                        regionPage.fillDetailView(timePoint.NarrativeTimePoint);
+                    }
                 }
             }
             var removedItems = e.RemovedItems;
