@@ -234,50 +234,55 @@ namespace NarrativeWorldCreator
             cam.handleCamMovementKeyboardInput(_keyboardState);
             cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
 
-            // Handle region creation:
-            // First step, check whether left button has been clicked
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftShift))
+            if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
             {
-                // Retrieve world coordinates of current mouse position
-                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+                // Handle region creation:
+                // First step, check whether left button has been clicked
+                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftShift))
+                {
+                    // Retrieve world coordinates of current mouse position
+                    Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
+                    Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
 
-                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
-                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+                    Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
+                    Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
 
-                // Create ray using far and near point
-                Vector3 direction = farPoint - nearPoint;
-                direction.Normalize();
-                Ray ray = new Ray(nearPoint, direction);
+                    // Create ray using far and near point
+                    Vector3 direction = farPoint - nearPoint;
+                    direction.Normalize();
+                    Ray ray = new Ray(nearPoint, direction);
 
-                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
-                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-                _currentRegionPage.selectedNode.RegionOutlinePoints.Add(new VertexPositionColor(planeHit, Color.Black));
-                _currentRegionPage.selectedNode.triangulatePolygon();
+                    // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                    float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
+                    Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
+                    _currentRegionPage.selectedNode.RegionOutlinePoints.Add(new VertexPositionColor(planeHit, Color.Black));
+                    _currentRegionPage.selectedNode.triangulatePolygon();
+                }
+            }
+            else
+            {
+                // Handle object placement
+                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftControl))
+                {
+                    Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
+                    Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+
+                    Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
+                    Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+
+                    // Create ray using far and near point
+                    Vector3 direction = farPoint - nearPoint;
+                    direction.Normalize();
+                    Ray ray = new Ray(nearPoint, direction);
+
+                    // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                    float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
+                    Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
+                    _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", planeHit));
+                }
             }
 
-            // Handle object placement
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftControl))
-            {
-                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
-
-                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
-                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
-
-                // Create ray using far and near point
-                Vector3 direction = farPoint - nearPoint;
-                direction.Normalize();
-                Ray ray = new Ray(nearPoint, direction);
-
-                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
-                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-                _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", planeHit));
-            }
-
-                base.Update(time);
+            base.Update(time);
         }
 
         #endregion

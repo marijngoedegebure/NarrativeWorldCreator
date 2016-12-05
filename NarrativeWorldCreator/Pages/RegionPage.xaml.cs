@@ -26,10 +26,19 @@ namespace NarrativeWorldCreator
     {
         public Node selectedNode;
 
+        public enum RegionPageMode
+        {
+            RegionCreation = 1,
+            RegionFilling = 2,
+        }
+
+        public RegionPageMode CurrentMode;
+
         public RegionPage(Node selectedNode)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
+            CurrentMode = RegionPageMode.RegionCreation;
             fillDetailView();
             fillItemList();
             fillGroupCombobox();
@@ -59,6 +68,20 @@ namespace NarrativeWorldCreator
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(selectedNode.LocationName).Distinct().Count();
             number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, selectedNode.LocationName).Distinct().Count();
             number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, selectedNode.LocationName).Distinct().Count();
+        }
+
+        private void btnSwitchModeToRegionFilling(object sender, RoutedEventArgs e)
+        {
+            CurrentMode = RegionPageMode.RegionFilling;
+            region_creation_grid_tabs.Visibility = Visibility.Collapsed;
+            region_filling_grid_tabs.Visibility = Visibility.Visible;
+        }
+
+        private void btnSwitchModeToRegionCreation(object sender, RoutedEventArgs e)
+        {
+            CurrentMode = RegionPageMode.RegionCreation;
+            region_creation_grid_tabs.Visibility = Visibility.Visible;
+            region_filling_grid_tabs.Visibility = Visibility.Collapsed;
         }
     }
 }
