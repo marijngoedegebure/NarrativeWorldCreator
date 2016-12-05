@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Semantics.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace NarrativeWorlds
     {
         public string Name { get; set; }
         public bool Placed { get; set; }
+        public TangibleObject TangibleObject { get; set; }
 
         public NarrativeThing(string Name)
         {

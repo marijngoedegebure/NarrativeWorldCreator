@@ -2,7 +2,10 @@
 using Narratives;
 using NarrativeWorlds;
 using PDDLNarrativeParser;
+using Semantics.Data;
+using Semantics.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -68,13 +71,32 @@ namespace NarrativeWorldCreator
                 SystemStateTracker.MoveActionName,
                 SystemStateTracker.AtPredicateName);
             SystemStateTracker.NarrativeWorld = NarrativeWorldParser.parse(narrative);
+            // Create associations between character/object classes and entika classes based on names
+            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
+            List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
+            foreach (TangibleObject to in filteredList)
+            {
+                foreach (NarrativeCharacter nc in SystemStateTracker.NarrativeWorld.NarrativeCharacters)
+                {
+                    if (to.Names[0].Equals(nc.Name))
+                    {
+                        nc.TangibleObject = to;
+                        continue;
+                    }
+                }
+                foreach (NarrativeThing nt in SystemStateTracker.NarrativeWorld.NarrativeThings)
+                {
+                    if (to.Names[0].Equals(nt.Name))
+                    {
+                        nt.TangibleObject = to;
+                        continue;
+                    }
+                }
+            }
+
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
-
-            // Ask user to associate entika class with characters
-            PopupWindowTangibleClassSelector popup = new PopupWindowTangibleClassSelector();
-            popup.ShowDialog();
         }
 
         private void fillDetailView()
