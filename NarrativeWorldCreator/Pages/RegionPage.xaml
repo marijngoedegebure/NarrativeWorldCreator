@@ -40,14 +40,22 @@
                 <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <local:RegionScene Grid.Row="0" Grid.Column="0"/>
-            <Grid Grid.Row="0" Grid.Column="1" Name="region_creation_grid_tabs" Margin="10">
-                <TextBlock Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region by defining the corners in a clockwise matter."/>
-                <Button x:Name="button2" Content="Click here to go to region filling." Margin="10,10,0,0" Height="50" Width="200" Click="btnSwitchModeToRegionFilling"/>
-            </Grid>
-            <Grid Grid.Row="0" Grid.Column="1" Name="region_filling_grid_tabs" Visibility="Collapsed">
-                <TabControl>
-                <TabItem Header="Item addition">
-                    <Grid Name="selected_region_detail_grid">
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TabControl Grid.Row="0" Grid.Column="0">
+                    <TabItem Name="region_creation_1" Header="Region creation">
+                        <Grid Name="region_creation_4">
+                            <TextBlock Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region by defining the corners in a clockwise matter."/>
+                        </Grid>
+                    </TabItem>
+                <TabItem Name="region_filling_1" Header="Item addition" Visibility="Collapsed">
+                        <Grid Name="region_filling_4">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
@@ -65,19 +73,23 @@
                         </ListView>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Group addition">
-                    <ListView Margin="10" Name="lvGroupsDataBinding">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </TabItem>
-            </TabControl>
-                <Button x:Name="button3" Content="Click here to go to region creation." Margin="10,10,0,0" Height="50" Width="200" Click="btnSwitchModeToRegionCreation"/>
+                    <TabItem Name="region_filling_2" Header="Group addition" Visibility="Collapsed">
+                        <ListView Margin="10" Name="lvGroupsDataBinding">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </TabItem>
+                    <TabItem Header="Region detail">
+                        <views:GraphDetailTimePointListView Grid.Column="0" Grid.Row="0" x:Name="GraphDetailTimePointListControl" Loaded = "GraphDetailTimePointListControl_Loaded"/>
+                    </TabItem>
+                </TabControl>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="region_filling_3" Content="Click here to go to region creation." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionCreation" Visibility="Collapsed"/>
+                <Button Grid.Row="1" Grid.Column="0" x:Name="region_creation_3" Content="Click here to go to region filling." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionFilling"/>
             </Grid>
         </Grid>
     </Grid>

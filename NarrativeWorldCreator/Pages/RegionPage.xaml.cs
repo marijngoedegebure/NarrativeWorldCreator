@@ -54,6 +54,12 @@ namespace NarrativeWorldCreator
             NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
         }
 
+        private void GraphDetailTimePointListControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Fill control with stuff
+            GraphDetailTimePointListControl.DataContext = SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode);
+        }
+
         private void fillItemList()
         {
             List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
@@ -88,15 +94,25 @@ namespace NarrativeWorldCreator
         private void btnSwitchModeToRegionFilling(object sender, RoutedEventArgs e)
         {
             CurrentMode = RegionPageMode.RegionFilling;
-            region_creation_grid_tabs.Visibility = Visibility.Collapsed;
-            region_filling_grid_tabs.Visibility = Visibility.Visible;
+            region_creation_1.Visibility = Visibility.Collapsed;
+            region_creation_3.Visibility = Visibility.Collapsed;
+            region_creation_4.Visibility = Visibility.Collapsed;
+            region_filling_1.Visibility = Visibility.Visible;
+            region_filling_2.Visibility = Visibility.Visible;
+            region_filling_3.Visibility = Visibility.Visible;
+            region_filling_4.Visibility = Visibility.Visible;
         }
 
         private void btnSwitchModeToRegionCreation(object sender, RoutedEventArgs e)
         {
             CurrentMode = RegionPageMode.RegionCreation;
-            region_creation_grid_tabs.Visibility = Visibility.Visible;
-            region_filling_grid_tabs.Visibility = Visibility.Collapsed;
+            region_creation_1.Visibility = Visibility.Visible;
+            region_creation_3.Visibility = Visibility.Visible;
+            region_creation_4.Visibility = Visibility.Visible;
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_4.Visibility = Visibility.Collapsed;
         }
     }
 }
