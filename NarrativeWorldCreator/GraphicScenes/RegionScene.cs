@@ -33,6 +33,18 @@ namespace NarrativeWorldCreator
         private Matrix world;
 
         private Effect effect;
+
+        private int draggingVertexIndex;
+
+        private enum RegionCreationModes
+        {
+            None = 0,
+            VertexCreation = 1,
+            VertexDragging = 2,
+            VertexDeletion = 3,
+        }
+
+        private RegionCreationModes CurrentRegionCreationMode = RegionCreationModes.None;
         #endregion
 
         #region Methods
@@ -142,9 +154,15 @@ namespace NarrativeWorldCreator
             // Always draw the vertices
             if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 0) {
                 // Create quads based off vertex points
-                foreach(VertexPositionColor vertex in _currentRegionPage.selectedNode.RegionOutlinePoints)
+                List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                for (int i = 0; i < points.Count; i++)
                 {
-                    Quad quad = new Quad(vertex.Position, new Vector3(vertex.Position.X, vertex.Position.Y, 1), Vector3.Up, 1, 1);
+                    Color color = Color.Red;
+                    if(draggingVertexIndex != -1 && draggingVertexIndex == i)
+                    {
+                        color = Color.Yellow;
+                    }
+                    Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, color);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
                         pass.Apply();
@@ -155,7 +173,6 @@ namespace NarrativeWorldCreator
                             2);
                     }
                 }
-                
             }
         }
 
@@ -232,57 +249,135 @@ namespace NarrativeWorldCreator
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
-            cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
+            // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
 
             if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
             {
-                // Handle region creation:
-                // First step, check whether left button has been clicked
-                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftShift))
-                {
-                    // Retrieve world coordinates of current mouse position
-                    Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-                    Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
-
-                    Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
-                    Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
-
-                    // Create ray using far and near point
-                    Vector3 direction = farPoint - nearPoint;
-                    direction.Normalize();
-                    Ray ray = new Ray(nearPoint, direction);
-
-                    // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                    float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
-                    Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-                    _currentRegionPage.selectedNode.RegionOutlinePoints.Add(new VertexPositionColor(planeHit, Color.Black));
-                    _currentRegionPage.selectedNode.triangulatePolygon();
-                }
+                // Handle region creation input:
+                HandleRegionCreation();
             }
             else
             {
-                // Handle object placement
-                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftControl))
-                {
-                    Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-                    Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
-
-                    Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
-                    Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
-
-                    // Create ray using far and near point
-                    Vector3 direction = farPoint - nearPoint;
-                    direction.Normalize();
-                    Ray ray = new Ray(nearPoint, direction);
-
-                    // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                    float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
-                    Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-                    _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", planeHit));
-                }
+                HandleObjectPlacement();
             }
 
             base.Update(time);
+        }
+
+        private void HandleObjectPlacement()
+        {
+            // Handle object placement
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftControl))
+            {
+                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", CalculateMouseHitOnSurface()));
+            }
+        }
+
+        private Vector3 CalculateMouseHitOnSurface()
+        {
+            Ray ray = CalculateMouseRay();
+            float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
+            return ray.Position + ray.Direction * distance.Value;
+        }
+
+        private Ray CalculateMouseRay()
+        {
+            Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
+            Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+
+            Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
+            Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+
+            // Create ray using far and near point
+            Vector3 direction = farPoint - nearPoint;
+            direction.Normalize();
+            return new Ray(nearPoint, direction);
+        }
+
+        private int CalculateCollisionQuad()
+        {
+            Ray ray = CalculateMouseRay();
+            List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+            for (int i = 0; i < points.Count; i++)
+            {
+                Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, Color.Red);
+                BoundingBox box = new BoundingBox(new Vector3(points[i].Position.X - 1, points[i].Position.Y - 1, points[i].Position.Z), new Vector3(points[i].Position.X + 1, points[i].Position.Y + 1, points[i].Position.Z));
+                float? distance = ray.Intersects(box);
+                if (distance != null)
+                    return i;
+            }
+            return -1;
+        }
+
+        private void HandleRegionCreation()
+        {
+            if (_keyboardState.IsKeyDown(Keys.LeftControl))
+            {
+                CurrentRegionCreationMode = RegionCreationModes.VertexDragging;
+            }
+            else if (_keyboardState.IsKeyDown(Keys.LeftShift))
+            {
+                CurrentRegionCreationMode = RegionCreationModes.VertexCreation;
+            }
+            else
+            {
+                CurrentRegionCreationMode = RegionCreationModes.None;
+                draggingVertexIndex = -1;
+            }
+
+            // Vertex Dragging
+            if (CurrentRegionCreationMode.Equals(RegionCreationModes.VertexDragging))
+            {
+                HandleVertexDragging();
+            }
+
+            // Vertex creation 
+            if (CurrentRegionCreationMode.Equals(RegionCreationModes.VertexCreation))
+            {
+                HandleVertexCreation();
+            }
+        }
+
+        private void HandleVertexCreation()
+        {
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+            {
+                // Retrieve world coordinates of current mouse position
+                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
+                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+
+                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
+                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+
+                // Create ray using far and near point
+                Vector3 direction = farPoint - nearPoint;
+                direction.Normalize();
+                Ray ray = new Ray(nearPoint, direction);
+
+                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
+                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
+                _currentRegionPage.selectedNode.RegionOutlinePoints.Add(new VertexPositionColor(planeHit, Color.Black));
+                _currentRegionPage.selectedNode.triangulatePolygon();
+            }
+        }
+
+        private void HandleVertexDragging()
+        {
+            if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
+                draggingVertexIndex = CalculateCollisionQuad();
+
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && draggingVertexIndex != -1)
+            {
+                Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));
+                List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                Vector3 mouseCoordsOnZPlane = CalculateMouseHitOnSurface();
+                points[draggingVertexIndex] = new VertexPositionColor(mouseCoordsOnZPlane, Color.Black);
+            }
+
+            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                draggingVertexIndex = -1;
         }
 
         #endregion

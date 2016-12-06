@@ -33,7 +33,7 @@ namespace NarrativeWorldCreator
 
 
         public Quad(Vector3 origin, Vector3 normal, Vector3 up,
-            float width, float height)
+            float width, float height, Color designatedColor)
         {
             Vertices = new VertexPositionColor[4];
             Indexes = new short[6];
@@ -52,10 +52,10 @@ namespace NarrativeWorldCreator
             //LowerLeft = UpperLeft - (Up * height);
             //LowerRight = UpperRight - (Up * height);
 
-            FillVertices();
+            FillVertices(designatedColor);
         }
 
-        private void FillVertices()
+        private void FillVertices(Color designatedColor)
         {
             // Fill in texture coordinates to display full texture
             // on quad
@@ -67,13 +67,13 @@ namespace NarrativeWorldCreator
             // Set the position and texture coordinate for each
             // vertex
             Vertices[0].Position = LowerLeft;
-            Vertices[0].Color = Color.Red;
+            Vertices[0].Color = designatedColor;
             Vertices[1].Position = UpperLeft;
-            Vertices[1].Color = Color.Red;
+            Vertices[1].Color = designatedColor;
             Vertices[2].Position = LowerRight;
-            Vertices[2].Color = Color.Red;
+            Vertices[2].Color = designatedColor;
             Vertices[3].Position = UpperRight;
-            Vertices[3].Color = Color.Red;
+            Vertices[3].Color = designatedColor;
 
             // Set the index buffer for each vertex, using
             // clockwise winding
