@@ -39,5 +39,31 @@ namespace NarrativeWorlds
                 this.LocationOfNarrativeThings[entry.Key] = entry.Value;
             }
         }
+
+        public List<NarrativeCharacter> GetNarrativeCharactersByNode(Node selectedNode)
+        {
+            List<NarrativeCharacter> ncs = new List<NarrativeCharacter>();
+            foreach (KeyValuePair<NarrativeCharacter, Node> entry in this.LocationOfNarrativeCharacters)
+            {
+                if(entry.Value.Equals(selectedNode))
+                {
+                    ncs.Add(entry.Key);
+                }
+            }
+            return ncs;
+        }
+
+        public List<NarrativeThing> GetNarrativeThingsByNode(Node selectedNode)
+        {
+            List<NarrativeThing> nts = new List<NarrativeThing>();
+            foreach (KeyValuePair<NarrativeThing, Node> entry in this.LocationOfNarrativeThings)
+            {
+                if (entry.Value.Equals(selectedNode))
+                {
+                    nts.Add(entry.Key);
+                }
+            }
+            return nts;
+        }
     }
 }

@@ -43,7 +43,7 @@
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -85,7 +85,7 @@
                         </ListView>
                     </TabItem>
                     <TabItem Header="Region detail">
-                        <views:GraphDetailTimePointListView Grid.Column="0" Grid.Row="0" x:Name="GraphDetailTimePointListControl" Loaded = "GraphDetailTimePointListControl_Loaded"/>
+                        <views:RegionDetailTimePointView Grid.Column="0" Grid.Row="0" x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
                 </TabControl>
                 <Button Grid.Row="1" Grid.Column="0" x:Name="region_filling_3" Content="Click here to go to region creation." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionCreation" Visibility="Collapsed"/>

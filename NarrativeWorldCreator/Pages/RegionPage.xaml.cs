@@ -54,10 +54,13 @@ namespace NarrativeWorldCreator
             NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
         }
 
-        private void GraphDetailTimePointListControl_Loaded(object sender, RoutedEventArgs e)
+        private void RegionDetailTimePointView_Loaded(object sender, RoutedEventArgs e)
         {
             // Fill control with stuff
-            GraphDetailTimePointListControl.DataContext = SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode);
+            RegionDetailTimePointViewModel timePointViewModelObject =
+               new RegionDetailTimePointViewModel();
+            timePointViewModelObject.LoadCharactersAndThings(selectedNode, (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints[0].NarrativeTimePoint);
+            RegionDetailTimePointView.DataContext = timePointViewModelObject;
         }
 
         private void fillItemList()
@@ -70,6 +73,7 @@ namespace NarrativeWorldCreator
         internal void fillDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
+            (RegionDetailTimePointView.DataContext as RegionDetailTimePointViewModel).LoadCharactersAndThings(selectedNode, narrativeTimePoint);
         }
 
         private void fillGroupCombobox()
