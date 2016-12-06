@@ -151,14 +151,40 @@ namespace NarrativeWorldCreator
                 }
             }
 
+            // Draw lines between vertices from two or more vertices
+            if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 1)
+            {
+                GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+                List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                for (int i = 0; i < points.Count - 1; i++)
+                {
+                    Color color = Color.Purple;
+                    // Calculate center and rotation
+                    Vector3 center = (points[i].Position + points[i + 1].Position) / 2;
+                    VertexPositionColor[] verticesLine = CreateLine(points[i], points[i + 1], color);
+
+                    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                    {
+                        pass.Apply();
+                        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                            PrimitiveType.TriangleList,
+                            verticesLine,
+                            0,
+                            verticesLine.Length/3);
+                    }
+                }
+            }
+
             // Always draw the vertices
-            if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 0) {
+            if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 0)
+            {
+                GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
                 // Create quads based off vertex points
                 List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 for (int i = 0; i < points.Count; i++)
                 {
                     Color color = Color.Red;
-                    if(draggingVertexIndex != -1 && draggingVertexIndex == i)
+                    if (draggingVertexIndex != -1 && draggingVertexIndex == i)
                     {
                         color = Color.Yellow;
                     }
@@ -174,6 +200,21 @@ namespace NarrativeWorldCreator
                     }
                 }
             }
+        }
+
+        private VertexPositionColor[] CreateLine(VertexPositionColor start, VertexPositionColor end, Color color)
+        {
+            VertexPositionColor[] line = new VertexPositionColor[6];
+            // line triangle 1
+            line[0] = new VertexPositionColor(new Vector3(start.Position.X - 1, start.Position.Y - 1, start.Position.Z), color);
+            line[1] = new VertexPositionColor(new Vector3(start.Position.X + 1, start.Position.Y + 1, start.Position.Z), color);
+            line[2] = new VertexPositionColor(new Vector3(end.Position.X + 1, end.Position.Y + 1, end.Position.Z), color);
+
+            // Line triangle 2
+            line[3] = new VertexPositionColor(new Vector3(end.Position.X + 1, end.Position.Y + 1, end.Position.Z), color);
+            line[4] = new VertexPositionColor(new Vector3(end.Position.X - 1, end.Position.Y - 1, end.Position.Z), color);
+            line[5] = new VertexPositionColor(new Vector3(start.Position.X - 1, start.Position.Y - 1, start.Position.Z), color);
+            return line;
         }
 
         private float ConvertToRadians(float angle)
