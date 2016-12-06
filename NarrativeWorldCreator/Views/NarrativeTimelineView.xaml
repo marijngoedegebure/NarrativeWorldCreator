@@ -25,7 +25,6 @@
                         <TextBlock Text="{Binding Path = TimePoint, Mode = TwoWay}" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Path = NarrativeActionName, Mode = TwoWay}" />
                         <TextBlock Text="{Binding Path = LocationName, Mode = TwoWay}" />
-                        <TextBlock Text="{Binding Path = Selected, Mode = TwoWay}" />
                     </StackPanel>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=Selected}" Value="True">

@@ -18,15 +18,23 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0,0,0,10">
-                <Button x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToGraph_Click"/>
-            </WrapPanel>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Grid.Row="0" x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToGraph_Click"/>
+                <views:ModeView Grid.Column="1" Grid.Row="0" x:Name="ModeControl" Loaded = "ModeControl_Loaded"/>
+            </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <views:NarrativeTimelineView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
             </Grid>

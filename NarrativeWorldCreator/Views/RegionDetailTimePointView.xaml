@@ -15,10 +15,20 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Grid.Row="0" Margin="10">
-            <WrapPanel>
-                <TextBlock Text="{Binding NarrativeTimePoint.TimePoint}" FontWeight="Bold" />
-                <TextBlock Text="{Binding NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name}" FontWeight="Bold" />
-            </WrapPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Current selected timepoint: " FontWeight="Bold" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding NarrativeTimePoint.TimePoint}" />
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Name of action: " FontWeight="Bold" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name}"/>
+            </Grid>
         </Grid>
         <ItemsControl
             Grid.Column="0"

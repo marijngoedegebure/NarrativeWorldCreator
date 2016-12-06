@@ -28,8 +28,8 @@ namespace NarrativeWorldCreator
 
         public enum RegionPageMode
         {
-            RegionCreation = 1,
-            RegionFilling = 2,
+            RegionCreation = 0,
+            RegionFilling = 1,
         }
 
         public RegionPageMode CurrentMode;
@@ -42,6 +42,13 @@ namespace NarrativeWorldCreator
             //fillDetailView();
             fillItemList();
             fillGroupCombobox();
+        }
+
+        private void ModeControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ModeViewModel modeVM = new ModeViewModel();
+            modeVM.ChangeModes(CurrentMode);
+            ModeControl.DataContext = modeVM;
         }
 
         private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
@@ -95,9 +102,15 @@ namespace NarrativeWorldCreator
         //    number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, selectedNode.LocationName).Distinct().Count();
         //}
 
+        private void changeModes(RegionPageMode newMode)
+        {
+            CurrentMode = newMode;
+            (ModeControl.DataContext as ModeViewModel).ChangeModes(newMode);
+        }
+
         private void btnSwitchModeToRegionFilling(object sender, RoutedEventArgs e)
         {
-            CurrentMode = RegionPageMode.RegionFilling;
+            changeModes(RegionPageMode.RegionFilling);
             region_creation_1.Visibility = Visibility.Collapsed;
             region_creation_3.Visibility = Visibility.Collapsed;
             region_creation_4.Visibility = Visibility.Collapsed;
@@ -109,7 +122,7 @@ namespace NarrativeWorldCreator
 
         private void btnSwitchModeToRegionCreation(object sender, RoutedEventArgs e)
         {
-            CurrentMode = RegionPageMode.RegionCreation;
+            changeModes(RegionPageMode.RegionCreation);
             region_creation_1.Visibility = Visibility.Visible;
             region_creation_3.Visibility = Visibility.Visible;
             region_creation_4.Visibility = Visibility.Visible;
