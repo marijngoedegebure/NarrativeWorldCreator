@@ -13,9 +13,11 @@ namespace NarrativeWorlds
         public bool Placed { get; set; }
         public TangibleObject TangibleObject { get; set; }
 
-        public NarrativeThing(string Name)
+        public NarrativeThing(string Name, TangibleObject to)
         {
             this.Name = Name;
+            this.Placed = false;
+            this.TangibleObject = to;
         }
     }
 }

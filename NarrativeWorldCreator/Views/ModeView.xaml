@@ -6,8 +6,17 @@
              xmlns:local="clr-namespace:NarrativeWorldCreator.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock HorizontalAlignment="Right" TextAlignment="Right" Text="{ Binding RegionPageModeString }" Padding="10">
+    <Grid HorizontalAlignment="Right">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="region_filling_3" Content="Click here to go to region creation." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionCreation" Visibility="Collapsed"/>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="region_creation_3" Content="Click here to go to region filling." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionFilling"/>
+        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" TextAlignment="Right" Text="{ Binding RegionPageModeString }" Padding="10">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Style.Triggers>

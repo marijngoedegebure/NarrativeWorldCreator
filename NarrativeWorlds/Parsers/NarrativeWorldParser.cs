@@ -1,4 +1,6 @@
 ﻿using PDDLNarrativeParser;
+using Semantics.Data;
+using Semantics.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -121,14 +123,16 @@ namespace NarrativeWorlds
             List<NarrativeObject> characters = NarrativeWorld.Narrative.getNarrativeObjectsOfType(CharacterTypeName);
             foreach (NarrativeObject character in characters)
             {
-                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name));
+                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(character.Name);
+                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name, tangibleObject));
             }
 
             // Create narrative things for each narrative object with ObjectTypeName
             List<NarrativeObject> things = NarrativeWorld.Narrative.getNarrativeObjectsOfType(ObjectTypeName);
             foreach (NarrativeObject thing in things)
             {
-                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name));
+                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(thing.Name);
+                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name, tangibleObject));
             }
         }
 

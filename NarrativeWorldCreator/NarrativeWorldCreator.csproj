@@ -125,6 +125,7 @@
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionScene.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
+    <Compile Include="ViewModel\SelectedObjectDetailViewModel.cs" />
     <Compile Include="ViewModel\RegionDetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\GraphDetailTimePointListViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
@@ -140,6 +141,9 @@
     </Compile>
     <Compile Include="Views\NarrativeTimelineView.xaml.cs">
       <DependentUpon>NarrativeTimelineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectedObjectDetailView.xaml.cs">
+      <DependentUpon>SelectedObjectDetailView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NarrativeTimelineView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectedObjectDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -45,6 +45,16 @@ namespace NarrativeWorldCreator
         }
 
         private RegionCreationModes CurrentRegionCreationMode = RegionCreationModes.None;
+
+        private enum RegionFillingModes
+        {
+            None = 0,
+            ObjectPlacement = 1,
+            ObjectDragging = 2,
+            ObjectDeletion = 3,
+        }
+
+        private RegionFillingModes CurrentRegionFillingMode = RegionFillingModes.None;
         #endregion
 
         #region Methods
@@ -133,8 +143,25 @@ namespace NarrativeWorldCreator
             // Only draw triangles when there is 3 or more vertices
             if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 2)
             {
-                vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, _currentRegionPage.selectedNode.RegionOutlinePoints.Count, BufferUsage.WriteOnly);
-                vertexBuffer.SetData(_currentRegionPage.selectedNode.RegionOutlinePoints.ToArray());
+                List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
+                {
+                    Color color = Color.White;
+                    for (int i = 0; i<regionPoints.Count; i++)
+                    {
+                        regionPoints[i] = new VertexPositionColor(regionPoints[i].Position, color);
+                    }
+                }
+                if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
+                {
+                    Color color = Color.Black;
+                    for (int i = 0; i < regionPoints.Count; i++)
+                    {
+                        regionPoints[i] = new VertexPositionColor(regionPoints[i].Position, color);
+                    }
+                }
+                vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, regionPoints.Count, BufferUsage.WriteOnly);
+                vertexBuffer.SetData(regionPoints.ToArray());
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
                     // This is the all-important line that sets the effect, and all of its settings, on the graphics device
@@ -155,13 +182,19 @@ namespace NarrativeWorldCreator
             if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 1)
             {
                 GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+                Color color;
+                if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
+                    color = Color.Purple;
+                else
+                    color = Color.Black;
                 List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                VertexPositionColor[] verticesLine;
                 for (int i = 0; i < points.Count - 1; i++)
                 {
-                    Color color = Color.Purple;
+
                     // Calculate center and rotation
                     Vector3 center = (points[i].Position + points[i + 1].Position) / 2;
-                    VertexPositionColor[] verticesLine = CreateLine(points[i], points[i + 1], color);
+                    verticesLine = CreateLine(points[i], points[i + 1], color);
 
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
@@ -173,6 +206,17 @@ namespace NarrativeWorldCreator
                             verticesLine.Length/3);
                     }
                 }
+                // Calculate center and rotation
+                verticesLine = CreateLine(points[0], points[points.Count-1], color);
+                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                {
+                    pass.Apply();
+                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                        PrimitiveType.TriangleList,
+                        verticesLine,
+                        0,
+                        verticesLine.Length / 3);
+                }
             }
 
             // Always draw the vertices
@@ -183,11 +227,13 @@ namespace NarrativeWorldCreator
                 List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 for (int i = 0; i < points.Count; i++)
                 {
-                    Color color = Color.Red;
+                    Color color = Color.Black;
+                    if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
+                        color = Color.Red;
                     if (draggingVertexIndex != -1 && draggingVertexIndex == i)
-                    {
                         color = Color.Yellow;
-                    }
+                    if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
+                        color = Color.DarkGray;
                     Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, color);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
@@ -224,16 +270,17 @@ namespace NarrativeWorldCreator
 
         public void drawEntikaInstance(InstancedEntikaObject instance)
         {
-            Model myModel = LoadModel(Path.GetFileNameWithoutExtension(instance.ModelInstance.Name));
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
-            Matrix[] transforms = new Matrix[myModel.Bones.Count];
+            Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
+            instance.Model.CopyAbsoluteBoneTransformsTo(transforms);
             Vector3 modelPosition = instance.Position;
             // Rotation should be in radians, rotates model to top down view
             float modelRotation = ConvertToRadians(90.0f);
-            myModel.CopyAbsoluteBoneTransformsTo(transforms);
+            
             // Draw the model. A model can have multiple meshes, so loop.
-            foreach (ModelMesh mesh in myModel.Meshes)
+            foreach (ModelMesh mesh in instance.Model.Meshes)
             {
+               
                 foreach (Effect effect in mesh.Effects)
                 {
                     effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationX(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
@@ -299,20 +346,105 @@ namespace NarrativeWorldCreator
             }
             else
             {
-                HandleObjectPlacement();
+                HandleRegionFilling();
+            }
+
+            if(_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 2)
+            {
+                _currentRegionPage.RegionCreated = true;
             }
 
             base.Update(time);
         }
 
-        private void HandleObjectPlacement()
+        private void HandleRegionFilling()
         {
-            // Handle object placement
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && _keyboardState.IsKeyDown(Keys.LeftControl))
+            if (_keyboardState.IsKeyDown(Keys.LeftControl))
             {
-                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", CalculateMouseHitOnSurface()));
+                CurrentRegionFillingMode = RegionFillingModes.ObjectPlacement;
             }
+            else if (_keyboardState.IsKeyDown(Keys.LeftShift))
+            {
+                CurrentRegionFillingMode = RegionFillingModes.ObjectDragging;
+            }
+            else
+            {
+                CurrentRegionFillingMode = RegionFillingModes.None;
+            }
+
+            // Handle object placement
+            if (CurrentRegionFillingMode == RegionFillingModes.ObjectPlacement)
+            {
+                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                {
+                    // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
+                     Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
+                    _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", CalculateMouseHitOnSurface(), model));
+                }
+            }
+
+            // Handle object selection
+            if (CurrentRegionFillingMode == RegionFillingModes.None)
+            {
+                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                {
+                    HandleObjectSelection();
+                }
+            }
+        }
+
+        private void HandleObjectSelection()
+        {
+            Ray ray = CalculateMouseRay();
+            foreach(InstancedEntikaObject ieo in _currentRegionPage.selectedNode.InstancedEntikaObjects)
+            {
+                // Calculate/retrieve boundingbox
+                BoundingBox bbCurrentInstance = UpdateBoundingBox(ieo.Model, world * Matrix.CreateRotationY(ConvertToRadians(90.0f))
+                        * Matrix.CreateTranslation(ieo.Position));
+
+                // Intersect ray with bounding box, if distance then select model
+                float? distance = ray.Intersects(bbCurrentInstance);
+                if (distance != null)
+                {
+                    _currentRegionPage.ChangeSelectedObject(ieo);
+                    return;
+                }
+            }
+            _currentRegionPage.DeselectObject();
+        }
+
+        protected BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
+        {
+            // Initialize minimum and maximum corners of the bounding box to max and min values
+            Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+            Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+
+            // For each mesh of the model
+            foreach (ModelMesh mesh in model.Meshes)
+            {
+                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                {
+                    // Vertex buffer parameters
+                    int vertexStride = meshPart.VertexBuffer.VertexDeclaration.VertexStride;
+                    int vertexBufferSize = meshPart.NumVertices * vertexStride;
+
+                    // Get vertex data as float
+                    float[] vertexData = new float[vertexBufferSize / sizeof(float)];
+                    meshPart.VertexBuffer.GetData<float>(vertexData);
+
+                    // Iterate through vertices (possibly) growing bounding box, all calculations are done in world space
+                    for (int i = 0; i < vertexBufferSize / sizeof(float); i += vertexStride / sizeof(float))
+                    {
+                        Vector3 transformedPosition = Vector3.Transform(new Vector3(vertexData[i], vertexData[i + 1], vertexData[i + 2]), worldTransform);
+
+                        min = Vector3.Min(min, transformedPosition);
+                        max = Vector3.Max(max, transformedPosition);
+                    }
+                }
+            }
+
+            // Create and return bounding box
+            return new BoundingBox(min, max);
         }
 
         private Vector3 CalculateMouseHitOnSurface()

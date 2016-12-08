@@ -35,13 +35,5 @@ namespace NarrativeWorlds
                     where nt.Name.Equals(name)
                     select nt).Single();
         }
-
-        public void SetTangibleClassNarrativeCharacters(TangibleObject tangibleObject)
-        {
-            foreach(NarrativeCharacter nc in NarrativeCharacters)
-            {
-                nc.TangibleObject = tangibleObject;
-            }
-        }
     }
 }

@@ -25,6 +25,7 @@ namespace NarrativeWorldCreator
     public partial class RegionPage : Page
     {
         public Node selectedNode;
+        public InstancedEntikaObject SelectedInstancedEntikaObject;
 
         public enum RegionPageMode
         {
@@ -33,6 +34,8 @@ namespace NarrativeWorldCreator
         }
 
         public RegionPageMode CurrentMode;
+
+        public bool RegionCreated = false;
 
         public RegionPage(Node selectedNode)
         {
@@ -68,6 +71,26 @@ namespace NarrativeWorldCreator
                new RegionDetailTimePointViewModel();
             timePointViewModelObject.LoadCharactersAndThings(selectedNode, (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints[0].NarrativeTimePoint);
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
+        }
+
+        private void SelectedObjectDetailView_Loaded(object sender, RoutedEventArgs e)
+        {
+            SelectedObjectDetailViewModel selectedObjectViewModelObject =
+               new SelectedObjectDetailViewModel();
+            SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
+        }
+
+        public void ChangeSelectedObject(InstancedEntikaObject ieo)
+        {
+            this.SelectedInstancedEntikaObject = ieo;
+            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).ChangeSelectedObject(ieo);
+            SelectedObjectDetailView.ShowGrid();
+        }
+
+        public void DeselectObject()
+        {
+            this.SelectedInstancedEntikaObject = null;
+            SelectedObjectDetailView.HideGrid();
         }
 
         private void fillItemList()
@@ -108,28 +131,29 @@ namespace NarrativeWorldCreator
             (ModeControl.DataContext as ModeViewModel).ChangeModes(newMode);
         }
 
-        private void btnSwitchModeToRegionFilling(object sender, RoutedEventArgs e)
+        public void SwitchModeToRegionFilling()
         {
             changeModes(RegionPageMode.RegionFilling);
             region_creation_1.Visibility = Visibility.Collapsed;
-            region_creation_3.Visibility = Visibility.Collapsed;
             region_creation_4.Visibility = Visibility.Collapsed;
             region_filling_1.Visibility = Visibility.Visible;
             region_filling_2.Visibility = Visibility.Visible;
-            region_filling_3.Visibility = Visibility.Visible;
             region_filling_4.Visibility = Visibility.Visible;
         }
 
-        private void btnSwitchModeToRegionCreation(object sender, RoutedEventArgs e)
+        public void SwitchModeToRegionCreation()
         {
             changeModes(RegionPageMode.RegionCreation);
             region_creation_1.Visibility = Visibility.Visible;
-            region_creation_3.Visibility = Visibility.Visible;
             region_creation_4.Visibility = Visibility.Visible;
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_2.Visibility = Visibility.Collapsed;
-            region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_4.Visibility = Visibility.Collapsed;
+        }
+
+        private void btnResetRegion(object sender, RoutedEventArgs e)
+        {
+            selectedNode.RegionOutlinePoints.Clear();            
         }
     }
 }

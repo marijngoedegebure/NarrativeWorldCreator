@@ -3,6 +3,7 @@ using GameSemantics.Data;
 using GameSemanticsEngine.GameContent;
 using GameSemanticsEngine.Tools;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Semantics.Data;
 using Semantics.Entities;
 using SemanticsEngine.Entities;
@@ -17,6 +18,8 @@ namespace NarrativeWorlds
 {
     public class InstancedEntikaObject
     {
+        public string Name { get; set; }
+
         // Original TangibleObject class which this is an instance of
         public TangibleObject TangibleObject { get; set; }
         // Entika TangibleObject instance
@@ -25,12 +28,16 @@ namespace NarrativeWorlds
         // Model instance derived from the Gameobject
         public ModelInstance ModelInstance { get; set; }
 
+        // XNA Model
+        public Model Model { get; set; }
+
         // 3D position
         public Vector3 Position { get; set; }
 
-        public InstancedEntikaObject(string name, Vector3 pos)
+        public InstancedEntikaObject(string name, Vector3 pos, Model model)
         {
-            TangibleObject = DatabaseSearch.GetNode<TangibleObject>("couch");
+            this.Name = name;
+            TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
             ReadOnlyCollection<GameObject> gameObjectForFirstPhysicalObject = GameDatabaseSearch.GetGameObjects(TangibleObject);
             TangibleObjectInstance = GameInstanceManager.Current.Create(gameObjectForFirstPhysicalObject[0]);
             ContentWrapper contentWrapper;
@@ -39,6 +46,7 @@ namespace NarrativeWorlds
                 ModelInstance = contentWrapper.GetContent<ModelInstance>().First();
             }
             Position = pos;
+            this.Model = model;
         }
     }
 }

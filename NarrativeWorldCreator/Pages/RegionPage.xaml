@@ -54,33 +54,41 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TabControl Grid.Row="0" Grid.Column="0">
                     <TabItem Name="region_creation_1" Header="Region creation">
                         <Grid Name="region_creation_4">
-                            <TextBlock Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region by defining the corners in a clockwise matter."/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region by defining the corners in a clockwise matter." TextWrapping="Wrap"/>
+                            <Button Grid.Column="0" Grid.Row="1"  x:Name="region_creation_5" Content="Reset region" Click="btnResetRegion"/>
                         </Grid>
                     </TabItem>
-                <TabItem Name="region_filling_1" Header="Item addition" Visibility="Collapsed">
+                    <TabItem Name="region_filling_1" Header="Item addition" Visibility="Collapsed">
                         <Grid Name="region_filling_4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <ListView Margin="10" Name="lvObjectsDataBinding">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <WrapPanel>
-                                        <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
-                                    </WrapPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-                </TabItem>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <ListView Margin="10" Name="lvObjectsDataBinding">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </TabItem>
                     <TabItem Name="region_filling_2" Header="Group addition" Visibility="Collapsed">
                         <ListView Margin="10" Name="lvGroupsDataBinding">
                             <ListView.ItemTemplate>
@@ -96,8 +104,7 @@
                         <views:RegionDetailTimePointView Grid.Column="0" Grid.Row="0" x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
                 </TabControl>
-                <Button Grid.Row="1" Grid.Column="0" x:Name="region_filling_3" Content="Click here to go to region creation." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionCreation" Visibility="Collapsed"/>
-                <Button Grid.Row="1" Grid.Column="0" x:Name="region_creation_3" Content="Click here to go to region filling." Margin="10,10" Height="50" Width="200" Click="btnSwitchModeToRegionFilling"/>
+                <views:SelectedObjectDetailView Grid.Column="0" Grid.Row="1" x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
             </Grid>
         </Grid>
     </Grid>
