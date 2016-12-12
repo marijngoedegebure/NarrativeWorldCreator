@@ -22,11 +22,6 @@ namespace NarrativeWorlds
 
         // Original TangibleObject class which this is an instance of
         public TangibleObject TangibleObject { get; set; }
-        // Entika TangibleObject instance
-        public TangibleObjectInstance TangibleObjectInstance { get; set; }
-
-        // Model instance derived from the Gameobject
-        public ModelInstance ModelInstance { get; set; }
 
         // XNA Model
         public Model Model { get; set; }
@@ -38,13 +33,6 @@ namespace NarrativeWorlds
         {
             this.Name = name;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
-            ReadOnlyCollection<GameObject> gameObjectForFirstPhysicalObject = GameDatabaseSearch.GetGameObjects(TangibleObject);
-            TangibleObjectInstance = GameInstanceManager.Current.Create(gameObjectForFirstPhysicalObject[0]);
-            ContentWrapper contentWrapper;
-            if (ContentManager.TryGetContentWrapper(TangibleObjectInstance, out contentWrapper))
-            {
-                ModelInstance = contentWrapper.GetContent<ModelInstance>().First();
-            }
             Position = pos;
             this.Model = model;
         }

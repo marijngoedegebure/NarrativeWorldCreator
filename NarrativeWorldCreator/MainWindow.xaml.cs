@@ -30,7 +30,7 @@ namespace NarrativeWorldCreator
             _mainFrame.Navigate(new InitPage());
             GameDatabase.Initialize();
             SystemStateTracker.EntikaPath = "..\\..\\..\\Entika databases\\";
-            SystemStateTracker.LoadedFileName = "gamesimple.edp";
+            SystemStateTracker.LoadedFileName = "redcap.edp";
             GameDatabase.LoadProject(SystemStateTracker.EntikaPath + SystemStateTracker.LoadedFileName);
 
             GameSemanticsEngine.GameSemanticsEngine.Initialize();

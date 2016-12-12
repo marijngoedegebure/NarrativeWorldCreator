@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="us-ascii"?>
-<MainLayout name="chair01-1" boundingbox="(0; 0.47; 0);(0.54; 0.94; 0.44)">
-  <Material id="0" file="..\content\textures\empty.dds" />
-  <Layout pos="-0.09; 0; 0.01" rot="0.5*PI;0;0.5*PI" scl="0.025;0.025;0.025">
-    <Instruction value="BO:external_object:Str:G:\JointProjectDir\Semantic Worlds Project\Phase One\models\chair01-1.3ds;0" />
-  </Layout>
-</MainLayout>

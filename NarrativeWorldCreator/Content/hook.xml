@@ -1,9 +1,0 @@
-<MainLayout name="Hook">
-
-  <Material id="1" />
-  <Variable name="color" value="(0.5;0.5;0.6;1.0)" />
-  
-  <Instruction value="BO:Box:(0.005;0;0);(0.01;0.0025;0.0025);1;color" />
-  <Instruction value="BO:Box:(0.01;0.005;0);(0.0025;0.01;0.0025);1;color" />
-
-</MainLayout>

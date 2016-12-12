@@ -1,9 +1,0 @@
-<MainLayout name="Bikepath icon">
-  
-  <Material id="1" file="..\\content\\textures\\bike_icon.png" transparency="0.01" />
-
-  <Instruction value="BO:Mesh:'list';((-0.5;0.01;-0.5;0.0;1.0);( -0.5;0.01;0.5;1.0;1.0);
-                                      (0.5;0.01;0.5;1.0;0.0);(0.5;0.01;-0.5;0.0;0.0));
-                                      (0;1;2;2;3;0);1" />
-
-</MainLayout>
