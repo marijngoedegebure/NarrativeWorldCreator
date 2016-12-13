@@ -116,7 +116,7 @@ namespace NarrativeWorldCreator
             drawRegionPolygon();
 
             // Draw all objects that have been added to the scene
-            foreach(InstancedEntikaObject instance in _currentRegionPage.selectedNode.InstancedEntikaObjects)
+            foreach(EntikaClassInstance instance in _currentRegionPage.selectedNode.EntikaClassInstances)
             {
                 drawEntikaInstance(instance);
             }
@@ -268,7 +268,7 @@ namespace NarrativeWorldCreator
             return (float) (Math.PI / 180f) * angle;
         }
 
-        public void drawEntikaInstance(InstancedEntikaObject instance)
+        public void drawEntikaInstance(EntikaClassInstance instance)
         {
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
             Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
@@ -379,7 +379,7 @@ namespace NarrativeWorldCreator
                 {
                     // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
                      Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
-                    _currentRegionPage.selectedNode.InstancedEntikaObjects.Add(new InstancedEntikaObject("couch", CalculateMouseHitOnSurface(), model));
+                    _currentRegionPage.selectedNode.EntikaClassInstances.Add(new EntikaClassInstance("couch", CalculateMouseHitOnSurface(), model));
                 }
             }
 
@@ -396,7 +396,7 @@ namespace NarrativeWorldCreator
         private void HandleObjectSelection()
         {
             Ray ray = CalculateMouseRay();
-            foreach(InstancedEntikaObject ieo in _currentRegionPage.selectedNode.InstancedEntikaObjects)
+            foreach(EntikaClassInstance ieo in _currentRegionPage.selectedNode.EntikaClassInstances)
             {
                 // Calculate/retrieve boundingbox
                 BoundingBox bbCurrentInstance = UpdateBoundingBox(ieo.Model, world * Matrix.CreateRotationY(ConvertToRadians(90.0f))

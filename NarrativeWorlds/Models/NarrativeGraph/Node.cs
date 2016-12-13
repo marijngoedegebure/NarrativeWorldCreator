@@ -13,11 +13,13 @@ namespace NarrativeWorlds
     {
         public String LocationName { get; set; }
         public List<VertexPositionColor> RegionOutlinePoints { get; set; }
+        // Add navmesh
+
         public List<int> triangleListIndices { get; set; }
         public List<NarrativeEvent> NarrativeEvents { get; set; }
         public List<NarrativeObject> NarrativeObjects { get; set; }
-        public List<InstancedEntikaObject> InstancedEntikaObjects { get; set; }
-        public List<NarrativeCharacterInstance> InstancedNarrativeCharacters { get; set; }
+        public List<EntikaClassInstance> EntikaClassInstances { get; set; }
+        public RegionBaseFill RegionBaseFill { get; set; }
 
         public Node(String locationName)
         {
@@ -26,7 +28,7 @@ namespace NarrativeWorlds
             triangleListIndices = new List<int>();
             NarrativeEvents = new List<NarrativeEvent>();
             NarrativeObjects = new List<NarrativeObject>();
-            InstancedEntikaObjects = new List<InstancedEntikaObject>();
+            EntikaClassInstances = new List<EntikaClassInstance>();
         }
 
         public override bool Equals(Object obj)

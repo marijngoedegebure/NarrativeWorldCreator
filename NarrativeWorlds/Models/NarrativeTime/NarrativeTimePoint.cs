@@ -14,11 +14,13 @@ namespace NarrativeWorlds
         // Narrative event associated with this timepoint, just for potential later reference, should not be necessary
         public NarrativeEvent NarrativeEvent { get; set; }
         // Location mentioned in the narrative event
-        public Node Location { get; set; }        
+        public Node Location { get; set; }
         // List of narrative characters and their location when this event needs to occur
         public Dictionary<NarrativeCharacter, Node> LocationOfNarrativeCharacters { get; set; }
         // List of narrative objects and their location when this event needs to occur
         public Dictionary<NarrativeThing, Node> LocationOfNarrativeThings { get; set; }
+
+        public TimePointSpecificFill TimePointSpecificFill { get; set; }
 
         public NarrativeTimePoint(int timePoint)
         {

@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorlds
 {
-    public class InstancedEntikaObject
+    public class EntikaClassInstance
     {
         public string Name { get; set; }
 
@@ -29,7 +29,7 @@ namespace NarrativeWorlds
         // 3D position
         public Vector3 Position { get; set; }
 
-        public InstancedEntikaObject(string name, Vector3 pos, Model model)
+        public EntikaClassInstance(string name, Vector3 pos, Model model)
         {
             this.Name = name;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);

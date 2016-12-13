@@ -123,16 +123,16 @@ namespace NarrativeWorlds
             List<NarrativeObject> characters = NarrativeWorld.Narrative.getNarrativeObjectsOfType(CharacterTypeName);
             foreach (NarrativeObject character in characters)
             {
-                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(character.Name);
-                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name, tangibleObject));
+                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(character.Name.ToLower());
+                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name.ToLower(), tangibleObject));
             }
 
             // Create narrative things for each narrative object with ObjectTypeName
             List<NarrativeObject> things = NarrativeWorld.Narrative.getNarrativeObjectsOfType(ObjectTypeName);
             foreach (NarrativeObject thing in things)
             {
-                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(thing.Name);
-                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name, tangibleObject));
+                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(thing.Name.ToLower());
+                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name.ToLower(), tangibleObject));
             }
         }
 

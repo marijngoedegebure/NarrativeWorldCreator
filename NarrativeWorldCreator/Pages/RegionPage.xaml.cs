@@ -25,7 +25,7 @@ namespace NarrativeWorldCreator
     public partial class RegionPage : Page
     {
         public Node selectedNode;
-        public InstancedEntikaObject SelectedInstancedEntikaObject;
+        public EntikaClassInstance SelectedInstancedEntikaObject;
 
         public enum RegionPageMode
         {
@@ -80,7 +80,7 @@ namespace NarrativeWorldCreator
             SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
         }
 
-        public void ChangeSelectedObject(InstancedEntikaObject ieo)
+        public void ChangeSelectedObject(EntikaClassInstance ieo)
         {
             this.SelectedInstancedEntikaObject = ieo;
             (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).ChangeSelectedObject(ieo);
