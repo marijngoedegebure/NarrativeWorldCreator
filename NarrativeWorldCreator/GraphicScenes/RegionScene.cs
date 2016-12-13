@@ -354,6 +354,8 @@ namespace NarrativeWorldCreator
                 _currentRegionPage.RegionCreated = true;
             }
 
+            List<VertexPositionColor> polygon = _currentRegionPage.selectedNode.RegionOutlinePoints;
+
             base.Update(time);
         }
 
