@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDDLNarrativeParser", "PDDL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NarrativeWorlds", "NarrativeWorlds\NarrativeWorlds.csproj", "{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolygonCuttingEar", "PolygonCuttingEar\PolygonCuttingEar.csproj", "{BAA6D355-C95D-4714-8989-D9891EFC5DB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometryUtility", "GeometryUtility\GeometryUtility.csproj", "{FD47D6AC-8238-4975-91C8-51E88326F27F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Renderer|Any CPU = Debug Renderer|Any CPU
@@ -215,6 +219,46 @@ Global
 		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|x86.ActiveCfg = Release|Any CPU
 		{B296FDBF-FD8C-4A94-B65B-6C2EC2DE1DE4}.Release|x86.Build.0 = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug Renderer|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug Renderer|Any CPU.Build.0 = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug Renderer|x86.ActiveCfg = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug Renderer|x86.Build.0 = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug_contained|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug_contained|Any CPU.Build.0 = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug_contained|x86.ActiveCfg = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug_contained|x86.Build.0 = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Debug|x86.Build.0 = Debug|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release Interface|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release Interface|Any CPU.Build.0 = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release Interface|x86.ActiveCfg = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release Interface|x86.Build.0 = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release|x86.ActiveCfg = Release|Any CPU
+		{BAA6D355-C95D-4714-8989-D9891EFC5DB6}.Release|x86.Build.0 = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug Renderer|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug Renderer|Any CPU.Build.0 = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug Renderer|x86.ActiveCfg = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug Renderer|x86.Build.0 = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug_contained|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug_contained|Any CPU.Build.0 = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug_contained|x86.ActiveCfg = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug_contained|x86.Build.0 = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Debug|x86.Build.0 = Debug|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release Interface|Any CPU.ActiveCfg = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release Interface|Any CPU.Build.0 = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release Interface|x86.ActiveCfg = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release Interface|x86.Build.0 = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release|x86.ActiveCfg = Release|Any CPU
+		{FD47D6AC-8238-4975-91C8-51E88326F27F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
