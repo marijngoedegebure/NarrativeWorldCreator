@@ -2,14 +2,13 @@
 using Microsoft.Xna.Framework.Graphics;
 using PDDLNarrativeParser;
 using PolygonCuttingEar;
-using SharpNav;
-using SharpNavVector3 = SharpNav.Geometry.Vector3;
-using SharpNavTriangle3 = SharpNav.Geometry.Triangle3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TriangleNet;
+using TriangleNet.Geometry;
 
 namespace NarrativeWorlds
 {
@@ -19,6 +18,7 @@ namespace NarrativeWorlds
         public List<Vector3> RegionOutlinePoints { get; set; }
         // Triangulated region points
         public CPolygonShape TriangulatedPolygon { get; set; }
+        public InputGeometry InputGeometry { get; set; }
 
         public List<int> triangleListIndices { get; set; }
         public List<NarrativeEvent> NarrativeEvents { get; set; }
@@ -52,7 +52,17 @@ namespace NarrativeWorlds
             {
                 TriangulatedPolygon = new CPolygonShape(ConvertVectorToPoint().ToArray());
                 TriangulatedPolygon.CutEar();
+                var geometry = new InputGeometry(RegionOutlinePoints.Count);
+                for (int i = 0; i < RegionOutlinePoints.Count; i++)
+                {
+                    geometry.AddPoint(RegionOutlinePoints[i].X, RegionOutlinePoints[i].Y, 1);
+                    geometry.AddSegment(i, (i + 1) % RegionOutlinePoints.Count, 2);
+                }
+                Mesh mesh = new Mesh();
+                mesh.Triangulate(geometry);
+
             }
+            return;
         }
 
         private List<CPoint2D> ConvertVectorToPoint()

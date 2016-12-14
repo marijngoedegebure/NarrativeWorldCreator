@@ -85,9 +85,9 @@
       <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>
       <Name>Semantics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpNav\SharpNav.csproj">
-      <Project>{0E3C6E73-CCE6-4148-B847-36487FFEA225}</Project>
-      <Name>SharpNav</Name>
+    <ProjectReference Include="..\Triangle\Triangle.csproj">
+      <Project>{F7907A0A-B75F-400B-9E78-BFAD00DB4D6B}</Project>
+      <Name>Triangle</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
