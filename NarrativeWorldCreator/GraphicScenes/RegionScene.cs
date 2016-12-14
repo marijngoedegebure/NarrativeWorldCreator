@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
 using NarrativeWorlds;
+using PolygonCuttingEar;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -143,39 +144,40 @@ namespace NarrativeWorldCreator
             // Only draw triangles when there is 3 or more vertices
             if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 2)
             {
-                List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                List<VertexPositionColor> regionPoints = new List<VertexPositionColor>();
                 if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
                 {
-                    Color color = Color.White;
-                    for (int i = 0; i<regionPoints.Count; i++)
-                    {
-                        regionPoints[i] = new VertexPositionColor(regionPoints[i].Position, color);
-                    }
+                    regionPoints = _currentRegionPage.selectedNode.GetDrawableTriangles(Color.White);
                 }
                 if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
                 {
-                    Color color = Color.Black;
-                    for (int i = 0; i < regionPoints.Count; i++)
-                    {
-                        regionPoints[i] = new VertexPositionColor(regionPoints[i].Position, color);
-                    }
+                    regionPoints = _currentRegionPage.selectedNode.GetDrawableTriangles(Color.Black);
                 }
-                vertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, regionPoints.Count, BufferUsage.WriteOnly);
-                vertexBuffer.SetData(regionPoints.ToArray());
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
                     // This is the all-important line that sets the effect, and all of its settings, on the graphics device
                     pass.Apply();
-                    GraphicsDevice.SetVertexBuffer(vertexBuffer);
-                    GraphicsDevice.DrawUserIndexedPrimitives<VertexPositionColor>(
+                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
                         PrimitiveType.TriangleList,
-                        _currentRegionPage.selectedNode.RegionOutlinePoints.ToArray(),
+                        regionPoints.ToArray(),
                         0,
-                        _currentRegionPage.selectedNode.RegionOutlinePoints.Count,
-                        _currentRegionPage.selectedNode.triangleListIndices.ToArray(),
-                        0,
-                        _currentRegionPage.selectedNode.triangleListIndices.Count / 3);
+                        regionPoints.Count/3);
                 }
+                //foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                //{
+                //    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                //    pass.Apply();
+                //    GraphicsDevice.SetVertexBuffer(vertexBuffer);
+                //    GraphicsDevice.DrawUserIndexedPrimitives<VertexPositionColor>(
+                //        PrimitiveType.TriangleList,
+                //        _currentRegionPage.selectedNode.RegionOutlinePoints.ToArray(),
+                //        0,
+                //        _currentRegionPage.selectedNode.RegionOutlinePoints.Count,
+                //        _currentRegionPage.selectedNode.triangleListIndices.ToArray(),
+                //        0,
+                //        _currentRegionPage.selectedNode.triangleListIndices.Count / 3);
+                //}
             }
 
             // Draw lines between vertices from two or more vertices
@@ -187,13 +189,13 @@ namespace NarrativeWorldCreator
                     color = Color.Purple;
                 else
                     color = Color.Black;
-                List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                List<Vector3> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 VertexPositionColor[] verticesLine;
                 for (int i = 0; i < points.Count - 1; i++)
                 {
 
                     // Calculate center and rotation
-                    Vector3 center = (points[i].Position + points[i + 1].Position) / 2;
+                    Vector3 center = (points[i] + points[i + 1]) / 2;
                     verticesLine = CreateLine(points[i], points[i + 1], color);
 
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
@@ -224,7 +226,7 @@ namespace NarrativeWorldCreator
             {
                 GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
                 // Create quads based off vertex points
-                List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                List<Vector3> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 for (int i = 0; i < points.Count; i++)
                 {
                     Color color = Color.Black;
@@ -234,7 +236,7 @@ namespace NarrativeWorldCreator
                         color = Color.Yellow;
                     if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
                         color = Color.DarkGray;
-                    Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, color);
+                    Quad quad = new Quad(points[i], new Vector3(points[i].X, points[i].Y, 1), Vector3.Up, 1, 1, color);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
                         pass.Apply();
@@ -248,18 +250,18 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private VertexPositionColor[] CreateLine(VertexPositionColor start, VertexPositionColor end, Color color)
+        private VertexPositionColor[] CreateLine(Vector3 start, Vector3 end, Color color)
         {
             VertexPositionColor[] line = new VertexPositionColor[6];
             // line triangle 1
-            line[0] = new VertexPositionColor(new Vector3(start.Position.X - 1, start.Position.Y - 1, start.Position.Z), color);
-            line[1] = new VertexPositionColor(new Vector3(start.Position.X + 1, start.Position.Y + 1, start.Position.Z), color);
-            line[2] = new VertexPositionColor(new Vector3(end.Position.X + 1, end.Position.Y + 1, end.Position.Z), color);
+            line[0] = new VertexPositionColor(new Vector3(start.X - 1, start.Y - 1, start.Z), color);
+            line[1] = new VertexPositionColor(new Vector3(start.X + 1, start.Y + 1, start.Z), color);
+            line[2] = new VertexPositionColor(new Vector3(end.X + 1, end.Y + 1, end.Z), color);
 
             // Line triangle 2
-            line[3] = new VertexPositionColor(new Vector3(end.Position.X + 1, end.Position.Y + 1, end.Position.Z), color);
-            line[4] = new VertexPositionColor(new Vector3(end.Position.X - 1, end.Position.Y - 1, end.Position.Z), color);
-            line[5] = new VertexPositionColor(new Vector3(start.Position.X - 1, start.Position.Y - 1, start.Position.Z), color);
+            line[3] = new VertexPositionColor(new Vector3(end.X + 1, end.Y + 1, end.Z), color);
+            line[4] = new VertexPositionColor(new Vector3(end.X - 1, end.Y - 1, end.Z), color);
+            line[5] = new VertexPositionColor(new Vector3(start.X - 1, start.Y - 1, start.Z), color);
             return line;
         }
 
@@ -353,8 +355,6 @@ namespace NarrativeWorldCreator
             {
                 _currentRegionPage.RegionCreated = true;
             }
-
-            List<VertexPositionColor> polygon = _currentRegionPage.selectedNode.RegionOutlinePoints;
 
             base.Update(time);
         }
@@ -473,11 +473,11 @@ namespace NarrativeWorldCreator
         private int CalculateCollisionQuad()
         {
             Ray ray = CalculateMouseRay();
-            List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+            List<Vector3> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
             for (int i = 0; i < points.Count; i++)
             {
-                Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, Color.Red);
-                BoundingBox box = new BoundingBox(new Vector3(points[i].Position.X - 1, points[i].Position.Y - 1, points[i].Position.Z), new Vector3(points[i].Position.X + 1, points[i].Position.Y + 1, points[i].Position.Z));
+                Quad quad = new Quad(points[i], new Vector3(points[i].X, points[i].Y, 1), Vector3.Up, 1, 1, Color.Red);
+                BoundingBox box = new BoundingBox(new Vector3(points[i].X - 1, points[i].Y - 1, points[i].Z), new Vector3(points[i].X + 1, points[i].Y + 1, points[i].Z));
                 float? distance = ray.Intersects(box);
                 if (distance != null)
                     return i;
@@ -533,7 +533,7 @@ namespace NarrativeWorldCreator
                 // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
                 float? distance = ray.Intersects(new Plane(new Vector3(0, 0, 1), 0));
                 Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-                _currentRegionPage.selectedNode.RegionOutlinePoints.Add(new VertexPositionColor(planeHit, Color.Black));
+                _currentRegionPage.selectedNode.RegionOutlinePoints.Add(planeHit);
                 _currentRegionPage.selectedNode.triangulatePolygon();
             }
         }
@@ -546,9 +546,10 @@ namespace NarrativeWorldCreator
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && draggingVertexIndex != -1)
             {
                 Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));
-                List<VertexPositionColor> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                List<Vector3> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 Vector3 mouseCoordsOnZPlane = CalculateMouseHitOnSurface();
-                points[draggingVertexIndex] = new VertexPositionColor(mouseCoordsOnZPlane, Color.Black);
+                points[draggingVertexIndex] = mouseCoordsOnZPlane;
+                _currentRegionPage.selectedNode.triangulatePolygon();
             }
 
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)

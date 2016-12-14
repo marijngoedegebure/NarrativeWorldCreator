@@ -73,6 +73,10 @@
       <Project>{5ff6f1bc-9868-475b-8826-42c9ab958418}</Project>
       <Name>PDDLNarrativeParser</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PolygonCuttingEar\PolygonCuttingEar.csproj">
+      <Project>{BAA6D355-C95D-4714-8989-D9891EFC5DB6}</Project>
+      <Name>PolygonCuttingEar</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SemanticsEngine\SemanticsEngine.csproj">
       <Project>{40c5f219-444a-4f6e-9ba2-4dd10471c288}</Project>
       <Name>SemanticsEngine</Name>
@@ -80,6 +84,10 @@
     <ProjectReference Include="..\Semantics\Semantics.csproj">
       <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>
       <Name>Semantics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpNav\SharpNav.csproj">
+      <Project>{0E3C6E73-CCE6-4148-B847-36487FFEA225}</Project>
+      <Name>SharpNav</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

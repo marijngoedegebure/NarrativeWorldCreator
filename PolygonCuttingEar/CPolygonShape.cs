@@ -1,5 +1,4 @@
 using System;
-using GeometryUtility;
 
 namespace PolygonCuttingEar
 {

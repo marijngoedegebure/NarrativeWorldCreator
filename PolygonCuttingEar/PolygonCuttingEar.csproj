@@ -83,12 +83,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalyticGeometryException.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\CLine.cs" />
+    <Compile Include="Models\CPoint2D.cs" />
+    <Compile Include="Models\CPolygon.cs" />
     <Compile Include="CPolygonShape.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Definition.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

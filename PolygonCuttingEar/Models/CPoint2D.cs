@@ -1,6 +1,6 @@
 using System;
 
-namespace GeometryUtility
+namespace PolygonCuttingEar
 {
 	/// <summary>
 	/// Summary description for CPoint2D.

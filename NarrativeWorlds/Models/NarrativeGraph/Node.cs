@@ -1,6 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PDDLNarrativeParser;
+using PolygonCuttingEar;
+using SharpNav;
+using SharpNavVector3 = SharpNav.Geometry.Vector3;
+using SharpNavTriangle3 = SharpNav.Geometry.Triangle3;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +16,9 @@ namespace NarrativeWorlds
     public class Node
     {
         public String LocationName { get; set; }
-        public List<VertexPositionColor> RegionOutlinePoints { get; set; }
-        // Add navmesh
+        public List<Vector3> RegionOutlinePoints { get; set; }
+        // Triangulated region points
+        public CPolygonShape TriangulatedPolygon { get; set; }
 
         public List<int> triangleListIndices { get; set; }
         public List<NarrativeEvent> NarrativeEvents { get; set; }
@@ -24,7 +29,7 @@ namespace NarrativeWorlds
         public Node(String locationName)
         {
             this.LocationName = locationName;
-            RegionOutlinePoints = new List<VertexPositionColor>();
+            RegionOutlinePoints = new List<Vector3>();
             triangleListIndices = new List<int>();
             NarrativeEvents = new List<NarrativeEvent>();
             NarrativeObjects = new List<NarrativeObject>();
@@ -43,12 +48,35 @@ namespace NarrativeWorlds
 
         public void triangulatePolygon()
         {
-            for(int i = 1; i < RegionOutlinePoints.Count-1 ; i++)
+            if (RegionOutlinePoints.Count > 2)
             {
-                triangleListIndices.Add(0);
-                triangleListIndices.Add(i);
-                triangleListIndices.Add(i + 1);
+                TriangulatedPolygon = new CPolygonShape(ConvertVectorToPoint().ToArray());
+                TriangulatedPolygon.CutEar();
             }
+        }
+
+        private List<CPoint2D> ConvertVectorToPoint()
+        {
+            List<CPoint2D> ret = new List<CPoint2D>();
+            foreach(Vector3 vector in RegionOutlinePoints)
+            {
+                ret.Add(new CPoint2D(vector.X, vector.Y));
+            }
+            return ret;
+        }
+
+        public List<VertexPositionColor> GetDrawableTriangles(Color color)
+        {
+            List<VertexPositionColor> ret = new List<VertexPositionColor>();
+            for(int i = 0; i < TriangulatedPolygon.NumberOfPolygons; i++)
+            {
+                CPoint2D[] vertices = TriangulatedPolygon.Polygons(i);
+                foreach(CPoint2D vert in vertices)
+                {
+                    ret.Add(new VertexPositionColor(new Vector3((float) vert.X, (float) vert.Y, 0), color));
+                }
+            }
+            return ret;
         }
     }
 }

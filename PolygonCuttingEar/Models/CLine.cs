@@ -8,7 +8,7 @@ Modification History:
 * *** **********************************************/
 
 using System;
-namespace GeometryUtility
+namespace PolygonCuttingEar
 {
 	/// <summary>
 	///To define a line in the given coordinate system

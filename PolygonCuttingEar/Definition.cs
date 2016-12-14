@@ -1,6 +1,6 @@
 using System;
 
-namespace GeometryUtility
+namespace PolygonCuttingEar
 {
 	/// <summary>
 	///To define the common types used in 
