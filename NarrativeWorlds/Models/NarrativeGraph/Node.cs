@@ -1,7 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Common.Geometry;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using PDDLNarrativeParser;
-using PolygonCuttingEar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +15,10 @@ namespace NarrativeWorlds
     public class Node
     {
         public String LocationName { get; set; }
-        public List<Vector3> RegionOutlinePoints { get; set; }
+        public Shape Shape { get; set; }
         // Triangulated region points
-        public CPolygonShape TriangulatedPolygon { get; set; }
-        public InputGeometry InputGeometry { get; set; }
+        public TriangleNet.Mesh Mesh { get; set; }
 
-        public List<int> triangleListIndices { get; set; }
         public List<NarrativeEvent> NarrativeEvents { get; set; }
         public List<NarrativeObject> NarrativeObjects { get; set; }
         public List<EntikaClassInstance> EntikaClassInstances { get; set; }
@@ -29,14 +27,13 @@ namespace NarrativeWorlds
         public Node(String locationName)
         {
             this.LocationName = locationName;
-            RegionOutlinePoints = new List<Vector3>();
-            triangleListIndices = new List<int>();
+            this.Shape = new Shape(new List<Common.Vec2>());
             NarrativeEvents = new List<NarrativeEvent>();
             NarrativeObjects = new List<NarrativeObject>();
             EntikaClassInstances = new List<EntikaClassInstance>();
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(System.Object obj)
         {
             // Check for null values and compare run-time types.
             if (obj == null || GetType() != obj.GetType())
@@ -48,45 +45,43 @@ namespace NarrativeWorlds
 
         public void triangulatePolygon()
         {
-            if (RegionOutlinePoints.Count > 2)
+            if (Shape.Points.Count > 2)
             {
-                TriangulatedPolygon = new CPolygonShape(ConvertVectorToPoint().ToArray());
-                TriangulatedPolygon.CutEar();
-                var geometry = new InputGeometry(RegionOutlinePoints.Count);
-                for (int i = 0; i < RegionOutlinePoints.Count; i++)
+                // Triangulate using Triangle.NET
+                var geometry = new InputGeometry(Shape.Points.Count);
+                for (int i = 0; i < Shape.Points.Count; i++)
                 {
-                    geometry.AddPoint(RegionOutlinePoints[i].X, RegionOutlinePoints[i].Y, 1);
-                    geometry.AddSegment(i, (i + 1) % RegionOutlinePoints.Count, 2);
+                    geometry.AddPoint(Shape.Points[i].X, Shape.Points[i].Y, 1);
+                    geometry.AddSegment(i, (i + 1) % Shape.Points.Count, 2);
                 }
-                Mesh mesh = new Mesh();
-                mesh.Triangulate(geometry);
-
+                Mesh = new TriangleNet.Mesh();
+                Mesh.Triangulate(geometry);
             }
             return;
-        }
-
-        private List<CPoint2D> ConvertVectorToPoint()
-        {
-            List<CPoint2D> ret = new List<CPoint2D>();
-            foreach(Vector3 vector in RegionOutlinePoints)
-            {
-                ret.Add(new CPoint2D(vector.X, vector.Y));
-            }
-            return ret;
         }
 
         public List<VertexPositionColor> GetDrawableTriangles(Color color)
         {
             List<VertexPositionColor> ret = new List<VertexPositionColor>();
-            for(int i = 0; i < TriangulatedPolygon.NumberOfPolygons; i++)
+            var triangles = this.Mesh.Triangles.ToList();
+            var vertices = this.Mesh.Vertices.ToList();
+            for (int i = 0; i < triangles.Count; i++)
             {
-                CPoint2D[] vertices = TriangulatedPolygon.Polygons(i);
-                foreach(CPoint2D vert in vertices)
-                {
-                    ret.Add(new VertexPositionColor(new Vector3((float) vert.X, (float) vert.Y, 0), color));
-                }
+                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P0].X, (float)vertices[triangles[i].P0].Y, 0), color));
+                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P1].X, (float)vertices[triangles[i].P1].Y, 0), color));
+                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P2].X, (float)vertices[triangles[i].P2].Y, 0), color));
             }
             return ret;
+        }
+
+        public List<Vector3> GetXNAPointsOfShape()
+        {
+            List<Vector3> vertices = new List<Vector3>();
+            foreach (var point in Shape.Points)
+            {
+                vertices.Add(new Vector3(point.X, point.Y, 0));
+            }
+            return vertices;
         }
     }
 }

@@ -153,7 +153,7 @@ namespace NarrativeWorldCreator
 
         private void btnResetRegion(object sender, RoutedEventArgs e)
         {
-            selectedNode.RegionOutlinePoints.Clear();            
+            selectedNode.Shape = new Common.Geometry.Shape(new List<Common.Vec2>());            
         }
     }
 }

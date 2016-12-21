@@ -339,7 +339,7 @@ namespace Common
 			return (cp1 > 0) ? 1 : -1;
 		}
 
-		internal static List<List<Vec2i>> MinkowskiMinus(List<Vec2i> A, List<Vec2i> B)
+		public static List<List<Vec2i>> MinkowskiMinus(List<Vec2i> A, List<Vec2i> B)
 		{
 			
 			List<Polygon> polys = new List<Polygon>();

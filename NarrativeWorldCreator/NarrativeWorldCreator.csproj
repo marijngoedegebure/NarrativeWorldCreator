@@ -221,6 +221,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{49C2878F-3AE3-4B49-8255-3D48557A2A20}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameSemanticsEngine\GameSemanticsEngine.csproj">
       <Project>{2da1975f-2bd3-456f-8431-fad58c70525b}</Project>
       <Name>GameSemanticsEngine</Name>
@@ -241,10 +245,6 @@
       <Project>{5ff6f1bc-9868-475b-8826-42c9ab958418}</Project>
       <Name>PDDLNarrativeParser</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PolygonCuttingEar\PolygonCuttingEar.csproj">
-      <Project>{BAA6D355-C95D-4714-8989-D9891EFC5DB6}</Project>
-      <Name>PolygonCuttingEar</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SemanticsEngine\SemanticsEngine.csproj">
       <Project>{40c5f219-444a-4f6e-9ba2-4dd10471c288}</Project>
       <Name>SemanticsEngine</Name>
@@ -252,6 +252,10 @@
     <ProjectReference Include="..\Semantics\Semantics.csproj">
       <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>
       <Name>Semantics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Triangle\Triangle.csproj">
+      <Project>{F7907A0A-B75F-400B-9E78-BFAD00DB4D6B}</Project>
+      <Name>Triangle</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
