@@ -56,9 +56,17 @@ namespace NarrativeWorldCreator
             ObjectPlacement = 1,
             ObjectDragging = 2,
             ObjectDeletion = 3,
+            ShowMinkowskiMinus = 4,
         }
 
         private RegionFillingModes CurrentRegionFillingMode = RegionFillingModes.None;
+
+        private enum DrawingModes
+        {
+            UnderlyingRegion = 0,
+            MinkowskiMinus = 1,
+        }
+        private DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
         #endregion
 
         #region Methods
@@ -117,7 +125,11 @@ namespace NarrativeWorldCreator
 
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
             SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
-            drawRegionPolygon();
+
+            if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
+                drawMinkowskiMinus();
+            if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
+                drawRegionPolygon();
 
             // Draw all objects that have been added to the scene
             foreach(EntikaClassInstance instance in _currentRegionPage.selectedNode.EntikaClassInstances)
@@ -132,6 +144,16 @@ namespace NarrativeWorldCreator
             GraphicsDevice.DepthStencilState = depth;
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
+        }
+
+        private void drawMinkowskiMinus()
+        {
+            List<Shape> shapes = SolvingEngine.MinkowskiMinus(_currentRegionPage.selectedNode.Shape, _currentRegionPage.selectedNode.EntikaClassInstances[0].Shape).ToList();
+            foreach (Shape shape in shapes)
+            {
+                TriangleNet.Mesh mesh = DrawingEngine.triangulatePolygon(shape);
+                List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(mesh, Color.Aquamarine);
+            }
         }
 
         public void drawRegionPolygon()
@@ -421,7 +443,23 @@ namespace NarrativeWorldCreator
                 HandleRegionFilling();
             }
 
-            if(_currentRegionPage.selectedNode.Shape.Points.Count > 2)
+            if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
+            {
+                if (_keyboardState.IsKeyDown(Keys.Tab))
+                {
+                    CurrentDrawingMode = DrawingModes.UnderlyingRegion;
+                }
+            }
+
+            if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
+            {
+                if (_keyboardState.IsKeyDown(Keys.Tab))
+                {
+                    CurrentDrawingMode = DrawingModes.MinkowskiMinus;
+                }
+            }
+
+            if (_currentRegionPage.selectedNode.Shape.Points.Count > 2)
             {
                 _currentRegionPage.RegionCreated = true;
             }
@@ -453,7 +491,10 @@ namespace NarrativeWorldCreator
                     Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
                     var position = SolvingEngine.GetPossibleLocations(_currentRegionPage.selectedNode, ntp);
-                    _currentRegionPage.selectedNode.EntikaClassInstances.Add(new EntikaClassInstance("couch", position, model));
+                    var eci = new EntikaClassInstance("couch", position, model);
+                    eci.UpdateBoundingBoxAndShape(world);
+                    _currentRegionPage.selectedNode.EntikaClassInstances.Add(eci);
+
 
                     // Determine shapes for entika class instances
 
@@ -476,11 +517,10 @@ namespace NarrativeWorldCreator
             foreach(EntikaClassInstance ieo in _currentRegionPage.selectedNode.EntikaClassInstances)
             {
                 // Calculate/retrieve boundingbox
-                BoundingBox bbCurrentInstance = UpdateBoundingBox(ieo.Model, world * Matrix.CreateRotationY(ConvertToRadians(90.0f))
-                        * Matrix.CreateTranslation(ieo.Position));
+                ieo.UpdateBoundingBoxAndShape(world);
 
                 // Intersect ray with bounding box, if distance then select model
-                float? distance = ray.Intersects(bbCurrentInstance);
+                float? distance = ray.Intersects(ieo.BoundingBox);
                 if (distance != null)
                 {
                     _currentRegionPage.ChangeSelectedObject(ieo);
@@ -488,40 +528,6 @@ namespace NarrativeWorldCreator
                 }
             }
             _currentRegionPage.DeselectObject();
-        }
-
-        protected BoundingBox UpdateBoundingBox(Model model, Matrix worldTransform)
-        {
-            // Initialize minimum and maximum corners of the bounding box to max and min values
-            Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-            Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-
-            // For each mesh of the model
-            foreach (ModelMesh mesh in model.Meshes)
-            {
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                {
-                    // Vertex buffer parameters
-                    int vertexStride = meshPart.VertexBuffer.VertexDeclaration.VertexStride;
-                    int vertexBufferSize = meshPart.NumVertices * vertexStride;
-
-                    // Get vertex data as float
-                    float[] vertexData = new float[vertexBufferSize / sizeof(float)];
-                    meshPart.VertexBuffer.GetData<float>(vertexData);
-
-                    // Iterate through vertices (possibly) growing bounding box, all calculations are done in world space
-                    for (int i = 0; i < vertexBufferSize / sizeof(float); i += vertexStride / sizeof(float))
-                    {
-                        Vector3 transformedPosition = Vector3.Transform(new Vector3(vertexData[i], vertexData[i + 1], vertexData[i + 2]), worldTransform);
-
-                        min = Vector3.Min(min, transformedPosition);
-                        max = Vector3.Max(max, transformedPosition);
-                    }
-                }
-            }
-
-            // Create and return bounding box
-            return new BoundingBox(min, max);
         }
 
         private Vector3 CalculateMouseHitOnSurface()

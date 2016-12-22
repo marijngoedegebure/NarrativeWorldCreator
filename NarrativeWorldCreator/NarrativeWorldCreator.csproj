@@ -110,6 +110,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GraphicScenes\Camera3d.cs" />
+    <Compile Include="GraphicScenes\DrawingEngine.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>

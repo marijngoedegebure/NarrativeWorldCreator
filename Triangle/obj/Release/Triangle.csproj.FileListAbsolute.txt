@@ -1,0 +1,5 @@
+C:\Users\marij\Documents\Master Thesis Own project\narrativeworldcreator\Triangle\bin\Release\Triangle.dll
+C:\Users\marij\Documents\Master Thesis Own project\narrativeworldcreator\Triangle\bin\Release\Triangle.pdb
+C:\Users\marij\Documents\Master Thesis Own project\narrativeworldcreator\Triangle\obj\Release\Triangle.csprojResolveAssemblyReference.cache
+C:\Users\marij\Documents\Master Thesis Own project\narrativeworldcreator\Triangle\obj\Release\Triangle.dll
+C:\Users\marij\Documents\Master Thesis Own project\narrativeworldcreator\Triangle\obj\Release\Triangle.pdb
