@@ -228,5 +228,63 @@ namespace TriangleNet.Geometry
 
             segments.Add(new Edge(p0, p1, boundary));
         }
+
+        /// <summary>
+        /// Add a polygon ring to the geometry.
+        /// </summary>
+        /// <param name="points">List of points which make up the polygon.</param>
+        /// <param name="mark">Common boundary mark for all segments of the polygon.</param>
+        public void AddRing(IEnumerable<Point> points, int mark = 0)
+        {
+            // Save the current number of points.
+            int N = this.Count;
+
+            int m = 0;
+            foreach (var pt in points)
+            {
+                this.AddPoint(pt.X, pt.Y, pt.Boundary, pt.Attributes);
+                m++;
+            }
+
+            for (int i = 0; i < m; i++)
+            {
+                this.AddSegment(N + i, N + ((i + 1) % m), mark);
+            }
+        }
+
+        /// <summary>
+        /// Add a polygon ring to the geometry and make it a hole.
+        /// </summary>
+        /// <remarks>
+        /// WARNING: This works for convex polygons, but not for non-convex regions in general.
+        /// </remarks>
+        /// <param name="points">List of points which make up the hole.</param>
+        /// <param name="mark">Common boundary mark for all segments of the hole.</param>
+        public void AddRingAsHole(IEnumerable<Point> points, int mark = 0)
+        {
+            // Save the current number of points.
+            int N = this.Count;
+
+            // Hole coordinates
+            double x = 0.0;
+            double y = 0.0;
+
+            int m = 0;
+            foreach (var pt in points)
+            {
+                x += pt.X;
+                y += pt.Y;
+
+                this.AddPoint(pt.X, pt.Y, pt.Boundary, pt.Attributes);
+                m++;
+            }
+
+            for (int i = 0; i < m; i++)
+            {
+                this.AddSegment(N + i, N + ((i + 1) % m), mark);
+            }
+
+            this.AddHole(x / m, y / m);
+        }
     }
 }

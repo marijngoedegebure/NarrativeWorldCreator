@@ -1,4 +1,5 @@
-﻿using Common.Geometry;
+﻿using Common;
+using Common.Geometry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -41,6 +42,22 @@ namespace NarrativeWorldCreator
                 ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P1].X, (float)vertices[triangles[i].P1].Y, 0), color));
                 ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P2].X, (float)vertices[triangles[i].P2].Y, 0), color));
             }
+            return ret;
+        }
+
+        public static List<VertexPositionColor> GetVPCForTrianleStrip(TriStrip triStrip, Color color)
+        {
+            var ret = new List<VertexPositionColor>();
+            var strips = triStrip.Strips.ToList();
+            for(int i = 0; i < triStrip.Count; i++)
+            {
+                var strip = strips[i].ToList();
+                for(int j = 0; j < strip.Count; j++)
+                {
+                    ret.Add(new VertexPositionColor(new Vector3((float)strip[j].X, (float)strip[j].Y, 0), color));
+                }
+            }
+
             return ret;
         }
     }

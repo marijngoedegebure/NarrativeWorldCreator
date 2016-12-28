@@ -67,6 +67,7 @@ namespace NarrativeWorldCreator
             MinkowskiMinus = 1,
         }
         private DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
+        private KeyboardState _previousKeyboardState;
         #endregion
 
         #region Methods
@@ -82,6 +83,7 @@ namespace NarrativeWorldCreator
             _keyboard = new WpfKeyboard(this);
             _mouse = new WpfMouse(this);
 
+            effect = Content.Load<Effect>("Effects/Textured");
             effect = Content.Load<Effect>("Effects/Textured");
 
             RasterizerState state = new RasterizerState();
@@ -127,7 +129,7 @@ namespace NarrativeWorldCreator
             SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
 
             if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
-                drawMinkowskiMinus();
+                drawDifference();
             if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
                 drawRegionPolygon();
 
@@ -146,13 +148,26 @@ namespace NarrativeWorldCreator
             GraphicsDevice.SamplerStates[0] = sampler;
         }
 
-        private void drawMinkowskiMinus()
+        private void drawDifference()
         {
-            List<Shape> shapes = SolvingEngine.MinkowskiMinus(_currentRegionPage.selectedNode.Shape, _currentRegionPage.selectedNode.EntikaClassInstances[0].Shape).ToList();
-            foreach (Shape shape in shapes)
+            var basePolygon = SolvingEngine.ReduceBaseShapeWithObjects(_currentRegionPage.selectedNode);
+            var result = SolvingEngine.GetMeshForPolygon(basePolygon);
+            List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+
+            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
+            basicEffect.World = world;
+            basicEffect.View = view;
+            basicEffect.Projection = proj;
+            basicEffect.VertexColorEnabled = true;
+            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
             {
-                TriangleNet.Mesh mesh = DrawingEngine.triangulatePolygon(shape);
-                List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(mesh, Color.Aquamarine);
+                // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                pass.Apply();
+                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                    PrimitiveType.TriangleList,
+                    drawableTriangles.ToArray(),
+                    0,
+                    drawableTriangles.Count/3);
             }
         }
 
@@ -379,7 +394,14 @@ namespace NarrativeWorldCreator
                 {
                     effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationX(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
                     effect.Parameters["Texture"].SetValue(texture);
-                    effect.CurrentTechnique = effect.Techniques["Textured"];
+                    if (_currentRegionPage.SelectedInstancedEntikaObject != null && _currentRegionPage.SelectedInstancedEntikaObject.Equals(instance))
+                    {
+                        effect.CurrentTechnique = effect.Techniques["TexturedSelected"];
+                    }
+                    else
+                    {
+                        effect.CurrentTechnique = effect.Techniques["Textured"];
+                    }
                     //foreach (EffectPass pass in effect.CurrentTechnique.Passes)
                     //{
                     //    pass.Apply();
@@ -428,6 +450,7 @@ namespace NarrativeWorldCreator
         protected override void Update(GameTime time)
         {
             _previousMouseState = _mouseState;
+            _previousKeyboardState = _keyboardState;
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
@@ -443,17 +466,13 @@ namespace NarrativeWorldCreator
                 HandleRegionFilling();
             }
 
-            if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
+            if (_keyboardState.IsKeyUp(Keys.Tab) && _previousKeyboardState.IsKeyDown(Keys.Tab))
             {
-                if (_keyboardState.IsKeyDown(Keys.Tab))
+                if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
                 {
                     CurrentDrawingMode = DrawingModes.UnderlyingRegion;
                 }
-            }
-
-            if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
-            {
-                if (_keyboardState.IsKeyDown(Keys.Tab))
+                else if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
                 {
                     CurrentDrawingMode = DrawingModes.MinkowskiMinus;
                 }

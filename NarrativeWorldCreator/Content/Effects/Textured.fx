@@ -29,7 +29,7 @@ struct VertexShaderOutput
 	float2 TextureCoordinate : TEXCOORD0;
 };
 
-VertexShaderOutput MainVS(in VertexShaderInput input)
+VertexShaderOutput TextureVS(in VertexShaderInput input)
 {
 	VertexShaderOutput output = (VertexShaderOutput)0;
 
@@ -39,16 +39,35 @@ VertexShaderOutput MainVS(in VertexShaderInput input)
 	return output;
 }
 
-float4 MainPS(VertexShaderOutput input) : COLOR
+float4 TexturePS(VertexShaderOutput input) : COLOR
 {
 	return tex2D(textureSampler, input.TextureCoordinate);
 }
+
+float4 TextureSelectedPS(VertexShaderOutput input) : COLOR
+{
+	float4 color = tex2D(textureSampler, input.TextureCoordinate);
+	color.r = 1.0f;
+	color.g = 1.0f;
+	color.b = 1.0f;
+
+	return color;
+}
+
+technique TexturedSelected
+{
+	pass P0
+	{
+		VertexShader = compile VS_SHADERMODEL TextureVS();
+		PixelShader = compile PS_SHADERMODEL TextureSelectedPS();
+	}
+};
 
 technique Textured
 {
 	pass P0
 	{
-		VertexShader = compile VS_SHADERMODEL MainVS();
-		PixelShader = compile PS_SHADERMODEL MainPS();
+		VertexShader = compile VS_SHADERMODEL TextureVS();
+		PixelShader = compile PS_SHADERMODEL TexturePS();
 	}
 };

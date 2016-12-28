@@ -31,12 +31,14 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Grid.Row="0" x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToGraph_Click"/>
-                <views:ModeView Grid.Column="1" Grid.Row="0" x:Name="ModeControl" Loaded = "ModeControl_Loaded"/>
+                <views:RegionHeaderView Grid.Column="1" Grid.Row="0" x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded"/>
+                <views:ModeView Grid.Column="2" Grid.Row="0" x:Name="ModeControl" Loaded = "ModeControl_Loaded"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
-                <views:NarrativeTimelineView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
+                <views:NarrativeTimelineRegionView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">

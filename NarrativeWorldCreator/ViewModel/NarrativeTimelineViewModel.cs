@@ -40,11 +40,15 @@ namespace NarrativeWorldCreator
         internal void LoadFilteredTimePoints(Node selectedNode)
         {
             ObservableCollection<NarrativeTimePointViewModel> ntpsVM = new ObservableCollection<NarrativeTimePointViewModel>();
-            List<NarrativeTimePoint> ntps = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
+            List<NarrativeTimePoint> ntps = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.NarrativeTimePoints orderby a.TimePoint select a).ToList();
+            List<NarrativeTimePoint> ntpsFiltered = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
             // Load timepoint viewmodels based on narrative timepoints
             foreach (NarrativeTimePoint ntp in ntps)
             {
-                ntpsVM.Add(new NarrativeTimePointViewModel(ntp));
+                if (ntpsFiltered.Contains(ntp))
+                    ntpsVM.Add(new NarrativeTimePointViewModel(ntp, true));
+                else
+                    ntpsVM.Add(new NarrativeTimePointViewModel(ntp, false));
             }
             NarrativeTimePoints = ntpsVM;
         }

@@ -23,6 +23,16 @@ namespace NarrativeWorldCreator
                 this.OnPropertyChanged("Selected");
             }
         }
+        private bool _active;
+        public bool Active
+        {
+            get { return _active;  }
+            set
+            {
+                this._active = value;
+                this.OnPropertyChanged("Active");
+            }
+        }
 
         public NarrativeTimePointViewModel(NarrativeTimePoint ntp)
         {
@@ -37,6 +47,23 @@ namespace NarrativeWorldCreator
             else
                 LocationName = "";
             Selected = false;
+            Active = true;
+        }
+
+        public NarrativeTimePointViewModel(NarrativeTimePoint ntp, bool active)
+        {
+            NarrativeTimePoint = ntp;
+            TimePoint = ntp.TimePoint;
+            if (ntp.NarrativeEvent != null)
+                NarrativeActionName = ntp.NarrativeEvent.NarrativeAction.Name;
+            else
+                NarrativeActionName = "";
+            if (ntp.Location != null)
+                LocationName = ntp.Location.LocationName;
+            else
+                LocationName = "";
+            Selected = false;
+            Active = active;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

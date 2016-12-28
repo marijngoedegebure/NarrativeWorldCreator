@@ -4,9 +4,6 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TriangleNet;
 using TriangleNet.Geometry;
 
 namespace NarrativeWorlds
@@ -16,28 +13,33 @@ namespace NarrativeWorlds
         // Input of a selected node and timepoint
         public static Vector3 GetPossibleLocations(Node node, NarrativeTimePoint ntp)
         {
-            // Retrieve possible shapes where an object can be placed in (triangles of the node)
-            var polygons = node.Mesh.Triangles;
+            // Calculates remaining area
+            var polygon = ReduceBaseShapeWithObjects(node);
+            var mesh = GetMeshForPolygon(polygon);
+
+            var triangles = mesh.Triangles;
 
             // Get random shape to place object in
             System.Random r = new System.Random();
-            int randomNumber = r.Next(0, polygons.Count);
+            int randomNumber = r.Next(0, triangles.Count-1);
 
-            var selectedPolygon = polygons.ToList()[randomNumber];
+            var selectedPolygon = triangles.ToList()[randomNumber];
             
             // Get random position inside polygon
-            var position = getRandomPointOnTriangle(r, selectedPolygon, node.Mesh);
+            var position = getRandomPointOnTriangle(r, selectedPolygon, mesh);
 
             return new Vector3(position.X, position.Y, 0);
+        }
 
-            // Todo:
-            // Retrieve current instanced objects of node (basefill)
-
-            // Retrieve current instanced narrative objects and characters
-
-            // Retrieve/calculate base navmesh
-
-            // Determine left over space of region by looping through instances and subtracting them from base navmesh
+        public static Polygon ReduceBaseShapeWithObjects(Node node)
+        {
+            Shape baseShape = node.Shape;
+            Polygon basePolygon = new Polygon(baseShape.Points.ToList());
+            foreach (var eci in node.EntikaClassInstances)
+            {
+                basePolygon = SolvingEngine.ClipShapes(basePolygon, eci.Shape);
+            }
+            return basePolygon;
         }
 
         public static Vec2i getRandomPointOnTriangle(System.Random r, TriangleNet.Data.Triangle triangle, TriangleNet.Mesh mesh)
@@ -65,6 +67,19 @@ namespace NarrativeWorlds
             Line2 l02 = new Line2(v0, v2);
             Vec2 p2 = l02.PointOnLine(b);
             return new Vec2i(p + (p2 - v0));
+        }
+
+        public static Polygon ClipShapes(Shape original, Shape secondary)
+        {
+            Polygon originalP = new Polygon(original.Points.ToList());
+            Polygon secondaryP = new Polygon(secondary.Points.ToList());
+            return GpcWrapper.Clip(GpcWrapper.GpcOperation.Difference, originalP, secondaryP);
+        }
+
+        public static Polygon ClipShapes(Polygon original, Shape secondary)
+        {
+            Polygon secondaryP = new Polygon(secondary.Points.ToList());
+            return GpcWrapper.Clip(GpcWrapper.GpcOperation.Difference, original, secondaryP);
         }
 
         // Static functions that are not part of common but should be
@@ -112,6 +127,32 @@ namespace NarrativeWorlds
         {
             foreach (Vec2 a in A)
                 yield return a - min;
+        }
+
+        public static TriangleNet.Mesh GetMeshForPolygon(Polygon p)
+        {
+            // Triangulate using Triangle.NET
+            var geometry = new InputGeometry(p.GetAllVertices().Count());
+            var contours = p.Contours.ToList();
+            for (int i = 0; i < p.NumContours; i++)
+            {
+                var points = new List<TriangleNet.Geometry.Point>();
+                foreach (var vector in contours[i])
+                {
+                    points.Add(new TriangleNet.Geometry.Point(vector.X, vector.Y));
+                }
+                if (p.IsHole(i))
+                {
+                    geometry.AddRingAsHole(points);
+                }
+                else
+                {
+                    geometry.AddRing(points);
+                }
+            }
+            TriangleNet.Mesh mesh = new TriangleNet.Mesh();
+            mesh.Triangulate(geometry);
+            return mesh;
         }
     }
 }
