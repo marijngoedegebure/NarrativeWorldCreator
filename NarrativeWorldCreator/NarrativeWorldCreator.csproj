@@ -126,14 +126,20 @@
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionScene.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
+    <Compile Include="ViewModel\NarrativeEntitiesViewModel.cs" />
+    <Compile Include="ViewModel\NarrativeEntityViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\SelectedObjectDetailViewModel.cs" />
     <Compile Include="ViewModel\RegionDetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\GraphDetailTimePointListViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
+    <Compile Include="ViewModel\TangibleObjectsViewModel.cs" />
     <Compile Include="Views\ModeView.xaml.cs">
       <DependentUpon>ModeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NarrativeEntitiesView.xaml.cs">
+      <DependentUpon>NarrativeEntitiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NarrativeTimelineRegionView.xaml.cs">
       <DependentUpon>NarrativeTimelineRegionView.xaml</DependentUpon>
@@ -152,6 +158,9 @@
     </Compile>
     <Compile Include="Views\SelectedObjectDetailView.xaml.cs">
       <DependentUpon>SelectedObjectDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TangibleObjectsView.xaml.cs">
+      <DependentUpon>TangibleObjectsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +190,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NarrativeEntitiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NarrativeTimelineRegionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SelectedObjectDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TangibleObjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

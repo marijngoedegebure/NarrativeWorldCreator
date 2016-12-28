@@ -42,9 +42,21 @@ namespace NarrativeWorldCreator
             InitializeComponent();
             this.selectedNode = selectedNode;
             CurrentMode = RegionPageMode.RegionCreation;
-            //fillDetailView();
-            fillItemList();
             fillGroupCombobox();
+        }
+
+        public void fillNarrativeEntitiesList(NarrativeTimePoint ntp)
+        {
+            NarrativeEntitiesViewModel neVM = new NarrativeEntitiesViewModel();
+            neVM.Load(ntp, selectedNode);
+            NarrativeEntitiesView.DataContext = neVM;
+        }
+
+        private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
+        {
+            TangibleObjectsViewModel toVM = new TangibleObjectsViewModel();
+            toVM.Load();
+            TangibleObjectsView.DataContext = toVM;
         }
 
         private void ModeControl_Loaded(object sender, RoutedEventArgs e)
@@ -98,13 +110,6 @@ namespace NarrativeWorldCreator
         {
             this.SelectedInstancedEntikaObject = null;
             SelectedObjectDetailView.HideGrid();
-        }
-
-        private void fillItemList()
-        {
-            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
-            List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
-            lvObjectsDataBinding.ItemsSource = filteredList;
         }
 
         internal void fillDetailView(NarrativeTimePoint narrativeTimePoint)

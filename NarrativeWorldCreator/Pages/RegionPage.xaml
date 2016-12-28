@@ -72,23 +72,17 @@
                             <Button Grid.Column="0" Grid.Row="1"  x:Name="region_creation_5" Content="Reset region" Click="btnResetRegion"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_1" Header="Item addition" Visibility="Collapsed">
+                    <TabItem Name="region_filling_1" Header="Entity addition" Visibility="Collapsed">
                         <Grid Name="region_filling_4">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <ListView Margin="10" Name="lvObjectsDataBinding">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <WrapPanel>
-                                            <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
-                                        </WrapPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                            <views:NarrativeEntitiesView Grid.Column="0" Grid.Row="0" x:Name="NarrativeEntitiesView" />
+                            <views:TangibleObjectsView Grid.Column="0" Grid.Row="1" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_2" Header="Group addition" Visibility="Collapsed">

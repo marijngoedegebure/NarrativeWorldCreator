@@ -45,6 +45,7 @@ namespace NarrativeWorldCreator.Views
                     {
                         var regionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
                         regionPage.fillDetailView(timePoint.NarrativeTimePoint);
+                        regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
                     }
                 }
             }
