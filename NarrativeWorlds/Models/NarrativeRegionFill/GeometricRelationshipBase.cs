@@ -10,8 +10,8 @@ namespace NarrativeWorlds
     {
         // Base class of the following relationships: Above, against, around, facing, followon, on, parallel
         // Has a source
-        public EntikaClassInstance Source { get; set; }
-        public List<EntikaClassInstance> Target { get; set; }
+        public NarrativeShape Source { get; set; }
+        public List<NarrativeShape> Target { get; set; }
 
         public enum RelationshipTypes
         {

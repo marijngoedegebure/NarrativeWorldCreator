@@ -1,4 +1,6 @@
-﻿using PDDLNarrativeParser;
+﻿using Common;
+using Microsoft.Xna.Framework;
+using PDDLNarrativeParser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +29,7 @@ namespace NarrativeWorlds
             this.TimePoint = timePoint;
             LocationOfNarrativeCharacters = new Dictionary<NarrativeCharacter, Node>();
             LocationOfNarrativeThings = new Dictionary<NarrativeThing, Node>();
+            TimePointSpecificFill = new TimePointSpecificFill();
         }
 
         internal void copy(NarrativeTimePoint initialTimePoint)
@@ -66,6 +69,18 @@ namespace NarrativeWorlds
                 }
             }
             return nts;
+        }
+
+        public void SetBaseShape(Node selectedNode)
+        {
+            if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
+            {
+                this.TimePointSpecificFill.NarrativeShapes.Add(new NarrativeShape("ground", 0, new Polygon(selectedNode.Shape.Points)));
+            }
+            else
+            {
+                this.TimePointSpecificFill.NarrativeShapes[0] = new NarrativeShape("ground", 0, new Polygon(selectedNode.Shape.Points));
+            }
         }
     }
 }

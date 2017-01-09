@@ -25,7 +25,8 @@ namespace NarrativeWorldCreator
     public partial class RegionPage : Page
     {
         public Node selectedNode;
-        public EntikaClassInstance SelectedInstancedEntikaObject;
+        public NarrativeShape SelectedEntikaObject;
+        public NarrativeTimePoint SelectedTimePoint { get; internal set; }
 
         public enum RegionPageMode
         {
@@ -88,7 +89,17 @@ namespace NarrativeWorldCreator
             // Fill control with stuff
             RegionDetailTimePointViewModel timePointViewModelObject =
                new RegionDetailTimePointViewModel();
-            timePointViewModelObject.LoadCharactersAndThings(selectedNode, (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints[0].NarrativeTimePoint);
+            if (SelectedTimePoint == null)
+            {
+                var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.Active).ToList()[0];
+                ntpVM.Selected = true;
+                SelectedTimePoint = ntpVM.NarrativeTimePoint;
+                timePointViewModelObject.LoadCharactersAndThings(selectedNode, ntpVM.NarrativeTimePoint);
+            }
+            else
+            {
+                timePointViewModelObject.LoadCharactersAndThings(selectedNode, SelectedTimePoint);
+            }
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
         }
 
@@ -99,16 +110,16 @@ namespace NarrativeWorldCreator
             SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
         }
 
-        public void ChangeSelectedObject(EntikaClassInstance ieo)
+        public void ChangeSelectedObject(NarrativeShape ieo)
         {
-            this.SelectedInstancedEntikaObject = ieo;
+            this.SelectedEntikaObject = ieo;
             (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).ChangeSelectedObject(ieo);
             SelectedObjectDetailView.ShowGrid();
         }
 
         public void DeselectObject()
         {
-            this.SelectedInstancedEntikaObject = null;
+            this.SelectedEntikaObject = null;
             SelectedObjectDetailView.HideGrid();
         }
 

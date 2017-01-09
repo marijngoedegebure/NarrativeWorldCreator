@@ -15,14 +15,13 @@ namespace NarrativeWorlds
     public class Node
     {
         public String LocationName { get; set; }
+        // Store base shape of region so it can be easily rendered
         public Shape Shape { get; set; }
         // Triangulated region points
         public TriangleNet.Mesh Mesh { get; set; }
 
         public List<NarrativeEvent> NarrativeEvents { get; set; }
         public List<NarrativeObject> NarrativeObjects { get; set; }
-        public List<EntikaClassInstance> EntikaClassInstances { get; set; }
-        public RegionBaseFill RegionBaseFill { get; set; }
 
         public Node(String locationName)
         {
@@ -30,7 +29,6 @@ namespace NarrativeWorlds
             this.Shape = new Shape(new List<Common.Vec2>());
             NarrativeEvents = new List<NarrativeEvent>();
             NarrativeObjects = new List<NarrativeObject>();
-            EntikaClassInstances = new List<EntikaClassInstance>();
         }
 
         public override bool Equals(System.Object obj)

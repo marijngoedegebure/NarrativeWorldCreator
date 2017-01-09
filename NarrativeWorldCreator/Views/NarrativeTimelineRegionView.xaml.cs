@@ -27,6 +27,19 @@ namespace NarrativeWorldCreator.Views
 
         private void TimeLineListViewItemChanged(object sender, SelectionChangedEventArgs e)
         {
+            var removedItems = e.RemovedItems;
+            if (removedItems.Count > 0)
+            {
+                NarrativeTimePointViewModel timePoint = removedItems[0] as NarrativeTimePointViewModel;
+                if (timePoint.TimePoint != 0)
+                {
+                    timePoint.Selected = false;
+                }
+            }
+            foreach (var ntpVM in (this.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints)
+            {
+                ntpVM.Selected = false;
+            }
             // Button button = sender as Button;
             var addedItems = e.AddedItems;
             if (addedItems.Count > 0)
@@ -44,18 +57,11 @@ namespace NarrativeWorldCreator.Views
                     else
                     {
                         var regionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+                        regionPage.SelectedTimePoint = timePoint.NarrativeTimePoint;
                         regionPage.fillDetailView(timePoint.NarrativeTimePoint);
                         regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
+                        regionPage.SelectedTimePoint.SetBaseShape(regionPage.selectedNode);
                     }
-                }
-            }
-            var removedItems = e.RemovedItems;
-            if (removedItems.Count > 0)
-            {
-                NarrativeTimePointViewModel timePoint = removedItems[0] as NarrativeTimePointViewModel;
-                if (timePoint.TimePoint != 0)
-                {
-                    timePoint.Selected = false;
                 }
             }
         }

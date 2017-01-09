@@ -1,4 +1,5 @@
-﻿using Common.Geometry;
+﻿using Common;
+using Common.Geometry;
 using GameSemantics.Components;
 using GameSemantics.Data;
 using GameSemanticsEngine.GameContent;
@@ -17,42 +18,52 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorlds
 {
-    public class EntikaClassInstance
+    public class NarrativeShape
     {
         public string Name { get; set; }
-
+        public enum ShapeType
+        {
+            Clearance,
+            Offlimits,
+            Relationship
+        }
+        public ShapeType Type { get; set; }
         // Original TangibleObject class which this is an instance of
         public TangibleObject TangibleObject { get; set; }
-
-        // Spaces derived from tangible object class
-        public SpaceValued Clearance { get; set; }
-        public SpaceValued OffLimits { get; set; }
-
-        // Shape derived from spaces, models and position
-        public Shape Shape { get; set; }
-        public BoundingBox BoundingBox { get; set; }
-
         // XNA Model
+        public Vector3 Position { get; set; }
         public Model Model { get; set; }
 
-        // 3D position
-        public Vector3 Position { get; set; }
+        // A NarrativeShape can either be created using a model or from a shape, this boolean tracks exactly that
+        public bool ModelUsage { get; set; }
 
-        public EntikaClassInstance(string name, Vector3 pos, Model model)
+        // Shape derived from spaces, models and position
+        public Polygon Polygon { get; set; }
+        // Zpos is simplified to be the same for the entire shape, all shapes are parallel to x and y axis
+        public float zpos { get; set; }
+
+        public BoundingBox BoundingBox { get; set; }
+
+        List<GeometricRelationshipBase> RelationshipsAsSource { get; set; }
+
+        List<GeometricRelationshipBase> RelationshipsAsTarget { get; set; }
+
+        public NarrativeShape(string name, Vector3 pos, Model model, Matrix world)
         {
             this.Name = name;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
-            foreach (SpaceValued space in TangibleObject.Spaces)
-            {
-                if (space.Space.DefaultName.Equals("Clearance"))
-                    Clearance = space;
-                if (space.Space.DefaultName.Equals("Off limits"))
-                    OffLimits = space;
-            }
             Position = pos;
             this.Model = model;
+            this.ModelUsage = true;
+            UpdateBoundingBoxAndShape(world);
+        }
 
-            //DetermineShape();
+        public NarrativeShape(string name, float zpos, Polygon polygon)
+        {
+            this.Name = name;
+            this.zpos = zpos;
+            this.Polygon = polygon;
+            this.ModelUsage = false;
         }
 
         private void DetermineShape()
@@ -102,7 +113,7 @@ namespace NarrativeWorlds
             {
                 points.Add(new Common.Vec2(corners[i].X, corners[i].Y));
             }
-            Shape = new Shape(points);
+            this.Polygon = new Polygon(points);
         }
     }
 }

@@ -129,12 +129,16 @@ namespace NarrativeWorldCreator
             SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
 
             if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
+            {
                 drawDifference();
+            }
             if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
+            {
                 drawRegionPolygon();
+            }
 
-            // Draw all objects that have been added to the scene
-            foreach(EntikaClassInstance instance in _currentRegionPage.selectedNode.EntikaClassInstances)
+            // Draw all objects that have been added to the scene, potential accelleration by not first retrieving the narrativeshapes who use models and afterwards go through the list again to draw
+            foreach(NarrativeShape instance in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes.Where(ns => ns.ModelUsage))
             {
                 drawEntikaInstance(instance);
             }
@@ -150,7 +154,7 @@ namespace NarrativeWorldCreator
 
         private void drawDifference()
         {
-            var basePolygon = SolvingEngine.ReduceBaseShapeWithObjects(_currentRegionPage.selectedNode);
+            var basePolygon = SolvingEngine.ReduceBaseShapeWithObjects(_currentRegionPage.selectedNode, _currentRegionPage.SelectedTimePoint);
             var result = SolvingEngine.GetMeshForPolygon(basePolygon);
             List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
 
@@ -167,7 +171,7 @@ namespace NarrativeWorldCreator
                     PrimitiveType.TriangleList,
                     drawableTriangles.ToArray(),
                     0,
-                    drawableTriangles.Count/3);
+                    drawableTriangles.Count / 3);
             }
         }
 
@@ -377,7 +381,7 @@ namespace NarrativeWorldCreator
             return (float) (Math.PI / 180f) * angle;
         }
 
-        public void drawEntikaInstance(EntikaClassInstance instance)
+        public void drawEntikaInstance(NarrativeShape instance)
         {
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
             Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
@@ -394,7 +398,7 @@ namespace NarrativeWorldCreator
                 {
                     effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationX(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
                     effect.Parameters["Texture"].SetValue(texture);
-                    if (_currentRegionPage.SelectedInstancedEntikaObject != null && _currentRegionPage.SelectedInstancedEntikaObject.Equals(instance))
+                    if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
                     {
                         effect.CurrentTechnique = effect.Techniques["TexturedSelected"];
                     }
@@ -509,12 +513,10 @@ namespace NarrativeWorldCreator
                     // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
                     Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-                    var position = SolvingEngine.GetPossibleLocations(_currentRegionPage.selectedNode, ntp);
-                    var eci = new EntikaClassInstance("couch", position, model);
-                    eci.UpdateBoundingBoxAndShape(world);
-                    _currentRegionPage.selectedNode.EntikaClassInstances.Add(eci);
-
-
+                    var position = SolvingEngine.GetPossibleLocationsBasic(_currentRegionPage.selectedNode, ntp);
+                    var ns = new NarrativeShape("couch", position, model, world);
+                    NarrativeTimePoint ntpRet = SolvingEngine.AddShapeToTimePointBasic(ntp, ns);
+                    ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
                     // Determine shapes for entika class instances
 
                 }
@@ -525,29 +527,29 @@ namespace NarrativeWorldCreator
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
-                    HandleObjectSelection();
+                    // HandleObjectSelection();
                 }
             }
         }
 
-        private void HandleObjectSelection()
-        {
-            Ray ray = CalculateMouseRay();
-            foreach(EntikaClassInstance ieo in _currentRegionPage.selectedNode.EntikaClassInstances)
-            {
-                // Calculate/retrieve boundingbox
-                ieo.UpdateBoundingBoxAndShape(world);
+        //private void HandleObjectSelection()
+        //{
+        //    Ray ray = CalculateMouseRay();
+        //    foreach(NarrativeShape ieo in _currentRegionPage.selectedNode.EntikaClassInstances)
+        //    {
+        //        // Calculate/retrieve boundingbox
+        //        ieo.UpdateBoundingBoxAndShape(world);
 
-                // Intersect ray with bounding box, if distance then select model
-                float? distance = ray.Intersects(ieo.BoundingBox);
-                if (distance != null)
-                {
-                    _currentRegionPage.ChangeSelectedObject(ieo);
-                    return;
-                }
-            }
-            _currentRegionPage.DeselectObject();
-        }
+        //        // Intersect ray with bounding box, if distance then select model
+        //        float? distance = ray.Intersects(ieo.BoundingBox);
+        //        if (distance != null)
+        //        {
+        //            _currentRegionPage.ChangeSelectedObject(ieo);
+        //            return;
+        //        }
+        //    }
+        //    _currentRegionPage.DeselectObject();
+        //}
 
         private Vector3 CalculateMouseHitOnSurface()
         {
@@ -639,6 +641,7 @@ namespace NarrativeWorldCreator
                 vertices.Add(new Vec2(planeHit.X, planeHit.Y));
                 _currentRegionPage.selectedNode.Shape = new Shape(vertices);
                 _currentRegionPage.selectedNode.triangulatePolygon();
+                _currentRegionPage.SelectedTimePoint.SetBaseShape(_currentRegionPage.selectedNode);
             }
         }
 
@@ -655,6 +658,7 @@ namespace NarrativeWorldCreator
                 vertices[draggingVertexIndex] = new Vec2(mouseCoordsOnZPlane.X, mouseCoordsOnZPlane.Y);
                 _currentRegionPage.selectedNode.Shape = new Shape(vertices);
                 _currentRegionPage.selectedNode.triangulatePolygon();
+                _currentRegionPage.SelectedTimePoint.SetBaseShape(_currentRegionPage.selectedNode);
             }
 
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)

@@ -45,10 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\NarrativeGraph\Edge.cs" />
-    <Compile Include="Models\NarrativeRegionFill\RegionBaseFill.cs" />
+    <Compile Include="Models\NarrativeRegionFill\EntikaInstance.cs" />
     <Compile Include="Models\NarrativeRegionFill\GeometricRelationshipBase.cs" />
     <Compile Include="Models\NarrativeGraph\Graph.cs" />
-    <Compile Include="Models\NarrativeRegionFill\EntikaClassInstance.cs" />
+    <Compile Include="Models\NarrativeRegionFill\NarrativeShape.cs" />
     <Compile Include="Models\NarrativeCharacter.cs" />
     <Compile Include="Models\NarrativeRegionFill\TimePointSpecificFill.cs" />
     <Compile Include="Models\NarrativeThing.cs" />

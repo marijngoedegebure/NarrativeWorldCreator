@@ -11,10 +11,11 @@ namespace NarrativeWorlds
     public static class SolvingEngine
     {
         // Input of a selected node and timepoint
-        public static Vector3 GetPossibleLocations(Node node, NarrativeTimePoint ntp)
+        // Basic version only allows placement of objects on the baseshape, which is reduced with each addition
+        public static Vector3 GetPossibleLocationsBasic(Node node, NarrativeTimePoint ntp)
         {
             // Calculates remaining area
-            var polygon = ReduceBaseShapeWithObjects(node);
+            var polygon = ReduceBaseShapeWithObjects(node, ntp);
             var mesh = GetMeshForPolygon(polygon);
 
             var triangles = mesh.Triangles;
@@ -29,17 +30,6 @@ namespace NarrativeWorlds
             var position = getRandomPointOnTriangle(r, selectedPolygon, mesh);
 
             return new Vector3(position.X, position.Y, 0);
-        }
-
-        public static Polygon ReduceBaseShapeWithObjects(Node node)
-        {
-            Shape baseShape = node.Shape;
-            Polygon basePolygon = new Polygon(baseShape.Points.ToList());
-            foreach (var eci in node.EntikaClassInstances)
-            {
-                basePolygon = SolvingEngine.ClipShapes(basePolygon, eci.Shape);
-            }
-            return basePolygon;
         }
 
         public static Vec2i getRandomPointOnTriangle(System.Random r, TriangleNet.Data.Triangle triangle, TriangleNet.Mesh mesh)
@@ -69,17 +59,14 @@ namespace NarrativeWorlds
             return new Vec2i(p + (p2 - v0));
         }
 
-        public static Polygon ClipShapes(Shape original, Shape secondary)
+        public static Polygon DifferenceShapes(Polygon original, Polygon secondary)
         {
-            Polygon originalP = new Polygon(original.Points.ToList());
-            Polygon secondaryP = new Polygon(secondary.Points.ToList());
-            return GpcWrapper.Clip(GpcWrapper.GpcOperation.Difference, originalP, secondaryP);
+            return GpcWrapper.Clip(GpcWrapper.GpcOperation.Difference, original, secondary);
         }
 
-        public static Polygon ClipShapes(Polygon original, Shape secondary)
+        public static Polygon IntersectShapes(Polygon original, Polygon secondary)
         {
-            Polygon secondaryP = new Polygon(secondary.Points.ToList());
-            return GpcWrapper.Clip(GpcWrapper.GpcOperation.Difference, original, secondaryP);
+            return GpcWrapper.Clip(GpcWrapper.GpcOperation.Intersection, original, secondary);
         }
 
         // Static functions that are not part of common but should be
@@ -153,6 +140,69 @@ namespace NarrativeWorlds
             TriangleNet.Mesh mesh = new TriangleNet.Mesh();
             mesh.Triangulate(geometry);
             return mesh;
+        }
+
+        // Only converts the first contour of a polygon
+        public static Shape PolygonToShape(Polygon p)
+        {
+            List<Vec2> shapePoints = new List<Vec2>();
+            foreach(var vector in p.Contours.ToList()[0])
+            {
+                shapePoints.Add(new Vec2((float)vector.X, (float)vector.Y));
+            }
+            return new Shape(shapePoints);
+        }
+
+        // The basic version only removes shapes from the base shape and adds the new shape
+        public static NarrativeTimePoint AddShapeToTimePointBasic(NarrativeTimePoint ntp, NarrativeShape addition)
+        {
+            NarrativeShape BaseShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
+            var shapeResult = DifferenceShapes(BaseShape.Polygon, addition.Polygon);
+            ntp.TimePointSpecificFill.NarrativeShapes[0].Polygon = shapeResult;
+            ntp.TimePointSpecificFill.NarrativeShapes.Add(addition);
+            return ntp;
+        }
+
+        // Important method, returns an updated narrative time point. The narrative time point includes a list of shapes adjusted for the addition of the new shape
+        public static NarrativeTimePoint AddShapeToTimePoint(NarrativeTimePoint ntp, NarrativeShape addition)
+        {
+            // First should always be ground/base shape
+            NarrativeShape BaseShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
+            // Create list so that addition shape can be manipulated in each for loop.
+            List<NarrativeShape> additionList = new List<NarrativeShape>();
+            additionList.Add(addition);
+
+            // Determine in which shapes the addition lies, loop through all shapes and determine the overlap
+            foreach(NarrativeShape ns in ntp.TimePointSpecificFill.NarrativeShapes)
+            {
+                Polygon polygon = ns.Polygon;
+                foreach (NarrativeShape add in additionList)
+                {
+                    // If it overlaps, the intersection should be removed from each shape
+                    if (polygon.Overlaps(add.Polygon))
+                    {
+                        Polygon result = IntersectShapes(polygon, add.Polygon);
+                        Polygon shapeResult = DifferenceShapes(polygon, result);
+                        Polygon addResult = DifferenceShapes(add.Polygon, result);
+                        // Retrieve all shapes from the results and add new shapes to the right lists, remove the adjusted shapes
+                        // additionList.Add(new NarrativeShape(add.Name, add.Position, ));
+                        // additionList.Remove(add);
+                    }
+
+                }
+            }
+            return ntp;
+        }
+
+        public static Polygon ReduceBaseShapeWithObjects(Node node, NarrativeTimePoint ntp)
+        {
+            Shape baseShape = node.Shape;
+            Polygon basePolygon = new Polygon(baseShape.Points.ToList());
+            for( int i = 1; i < ntp.TimePointSpecificFill.NarrativeShapes.Count; i++)
+            {
+                basePolygon = SolvingEngine.DifferenceShapes(basePolygon, ntp.TimePointSpecificFill.NarrativeShapes[i].Polygon);
+            }
+            return basePolygon;
         }
     }
 }
