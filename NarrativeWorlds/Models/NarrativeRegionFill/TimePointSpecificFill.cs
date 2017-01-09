@@ -9,18 +9,18 @@ namespace NarrativeWorlds
     public class TimePointSpecificFill
     {
         // List of Narrative Character instances
-        List<NarrativeShape> NarrativeCharacterInstances { get; set; }
+        public List<NarrativeShape> NarrativeCharacterInstances { get; set; }
 
         // List of geometric relationships of character instances
-        List<GeometricRelationshipBase> GeometricRelationshipsOfNarrativeCharacters { get; set; }
+        public List<GeometricRelationshipBase> GeometricRelationshipsOfNarrativeCharacters { get; set; }
 
         // List of Narrative Object instances
-        List<NarrativeShape> NarrativeThingInstances { get; set; }
+        public List<NarrativeShape> NarrativeThingInstances { get; set; }
 
         // List of geometric relationships of object instances
-        List<GeometricRelationshipBase> GeometricRelationshipsOfNarrativeThings { get; set; }
+        public List<GeometricRelationshipBase> GeometricRelationshipsOfNarrativeThings { get; set; }
 
-        List<EntikaInstance> OtherObjectInstances { get; set; }
+        public List<EntikaInstance> OtherObjectInstances { get; set; }
 
         // List of shapes
         public List<NarrativeShape> NarrativeShapes { get; set; }
@@ -31,6 +31,7 @@ namespace NarrativeWorlds
             GeometricRelationshipsOfNarrativeCharacters = new List<GeometricRelationshipBase>();
             NarrativeThingInstances = new List<NarrativeShape>();
             GeometricRelationshipsOfNarrativeThings = new List<GeometricRelationshipBase>();
+            OtherObjectInstances = new List<EntikaInstance>();
             NarrativeShapes = new List<NarrativeShape>();
         }
     }

@@ -154,12 +154,23 @@ namespace NarrativeWorlds
         }
 
         // The basic version only removes shapes from the base shape and adds the new shape
-        public static NarrativeTimePoint AddShapeToTimePointBasic(NarrativeTimePoint ntp, NarrativeShape addition)
+        public static NarrativeTimePoint AddEntikaInstanceToTimePointBasic(NarrativeTimePoint ntp, EntikaInstance addition)
         {
             NarrativeShape BaseShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
-            var shapeResult = DifferenceShapes(BaseShape.Polygon, addition.Polygon);
+            // Create new off limits shape based on addition
+            var offLimitPolygon = new Polygon(addition.GetBoundingBoxAsPoints());
+            var additionOffLimitShape = new NarrativeShape(0, offLimitPolygon, NarrativeShape.ShapeType.Offlimits, addition);
+            addition.OffLimitsShape = additionOffLimitShape;
+
+            // Create new clearance limits shapes based on addition
+
+
+            // Create new relationships based on addition
+
+            var shapeResult = DifferenceShapes(BaseShape.Polygon, additionOffLimitShape.Polygon);
             ntp.TimePointSpecificFill.NarrativeShapes[0].Polygon = shapeResult;
-            ntp.TimePointSpecificFill.NarrativeShapes.Add(addition);
+            ntp.TimePointSpecificFill.NarrativeShapes.Add(additionOffLimitShape);
+            ntp.TimePointSpecificFill.OtherObjectInstances.Add(addition);
             return ntp;
         }
 
@@ -198,9 +209,9 @@ namespace NarrativeWorlds
         {
             Shape baseShape = node.Shape;
             Polygon basePolygon = new Polygon(baseShape.Points.ToList());
-            for( int i = 1; i < ntp.TimePointSpecificFill.NarrativeShapes.Count; i++)
+            for( int i = 0; i < ntp.TimePointSpecificFill.OtherObjectInstances.Count; i++)
             {
-                basePolygon = SolvingEngine.DifferenceShapes(basePolygon, ntp.TimePointSpecificFill.NarrativeShapes[i].Polygon);
+                basePolygon = SolvingEngine.DifferenceShapes(basePolygon, ntp.TimePointSpecificFill.OtherObjectInstances[i].OffLimitsShape.Polygon);
             }
             return basePolygon;
         }

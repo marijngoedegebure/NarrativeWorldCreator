@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static NarrativeWorlds.NarrativeShape;
 
 namespace NarrativeWorlds
 {
@@ -75,11 +76,11 @@ namespace NarrativeWorlds
         {
             if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
             {
-                this.TimePointSpecificFill.NarrativeShapes.Add(new NarrativeShape("ground", 0, new Polygon(selectedNode.Shape.Points)));
+                this.TimePointSpecificFill.NarrativeShapes.Add(new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, null));
             }
             else
             {
-                this.TimePointSpecificFill.NarrativeShapes[0] = new NarrativeShape("ground", 0, new Polygon(selectedNode.Shape.Points));
+                this.TimePointSpecificFill.NarrativeShapes[0] = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, null);
             }
         }
     }

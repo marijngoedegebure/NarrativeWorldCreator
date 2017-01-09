@@ -138,7 +138,7 @@ namespace NarrativeWorldCreator
             }
 
             // Draw all objects that have been added to the scene, potential accelleration by not first retrieving the narrativeshapes who use models and afterwards go through the list again to draw
-            foreach(NarrativeShape instance in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes.Where(ns => ns.ModelUsage))
+            foreach(EntikaInstance instance in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.OtherObjectInstances)
             {
                 drawEntikaInstance(instance);
             }
@@ -381,7 +381,7 @@ namespace NarrativeWorldCreator
             return (float) (Math.PI / 180f) * angle;
         }
 
-        public void drawEntikaInstance(NarrativeShape instance)
+        public void drawEntikaInstance(EntikaInstance instance)
         {
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
             Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
@@ -514,8 +514,8 @@ namespace NarrativeWorldCreator
                     Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
                     var position = SolvingEngine.GetPossibleLocationsBasic(_currentRegionPage.selectedNode, ntp);
-                    var ns = new NarrativeShape("couch", position, model, world);
-                    NarrativeTimePoint ntpRet = SolvingEngine.AddShapeToTimePointBasic(ntp, ns);
+                    var ei = new EntikaInstance("couch", position, model, world);
+                    NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei);
                     ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
                     // Determine shapes for entika class instances
 
