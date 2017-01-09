@@ -16,6 +16,7 @@ namespace NarrativeWorlds
         {
             // Calculates remaining area
             var polygon = ReduceBaseShapeWithObjects(node, ntp);
+
             var mesh = GetMeshForPolygon(polygon);
 
             var triangles = mesh.Triangles;
@@ -26,6 +27,29 @@ namespace NarrativeWorlds
 
             var selectedPolygon = triangles.ToList()[randomNumber];
             
+            // Get random position inside polygon
+            var position = getRandomPointOnTriangle(r, selectedPolygon, mesh);
+
+            return new Vector3(position.X, position.Y, 0);
+        }
+
+        public static Vector3 GetPossibleLocationsV2(Node node, NarrativeTimePoint ntp)
+        {
+            // Take all narrative shapes known
+            var shapes = ntp.TimePointSpecificFill.NarrativeShapes;
+
+            // Go through each shape and determine it's polygon and it's restrictions (clearance/relationship)
+            // Get random shape to place object in
+            System.Random r = new System.Random();
+            int randomNumber = r.Next(0, shapes.Count - 1);
+
+            var mesh = GetMeshForPolygon(shapes[randomNumber].Polygon);
+
+            var triangles = mesh.Triangles;
+
+            randomNumber = r.Next(0, triangles.Count - 1);
+            var selectedPolygon = triangles.ToList()[randomNumber];
+
             // Get random position inside polygon
             var position = getRandomPointOnTriangle(r, selectedPolygon, mesh);
 
@@ -169,7 +193,8 @@ namespace NarrativeWorlds
 
             var shapeResult = DifferenceShapes(BaseShape.Polygon, additionOffLimitShape.Polygon);
             ntp.TimePointSpecificFill.NarrativeShapes[0].Polygon = shapeResult;
-            ntp.TimePointSpecificFill.NarrativeShapes.Add(additionOffLimitShape);
+            // Do not add off limit shape to narrative shapes as it is unusable
+            //ntp.TimePointSpecificFill.NarrativeShapes.Add(additionOffLimitShape);
             ntp.TimePointSpecificFill.OtherObjectInstances.Add(addition);
             return ntp;
         }
