@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static NarrativeWorlds.NarrativeShape;
 
 namespace NarrativeWorlds
 {
@@ -20,10 +22,15 @@ namespace NarrativeWorlds
         // List of geometric relationships of object instances
         public List<GeometricRelationshipBase> GeometricRelationshipsOfNarrativeThings { get; set; }
 
+        public EntikaInstance FloorInstance { get; set; }
         public List<EntikaInstance> OtherObjectInstances { get; set; }
 
-        // List of shapes
+        // List of relationships, first relationship is always baseshape (ground)
+        public List<GeometricRelationshipBase> Relationships { get; set; }
+        // List of shapes that allow placement of objects, first shape is always baseshape (ground)
         public List<NarrativeShape> NarrativeShapes { get; set; }
+        // List of shapes that designate clearances
+        public List<NarrativeShape> ClearanceShapes { get; internal set; }
 
         public TimePointSpecificFill()
         {
@@ -33,6 +40,8 @@ namespace NarrativeWorlds
             GeometricRelationshipsOfNarrativeThings = new List<GeometricRelationshipBase>();
             OtherObjectInstances = new List<EntikaInstance>();
             NarrativeShapes = new List<NarrativeShape>();
+            Relationships = new List<GeometricRelationshipBase>();
+            ClearanceShapes = new List<NarrativeShape>();
         }
     }
 }

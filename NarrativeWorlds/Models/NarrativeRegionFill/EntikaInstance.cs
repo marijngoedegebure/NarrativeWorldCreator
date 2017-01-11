@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Semantics.Data;
 using Semantics.Entities;
 using System.Collections.Generic;
+using System;
 
 namespace NarrativeWorlds
 {
@@ -17,21 +18,36 @@ namespace NarrativeWorlds
         public BoundingBox BoundingBox { get; set; }
 
         public NarrativeShape OffLimitsShape { get; set; }
-        public List<NarrativeShape> ClearanceShape { get; set; }
-        public List<NarrativeShape> RelationShapes { get; set; }
+        public List<NarrativeShape> ClearanceShapes { get; set; }
 
-        List<GeometricRelationshipBase> RelationshipsAsSource { get; set; }
+        public List<GeometricRelationshipBase> RelationshipsAsSource { get; set; }
 
-        List<GeometricRelationshipBase> RelationshipsAsTarget { get; set; }
+        public List<GeometricRelationshipBase> RelationshipsAsTarget { get; set; }
 
 
         public EntikaInstance(string name, Vector3 pos, Model model, Matrix world)
         {
+            SetupLists();
             this.Name = name;
-            TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
+            this.TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
             this.Position = pos;
             this.Model = model;
             UpdateBoundingBoxAndShape(world);
+        }
+
+        private void SetupLists()
+        {
+            ClearanceShapes = new List<NarrativeShape>();
+            RelationshipsAsSource = new List<GeometricRelationshipBase>();
+            RelationshipsAsTarget = new List<GeometricRelationshipBase>();
+        }
+
+        // Constructor for ground
+        public EntikaInstance(string name)
+        {
+            SetupLists();
+            this.Name = name;
+            TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
         }
 
 
@@ -70,9 +86,9 @@ namespace NarrativeWorlds
             this.BoundingBox = new BoundingBox(min, max);
         }
 
-        public List<Common.Vec2> GetBoundingBoxAsPoints()
+        public static List<Common.Vec2> GetBoundingBoxAsPoints(BoundingBox bb)
         {
-            Vector3[] corners = this.BoundingBox.GetCorners();
+            Vector3[] corners = bb.GetCorners();
             var points = new List<Common.Vec2>();
             // Take the coordinates of the last 4 points as they are the bottom 4, given that the bottom of the boundingbox is parallel to the x plane
             for (int i = 4; i < corners.Length; i++)

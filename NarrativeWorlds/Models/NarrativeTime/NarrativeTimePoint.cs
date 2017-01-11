@@ -76,11 +76,24 @@ namespace NarrativeWorlds
         {
             if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
             {
-                this.TimePointSpecificFill.NarrativeShapes.Add(new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, null));
+                // Setup EntikaInstance with on(X, floor) relationship
+                var floorInstance = new EntikaInstance("floor");
+                var floorShape = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, floorInstance);
+                var floorRelationship = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
+                floorShape.Relations.Add(floorRelationship);
+                floorRelationship.Target = floorInstance;
+                // Add on(X, floor) relation
+                floorInstance.RelationshipsAsTarget.Add(floorRelationship);
+
+                // Add everything to fill:
+                this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
+                this.TimePointSpecificFill.FloorInstance = floorInstance;
+                this.TimePointSpecificFill.Relationships.Add(floorRelationship);
             }
             else
             {
-                this.TimePointSpecificFill.NarrativeShapes[0] = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, null);
+                // Update the shape all others reference
+                this.TimePointSpecificFill.NarrativeShapes[0].Polygon = new Polygon(selectedNode.Shape.Points);
             }
         }
     }

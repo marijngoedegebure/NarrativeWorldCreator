@@ -8,10 +8,16 @@ namespace NarrativeWorlds
 {
     public class GeometricRelationshipBase
     {
+        public GeometricRelationshipBase(RelationshipTypes type)
+        {
+            this.RelationType = type;
+            Sources = new List<EntikaInstance>();
+        }
+
         // Base class of the following relationships: Above, against, around, facing, followon, on, parallel
         // Has a source
-        public NarrativeShape Source { get; set; }
-        public List<NarrativeShape> Target { get; set; }
+        public List<EntikaInstance> Sources { get; set; }
+        public EntikaInstance Target { get; set; }
 
         public enum RelationshipTypes
         {

@@ -33,14 +33,15 @@ namespace NarrativeWorlds
         // Zpos is simplified to be the same for the entire shape, all shapes are parallel to x and y axis
         public float zpos { get; set; }
 
-        public EntikaInstance Parent { get; set; }
+        // Each relation stored in a shape is one that allows sources to be associated with it
+        public List<GeometricRelationshipBase> Relations { get; set; }
 
         public NarrativeShape(float zpos, Polygon polygon, ShapeType type, EntikaInstance parent)
         {
             this.zpos = zpos;
             this.Polygon = polygon;
             this.Type = type;
-            this.Parent = parent;
+            this.Relations = new List<GeometricRelationshipBase>();
         }
     }
 }

@@ -154,8 +154,8 @@ namespace NarrativeWorldCreator
 
         private void drawDifference()
         {
-            var basePolygon = SolvingEngine.ReduceBaseShapeWithObjects(_currentRegionPage.selectedNode, _currentRegionPage.SelectedTimePoint);
-            var result = SolvingEngine.GetMeshForPolygon(basePolygon);
+            var basePolygon = _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes[0].Polygon;
+            var result = HelperFunctions.GetMeshForPolygon(basePolygon);
             List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
 
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
@@ -513,9 +513,22 @@ namespace NarrativeWorldCreator
                     // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
                     Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-                    var position = SolvingEngine.GetPossibleLocationsBasic(_currentRegionPage.selectedNode, ntp);
+                    // Update PlanningEngine's available information
+
+                    // Select one on ?? criteria
+                    var tupleTangibleObjectDestinationShape = PlanningEngine.SelectTangibleObjectDestinationShape(ntp);
+
+                    // Get valid position from shape
+                    var position = PlanningEngine.GetPossibleLocationsV3(tupleTangibleObjectDestinationShape.Item2);
+
+                    // Create entika instance and update (currently relies on floor shape being used)
                     var ei = new EntikaInstance("couch", position, model, world);
-                    NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei);
+                    tupleTangibleObjectDestinationShape.Item2.Relations[0].Sources.Add(ei);
+                    ei.RelationshipsAsSource.Add(tupleTangibleObjectDestinationShape.Item2.Relations[0]);
+                    // var position = SolvingEngine.GetPossibleLocationsBasic(_currentRegionPage.selectedNode, ntp);
+                    
+                    // var shape = SolvingEngine.GetShape(ntp, ei);
+                    NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, tupleTangibleObjectDestinationShape.Item2);
                     ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
                     // Determine shapes for entika class instances
 
