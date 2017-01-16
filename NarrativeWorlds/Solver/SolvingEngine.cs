@@ -17,21 +17,18 @@ namespace NarrativeWorlds
         {
             // Create new off limits shape based on addition
             var offLimitPolygon = new Polygon(EntikaInstance.GetBoundingBoxAsPoints(addition.BoundingBox));
-            var additionOffLimitShape = new NarrativeShape(0, offLimitPolygon, NarrativeShape.ShapeType.Offlimits, addition);
             // Add shape to instance
-            addition.OffLimitsShape = additionOffLimitShape;
+            addition.OffLimitsShape = new NarrativeShape(0, offLimitPolygon, NarrativeShape.ShapeType.Offlimits, addition);
 
             // Create new clearance limits shapes based on addition
             // Input is the shape description and the boundingbox
-            NarrativeShape clearanceShape = null;
             foreach (SpaceValued space in addition.TangibleObject.Spaces)
             {
                 if (space.Space.DefaultName.Equals("Clearance"))
                 {
                     // Clearance should always be described as a extruded line, this implies three parameters and results in four coordinates which can be used as a definition of shape
                     var clearancePolygon = new Polygon(ParseShapeDescription(space.ShapeDescription, addition.BoundingBox));
-                    clearanceShape = new NarrativeShape(0, clearancePolygon, NarrativeShape.ShapeType.Clearance, addition);
-                    addition.ClearanceShapes.Add(clearanceShape);
+                    addition.ClearanceShapes.Add(new NarrativeShape(0, clearancePolygon, NarrativeShape.ShapeType.Clearance, addition));
                 }
             }
 
@@ -57,23 +54,74 @@ namespace NarrativeWorlds
             }
 
             // Remove offlimits polygon from baseshape
-            // Next step, remove polygons from each shape that is appropriate
-            var shapeResult = HelperFunctions.DifferenceShapes(ntp.TimePointSpecificFill.NarrativeShapes[0].Polygon, additionOffLimitShape.Polygon);
-            // Remove clearance from baseshape and add it to timepoint, if it exists
-            if (clearanceShape != null)
+            // Go through list of shapes in reverse order so that it allows deletion of shapes
+            foreach(var shape in ntp.TimePointSpecificFill.NarrativeShapes.Reverse<NarrativeShape>())
             {
-                shapeResult = HelperFunctions.DifferenceShapes(shapeResult, clearanceShape.Polygon);
+                var adjustedPolygon = HelperFunctions.DifferenceShapes(shape.Polygon, addition.OffLimitsShape.Polygon);
+                if (adjustedPolygon == null)
+                {
+                    // If remaining polygon equals null, remove shape from list
+                    ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
+                }
+                shape.Polygon = adjustedPolygon;
+            }
+            // Remove clearance from baseshape and add it to timepoint, if it exists
+            foreach(var clearanceShape in addition.ClearanceShapes)
+            {
+                foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
+                {
+                    shape.Polygon = HelperFunctions.DifferenceShapes(shape.Polygon, clearanceShape.Polygon);
+                }
                 ntp.TimePointSpecificFill.ClearanceShapes.Add(clearanceShape);
             }
-            foreach (var shape in AddedRelationsShapes)
+            foreach (var relationalShape in AddedRelationsShapes)
             {
-                if (ntp.TimePointSpecificFill.NarrativeShapes[0].zpos == shape.zpos)
-                    shapeResult = HelperFunctions.DifferenceShapes(shapeResult, shape.Polygon);
+                var intersectionNarrativeShape = relationalShape;
+                foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes.Reverse<NarrativeShape>())
+                {
+                    if (shape.zpos == relationalShape.zpos)
+                    {
+                        // Intersection of shapes
+                        var intersection = HelperFunctions.IntersectShapes(shape.Polygon, relationalShape.Polygon);
+                        if (intersection != null)
+                        {
+                            // Update intersection shape to intersection polygon
+                            intersectionNarrativeShape.Polygon = intersection;
+                            // Inherit relations of other shape
+                            foreach (var relation in shape.Relations)
+                            {
+                                intersectionNarrativeShape.Relations.Add(relation);
+                            }
+
+                            // Check whether one of areas becomes null when differenced
+                            var differenceRelationAndShape = HelperFunctions.DifferenceShapes(relationalShape.Polygon, shape.Polygon);
+                            var differenceShapeAndRelation = HelperFunctions.DifferenceShapes(shape.Polygon, relationalShape.Polygon);
+                            if (differenceRelationAndShape == null)
+                            {
+                                // Dont add relational shape to shapes, update shape
+                                shape.Polygon = differenceShapeAndRelation;
+                                continue;
+                            }
+                            else if (differenceShapeAndRelation == null)
+                            {
+                                // Remove existing shape
+                                ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
+                                relationalShape.Polygon = differenceRelationAndShape;
+                            }
+                            else
+                            {
+                                // Update both shapes to remove intersection
+                                relationalShape.Polygon = differenceRelationAndShape;
+                                shape.Polygon = differenceShapeAndRelation;
+                            }
+                            // Add intersection
+                            ntp.TimePointSpecificFill.NarrativeShapes.Add(intersectionNarrativeShape);
+                        }
+                    }
+                }
                 // Add shape to narrative shapes after it has been adjusted by (and has adjusted the baseshape)
-                ntp.TimePointSpecificFill.NarrativeShapes.Add(shape);
+                ntp.TimePointSpecificFill.NarrativeShapes.Add(relationalShape);
             }
-            // Re-set baseshape
-            ntp.TimePointSpecificFill.NarrativeShapes[0].Polygon = shapeResult;
             // Do not add off limit shape to narrative shapes as it is unusable
             //ntp.TimePointSpecificFill.NarrativeShapes.Add(additionOffLimitShape);
             ntp.TimePointSpecificFill.OtherObjectInstances.Add(addition);
