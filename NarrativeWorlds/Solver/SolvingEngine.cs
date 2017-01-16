@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TriangleNet.Geometry;
+using Semantics.Components;
 
 namespace NarrativeWorlds
 {
@@ -50,6 +51,10 @@ namespace NarrativeWorlds
                     // Add relation to fill
                     ntp.TimePointSpecificFill.Relationships.Add(relation);
                     AddedRelationsShapes.Add(shape);
+                }
+                else if (relationType.DefaultName.Equals("Against"))
+                {
+                    var shape = CreateAgainstRelationShape(addition, relationAsTarget);
                 }
             }
 
@@ -126,6 +131,18 @@ namespace NarrativeWorlds
             //ntp.TimePointSpecificFill.NarrativeShapes.Add(additionOffLimitShape);
             ntp.TimePointSpecificFill.OtherObjectInstances.Add(addition);
             return ntp;
+        }
+
+        private static object CreateAgainstRelationShape(EntikaInstance addition, Relationship relationAsTarget)
+        {
+            var radius = relationAsTarget.GetParameterValue("radius");
+            //var radiusConverted = (radius.GetType()) radius;
+            // Z height should be the same as where the item is put on
+            var zpos = addition.BoundingBox.Min.Z;
+            Vector3[] corners = addition.BoundingBox.GetCorners();
+            List<Vec2> points = new List<Vec2>();
+
+            return new NarrativeShape(zpos, new Polygon(points), NarrativeShape.ShapeType.Relationship, addition);
         }
 
         private static NarrativeShape CreateOnRelationShape(EntikaInstance addition)
