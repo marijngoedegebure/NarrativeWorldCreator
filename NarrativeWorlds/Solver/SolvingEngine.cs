@@ -54,7 +54,14 @@ namespace NarrativeWorlds
                 }
                 else if (relationType.DefaultName.Equals("Against"))
                 {
-                    var shape = CreateAgainstRelationShape(addition, relationAsTarget);
+                    var shape = CreateAgainstRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    var relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Against);
+                    relation.Target = addition;
+                    shape.Relations.Add(relation);
+                    addition.RelationshipsAsTarget.Add(relation);
+                    // Add relation to fill
+                    ntp.TimePointSpecificFill.Relationships.Add(relation);
+                    AddedRelationsShapes.Add(shape);
                 }
             }
 
@@ -79,70 +86,92 @@ namespace NarrativeWorlds
                 }
                 ntp.TimePointSpecificFill.ClearanceShapes.Add(clearanceShape);
             }
-            foreach (var relationalShape in AddedRelationsShapes)
-            {
-                var intersectionNarrativeShape = relationalShape;
-                foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes.Reverse<NarrativeShape>())
-                {
-                    if (shape.zpos == relationalShape.zpos)
-                    {
-                        // Intersection of shapes
-                        var intersection = HelperFunctions.IntersectShapes(shape.Polygon, relationalShape.Polygon);
-                        if (intersection != null)
-                        {
-                            // Update intersection shape to intersection polygon
-                            intersectionNarrativeShape.Polygon = intersection;
-                            // Inherit relations of other shape
-                            foreach (var relation in shape.Relations)
-                            {
-                                intersectionNarrativeShape.Relations.Add(relation);
-                            }
+            //foreach (var relationalShape in AddedRelationsShapes)
+            //{
+            //    var intersectionNarrativeShape = relationalShape;
+            //    foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes.Reverse<NarrativeShape>())
+            //    {
+            //        if (shape.zpos == relationalShape.zpos)
+            //        {
+            //            // Intersection of shapes
+            //            var intersection = HelperFunctions.IntersectShapes(shape.Polygon, relationalShape.Polygon);
+            //            if (intersection != null)
+            //            {
+            //                // Update intersection shape to intersection polygon
+            //                intersectionNarrativeShape.Polygon = intersection;
+            //                // Inherit relations of other shape
+            //                foreach (var relation in shape.Relations)
+            //                {
+            //                    intersectionNarrativeShape.Relations.Add(relation);
+            //                }
 
-                            // Check whether one of areas becomes null when differenced
-                            var differenceRelationAndShape = HelperFunctions.DifferenceShapes(relationalShape.Polygon, shape.Polygon);
-                            var differenceShapeAndRelation = HelperFunctions.DifferenceShapes(shape.Polygon, relationalShape.Polygon);
-                            if (differenceRelationAndShape == null)
-                            {
-                                // Dont add relational shape to shapes, update shape
-                                shape.Polygon = differenceShapeAndRelation;
-                                continue;
-                            }
-                            else if (differenceShapeAndRelation == null)
-                            {
-                                // Remove existing shape
-                                ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
-                                relationalShape.Polygon = differenceRelationAndShape;
-                            }
-                            else
-                            {
-                                // Update both shapes to remove intersection
-                                relationalShape.Polygon = differenceRelationAndShape;
-                                shape.Polygon = differenceShapeAndRelation;
-                            }
-                            // Add intersection
-                            ntp.TimePointSpecificFill.NarrativeShapes.Add(intersectionNarrativeShape);
-                        }
-                    }
-                }
-                // Add shape to narrative shapes after it has been adjusted by (and has adjusted the baseshape)
-                ntp.TimePointSpecificFill.NarrativeShapes.Add(relationalShape);
-            }
+            //                // Check whether one of areas becomes null when differenced
+            //                var differenceRelationAndShape = HelperFunctions.DifferenceShapes(relationalShape.Polygon, shape.Polygon);
+            //                var differenceShapeAndRelation = HelperFunctions.DifferenceShapes(shape.Polygon, relationalShape.Polygon);
+            //                if (differenceRelationAndShape == null)
+            //                {
+            //                    // Dont add relational shape to shapes, update shape
+            //                    shape.Polygon = differenceShapeAndRelation;
+            //                    continue;
+            //                }
+            //                else if (differenceShapeAndRelation == null)
+            //                {
+            //                    // Remove existing shape
+            //                    ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
+            //                    relationalShape.Polygon = differenceRelationAndShape;
+            //                }
+            //                else
+            //                {
+            //                    // Update both shapes to remove intersection
+            //                    relationalShape.Polygon = differenceRelationAndShape;
+            //                    shape.Polygon = differenceShapeAndRelation;
+            //                }
+            //                // Add intersection
+            //                ntp.TimePointSpecificFill.NarrativeShapes.Add(intersectionNarrativeShape);
+            //            }
+            //        }
+            //    }
+            //    // Add shape to narrative shapes after it has been adjusted by (and has adjusted the baseshape)
+            //    ntp.TimePointSpecificFill.NarrativeShapes.Add(relationalShape);
+            //}
             // Do not add off limit shape to narrative shapes as it is unusable
             //ntp.TimePointSpecificFill.NarrativeShapes.Add(additionOffLimitShape);
             ntp.TimePointSpecificFill.OtherObjectInstances.Add(addition);
             return ntp;
         }
 
-        private static object CreateAgainstRelationShape(EntikaInstance addition, Relationship relationAsTarget)
+        private static NarrativeShape CreateAgainstRelationShape(EntikaInstance addition, Relationship relationAsTarget, float zpos)
         {
-            var radius = relationAsTarget.GetParameterValue("radius");
+            var radius = ((NumericalValueCondition)relationAsTarget.GetParameterValue("radius")).Value.Value;
             //var radiusConverted = (radius.GetType()) radius;
-            // Z height should be the same as where the item is put on
-            var zpos = addition.BoundingBox.Min.Z;
+            // Z height should be the same as where the item is put on, 0 should later be translated into a proper z height
             Vector3[] corners = addition.BoundingBox.GetCorners();
+            var XNApoints = new List<Vector2>();
+            XNApoints.Add(new Vector2(corners[0].X, corners[0].Y));
+            XNApoints.Add(new Vector2(corners[1].X, corners[1].Y));
+            XNApoints.Add(new Vector2(corners[2].X, corners[2].Y));
+            XNApoints.Add(new Vector2(corners[3].X, corners[3].Y));
+            var scaledPoints = new List<Vector2>();
+            // First translate to 0,0 scale and then translate back
+            var translationMatrix = Matrix.CreateTranslation(addition.Position);
+            var inverseTranslationMatrix = Matrix.CreateTranslation(-addition.Position);
+            var scaleMatrix = Matrix.CreateScale(radius);
+            foreach (var xnaPoint in XNApoints)
+            {
+                var translatedPoint = Vector2.Transform(xnaPoint, inverseTranslationMatrix);
+                var scaledPoint = Vector2.Transform(translatedPoint, scaleMatrix);
+                scaledPoints.Add(Vector2.Transform(scaledPoint, translationMatrix));
+            }
+            // Convert into polygon points
             List<Vec2> points = new List<Vec2>();
-
-            return new NarrativeShape(zpos, new Polygon(points), NarrativeShape.ShapeType.Relationship, addition);
+            foreach(var point in scaledPoints)
+            {
+                points.Add(new Vec2(point.X, point.Y));
+            }
+            
+            // Remove center off limit shape from this relationshape as it is off limits
+            var polygon = HelperFunctions.DifferenceShapes(new Polygon(points), addition.OffLimitsShape.Polygon);
+            return new NarrativeShape(zpos, polygon, NarrativeShape.ShapeType.Relationship, addition);
         }
 
         private static NarrativeShape CreateOnRelationShape(EntikaInstance addition)

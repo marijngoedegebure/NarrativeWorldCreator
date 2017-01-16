@@ -1,0 +1,9 @@
+<Databases>
+  <Semantics Database="redcapV2" />
+  <Values>
+    <Database>redcapV2</Database>
+  </Values>
+  <Localization>
+    <Database>redcapV2</Database>
+  </Localization>
+</Databases>

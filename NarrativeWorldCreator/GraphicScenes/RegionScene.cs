@@ -396,7 +396,7 @@ namespace NarrativeWorldCreator
                
                 foreach (Effect effect in mesh.Effects)
                 {
-                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateRotationX(modelRotation) * Matrix.CreateTranslation(modelPosition) * (view * proj));
+                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
                     effect.Parameters["Texture"].SetValue(texture);
                     if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
                     {
@@ -511,7 +511,7 @@ namespace NarrativeWorldCreator
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
                     // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                    Model model = LoadModel(Path.GetFileNameWithoutExtension("couch"));
+                    Model model = LoadModel(Path.GetFileNameWithoutExtension("chair"));
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
                     // Update PlanningEngine's available information
 
@@ -522,7 +522,7 @@ namespace NarrativeWorldCreator
                     var position = PlanningEngine.GetPossibleLocationsV3(tupleTangibleObjectDestinationShape.Item2);
 
                     // Create entika instance and update (currently relies on floor shape being used)
-                    var ei = new EntikaInstance("couch", position, model, world);
+                    var ei = new EntikaInstance("chair", position, model, world);
                     tupleTangibleObjectDestinationShape.Item2.Relations[0].Sources.Add(ei);
                     ei.RelationshipsAsSource.Add(tupleTangibleObjectDestinationShape.Item2.Relations[0]);
                     // var position = SolvingEngine.GetPossibleLocationsBasic(_currentRegionPage.selectedNode, ntp);
