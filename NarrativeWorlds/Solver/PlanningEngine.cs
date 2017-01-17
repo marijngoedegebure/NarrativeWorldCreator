@@ -15,8 +15,17 @@ namespace NarrativeWorlds
         // Selects a new tangible object class together with a destination shape, based on all information available
         public static Tuple<string, NarrativeShape> SelectTangibleObjectDestinationShape(NarrativeTimePoint ntp)
         {
+            foreach( var relation in ntp.TimePointSpecificFill.Relationships)
+            {
+                // reformat relations into dictionary of relationtype and target
+            }
 
-            return new Tuple<string, NarrativeShape>("couch", ntp.TimePointSpecificFill.NarrativeShapes[0]);
+            // Using dictionary, compare with list of available objects:
+
+            // Select best option
+
+            // Return
+            return new Tuple<string, NarrativeShape>("chair", ntp.TimePointSpecificFill.NarrativeShapes[0]);
         }
 
         // Input of a selected node and timepoint

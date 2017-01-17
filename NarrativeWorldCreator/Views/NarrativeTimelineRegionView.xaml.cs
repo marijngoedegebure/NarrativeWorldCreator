@@ -60,7 +60,7 @@ namespace NarrativeWorldCreator.Views
                         regionPage.SelectedTimePoint = timePoint.NarrativeTimePoint;
                         regionPage.fillDetailView(timePoint.NarrativeTimePoint);
                         regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
-                        regionPage.SelectedTimePoint.SetBaseShape(regionPage.selectedNode);
+                        regionPage.SelectedTimePoint.SwitchTimePoints(regionPage.selectedNode);
                     }
                 }
             }

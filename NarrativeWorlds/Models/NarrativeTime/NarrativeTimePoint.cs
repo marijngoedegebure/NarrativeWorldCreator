@@ -72,29 +72,44 @@ namespace NarrativeWorlds
             return nts;
         }
 
+        // This function allows updating
         public void SetBaseShape(Node selectedNode)
         {
             if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
             {
-                // Setup EntikaInstance with on(X, floor) relationship
-                var floorInstance = new EntikaInstance("floor");
-                var floorShape = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, floorInstance);
-                var floorRelationship = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
-                floorShape.Relations.Add(floorRelationship);
-                floorRelationship.Target = floorInstance;
-                // Add on(X, floor) relation
-                floorInstance.RelationshipsAsTarget.Add(floorRelationship);
-
-                // Add everything to fill:
-                this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
-                this.TimePointSpecificFill.FloorInstance = floorInstance;
-                this.TimePointSpecificFill.Relationships.Add(floorRelationship);
+                SetupFloorInstance(selectedNode);
             }
             else
             {
                 // Update the shape all others reference
                 this.TimePointSpecificFill.NarrativeShapes[0].Polygon = new Polygon(selectedNode.Shape.Points);
             }
+        }
+
+        // This only allows the new instantiation of the current floor instance when the timepoint is newly selected
+        public void SwitchTimePoints(Node selectedNode)
+        {
+            if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
+            {
+                SetupFloorInstance(selectedNode);
+            }
+        }
+
+        private void SetupFloorInstance(Node selectedNode)
+        {
+            // Setup EntikaInstance with on(X, floor) relationship
+            var floorInstance = new EntikaInstance("floor");
+            var floorShape = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, floorInstance);
+            var floorRelationship = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
+            floorShape.Relations.Add(floorRelationship);
+            floorRelationship.Target = floorInstance;
+            // Add on(X, floor) relation
+            floorInstance.RelationshipsAsTarget.Add(floorRelationship);
+
+            // Add everything to fill:
+            this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
+            this.TimePointSpecificFill.FloorInstance = floorInstance;
+            this.TimePointSpecificFill.Relationships.Add(floorRelationship);
         }
     }
 }

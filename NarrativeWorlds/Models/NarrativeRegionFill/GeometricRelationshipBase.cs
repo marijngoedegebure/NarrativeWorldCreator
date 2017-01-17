@@ -14,6 +14,10 @@ namespace NarrativeWorlds
             Sources = new List<EntikaInstance>();
         }
 
+        public GeometricRelationshipBase()
+        {
+        }
+
         // Base class of the following relationships: Above, against, around, facing, followon, on, parallel
         // Has a source
         public List<EntikaInstance> Sources { get; set; }

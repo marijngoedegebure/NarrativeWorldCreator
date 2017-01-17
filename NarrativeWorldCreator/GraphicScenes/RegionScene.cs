@@ -130,7 +130,7 @@ namespace NarrativeWorldCreator
 
             if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
             {
-                drawDifference();
+                drawNarrativeShapes();
             }
             if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
             {
@@ -152,26 +152,27 @@ namespace NarrativeWorldCreator
             GraphicsDevice.SamplerStates[0] = sampler;
         }
 
-        private void drawDifference()
+        private void drawNarrativeShapes()
         {
-            var basePolygon = _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes[0].Polygon;
-            var result = HelperFunctions.GetMeshForPolygon(basePolygon);
-            List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
-
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
             basicEffect.World = world;
             basicEffect.View = view;
             basicEffect.Projection = proj;
             basicEffect.VertexColorEnabled = true;
-            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            foreach (var shape in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes)
             {
-                // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                pass.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                    PrimitiveType.TriangleList,
-                    drawableTriangles.ToArray(),
-                    0,
-                    drawableTriangles.Count / 3);
+                var result = HelperFunctions.GetMeshForPolygon(shape.Polygon);
+                List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                {
+                    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                    pass.Apply();
+                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                        PrimitiveType.TriangleList,
+                        drawableTriangles.ToArray(),
+                        0,
+                        drawableTriangles.Count / 3);
+                }
             }
         }
 
@@ -510,27 +511,27 @@ namespace NarrativeWorldCreator
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
-                    // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                    Model model = LoadModel(Path.GetFileNameWithoutExtension("chair"));
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
                     // Update PlanningEngine's available information
 
                     // Select one on ?? criteria
-                    var tupleTangibleObjectDestinationShape = PlanningEngine.SelectTangibleObjectDestinationShape(ntp);
+                    var tuple = PlanningEngine.SelectTangibleObjectDestinationShape(ntp);
+                    var tangibleObjectName = tuple.Item1;
+                    var DestinationShape = tuple.Item2;
 
-                    // Get valid position from shape
-                    var position = PlanningEngine.GetPossibleLocationsV3(tupleTangibleObjectDestinationShape.Item2);
+                    // Get valid position for shape
+                    var position = PlanningEngine.GetPossibleLocationsV3(DestinationShape);
+                    Model model = LoadModel(Path.GetFileNameWithoutExtension(tangibleObjectName));
 
                     // Create entika instance and update (currently relies on floor shape being used)
                     var ei = new EntikaInstance("chair", position, model, world);
-                    tupleTangibleObjectDestinationShape.Item2.Relations[0].Sources.Add(ei);
-                    ei.RelationshipsAsSource.Add(tupleTangibleObjectDestinationShape.Item2.Relations[0]);
-                    // var position = SolvingEngine.GetPossibleLocationsBasic(_currentRegionPage.selectedNode, ntp);
-                    
-                    // var shape = SolvingEngine.GetShape(ntp, ei);
-                    NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, tupleTangibleObjectDestinationShape.Item2);
-                    ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
+                    DestinationShape.Relations[0].Sources.Add(ei);
+                    ei.RelationshipsAsSource.Add(DestinationShape.Relations[0]);
+
                     // Determine shapes for entika class instances
+                    NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
+                    ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
+                    
 
                 }
             }
