@@ -12,8 +12,8 @@ namespace NarrativeWorldCreator
     public class SelectedObjectDetailViewModel : INotifyPropertyChanged
     {
 
-        private NarrativeShape _selectedInstancedEntikaObject;
-        public NarrativeShape SelectedInstancedEntikaObject
+        private EntikaInstance _selectedInstancedEntikaObject;
+        public EntikaInstance SelectedInstancedEntikaObject
         {
             get
             {
@@ -34,7 +34,7 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void ChangeSelectedObject(NarrativeShape newlySelected)
+        internal void ChangeSelectedObject(EntikaInstance newlySelected)
         {
             SelectedInstancedEntikaObject = newlySelected;
         }

@@ -13,8 +13,6 @@ namespace NarrativeWorlds
 {
     public static class PlanningEngine
     {
-        public static List<string> WishList = new List<string>() { "chair", "couch" };
-
         // Update wishlist based on gathered information
         public static void UpdateWishList(NarrativeTimePoint ntp)
         {
@@ -48,22 +46,21 @@ namespace NarrativeWorlds
             // Using dictionary, compare with wish list:
 
             // Select best option that is allowed
-            var firstItem = WishList.First();
+            var firstItem = ntp.TimePointSpecificFill.WishList.First();
             var tangibleObject = DatabaseSearch.GetNode<TangibleObject>(firstItem);
             Tuple<string, NarrativeShape> selected = null;
             // Check whether item has a possible relationship that conforms with the allowed relationships
-            foreach (var relation in tangibleObject.RelationshipsAsSource)
+            foreach (var relation in tangibleObject.RelationshipsAsTarget)
             {
-                var listShapes = dictionary[relation.RelationshipType.DefaultName.ToLower()];
-                if (listShapes.Count > 0)
+                if (dictionary.ContainsKey(relation.RelationshipType.DefaultName.ToLower()) && dictionary[relation.RelationshipType.DefaultName.ToLower()].Count > 0)
                 {
-                    selected = new Tuple<string, NarrativeShape>(relation.RelationshipType.DefaultName.ToLower(), listShapes[0]);
+                    selected = new Tuple<string, NarrativeShape>(relation.RelationshipType.DefaultName.ToLower(), dictionary[relation.RelationshipType.DefaultName.ToLower()][0]);
                     break;
                 }
             }
 
             // remove selected item from wishlist
-            WishList.Remove(firstItem);
+            ntp.TimePointSpecificFill.WishList.Remove(firstItem);
 
             
             // For now this should always work, because the wishlist has been constructed

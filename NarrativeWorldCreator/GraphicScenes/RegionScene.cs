@@ -161,17 +161,20 @@ namespace NarrativeWorldCreator
             basicEffect.VertexColorEnabled = true;
             foreach (var shape in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes)
             {
-                var result = HelperFunctions.GetMeshForPolygon(shape.Polygon);
-                List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
-                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                if (shape.Polygon != null)
                 {
-                    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                    pass.Apply();
-                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                        PrimitiveType.TriangleList,
-                        drawableTriangles.ToArray(),
-                        0,
-                        drawableTriangles.Count / 3);
+                    var result = HelperFunctions.GetMeshForPolygon(shape.Polygon);
+                    List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                    {
+                        // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                        pass.Apply();
+                        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                            PrimitiveType.TriangleList,
+                            drawableTriangles.ToArray(),
+                            0,
+                            drawableTriangles.Count / 3);
+                    }
                 }
             }
         }
@@ -397,7 +400,8 @@ namespace NarrativeWorldCreator
                
                 foreach (Effect effect in mesh.Effects)
                 {
-                    effect.Parameters["WorldViewProjection"].SetValue(Matrix.CreateRotationX(modelRotation) * transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
+                    // Matrix.CreateRotationX(modelRotation) * , add later
+                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
                     effect.Parameters["Texture"].SetValue(texture);
                     if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
                     {
@@ -525,9 +529,9 @@ namespace NarrativeWorldCreator
                     Model model = LoadModel(Path.GetFileNameWithoutExtension(tangibleObjectName));
 
                     // Create entika instance and update (currently relies on floor shape being used)
-                    var ei = new EntikaInstance("chair", position, model, world);
-                    DestinationShape.Relations[0].Sources.Add(ei);
-                    ei.RelationshipsAsSource.Add(DestinationShape.Relations[0]);
+                    var ei = new EntikaInstance(tangibleObjectName, position, model, world);
+                    DestinationShape.Relations[0].Targets.Add(ei);
+                    ei.RelationshipsAsTarget.Add(DestinationShape.Relations[0]);
 
                     // Determine shapes for entika class instances
                     NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
@@ -542,29 +546,29 @@ namespace NarrativeWorldCreator
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
-                    // HandleObjectSelection();
+                    HandleObjectSelection();
                 }
             }
         }
 
-        //private void HandleObjectSelection()
-        //{
-        //    Ray ray = CalculateMouseRay();
-        //    foreach(NarrativeShape ieo in _currentRegionPage.selectedNode.EntikaClassInstances)
-        //    {
-        //        // Calculate/retrieve boundingbox
-        //        ieo.UpdateBoundingBoxAndShape(world);
+        private void HandleObjectSelection()
+        {
+            Ray ray = CalculateMouseRay();
+            foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.OtherObjectInstances)
+            {
+                // Calculate/retrieve boundingbox
+                ieo.UpdateBoundingBoxAndShape(world);
 
-        //        // Intersect ray with bounding box, if distance then select model
-        //        float? distance = ray.Intersects(ieo.BoundingBox);
-        //        if (distance != null)
-        //        {
-        //            _currentRegionPage.ChangeSelectedObject(ieo);
-        //            return;
-        //        }
-        //    }
-        //    _currentRegionPage.DeselectObject();
-        //}
+                // Intersect ray with bounding box, if distance then select model
+                float? distance = ray.Intersects(ieo.BoundingBox);
+                if (distance != null)
+                {
+                    _currentRegionPage.ChangeSelectedObject(ieo);
+                    return;
+                }
+            }
+            _currentRegionPage.DeselectObject();
+        }
 
         private Vector3 CalculateMouseHitOnSurface()
         {

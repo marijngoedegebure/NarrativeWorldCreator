@@ -34,11 +34,11 @@ namespace NarrativeWorlds
             }
 
             // Create new relationship shapes based on addition
-            // Fetch relationships
+            // Fetch relationships that this instance provides
             var AddedRelationsShapes = new List<NarrativeShape>();
-            foreach (var relationAsTarget in addition.TangibleObject.RelationshipsAsTarget)
+            foreach (var relationAsSource in addition.TangibleObject.RelationshipsAsSource)
             {
-                var relationType = relationAsTarget.RelationshipType;
+                var relationType = relationAsSource.RelationshipType;
                 GeometricRelationshipBase relation = null;
                 NarrativeShape shape = null;
                 // For each relationship, create shape, add this to narrativeshapes, and remove from baseshape
@@ -50,36 +50,36 @@ namespace NarrativeWorlds
                 }
                 else if (relationType.DefaultName.Equals("Against"))
                 {
-                    shape = CreateAgainstRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    shape = CreateAgainstRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Against);
                 }
                 else if (relationType.DefaultName.Equals("Around"))
                 {
-                    shape = CreateAroundRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    shape = CreateAroundRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Around);
                 }
                 else if (relationType.DefaultName.Equals("Facing"))
                 {
-                    shape = CreateFacingRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    shape = CreateFacingRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Facing);
                 }
                 else if (relationType.DefaultName.Equals("Above"))
                 {
-                    shape = CreateAboveRelationShape(addition, relationAsTarget);
+                    shape = CreateAboveRelationShape(addition, relationAsSource);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Above);
                 }
                 else if (relationType.DefaultName.Equals("Parallel"))
                 {
-                    shape = CreateParallelRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    shape = CreateParallelRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Parallel);
                 }
                 if (relation == null || shape == null)
                     continue;
                 // Make sure that any shape created for a relation, does not exceed the region bounds
                 shape.Polygon = HelperFunctions.IntersectShapes(shape.Polygon, new Polygon(ntp.Location.Shape.Points));
-                relation.Target = addition;
+                relation.Source = addition;
                 shape.Relations.Add(relation);
-                addition.RelationshipsAsTarget.Add(relation);
+                addition.RelationshipsAsSource.Add(relation);
                 // Add relation to fill
                 ntp.TimePointSpecificFill.Relationships.Add(relation);
                 AddedRelationsShapes.Add(shape);
@@ -89,20 +89,32 @@ namespace NarrativeWorlds
             // Go through list of shapes in reverse order so that it allows deletion of shapes
             foreach(var shape in ntp.TimePointSpecificFill.NarrativeShapes.Reverse<NarrativeShape>())
             {
-                var adjustedPolygon = HelperFunctions.DifferenceShapes(shape.Polygon, addition.OffLimitsShape.Polygon);
-                if (adjustedPolygon == null)
+                if (shape.zpos == addition.OffLimitsShape.zpos)
                 {
-                    // If remaining polygon equals null, remove shape from list
-                    ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
+                    var adjustedPolygon = HelperFunctions.DifferenceShapes(shape.Polygon, addition.OffLimitsShape.Polygon);
+                    if (adjustedPolygon == null || adjustedPolygon.Area() < 0.5)
+                    {
+                        // If remaining polygon equals null, remove shape from list
+                        ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
+                    }
+                    shape.Polygon = adjustedPolygon;
                 }
-                shape.Polygon = adjustedPolygon;
             }
             // Remove clearance from baseshape and add it to timepoint, if it exists
             foreach(var clearanceShape in addition.ClearanceShapes)
             {
-                foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
+                if (clearanceShape.zpos == addition.OffLimitsShape.zpos)
                 {
-                    shape.Polygon = HelperFunctions.DifferenceShapes(shape.Polygon, clearanceShape.Polygon);
+                    foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
+                    {
+                        var adjustedPolygon = HelperFunctions.DifferenceShapes(shape.Polygon, clearanceShape.Polygon);
+                        if (adjustedPolygon == null || adjustedPolygon.Area() < 0.5)
+                        {
+                            // If remaining polygon equals null, remove shape from list
+                            ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);
+                        }
+                        shape.Polygon = adjustedPolygon;
+                    }
                 }
                 ntp.TimePointSpecificFill.ClearanceShapes.Add(clearanceShape);
             }
@@ -128,13 +140,13 @@ namespace NarrativeWorlds
                             // Check whether one of areas becomes null when differenced
                             var differenceRelationAndShape = HelperFunctions.DifferenceShapes(relationalShape.Polygon, shape.Polygon);
                             var differenceShapeAndRelation = HelperFunctions.DifferenceShapes(shape.Polygon, relationalShape.Polygon);
-                            if (differenceRelationAndShape == null)
+                            if (differenceRelationAndShape == null || differenceRelationAndShape.Area() < 0.5)
                             {
                                 // Dont add relational shape to shapes, update shape
                                 shape.Polygon = differenceShapeAndRelation;
                                 continue;
                             }
-                            else if (differenceShapeAndRelation == null)
+                            else if (differenceShapeAndRelation == null || differenceShapeAndRelation.Area() < 0.5)
                             {
                                 // Remove existing shape
                                 ntp.TimePointSpecificFill.NarrativeShapes.Remove(shape);

@@ -10,6 +10,8 @@ namespace NarrativeWorlds
 {
     public class TimePointSpecificFill
     {
+        public List<string> WishList = new List<string>() { "dinner table", "lamp", "couch", "wall", "chair" };
+
         // List of Narrative Character instances
         public List<NarrativeShape> NarrativeCharacterInstances { get; set; }
 

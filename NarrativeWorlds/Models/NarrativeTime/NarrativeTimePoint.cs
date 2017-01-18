@@ -102,9 +102,9 @@ namespace NarrativeWorlds
             var floorShape = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, floorInstance);
             var floorRelationship = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
             floorShape.Relations.Add(floorRelationship);
-            floorRelationship.Target = floorInstance;
+            floorRelationship.Source = floorInstance;
             // Add on(X, floor) relation
-            floorInstance.RelationshipsAsTarget.Add(floorRelationship);
+            floorInstance.RelationshipsAsSource.Add(floorRelationship);
 
             // Add everything to fill:
             this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
