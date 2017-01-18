@@ -56,9 +56,27 @@ namespace NarrativeWorlds
                 else if (relationType.DefaultName.Equals("Around"))
                 {
                     shape = CreateAroundRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Around);
+                }
+                else if (relationType.DefaultName.Equals("Facing"))
+                {
+                    shape = CreateFacingRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Facing);
+                }
+                else if (relationType.DefaultName.Equals("Above"))
+                {
+                    shape = CreateAboveRelationShape(addition, relationAsTarget);
+                    relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Above);
+                }
+                else if (relationType.DefaultName.Equals("Parallel"))
+                {
+                    shape = CreateParallelRelationShape(addition, relationAsTarget, destinationShape.zpos);
+                    relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Parallel);
                 }
                 if (relation == null || shape == null)
                     continue;
+                // Make sure that any shape created for a relation, does not exceed the region bounds
+                shape.Polygon = HelperFunctions.IntersectShapes(shape.Polygon, new Polygon(ntp.Location.Shape.Points));
                 relation.Target = addition;
                 shape.Relations.Add(relation);
                 addition.RelationshipsAsTarget.Add(relation);
@@ -140,6 +158,13 @@ namespace NarrativeWorlds
             return ntp;
         }
 
+        private static NarrativeShape CreateFacingRelationShape(EntikaInstance addition, Relationship relationAsTarget, float zpos)
+        {
+            var maxRange = ((NumericalValueCondition)relationAsTarget.GetParameterValue("max range")).Value.Value;
+            var polygon = CreatePolygonForBBAndRadius(addition, maxRange);
+            return new NarrativeShape(zpos, polygon, NarrativeShape.ShapeType.Relationship, addition);
+        }
+
         private static NarrativeShape CreateAroundRelationShape(EntikaInstance addition, Relationship relationAsTarget, float zpos)
         {
             var radius = ((NumericalValueCondition)relationAsTarget.GetParameterValue("radius")).Value.Value;
@@ -153,6 +178,14 @@ namespace NarrativeWorlds
 
             // Remove center off limit shape from this relationshape as it is off limits
             var polygon = CreatePolygonForBBAndRadius(addition, radius);
+            return new NarrativeShape(zpos, polygon, NarrativeShape.ShapeType.Relationship, addition);
+        }
+
+        private static NarrativeShape CreateParallelRelationShape(EntikaInstance addition, Relationship relationAsTarget, float zpos)
+        {
+            var maxRange = ((NumericalValueCondition)relationAsTarget.GetParameterValue("max range")).Value.Value;
+
+            var polygon = CreatePolygonForBBAndRadius(addition, maxRange);
             return new NarrativeShape(zpos, polygon, NarrativeShape.ShapeType.Relationship, addition);
         }
 
@@ -200,6 +233,20 @@ namespace NarrativeWorlds
             points.Add(new Vec2(corners[7].X, corners[7].Y));
 
             return new NarrativeShape(zpos, new Polygon(points), NarrativeShape.ShapeType.Relationship, addition);
+        }
+
+        private static NarrativeShape CreateAboveRelationShape(EntikaInstance addition, Relationship relationAsTarget)
+        {
+            var height = ((NumericalValueCondition)relationAsTarget.GetParameterValue("height")).Value.Value;
+            Vector3[] corners = addition.BoundingBox.GetCorners();
+            // 8 corners, the last 4 are the top 4
+            List<Vec2> points = new List<Vec2>();
+            points.Add(new Vec2(corners[4].X, corners[4].Y));
+            points.Add(new Vec2(corners[5].X, corners[5].Y));
+            points.Add(new Vec2(corners[6].X, corners[6].Y));
+            points.Add(new Vec2(corners[7].X, corners[7].Y));
+
+            return new NarrativeShape(height, new Polygon(points), NarrativeShape.ShapeType.Relationship, addition);
         }
 
         private static List<Vec2> ParseShapeDescription(BaseShapeDescription ShapeDescription, Microsoft.Xna.Framework.BoundingBox bb)

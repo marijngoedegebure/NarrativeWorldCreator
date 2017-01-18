@@ -1,6 +1,7 @@
 ﻿using Common;
 using Common.Geometry;
 using Microsoft.Xna.Framework;
+using Semantics.Data;
 using Semantics.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,20 +13,61 @@ namespace NarrativeWorlds
 {
     public static class PlanningEngine
     {
-        // Selects a new tangible object class together with a destination shape, based on all information available
-        public static Tuple<string, NarrativeShape> SelectTangibleObjectDestinationShape(NarrativeTimePoint ntp)
+        public static List<string> WishList = new List<string>() { "chair", "couch" };
+
+        // Update wishlist based on gathered information
+        public static void UpdateWishList(NarrativeTimePoint ntp)
         {
-            foreach( var relation in ntp.TimePointSpecificFill.Relationships)
+            foreach (var relation in ntp.TimePointSpecificFill.Relationships)
             {
                 // reformat relations into dictionary of relationtype and target
             }
+        }
 
-            // Using dictionary, compare with list of available objects:
+        // Selects a new tangible object class together with a destination shape, based on all information available
+        public static Tuple<string, NarrativeShape> SelectTangibleObjectDestinationShape(NarrativeTimePoint ntp)
+        {
+            // Create dictionary of relationtypes combined with a list of narrative shapes that support them
+            System.Collections.Generic.Dictionary<string, List<NarrativeShape>> dictionary = new Dictionary<string, List<NarrativeShape>>();
+            foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
+            {
+                // reformat relations into dictionary of relationtype and target
+                foreach (var relation in shape.Relations)
+                {
+                    if (!dictionary.ContainsKey(relation.RelationType.ToString().ToLower()))
+                    {
+                        dictionary.Add(relation.RelationType.ToString().ToLower(), new List<NarrativeShape>() { shape });
+                    }
+                    else
+                    {
+                        dictionary[relation.RelationType.ToString().ToLower()].Add(shape);
+                    }
 
-            // Select best option
+                }
+            }
+            // Using dictionary, compare with wish list:
 
-            // Return
-            return new Tuple<string, NarrativeShape>("chair", ntp.TimePointSpecificFill.NarrativeShapes[0]);
+            // Select best option that is allowed
+            var firstItem = WishList.First();
+            var tangibleObject = DatabaseSearch.GetNode<TangibleObject>(firstItem);
+            Tuple<string, NarrativeShape> selected = null;
+            // Check whether item has a possible relationship that conforms with the allowed relationships
+            foreach (var relation in tangibleObject.RelationshipsAsSource)
+            {
+                var listShapes = dictionary[relation.RelationshipType.DefaultName.ToLower()];
+                if (listShapes.Count > 0)
+                {
+                    selected = new Tuple<string, NarrativeShape>(relation.RelationshipType.DefaultName.ToLower(), listShapes[0]);
+                    break;
+                }
+            }
+
+            // remove selected item from wishlist
+            WishList.Remove(firstItem);
+
+            
+            // For now this should always work, because the wishlist has been constructed
+            return new Tuple<string, NarrativeShape>(firstItem, selected.Item2);
         }
 
         // Input of a selected node and timepoint

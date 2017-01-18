@@ -397,7 +397,7 @@ namespace NarrativeWorldCreator
                
                 foreach (Effect effect in mesh.Effects)
                 {
-                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
+                    effect.Parameters["WorldViewProjection"].SetValue(Matrix.CreateRotationX(modelRotation) * transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
                     effect.Parameters["Texture"].SetValue(texture);
                     if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
                     {
@@ -512,7 +512,8 @@ namespace NarrativeWorldCreator
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
                     NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-                    // Update PlanningEngine's available information
+                    // Update PlanningEngine's available information, update wishlist
+                    PlanningEngine.UpdateWishList(ntp);
 
                     // Select one on ?? criteria
                     var tuple = PlanningEngine.SelectTangibleObjectDestinationShape(ntp);
