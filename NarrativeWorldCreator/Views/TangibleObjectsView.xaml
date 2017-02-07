@@ -15,7 +15,8 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Other objects" TextWrapping="Wrap"/>
-        <ListView Grid.Column="0"
+        <ListView Name="ToListView"
+            Grid.Column="0"
                   Grid.Row="1"
                   Margin="10" 
                   ItemsSource = "{Binding Path = TangibleObjects}"

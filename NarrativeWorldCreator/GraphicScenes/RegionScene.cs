@@ -56,7 +56,7 @@ namespace NarrativeWorldCreator
             ObjectPlacement = 1,
             ObjectDragging = 2,
             ObjectDeletion = 3,
-            ShowMinkowskiMinus = 4,
+            SuggestionMode = 4
         }
 
         private RegionFillingModes CurrentRegionFillingMode = RegionFillingModes.None;
@@ -68,6 +68,11 @@ namespace NarrativeWorldCreator
         }
         private DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
         private KeyboardState _previousKeyboardState;
+
+        private Model Beachball;
+
+        private Model Ship;
+
         #endregion
 
         #region Methods
@@ -93,6 +98,10 @@ namespace NarrativeWorldCreator
 
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             _currentRegionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+
+            // Load test models
+            Beachball = Content.Load<Model>("Models/BeachBall");
+            Ship = Content.Load<Model>("Models/Ship");
         }
 
         private Model LoadModel(string assetName)
@@ -159,12 +168,33 @@ namespace NarrativeWorldCreator
             basicEffect.View = view;
             basicEffect.Projection = proj;
             basicEffect.VertexColorEnabled = true;
+            var selectedTO = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
             foreach (var shape in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes)
             {
                 if (shape.Polygon != null)
                 {
                     var result = HelperFunctions.GetMeshForPolygon(shape.Polygon);
-                    List<VertexPositionColor> drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                    // If shape is compatible with currently selected entika object that can be placed, use a different color
+                    List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
+                    if (selectedTO != null)
+                    {
+                        var query = from ShapeRelation in shape.Relations
+                                    from toRelation in selectedTO.RelationshipsAsTarget
+                                    where ShapeRelation.Source.Name.Equals(toRelation.Source.DefaultName)
+                                    select ShapeRelation;
+                        if(query.Any())
+                        {
+                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
+                        }
+                        else
+                        {
+                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                        }
+                    }
+                    else
+                    {
+                        drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                    }
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
                         // This is the all-important line that sets the effect, and all of its settings, on the graphics device
@@ -212,20 +242,6 @@ namespace NarrativeWorldCreator
                         0,
                         regionPoints.Count/3);
                 }
-                //foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-                //{
-                //    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                //    pass.Apply();
-                //    GraphicsDevice.SetVertexBuffer(vertexBuffer);
-                //    GraphicsDevice.DrawUserIndexedPrimitives<VertexPositionColor>(
-                //        PrimitiveType.TriangleList,
-                //        _currentRegionPage.selectedNode.RegionOutlinePoints.ToArray(),
-                //        0,
-                //        _currentRegionPage.selectedNode.RegionOutlinePoints.Count,
-                //        _currentRegionPage.selectedNode.triangleListIndices.ToArray(),
-                //        0,
-                //        _currentRegionPage.selectedNode.triangleListIndices.Count / 3);
-                //}
             }
 
             // Draw lines for each triangle
@@ -279,47 +295,6 @@ namespace NarrativeWorldCreator
                     }
                 }
             }
-
-            // Draw lines around polygon
-            //if (_currentRegionPage.selectedNode.RegionOutlinePoints.Count > 1)
-            //{
-            //    GraphicsDevice.RasterizerState = RasterizerState.CullNone;
-            //    Color color;
-            //    if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
-            //        color = Color.Purple;
-            //    else
-            //        color = Color.Black;
-            //    List<Vector3> points = _currentRegionPage.selectedNode.RegionOutlinePoints;
-            //    VertexPositionColor[] verticesLine;
-            //    for (int i = 0; i < points.Count - 1; i++)
-            //    {
-
-            //        // Calculate center and rotation
-            //        Vector3 center = (points[i] + points[i + 1]) / 2;
-            //        verticesLine = CreateLine(points[i], points[i + 1], color);
-
-            //        foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-            //        {
-            //            pass.Apply();
-            //            GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-            //                PrimitiveType.TriangleList,
-            //                verticesLine,
-            //                0,
-            //                verticesLine.Length/3);
-            //        }
-            //    }
-            //    // Calculate center and rotation
-            //    verticesLine = CreateLine(points[0], points[points.Count-1], color);
-            //    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-            //    {
-            //        pass.Apply();
-            //        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-            //            PrimitiveType.TriangleList,
-            //            verticesLine,
-            //            0,
-            //            verticesLine.Length / 3);
-            //    }
-            //}
 
             // Always draw the vertices
             if (_currentRegionPage.selectedNode.Shape.Points.Count > 0)
@@ -387,44 +362,62 @@ namespace NarrativeWorldCreator
 
         public void drawEntikaInstance(EntikaInstance instance)
         {
-            Texture2D texture = Content.Load<Texture2D>("maps/couch_diff"); ;
+            Texture2D texture = Content.Load<Texture2D>("maps/couch_diff");
             Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
             instance.Model.CopyAbsoluteBoneTransformsTo(transforms);
             Vector3 modelPosition = instance.Position;
             // Rotation should be in radians, rotates model to top down view
             float modelRotation = ConvertToRadians(90.0f);
-            
-            // Draw the model. A model can have multiple meshes, so loop.
-            foreach (ModelMesh mesh in instance.Model.Meshes)
-            {
-               
-                foreach (Effect effect in mesh.Effects)
-                {
-                    // Matrix.CreateRotationX(modelRotation) * , add later
-                    effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
-                    effect.Parameters["Texture"].SetValue(texture);
-                    if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
-                    {
-                        effect.CurrentTechnique = effect.Techniques["TexturedSelected"];
-                    }
-                    else
-                    {
-                        effect.CurrentTechnique = effect.Techniques["Textured"];
-                    }
-                    //foreach (EffectPass pass in effect.CurrentTechnique.Passes)
-                    //{
-                    //    pass.Apply();
-                    //    //effect.EnableDefaultLighting();
-                    //    //effect.World = transforms[mesh.ParentBone.Index] *
-                    //    //    Matrix.CreateRotationY(modelRotation)
-                    //    //    * Matrix.CreateTranslation(modelPosition);
-                    //    //effect.View = view;
-                    //    //effect.Projection = proj;
-                    //    //effect.TextureEnabled = true;
-                    //    //effect.Texture = texture;
-                    //    // Draw the mesh, using the effects set above.
 
-                    //}
+            // Draw the model. A model can have multiple meshes, so loop.
+            //foreach (ModelMesh mesh in instance.Model.Meshes)
+            //{
+
+            //    foreach (Effect effect in mesh.Effects)
+            //    {
+            //        // Matrix.CreateRotationX(modelRotation) * , add later
+            //        effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
+            //        effect.Parameters["Texture"].SetValue(texture);
+            //        if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
+            //        {
+            //            effect.CurrentTechnique = effect.Techniques["TexturedSelected"];
+            //        }
+            //        else
+            //        {
+            //            effect.CurrentTechnique = effect.Techniques["Textured"];
+            //        }
+            //        mesh.Draw();
+            //    }
+            //}
+
+            // FBX model draw:
+            if (!instance.Equals(_currentRegionPage.SelectedEntikaObject))
+            {
+                foreach (ModelMesh mesh in Beachball.Meshes)
+                {
+                    foreach (BasicEffect effect in mesh.Effects)
+                    {
+                        effect.EnableDefaultLighting();
+                        effect.AmbientLightColor = new Vector3(0, 0, 0);
+                        effect.View = view;
+                        effect.World = Matrix.CreateTranslation(modelPosition) * world;
+                        effect.Projection = proj;
+                    }
+                    mesh.Draw();
+                }
+            }
+            else
+            {
+                foreach (ModelMesh mesh in Beachball.Meshes)
+                {
+                    foreach (BasicEffect effect in mesh.Effects)
+                    {
+                        effect.EnableDefaultLighting();
+                        effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
+                        effect.View = view;
+                        effect.World = Matrix.CreateTranslation(modelPosition) * world;
+                        effect.Projection = proj;
+                    }
                     mesh.Draw();
                 }
             }
@@ -499,19 +492,23 @@ namespace NarrativeWorldCreator
         {
             if (_keyboardState.IsKeyDown(Keys.LeftControl))
             {
-                CurrentRegionFillingMode = RegionFillingModes.ObjectPlacement;
+                CurrentRegionFillingMode = RegionFillingModes.SuggestionMode;
             }
             else if (_keyboardState.IsKeyDown(Keys.LeftShift))
             {
                 CurrentRegionFillingMode = RegionFillingModes.ObjectDragging;
+            }
+            else if(_keyboardState.IsKeyDown(Keys.P))
+            {
+                CurrentRegionFillingMode = RegionFillingModes.ObjectPlacement;
             }
             else
             {
                 CurrentRegionFillingMode = RegionFillingModes.None;
             }
 
-            // Handle object placement
-            if (CurrentRegionFillingMode == RegionFillingModes.ObjectPlacement)
+            // Handle object suggestion mode
+            if (CurrentRegionFillingMode == RegionFillingModes.SuggestionMode)
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
@@ -536,8 +533,15 @@ namespace NarrativeWorldCreator
                     // Determine shapes for entika class instances
                     NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
                     ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
-                    
+                }
+            }
 
+            // Handle object placement
+            if (CurrentRegionFillingMode == RegionFillingModes.ObjectPlacement)
+            {
+                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                {
+                    HandleObjectPlacement();
                 }
             }
 
@@ -548,7 +552,40 @@ namespace NarrativeWorldCreator
                 {
                     HandleObjectSelection();
                 }
+
+                if (_currentRegionPage.SelectedEntikaObject != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
+                {
+                    HandleObjectRemoval();
+                }
             }
+        }
+
+        private void HandleObjectRemoval()
+        {
+            var ei = _currentRegionPage.SelectedEntikaObject;
+            NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
+            SolvingEngine.RemoveEntikaInstanceFromTimePoint(ntp, ei);
+            _currentRegionPage.DeselectObject();
+        }
+
+        private void HandleObjectPlacement()
+        {
+            // Retrieve selected Tangible Object
+            var to = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
+
+            // Get mouse coordinates
+            var mouseCoords = CalculateMouseHitOnSurface();
+
+            // Place object in spot
+            Model model = LoadModel(Path.GetFileNameWithoutExtension(to.DefaultName));
+            var ei = new EntikaInstance(to.DefaultName, mouseCoords, model, world);
+
+            // Todo, figure out if place is correct (within one of the shapes that allows placement of this object)
+            // This will result in a destination shape and proper relations
+            NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
+            var DestinationShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
+            NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
+            ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
         }
 
         private void HandleObjectSelection()

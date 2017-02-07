@@ -372,5 +372,12 @@ namespace NarrativeWorlds
             }
             return ntp;
         }
+
+        public static void RemoveEntikaInstanceFromTimePoint(NarrativeTimePoint ntp, EntikaInstance ei)
+        {
+            // Remove object from list of entika instances
+            ntp.TimePointSpecificFill.OtherObjectInstances.Remove(ei);
+            // Add shape back to shapes too which it belonged.
+        }
     }
 }

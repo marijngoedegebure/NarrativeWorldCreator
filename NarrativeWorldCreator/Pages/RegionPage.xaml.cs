@@ -53,6 +53,11 @@ namespace NarrativeWorldCreator
             NarrativeEntitiesView.DataContext = neVM;
         }
 
+        public TangibleObject RetrieveSelectedTangibleObjectFromListView()
+        {
+            return (TangibleObject) TangibleObjectsView.ToListView.SelectedItem;
+        }
+
         private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
         {
             TangibleObjectsViewModel toVM = new TangibleObjectsViewModel();
