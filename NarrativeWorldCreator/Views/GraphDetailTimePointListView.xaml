@@ -7,25 +7,27 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ItemsControl
+        <ListView
             Margin="10"
-            Name="icTimePointList" 
-            ItemsSource = "{Binding Path = NarrativeTimePoints}"
-            ScrollViewer.VerticalScrollBarVisibility="Visible">
-            <ItemsControl.ItemsPanel>
+            Name="icTimePointList"
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            ItemsSource = "{Binding Path = NarrativeTimePoints}">
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"></StackPanel>
                 </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Name="item" Orientation="Vertical" Margin="5">
-                        <TextBlock Text="{Binding Path = TimePoint, Mode = OneWay}" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Path = NarrativeEvent.NarrativeAction.Name, Mode = OneWay}" />
-                        <TextBlock Text="{Binding Path = Location.LocationName, Mode = OneWay}" />
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.TimePoint, Mode = OneWay, StringFormat='Timepoint: {0}'}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name, Mode = OneWay,  StringFormat='Event: {0}'}" />
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.Location.LocationName, Mode = OneWay, StringFormat='Location: {0}'}" />
+                        <TextBlock Text="{Binding Path = NarrativeCharactersForSelectedNodeCount, Mode = OneWay, StringFormat='# of characters: {0}'}" />
+                        <TextBlock Text="{Binding Path = NarrativeThingsForSelectedNodeCount, Mode = OneWay, StringFormat='# of things: {0}'}" />
                     </StackPanel>
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

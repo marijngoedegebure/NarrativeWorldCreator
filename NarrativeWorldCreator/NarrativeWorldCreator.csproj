@@ -125,6 +125,7 @@
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionScene.cs" />
+    <Compile Include="ViewModel\GraphDetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NarrativeEntitiesViewModel.cs" />
     <Compile Include="ViewModel\NarrativeEntityViewModel.cs" />

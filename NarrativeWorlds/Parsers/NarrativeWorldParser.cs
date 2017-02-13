@@ -50,6 +50,7 @@ namespace NarrativeWorlds
             // InitialTimePoint does not have a location node associated with it, possible solution would be the addition of annotation of a starting node for the story
             NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(timePointCount);
             List<NarrativePredicate> predicates = NarrativeWorld.Narrative.getNarrativePredicates(AtPredicateName);
+            // First check location with predicates, all characters should be placed
             foreach(NarrativePredicate predicate in predicates)
             {
                 if(predicate.NarrativeObjects[0].Type.Name.Equals(CharacterTypeName))
@@ -65,6 +66,13 @@ namespace NarrativeWorlds
                     initialTimePoint.LocationOfNarrativeThings[nt] = NarrativeWorld.Graph.getNode(predicate.NarrativeObjects[1].Name);
                 }
             }
+            // Set starting place of objects to null if not part of initialization
+            foreach (NarrativeThing nt in NarrativeWorld.NarrativeThings)
+            {
+                if (!initialTimePoint.LocationOfNarrativeThings.ContainsKey(nt))
+                    initialTimePoint.LocationOfNarrativeThings[nt] = null;
+            }
+
             NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(initialTimePoint);
             timePointCount++;
             // Check has predicate for objects that have no location yet

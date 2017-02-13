@@ -12,8 +12,8 @@ namespace NarrativeWorldCreator
     public class GraphDetailTimePointListViewModel : INotifyPropertyChanged
     {
 
-        private ObservableCollection<NarrativeTimePoint> _narrativeTimePoints;
-        public ObservableCollection<NarrativeTimePoint> NarrativeTimePoints
+        private ObservableCollection<GraphDetailTimePointViewModel> _narrativeTimePoints;
+        public ObservableCollection<GraphDetailTimePointViewModel> NarrativeTimePoints
         {
             get
             {
@@ -36,12 +36,14 @@ namespace NarrativeWorldCreator
 
         public void LoadTimePoints(Node selectedNode)
         {
-            ObservableCollection<NarrativeTimePoint> ntpsVM = new ObservableCollection<NarrativeTimePoint>();
+            ObservableCollection<GraphDetailTimePointViewModel> ntpsVM = new ObservableCollection<GraphDetailTimePointViewModel>();
             List<NarrativeTimePoint> ntps = SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode);
             // Load timepoint viewmodels based on narrative timepoints
             foreach (NarrativeTimePoint ntp in ntps)
             {
-                ntpsVM.Add(ntp);
+                var rdtpvm = new GraphDetailTimePointViewModel();
+                rdtpvm.LoadCharactersAndThings(selectedNode, ntp);
+                ntpsVM.Add(rdtpvm);
             }
             NarrativeTimePoints = ntpsVM;
         }

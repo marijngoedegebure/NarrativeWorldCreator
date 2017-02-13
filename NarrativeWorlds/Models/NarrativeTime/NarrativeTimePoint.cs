@@ -64,7 +64,7 @@ namespace NarrativeWorlds
             List<NarrativeThing> nts = new List<NarrativeThing>();
             foreach (KeyValuePair<NarrativeThing, Node> entry in this.LocationOfNarrativeThings)
             {
-                if (entry.Value.Equals(selectedNode))
+                if (entry.Value != null && entry.Value.Equals(selectedNode))
                 {
                     nts.Add(entry.Key);
                 }

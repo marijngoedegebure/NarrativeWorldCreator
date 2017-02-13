@@ -183,5 +183,10 @@ namespace NarrativeWorldCreator
         {
             selectedNode.Shape = new Common.Geometry.Shape(new List<Common.Vec2>());            
         }
+
+        public void SetMessageBoxText(string message)
+        {
+            MessageTextBox.Text = message;
+        }
     }
 }

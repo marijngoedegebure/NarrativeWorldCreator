@@ -373,11 +373,6 @@ namespace Common
                         continue;
                     }
                 }
-                for (int i = 0; i < contour.Count; ++i)
-                {
-                    contour[i].X = Math.Round(contour[i].X);
-                    contour[i].Y = Math.Round(contour[i].Y);
-                }
             }
         }
 

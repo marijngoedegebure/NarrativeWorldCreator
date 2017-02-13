@@ -74,13 +74,9 @@ namespace NarrativeWorldCreator
         internal void fillDetailView(Node location)
         {
             this.selectedNode = location;
-            narrative_location_name.Content = location.LocationName;
-            number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(location.LocationName).Distinct().Count();
-            number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, location.LocationName).Distinct().Count();
-            number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, location.LocationName).Distinct().Count();
             // Get NarrativeTimePoints associated with the node
             List<NarrativeTimePoint> narrativeTimePointsOfNode = SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(location);
-            (GraphDetailTimePointListControl.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints = new ObservableCollection<NarrativeTimePoint>(narrativeTimePointsOfNode);
+            (GraphDetailTimePointListControl.DataContext as GraphDetailTimePointListViewModel).LoadTimePoints(selectedNode);
             selected_region_detail_grid.Visibility = Visibility.Visible;
         }
 

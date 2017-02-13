@@ -129,6 +129,7 @@ namespace NarrativeWorlds
                         var intersection = HelperFunctions.IntersectShapes(shape.Polygon, relationalShape.Polygon);
                         if (intersection != null)
                         {
+                            intersection.removeExceedingPoints();
                             // Update intersection shape to intersection polygon
                             intersectionNarrativeShape.Polygon = intersection;
                             // Inherit relations of other shape
@@ -140,6 +141,7 @@ namespace NarrativeWorlds
                             // Check whether one of areas becomes null when differenced
                             var differenceRelationAndShape = HelperFunctions.DifferenceShapes(relationalShape.Polygon, shape.Polygon);
                             var differenceShapeAndRelation = HelperFunctions.DifferenceShapes(shape.Polygon, relationalShape.Polygon);
+                            // If this one is completely contained by the current shape, 
                             if (differenceRelationAndShape == null || differenceRelationAndShape.Area() < 0.5)
                             {
                                 // Dont add relational shape to shapes, update shape
@@ -210,17 +212,28 @@ namespace NarrativeWorlds
             XNApoints.Add(new Vector2(corners[1].X, corners[1].Y));
             XNApoints.Add(new Vector2(corners[2].X, corners[2].Y));
             XNApoints.Add(new Vector2(corners[3].X, corners[3].Y));
+            var inversteTranslationPoints = new List<Vector2>();
             var scaledPoints = new List<Vector2>();
+            var translatedPoints = new List<Vector2>();
             // First translate to 0,0 scale and then translate back
             var translationMatrix = Matrix.CreateTranslation(addition.Position);
             var inverseTranslationMatrix = Matrix.CreateTranslation(-addition.Position);
             var scaleMatrix = Matrix.CreateScale(radius);
             foreach (var xnaPoint in XNApoints)
             {
-                var translatedPoint = Vector2.Transform(xnaPoint, inverseTranslationMatrix);
-                var scaledPoint = Vector2.Transform(translatedPoint, scaleMatrix);
-                scaledPoints.Add(Vector2.Transform(scaledPoint, translationMatrix));
+                inversteTranslationPoints.Add(Vector2.Transform(xnaPoint, inverseTranslationMatrix));
             }
+
+            foreach (var inverseTranslatedPoint in inversteTranslationPoints)
+            {
+                scaledPoints.Add(Vector2.Transform(inverseTranslatedPoint, scaleMatrix));
+            }
+
+            foreach (var scaledPoint in scaledPoints)
+            {
+                translatedPoints.Add(Vector2.Transform(scaledPoint, translationMatrix));
+            }
+
             // Convert into polygon points
             List<Vec2> points = new List<Vec2>();
             foreach (var point in scaledPoints)

@@ -184,16 +184,16 @@ namespace NarrativeWorldCreator
                                     select ShapeRelation;
                         if(query.Any())
                         {
-                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
+                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Green);
                         }
                         else
                         {
-                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
                         }
                     }
                     else
                     {
-                        drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Aquamarine);
+                        drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
                     }
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
@@ -526,9 +526,18 @@ namespace NarrativeWorldCreator
                     Model model = LoadModel(Path.GetFileNameWithoutExtension(tangibleObjectName));
 
                     // Create entika instance and update (currently relies on floor shape being used)
-                    var ei = new EntikaInstance(tangibleObjectName, position, model, world);
-                    DestinationShape.Relations[0].Targets.Add(ei);
-                    ei.RelationshipsAsTarget.Add(DestinationShape.Relations[0]);
+                    var ei = new EntikaInstance(tangibleObjectName, position, Beachball, world);
+
+                    // Add new target to each of the overlapping relations of the shape
+                    var query = from ShapeRelation in DestinationShape.Relations
+                                from toRelation in ei.TangibleObject.RelationshipsAsTarget
+                                where ShapeRelation.Source.Name.Equals(toRelation.Source.DefaultName)
+                                select ShapeRelation;
+                    foreach (var relation in query)
+                    {
+                        relation.Targets.Add(ei);
+                        ei.RelationshipsAsTarget.Add(relation);
+                    } 
 
                     // Determine shapes for entika class instances
                     NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
@@ -572,18 +581,47 @@ namespace NarrativeWorldCreator
         {
             // Retrieve selected Tangible Object
             var to = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
+            if (to == null)
+            {
+                _currentRegionPage.SetMessageBoxText("Please select an object from the list");
+                return;
+            }
 
             // Get mouse coordinates
             var mouseCoords = CalculateMouseHitOnSurface();
 
-            // Place object in spot
-            Model model = LoadModel(Path.GetFileNameWithoutExtension(to.DefaultName));
-            var ei = new EntikaInstance(to.DefaultName, mouseCoords, model, world);
-
-            // Todo, figure out if place is correct (within one of the shapes that allows placement of this object)
-            // This will result in a destination shape and proper relations
+            // Check if mouse coordinates are inside a shape
             NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-            var DestinationShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
+            NarrativeShape DestinationShape =  null;
+            // Todo, figure out if place is correct (within one of the shapes that allows placement of this object)
+            foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
+            {
+                if (shape.Polygon.Contains(new Vec2d(mouseCoords.X, mouseCoords.Y)))
+                {
+                    DestinationShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
+                }                
+            }
+            if (DestinationShape == null)
+            {
+                _currentRegionPage.SetMessageBoxText("Selected position outside of allowed shape");
+                return;
+            }
+            // Create entika instance
+            Model model = LoadModel(Path.GetFileNameWithoutExtension(to.DefaultName));
+            var ei = new EntikaInstance(to.DefaultName, mouseCoords, Beachball, world);
+
+            // Add new target to each of the overlapping relations of the shape and of the instance
+            var query = from ShapeRelation in DestinationShape.Relations
+                        from toRelation in ei.TangibleObject.RelationshipsAsTarget
+                        where ShapeRelation.Source.Name.Equals(toRelation.Source.DefaultName)
+                        select ShapeRelation;
+            foreach (var relation in query)
+            {
+                relation.Targets.Add(ei);
+                ei.RelationshipsAsTarget.Add(relation);
+            }
+            
+            // Store changes
             NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
             ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
         }
