@@ -6,8 +6,8 @@
 	(:predicates
 		(dead ?x - character)
 		(has ?character - character ?thing - thing)
-		(at ?character - character ?place - place)
-		(at ?thing - thing ?place - place)
+		(atChar ?character - character ?place - place)
+		(atThing ?thing - thing ?place - place)
 		(poisoned ?object - thing)
 		(poisoned ?subject - character)
 		(loves ?character - character ?subject - character)
@@ -24,62 +24,67 @@
 	)
 	(:action move
 	 :parameters (?character - character ?from ?to - place)
-	 :preconditions (and (at ?character ?from) (not (at ?character ?to)))
-	 :effect (and (at ?character ?to) (not (at ?character ?from)))
+	 :preconditions (and (atChar ?character ?from) (not (atChar ?character ?to)))
+	 :effect (and (atChar ?character ?to) (not (atChar ?character ?from)))
 	)
 	(:action pickup
 	 :parameters (?character - character ?object - thing ?place - place)
-	 :preconditions (and (at ?object ?place) (at ?character ?place))
-	 :effect (and (not (at ?object ?place) (has ?character ?object)))
+	 :preconditions (and (atThing ?object ?place) (atThing ?character ?place))
+	 :effect (and (not (atThing ?object ?place) (has ?character ?object)))
 	)
 	(:action talk
 	 :parameters (?character - character ?subject - character ?place - place)
-	 :preconditions (and (at ?character ?place) (at ?subject ?place))
+	 :preconditions (and (atChar ?character ?place) (atChar ?subject ?place))
 	 :postconditions 
 	)
 	(:action talkmultiple
 	 :parameters (?character - character ?subject - character ?subject2 - character ?place - place)
-	 :preconditions (and (and ((at ?character ?place) (at ?subject ?place))) (at ?subject2 ?place))
+	 :preconditions (and (and ((atChar ?character ?place) (atChar ?subject ?place))) (atChar ?subject2 ?place))
 	 :postconditions 
 	)
 	(:action fallinlove
 	 :parameters (?character - character ?subject - character ?place - place)
-	 :preconditions (and (at ?character ?place) (at ?subject ?place))
+	 :preconditions (and (atChar ?character ?place) (atChar ?subject ?place))
 	 :postconditions (loves ?character ?subject)
 	)
 	(:action hides
 	 :parameters (?character - character ?place - place)
-	 :preconditions (at ?character ?place)
+	 :preconditions (atChar ?character ?place)
 	 :postconditions (hidden ?character)
 	)
 	(:action poisons
 	 :parameters (?character - character ?object - thing ?place - place)
-	 :preconditions (and (at ?character ?place) (at ?object ?place))
+	 :preconditions (and (atChar ?character ?place) (atThing ?object ?place))
 	 :postconditions (poisoned ?object)
 	)
 	(:action swaps
 	 :parameters (?character - character ?object1 - thing ?object2 - thing2 ?place - place)
-	 :preconditions (and (and (and ((at ?character ?place) (at ?object1 ?place))) (and (at ?object2 ?place) (poisoned (?object1))) (not (poisoned(?object2))))
+	 :preconditions (and (and (and ((atChar ?character ?place) (atThing ?object1 ?place))) (and (atThing ?object2 ?place) (poisoned (?object1))) (not (poisoned(?object2))))
 	 :postconditions (and (not (poisoned (?object1))) (poisoned (?object2)))
 	)
 	(:action placeon
 	 :parameters (?character - character ?object1 - thing ?object2 -thing ?place - place)
-	 :preconditions (and (and ((at ?character ?place) (at ?object1 ?place))) (at ?object2 ?place))
+	 :preconditions (and (and ((atChar ?character ?place) (atThing ?object1 ?place))) (atThing ?object2 ?place))
 	 :postconditions (on ?object1 ?object2)
 	)
-	(:action drinks
+	(:action drink
 	 :parameters (?character - character ?object - thing ?place - place)
-	 :preconditions (and (and ((at ?character ?place) (at ?subject ?place))) poisoned(?object))
+	 :preconditions (and (and ((atChar ?character ?place) (atThing ?subject ?place))) poisoned(?object))
 	 :postconditions (poisoned ?character - character)
 	)
 	(:action dies
 	 :parameters (?character - character ?place - place)
-	 :preconditions (and (at ?character ?place) (poisoned ?character))
+	 :preconditions (and (atChar ?character ?place) (poisoned ?character))
 	 :postconditions (dead ?character)
 	)
 	(:action marry
 	 :parameters (?character1 - character ?character1 - character ?place - place)
-	 :preconditions (and (at ?character1 ?place) (at ?character1 ?place))
+	 :preconditions (and (atChar ?character1 ?place) (atChar ?character1 ?place))
 	 :postconditions (married ?character1 ?character2)
+	)
+	(:action give
+	 :parameters (?character1 - character ?character2 - character ?object - thing ?place - place)
+	 :preconditions (and (and ((atChar ?character1 ?place) (atChar ?character2 ?place))) (and (atThing ?object ?place) (has ?character1 ?object)))
+	 :postconditions (and (not (on ?character1 ?object)) (has ?character2 ?object))
 	)
 )

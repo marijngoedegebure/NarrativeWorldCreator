@@ -22,9 +22,19 @@ namespace NarrativeWorldCreator
         public String problemPath;
         public String planPath;
         */
-        public String domainPath = "..\\..\\..\\Narratives\\examples-pddl\\red-cap-domain.pddl";
-        public String problemPath = "..\\..\\..\\Narratives\\examples-pddl\\red-cap-problem.pddl";
-        public String planPath = "..\\..\\..\\Narratives\\examples-pddl\\red-cap-plan.pddl";
+        public static String basePath = "..\\..\\..\\Narratives\\examples-pddl\\";
+
+        public static String redCapDomainPath = basePath + "red-cap-domain.pddl";
+        public static String redCapProblemPath = basePath + "red-cap-problem.pddl";
+        public static String redCapPlanPath = basePath + "red-cap-plan.pddl";
+
+        public static String castleDomainPath = basePath + "castle-domain.pddl";
+        public static String castleProblemPath = basePath + "castle-problem.pddl";
+        public static String castlePlanPath = basePath + "castle-plan.pddl";
+
+        public static String domainPath = castleDomainPath;
+        public static String problemPath = castleProblemPath;
+        public static String planPath = castlePlanPath;
 
         public InitPage()
         {
