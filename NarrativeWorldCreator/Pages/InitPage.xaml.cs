@@ -32,9 +32,9 @@ namespace NarrativeWorldCreator
         public static String castleProblemPath = basePath + "castle-problem.pddl";
         public static String castlePlanPath = basePath + "castle-plan.pddl";
 
-        public static String domainPath = castleDomainPath;
-        public static String problemPath = castleProblemPath;
-        public static String planPath = castlePlanPath;
+        public static String domainPath = redCapDomainPath;
+        public static String problemPath = redCapProblemPath;
+        public static String planPath = redCapPlanPath;
 
         public InitPage()
         {

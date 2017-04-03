@@ -1,8 +1,8 @@
-(define (domain red-cap)
+(define (domain castle)
 	(:requirements :strips :typing)
 	(:types 
-		character thing place - object
-		hero - character)
+		character thing place - object)
+	)
 	(:predicates
 		(dead ?x - character)
 		(has ?character - character ?thing - thing)
