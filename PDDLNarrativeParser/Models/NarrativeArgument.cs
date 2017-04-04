@@ -10,6 +10,7 @@ namespace PDDLNarrativeParser
     public class NarrativeArgument
     {
         public int NarrativeArgumentId { get; set; }
+        public string Name { get; set; }
         public NarrativeObjectType Type { get; set; }
 
         public NarrativeArgument()

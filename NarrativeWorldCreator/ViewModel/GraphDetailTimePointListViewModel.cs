@@ -42,7 +42,7 @@ namespace NarrativeWorldCreator
             foreach (NarrativeTimePoint ntp in ntps)
             {
                 var rdtpvm = new GraphDetailTimePointViewModel();
-                rdtpvm.LoadCharactersAndThings(selectedNode, ntp);
+                rdtpvm.LoadObjects(selectedNode, ntp);
                 ntpsVM.Add(rdtpvm);
             }
             NarrativeTimePoints = ntpsVM;

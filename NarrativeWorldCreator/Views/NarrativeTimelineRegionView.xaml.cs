@@ -59,7 +59,7 @@ namespace NarrativeWorldCreator.Views
                         var regionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
                         regionPage.SelectedTimePoint = timePoint.NarrativeTimePoint;
                         regionPage.fillDetailView(timePoint.NarrativeTimePoint);
-                        regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
+                        // regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
                         regionPage.SelectedTimePoint.SwitchTimePoints(regionPage.selectedNode);
                     }
                 }

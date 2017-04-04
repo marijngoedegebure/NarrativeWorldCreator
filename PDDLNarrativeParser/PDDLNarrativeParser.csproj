@@ -69,6 +69,7 @@
     <Compile Include="Models\Narrative.cs" />
     <Compile Include="Models\NarrativeAction.cs" />
     <Compile Include="Models\NarrativeArgument.cs" />
+    <Compile Include="Models\NarrativePredicateValued.cs" />
     <Compile Include="Models\NarrativeEvent.cs" />
     <Compile Include="Models\NarrativeObject.cs" />
     <Compile Include="Models\NarrativeObjectType.cs" />

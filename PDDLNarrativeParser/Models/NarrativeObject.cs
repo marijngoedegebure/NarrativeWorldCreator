@@ -11,7 +11,6 @@ namespace PDDLNarrativeParser
         public int NarrativeObjectId { get; set; }
         public string Name { get; set; }
         public NarrativeObjectType Type { get; set; }
-        public bool Placed { get; set; }
 
         public NarrativeObject()
         {

@@ -26,31 +26,17 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private int _narrativeCharactersForSelectedNodeCount;
-        public int NarrativeCharactersForSelectedNodeCount
+        private ObservableCollection<NarrativeObjectEntikaLink> _narrativeObjectEntikaLinks;
+        public ObservableCollection<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks
         {
             get
             {
-                return _narrativeCharactersForSelectedNodeCount;
+                return _narrativeObjectEntikaLinks;
             }
             set
             {
-                _narrativeCharactersForSelectedNodeCount = value;
-                OnPropertyChanged("NarrativeCharactersForSelectedNodeCount");
-            }
-        }
-
-        private int _narrativeThingsForSelectedNodeCount;
-        public int NarrativeThingsForSelectedNodeCount
-        {
-            get
-            {
-                return _narrativeThingsForSelectedNodeCount;
-            }
-            set
-            {
-                _narrativeThingsForSelectedNodeCount = value;
-                OnPropertyChanged("NarrativeThingsForSelectedNodeCount");
+                _narrativeObjectEntikaLinks = value;
+                OnPropertyChanged("NarrativeObjectEntikaLinks");
             }
         }
 
@@ -62,22 +48,16 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void LoadCharactersAndThings(Node selectedNode, NarrativeTimePoint ntp)
+        internal void LoadObjects(Node selectedNode, NarrativeTimePoint ntp)
         {
             this.NarrativeTimePoint = ntp;
-            ObservableCollection<NarrativeCharacter> ocnc = new ObservableCollection<NarrativeCharacter>();
-            ObservableCollection<NarrativeThing> ocnt = new ObservableCollection<NarrativeThing>();
+            ObservableCollection<NarrativeObjectEntikaLink> nooc = new ObservableCollection<NarrativeObjectEntikaLink>();
 
-            foreach (NarrativeCharacter nc in ntp.GetNarrativeCharactersByNode(selectedNode))
+            foreach (NarrativeObjectEntikaLink no in ntp.NarrativeObjectEntikaLinks)
             {
-                ocnc.Add(nc);
+                nooc.Add(no);
             }
-            foreach (NarrativeThing nt in ntp.GetNarrativeThingsByNode(selectedNode))
-            {
-                ocnt.Add(nt);
-            }
-            this.NarrativeCharactersForSelectedNodeCount = ocnc.Count;
-            this.NarrativeThingsForSelectedNodeCount = ocnt.Count;
+            this.NarrativeObjectEntikaLinks = nooc;
         }
     }
 }

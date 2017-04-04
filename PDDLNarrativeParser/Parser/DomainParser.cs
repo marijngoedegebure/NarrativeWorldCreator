@@ -69,13 +69,20 @@ namespace PDDLNarrativeParser
                 {
                     if(words[0].Equals("parameters"))
                     {
-                        narrativeActions.Add(readParameters(words, currentNarrativeAction, types));
+                        currentNarrativeAction.Parameters = readParameters(words, types);
                         continue;
                     }
-                    if(words[0].Equals("preconditions"))
+                    if (words[0].Equals("preconditions"))
+                    {
+                        currentNarrativeAction.Preconditions = readValuedPredicates(words, currentNarrativeAction, predicateTypes);
                         continue;
+                    }
                     if (words[0].Equals("effect"))
-                        continue; 
+                    {
+                        currentNarrativeAction.Effects = readValuedPredicates(words, currentNarrativeAction, predicateTypes);
+                        narrativeActions.Add(currentNarrativeAction);
+                        continue;
+                    }
                 }
             }
             Parser.narrative.PredicateTypes = predicateTypes;
@@ -83,8 +90,70 @@ namespace PDDLNarrativeParser
             Parser.narrative.NarrativeActions = narrativeActions;
         }
 
-        private static NarrativeAction readParameters(string[] words, NarrativeAction currentNarrativeAction, List<NarrativeObjectType> types)
+        private static List<NarrativePredicateValued> readValuedPredicates(string[] words, NarrativeAction currentNarrativeAction, List<PredicateType> predicateTypes)
         {
+            List<NarrativePredicateValued> predicates = new List<NarrativePredicateValued>();
+            var currentValuedPredicate = new NarrativePredicateValued();
+            for (int i = 1; i < words.Length; i++)
+            {
+                if (words[i].Equals(""))
+                    continue;
+                if (words[i].Equals("and"))
+                {
+                    continue;
+                }
+                if (words[i].Equals("preconditions"))
+                {
+                    continue;
+                }
+                if (words[i].First() == '?')
+                {
+                    continue;
+                }
+                if (words[i].Equals("not"))
+                {
+                    currentValuedPredicate.Value = false;
+                    continue;
+                }
+                var type = (from predicateType in predicateTypes
+                           where predicateType.Name.Equals(words[i])
+                           select predicateType).FirstOrDefault();
+
+                if (type != null)
+                {
+                    if (type.Arguments.Count + i >= words.Length)
+                    {
+                        throw new Exception("Not enough arguments for predicate");
+                    }
+                    for (int j = 1; j <= type.Arguments.Count; j++)
+                    {
+                        if (words[i + j].First() != '?')
+                        {
+                            throw new Exception("Not enough arguments for predicate");
+                        }
+                        else
+                        {
+                            for (int k = 0; k < currentNarrativeAction.Parameters.Count; k++)
+                            {
+                                if (currentNarrativeAction.Parameters[k].Name.Equals(words[i + j]))
+                                {
+                                    currentValuedPredicate.ArgumentsAffected.Add(currentNarrativeAction.Parameters[k]);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    currentValuedPredicate.PredicateType = type;
+                    predicates.Add(currentValuedPredicate);
+                    currentValuedPredicate = new NarrativePredicateValued();
+                }
+            }
+            return predicates;
+        }
+
+        private static List<NarrativeArgument> readParameters(string[] words, List<NarrativeObjectType> types)
+        {
+            List<NarrativeArgument> parameters = new List<NarrativeArgument>();
             List<String> arguments = new List<string>();
             for (int i = 1; i < words.Length; i++)
             {
@@ -105,15 +174,16 @@ namespace PDDLNarrativeParser
                         foreach (String argument in arguments)
                         {
                             NarrativeArgument narrativeArgument = new NarrativeArgument();
+                            narrativeArgument.Name = argument;
                             narrativeArgument.Type = type;
-                            currentNarrativeAction.Arguments.Add(narrativeArgument);
+                            parameters.Add(narrativeArgument);
                         }
                         arguments.Clear();
                         break;
                     }
                 }
             }
-            return currentNarrativeAction;
+            return parameters;
         }
 
         private static PredicateType readPredicateTypes(string[] words, List<NarrativeObjectType> types)

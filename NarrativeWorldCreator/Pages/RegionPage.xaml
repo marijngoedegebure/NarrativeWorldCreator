@@ -84,7 +84,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:NarrativeEntitiesView Grid.Column="0" Grid.Row="0" x:Name="NarrativeEntitiesView" />
+                            <!--<views:NarrativeEntitiesView Grid.Column="0" Grid.Row="0" x:Name="NarrativeEntitiesView" />-->
                             <views:TangibleObjectsView Grid.Column="0" Grid.Row="1" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
                         </Grid>
                     </TabItem>

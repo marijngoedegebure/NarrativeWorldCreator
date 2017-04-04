@@ -78,20 +78,23 @@ namespace PDDLNarrativeParser
             for (int i = startIndex + 1; i < words.Length; i++)
             {
                 // Check if narrative object exists and whether type of it is equal to one of predicateType
-                foreach(NarrativeObject narrativeObject in narrativeObjects)
+                var narrativeObject = (from no in narrativeObjects
+                                      where words[i].Equals(no.Name)
+                                      select no).FirstOrDefault();
+                if (narrativeObject != null)
                 {
-                    if (words[i].Equals(narrativeObject.Name))
+                    if (narrativeObject.Type.Name.Equals(narrativePredicate.PredicateType.Arguments[i - 1].Type.Name) || narrativeObject.Type.ParentType.Name.Equals(narrativePredicate.PredicateType.Arguments[i - 1].Type.Name))
                     {
-                        if (narrativeObject.Type.Name.Equals(narrativePredicate.PredicateType.Arguments[i-1].Type.Name))
-                        {
-                            narrativePredicate.NarrativeObjects.Add(narrativeObject);
-                            break;
-                        }
-                        else
-                        {
-                            throw new Exception("Narrative object type not equal to narrative predicate type");
-                        }
+                        narrativePredicate.NarrativeObjects.Add(narrativeObject);
                     }
+                    else
+                    {
+                        throw new Exception("Narrative object type not equal to narrative predicate type");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Narrative object in predicate not defined as object");
                 }
             }
             return narrativePredicate;
@@ -126,7 +129,6 @@ namespace PDDLNarrativeParser
                     NarrativeObject narrativeObject = new NarrativeObject();
                     narrativeObject.Name = words[i];
                     narrativeObject.Type = typeToUse;
-                    narrativeObject.Placed = false;
                     narrativeObjects.Add(narrativeObject);
                 }
             }

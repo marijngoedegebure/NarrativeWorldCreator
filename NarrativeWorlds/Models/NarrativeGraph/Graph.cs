@@ -45,8 +45,6 @@ namespace NarrativeWorlds
         public void addNode(string locationName)
         {
             Node node = new Node(locationName);
-            node.NarrativeEvents = NarrativeWorldParser.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(locationName);
-            node.NarrativeObjects = NarrativeWorldParser.NarrativeWorld.Narrative.getNarrativeObjectsOfLocation(locationName);
             nodeList.Add(node);
         }
 

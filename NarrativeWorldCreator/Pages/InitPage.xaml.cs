@@ -32,9 +32,9 @@ namespace NarrativeWorldCreator
         public static String castleProblemPath = basePath + "castle-problem.pddl";
         public static String castlePlanPath = basePath + "castle-plan.pddl";
 
-        public static String domainPath = redCapDomainPath;
-        public static String problemPath = redCapProblemPath;
-        public static String planPath = redCapPlanPath;
+        public static String domainPath = castleDomainPath;
+        public static String problemPath = castleProblemPath;
+        public static String planPath = castlePlanPath;
 
         public InitPage()
         {
@@ -82,27 +82,28 @@ namespace NarrativeWorldCreator
                 SystemStateTracker.AtPredicateName);
             SystemStateTracker.NarrativeWorld = NarrativeWorldParser.parse(narrative);
             // Create associations between character/object classes and entika classes based on names
-            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
-            List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
-            foreach (TangibleObject to in filteredList)
-            {
-                foreach (NarrativeCharacter nc in SystemStateTracker.NarrativeWorld.NarrativeCharacters)
-                {
-                    if (to.Names[0].Equals(nc.Name))
-                    {
-                        nc.TangibleObject = to;
-                        continue;
-                    }
-                }
-                foreach (NarrativeThing nt in SystemStateTracker.NarrativeWorld.NarrativeThings)
-                {
-                    if (to.Names[0].Equals(nt.Name))
-                    {
-                        nt.TangibleObject = to;
-                        continue;
-                    }
-                }
-            }
+
+            //List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
+            //List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
+            //foreach (TangibleObject to in filteredList)
+            //{
+            //    foreach (NarrativeCharacter nc in SystemStateTracker.NarrativeWorld.NarrativeCharacters)
+            //    {
+            //        if (to.Names[0].Equals(nc.Name))
+            //        {
+            //            nc.TangibleObject = to;
+            //            continue;
+            //        }
+            //    }
+            //    foreach (NarrativeThing nt in SystemStateTracker.NarrativeWorld.NarrativeThings)
+            //    {
+            //        if (to.Names[0].Equals(nt.Name))
+            //        {
+            //            nt.TangibleObject = to;
+            //            continue;
+            //        }
+            //    }
+            //}
 
             // Show information on loaded narrative
             fillDetailView();

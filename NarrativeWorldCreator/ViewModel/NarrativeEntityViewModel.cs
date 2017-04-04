@@ -25,20 +25,6 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private bool _placed;
-        public bool Placed
-        {
-            get
-            {
-                return _placed;
-            }
-            set
-            {
-                _placed = value;
-                OnPropertyChanged("Placed");
-            }
-        }
-
         private TangibleObject _tangibleObject;
         public TangibleObject TangibleObject
         {
@@ -61,18 +47,10 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(NarrativeCharacter nc)
+        public void Load(NarrativeObjectEntikaLink no)
         {
-            Name = nc.Name;
-            Placed = nc.Placed;
-            TangibleObject = nc.TangibleObject;
-        }
-
-        public void Load(NarrativeThing nt)
-        {
-            Name = nt.Name;
-            Placed = nt.Placed;
-            TangibleObject = nt.TangibleObject;
+            Name = no.NarrativeObject.Name;
+            TangibleObject = no.TangibleObject;
         }
     }
 }

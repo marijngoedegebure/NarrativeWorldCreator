@@ -26,31 +26,17 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private ObservableCollection<NarrativeCharacter> _narrativeCharactersForSelectedNode;
-        public ObservableCollection<NarrativeCharacter> NarrativeCharactersForSelectedNode
+        private ObservableCollection<NarrativeObjectEntikaLink> _narrativeObjectEntikaLinks;
+        public ObservableCollection<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks
         {
             get
             {
-                return _narrativeCharactersForSelectedNode;
+                return _narrativeObjectEntikaLinks;
             }
             set
             {
-                _narrativeCharactersForSelectedNode = value;
-                OnPropertyChanged("NarrativeCharactersForSelectedNode");
-            }
-        }
-
-        private ObservableCollection<NarrativeThing> _narrativeThingsForSelectedNode;
-        public ObservableCollection<NarrativeThing> NarrativeThingsForSelectedNode
-        {
-            get
-            {
-                return _narrativeThingsForSelectedNode;
-            }
-            set
-            {
-                _narrativeThingsForSelectedNode = value;
-                OnPropertyChanged("NarrativeThingsForSelectedNode");
+                _narrativeObjectEntikaLinks = value;
+                OnPropertyChanged("NarrativeObjectEntikaLinks");
             }
         }
 
@@ -62,22 +48,16 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void LoadCharactersAndThings(Node selectedNode, NarrativeTimePoint ntp)
+        internal void LoadObjects(Node selectedNode, NarrativeTimePoint ntp)
         {
             this.NarrativeTimePoint = ntp;
-            ObservableCollection<NarrativeCharacter> ocnc = new ObservableCollection<NarrativeCharacter>();
-            ObservableCollection<NarrativeThing> ocnt = new ObservableCollection<NarrativeThing>();
+            ObservableCollection<NarrativeObjectEntikaLink> nooc = new ObservableCollection<NarrativeObjectEntikaLink>();
 
-            foreach(NarrativeCharacter nc in ntp.GetNarrativeCharactersByNode(selectedNode))
+            foreach(NarrativeObjectEntikaLink no in ntp.NarrativeObjectEntikaLinks)
             {
-                ocnc.Add(nc);
+                nooc.Add(no);
             }
-            foreach(NarrativeThing nt in ntp.GetNarrativeThingsByNode(selectedNode))
-            {
-                ocnt.Add(nt);
-            }
-            this.NarrativeCharactersForSelectedNode = ocnc;
-            this.NarrativeThingsForSelectedNode = ocnt;
+            this.NarrativeObjectEntikaLinks = nooc;
         }
     }
 }

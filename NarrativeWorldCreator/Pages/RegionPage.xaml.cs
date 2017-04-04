@@ -46,12 +46,12 @@ namespace NarrativeWorldCreator
             fillGroupCombobox();
         }
 
-        public void fillNarrativeEntitiesList(NarrativeTimePoint ntp)
-        {
-            NarrativeEntitiesViewModel neVM = new NarrativeEntitiesViewModel();
-            neVM.Load(ntp, selectedNode);
-            NarrativeEntitiesView.DataContext = neVM;
-        }
+        //public void fillNarrativeEntitiesList(NarrativeTimePoint ntp)
+        //{
+        //    NarrativeEntitiesViewModel neVM = new NarrativeEntitiesViewModel();
+        //    neVM.Load(ntp, selectedNode);
+        //    NarrativeEntitiesView.DataContext = neVM;
+        //}
 
         public TangibleObject RetrieveSelectedTangibleObjectFromListView()
         {
@@ -99,11 +99,11 @@ namespace NarrativeWorldCreator
                 var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.Active).ToList()[0];
                 ntpVM.Selected = true;
                 SelectedTimePoint = ntpVM.NarrativeTimePoint;
-                timePointViewModelObject.LoadCharactersAndThings(selectedNode, ntpVM.NarrativeTimePoint);
+                timePointViewModelObject.LoadObjects(selectedNode, ntpVM.NarrativeTimePoint);
             }
             else
             {
-                timePointViewModelObject.LoadCharactersAndThings(selectedNode, SelectedTimePoint);
+                timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
             }
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
         }
@@ -131,7 +131,7 @@ namespace NarrativeWorldCreator
         internal void fillDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
-            (RegionDetailTimePointView.DataContext as RegionDetailTimePointViewModel).LoadCharactersAndThings(selectedNode, narrativeTimePoint);
+            (RegionDetailTimePointView.DataContext as RegionDetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
 
         private void fillGroupCombobox()

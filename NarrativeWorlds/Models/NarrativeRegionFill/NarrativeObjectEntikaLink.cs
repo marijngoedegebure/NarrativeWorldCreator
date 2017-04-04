@@ -1,4 +1,5 @@
-﻿using Semantics.Entities;
+﻿using PDDLNarrativeParser;
+using Semantics.Entities;
 using SemanticsEngine.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,14 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorlds
 {
-    public class NarrativeCharacter
+    public class NarrativeObjectEntikaLink
     {
-        public string Name { get; set; }
-        public bool Placed { get; set; }
+        public NarrativeObject NarrativeObject { get; set; }
         public TangibleObject TangibleObject { get; set; }
 
-        public NarrativeCharacter(string Name, TangibleObject to)
+        public NarrativeObjectEntikaLink(NarrativeObject narrativeObject, TangibleObject to)
         {
-            this.Name = Name;
-            this.Placed = false;
+            this.NarrativeObject = narrativeObject;
             this.TangibleObject = to;
         }
     }

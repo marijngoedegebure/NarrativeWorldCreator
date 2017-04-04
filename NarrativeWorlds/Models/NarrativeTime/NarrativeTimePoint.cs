@@ -1,5 +1,6 @@
 ﻿using Common;
 using Microsoft.Xna.Framework;
+using NarrativeWorlds.Models.NarrativeRegionFill;
 using PDDLNarrativeParser;
 using System;
 using System.Collections.Generic;
@@ -18,58 +19,27 @@ namespace NarrativeWorlds
         public NarrativeEvent NarrativeEvent { get; set; }
         // Location mentioned in the narrative event
         public Node Location { get; set; }
-        // List of narrative characters and their location when this event needs to occur
-        public Dictionary<NarrativeCharacter, Node> LocationOfNarrativeCharacters { get; set; }
-        // List of narrative objects and their location when this event needs to occur
-        public Dictionary<NarrativeThing, Node> LocationOfNarrativeThings { get; set; }
+
+        // Story constraints for this timepoint
+        public List<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks { get; set; }
+        public List<NarrativePredicateInstance> NarrativePredicateInstances { get; set; }
 
         public TimePointSpecificFill TimePointSpecificFill { get; set; }
 
         public NarrativeTimePoint(int timePoint)
         {
             this.TimePoint = timePoint;
-            LocationOfNarrativeCharacters = new Dictionary<NarrativeCharacter, Node>();
-            LocationOfNarrativeThings = new Dictionary<NarrativeThing, Node>();
+            NarrativeObjectEntikaLinks = new List<NarrativeObjectEntikaLink>();
+            NarrativePredicateInstances = new List<NarrativePredicateInstance>();
             TimePointSpecificFill = new TimePointSpecificFill();
         }
 
-        internal void copy(NarrativeTimePoint initialTimePoint)
+        public void CopyInstancedNarrativePredicates(NarrativeTimePoint initial)
         {
-            foreach(KeyValuePair<NarrativeCharacter, Node> entry in initialTimePoint.LocationOfNarrativeCharacters)
+            foreach (var narrativePredicateInstance in initial.NarrativePredicateInstances)
             {
-                this.LocationOfNarrativeCharacters[entry.Key] = entry.Value;
+                this.NarrativePredicateInstances.Add(new NarrativePredicateInstance(narrativePredicateInstance.NarrativePredicate));
             }
-
-            foreach (KeyValuePair<NarrativeThing, Node> entry in initialTimePoint.LocationOfNarrativeThings)
-            {
-                this.LocationOfNarrativeThings[entry.Key] = entry.Value;
-            }
-        }
-
-        public List<NarrativeCharacter> GetNarrativeCharactersByNode(Node selectedNode)
-        {
-            List<NarrativeCharacter> ncs = new List<NarrativeCharacter>();
-            foreach (KeyValuePair<NarrativeCharacter, Node> entry in this.LocationOfNarrativeCharacters)
-            {
-                if(entry.Value.Equals(selectedNode))
-                {
-                    ncs.Add(entry.Key);
-                }
-            }
-            return ncs;
-        }
-
-        public List<NarrativeThing> GetNarrativeThingsByNode(Node selectedNode)
-        {
-            List<NarrativeThing> nts = new List<NarrativeThing>();
-            foreach (KeyValuePair<NarrativeThing, Node> entry in this.LocationOfNarrativeThings)
-            {
-                if (entry.Value != null && entry.Value.Equals(selectedNode))
-                {
-                    nts.Add(entry.Key);
-                }
-            }
-            return nts;
         }
 
         // This function allows updating

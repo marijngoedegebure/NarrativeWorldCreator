@@ -18,9 +18,10 @@ namespace NarrativeWorlds
         public List<NarrativeTimePoint> getNarrativeTimePointsWithNode(Node node)
         {
 
-            return (from b in (from a in NarrativeTimePoints
-                where a.Location != null
-                select a) where b.Location.Equals(node) select b).ToList();
+            return (from b in 
+                        (from a in NarrativeTimePoints where a.Location != null select a)
+                    where b.Location.Equals(node)
+                    select b).ToList();
         }
     }
 }

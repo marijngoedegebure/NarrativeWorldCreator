@@ -13,27 +13,18 @@ namespace NarrativeWorlds
         public Narrative Narrative { get; set; }
         public Graph Graph { get; set; }
         public NarrativeTimeline NarrativeTimeline { get; set; }
-        public List<NarrativeCharacter> NarrativeCharacters { get; set; }
-        public List<NarrativeThing> NarrativeThings { get; set; }
+        public List<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks { get; set; }
 
         public NarrativeWorld ()
         {
-            NarrativeCharacters = new List<NarrativeCharacter>();
-            NarrativeThings = new List<NarrativeThing>();
+            NarrativeObjectEntikaLinks = new List<NarrativeObjectEntikaLink>();
         }
 
-        public NarrativeCharacter getNarrativeCharacter(string name)
+        public NarrativeObjectEntikaLink getNarrativeObjectEntikaLink (string name)
         {
-            return (from nc in NarrativeCharacters
-                    where nc.Name.Equals(name)
+            return (from nc in NarrativeObjectEntikaLinks
+                    where nc.NarrativeObject.Name.Equals(name)
                     select nc).Single();
-        }
-
-        internal NarrativeThing getNarrativeThing(string name)
-        {
-            return (from nt in NarrativeThings
-                    where nt.Name.Equals(name)
-                    select nt).Single();
         }
     }
 }

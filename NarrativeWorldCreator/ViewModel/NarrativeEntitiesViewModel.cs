@@ -35,24 +35,7 @@ namespace NarrativeWorldCreator
 
         public void Load(NarrativeTimePoint ntp, Node node)
         {
-            var ncs = ntp.GetNarrativeCharactersByNode(node);
-            var nts = ntp.GetNarrativeThingsByNode(node);
-            var ocne = new ObservableCollection<NarrativeEntityViewModel>();
 
-            foreach (var nc in ncs)
-            {
-                var nevm = new NarrativeEntityViewModel();
-                nevm.Load(nc);
-                ocne.Add(nevm);
-            }
-
-            foreach (var nt in nts)
-            {
-                var nevm = new NarrativeEntityViewModel();
-                nevm.Load(nt);
-                ocne.Add(nevm);
-            }
-            NarrativeEntities = ocne;
         }
     }
 }

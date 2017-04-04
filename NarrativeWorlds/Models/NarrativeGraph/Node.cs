@@ -20,15 +20,14 @@ namespace NarrativeWorlds
         // Triangulated region points
         public TriangleNet.Mesh Mesh { get; set; }
 
-        public List<NarrativeEvent> NarrativeEvents { get; set; }
-        public List<NarrativeObject> NarrativeObjects { get; set; }
+        // Subset of timepoints for this node
+        public List<NarrativeTimePoint> TimePoints { get; set; }
 
         public Node(String locationName)
         {
             this.LocationName = locationName;
+            this.TimePoints = new List<NarrativeTimePoint>();
             this.Shape = new Shape(new List<Common.Vec2>());
-            NarrativeEvents = new List<NarrativeEvent>();
-            NarrativeObjects = new List<NarrativeObject>();
         }
 
         public override bool Equals(System.Object obj)

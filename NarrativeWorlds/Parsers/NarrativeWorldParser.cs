@@ -1,4 +1,5 @@
-﻿using PDDLNarrativeParser;
+﻿using NarrativeWorlds.Models;
+using PDDLNarrativeParser;
 using Semantics.Data;
 using Semantics.Entities;
 using System;
@@ -37,6 +38,7 @@ namespace NarrativeWorlds
             NarrativeWorldParser.NarrativeWorld.Graph = new Graph();
             NarrativeWorldParser.NarrativeWorld.NarrativeTimeline = new NarrativeTimeline();
             NarrativeWorldParser.NarrativeWorld.Narrative = narrative;
+            setupObjectTOLink();
             createGraphBasedOnNarrative();
             createNarrativeTimeline();
             return NarrativeWorldParser.NarrativeWorld;
@@ -44,103 +46,81 @@ namespace NarrativeWorlds
 
         public static void createNarrativeTimeline()
         {
-            setupCharactersAndThings();
             // Determine starting locations for each character and object using at() predicate add this as the first timepoint
-            int timePointCount = 0;
+            
             // InitialTimePoint does not have a location node associated with it, possible solution would be the addition of annotation of a starting node for the story
-            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(timePointCount);
-            List<NarrativePredicate> predicates = NarrativeWorld.Narrative.getNarrativePredicates(AtPredicateName);
-            // First check location with predicates, all characters should be placed
-            foreach(NarrativePredicate predicate in predicates)
-            {
-                if(predicate.NarrativeObjects[0].Type.Name.Equals(CharacterTypeName))
-                {
-                    // Narrative character
-                    NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(predicate.NarrativeObjects[0].Name);
-                    initialTimePoint.LocationOfNarrativeCharacters[nc] = NarrativeWorld.Graph.getNode(predicate.NarrativeObjects[1].Name);
-                }
-                else
-                {
-                    // Narrative object
-                    NarrativeThing nt = NarrativeWorld.getNarrativeThing(predicate.NarrativeObjects[0].Name);
-                    initialTimePoint.LocationOfNarrativeThings[nt] = NarrativeWorld.Graph.getNode(predicate.NarrativeObjects[1].Name);
-                }
-            }
-            // Set starting place of objects to null if not part of initialization
-            foreach (NarrativeThing nt in NarrativeWorld.NarrativeThings)
-            {
-                if (!initialTimePoint.LocationOfNarrativeThings.ContainsKey(nt))
-                    initialTimePoint.LocationOfNarrativeThings[nt] = null;
-            }
-
+            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(0);
             NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(initialTimePoint);
-            timePointCount++;
-            // Check has predicate for objects that have no location yet
-            // Add to timeline object, an object either has to be on a location or has to be carried by someone
+            // Initialize each timepoint
+            for (int i = 0; i < NarrativeWorld.Narrative.NarrativeEvents.Count; i++)
+            {
+                NarrativeTimePoint timePoint = new NarrativeTimePoint(i+1);
+                timePoint.NarrativeEvent = NarrativeWorld.Narrative.NarrativeEvents[i];
+                // Last "NarrativeObject" is the name of the location
+                var Node = NarrativeWorld.Graph.getNode(NarrativeWorld.Narrative.NarrativeEvents[i].NarrativeObjects.Last().Name);
+                timePoint.Location = Node;
+                Node.TimePoints.Add(timePoint);
+                NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(timePoint);
+            }
 
-            // Copy previous timepoint and adjust location of narrative objects according to action
+            // Load all predicates to determine starting requirements of each location
+            List<NarrativePredicate> predicates = NarrativeWorld.Narrative.NarrativePredicates.ToList();
+            BeliefSystem.InitializeFirstTimePoint(NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[0], predicates);
+            for (int i = 0; i < NarrativeWorld.Narrative.NarrativeEvents.Count; i++)
+            {
+                BeliefSystem.ApplyEventStoreInNextTimePoint(
+                    NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[i],
+                    NarrativeWorld.Narrative.NarrativeEvents[i],
+                    NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[i + 1]);
+            }
+
+            // After initialization of each timepoint, go through events again and determine requirements for follow up timepoints of each location
             foreach (NarrativeEvent nevent in NarrativeWorld.Narrative.NarrativeEvents)
             {
-                NarrativeTimePoint timePoint = new NarrativeTimePoint(timePointCount);
-                timePoint.copy(initialTimePoint);
-                timePoint.NarrativeEvent = nevent;
-                timePoint.Location = NarrativeWorld.Graph.getNode(nevent.NarrativeObjects.Last().Name);
-                // Check if move action
-                // Do stuff based on this move action
-                if(nevent.NarrativeAction.Name.Equals(MoveActionName))
-                {
-                    NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[0].Name);
-                    timePoint.LocationOfNarrativeCharacters[nc] = timePoint.Location;
-                }
+                //// Check if move action
+                //// Do stuff based on this move action
+                //if (nevent.NarrativeAction.Name.Equals(MoveActionName))
+                //{
+                //    NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[0].Name);
+                //    timePoint.LocationOfNarrativeCharacters[nc] = timePoint.Location;
+                //}
 
-                // Check if pickup action
-                // Remove object from locations list, insert when dropped
+                //// Check if pickup action
+                //// Remove object from locations list, insert when dropped
 
-                // Check for drop action
+                //// Check for drop action
 
-                // Check if object/character is used in unknown action while still in other location -> update to new location (might be also good idea for pickup action)
-                else
-                {
-                    // Skip the last narrative object of the action, that is the location
-                    for(int i = 0; i < nevent.NarrativeObjects.Count-1; i++)
-                    {
-                        if(nevent.NarrativeObjects[i].Type.Name.Equals(CharacterTypeName))
-                        {
-                            NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[i].Name);
-                            timePoint.LocationOfNarrativeCharacters[nc] = timePoint.Location;
-                        }
-                        else if(nevent.NarrativeObjects[i].Type.Name.Equals(ObjectTypeName))
-                        {
-                            NarrativeThing nt = NarrativeWorld.getNarrativeThing(nevent.NarrativeObjects[i].Name);
-                            timePoint.LocationOfNarrativeThings[nt] = timePoint.Location;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                }
-                NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(timePoint);
-                timePointCount++;
+                //// Check if object/character is used in unknown action while still in other location -> update to new location (might be also good idea for pickup action)
+                //else
+                //{
+                //    // Skip the last narrative object of the action, that is the location
+                //    for (int i = 0; i < nevent.NarrativeObjects.Count - 1; i++)
+                //    {
+                //        if (nevent.NarrativeObjects[i].Type.Name.Equals(CharacterTypeName))
+                //        {
+                //            NarrativeCharacter nc = NarrativeWorld.getNarrativeCharacter(nevent.NarrativeObjects[i].Name);
+                //            timePoint.LocationOfNarrativeCharacters[nc] = timePoint.Location;
+                //        }
+                //        else if (nevent.NarrativeObjects[i].Type.Name.Equals(ObjectTypeName))
+                //        {
+                //            NarrativeThing nt = NarrativeWorld.getNarrativeThing(nevent.NarrativeObjects[i].Name);
+                //            timePoint.LocationOfNarrativeThings[nt] = timePoint.Location;
+                //        }
+                //        else
+                //        {
+                //            continue;
+                //        }
+                //    }
+                //}
             }
         }
 
-        private static void setupCharactersAndThings()
+        private static void setupObjectTOLink()
         {
-            // Create narrative characters for each narrative object with CharacterTypeName
-            List<NarrativeObject> characters = NarrativeWorld.Narrative.getNarrativeObjectsOfType(CharacterTypeName);
-            foreach (NarrativeObject character in characters)
+            foreach (NarrativeObject no in NarrativeWorld.Narrative.NarrativeObjects)
             {
-                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(character.Name.ToLower());
-                NarrativeWorld.NarrativeCharacters.Add(new NarrativeCharacter(character.Name.ToLower(), tangibleObject));
-            }
-
-            // Create narrative things for each narrative object with ObjectTypeName
-            List<NarrativeObject> things = NarrativeWorld.Narrative.getNarrativeObjectsOfType(ObjectTypeName);
-            foreach (NarrativeObject thing in things)
-            {
-                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(thing.Name.ToLower());
-                NarrativeWorld.NarrativeThings.Add(new NarrativeThing(thing.Name.ToLower(), tangibleObject));
+                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(no.Name.ToLower());
+                NarrativeWorld.NarrativeObjectEntikaLinks.Add(new NarrativeObjectEntikaLink(no, tangibleObject));
             }
         }
 

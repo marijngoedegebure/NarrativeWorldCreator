@@ -61,7 +61,7 @@ namespace PDDLNarrativeParser
                 {
                     if (words[i].Equals(narrativeObject.Name))
                     {
-                        if (narrativeEvent.NarrativeAction.Arguments[i - 1].Type.Name.Equals(narrativeObject.Type.Name))
+                        if (narrativeEvent.NarrativeAction.Parameters[i - 1].Type.Name.Equals(narrativeObject.Type.Name))
                         {
                             narrativeEvent.NarrativeObjects.Add(narrativeObject);
                             break;
