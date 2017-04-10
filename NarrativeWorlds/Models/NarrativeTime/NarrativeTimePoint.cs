@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using NarrativeWorlds.Models.NarrativeRegionFill;
 using PDDLNarrativeParser;
+using Semantics.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +21,24 @@ namespace NarrativeWorlds
         // Location mentioned in the narrative event
         public Node Location { get; set; }
 
+        // List of TangibleObjects selected for this region/timepoint
+        public List<TangibleObject> AvailableTangibleObjects { get; set; }
+
         public List<NarrativePredicateInstance> NarrativePredicateInstances { get; set; }
 
         // Story constraints for this timepoint
         public List<NarrativePredicateInstance> PredicatesInstancesFilteredLocation { get; set; }
 
+
         public TimePointSpecificFill TimePointSpecificFill { get; set; }
 
-        public NarrativeTimePoint(int timePoint)
+        public NarrativeTimePoint(int timePoint, List<TangibleObject> DefaultTangibleObjects)
         {
             this.TimePoint = timePoint;
             PredicatesInstancesFilteredLocation = new List<NarrativePredicateInstance>();
             NarrativePredicateInstances = new List<NarrativePredicateInstance>();
             TimePointSpecificFill = new TimePointSpecificFill();
+            AvailableTangibleObjects = DefaultTangibleObjects;
         }
 
         public void CopyInstancedNarrativePredicates(NarrativeTimePoint initial)
@@ -81,6 +87,17 @@ namespace NarrativeWorlds
             this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
             this.TimePointSpecificFill.FloorInstance = floorInstance;
             this.TimePointSpecificFill.Relationships.Add(floorRelationship);
+        }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            NarrativeTimePoint e = (NarrativeTimePoint)obj;
+            // Equals if either both from nodes are equal and both to nodes are equal or if they are reversed.
+            return this.TimePoint.Equals(e.TimePoint);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Semantics.Data;
+﻿using NarrativeWorlds;
+using Semantics.Data;
 using Semantics.Entities;
 using SharpDX.Collections;
 using System;
@@ -34,12 +35,10 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load()
+        public void Load(NarrativeTimePoint ntp)
         {
-            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
-            TangibleObject parentNode = DatabaseSearch.GetNode<TangibleObject>("Other objects");
             ObservableCollection<TangibleObject> octo = new ObservableCollection<TangibleObject>();
-            var filteredTo = allTangibleObjects.Where(x => x.Children.Count == 0 && x.Parents.Contains(parentNode));
+            var filteredTo = ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0);
             foreach (var to in filteredTo)
             {
                 octo.Add(to);

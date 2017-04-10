@@ -24,13 +24,17 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static String redCapDatabase = "redcapV2.edp";
+        public static String castleDatabase = "castle.edp";
+
         public MainWindow()
         {
             InitializeComponent();
             _mainFrame.Navigate(new InitPage());
             GameDatabase.Initialize();
             SystemStateTracker.EntikaPath = "..\\..\\..\\Entika databases\\";
-            SystemStateTracker.LoadedFileName = "redcapV2.edp";
+
+            SystemStateTracker.LoadedFileName = castleDatabase;
             GameDatabase.LoadProject(SystemStateTracker.EntikaPath + SystemStateTracker.LoadedFileName);
 
             GameSemanticsEngine.GameSemanticsEngine.Initialize();

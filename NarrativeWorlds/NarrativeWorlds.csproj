@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\BeliefSystem.cs" />
+    <Compile Include="Models\NarrativeRegionFill\PredicateInstance.cs" />
+    <Compile Include="Models\NarrativeRegionFill\RelationInstance.cs" />
     <Compile Include="Models\NarrativeTime\NarrativePredicateInstance.cs" />
     <Compile Include="Solver\HelperFunctions.cs" />
     <Compile Include="Models\NarrativeGraph\Edge.cs" />

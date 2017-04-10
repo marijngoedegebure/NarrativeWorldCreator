@@ -1,4 +1,5 @@
-﻿using NarrativeWorlds;
+﻿using NarrativeWorldCreator.ViewModel;
+using NarrativeWorlds;
 using Semantics.Abstractions;
 using Semantics.Data;
 using Semantics.Entities;
@@ -27,6 +28,7 @@ namespace NarrativeWorldCreator
         public Node selectedNode;
         public EntikaInstance SelectedEntikaObject;
         public NarrativeTimePoint SelectedTimePoint { get; internal set; }
+        public TangibleObject TangibleObjectToAdd;
 
         public enum RegionPageMode
         {
@@ -43,14 +45,33 @@ namespace NarrativeWorldCreator
             InitializeComponent();
             this.selectedNode = selectedNode;
             CurrentMode = RegionPageMode.RegionCreation;
+            List<NarrativeTimePoint> ntpsFiltered = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
+            SelectedTimePoint = ntpsFiltered[0];
         }
 
-        //public void fillNarrativeEntitiesList(NarrativeTimePoint ntp)
-        //{
-        //    NarrativeEntitiesViewModel neVM = new NarrativeEntitiesViewModel();
-        //    neVM.Load(ntp, selectedNode);
-        //    NarrativeEntitiesView.DataContext = neVM;
-        //}
+        public void AddSelectedTangibleObject(TangibleObject selectedItem)
+        {
+            TangibleObjectToAdd = selectedItem;
+            RelationshipSelectionView riVM = new RelationshipSelectionView();
+            riVM.Load(selectedItem);
+            RelationshipSelectionView.DataContext = riVM;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionView.Visibility = Visibility.Visible;
+        }
+
+        public void BackToTangibleObjectSelection()
+        {
+            TangibleObjectsView.Visibility = Visibility.Visible;
+            RelationshipSelectionView.Visibility = Visibility.Collapsed;
+            TangibleObjectToAdd = null;
+            RelationshipSelectionView riVM = new RelationshipSelectionView();
+            RelationshipSelectionView.DataContext = riVM;
+        }
+
+        public void BackToRelationshipSelection()
+        {
+
+        }
 
         public TangibleObject RetrieveSelectedTangibleObjectFromListView()
         {
@@ -60,7 +81,7 @@ namespace NarrativeWorldCreator
         private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
         {
             TangibleObjectsViewModel toVM = new TangibleObjectsViewModel();
-            toVM.Load();
+            toVM.Load(this.SelectedTimePoint);
             TangibleObjectsView.DataContext = toVM;
         }
 
@@ -86,6 +107,9 @@ namespace NarrativeWorldCreator
             narrativeTimelineViewModelObject.LoadFilteredTimePoints(selectedNode);
 
             NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
+
+            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(SelectedTimePoint)).FirstOrDefault();
+            ntpVM.Selected = true;
         }
 
         private void RegionDetailTimePointView_Loaded(object sender, RoutedEventArgs e)
@@ -93,17 +117,7 @@ namespace NarrativeWorldCreator
             // Fill control with stuff
             DetailTimePointViewModel timePointViewModelObject =
                new DetailTimePointViewModel();
-            if (SelectedTimePoint == null)
-            {
-                var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.Active).ToList()[0];
-                ntpVM.Selected = true;
-                SelectedTimePoint = ntpVM.NarrativeTimePoint;
-                timePointViewModelObject.LoadObjects(selectedNode, ntpVM.NarrativeTimePoint);
-            }
-            else
-            {
-                timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
-            }
+            timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
         }
 

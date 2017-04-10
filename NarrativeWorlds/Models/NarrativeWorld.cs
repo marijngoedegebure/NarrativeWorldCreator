@@ -10,9 +10,13 @@ namespace NarrativeWorlds
 {
     public class NarrativeWorld
     {
+        // Narrative information
         public Narrative Narrative { get; set; }
         public Graph Graph { get; set; }
         public NarrativeTimeline NarrativeTimeline { get; set; }
+
+        // Entika information
+        public List<TangibleObject> AvailableTangibleObjects { get; set; }
         public List<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks { get; set; }
 
         public NarrativeWorld ()

@@ -38,10 +38,16 @@ namespace NarrativeWorlds
             NarrativeWorldParser.NarrativeWorld.Graph = new Graph();
             NarrativeWorldParser.NarrativeWorld.NarrativeTimeline = new NarrativeTimeline();
             NarrativeWorldParser.NarrativeWorld.Narrative = narrative;
+            // Parse Entika Information
+            readAllTangibleObjects();
             setupObjectTOLink();
+
+            // Parse Narrative information        
             createGraphBasedOnNarrative();
             createNarrativeTimeline();
             processPredicatesToConstraints();
+
+            // parseDependencyGraph();
             return NarrativeWorldParser.NarrativeWorld;
         }
 
@@ -70,12 +76,12 @@ namespace NarrativeWorlds
         public static void createNarrativeTimeline()
         {           
             // InitialTimePoint does not have a location node associated with it, possible solution would be the addition of annotation of a starting node for the story
-            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(0);
+            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(0, NarrativeWorld.AvailableTangibleObjects);
             NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(initialTimePoint);
             // Initialize each timepoint
             for (int i = 0; i < NarrativeWorld.Narrative.NarrativeEvents.Count; i++)
             {
-                NarrativeTimePoint timePoint = new NarrativeTimePoint(i+1);
+                NarrativeTimePoint timePoint = new NarrativeTimePoint(i+1, NarrativeWorld.AvailableTangibleObjects);
                 timePoint.NarrativeEvent = NarrativeWorld.Narrative.NarrativeEvents[i];
                 // Last "NarrativeObject" is the name of the location
                 var Node = NarrativeWorld.Graph.getNode(NarrativeWorld.Narrative.NarrativeEvents[i].NarrativeObjects.Last().Name);
@@ -93,15 +99,6 @@ namespace NarrativeWorlds
                     NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[i],
                     NarrativeWorld.Narrative.NarrativeEvents[i],
                     NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[i + 1]);
-            }
-        }
-
-        private static void setupObjectTOLink()
-        {
-            foreach (NarrativeObject no in NarrativeWorld.Narrative.NarrativeObjects)
-            {
-                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(no.Name.ToLower());
-                NarrativeWorld.NarrativeObjectEntikaLinks.Add(new NarrativeObjectEntikaLink(no, tangibleObject));
             }
         }
 
@@ -126,6 +123,38 @@ namespace NarrativeWorlds
                 NarrativeWorldParser.NarrativeWorld.Graph.addEdge(from, to);
             }
             NarrativeWorldParser.NarrativeWorld.Graph.initForceDirectedGraph();
+        }
+
+        private static void readAllTangibleObjects()
+        {
+            // Load all TangibleObjects that do not have any children, and thus are leafs
+            List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
+            NarrativeWorld.AvailableTangibleObjects = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
+        }
+
+        private static void setupObjectTOLink()
+        {
+            foreach (NarrativeObject no in NarrativeWorld.Narrative.NarrativeObjects)
+            {
+                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(no.Name.ToLower());
+                NarrativeWorld.NarrativeObjectEntikaLinks.Add(new NarrativeObjectEntikaLink(no, tangibleObject));
+            }
+        }
+
+        private static void parseDependencyGraph()
+        {
+            foreach (var to in NarrativeWorld.AvailableTangibleObjects)
+            {
+                foreach (var relAsSource in to.RelationshipsAsSource)
+                {
+
+                }
+                foreach(var relAsTarget in to.RelationshipsAsTarget)
+                {
+
+                }
+            }
+            var RelationshipsAsSource = NarrativeWorld.AvailableTangibleObjects[0].RelationshipsAsSource[0];
         }
     }
 }

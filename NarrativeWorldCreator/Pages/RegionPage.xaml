@@ -79,13 +79,12 @@
                         <Grid Name="region_filling_4">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <!--<views:NarrativeEntitiesView Grid.Column="0" Grid.Row="0" x:Name="NarrativeEntitiesView" />-->
-                            <views:TangibleObjectsView Grid.Column="0" Grid.Row="1" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
+                            <views:TangibleObjectsView Grid.Column="0" Grid.Row="0" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
+                            <views:RelationshipSelectionView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionView"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_3" Header="Region detail" Visibility="Collapsed">

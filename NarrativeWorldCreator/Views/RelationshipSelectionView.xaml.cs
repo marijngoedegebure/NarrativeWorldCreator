@@ -1,5 +1,4 @@
-﻿using Semantics.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,23 +16,25 @@ using System.Windows.Shapes;
 namespace NarrativeWorldCreator.Views
 {
     /// <summary>
-    /// Interaction logic for TangibleObjectsView.xaml
+    /// Interaction logic for TangibleObjectAdditionView.xaml
     /// </summary>
-    public partial class TangibleObjectsView : UserControl
+    public partial class RelationshipSelectionView : UserControl
     {
-        public TangibleObjectsView()
+        public RelationshipSelectionView()
         {
             InitializeComponent();
         }
 
-        private void btnAddSelectedObject(object sender, RoutedEventArgs e)
+        private void BackToSelection(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (TangibleObject) this.ToListView.SelectedItem;
-
-            // Kick off addition process
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             var regionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
-            regionPage.AddSelectedTangibleObject(selectedItem);
+            regionPage.BackToTangibleObjectSelection();
+        }
+
+        private void NextStep(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
