@@ -1,4 +1,5 @@
 ﻿using NarrativeWorlds;
+using NarrativeWorlds.Models.NarrativeRegionFill;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator
 {
-    public class RegionDetailTimePointViewModel : INotifyPropertyChanged
+    public class DetailTimePointViewModel : INotifyPropertyChanged
     {
 
         private NarrativeTimePoint _narrativeTimePoint;
@@ -26,17 +27,17 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private ObservableCollection<NarrativeObjectEntikaLink> _narrativeObjectEntikaLinks;
-        public ObservableCollection<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks
+        private ObservableCollection<NarrativePredicateInstance> _narrativePredicateInstances;
+        public ObservableCollection<NarrativePredicateInstance> NarrativePredicateInstances
         {
             get
             {
-                return _narrativeObjectEntikaLinks;
+                return _narrativePredicateInstances;
             }
             set
             {
-                _narrativeObjectEntikaLinks = value;
-                OnPropertyChanged("NarrativeObjectEntikaLinks");
+                _narrativePredicateInstances = value;
+                OnPropertyChanged("NarrativePredicateInstances");
             }
         }
 
@@ -51,13 +52,13 @@ namespace NarrativeWorldCreator
         internal void LoadObjects(Node selectedNode, NarrativeTimePoint ntp)
         {
             this.NarrativeTimePoint = ntp;
-            ObservableCollection<NarrativeObjectEntikaLink> nooc = new ObservableCollection<NarrativeObjectEntikaLink>();
+            ObservableCollection<NarrativePredicateInstance> npioc = new ObservableCollection<NarrativePredicateInstance>();
 
-            foreach(NarrativeObjectEntikaLink no in ntp.NarrativeObjectEntikaLinks)
+            foreach (var pi in ntp.PredicatesInstancesFilteredLocation)
             {
-                nooc.Add(no);
+                npioc.Add(pi);
             }
-            this.NarrativeObjectEntikaLinks = nooc;
+            this.NarrativePredicateInstances = npioc;
         }
     }
 }

@@ -213,6 +213,7 @@ namespace PDDLNarrativeParser
                         foreach (String argument in arguments)
                         {
                             NarrativeArgument narrativeArgument = new NarrativeArgument();
+                            narrativeArgument.Name = argument;
                             narrativeArgument.Type = type;
                             predicate.Arguments.Add(narrativeArgument);
                         }

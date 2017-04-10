@@ -23,7 +23,7 @@ namespace PDDLNarrativeParser
                 return false;
 
             NarrativeObject p = (NarrativeObject)obj;
-            return (NarrativeObjectId == p.NarrativeObjectId);
+            return (this.Name.Equals(p.Name) && this.Type.Equals(p.Type));
         }
     }
 }

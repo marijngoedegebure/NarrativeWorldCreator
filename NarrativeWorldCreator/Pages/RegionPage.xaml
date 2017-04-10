@@ -62,8 +62,8 @@
                     <ColumnDefinition Width="300"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TabControl Grid.Row="0" Grid.Column="0">
-                    <TabItem Name="region_creation_1" Header="Region creation">
-                        <Grid Name="region_creation_4">
+                    <TabItem Name="region_outlining_1" Header="Region outlining">
+                        <Grid Name="region_outlining_4">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
@@ -71,8 +71,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region by defining the corners in a clockwise matter." TextWrapping="Wrap"/>
-                            <Button Grid.Column="0" Grid.Row="1"  x:Name="region_creation_5" Content="Reset region" Click="btnResetRegion"/>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region outline by defining the corners in a clockwise matter." TextWrapping="Wrap"/>
+                            <Button Grid.Column="0" Grid.Row="1"  x:Name="region_outlining_5" Content="Reset region" Click="btnResetRegion"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_1" Header="Entity addition" Visibility="Collapsed">
@@ -88,19 +88,8 @@
                             <views:TangibleObjectsView Grid.Column="0" Grid.Row="1" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2" Header="Group addition" Visibility="Collapsed">
-                        <ListView Margin="10" Name="lvGroupsDataBinding">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <WrapPanel>
-                                        <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
-                                    </WrapPanel>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </TabItem>
-                    <TabItem Header="Region detail">
-                        <views:RegionDetailTimePointView Grid.Column="0" Grid.Row="0" x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
+                    <TabItem Name="region_filling_3" Header="Region detail" Visibility="Collapsed">
+                        <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
                 </TabControl>
                 <views:SelectedObjectDetailView Grid.Column="0" Grid.Row="1" x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />

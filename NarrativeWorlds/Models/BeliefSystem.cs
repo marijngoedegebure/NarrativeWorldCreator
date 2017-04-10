@@ -23,15 +23,46 @@ namespace NarrativeWorlds.Models
             // Copy initial to next
             next.CopyInstancedNarrativePredicates(initial);
 
-            // Transform (instantiate or remove) predicate instances according to event
+            // Determine predicates according to effect
+            Dictionary<NarrativePredicate, bool> predicates = new Dictionary<NarrativePredicate, bool>();
             foreach (var effect in nEvent.NarrativeAction.Effects)
             {
+                var predicate = new NarrativePredicate();
+                predicate.PredicateType = effect.PredicateType;
+                // Map action parameters to effect, thus affected event objects to effect
                 for (int j = 0; j < nEvent.NarrativeAction.Parameters.Count; j++)
                 {
-                    if (nEvent.NarrativeAction.Effects[i].Equals(nEvent.NarrativeAction.Parameters[j]))
+                    for (int k = 0; k < effect.ArgumentsAffected.Count; k++)
                     {
-                        // 
-                        nEvent.NarrativeAction.Parameters[j+1]
+                        if (nEvent.NarrativeAction.Parameters[j].Name.Equals(effect.ArgumentsAffected[k].Name))
+                        {
+                            predicate.NarrativeObjects.Add(nEvent.NarrativeObjects[j]);
+                        }
+                    }
+                }
+                predicates.Add(predicate, effect.Value);
+            }
+            // Add or remove predicate to already known predicates
+            foreach (KeyValuePair<NarrativePredicate, bool> element in predicates)
+            {
+                var predicateInstanceToAddOrRemove = new NarrativePredicateInstance(element.Key);
+                var test = next.NarrativePredicateInstances[0].Equals(predicateInstanceToAddOrRemove);
+                // Create new predicate instance and add it to the know predicate instances if doesn't already exist
+                var equalInstance = (from predicateInstance in next.NarrativePredicateInstances
+                                     where predicateInstance.Equals(predicateInstanceToAddOrRemove)
+                                     select predicateInstance).FirstOrDefault();
+                if (equalInstance != null)
+                {
+                    if(!element.Value)
+                    {
+                        next.NarrativePredicateInstances.Remove(equalInstance);
+                    }
+                }
+                else
+                {
+                    if(element.Value)
+                    {
+                        next.NarrativePredicateInstances.Add(predicateInstanceToAddOrRemove);
                     }
                 }
             }

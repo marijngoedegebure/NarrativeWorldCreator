@@ -6,13 +6,13 @@
 	(:predicates
 		(dead ?x - character)
 		(has ?character - character ?thing - thing)
-		(at ?object - object ?place - place)
 		(poisoned ?object - thing)
 		(poisoned ?subject - character)
 		(loves ?character - character ?subject - character)
 		(hidden ?character - character)
-		(on ?object1 - thing ?object - thing)
 		(married ?character1 - character ?character2 - character)
+		(at ?object - object ?place - place)
+		(on ?object1 - thing ?object - thing ?location - place)
 		(dark ?location - place)
 		(light ?location - place)
 		(narrow ?location - place)
@@ -62,9 +62,9 @@
 	 :effect (and (not (poisoned (?object1))) (poisoned (?object2)))
 	)
 	(:action placeon
-	 :parameters (?character - character ?object1 - thing ?object2 -thing ?place - place)
+	 :parameters (?character - character ?object1 - thing ?object2 - thing ?place - place)
 	 :preconditions (and (and ((at ?character ?place) (at ?object1 ?place))) (at ?object2 ?place))
-	 :effect (on ?object1 ?object2)
+	 :effect (on ?object1 ?object2 ?place)
 	)
 	(:action drink
 	 :parameters (?character - character ?object - thing ?place - place)
@@ -84,6 +84,6 @@
 	(:action give
 	 :parameters (?character1 - character ?character2 - character ?object - thing ?place - place)
 	 :preconditions (and (and ((at ?character1 ?place) (at ?character2 ?place))) (and (at ?object ?place) (has ?character1 ?object)))
-	 :effect (and (not (on ?character1 ?object)) (has ?character2 ?object))
+	 :effect (and (not (on ?character1 ?object ?place)) (has ?character2 ?object))
 	)
 )

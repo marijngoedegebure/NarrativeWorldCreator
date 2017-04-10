@@ -45,14 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\BeliefSystem.cs" />
-    <Compile Include="Models\NarrativeRegionFill\NarrativePredicateInstance.cs" />
+    <Compile Include="Models\NarrativeTime\NarrativePredicateInstance.cs" />
     <Compile Include="Solver\HelperFunctions.cs" />
     <Compile Include="Models\NarrativeGraph\Edge.cs" />
     <Compile Include="Models\NarrativeRegionFill\EntikaInstance.cs" />
     <Compile Include="Models\NarrativeRegionFill\GeometricRelationshipBase.cs" />
     <Compile Include="Models\NarrativeGraph\Graph.cs" />
     <Compile Include="Models\NarrativeRegionFill\NarrativeShape.cs" />
-    <Compile Include="Models\NarrativeRegionFill\NarrativeObjectEntikaLink.cs" />
+    <Compile Include="Models\NarrativeTime\NarrativeObjectEntikaLink.cs" />
     <Compile Include="Models\NarrativeRegionFill\TimePointSpecificFill.cs" />
     <Compile Include="Models\NarrativeTime\NarrativeTimeline.cs" />
     <Compile Include="Models\NarrativeTime\NarrativeTimePoint.cs" />

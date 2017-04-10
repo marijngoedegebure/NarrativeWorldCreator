@@ -23,8 +23,6 @@
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.TimePoint, Mode = OneWay, StringFormat='Timepoint: {0}'}" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name, Mode = OneWay,  StringFormat='Event: {0}'}" />
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.Location.LocationName, Mode = OneWay, StringFormat='Location: {0}'}" />
-                        <TextBlock Text="{Binding Path = NarrativeCharactersForSelectedNodeCount, Mode = OneWay, StringFormat='# of characters: {0}'}" />
-                        <TextBlock Text="{Binding Path = NarrativeThingsForSelectedNodeCount, Mode = OneWay, StringFormat='# of things: {0}'}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

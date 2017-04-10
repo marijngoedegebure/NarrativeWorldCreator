@@ -16,5 +16,27 @@ namespace PDDLNarrativeParser
         {
             Arguments = new List<NarrativeArgument>();
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as PredicateType;
+
+            if (item == null)
+            {
+                return false;
+            }
+            if (item.Arguments.Count != this.Arguments.Count)
+            {
+                return false;
+            }
+            for(int i = 0; i < this.Arguments.Count;i++)
+            {
+                if (!this.Arguments[i].Equals(item.Arguments[i]))
+                {
+                    return false;
+                }
+            }
+            return this.Name.Equals(item.Name);
+        }
     }
 }

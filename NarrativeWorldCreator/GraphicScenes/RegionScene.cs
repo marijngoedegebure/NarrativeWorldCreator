@@ -88,9 +88,6 @@ namespace NarrativeWorldCreator
             _keyboard = new WpfKeyboard(this);
             _mouse = new WpfMouse(this);
 
-            effect = Content.Load<Effect>("Effects/Textured");
-            effect = Content.Load<Effect>("Effects/Textured");
-
             RasterizerState state = new RasterizerState();
             state.CullMode = CullMode.CullClockwiseFace;
             state.FillMode = FillMode.WireFrame;
@@ -107,9 +104,6 @@ namespace NarrativeWorldCreator
         private Model LoadModel(string assetName)
         {
             Model newModel = Content.Load<Model>(assetName);
-            foreach (ModelMesh mesh in newModel.Meshes)
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
-                    meshPart.Effect = effect;
             return newModel;
         }
 
@@ -135,7 +129,6 @@ namespace NarrativeWorldCreator
             var sampler = GraphicsDevice.SamplerStates[0];
 
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
-            SpriteBatch spriteBatch = new SpriteBatch(GraphicsDevice);
 
             if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
             {
@@ -512,7 +505,7 @@ namespace NarrativeWorldCreator
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
-                    NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
+                    NarrativeTimePoint ntp = ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
                     // Update PlanningEngine's available information, update wishlist
                     PlanningEngine.UpdateWishList(ntp);
 
@@ -541,7 +534,7 @@ namespace NarrativeWorldCreator
 
                     // Determine shapes for entika class instances
                     NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
-                    ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
+                    ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
                 }
             }
 
@@ -572,7 +565,7 @@ namespace NarrativeWorldCreator
         private void HandleObjectRemoval()
         {
             var ei = _currentRegionPage.SelectedEntikaObject;
-            NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
+            NarrativeTimePoint ntp = ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
             SolvingEngine.RemoveEntikaInstanceFromTimePoint(ntp, ei);
             _currentRegionPage.DeselectObject();
         }
@@ -591,7 +584,7 @@ namespace NarrativeWorldCreator
             var mouseCoords = CalculateMouseHitOnSurface();
 
             // Check if mouse coordinates are inside a shape
-            NarrativeTimePoint ntp = ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
+            NarrativeTimePoint ntp = ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
             NarrativeShape DestinationShape =  null;
             // Todo, figure out if place is correct (within one of the shapes that allows placement of this object)
             foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
@@ -623,7 +616,7 @@ namespace NarrativeWorldCreator
             
             // Store changes
             NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
-            ((RegionDetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
+            ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
         }
 
         private void HandleObjectSelection()

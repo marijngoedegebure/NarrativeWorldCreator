@@ -20,16 +20,17 @@ namespace NarrativeWorlds
         // Location mentioned in the narrative event
         public Node Location { get; set; }
 
-        // Story constraints for this timepoint
-        public List<NarrativeObjectEntikaLink> NarrativeObjectEntikaLinks { get; set; }
         public List<NarrativePredicateInstance> NarrativePredicateInstances { get; set; }
+
+        // Story constraints for this timepoint
+        public List<NarrativePredicateInstance> PredicatesInstancesFilteredLocation { get; set; }
 
         public TimePointSpecificFill TimePointSpecificFill { get; set; }
 
         public NarrativeTimePoint(int timePoint)
         {
             this.TimePoint = timePoint;
-            NarrativeObjectEntikaLinks = new List<NarrativeObjectEntikaLink>();
+            PredicatesInstancesFilteredLocation = new List<NarrativePredicateInstance>();
             NarrativePredicateInstances = new List<NarrativePredicateInstance>();
             TimePointSpecificFill = new TimePointSpecificFill();
         }

@@ -43,7 +43,6 @@ namespace NarrativeWorldCreator
             InitializeComponent();
             this.selectedNode = selectedNode;
             CurrentMode = RegionPageMode.RegionCreation;
-            fillGroupCombobox();
         }
 
         //public void fillNarrativeEntitiesList(NarrativeTimePoint ntp)
@@ -92,8 +91,8 @@ namespace NarrativeWorldCreator
         private void RegionDetailTimePointView_Loaded(object sender, RoutedEventArgs e)
         {
             // Fill control with stuff
-            RegionDetailTimePointViewModel timePointViewModelObject =
-               new RegionDetailTimePointViewModel();
+            DetailTimePointViewModel timePointViewModelObject =
+               new DetailTimePointViewModel();
             if (SelectedTimePoint == null)
             {
                 var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.Active).ToList()[0];
@@ -131,13 +130,7 @@ namespace NarrativeWorldCreator
         internal void fillDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
-            (RegionDetailTimePointView.DataContext as RegionDetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
-        }
-
-        private void fillGroupCombobox()
-        {
-            List<Group> allGroups = DatabaseSearch.GetNodes<Group>(true);
-            lvGroupsDataBinding.ItemsSource = allGroups;
+            (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
 
         private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)
@@ -162,20 +155,20 @@ namespace NarrativeWorldCreator
         public void SwitchModeToRegionFilling()
         {
             changeModes(RegionPageMode.RegionFilling);
-            region_creation_1.Visibility = Visibility.Collapsed;
-            region_creation_4.Visibility = Visibility.Collapsed;
+            region_outlining_1.Visibility = Visibility.Collapsed;
+            region_outlining_4.Visibility = Visibility.Collapsed;
             region_filling_1.Visibility = Visibility.Visible;
-            region_filling_2.Visibility = Visibility.Visible;
+            region_filling_3.Visibility = Visibility.Visible;
             region_filling_4.Visibility = Visibility.Visible;
         }
 
         public void SwitchModeToRegionCreation()
         {
             changeModes(RegionPageMode.RegionCreation);
-            region_creation_1.Visibility = Visibility.Visible;
-            region_creation_4.Visibility = Visibility.Visible;
+            region_outlining_1.Visibility = Visibility.Visible;
+            region_outlining_4.Visibility = Visibility.Visible;
             region_filling_1.Visibility = Visibility.Collapsed;
-            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_4.Visibility = Visibility.Collapsed;
         }
 

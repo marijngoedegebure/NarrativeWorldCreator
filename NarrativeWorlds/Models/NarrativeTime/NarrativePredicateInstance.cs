@@ -15,5 +15,16 @@ namespace NarrativeWorlds.Models.NarrativeRegionFill
         {
             this.NarrativePredicate = predicate;
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as NarrativePredicateInstance;
+
+            if (item == null)
+            {
+                return false;
+            }
+            return this.NarrativePredicate.Equals(item.NarrativePredicate);
+        }
     }
 }

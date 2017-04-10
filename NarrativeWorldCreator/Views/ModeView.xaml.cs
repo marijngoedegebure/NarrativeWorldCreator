@@ -25,9 +25,9 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private void btnSwitchModeToRegionCreation(object sender, RoutedEventArgs e)
+        private void btnSwitchModeToRegionOutlining(object sender, RoutedEventArgs e)
         {
-            region_creation_3.Visibility = Visibility.Visible;
+            region_outlining_3.Visibility = Visibility.Visible;
             region_filling_3.Visibility = Visibility.Collapsed;
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             RegionPage parentPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
@@ -36,7 +36,7 @@ namespace NarrativeWorldCreator.Views
 
         private void btnSwitchModeToRegionFilling(object sender, RoutedEventArgs e)
         {
-            region_creation_3.Visibility = Visibility.Collapsed;
+            region_outlining_3.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Visible;
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             RegionPage parentPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
