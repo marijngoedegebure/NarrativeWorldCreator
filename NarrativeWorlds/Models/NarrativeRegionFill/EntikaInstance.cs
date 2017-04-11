@@ -50,6 +50,14 @@ namespace NarrativeWorlds
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
         }
 
+        // Constructor for addition before placement
+        public EntikaInstance(TangibleObject to)
+        {
+            SetupLists();
+            this.Name = to.DefaultName;
+            TangibleObject = to;
+        }
+
 
         public void UpdateBoundingBoxAndShape(Matrix world)
         {

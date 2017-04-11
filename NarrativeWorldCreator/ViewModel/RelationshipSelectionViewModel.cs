@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class RelationshipSelectionView
+    public class RelationshipSelectionViewModel
     {
         private ObservableCollection<Relationship> _relationships;
         public ObservableCollection<Relationship> Relationships
@@ -37,10 +37,10 @@ namespace NarrativeWorldCreator.ViewModel
         public void Load(TangibleObject to)
         {
             ObservableCollection<Relationship> rsoc = new ObservableCollection<Relationship>();
-            foreach (var rel in to.RelationshipsAsSource)
-            {
-                rsoc.Add(rel);
-            }
+            //foreach (var rel in to.RelationshipsAsSource)
+            //{
+            //    rsoc.Add(rel);
+            //}
             foreach (var rel in to.RelationshipsAsTarget)
             {
                 rsoc.Add(rel);

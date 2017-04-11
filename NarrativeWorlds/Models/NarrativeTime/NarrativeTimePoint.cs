@@ -29,6 +29,9 @@ namespace NarrativeWorlds
         // Story constraints for this timepoint
         public List<NarrativePredicateInstance> PredicatesInstancesFilteredLocation { get; set; }
 
+        public List<RelationshipInstance> InstancedRelations { get; set; }
+        public List<EntikaInstance> InstancedObjects { get; set; }
+
 
         public TimePointSpecificFill TimePointSpecificFill { get; set; }
 
@@ -37,6 +40,9 @@ namespace NarrativeWorlds
             this.TimePoint = timePoint;
             PredicatesInstancesFilteredLocation = new List<NarrativePredicateInstance>();
             NarrativePredicateInstances = new List<NarrativePredicateInstance>();
+            InstancedRelations = new List<RelationshipInstance>();
+            InstancedObjects = new List<EntikaInstance>();
+
             TimePointSpecificFill = new TimePointSpecificFill();
             AvailableTangibleObjects = DefaultTangibleObjects;
         }
@@ -75,7 +81,10 @@ namespace NarrativeWorlds
         private void SetupFloorInstance(Node selectedNode)
         {
             // Setup EntikaInstance with on(X, floor) relationship
-            var floorInstance = new EntikaInstance("floor");
+            var floorInstance = new EntikaInstance("Floor");
+            this.InstancedObjects.Add(floorInstance);
+
+            // TimepointSpecificFill stuff:
             var floorShape = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), ShapeType.Relationship, floorInstance);
             var floorRelationship = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
             floorShape.Relations.Add(floorRelationship);

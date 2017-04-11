@@ -1,5 +1,4 @@
-﻿using Semantics.Components;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,27 +16,18 @@ using System.Windows.Shapes;
 namespace NarrativeWorldCreator.Views
 {
     /// <summary>
-    /// Interaction logic for TangibleObjectAdditionView.xaml
+    /// Interaction logic for ObjectPlacementView.xaml
     /// </summary>
-    public partial class RelationshipSelectionView : UserControl
+    public partial class ObjectPlacementView : UserControl
     {
-        public RelationshipSelectionView()
+        public ObjectPlacementView()
         {
             InitializeComponent();
-            
         }
 
-        private void BackToSelection(object sender, RoutedEventArgs e)
+        private void ToEntityAddition(object sender, RoutedEventArgs e)
         {
-            GetRegionPage().BackToTangibleObjectSelection();
-        }
-
-        private void NextStep(object sender, RoutedEventArgs e)
-        {
-            // Retrieve selected relationships
-            System.Collections.IList items = (System.Collections.IList)RelationListView.SelectedItems;
-            List<Relationship> relations = items.Cast<Relationship>().ToList();
-            GetRegionPage().InstanceSelectedRelationships(relations);
+            GetRegionPage().ToEntityAddition();
         }
 
         private RegionPage GetRegionPage()

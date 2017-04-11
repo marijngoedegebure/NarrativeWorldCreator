@@ -126,14 +126,27 @@
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionScene.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
+    <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
+    <Compile Include="ViewModel\FillDetailViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
-    <Compile Include="ViewModel\RelationshipSelectionView.cs" />
+    <Compile Include="ViewModel\RelationInstancingViewModel.cs" />
+    <Compile Include="ViewModel\RelationshipInstanceViewModel.cs" />
+    <Compile Include="ViewModel\RelationshipSelectionViewModel.cs" />
     <Compile Include="ViewModel\SelectedObjectDetailViewModel.cs" />
     <Compile Include="ViewModel\GraphDetailTimePointListViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsViewModel.cs" />
+    <Compile Include="Views\FillDetailView.xaml.cs">
+      <DependentUpon>FillDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ObjectPlacementView.xaml.cs">
+      <DependentUpon>ObjectPlacementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RelationInstancingView.xaml.cs">
+      <DependentUpon>RelationInstancingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ModeView.xaml.cs">
       <DependentUpon>ModeView.xaml</DependentUpon>
     </Compile>
@@ -185,6 +198,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RegionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FillDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ObjectPlacementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RelationInstancingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

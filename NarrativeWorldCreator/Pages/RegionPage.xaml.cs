@@ -1,6 +1,8 @@
 ﻿using NarrativeWorldCreator.ViewModel;
 using NarrativeWorlds;
+using NarrativeWorlds.Models.NarrativeRegionFill;
 using Semantics.Abstractions;
+using Semantics.Components;
 using Semantics.Data;
 using Semantics.Entities;
 using System;
@@ -25,10 +27,11 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class RegionPage : Page
     {
-        public Node selectedNode;
+        public NarrativeWorlds.Node selectedNode;
+
         public EntikaInstance SelectedEntikaObject;
         public NarrativeTimePoint SelectedTimePoint { get; internal set; }
-        public TangibleObject TangibleObjectToAdd;
+        public EntikaInstance InstanceOfObjectToAdd;
 
         public enum RegionPageMode
         {
@@ -36,11 +39,37 @@ namespace NarrativeWorldCreator
             RegionFilling = 1,
         }
 
+        public void SaveInstancingOfRelationsAndGotoPlacement(RelationInstancingViewModel rivm)
+        {
+            // Retrieve selected object for each relation
+
+            // Add relation to EntikaInstance
+            foreach(var relationVM in rivm.RelationshipInstances)
+            {
+                var relationInstance = relationVM.RelationshipInstance;
+                foreach (var objectInstanceVM in relationVM.ObjectInstances)
+                {
+                    if(objectInstanceVM.Selected)
+                    {
+                        relationInstance.Source = objectInstanceVM.EntikaInstance;
+                        this.SelectedTimePoint.InstancedRelations.Add(relationInstance);
+                        break;
+                    }
+                }
+            }
+            this.SelectedTimePoint.InstancedObjects.Add(InstanceOfObjectToAdd);
+
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionView.Visibility = Visibility.Collapsed;
+            RelationInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Visible;
+        }
+
         public RegionPageMode CurrentMode;
 
         public bool RegionCreated = false;
 
-        public RegionPage(Node selectedNode)
+        public RegionPage(NarrativeWorlds.Node selectedNode)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
@@ -51,26 +80,72 @@ namespace NarrativeWorldCreator
 
         public void AddSelectedTangibleObject(TangibleObject selectedItem)
         {
-            TangibleObjectToAdd = selectedItem;
-            RelationshipSelectionView riVM = new RelationshipSelectionView();
+            InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
+            RelationshipSelectionViewModel riVM = new RelationshipSelectionViewModel();
             riVM.Load(selectedItem);
             RelationshipSelectionView.DataContext = riVM;
             TangibleObjectsView.Visibility = Visibility.Collapsed;
             RelationshipSelectionView.Visibility = Visibility.Visible;
+            RelationInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Collapsed;
         }
 
         public void BackToTangibleObjectSelection()
         {
             TangibleObjectsView.Visibility = Visibility.Visible;
             RelationshipSelectionView.Visibility = Visibility.Collapsed;
-            TangibleObjectToAdd = null;
-            RelationshipSelectionView riVM = new RelationshipSelectionView();
+            RelationInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Collapsed;
+            InstanceOfObjectToAdd = null;
+            RelationshipSelectionViewModel riVM = new RelationshipSelectionViewModel();
             RelationshipSelectionView.DataContext = riVM;
         }
 
         public void BackToRelationshipSelection()
         {
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionView.Visibility = Visibility.Visible;
+            RelationInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Collapsed;
+        }
 
+        public void ToEntityAddition()
+        {
+            TangibleObjectsView.Visibility = Visibility.Visible;
+            RelationshipSelectionView.Visibility = Visibility.Collapsed;
+            RelationInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Collapsed;
+        }
+
+        public void InstanceSelectedRelationships(List<Relationship> relationships)
+        {
+            List<RelationshipInstance> relationInstances = new List<RelationshipInstance>();
+            // Instanciate relationships
+            foreach(var relation in relationships)
+            {
+                var instance = new RelationshipInstance();
+                instance.BaseRelationship = relation;
+                
+                if (relation.Source.Equals(InstanceOfObjectToAdd.TangibleObject))
+                {
+                    instance.Source = InstanceOfObjectToAdd;
+                }
+                else
+                {
+                    instance.Targets.Add(InstanceOfObjectToAdd);
+                }
+                relationInstances.Add(instance);
+            }
+
+            RelationInstancingViewModel rivm = new RelationInstancingViewModel();
+            rivm.Load(relationInstances, this.SelectedTimePoint.InstancedObjects);
+            RelationInstancingView.DataContext = rivm;
+
+            UpdateFillDetailView();
+
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionView.Visibility = Visibility.Collapsed;
+            RelationInstancingView.Visibility = Visibility.Visible;
         }
 
         public TangibleObject RetrieveSelectedTangibleObjectFromListView()
@@ -141,10 +216,24 @@ namespace NarrativeWorldCreator
             SelectedObjectDetailView.HideGrid();
         }
 
-        internal void fillDetailView(NarrativeTimePoint narrativeTimePoint)
+        private void FillDetailView_Loaded(object sender, RoutedEventArgs e)
+        {
+            FillDetailViewModel fillDetailVM = new FillDetailViewModel();
+            fillDetailVM.Load(this.SelectedTimePoint);
+
+            FillDetailView.DataContext = fillDetailVM;
+        }
+
+        public void UpdateFillDetailView()
+        {
+            (FillDetailView.DataContext as FillDetailViewModel).Load(this.SelectedTimePoint);
+        }
+
+        public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
+            UpdateFillDetailView();
         }
 
         private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)
@@ -172,6 +261,7 @@ namespace NarrativeWorldCreator
             region_outlining_1.Visibility = Visibility.Collapsed;
             region_outlining_4.Visibility = Visibility.Collapsed;
             region_filling_1.Visibility = Visibility.Visible;
+            region_filling_2.Visibility = Visibility.Visible;
             region_filling_3.Visibility = Visibility.Visible;
             region_filling_4.Visibility = Visibility.Visible;
         }
@@ -182,6 +272,7 @@ namespace NarrativeWorldCreator
             region_outlining_1.Visibility = Visibility.Visible;
             region_outlining_4.Visibility = Visibility.Visible;
             region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_2.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_4.Visibility = Visibility.Collapsed;
         }

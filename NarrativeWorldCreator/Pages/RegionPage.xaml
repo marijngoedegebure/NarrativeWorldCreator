@@ -85,7 +85,12 @@
                             </Grid.ColumnDefinitions>
                             <views:TangibleObjectsView Grid.Column="0" Grid.Row="0" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
                             <views:RelationshipSelectionView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionView"/>
+                            <views:RelationInstancingView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationInstancingView"/>
+                            <views:ObjectPlacementView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="ObjectPlacementView"/>
                         </Grid>
+                    </TabItem>
+                    <TabItem Name="region_filling_2" Header="Entity addition" Visibility="Collapsed">
+                        <views:FillDetailView x:Name="FillDetailView" Loaded = "FillDetailView_Loaded"/>
                     </TabItem>
                     <TabItem Name="region_filling_3" Header="Region detail" Visibility="Collapsed">
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
