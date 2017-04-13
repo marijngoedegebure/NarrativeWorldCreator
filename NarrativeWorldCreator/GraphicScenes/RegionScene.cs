@@ -145,6 +145,12 @@ namespace NarrativeWorldCreator
                 drawEntikaInstance(instance);
             }
 
+            // Draw all objects that are known 2.0
+            foreach(EntikaInstance instance in _currentRegionPage.SelectedTimePoint.InstancedObjects.Where(io => !io.Name.Equals("Floor")).ToList())
+            {
+                drawEntikaInstance2(instance);
+            }
+
             // this base.Draw call will draw "all" components
             base.Draw(time);
 
@@ -356,8 +362,6 @@ namespace NarrativeWorldCreator
         public void drawEntikaInstance(EntikaInstance instance)
         {
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff");
-            Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
-            instance.Model.CopyAbsoluteBoneTransformsTo(transforms);
             Vector3 modelPosition = instance.Position;
             // Rotation should be in radians, rotates model to top down view
             float modelRotation = ConvertToRadians(90.0f);
@@ -414,6 +418,13 @@ namespace NarrativeWorldCreator
                     mesh.Draw();
                 }
             }
+        }
+
+        public void drawEntikaInstance2 (EntikaInstance instance)
+        {
+            if (instance.Position == null)
+                return;
+            drawEntikaInstance(instance);
         }
 
         public void drawModelExampleFunction()

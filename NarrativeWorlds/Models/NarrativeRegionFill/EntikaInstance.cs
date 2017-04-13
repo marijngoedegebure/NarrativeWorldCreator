@@ -4,6 +4,7 @@ using Semantics.Data;
 using Semantics.Entities;
 using System.Collections.Generic;
 using System;
+using Common;
 
 namespace NarrativeWorlds
 {
@@ -14,7 +15,10 @@ namespace NarrativeWorlds
         public TangibleObject TangibleObject { get; set; }
         // XNA Model
         public Vector3 Position { get; set; }
+
+        // Has either a polygon for a floor or a model
         public Model Model { get; set; }
+        public Polygon Polygon { get; set; }
         public BoundingBox BoundingBox { get; set; }
 
         public NarrativeShape OffLimitsShape { get; set; }
@@ -43,11 +47,13 @@ namespace NarrativeWorlds
         }
 
         // Constructor for ground
-        public EntikaInstance(string name)
+        public EntikaInstance(string name, Polygon poly)
         {
             SetupLists();
             this.Name = name;
+            this.Polygon = poly;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
+            UpdateBoundingBoxAndShape(null);
         }
 
         // Constructor for addition before placement
@@ -59,37 +65,50 @@ namespace NarrativeWorlds
         }
 
 
-        public void UpdateBoundingBoxAndShape(Matrix world)
+        public void UpdateBoundingBoxAndShape(Matrix? world)
         {
-            var worldTransform = world * Matrix.CreateTranslation(this.Position);
             // Initialize minimum and maximum corners of the bounding box to max and min values
             Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
             Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 
             // For each mesh of the model
-            foreach (ModelMesh mesh in Model.Meshes)
+            if (Model != null && world.HasValue)
             {
-                foreach (ModelMeshPart meshPart in mesh.MeshParts)
+                var worldTransform = world.GetValueOrDefault() * Matrix.CreateTranslation(this.Position);
+                foreach (ModelMesh mesh in Model.Meshes)
                 {
-                    // Vertex buffer parameters
-                    int vertexStride = meshPart.VertexBuffer.VertexDeclaration.VertexStride;
-                    int vertexBufferSize = meshPart.NumVertices * vertexStride;
-
-                    // Get vertex data as float
-                    float[] vertexData = new float[vertexBufferSize / sizeof(float)];
-                    meshPart.VertexBuffer.GetData<float>(vertexData);
-
-                    // Iterate through vertices (possibly) growing bounding box, all calculations are done in world space
-                    for (int i = 0; i < vertexBufferSize / sizeof(float); i += vertexStride / sizeof(float))
+                    foreach (ModelMeshPart meshPart in mesh.MeshParts)
                     {
-                        Vector3 transformedPosition = Vector3.Transform(new Vector3(vertexData[i], vertexData[i + 1], vertexData[i + 2]), worldTransform);
+                        // Vertex buffer parameters
+                        int vertexStride = meshPart.VertexBuffer.VertexDeclaration.VertexStride;
+                        int vertexBufferSize = meshPart.NumVertices * vertexStride;
 
-                        min = Vector3.Min(min, transformedPosition);
-                        max = Vector3.Max(max, transformedPosition);
+                        // Get vertex data as float
+                        float[] vertexData = new float[vertexBufferSize / sizeof(float)];
+                        meshPart.VertexBuffer.GetData<float>(vertexData);
+
+                        // Iterate through vertices (possibly) growing bounding box, all calculations are done in world space
+                        for (int i = 0; i < vertexBufferSize / sizeof(float); i += vertexStride / sizeof(float))
+                        {
+                            Vector3 transformedPosition = Vector3.Transform(new Vector3(vertexData[i], vertexData[i + 1], vertexData[i + 2]), worldTransform);
+
+                            min = Vector3.Min(min, transformedPosition);
+                            max = Vector3.Max(max, transformedPosition);
+                        }
                     }
                 }
             }
+            else
+            {
+                foreach (var point in Polygon.GetAllVertices())
+                {
+                    Vector3 transformedPosition = new Vector3((float)point.X, (float)point.Y, 0);
 
+                    min = Vector3.Min(min, transformedPosition);
+                    max = Vector3.Max(max, transformedPosition);
+                }
+
+            }
             // Create and return bounding box
             this.BoundingBox = new BoundingBox(min, max);
         }

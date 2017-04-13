@@ -130,7 +130,9 @@
     <Compile Include="ViewModel\FillDetailViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
+    <Compile Include="ViewModel\ObjectPlacementViewModel.cs" />
     <Compile Include="ViewModel\RelationInstancingViewModel.cs" />
+    <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceViewModel.cs" />
     <Compile Include="ViewModel\RelationshipSelectionViewModel.cs" />
     <Compile Include="ViewModel\SelectedObjectDetailViewModel.cs" />
@@ -138,6 +140,7 @@
     <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsViewModel.cs" />
+    <Compile Include="ViewModel\Vector3ViewModel.cs" />
     <Compile Include="Views\FillDetailView.xaml.cs">
       <DependentUpon>FillDetailView.xaml</DependentUpon>
     </Compile>

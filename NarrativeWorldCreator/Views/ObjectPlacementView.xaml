@@ -7,6 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Done" Width="200" Click="ToEntityAddition"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Place" Width="200" Click="ToEntityAddition"/>
+        <ListView Name="OptionListView"
+            Grid.Column="0"
+            Grid.Row="1"
+            Margin="10"
+            SelectionMode="Single"
+            SelectionChanged="ObjectPlacementSelectionChanged"
+            ItemsSource = "{Binding Path = PlacementOptions}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Vector of option: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path = X, Mode = OneWay, StringFormat='X: {0} '}" />
+                        <TextBlock Text="{Binding Path = Y, Mode = OneWay, StringFormat='Y: {0} '}" />
+                        <TextBlock Text="{Binding Path = Z, Mode = OneWay, StringFormat='Z: {0} '}" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </UserControl>

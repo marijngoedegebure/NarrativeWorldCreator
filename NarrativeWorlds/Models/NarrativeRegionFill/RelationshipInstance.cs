@@ -13,8 +13,15 @@ namespace NarrativeWorlds.Models.NarrativeRegionFill
         public List<EntikaInstance> Targets { get; set; }
         public Relationship BaseRelationship { get; set; }
 
+        // Parameters for energy function
+        public bool Valued { get; set; }
+        public double? TargetRangeStart { get; set; }
+        public double? TargetRangeEnd { get; set; }
+
+
         public RelationshipInstance()
         {
+            Valued = false;
             Targets = new List<EntikaInstance>();
         }
     }

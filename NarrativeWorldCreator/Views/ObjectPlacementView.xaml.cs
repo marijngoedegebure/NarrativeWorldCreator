@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NarrativeWorldCreator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,23 @@ namespace NarrativeWorldCreator.Views
 
         private void ToEntityAddition(object sender, RoutedEventArgs e)
         {
-            GetRegionPage().ToEntityAddition();
+            var vectorVM = (Vector3ViewModel)this.OptionListView.SelectedItem;
+            GetRegionPage().PlaceObjectAndToEntityAddition(vectorVM.OriginalVector);
+        }
+
+        private void ObjectPlacementSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var removedItems = e.RemovedItems;
+            if (removedItems.Count > 0)
+            {
+                Vector3ViewModel entikaInstance = removedItems[0] as Vector3ViewModel;
+            }
+            var addedItems = e.AddedItems;
+            if (addedItems.Count > 0)
+            {
+                Vector3ViewModel vector3VM = addedItems[0] as Vector3ViewModel;
+                GetRegionPage().UpdateObjectPosition(vector3VM.OriginalVector);
+            }
         }
 
         private RegionPage GetRegionPage()

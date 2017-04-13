@@ -1,6 +1,9 @@
-﻿using NarrativeWorldCreator.ViewModel;
+﻿using Microsoft.Xna.Framework;
+using NarrativeWorldCreator.ViewModel;
 using NarrativeWorlds;
+using NarrativeWorlds.Models;
 using NarrativeWorlds.Models.NarrativeRegionFill;
+using NarrativeWorlds.Solver;
 using Semantics.Abstractions;
 using Semantics.Components;
 using Semantics.Data;
@@ -59,6 +62,13 @@ namespace NarrativeWorldCreator
             }
             this.SelectedTimePoint.InstancedObjects.Add(InstanceOfObjectToAdd);
 
+            // Generate positions
+            List<Vector3> positions = PlacementSolver.GenerateRandomPosition(this.SelectedTimePoint, InstanceOfObjectToAdd);
+
+            ObjectPlacementViewModel opVM = new ObjectPlacementViewModel();
+            opVM.Load(positions);
+            ObjectPlacementView.DataContext = opVM;
+
             TangibleObjectsView.Visibility = Visibility.Collapsed;
             RelationshipSelectionView.Visibility = Visibility.Collapsed;
             RelationInstancingView.Visibility = Visibility.Collapsed;
@@ -109,8 +119,15 @@ namespace NarrativeWorldCreator
             ObjectPlacementView.Visibility = Visibility.Collapsed;
         }
 
-        public void ToEntityAddition()
+        public void UpdateObjectPosition(Vector3 vector)
         {
+            this.InstanceOfObjectToAdd.Position = vector;
+        }
+
+        public void PlaceObjectAndToEntityAddition(Vector3 vector)
+        {
+            this.InstanceOfObjectToAdd.Position = vector;
+
             TangibleObjectsView.Visibility = Visibility.Visible;
             RelationshipSelectionView.Visibility = Visibility.Collapsed;
             RelationInstancingView.Visibility = Visibility.Collapsed;
@@ -125,6 +142,12 @@ namespace NarrativeWorldCreator
             {
                 var instance = new RelationshipInstance();
                 instance.BaseRelationship = relation;
+                if (RelationshipTypes.IsRelationshipValued(relation.RelationshipType.DefaultName))
+                {
+                    instance.Valued = true;
+                    instance.TargetRangeStart = Double.Parse(relation.Attributes[0].Value.ToString());
+                    instance.TargetRangeEnd = Double.Parse(relation.Attributes[1].Value.ToString());
+                }
                 
                 if (relation.Source.Equals(InstanceOfObjectToAdd.TangibleObject))
                 {

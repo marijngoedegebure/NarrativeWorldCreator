@@ -66,6 +66,9 @@ namespace NarrativeWorlds
             {
                 // Update the shape all others reference
                 this.TimePointSpecificFill.NarrativeShapes[0].Polygon = new Polygon(selectedNode.Shape.Points);
+                var floor = this.InstancedObjects.Where(io => io.Name.Equals("Floor")).FirstOrDefault();
+                floor.Polygon = new Polygon(selectedNode.Shape.Points);
+                floor.UpdateBoundingBoxAndShape(null);
             }
         }
 
@@ -81,7 +84,7 @@ namespace NarrativeWorlds
         private void SetupFloorInstance(Node selectedNode)
         {
             // Setup EntikaInstance with on(X, floor) relationship
-            var floorInstance = new EntikaInstance("Floor");
+            var floorInstance = new EntikaInstance("Floor", new Polygon(selectedNode.Shape.Points));
             this.InstancedObjects.Add(floorInstance);
 
             // TimepointSpecificFill stuff:

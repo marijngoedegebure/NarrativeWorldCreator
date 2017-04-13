@@ -26,8 +26,8 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
-        private ObservableCollection<RelationshipInstance> _relationshipInstances;
-        public ObservableCollection<RelationshipInstance> RelationshipInstances
+        private ObservableCollection<RelationshipInstanceEnergyViewModel> _relationshipInstances;
+        public ObservableCollection<RelationshipInstanceEnergyViewModel> RelationshipInstances
         {
             get
             {
@@ -57,10 +57,12 @@ namespace NarrativeWorldCreator.ViewModel
             }
             EntikaInstances = eioc;
 
-            ObservableCollection<RelationshipInstance> rioc = new ObservableCollection<RelationshipInstance>();
+            ObservableCollection<RelationshipInstanceEnergyViewModel> rioc = new ObservableCollection<RelationshipInstanceEnergyViewModel>();
             foreach (var relation in ntp.InstancedRelations)
             {
-                rioc.Add(relation);
+                var relationshipEnergyVM = new RelationshipInstanceEnergyViewModel();
+                relationshipEnergyVM.Load(relation);
+                rioc.Add(relationshipEnergyVM);
             }
             RelationshipInstances = rioc;
         }
