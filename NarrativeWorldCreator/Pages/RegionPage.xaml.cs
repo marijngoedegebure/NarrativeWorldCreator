@@ -117,6 +117,8 @@ namespace NarrativeWorldCreator
             }
             this.SelectedTimePoint.InstancedObjects.Add(InstanceOfObjectToAdd);
 
+            this.SelectedTimePoint.InstantiatePredicates(InstanceOfObjectToAdd);
+
             // Generate positions
             List<Vector3> positions = PlacementSolver.GenerateRandomPosition(this.SelectedTimePoint, InstanceOfObjectToAdd);
 

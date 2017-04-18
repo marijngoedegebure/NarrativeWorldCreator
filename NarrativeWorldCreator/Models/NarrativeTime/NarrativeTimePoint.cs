@@ -27,10 +27,10 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public List<NarrativePredicateInstance> AllNarrativePredicateInstances { get; set; }
 
-        // Story constraints for this timepoint
+        // Story constraints for this timepoint, otherwise known as the goals
         public List<NarrativePredicateInstance> PredicatesFilteredByCurrentLocation { get; set; }
 
-        //public List<NarrativePredicateInstance> PredicatesFilteredByCurrentLocation { get; set; }
+        public List<NarrativePredicateInstance> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
 
         public List<RelationshipInstance> InstancedRelations { get; set; }
         public List<EntikaInstance> InstancedObjects { get; set; }
@@ -107,6 +107,12 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
             this.TimePointSpecificFill.FloorInstance = floorInstance;
             this.TimePointSpecificFill.Relationships.Add(floorRelationship);
+        }
+
+        internal void InstantiatePredicates(EntikaInstance instanceOfObjectToAdd)
+        {
+            var narrativePredicates = SystemStateTracker.NarrativeWorld.Narrative.NarrativePredicates.Where(np => np.PredicateType.Name.Equals("At")).ToList();
+            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new NarrativePredicateInstance())
         }
 
         public override bool Equals(object obj)
