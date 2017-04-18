@@ -29,11 +29,11 @@ namespace SemanticsEngine.Components
         /// <summary>
         /// Gets the service of which this is a service base.
         /// </summary>
-        protected internal Service Service
+        protected internal Action Service
         {
             get
             {
-                return this.IdHolder as Service;
+                return this.IdHolder as Action;
             }
         }
         #endregion Property: Service
@@ -47,7 +47,7 @@ namespace SemanticsEngine.Components
         /// Creates a base of the given service.
         /// </summary>
         /// <param name="service">The service to create a base of.</param>
-        protected ServiceBase(Service service)
+        protected ServiceBase(Action service)
             : base(service)
         {
         }

@@ -5,7 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
-using NarrativeWorlds;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Solvers;
+using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,10 +34,6 @@ namespace NarrativeWorldCreator
         private RegionPage _currentRegionPage;
 
         private VertexBuffer vertexBuffer;
-
-        private Matrix view;
-        private Matrix proj;
-        private Matrix world;
 
         private Effect effect;
 
@@ -69,8 +68,6 @@ namespace NarrativeWorldCreator
         private DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
         private KeyboardState _previousKeyboardState;
 
-        private Model Beachball;
-
         private Model Ship;
 
         #endregion
@@ -79,6 +76,7 @@ namespace NarrativeWorldCreator
         protected override void Initialize()
         {
             base.Initialize();
+            SystemStateTracker.RegionGraphicsDevice = this.GraphicsDevice;
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -97,7 +95,7 @@ namespace NarrativeWorldCreator
             _currentRegionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
 
             // Load test models
-            Beachball = Content.Load<Model>("Models/BeachBall");
+            SystemStateTracker.DefaultModel = Content.Load<Model>("Models/BeachBall");
             Ship = Content.Load<Model>("Models/Ship");
         }
 
@@ -109,16 +107,16 @@ namespace NarrativeWorldCreator
 
         private void UpdateViewAndProj()
         {
-            view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
+            SystemStateTracker.view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
 
-            proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
+            SystemStateTracker.proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
                                               Camera3d.NEARCLIP, Camera3d.FARCLIP);
         }
 
         protected override void Draw(GameTime time)
         {
             GraphicsDevice.Clear(_mouseState.LeftButton == ButtonState.Pressed ? Color.Black : Color.CornflowerBlue);
-            world = Matrix.Identity;
+            SystemStateTracker.world = Matrix.Identity;
             UpdateViewAndProj();
             // since we share the GraphicsDevice with all hosts, we need to save and reset the states
             // this has to be done because spriteBatch internally sets states and doesn't reset themselves, fucking over any 3D rendering (which happens in the DemoScene)
@@ -150,6 +148,7 @@ namespace NarrativeWorldCreator
             {
                 drawEntikaInstance2(instance);
             }
+            this._currentRegionPage.UpdateFillDetailView();
 
             // this base.Draw call will draw "all" components
             base.Draw(time);
@@ -163,9 +162,9 @@ namespace NarrativeWorldCreator
         private void drawNarrativeShapes()
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
-            basicEffect.World = world;
-            basicEffect.View = view;
-            basicEffect.Projection = proj;
+            basicEffect.World = SystemStateTracker.world;
+            basicEffect.View = SystemStateTracker.view;
+            basicEffect.Projection = SystemStateTracker.proj;
             basicEffect.VertexColorEnabled = true;
             var selectedTO = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
             foreach (var shape in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes)
@@ -212,9 +211,9 @@ namespace NarrativeWorldCreator
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
 
-            basicEffect.World = world;
-            basicEffect.View = view;
-            basicEffect.Projection = proj;
+            basicEffect.World = SystemStateTracker.world;
+            basicEffect.View = SystemStateTracker.view;
+            basicEffect.Projection = SystemStateTracker.proj;
             basicEffect.VertexColorEnabled = true;
             // Triangles should be defined clockwise
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
@@ -388,32 +387,38 @@ namespace NarrativeWorldCreator
             //}
 
             // FBX model draw:
+            if (instance.Model == null)
+            {
+                instance.Model = SystemStateTracker.DefaultModel;
+                instance.UpdateBoundingBoxAndShape(SystemStateTracker.world);
+            }
+
             if (!instance.Equals(_currentRegionPage.SelectedEntikaObject))
             {
-                foreach (ModelMesh mesh in Beachball.Meshes)
+                foreach (ModelMesh mesh in SystemStateTracker.DefaultModel.Meshes)
                 {
                     foreach (BasicEffect effect in mesh.Effects)
                     {
                         effect.EnableDefaultLighting();
                         effect.AmbientLightColor = new Vector3(0, 0, 0);
-                        effect.View = view;
-                        effect.World = Matrix.CreateTranslation(modelPosition) * world;
-                        effect.Projection = proj;
+                        effect.View = SystemStateTracker.view;
+                        effect.World = Matrix.CreateTranslation(modelPosition) * SystemStateTracker.world;
+                        effect.Projection = SystemStateTracker.proj;
                     }
                     mesh.Draw();
                 }
             }
             else
             {
-                foreach (ModelMesh mesh in Beachball.Meshes)
+                foreach (ModelMesh mesh in SystemStateTracker.DefaultModel.Meshes)
                 {
                     foreach (BasicEffect effect in mesh.Effects)
                     {
                         effect.EnableDefaultLighting();
                         effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
-                        effect.View = view;
-                        effect.World = Matrix.CreateTranslation(modelPosition) * world;
-                        effect.Projection = proj;
+                        effect.View = SystemStateTracker.view;
+                        effect.World = Matrix.CreateTranslation(modelPosition) * SystemStateTracker.world;
+                        effect.Projection = SystemStateTracker.proj;
                     }
                     mesh.Draw();
                 }
@@ -445,8 +450,8 @@ namespace NarrativeWorldCreator
                     effect.World = transforms[mesh.ParentBone.Index] *
                         Matrix.CreateRotationY(modelRotation)
                         * Matrix.CreateTranslation(modelPosition);
-                    effect.View = view;
-                    effect.Projection = proj;
+                    effect.View = SystemStateTracker.view;
+                    effect.Projection = SystemStateTracker.proj;
                 }
                 // Draw the mesh, using the effects set above.
                 mesh.Draw();
@@ -530,7 +535,7 @@ namespace NarrativeWorldCreator
                     Model model = LoadModel(Path.GetFileNameWithoutExtension(tangibleObjectName));
 
                     // Create entika instance and update (currently relies on floor shape being used)
-                    var ei = new EntikaInstance(tangibleObjectName, position, Beachball, world);
+                    var ei = new EntikaInstance(tangibleObjectName, position, SystemStateTracker.DefaultModel, SystemStateTracker.world);
 
                     // Add new target to each of the overlapping relations of the shape
                     var query = from ShapeRelation in DestinationShape.Relations
@@ -612,7 +617,7 @@ namespace NarrativeWorldCreator
             }
             // Create entika instance
             Model model = LoadModel(Path.GetFileNameWithoutExtension(to.DefaultName));
-            var ei = new EntikaInstance(to.DefaultName, mouseCoords, Beachball, world);
+            var ei = new EntikaInstance(to.DefaultName, mouseCoords, SystemStateTracker.DefaultModel, SystemStateTracker.world);
 
             // Add new target to each of the overlapping relations of the shape and of the instance
             var query = from ShapeRelation in DestinationShape.Relations
@@ -636,7 +641,7 @@ namespace NarrativeWorldCreator
             foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.OtherObjectInstances)
             {
                 // Calculate/retrieve boundingbox
-                ieo.UpdateBoundingBoxAndShape(world);
+                ieo.UpdateBoundingBoxAndShape(SystemStateTracker.world);
 
                 // Intersect ray with bounding box, if distance then select model
                 float? distance = ray.Intersects(ieo.BoundingBox);
@@ -661,8 +666,8 @@ namespace NarrativeWorldCreator
             Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
             Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
 
-            Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
-            Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+            Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
+            Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
 
             // Create ray using far and near point
             Vector3 direction = farPoint - nearPoint;
@@ -722,8 +727,8 @@ namespace NarrativeWorldCreator
                 Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
                 Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
 
-                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, proj, view, world);
-                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, proj, view, world);
+                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
+                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
 
                 // Create ray using far and near point
                 Vector3 direction = farPoint - nearPoint;

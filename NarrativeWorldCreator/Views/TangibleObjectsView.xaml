@@ -8,8 +8,8 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,13 +21,42 @@
             Grid.Column="0"
                   Grid.Row="2"
                   Margin="10" 
-                  ItemsSource = "{Binding Path = TangibleObjects}"
+                  ItemsSource = "{Binding Path = TangibleObjectsValued}"
                   SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="{Binding DefaultName}" FontWeight="Bold" />
-                    </WrapPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding TangibleObject.DefaultName, StringFormat='Name: {0}'}" />
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
+                        <ItemsControl 
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            ItemsSource="{Binding Path=Metrics }">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=MetricType.Name, StringFormat='Metric type: {0}'}"/>
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Value, StringFormat='Value: {0}'}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

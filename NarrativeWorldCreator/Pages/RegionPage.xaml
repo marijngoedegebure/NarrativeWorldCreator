@@ -91,7 +91,7 @@
                     <TabItem Name="region_filling_2" Header="Entity addition" Visibility="Collapsed">
                         <Grid Name="region_filling_2_content">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>

@@ -1,5 +1,6 @@
-﻿using NarrativeWorlds;
-using NarrativeWorlds.Models.NarrativeRegionFill;
+﻿using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.ViewModel
 {
     public class DetailTimePointViewModel : INotifyPropertyChanged
     {
@@ -49,12 +50,12 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void LoadObjects(Node selectedNode, NarrativeTimePoint ntp)
+        internal void LoadObjects(LocationNode selectedNode, NarrativeTimePoint ntp)
         {
             this.NarrativeTimePoint = ntp;
             ObservableCollection<NarrativePredicateInstance> npioc = new ObservableCollection<NarrativePredicateInstance>();
 
-            foreach (var pi in ntp.PredicatesInstancesFilteredLocation)
+            foreach (var pi in ntp.PredicatesFilteredByCurrentLocation)
             {
                 npioc.Add(pi);
             }

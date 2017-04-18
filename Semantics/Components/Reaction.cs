@@ -52,11 +52,11 @@ namespace Semantics.Components
         /// <summary>
         /// Gets or sets the action of the reaction.
         /// </summary>
-        public Action Action
+        public Abstractions.Action Action
         {
             get
             {
-                return Database.Current.Select<Action>(this.ID, ValueTables.Reaction, Columns.Action);
+                return Database.Current.Select<Abstractions.Action>(this.ID, ValueTables.Reaction, Columns.Action);
             }
             set
             {
@@ -96,7 +96,7 @@ namespace Semantics.Components
         {
             // Action
             Dictionary<string, Tuple<Type, EntryType>> dict = new Dictionary<string, Tuple<Type, EntryType>>();
-            dict.Add(Columns.Action, new Tuple<Type, EntryType>(typeof(Action), EntryType.Unique));
+            dict.Add(Columns.Action, new Tuple<Type, EntryType>(typeof(Abstractions.Action), EntryType.Unique));
             Database.Current.AddTableDefinition(ValueTables.Reaction, typeof(Reaction), dict);
         }
         #endregion Static Constructor: Reaction()
@@ -148,7 +148,7 @@ namespace Semantics.Components
         /// Creates a reaction from an action.
         /// </summary>
         /// <param name="action">The action to create a reaction from.</param>
-        public Reaction(Action action)
+        public Reaction(Abstractions.Action action)
             : this()
         {
             Database.Current.StartChange();

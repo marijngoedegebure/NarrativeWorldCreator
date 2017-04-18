@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NarrativeWorlds;
-using System.ComponentModel;
 
-namespace NarrativeWorldCreator
+using System.ComponentModel;
+using NarrativeWorldCreator.Models.NarrativeGraph;
+
+namespace NarrativeWorldCreator.ViewModel
 {
     public class NodeViewModel : INotifyPropertyChanged
     {
-        private Node _selectedNode;
-        public Node SelectedNode
+        private LocationNode _selectedNode;
+        public LocationNode SelectedNode
         {
             get
             {
@@ -24,7 +25,7 @@ namespace NarrativeWorldCreator
             }
         }
 
-        internal void Load(Node selectedNode)
+        internal void Load(LocationNode selectedNode)
         {
             this.SelectedNode = selectedNode;
         }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System;
 using Common;
 
-namespace NarrativeWorlds
+namespace NarrativeWorldCreator
 {
     public class EntikaInstance
     {
@@ -64,6 +64,7 @@ namespace NarrativeWorlds
             this.Name = to.DefaultName + EntikaInstanceCount.Count;
             EntikaInstanceCount.Count++;
             TangibleObject = to;
+            this.Model = SystemStateTracker.DefaultModel;
         }
 
 

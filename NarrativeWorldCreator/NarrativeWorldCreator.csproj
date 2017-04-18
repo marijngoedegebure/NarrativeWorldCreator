@@ -112,6 +112,37 @@
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
+    <Compile Include="Parsers\BeliefSystem.cs" />
+    <Compile Include="Models\Constants.cs" />
+    <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
+    <Compile Include="Models\Metrics\Metric.cs" />
+    <Compile Include="Models\Metrics\MetricType.cs" />
+    <Compile Include="Models\Metrics\ObjectValuation.cs" />
+    <Compile Include="Models\Metrics\TangibleObjectValued.cs" />
+    <Compile Include="Models\NarrativeGraph\Edge.cs" />
+    <Compile Include="Models\NarrativeGraph\Graph.cs" />
+    <Compile Include="Models\NarrativeGraph\LocationNode.cs" />
+    <Compile Include="Models\NarrativeRegionFill\EntikaInstance.cs" />
+    <Compile Include="Models\NarrativeRegionFill\GeometricRelationshipBase.cs" />
+    <Compile Include="Models\NarrativeRegionFill\NarrativeShape.cs" />
+    <Compile Include="Models\NarrativeRegionFill\PredicateInstance.cs" />
+    <Compile Include="Models\NarrativeRegionFill\RelationshipInstance.cs" />
+    <Compile Include="Models\NarrativeRegionFill\TimePointSpecificFill.cs" />
+    <Compile Include="Models\NarrativeTime\NarrativeObjectEntikaLink.cs" />
+    <Compile Include="Models\NarrativeRegionFill\NarrativePredicateInstance.cs" />
+    <Compile Include="Models\NarrativeTime\NarrativeTimeline.cs" />
+    <Compile Include="Models\NarrativeTime\NarrativeTimePoint.cs" />
+    <Compile Include="Models\NarrativeWorld.cs" />
+    <Compile Include="Models\NarrativeInput\Narrative.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativeAction.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativeArgument.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativeEvent.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativeObject.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativeObjectType.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativePredicate.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativePredicateValued.cs" />
+    <Compile Include="Models\NarrativeInput\PredicateType.cs" />
+    <Compile Include="Models\RelationshipTypes.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +152,17 @@
     <Compile Include="Pages\RegionPage.xaml.cs">
       <DependentUpon>RegionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Parsers\DomainParser.cs" />
+    <Compile Include="Parsers\NarrativeWorldParser.cs" />
+    <Compile Include="Parsers\Parser.cs" />
+    <Compile Include="Parsers\PlanParser.cs" />
+    <Compile Include="Parsers\ProblemParser.cs" />
+    <Compile Include="Solvers\HelperFunctions.cs" />
+    <Compile Include="Solvers\EntikaInstanceMetricEngine.cs" />
+    <Compile Include="Solvers\PlacementSolver.cs" />
+    <Compile Include="Solvers\PlanningEngine.cs" />
+    <Compile Include="Solvers\SolvingEngine.cs" />
+    <Compile Include="Solvers\TangibleObjectMetricEngine.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
@@ -140,7 +182,7 @@
     <Compile Include="ViewModel\GraphDetailTimePointListViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
-    <Compile Include="ViewModel\TangibleObjectsViewModel.cs" />
+    <Compile Include="ViewModel\TangibleObjectsValuedViewModel.cs" />
     <Compile Include="ViewModel\Vector3ViewModel.cs" />
     <Compile Include="Views\FillDetailView.xaml.cs">
       <DependentUpon>FillDetailView.xaml</DependentUpon>
@@ -311,14 +353,6 @@
     <ProjectReference Include="..\MonoGame.Framework.WpfInterop\MonoGame.Framework.WpfInterop.csproj">
       <Project>{809f0d79-aedc-4754-a213-fdbe97ccd6d6}</Project>
       <Name>MonoGame.Framework.WpfInterop</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NarrativeWorlds\NarrativeWorlds.csproj">
-      <Project>{b296fdbf-fd8c-4a94-b65b-6c2ec2de1de4}</Project>
-      <Name>NarrativeWorlds</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PDDLNarrativeParser\PDDLNarrativeParser.csproj">
-      <Project>{5ff6f1bc-9868-475b-8826-42c9ab958418}</Project>
-      <Name>PDDLNarrativeParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\SemanticsEngine\SemanticsEngine.csproj">
       <Project>{40c5f219-444a-4f6e-9ba2-4dd10471c288}</Project>

@@ -21,13 +21,41 @@
                       Grid.Column="0"
                       Grid.Row="1"
                   Margin="10" 
-                  ItemsSource = "{Binding Path = EntikaInstances}">
+                  ItemsSource = "{Binding Path = EntikaInstancesValued}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="Name: " FontWeight="Bold" />
-                        <TextBlock Text="{Binding Name }" />
-                    </WrapPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding EntikaInstance.Name, StringFormat='Name: {0}'}" />
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
+                        <ItemsControl 
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            ItemsSource="{Binding Path=Metrics }">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=MetricType.Name, StringFormat='Metric type: {0}'}"/>
+                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Value, StringFormat='Value: {0}'}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

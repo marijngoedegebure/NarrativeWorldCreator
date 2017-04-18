@@ -1,4 +1,4 @@
-﻿using NarrativeWorlds;
+﻿using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.ViewModel
 {
     public class NarrativeTimePointViewModel : INotifyPropertyChanged
     {

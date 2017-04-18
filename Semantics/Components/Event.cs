@@ -28,7 +28,7 @@ namespace Semantics.Components
     /// <summary>
     /// An event is an action performed by an actor, possibly on a target with an artifact.
     /// </summary>
-    public sealed class Event : Service, IVariableReferenceHolder
+    public sealed class Event : Action, IVariableReferenceHolder
     {
 
         #region Properties and Fields
@@ -55,11 +55,11 @@ namespace Semantics.Components
         /// <summary>
         /// Gets the action of the event.
         /// </summary>
-        public Action Action
+        public Abstractions.Action Action
         {
             get
             {
-                return Database.Current.Select<Action>(this.ID, GenericTables.Event, Columns.Action);
+                return Database.Current.Select<Abstractions.Action>(this.ID, GenericTables.Event, Columns.Action);
             }
             private set
             {
@@ -247,7 +247,7 @@ namespace Semantics.Components
             // Actor, action, target, artifact
             Dictionary<string, Tuple<Type, EntryType>> dict = new Dictionary<string, Tuple<Type, EntryType>>();
             dict.Add(Columns.Actor, new Tuple<Type, EntryType>(typeof(Entity), EntryType.Nullable));
-            dict.Add(Columns.Action, new Tuple<Type, EntryType>(typeof(Action), EntryType.Nullable));
+            dict.Add(Columns.Action, new Tuple<Type, EntryType>(typeof(Abstractions.Action), EntryType.Nullable));
             dict.Add(Columns.Target, new Tuple<Type, EntryType>(typeof(Entity), EntryType.Nullable));
             dict.Add(Columns.Artifact, new Tuple<Type, EntryType>(typeof(Entity), EntryType.Nullable));
             Database.Current.AddTableDefinition(GenericTables.Event, typeof(Event), dict);
@@ -314,7 +314,7 @@ namespace Semantics.Components
         /// Creates an event from the given action.
         /// </summary>
         /// <param name="action">The action to create an event from.</param>
-        public Event(Action action)
+        public Event(Abstractions.Action action)
             : this(action, EventBehavior.Automatic)
         {
         }
@@ -326,7 +326,7 @@ namespace Semantics.Components
         /// </summary>
         /// <param name="action">The action to create an event from.</param>
         /// <param name="behavior">The behavior.</param>
-        public Event(Action action, EventBehavior behavior)
+        public Event(Abstractions.Action action, EventBehavior behavior)
             : base()
         {
             if (action != null)
@@ -356,7 +356,7 @@ namespace Semantics.Components
         /// </summary>
         /// <param name="action">The action to create an event from.</param>
         /// <param name="actor">The actor that should execute the event.</param>
-        public Event(Action action, Entity actor)
+        public Event(Abstractions.Action action, Entity actor)
             : this(action, actor, EventBehavior.Automatic)
         {
         }
@@ -369,7 +369,7 @@ namespace Semantics.Components
         /// <param name="action">The action to create an event from.</param>
         /// <param name="actor">The actor that should execute the event.</param>
         /// <param name="behavior">The behavior.</param>
-        public Event(Action action, Entity actor, EventBehavior behavior)
+        public Event(Abstractions.Action action, Entity actor, EventBehavior behavior)
             : this(action, behavior)
         {
             if (actor != null)
@@ -390,7 +390,7 @@ namespace Semantics.Components
         /// <param name="action">The action to create an event from.</param>
         /// <param name="actor">The actor that should execute the event.</param>
         /// <param name="target">The target on which the event is executed.</param>
-        public Event(Action action, Entity actor, Entity target)
+        public Event(Abstractions.Action action, Entity actor, Entity target)
             : this(action, actor, EventBehavior.Automatic)
         {
             if (target != null)
@@ -412,7 +412,7 @@ namespace Semantics.Components
         /// <param name="actor">The actor that should execute the event.</param>
         /// <param name="target">The target on which the event is executed.</param>
         /// <param name="behavior">The behavior.</param>
-        public Event(Action action, Entity actor, Entity target, EventBehavior behavior)
+        public Event(Abstractions.Action action, Entity actor, Entity target, EventBehavior behavior)
             : this(action, actor, behavior)
         {
             if (target != null)
@@ -666,7 +666,7 @@ namespace Semantics.Components
                 reference.Remove();
             Database.Current.Remove(this.ID, GenericTables.EventReference);
 
-            Action action = this.Action;
+            Abstractions.Action action = this.Action;
 
             base.Remove();
 

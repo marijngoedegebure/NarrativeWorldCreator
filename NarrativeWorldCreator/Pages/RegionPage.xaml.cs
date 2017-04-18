@@ -1,9 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Solvers;
 using NarrativeWorldCreator.ViewModel;
-using NarrativeWorlds;
-using NarrativeWorlds.Models;
-using NarrativeWorlds.Models.NarrativeRegionFill;
-using NarrativeWorlds.Solver;
 using Semantics.Abstractions;
 using Semantics.Components;
 using Semantics.Data;
@@ -30,7 +31,7 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class RegionPage : Page
     {
-        public NarrativeWorlds.Node selectedNode;
+        public LocationNode selectedNode;
 
         public EntikaInstance SelectedEntikaObject;
         public NarrativeTimePoint SelectedTimePoint { get; internal set; }
@@ -46,7 +47,7 @@ namespace NarrativeWorldCreator
 
         public bool RegionCreated = false;
 
-        public RegionPage(NarrativeWorlds.Node selectedNode)
+        public RegionPage(LocationNode selectedNode)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
@@ -221,7 +222,7 @@ namespace NarrativeWorldCreator
 
         private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
         {
-            TangibleObjectsViewModel toVM = new TangibleObjectsViewModel();
+            TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
             toVM.Load(this.SelectedTimePoint);
             TangibleObjectsView.DataContext = toVM;
         }

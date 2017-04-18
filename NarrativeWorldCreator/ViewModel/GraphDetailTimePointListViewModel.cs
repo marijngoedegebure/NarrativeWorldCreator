@@ -1,4 +1,5 @@
-﻿using NarrativeWorlds;
+﻿using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.ViewModel
 {
     public class GraphDetailTimePointListViewModel : INotifyPropertyChanged
     {
@@ -34,7 +35,7 @@ namespace NarrativeWorldCreator
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void LoadTimePoints(Node selectedNode)
+        public void LoadTimePoints(LocationNode selectedNode)
         {
             ObservableCollection<DetailTimePointViewModel> ntpsVM = new ObservableCollection<DetailTimePointViewModel>();
             List<NarrativeTimePoint> ntps = SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode);

@@ -21,7 +21,7 @@ namespace Semantics.Components
     /// <summary>
     /// A service.
     /// </summary>
-    public abstract class Service : IdHolder
+    public abstract class Action : IdHolder
     {
 
         #region Method Group: Constructors
@@ -30,7 +30,7 @@ namespace Semantics.Components
         /// <summary>
         /// Creates a new service.
         /// </summary>
-        protected Service()
+        protected Action()
             : base()
         {
         }
@@ -41,7 +41,7 @@ namespace Semantics.Components
         /// Creates a new service from the given ID.
         /// </summary>
         /// <param name="id">The ID to create a new service from.</param>
-        protected Service(uint id)
+        protected Action(uint id)
             : base(id)
         {
         }
@@ -52,7 +52,7 @@ namespace Semantics.Components
         /// Clones a service.
         /// </summary>
         /// <param name="service">The service to clone.</param>
-        protected Service(Service service)
+        protected Action(Action service)
             : base()
         {
         }
@@ -67,12 +67,12 @@ namespace Semantics.Components
         /// Clones the service.
         /// </summary>
         /// <returns>A clone of the service.</returns>
-        public Service Clone()
+        public Action Clone()
         {
             try
             {
                 Type type = this.GetType();
-                return type.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, new Type[] { type }, null).Invoke(new object[] { this }) as Service;
+                return type.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null, new Type[] { type }, null).Invoke(new object[] { this }) as Action;
             }
             catch (Exception)
             {

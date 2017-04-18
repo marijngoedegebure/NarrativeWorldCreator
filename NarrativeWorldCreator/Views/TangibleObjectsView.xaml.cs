@@ -1,4 +1,4 @@
-﻿using Semantics.Entities;
+﻿using NarrativeWorldCreator.Models.Metrics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +28,11 @@ namespace NarrativeWorldCreator.Views
 
         private void btnAddSelectedObject(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (TangibleObject) this.ToListView.SelectedItem;
+            var selectedItem = (TangibleObjectValued) this.ToListView.SelectedItem;
 
             // Kick off addition process
             var regionPage = GetRegionPage();
-            regionPage.AddSelectedTangibleObject(selectedItem);
+            regionPage.AddSelectedTangibleObject(selectedItem.TangibleObject);
         }
 
         private void btnBackToMainMenu(object sender, RoutedEventArgs e)

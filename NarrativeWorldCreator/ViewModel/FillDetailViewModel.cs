@@ -1,5 +1,8 @@
-﻿using NarrativeWorlds;
-using NarrativeWorlds.Models.NarrativeRegionFill;
+﻿using NarrativeWorldCreator.Models.Metrics;
+using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Solvers;
+using Semantics.Components;
+using Semantics.Data;
 using SharpDX.Collections;
 using System;
 using System.Collections.Generic;
@@ -12,17 +15,17 @@ namespace NarrativeWorldCreator.ViewModel
 {
     public class FillDetailViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<EntikaInstance> _entikaInstances;
-        public ObservableCollection<EntikaInstance> EntikaInstances
+        private ObservableCollection<EntikaInstanceValued> _entikaInstancesValued;
+        public ObservableCollection<EntikaInstanceValued> EntikaInstancesValued
         {
             get
             {
-                return _entikaInstances;
+                return _entikaInstancesValued;
             }
             set
             {
-                _entikaInstances = value;
-                OnPropertyChanged("EntikaInstances");
+                _entikaInstancesValued = value;
+                OnPropertyChanged("EntikaInstancesValued");
             }
         }
 
@@ -50,12 +53,13 @@ namespace NarrativeWorldCreator.ViewModel
 
         public void Load(NarrativeTimePoint ntp)
         {
-            ObservableCollection<EntikaInstance> eioc = new ObservableCollection<EntikaInstance>();
-            foreach (var instance in ntp.InstancedObjects)
+            ObservableCollection<EntikaInstanceValued> eioc = new ObservableCollection<EntikaInstanceValued>();
+            var listOfinstances = EntikaInstanceMetricEngine.GetDecorationOrderingEI(ntp);
+            foreach (var instance in listOfinstances)
             {
                 eioc.Add(instance);
             }
-            EntikaInstances = eioc;
+            EntikaInstancesValued = eioc;
 
             ObservableCollection<RelationshipInstanceEnergyViewModel> rioc = new ObservableCollection<RelationshipInstanceEnergyViewModel>();
             foreach (var relation in ntp.InstancedRelations)

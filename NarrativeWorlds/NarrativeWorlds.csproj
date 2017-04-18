@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\BeliefSystem.cs" />
+    <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
+    <Compile Include="Models\Metrics\Metric.cs" />
+    <Compile Include="Models\Metrics\MetricType.cs" />
     <Compile Include="Models\NarrativeRegionFill\PredicateInstance.cs" />
     <Compile Include="Models\NarrativeRegionFill\RelationshipInstance.cs" />
     <Compile Include="Models\NarrativeTime\NarrativePredicateInstance.cs" />
@@ -63,6 +66,7 @@
     <Compile Include="Models\NarrativeGraph\Node.cs" />
     <Compile Include="Parsers\NarrativeWorldParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solver\MetricEngine.cs" />
     <Compile Include="Solver\PlacementSolver.cs" />
     <Compile Include="Solver\PlanningEngine.cs" />
     <Compile Include="Solver\SolvingEngine.cs" />

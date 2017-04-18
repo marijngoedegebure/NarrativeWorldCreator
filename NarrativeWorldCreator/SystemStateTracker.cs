@@ -1,5 +1,6 @@
-﻿using Narratives;
-using NarrativeWorlds;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using NarrativeWorldCreator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,12 @@ namespace NarrativeWorldCreator
         public static NarrativeWorld NarrativeWorld = new NarrativeWorld();
         public static string LoadedFileName;
         public static string EntikaPath;
+
+        public static GraphicsDevice RegionGraphicsDevice;
+        public static Matrix view;
+        public static Matrix world;
+        public static Matrix proj;
+
+        public static Model DefaultModel;
     }
 }

@@ -1,4 +1,5 @@
-﻿using NarrativeWorlds;
+﻿
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.ViewModel
 {
     public class SelectedObjectDetailViewModel : INotifyPropertyChanged
     {

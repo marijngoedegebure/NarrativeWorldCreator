@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static NarrativeWorldCreator.RegionPage;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.ViewModel
 {
     public class ModeViewModel : INotifyPropertyChanged
     {

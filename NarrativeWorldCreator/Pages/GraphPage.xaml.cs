@@ -1,4 +1,6 @@
-﻿using NarrativeWorlds;
+﻿using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,7 +25,7 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class GraphPage : Page
     {
-        public Node selectedNode;
+        public LocationNode selectedNode;
 
         public GraphPage()
         {
@@ -66,12 +68,12 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new InitPage());
         }
 
-        internal void RegionPressed(Node pressed)
+        internal void RegionPressed(LocationNode pressed)
         {
             fillDetailView(pressed);
         }
 
-        internal void fillDetailView(Node location)
+        internal void fillDetailView(LocationNode location)
         {
             this.selectedNode = location;
             // Get NarrativeTimePoints associated with the node

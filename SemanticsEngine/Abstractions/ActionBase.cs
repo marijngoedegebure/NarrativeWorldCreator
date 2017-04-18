@@ -14,7 +14,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Semantics.Abstractions;
-using Semantics.Components;
 using SemanticsEngine.Components;
 using SemanticsEngine.Tools;
 
@@ -38,7 +37,7 @@ namespace SemanticsEngine.Abstractions
         {
             get
             {
-                return this.IdHolder as Action;
+                return this.IdHolder as Semantics.Abstractions.Action;
             }
         }
         #endregion Property: Action
@@ -90,7 +89,7 @@ namespace SemanticsEngine.Abstractions
             if (this.Action != null)
             {
                 List<EventBase> eventBases = new List<EventBase>();
-                foreach (Event even in this.Action.AutomaticEvents)
+                foreach (Semantics.Components.Event even in this.Action.AutomaticEvents)
                     eventBases.Add(BaseManager.Current.GetBase<EventBase>(even));
                 automaticEvents = eventBases.ToArray();
             }
@@ -128,7 +127,7 @@ namespace SemanticsEngine.Abstractions
             if (this.Action != null)
             {
                 List<EventBase> eventBases = new List<EventBase>();
-                foreach (Event even in this.Action.ManualEvents)
+                foreach (Semantics.Components.Event even in this.Action.ManualEvents)
                     eventBases.Add(BaseManager.Current.GetBase<EventBase>(even));
                 manualEvents = eventBases.ToArray();
             }
@@ -144,7 +143,7 @@ namespace SemanticsEngine.Abstractions
         /// Create an action base from the given action.
         /// </summary>
         /// <param name="action">The action to create an action base from.</param>
-        protected internal ActionBase(Action action)
+        protected internal ActionBase(Semantics.Abstractions.Action action)
             : base(action)
         {
             if (action != null)

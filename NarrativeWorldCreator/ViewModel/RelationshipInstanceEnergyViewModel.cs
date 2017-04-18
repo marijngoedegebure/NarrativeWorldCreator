@@ -1,5 +1,5 @@
-﻿using NarrativeWorlds.Models.NarrativeRegionFill;
-using NarrativeWorlds.Solver;
+﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Solvers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

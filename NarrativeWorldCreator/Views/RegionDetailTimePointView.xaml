@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -30,7 +31,8 @@
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name}"/>
             </Grid>
         </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Goals: " FontWeight="Bold" />
+        <Grid Grid.Column="0" Grid.Row="2">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl
             Margin="10"

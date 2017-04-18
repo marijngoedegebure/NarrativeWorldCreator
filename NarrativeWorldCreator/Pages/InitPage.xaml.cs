@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
-using Narratives;
-using NarrativeWorlds;
-using PDDLNarrativeParser;
+using NarrativeWorldCreator.Models.NarrativeInput;
+using NarrativeWorldCreator.Parsers;
 using Semantics.Data;
 using Semantics.Entities;
 using System;
@@ -73,7 +72,7 @@ namespace NarrativeWorldCreator
 
         private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
         {
-            Narrative narrative = PDDLNarrativeParser.Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
+            Narrative narrative = Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
             NarrativeWorldParser.staticInput(
                 SystemStateTracker.LocationTypeName,
                 SystemStateTracker.CharacterTypeName,

@@ -1,0 +1,178 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using NarrativeWorldCreator.Parsers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace NarrativeWorldCreator.Models.NarrativeGraph
+{
+    public class Graph
+    {
+        List<LocationNode> nodeList = new List<LocationNode>();
+        List<Edge> edgeList = new List<Edge>();
+        public bool nodeCoordinatesGenerated;
+
+        // Drawing information
+        public Texture2D circleTexture;
+        public Texture2D circleSelectedTexture;
+        public int nodeWidth = 100;
+        public int nodeHeight = 100;
+        public Texture2D lineTexture;
+
+        // Energy based positioning
+        public const float DefaultStartingTemperature = 0.2f;
+        public const float DefaultMinimumTemperature = 0.01f;
+        public const float DefaultTemperatureAttenuation = 0.95f;
+        public float temperature;
+        public float temperatureAttenuation;
+        public Func<double, double> SpringForce { get; set; }
+        public Func<float, float> ElectricForce { get; set; }
+
+        // Energy positions to visualization constant
+        public const float energyToDrawConversion = 200f;
+
+        public Dictionary<LocationNode, Vector2> NodePositions = new Dictionary<LocationNode, Vector2>();
+        public Dictionary<LocationNode, Rectangle> NodeCollisionBoxes = new Dictionary<LocationNode, Rectangle>();
+
+        public Graph()
+        {
+            nodeCoordinatesGenerated = false;
+        }
+
+        public void addNode(string locationName)
+        {
+            LocationNode node = new LocationNode(locationName);
+            nodeList.Add(node);
+        }
+
+        public void addEdge(LocationNode from, LocationNode to)
+        {
+            Edge newEdge = new Edge(from, to);
+            foreach(Edge e in edgeList)
+            {
+                if (e.Equals(newEdge))
+                    return;
+            }
+            edgeList.Add(newEdge);
+        }
+
+        public LocationNode getNode(string nm)
+        {
+            foreach(LocationNode n in nodeList)
+            {
+                if (n.LocationName.Equals(nm))
+                    return n;
+            }
+            return null;
+        }
+
+        public List<LocationNode> getNodeList()
+        {
+            return nodeList;
+        }
+
+        public List<Edge> getEdgeList()
+        {
+            return edgeList;
+        }
+
+        public List<Edge> getEdgesOfNode(LocationNode n)
+        {
+            List<Edge> edges = new List<Edge>();
+            foreach(Edge e in edgeList)
+            {
+                if(e.to.Equals(n) || e.from.Equals(n))
+                {
+                    edges.Add(e);
+                }
+            }
+            return edges;
+        }
+
+        public void randomlyGenerateCoordinates()
+        {
+            Random r = new Random();
+            foreach (LocationNode n in NarrativeWorldParser.NarrativeWorld.Graph.getNodeList())
+            {
+                NodePositions[n] = new Vector2((float)r.NextDouble(), (float)r.NextDouble());
+            }
+            this.nodeCoordinatesGenerated = true;
+        }
+
+        public void initCollisionboxes()
+        {
+            foreach (LocationNode n in NarrativeWorldParser.NarrativeWorld.Graph.getNodeList())
+            {
+                float x = NodePositions[n].X * energyToDrawConversion;
+                float y = NodePositions[n].Y * energyToDrawConversion;
+                Rectangle collisionBox = new Rectangle((int)x, (int)y, NarrativeWorldParser.NarrativeWorld.Graph.nodeHeight, NarrativeWorldParser.NarrativeWorld.Graph.nodeWidth);
+                this.NodeCollisionBoxes[n] = collisionBox;
+            }
+        }
+
+        public void initForceDirectedGraph()
+        {
+            this.temperature = DefaultStartingTemperature;
+            this.temperatureAttenuation = DefaultTemperatureAttenuation;
+            this.SpringForce = (d => 2 * Math.Log(d));
+            this.ElectricForce = (d => 1 / (d * d));
+            this.randomlyGenerateCoordinates();
+            this.initCollisionboxes();
+        }
+
+        public void stepForceDirectedGraph()
+        {
+            Dictionary<LocationNode, Vector2> forces = new Dictionary<LocationNode, Vector2>();
+
+            foreach (var u in this.getNodeList())
+            {
+                Vector2 uPos = this.NodePositions[u];
+                float xForce = 0, yForce = 0;
+                // attraction forces
+                foreach (var arc in this.getEdgesOfNode(u))
+                {
+                    Vector2 vPos = NodePositions[arc.getOtherNode(u)];
+                    float d = Vector2.Distance(uPos, vPos);
+                    float force = temperature * (float)SpringForce(System.Convert.ToDouble(d));
+                    xForce += (vPos.X - uPos.X) / d * force;
+                    yForce += (vPos.Y - uPos.Y) / d * force;
+                }
+                // repulsion forces
+                foreach (var v in this.getNodeList())
+                {
+                    if (v == u) continue;
+                    Vector2 vPos = NodePositions[v];
+                    float d = Vector2.Distance(uPos, vPos);
+                    float force = temperature * ElectricForce(d);
+                    xForce += (uPos.X - vPos.X) / d * force;
+                    yForce += (uPos.Y - vPos.Y) / d * force;
+                }
+                forces[u] = new Vector2(xForce, yForce);
+            }
+
+            foreach (var node in this.getNodeList())
+                NodePositions[node] += forces[node];
+            temperature *= temperatureAttenuation;
+        }
+        public void runForceDirectedGraph(double minimumTemperature = DefaultMinimumTemperature)
+        {
+            while (temperature > minimumTemperature) stepForceDirectedGraph();
+        }
+
+        public LocationNode checkCollisions(Vector2 mousePosition)
+        {
+            foreach (LocationNode n in this.getNodeList())
+            {
+                if (this.NodeCollisionBoxes[n].Contains(mousePosition))
+                {
+                    return n;
+                }
+            }
+            return null;
+        }
+    }
+}

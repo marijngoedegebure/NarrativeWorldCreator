@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
-using NarrativeWorlds;
+using NarrativeWorldCreator.Models.NarrativeGraph;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -79,7 +79,7 @@ namespace NarrativeWorldCreator
                 return;
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
-            foreach (Node n in graph.getNodeList())
+            foreach (LocationNode n in graph.getNodeList())
             {
                 // check if node is selected node
                 if (graphPage.selectedNode != null && graphPage.selectedNode.Equals(n))
@@ -167,7 +167,7 @@ namespace NarrativeWorldCreator
                 elapsedSinceLastStep = totalElapsed;
             }
             // Convert positions and update collisionboxes
-            foreach (Node n in graph.getNodeList())
+            foreach (LocationNode n in graph.getNodeList())
             {
                 float x = graph.NodePositions[n].X * Graph.energyToDrawConversion;
                 float y = graph.NodePositions[n].Y * Graph.energyToDrawConversion;
@@ -180,7 +180,7 @@ namespace NarrativeWorldCreator
             {
                 // Incorporate translation into collision
                 Matrix inverseViewMatrix = Matrix.Invert(cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float)this.ActualWidth, (float)this.ActualHeight));
-                Node collisionNode = graph.checkCollisions(Vector2.Transform(_mouseState.Position.ToVector2(), inverseViewMatrix));
+                LocationNode collisionNode = graph.checkCollisions(Vector2.Transform(_mouseState.Position.ToVector2(), inverseViewMatrix));
                 var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
                 var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
                 if (collisionNode != null)

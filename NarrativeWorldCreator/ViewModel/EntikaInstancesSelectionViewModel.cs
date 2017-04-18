@@ -1,4 +1,5 @@
-﻿using NarrativeWorlds;
+﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using SharpDX.Collections;
 using System;
 using System.Collections.Generic;
