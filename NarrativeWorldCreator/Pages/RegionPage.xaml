@@ -61,9 +61,9 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TabControl Grid.Row="0" Grid.Column="0">
-                    <TabItem Name="region_outlining_1" Header="Region outlining">
-                        <Grid Name="region_outlining_4">
+                <TabControl Name="region_tabcontrol" Grid.Row="0" Grid.Column="0" SelectedIndex="0">
+                    <TabItem Name="region_outlining_0" Header="Region outlining">
+                        <Grid Name="region_outlining_0_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
@@ -75,8 +75,21 @@
                             <Button Grid.Column="0" Grid.Row="1"  x:Name="region_outlining_5" Content="Reset region" Click="btnResetRegion"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_1" Header="Entity addition" Visibility="Collapsed">
-                        <Grid Name="region_filling_4">
+                    <TabItem Name="region_filling_1" Header="Change current or add to current" Visibility="Collapsed">
+                        <Grid Name="region_filling_1_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Grid.Row="0" x:Name="button2" Content="Add to current region" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnAddToCurrentRegion"/>
+                            <Button Grid.Column="0" Grid.Row="1" x:Name="button3" Content="Change current region" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnChangeCurrentRegion"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="region_filling_2" Header="Entity addition" Visibility="Collapsed">
+                        <Grid Name="region_filling_2_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -89,10 +102,22 @@
                             <views:ObjectPlacementView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="ObjectPlacementView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2" Header="Fill details" Visibility="Collapsed">
+                    <TabItem Name="region_filling_3" Header="Entity removal and repositioning" Visibility="Collapsed">
+                        <Grid Name="region_filling_3_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:EntikaInstancesSelectionView Grid.Column="0" Grid.Row="0" x:Name="EntikaInstancesSelectionView" Loaded="EntikaInstancesSelectionView_Loaded" />
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="region_filling_20" Header="Fill details" Visibility="Collapsed">
                         <views:FillDetailView x:Name="FillDetailView" Loaded = "FillDetailView_Loaded"/>
                     </TabItem>
-                    <TabItem Name="region_filling_3" Header="Region detail" Visibility="Collapsed">
+                    <TabItem Name="region_filling_21" Header="Region detail" Visibility="Collapsed">
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
                 </TabControl>

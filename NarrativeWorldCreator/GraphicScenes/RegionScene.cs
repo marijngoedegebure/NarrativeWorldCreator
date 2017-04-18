@@ -146,7 +146,7 @@ namespace NarrativeWorldCreator
             }
 
             // Draw all objects that are known 2.0
-            foreach(EntikaInstance instance in _currentRegionPage.SelectedTimePoint.InstancedObjects.Where(io => !io.Name.Equals("Floor")).ToList())
+            foreach(EntikaInstance instance in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
             {
                 drawEntikaInstance2(instance);
             }

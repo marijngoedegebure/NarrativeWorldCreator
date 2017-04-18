@@ -55,6 +55,11 @@ namespace NarrativeWorlds
             }
         }
 
+        public List<EntikaInstance> GetEntikaInstancesWithoutFloor()
+        {
+            return this.InstancedObjects.Where(io => !io.Name.Equals("Floor")).ToList();
+        }
+
         // This function allows updating
         public void SetBaseShape(Node selectedNode)
         {

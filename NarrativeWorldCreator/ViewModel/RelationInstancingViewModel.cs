@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class RelationInstancingViewModel
+    public class RelationInstancingViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<RelationshipInstanceViewModel> _relationshipInstances;
         public ObservableCollection<RelationshipInstanceViewModel> RelationshipInstances

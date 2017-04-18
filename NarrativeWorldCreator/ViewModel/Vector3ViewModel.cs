@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class Vector3ViewModel
+    public class Vector3ViewModel : INotifyPropertyChanged
     {
         private double _x;
         public double X

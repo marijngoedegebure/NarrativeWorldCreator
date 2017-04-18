@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class RelationshipInstanceViewModel
+    public class RelationshipInstanceViewModel : INotifyPropertyChanged
     {
         private RelationshipInstance _relationshipInstance;
         public RelationshipInstance RelationshipInstance

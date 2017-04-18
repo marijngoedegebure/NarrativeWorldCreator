@@ -131,6 +131,7 @@
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\ObjectPlacementViewModel.cs" />
+    <Compile Include="ViewModel\EntikaInstancesSelectionViewModel.cs" />
     <Compile Include="ViewModel\RelationInstancingViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceViewModel.cs" />
@@ -146,6 +147,9 @@
     </Compile>
     <Compile Include="Views\ObjectPlacementView.xaml.cs">
       <DependentUpon>ObjectPlacementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EntikaInstancesSelectionView.xaml.cs">
+      <DependentUpon>EntikaInstancesSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RelationInstancingView.xaml.cs">
       <DependentUpon>RelationInstancingView.xaml</DependentUpon>
@@ -209,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ObjectPlacementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EntikaInstancesSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

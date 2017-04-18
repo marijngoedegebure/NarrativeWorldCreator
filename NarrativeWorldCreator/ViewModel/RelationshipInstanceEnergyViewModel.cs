@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class RelationshipInstanceEnergyViewModel
+    public class RelationshipInstanceEnergyViewModel : INotifyPropertyChanged
     {
         private RelationshipInstance _relationshipInstance;
         public RelationshipInstance RelationshipInstance

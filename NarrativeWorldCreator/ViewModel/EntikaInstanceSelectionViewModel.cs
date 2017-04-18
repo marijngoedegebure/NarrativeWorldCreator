@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class EntikaInstanceSelectionViewModel
+    public class EntikaInstanceSelectionViewModel : INotifyPropertyChanged
     {
         private EntikaInstance _entikaInstance;
         public EntikaInstance EntikaInstance

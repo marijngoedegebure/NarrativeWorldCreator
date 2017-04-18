@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator
 {
-    public class TangibleObjectsViewModel
+    public class TangibleObjectsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<TangibleObject> _tangibleObjects;
         public ObservableCollection<TangibleObject> TangibleObjects

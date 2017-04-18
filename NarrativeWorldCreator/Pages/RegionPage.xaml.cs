@@ -42,17 +42,71 @@ namespace NarrativeWorldCreator
             RegionFilling = 1,
         }
 
+        public RegionPageMode CurrentMode;
+
+        public bool RegionCreated = false;
+
+        public RegionPage(NarrativeWorlds.Node selectedNode)
+        {
+            InitializeComponent();
+            this.selectedNode = selectedNode;
+            CurrentMode = RegionPageMode.RegionCreation;
+            List<NarrativeTimePoint> ntpsFiltered = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
+            SelectedTimePoint = ntpsFiltered[0];
+        }
+
+        internal void RemoveSelectedInstances(List<EntikaInstance> instances)
+        {
+            var relationsToRemove = new List<RelationshipInstance>();
+            // Determine relationships to delete
+            foreach (var instanceToRemove in instances)
+            {
+                foreach (var relation in this.SelectedTimePoint.InstancedRelations)
+                {
+                    if (relation.Source.Equals(instanceToRemove))
+                    {
+                        relationsToRemove.Add(relation);
+                    }
+                    else if (relation.Targets.Count > 0 && relation.Targets[0].Equals(instanceToRemove))
+                    {
+                        relationsToRemove.Add(relation);
+                    }
+                }
+            }
+
+            // Remove relationships
+            foreach (var relationToRemove in relationsToRemove)
+            {
+                this.SelectedTimePoint.InstancedRelations.Remove(relationToRemove);
+            }
+
+            // Remove instances
+            foreach (var instanceToRemove in instances)
+            {
+                this.SelectedTimePoint.InstancedObjects.Remove(instanceToRemove);
+            }
+
+            // Return to changing menu
+            UpdateEntikaInstancesSelectionView();
+            ChangeUIToChange();
+        }
+
+        internal void RepositionSelectedInstances(List<EntikaInstance> instances)
+        {
+            
+        }
+
         public void SaveInstancingOfRelationsAndGotoPlacement(RelationInstancingViewModel rivm)
         {
             // Retrieve selected object for each relation
 
             // Add relation to EntikaInstance
-            foreach(var relationVM in rivm.RelationshipInstances)
+            foreach (var relationVM in rivm.RelationshipInstances)
             {
                 var relationInstance = relationVM.RelationshipInstance;
                 foreach (var objectInstanceVM in relationVM.ObjectInstances)
                 {
-                    if(objectInstanceVM.Selected)
+                    if (objectInstanceVM.Selected)
                     {
                         relationInstance.Source = objectInstanceVM.EntikaInstance;
                         this.SelectedTimePoint.InstancedRelations.Add(relationInstance);
@@ -73,19 +127,6 @@ namespace NarrativeWorldCreator
             RelationshipSelectionView.Visibility = Visibility.Collapsed;
             RelationInstancingView.Visibility = Visibility.Collapsed;
             ObjectPlacementView.Visibility = Visibility.Visible;
-        }
-
-        public RegionPageMode CurrentMode;
-
-        public bool RegionCreated = false;
-
-        public RegionPage(NarrativeWorlds.Node selectedNode)
-        {
-            InitializeComponent();
-            this.selectedNode = selectedNode;
-            CurrentMode = RegionPageMode.RegionCreation;
-            List<NarrativeTimePoint> ntpsFiltered = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
-            SelectedTimePoint = ntpsFiltered[0];
         }
 
         public void AddSelectedTangibleObject(TangibleObject selectedItem)
@@ -132,6 +173,8 @@ namespace NarrativeWorldCreator
             RelationshipSelectionView.Visibility = Visibility.Collapsed;
             RelationInstancingView.Visibility = Visibility.Collapsed;
             ObjectPlacementView.Visibility = Visibility.Collapsed;
+
+            ChangeUIToMainMenu();
         }
 
         public void InstanceSelectedRelationships(List<Relationship> relationships)
@@ -226,6 +269,19 @@ namespace NarrativeWorldCreator
             SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
         }
 
+        private void EntikaInstancesSelectionView_Loaded(object sender, RoutedEventArgs e)
+        {
+            EntikaInstancesSelectionViewModel eisVM = new EntikaInstancesSelectionViewModel();
+            eisVM.Load(this.SelectedTimePoint);
+
+            EntikaInstancesSelectionView.DataContext = eisVM;
+        }
+
+        public void UpdateEntikaInstancesSelectionView()
+        {
+            (EntikaInstancesSelectionView.DataContext as EntikaInstancesSelectionViewModel).Load(this.SelectedTimePoint);
+        }
+
         public void ChangeSelectedObject(EntikaInstance ieo)
         {
             this.SelectedEntikaObject = ieo;
@@ -281,23 +337,33 @@ namespace NarrativeWorldCreator
         public void SwitchModeToRegionFilling()
         {
             changeModes(RegionPageMode.RegionFilling);
-            region_outlining_1.Visibility = Visibility.Collapsed;
-            region_outlining_4.Visibility = Visibility.Collapsed;
+            region_outlining_0.Visibility = Visibility.Collapsed;
+            region_outlining_0_content.Visibility = Visibility.Collapsed;
             region_filling_1.Visibility = Visibility.Visible;
-            region_filling_2.Visibility = Visibility.Visible;
-            region_filling_3.Visibility = Visibility.Visible;
-            region_filling_4.Visibility = Visibility.Visible;
+            region_filling_1_content.Visibility = Visibility.Visible;
+            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_2_content.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_filling_20.Visibility = Visibility.Visible;
+            region_filling_21.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 1;
         }
 
         public void SwitchModeToRegionCreation()
         {
             changeModes(RegionPageMode.RegionCreation);
-            region_outlining_1.Visibility = Visibility.Visible;
-            region_outlining_4.Visibility = Visibility.Visible;
+            region_outlining_0.Visibility = Visibility.Visible;
+            region_outlining_0_content.Visibility = Visibility.Visible;
             region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
             region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
-            region_filling_4.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_filling_20.Visibility = Visibility.Collapsed;
+            region_filling_21.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 0;
         }
 
         private void btnResetRegion(object sender, RoutedEventArgs e)
@@ -309,5 +375,50 @@ namespace NarrativeWorldCreator
         {
             MessageTextBox.Text = message;
         }
+
+        private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
+        {
+            ChangeUIToAddition();
+        }
+
+        internal void ChangeUIToAddition()
+        {
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            region_filling_2.Visibility = Visibility.Visible;
+            region_filling_2_content.Visibility = Visibility.Visible;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 2;
+        }
+
+        private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
+        {
+            UpdateEntikaInstancesSelectionView();
+            ChangeUIToChange();
+        }
+
+        internal void ChangeUIToChange()
+        {
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_2_content.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Visible;
+            region_filling_3_content.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 3;
+        }
+
+        internal void ChangeUIToMainMenu()
+        {
+            region_filling_1.Visibility = Visibility.Visible;
+            region_filling_1_content.Visibility = Visibility.Visible;
+            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_2_content.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 1;
+        }
+
     }
 }

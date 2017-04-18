@@ -31,9 +31,20 @@ namespace NarrativeWorldCreator.Views
             var selectedItem = (TangibleObject) this.ToListView.SelectedItem;
 
             // Kick off addition process
-            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            var regionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+            var regionPage = GetRegionPage();
             regionPage.AddSelectedTangibleObject(selectedItem);
+        }
+
+        private void btnBackToMainMenu(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            regionPage.ChangeUIToMainMenu();
+        }
+
+        private RegionPage GetRegionPage()
+        {
+            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+            return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
     }
 }

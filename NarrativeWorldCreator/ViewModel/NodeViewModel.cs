@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace NarrativeWorldCreator
 {
-    public class NodeViewModel
+    public class NodeViewModel : INotifyPropertyChanged
     {
         private Node _selectedNode;
         public Node SelectedNode

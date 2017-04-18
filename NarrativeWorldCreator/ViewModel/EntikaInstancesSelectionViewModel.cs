@@ -1,5 +1,4 @@
 ﻿using NarrativeWorlds;
-using NarrativeWorlds.Models.NarrativeRegionFill;
 using SharpDX.Collections;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class FillDetailViewModel : INotifyPropertyChanged
+    public class EntikaInstancesSelectionViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<EntikaInstance> _entikaInstances;
         public ObservableCollection<EntikaInstance> EntikaInstances
@@ -26,20 +25,6 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
-        private ObservableCollection<RelationshipInstanceEnergyViewModel> _relationshipInstances;
-        public ObservableCollection<RelationshipInstanceEnergyViewModel> RelationshipInstances
-        {
-            get
-            {
-                return _relationshipInstances;
-            }
-            set
-            {
-                _relationshipInstances = value;
-                OnPropertyChanged("RelationshipInstances");
-            }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string PropertyName)
@@ -51,20 +36,11 @@ namespace NarrativeWorldCreator.ViewModel
         public void Load(NarrativeTimePoint ntp)
         {
             ObservableCollection<EntikaInstance> eioc = new ObservableCollection<EntikaInstance>();
-            foreach (var instance in ntp.InstancedObjects)
+            foreach (var instance in ntp.GetEntikaInstancesWithoutFloor())
             {
                 eioc.Add(instance);
             }
             EntikaInstances = eioc;
-
-            ObservableCollection<RelationshipInstanceEnergyViewModel> rioc = new ObservableCollection<RelationshipInstanceEnergyViewModel>();
-            foreach (var relation in ntp.InstancedRelations)
-            {
-                var relationshipEnergyVM = new RelationshipInstanceEnergyViewModel();
-                relationshipEnergyVM.Load(relation);
-                rioc.Add(relationshipEnergyVM);
-            }
-            RelationshipInstances = rioc;
         }
     }
 }

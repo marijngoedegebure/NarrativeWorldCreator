@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class ObjectPlacementViewModel
+    public class ObjectPlacementViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Vector3ViewModel> _placementOptions;
         public ObservableCollection<Vector3ViewModel> PlacementOptions

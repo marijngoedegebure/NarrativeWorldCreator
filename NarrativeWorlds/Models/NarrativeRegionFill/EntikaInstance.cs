@@ -32,7 +32,8 @@ namespace NarrativeWorlds
         public EntikaInstance(string name, Vector3 pos, Model model, Matrix world)
         {
             SetupLists();
-            this.Name = name;
+            this.Name = name + EntikaInstanceCount.Count;
+            EntikaInstanceCount.Count++;
             this.TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
             this.Position = pos;
             this.Model = model;
@@ -60,7 +61,8 @@ namespace NarrativeWorlds
         public EntikaInstance(TangibleObject to)
         {
             SetupLists();
-            this.Name = to.DefaultName;
+            this.Name = to.DefaultName + EntikaInstanceCount.Count;
+            EntikaInstanceCount.Count++;
             TangibleObject = to;
         }
 
@@ -124,5 +126,10 @@ namespace NarrativeWorlds
             }
             return points;
         }
+    }
+
+    public static class EntikaInstanceCount
+    {
+        public static int Count = 0;
     }
 }

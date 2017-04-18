@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class RelationshipSelectionViewModel
+    public class RelationshipSelectionViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Relationship> _relationships;
         public ObservableCollection<Relationship> Relationships
