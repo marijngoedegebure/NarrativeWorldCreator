@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models.Metrics;
+﻿using NarrativeWorldCreator.MetricEngines;
+using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Solvers;
 using Semantics.Components;

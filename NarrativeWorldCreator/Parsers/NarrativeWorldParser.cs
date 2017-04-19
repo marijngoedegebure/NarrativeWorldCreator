@@ -46,11 +46,17 @@ namespace NarrativeWorldCreator.Parsers
 
             // Parse Narrative information        
             createGraphBasedOnNarrative();
+            copyPredicatesToTimeline();
             createNarrativeTimeline();
             processPredicatesToConstraints();
 
             // parseDependencyGraph();
             return NarrativeWorldParser.NarrativeWorld;
+        }
+
+        private static void copyPredicatesToTimeline()
+        {
+            NarrativeWorldParser.NarrativeWorld.NarrativeTimeline.PredicateTypes = NarrativeWorldParser.NarrativeWorld.Narrative.PredicateTypes;
         }
 
         private static void processPredicatesToConstraints()

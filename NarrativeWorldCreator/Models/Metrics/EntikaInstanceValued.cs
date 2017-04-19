@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Models.Metrics
 {
-    public class EntikaInstanceValued : ObjectValuation
+    public class EntikaInstanceValued : Valuation
     {
         public EntikaInstance EntikaInstance { get; set; }
 

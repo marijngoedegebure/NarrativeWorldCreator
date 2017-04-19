@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models.Metrics;
+using NarrativeWorldCreator.Models.Metrics.TOTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace NarrativeWorldCreator.Views
 
         private void btnAddSelectedObject(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (TangibleObjectValued) this.ToListView.SelectedItem;
+            var selectedItem = (TreeTangibleObject) this.ToListView.SelectedItem;
 
             // Kick off addition process
             var regionPage = GetRegionPage();

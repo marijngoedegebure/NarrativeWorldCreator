@@ -61,7 +61,6 @@ namespace NarrativeWorldCreator.Parsers
         private static Predicate readPredicate(string[] words, ICollection<PredicateType> predicateTypes, ICollection<NarrativeObjectType> types, ICollection<NarrativeObject> narrativeObjects)
         {
             // Check if predicatetype exists:
-            PredicateType usedPredicateType = predicateTypes.First();
             Predicate predicate = new Predicate();
             int startIndex = 0;
             if (words[0].Equals("init"))

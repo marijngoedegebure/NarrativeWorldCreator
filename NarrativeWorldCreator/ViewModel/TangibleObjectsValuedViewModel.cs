@@ -1,4 +1,6 @@
-﻿using NarrativeWorldCreator.Models.Metrics;
+﻿using NarrativeWorldCreator.MetricEngines;
+using NarrativeWorldCreator.Models.Metrics;
+using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Solvers;
 using Semantics.Data;
@@ -14,8 +16,8 @@ namespace NarrativeWorldCreator.ViewModel
 {
     public class TangibleObjectsValuedViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<TangibleObjectValued> _tangibleObjectsValued;
-        public ObservableCollection<TangibleObjectValued> TangibleObjectsValued
+        private ObservableCollection<TreeTangibleObject> _tangibleObjectsValued;
+        public ObservableCollection<TreeTangibleObject> TangibleObjectsValued
         {
             get
             {
@@ -38,8 +40,8 @@ namespace NarrativeWorldCreator.ViewModel
 
         public void Load(NarrativeTimePoint ntp)
         {
-            ObservableCollection<TangibleObjectValued> octo = new ObservableCollection<TangibleObjectValued>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList());
+            ObservableCollection<TreeTangibleObject> octo = new ObservableCollection<TreeTangibleObject>();
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.PredicatesFilteredByCurrentLocation);
             foreach (var to in listOfValuedTangibleObjects)
             {
                 octo.Add(to);

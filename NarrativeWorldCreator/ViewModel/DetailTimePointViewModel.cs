@@ -42,6 +42,20 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
+        private ObservableCollection<Predicate> _fillPredicates;
+        public ObservableCollection<Predicate> FillPredicates
+        {
+            get
+            {
+                return _fillPredicates;
+            }
+            set
+            {
+                _fillPredicates = value;
+                OnPropertyChanged("FillPredicates");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string PropertyName)
@@ -60,6 +74,13 @@ namespace NarrativeWorldCreator.ViewModel
                 npioc.Add(pi);
             }
             this.Predicates = npioc;
+
+            ObservableCollection<Predicate> fpoc = new ObservableCollection<Predicate>();
+            foreach(var predicate in ntp.PredicatesCausedByInstancedObjectsAndRelations)
+            {
+                fpoc.Add(predicate);
+            }
+            this.FillPredicates = fpoc;
         }
     }
 }

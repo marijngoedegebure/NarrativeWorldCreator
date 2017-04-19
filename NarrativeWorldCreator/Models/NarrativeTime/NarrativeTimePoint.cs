@@ -43,6 +43,7 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             this.TimePoint = timePoint;
             PredicatesFilteredByCurrentLocation = new List<Predicate>();
             AllPredicates = new List<Predicate>();
+            PredicatesCausedByInstancedObjectsAndRelations = new List<Predicate>();
             InstancedRelations = new List<RelationshipInstance>();
             InstancedObjects = new List<EntikaInstance>();
 
@@ -52,9 +53,9 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public void CopyPredicates(NarrativeTimePoint initial)
         {
-            foreach (var predicate in initial.PredicatesFilteredByCurrentLocation)
+            foreach (var predicate in initial.AllPredicates)
             {
-                this.PredicatesFilteredByCurrentLocation.Add(new Predicate {
+                this.AllPredicates.Add(new Predicate {
                     PredicateType = predicate.PredicateType,
                     EntikaClassNames = predicate.EntikaClassNames
                 });
@@ -113,10 +114,51 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             this.TimePointSpecificFill.Relationships.Add(floorRelationship);
         }
 
-        internal void InstantiatePredicates(EntikaInstance instanceOfObjectToAdd)
+        internal void InstantiateRelationship(RelationshipInstance relationInstance)
         {
-            var narrativePredicates = SystemStateTracker.NarrativeWorld.Narrative.StartingPredicates.Where(np => np.PredicateType.Name.Equals("At")).ToList();
-            // this.PredicatesCausedByInstancedObjectsAndRelations.Add(new NarrativePredicateInstance());
+            // All relationships should have 3 arguments, source, target and location
+            var predicateType = SystemStateTracker.NarrativeWorld.NarrativeTimeline.GetPredicateType(relationInstance.BaseRelationship.RelationshipType.DefaultName);
+            if (predicateType == null)
+            {
+                // Add the new predicateType to the predicateTypes
+                predicateType = new PredicateType
+                {
+                    Name = relationInstance.BaseRelationship.RelationshipType.DefaultName,
+                    Arguments = new List<NarrativeArgument>() {
+                        new NarrativeArgument {
+                            Type = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType("thing"),
+                            Name = "?x"
+                        },
+                        new NarrativeArgument
+                        {
+                            Type = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType("thing"),
+                            Name = "?y"
+                        },
+                        new NarrativeArgument
+                        {
+                            Type = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType("place"),
+                            Name = "?z"
+                        }
+                    }
+                };
+                SystemStateTracker.NarrativeWorld.NarrativeTimeline.PredicateTypes.Add(predicateType);
+            }
+            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new Predicate
+            {
+                PredicateType = predicateType,
+                EntikaClassNames = new List<string> { relationInstance.Source.TangibleObject.DefaultName, relationInstance.Targets[0].TangibleObject.DefaultName, this.Location.LocationName }
+            });
+        }
+
+        internal void InstantiateAtPredicateForInstance(EntikaInstance instanceOfObjectToAdd)
+        {
+            // Create At predicate
+            var predicateType = SystemStateTracker.NarrativeWorld.NarrativeTimeline.GetPredicateType("at");
+
+            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new Predicate {
+                PredicateType = predicateType,
+                EntikaClassNames = new List<string> { instanceOfObjectToAdd.TangibleObject.DefaultName, this.Location.LocationName }
+            });            
         }
 
         public override bool Equals(object obj)

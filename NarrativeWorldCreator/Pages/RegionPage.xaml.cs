@@ -114,10 +114,11 @@ namespace NarrativeWorldCreator
                         break;
                     }
                 }
+                this.SelectedTimePoint.InstantiateRelationship(relationInstance);
             }
             this.SelectedTimePoint.InstancedObjects.Add(InstanceOfObjectToAdd);
 
-            this.SelectedTimePoint.InstantiatePredicates(InstanceOfObjectToAdd);
+            this.SelectedTimePoint.InstantiateAtPredicateForInstance(InstanceOfObjectToAdd);
 
             // Generate positions
             List<Vector3> positions = PlacementSolver.GenerateRandomPosition(this.SelectedTimePoint, InstanceOfObjectToAdd);

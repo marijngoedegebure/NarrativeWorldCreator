@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Models.Metrics
 {
-    public class ObjectValuation
+    public class Valuation
     {
         public double EndValue { get; set; }
         public List<Metric> Metrics { get; set; }
 
-        public ObjectValuation()
+        public Valuation()
         {
             this.Metrics = new List<Metric>();
         }

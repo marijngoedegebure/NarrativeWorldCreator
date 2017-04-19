@@ -9,7 +9,6 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,34 +30,74 @@
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name}"/>
             </Grid>
         </Grid>
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="Goals: " FontWeight="Bold" />
-        <Grid Grid.Column="0" Grid.Row="2">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ItemsControl
-            Margin="10"
-            ItemsSource = "{Binding Path = Predicates}"
-            ScrollViewer.VerticalScrollBarVisibility="Visible">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"></StackPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Name="item" Orientation="Vertical" Margin="5">
-                            <TextBlock Text="{Binding Path = PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
-                            <ItemsControl ItemsSource="{Binding Path=EntikaClassNames }">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding}"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Goals: " FontWeight="Bold" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Grid.Column="0"
+                          Grid.Row="1">
+                <ItemsControl
+                    Margin="10"
+                    ItemsSource = "{Binding Path = Predicates}"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Name="item" Orientation="Vertical" Margin="5">
+                                <TextBlock Text="{Binding Path = PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
+                                <ItemsControl ItemsSource="{Binding Path=EntikaClassNames }">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Fill: " FontWeight="Bold" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Grid.Column="0"
+                          Grid.Row="3">
+                <ItemsControl
+                    Margin="10"
+                    ItemsSource = "{Binding Path = FillPredicates}"
+                    ScrollViewer.VerticalScrollBarVisibility="Visible">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Name="item" Orientation="Vertical" Margin="5">
+                                <TextBlock Text="{Binding Path = PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
+                                <ItemsControl ItemsSource="{Binding Path=EntikaClassNames }">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

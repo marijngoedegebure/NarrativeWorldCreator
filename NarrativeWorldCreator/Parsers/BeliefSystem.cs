@@ -50,7 +50,6 @@ namespace NarrativeWorldCreator.Parsers
             foreach (KeyValuePair<Predicate, bool> element in predicates)
             {
                 var predicateToAddOrRemove = element.Key;
-                var test = next.AllPredicates[0].Equals(predicateToAddOrRemove);
                 // Create new predicate instance and add it to the know predicate instances if doesn't already exist
                 var equalInstance = (from predicate in next.AllPredicates
                                      where predicate.Equals(predicateToAddOrRemove)

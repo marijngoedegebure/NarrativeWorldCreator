@@ -28,7 +28,10 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
 
         public override int GetHashCode()
         {
-            return this.Name.GetHashCode() + this.ParentType.GetHashCode();
+            var hashCode = 0;
+            if (this.ParentType != null)
+                hashCode += this.ParentType.GetHashCode();
+            return hashCode + this.Name.GetHashCode();
         }
     }
 }

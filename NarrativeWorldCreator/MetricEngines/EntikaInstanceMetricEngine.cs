@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator.Solvers
+namespace NarrativeWorldCreator.MetricEngines
 {
     public static class EntikaInstanceMetricEngine
     {
