@@ -33,10 +33,6 @@ namespace NarrativeWorldCreator
 
         private RegionPage _currentRegionPage;
 
-        private VertexBuffer vertexBuffer;
-
-        private Effect effect;
-
         private int draggingVertexIndex;
 
         private enum RegionCreationModes

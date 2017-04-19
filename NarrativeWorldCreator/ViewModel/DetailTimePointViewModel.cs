@@ -28,17 +28,17 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
-        private ObservableCollection<NarrativePredicateInstance> _narrativePredicateInstances;
-        public ObservableCollection<NarrativePredicateInstance> NarrativePredicateInstances
+        private ObservableCollection<Predicate> _predicates;
+        public ObservableCollection<Predicate> Predicates
         {
             get
             {
-                return _narrativePredicateInstances;
+                return _predicates;
             }
             set
             {
-                _narrativePredicateInstances = value;
-                OnPropertyChanged("NarrativePredicateInstances");
+                _predicates = value;
+                OnPropertyChanged("Predicates");
             }
         }
 
@@ -53,13 +53,13 @@ namespace NarrativeWorldCreator.ViewModel
         internal void LoadObjects(LocationNode selectedNode, NarrativeTimePoint ntp)
         {
             this.NarrativeTimePoint = ntp;
-            ObservableCollection<NarrativePredicateInstance> npioc = new ObservableCollection<NarrativePredicateInstance>();
+            ObservableCollection<Predicate> npioc = new ObservableCollection<Predicate>();
 
             foreach (var pi in ntp.PredicatesFilteredByCurrentLocation)
             {
                 npioc.Add(pi);
             }
-            this.NarrativePredicateInstances = npioc;
+            this.Predicates = npioc;
         }
     }
 }

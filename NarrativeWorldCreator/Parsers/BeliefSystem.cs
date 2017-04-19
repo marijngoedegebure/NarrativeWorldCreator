@@ -11,24 +11,27 @@ namespace NarrativeWorldCreator.Parsers
 {
     public static class BeliefSystem
     {
-        public static void InitializeFirstTimePoint(NarrativeTimePoint first, List<NarrativePredicate> predicates)
+        public static void InitializeFirstTimePoint(NarrativeTimePoint first, List<Predicate> predicates)
         {
             foreach (var predicate in predicates)
             {
-                first.AllNarrativePredicateInstances.Add(new NarrativePredicateInstance(predicate));
+                first.AllPredicates.Add(new Predicate {
+                    PredicateType = predicate.PredicateType,
+                    EntikaClassNames = predicate.EntikaClassNames
+                });
             }
         }
 
         public static void ApplyEventStoreInNextTimePoint(NarrativeTimePoint initial, NarrativeEvent nEvent, NarrativeTimePoint next)
         {
             // Copy initial to next
-            next.CopyInstancedNarrativePredicates(initial);
+            next.CopyPredicates(initial);
 
             // Determine predicates according to effect
-            Dictionary<NarrativePredicate, bool> predicates = new Dictionary<NarrativePredicate, bool>();
+            Dictionary<Predicate, bool> predicates = new Dictionary<Predicate, bool>();
             foreach (var effect in nEvent.NarrativeAction.Effects)
             {
-                var predicate = new NarrativePredicate();
+                var predicate = new Predicate();
                 predicate.PredicateType = effect.PredicateType;
                 // Map action parameters to effect, thus affected event objects to effect
                 for (int j = 0; j < nEvent.NarrativeAction.Parameters.Count; j++)
@@ -37,33 +40,33 @@ namespace NarrativeWorldCreator.Parsers
                     {
                         if (nEvent.NarrativeAction.Parameters[j].Name.Equals(effect.ArgumentsAffected[k].Name))
                         {
-                            predicate.NarrativeObjects.Add(nEvent.NarrativeObjects[j]);
+                            predicate.EntikaClassNames.Add(nEvent.NarrativeObjects[j].Name);
                         }
                     }
                 }
                 predicates.Add(predicate, effect.Value);
             }
             // Add or remove predicate to already known predicates
-            foreach (KeyValuePair<NarrativePredicate, bool> element in predicates)
+            foreach (KeyValuePair<Predicate, bool> element in predicates)
             {
-                var predicateInstanceToAddOrRemove = new NarrativePredicateInstance(element.Key);
-                var test = next.AllNarrativePredicateInstances[0].Equals(predicateInstanceToAddOrRemove);
+                var predicateToAddOrRemove = element.Key;
+                var test = next.AllPredicates[0].Equals(predicateToAddOrRemove);
                 // Create new predicate instance and add it to the know predicate instances if doesn't already exist
-                var equalInstance = (from predicateInstance in next.AllNarrativePredicateInstances
-                                     where predicateInstance.Equals(predicateInstanceToAddOrRemove)
-                                     select predicateInstance).FirstOrDefault();
+                var equalInstance = (from predicate in next.AllPredicates
+                                     where predicate.Equals(predicateToAddOrRemove)
+                                     select predicate).FirstOrDefault();
                 if (equalInstance != null)
                 {
                     if(!element.Value)
                     {
-                        next.AllNarrativePredicateInstances.Remove(equalInstance);
+                        next.AllPredicates.Remove(equalInstance);
                     }
                 }
                 else
                 {
                     if(element.Value)
                     {
-                        next.AllNarrativePredicateInstances.Add(predicateInstanceToAddOrRemove);
+                        next.AllPredicates.Add(predicateToAddOrRemove);
                     }
                 }
             }

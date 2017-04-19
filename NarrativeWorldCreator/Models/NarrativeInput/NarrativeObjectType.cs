@@ -8,7 +8,6 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
 {
     public class NarrativeObjectType
     {
-        public int NarrativeObjectTypeId { get; set; }
         public String Name { get; set; }
         public NarrativeObjectType ParentType { get; set; }
 
@@ -25,6 +24,11 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
             NarrativeObjectType e = (NarrativeObjectType)obj;
             // Equals if either both from nodes are equal and both to nodes are equal or if they are reversed.
             return Name.Equals(e.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode() + this.ParentType.GetHashCode();
         }
     }
 }

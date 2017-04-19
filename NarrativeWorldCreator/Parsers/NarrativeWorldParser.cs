@@ -1,6 +1,7 @@
 ﻿using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeInput;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using Semantics.Data;
 using Semantics.Entities;
@@ -42,7 +43,6 @@ namespace NarrativeWorldCreator.Parsers
             NarrativeWorldParser.NarrativeWorld.Narrative = narrative;
             // Parse Entika Information
             readAllTangibleObjects();
-            setupObjectTOLink();
 
             // Parse Narrative information        
             createGraphBasedOnNarrative();
@@ -63,10 +63,10 @@ namespace NarrativeWorldCreator.Parsers
                 // Filter predicates on the ones that mention the location
                 if (timepoint.Location != null)
                 {
-                    var predicateListByLocation = (from predicateInstance in timepoint.AllNarrativePredicateInstances
-                                                   from narrativeObject in predicateInstance.NarrativePredicate.NarrativeObjects
-                                                   where narrativeObject.Name.Equals(timepoint.Location.LocationName)
-                                                   select predicateInstance).ToList();
+                    var predicateListByLocation = (from predicate in timepoint.AllPredicates
+                                                   from classOrPlace in predicate.EntikaClassNames
+                                                   where classOrPlace.Equals(timepoint.Location.LocationName)
+                                                   select predicate).ToList();
                     timepoint.PredicatesFilteredByCurrentLocation = predicateListByLocation;
                 }
             }
@@ -93,7 +93,7 @@ namespace NarrativeWorldCreator.Parsers
             }
 
             // Load all predicates to determine starting requirements of each location
-            List<NarrativePredicate> predicates = NarrativeWorld.Narrative.NarrativePredicates.ToList();
+            List<Predicate> predicates = NarrativeWorld.Narrative.StartingPredicates.ToList();
             BeliefSystem.InitializeFirstTimePoint(NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[0], predicates);
             for (int i = 0; i < NarrativeWorld.Narrative.NarrativeEvents.Count; i++)
             {
@@ -132,15 +132,6 @@ namespace NarrativeWorldCreator.Parsers
             // Load all TangibleObjects that do not have any children, and thus are leafs
             List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
             NarrativeWorld.AvailableTangibleObjects = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
-        }
-
-        private static void setupObjectTOLink()
-        {
-            foreach (NarrativeObject no in NarrativeWorld.Narrative.NarrativeObjects)
-            {
-                TangibleObject tangibleObject = DatabaseSearch.GetNode<TangibleObject>(no.Name.ToLower());
-                NarrativeWorld.NarrativeObjectEntikaLinks.Add(new NarrativeObjectEntikaLink(no, tangibleObject));
-            }
         }
 
         private static void parseDependencyGraph()

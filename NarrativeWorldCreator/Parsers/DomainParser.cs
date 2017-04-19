@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NarrativeWorldCreator.Models.NarrativeInput;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 
 namespace NarrativeWorldCreator.Parsers
 {
@@ -90,10 +91,10 @@ namespace NarrativeWorldCreator.Parsers
             Parser.narrative.NarrativeActions = narrativeActions;
         }
 
-        private static List<NarrativePredicateValued> readValuedPredicates(string[] words, NarrativeAction currentNarrativeAction, List<PredicateType> predicateTypes)
+        private static List<NarrativeEffect> readValuedPredicates(string[] words, NarrativeAction currentNarrativeAction, List<PredicateType> predicateTypes)
         {
-            List<NarrativePredicateValued> predicates = new List<NarrativePredicateValued>();
-            var currentValuedPredicate = new NarrativePredicateValued();
+            List<NarrativeEffect> predicates = new List<NarrativeEffect>();
+            var currentValuedPredicate = new NarrativeEffect();
             for (int i = 1; i < words.Length; i++)
             {
                 if (words[i].Equals(""))
@@ -145,7 +146,7 @@ namespace NarrativeWorldCreator.Parsers
                     }
                     currentValuedPredicate.PredicateType = type;
                     predicates.Add(currentValuedPredicate);
-                    currentValuedPredicate = new NarrativePredicateValued();
+                    currentValuedPredicate = new NarrativeEffect();
                 }
             }
             return predicates;

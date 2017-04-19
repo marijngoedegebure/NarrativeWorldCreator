@@ -36,7 +36,7 @@
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl
             Margin="10"
-            ItemsSource = "{Binding Path = NarrativePredicateInstances}"
+            ItemsSource = "{Binding Path = Predicates}"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -46,11 +46,11 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Name="item" Orientation="Vertical" Margin="5">
-                            <TextBlock Text="{Binding Path = NarrativePredicate.PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
-                            <ItemsControl ItemsSource="{Binding Path=NarrativePredicate.NarrativeObjects }">
+                            <TextBlock Text="{Binding Path = PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
+                            <ItemsControl ItemsSource="{Binding Path=EntikaClassNames }">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Path= Name}"/>
+                                        <TextBlock Text="{Binding}"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

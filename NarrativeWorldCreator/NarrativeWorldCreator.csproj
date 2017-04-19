@@ -125,11 +125,8 @@
     <Compile Include="Models\NarrativeRegionFill\EntikaInstance.cs" />
     <Compile Include="Models\NarrativeRegionFill\GeometricRelationshipBase.cs" />
     <Compile Include="Models\NarrativeRegionFill\NarrativeShape.cs" />
-    <Compile Include="Models\NarrativeRegionFill\PredicateInstance.cs" />
     <Compile Include="Models\NarrativeRegionFill\RelationshipInstance.cs" />
     <Compile Include="Models\NarrativeRegionFill\TimePointSpecificFill.cs" />
-    <Compile Include="Models\NarrativeTime\NarrativeObjectEntikaLink.cs" />
-    <Compile Include="Models\NarrativeRegionFill\NarrativePredicateInstance.cs" />
     <Compile Include="Models\NarrativeTime\NarrativeTimeline.cs" />
     <Compile Include="Models\NarrativeTime\NarrativeTimePoint.cs" />
     <Compile Include="Models\NarrativeWorld.cs" />
@@ -139,9 +136,9 @@
     <Compile Include="Models\NarrativeInput\NarrativeEvent.cs" />
     <Compile Include="Models\NarrativeInput\NarrativeObject.cs" />
     <Compile Include="Models\NarrativeInput\NarrativeObjectType.cs" />
-    <Compile Include="Models\NarrativeInput\NarrativePredicate.cs" />
-    <Compile Include="Models\NarrativeInput\NarrativePredicateValued.cs" />
-    <Compile Include="Models\NarrativeInput\PredicateType.cs" />
+    <Compile Include="Models\NarrativeRegionFill\Predicate.cs" />
+    <Compile Include="Models\NarrativeInput\NarrativeEffect.cs" />
+    <Compile Include="Models\NarrativeRegionFill\PredicateType.cs" />
     <Compile Include="Models\RelationshipTypes.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>

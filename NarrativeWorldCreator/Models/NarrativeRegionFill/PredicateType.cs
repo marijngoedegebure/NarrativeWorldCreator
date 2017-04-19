@@ -1,14 +1,14 @@
-﻿using System;
+﻿using NarrativeWorldCreator.Models.NarrativeInput;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator.Models.NarrativeInput
+namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 {
     public class PredicateType
     {
-        public int PredicateTypeId { get; set; }
         public string Name { get; set; }
         public IList<NarrativeArgument> Arguments { get; set; }
 
@@ -37,6 +37,16 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
                 }
             }
             return this.Name.Equals(item.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = 0;
+            foreach(var argument in this.Arguments)
+            {
+                hashCode += argument.GetHashCode();
+            }
+            return hashCode + this.Name.GetHashCode();
         }
     }
 }

@@ -28,6 +28,11 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
             return (e.from.Equals(from) && e.to.Equals(to)) || (e.from.Equals(to) && e.to.Equals(from));
         }
 
+        public override int GetHashCode()
+        {
+            return this.from.GetHashCode() + this.to.GetHashCode();
+        }
+
         public LocationNode getOtherNode(LocationNode n)
         {
             if (n.Equals(to))

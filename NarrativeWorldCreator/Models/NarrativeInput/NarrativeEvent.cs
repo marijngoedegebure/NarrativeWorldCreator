@@ -8,7 +8,6 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
 {
     public class NarrativeEvent
     {
-        public int NarrativeEventId { get; set; }
         public NarrativeAction NarrativeAction { get; set; }
         public IList<NarrativeObject> NarrativeObjects { get; set; }
 
@@ -24,7 +23,12 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
                 return false;
 
             NarrativeEvent p = (NarrativeEvent)obj;
-            return (NarrativeEventId == p.NarrativeEventId);
+            return this.NarrativeAction.Equals(p.NarrativeAction);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.NarrativeAction.GetHashCode();
         }
     }
 }

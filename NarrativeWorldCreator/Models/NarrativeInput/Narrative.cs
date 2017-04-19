@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,19 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
     {
         public int NarrativeId { get; set; }
         public string Name { get; set; }
-        public IList<NarrativeObjectType> NarrativeObjectTypes { get; set; }
-        public IList<PredicateType> PredicateTypes { get; set; }
-        public IList<NarrativeObject> NarrativeObjects { get; set; }
-        public IList<NarrativePredicate> NarrativePredicates { get; set; }
-        public IList<NarrativeAction> NarrativeActions { get; set; }
-        public IList<NarrativeEvent> NarrativeEvents { get; set; }
+        public List<NarrativeObjectType> NarrativeObjectTypes { get; set; }
+        public List<PredicateType> PredicateTypes { get; set; }
+        public List<NarrativeObject> NarrativeObjects { get; set; }
+        public List<Predicate> StartingPredicates { get; set; }
+        public List<NarrativeAction> NarrativeActions { get; set; }
+        public List<NarrativeEvent> NarrativeEvents { get; set; }
 
         public Narrative()
         {
             NarrativeObjectTypes = new List<NarrativeObjectType>();
             PredicateTypes = new List<PredicateType>();
             NarrativeObjects = new List<NarrativeObject>();
-            NarrativePredicates = new List<NarrativePredicate>();
+            StartingPredicates = new List<Predicate>();
             NarrativeActions = new List<NarrativeAction>();
             NarrativeEvents = new List<NarrativeEvent>();
         }
@@ -111,9 +112,9 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
             return null;
         }
 
-        public List<NarrativePredicate> getNarrativePredicates(String predicateType)
+        public List<Predicate> getStartingPredicates(String predicateType)
         {
-            return (from a in NarrativePredicates
+            return (from a in StartingPredicates
                     where a.PredicateType.Name.Equals(predicateType)
                     select a).ToList();
         }

@@ -11,15 +11,15 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
         public int NarrativeActionId { get; set; }
         public string Name { get; set; }
         public IList<NarrativeArgument> Parameters { get; set; }
-        public List<NarrativePredicateValued> Preconditions { get; set; }
-        public List<NarrativePredicateValued> Effects { get; set; }
+        public List<NarrativeEffect> Preconditions { get; set; }
+        public List<NarrativeEffect> Effects { get; set; }
         // Missing: preconditions, effects
 
         public NarrativeAction()
         {
             Parameters = new List<NarrativeArgument>();
-            Preconditions = new List<NarrativePredicateValued>();
-            Effects = new List<NarrativePredicateValued>();
+            Preconditions = new List<NarrativeEffect>();
+            Effects = new List<NarrativeEffect>();
         }
     }
 }

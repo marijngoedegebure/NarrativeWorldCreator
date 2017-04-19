@@ -40,6 +40,11 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
             return LocationName.Equals(n.LocationName);
         }
 
+        public override int GetHashCode()
+        {
+            return this.LocationName.GetHashCode();
+        }
+
         public void triangulatePolygon()
         {
             if (Shape.Points.Count > 2)

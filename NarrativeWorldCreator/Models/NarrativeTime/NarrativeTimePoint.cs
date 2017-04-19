@@ -25,12 +25,12 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         // List of TangibleObjects selected for this region/timepoint
         public List<TangibleObject> AvailableTangibleObjects { get; set; }
 
-        public List<NarrativePredicateInstance> AllNarrativePredicateInstances { get; set; }
+        public List<Predicate> AllPredicates { get; set; }
 
         // Story constraints for this timepoint, otherwise known as the goals
-        public List<NarrativePredicateInstance> PredicatesFilteredByCurrentLocation { get; set; }
+        public List<Predicate> PredicatesFilteredByCurrentLocation { get; set; }
 
-        public List<NarrativePredicateInstance> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
+        public List<Predicate> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
 
         public List<RelationshipInstance> InstancedRelations { get; set; }
         public List<EntikaInstance> InstancedObjects { get; set; }
@@ -41,8 +41,8 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         public NarrativeTimePoint(int timePoint, List<TangibleObject> DefaultTangibleObjects)
         {
             this.TimePoint = timePoint;
-            PredicatesFilteredByCurrentLocation = new List<NarrativePredicateInstance>();
-            AllNarrativePredicateInstances = new List<NarrativePredicateInstance>();
+            PredicatesFilteredByCurrentLocation = new List<Predicate>();
+            AllPredicates = new List<Predicate>();
             InstancedRelations = new List<RelationshipInstance>();
             InstancedObjects = new List<EntikaInstance>();
 
@@ -50,13 +50,17 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             AvailableTangibleObjects = DefaultTangibleObjects;
         }
 
-        public void CopyInstancedNarrativePredicates(NarrativeTimePoint initial)
+        public void CopyPredicates(NarrativeTimePoint initial)
         {
-            foreach (var narrativePredicateInstance in initial.PredicatesFilteredByCurrentLocation)
+            foreach (var predicate in initial.PredicatesFilteredByCurrentLocation)
             {
-                this.PredicatesFilteredByCurrentLocation.Add(new NarrativePredicateInstance(narrativePredicateInstance.NarrativePredicate));
+                this.PredicatesFilteredByCurrentLocation.Add(new Predicate {
+                    PredicateType = predicate.PredicateType,
+                    EntikaClassNames = predicate.EntikaClassNames
+                });
             }
         }
+
 
         public List<EntikaInstance> GetEntikaInstancesWithoutFloor()
         {
@@ -111,8 +115,8 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         internal void InstantiatePredicates(EntikaInstance instanceOfObjectToAdd)
         {
-            var narrativePredicates = SystemStateTracker.NarrativeWorld.Narrative.NarrativePredicates.Where(np => np.PredicateType.Name.Equals("At")).ToList();
-            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new NarrativePredicateInstance())
+            var narrativePredicates = SystemStateTracker.NarrativeWorld.Narrative.StartingPredicates.Where(np => np.PredicateType.Name.Equals("At")).ToList();
+            // this.PredicatesCausedByInstancedObjectsAndRelations.Add(new NarrativePredicateInstance());
         }
 
         public override bool Equals(object obj)
@@ -124,6 +128,11 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             NarrativeTimePoint e = (NarrativeTimePoint)obj;
             // Equals if either both from nodes are equal and both to nodes are equal or if they are reversed.
             return this.TimePoint.Equals(e.TimePoint);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.TimePoint.GetHashCode();
         }
     }
 }

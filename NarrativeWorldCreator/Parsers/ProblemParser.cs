@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeInput;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,7 @@ namespace NarrativeWorldCreator.Parsers
             bool readInitMode = false;
             bool readObjectsMode = false;
             List<NarrativeObject> narrativeObjects = new List<NarrativeObject>();
-            List<NarrativePredicate> narrativePredicates = new List<NarrativePredicate>();
+            List<Predicate> predicates = new List<Predicate>();
             foreach (String line in lines)
             {
                 string[] words = line.Split(null);
@@ -38,7 +39,7 @@ namespace NarrativeWorldCreator.Parsers
                     readObjectsMode = false;
                     readInitMode = true;
                     if (words.Length > 1)
-                        narrativePredicates.Add(readNarrativePredicate(words, Parser.narrative.PredicateTypes, Parser.narrative.NarrativeObjectTypes, narrativeObjects));
+                        predicates.Add(readPredicate(words, Parser.narrative.PredicateTypes, Parser.narrative.NarrativeObjectTypes, narrativeObjects));
                     continue;
                 }
                 if (readObjectsMode)
@@ -49,19 +50,19 @@ namespace NarrativeWorldCreator.Parsers
 
                 if (readInitMode)
                 {
-                    narrativePredicates.Add(readNarrativePredicate(words, Parser.narrative.PredicateTypes, Parser.narrative.NarrativeObjectTypes, narrativeObjects));
+                    predicates.Add(readPredicate(words, Parser.narrative.PredicateTypes, Parser.narrative.NarrativeObjectTypes, narrativeObjects));
                     continue;
                 }
             }
             Parser.narrative.NarrativeObjects = narrativeObjects;
-            Parser.narrative.NarrativePredicates = narrativePredicates;
+            Parser.narrative.StartingPredicates = predicates;
         }
 
-        private static NarrativePredicate readNarrativePredicate(string[] words, ICollection<PredicateType> predicateTypes, ICollection<NarrativeObjectType> types, ICollection<NarrativeObject> narrativeObjects)
+        private static Predicate readPredicate(string[] words, ICollection<PredicateType> predicateTypes, ICollection<NarrativeObjectType> types, ICollection<NarrativeObject> narrativeObjects)
         {
             // Check if predicatetype exists:
             PredicateType usedPredicateType = predicateTypes.First();
-            NarrativePredicate narrativePredicate = new NarrativePredicate();
+            Predicate predicate = new Predicate();
             int startIndex = 0;
             if (words[0].Equals("init"))
                 startIndex = 1;
@@ -69,11 +70,11 @@ namespace NarrativeWorldCreator.Parsers
             {
                 if (predicateType.Name.Equals(words[startIndex]))
                 {
-                    narrativePredicate.PredicateType = predicateType;
+                    predicate.PredicateType = predicateType;
                     break;
                 }
             }
-            if (narrativePredicate.PredicateType == null)
+            if (predicate.PredicateType == null)
                 throw new Exception("Predicate type does not exist");
             for (int i = startIndex + 1; i < words.Length; i++)
             {
@@ -83,9 +84,9 @@ namespace NarrativeWorldCreator.Parsers
                                       select no).FirstOrDefault();
                 if (narrativeObject != null)
                 {
-                    if (narrativeObject.Type.Name.Equals(narrativePredicate.PredicateType.Arguments[i - 1].Type.Name) || narrativeObject.Type.ParentType.Name.Equals(narrativePredicate.PredicateType.Arguments[i - 1].Type.Name))
+                    if (narrativeObject.Type.Name.Equals(predicate.PredicateType.Arguments[i - 1].Type.Name) || narrativeObject.Type.ParentType.Name.Equals(predicate.PredicateType.Arguments[i - 1].Type.Name))
                     {
-                        narrativePredicate.NarrativeObjects.Add(narrativeObject);
+                        predicate.EntikaClassNames.Add(narrativeObject.Name);
                     }
                     else
                     {
@@ -97,7 +98,7 @@ namespace NarrativeWorldCreator.Parsers
                     throw new Exception("Narrative object in predicate not defined as object");
                 }
             }
-            return narrativePredicate;
+            return predicate;
         }
 
         private static ICollection<NarrativeObject> readObjects(string[] words, ICollection<NarrativeObjectType> types)
