@@ -22,10 +22,12 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
 
         // Subset of timepoints for this node
         public List<NarrativeTimePoint> TimePoints { get; set; }
+        public string LocationType { get; set; }
 
-        public LocationNode(String locationName)
+        public LocationNode(String locationName, string locationType)
         {
             this.LocationName = locationName;
+            this.LocationType = locationType;
             this.TimePoints = new List<NarrativeTimePoint>();
             this.Shape = new Shape(new List<Common.Vec2>());
         }

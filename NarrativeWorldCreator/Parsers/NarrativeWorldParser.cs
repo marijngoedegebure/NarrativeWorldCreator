@@ -118,7 +118,7 @@ namespace NarrativeWorldCreator.Parsers
             {
                 foreach (NarrativeObject location in locations)
                 {
-                    NarrativeWorldParser.NarrativeWorld.Graph.addNode(location.Name);
+                    NarrativeWorldParser.NarrativeWorld.Graph.addNode(location.Name, location.Type.Name);
                 }
             }
             // Create edges based on move actions

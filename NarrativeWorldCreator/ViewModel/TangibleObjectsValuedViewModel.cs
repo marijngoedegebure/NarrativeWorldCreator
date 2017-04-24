@@ -41,7 +41,7 @@ namespace NarrativeWorldCreator.ViewModel
         public void Load(NarrativeTimePoint ntp)
         {
             ObservableCollection<TreeTangibleObject> octo = new ObservableCollection<TreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.PredicatesFilteredByCurrentLocation);
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.PredicatesFilteredByCurrentLocation);
             foreach (var to in listOfValuedTangibleObjects)
             {
                 octo.Add(to);

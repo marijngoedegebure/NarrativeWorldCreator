@@ -26,18 +26,18 @@ namespace NarrativeWorldCreator.Models
 
         public static Dictionary<string, RelationshipBooleanTypes> RelationshipBooleanDictionary = new Dictionary<string, RelationshipBooleanTypes>
         {
-            { "On", RelationshipBooleanTypes.On },
-            { "Against", RelationshipBooleanTypes.Against },
-            { "Facing", RelationshipBooleanTypes.Facing },
-            { "Parallel", RelationshipBooleanTypes.Parallel }
+            { "on", RelationshipBooleanTypes.On },
+            { "against", RelationshipBooleanTypes.Against },
+            { "facing", RelationshipBooleanTypes.Facing },
+            { "parallel", RelationshipBooleanTypes.Parallel }
         };
 
         public static Dictionary<string, RelationshipValuedTypes> RelationshipValuedDictionary = new Dictionary<string, RelationshipValuedTypes>
         {
-            { "Front", RelationshipValuedTypes.Front },
-            { "Back", RelationshipValuedTypes.Back },
-            { "Left", RelationshipValuedTypes.Left },
-            { "Right", RelationshipValuedTypes.Right }
+            { "front", RelationshipValuedTypes.Front },
+            { "back", RelationshipValuedTypes.Back },
+            { "left", RelationshipValuedTypes.Left },
+            { "right", RelationshipValuedTypes.Right }
         };
 
         public static bool IsRelationshipValued(string name)

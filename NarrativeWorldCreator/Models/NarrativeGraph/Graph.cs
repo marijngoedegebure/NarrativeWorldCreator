@@ -43,9 +43,9 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
             nodeCoordinatesGenerated = false;
         }
 
-        public void addNode(string locationName)
+        public void addNode(string locationName, string locationType)
         {
-            LocationNode node = new LocationNode(locationName);
+            LocationNode node = new LocationNode(locationName, locationType);
             nodeList.Add(node);
         }
 

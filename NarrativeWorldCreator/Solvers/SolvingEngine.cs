@@ -45,32 +45,32 @@ namespace NarrativeWorldCreator.Solvers
                 NarrativeShape shape = null;
                 // For each relationship, create shape, add this to narrativeshapes, and remove from baseshape
                 // Kind of relationship:
-                if (relationType.DefaultName.Equals("On"))
+                if (relationType.DefaultName.Equals("on"))
                 {
                     shape = CreateOnRelationShape(addition);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
                 }
-                else if (relationType.DefaultName.Equals("Against"))
+                else if (relationType.DefaultName.Equals("against"))
                 {
                     shape = CreateAgainstRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Against);
                 }
-                else if (relationType.DefaultName.Equals("Around"))
+                else if (relationType.DefaultName.Equals("around"))
                 {
                     shape = CreateAroundRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Around);
                 }
-                else if (relationType.DefaultName.Equals("Facing"))
+                else if (relationType.DefaultName.Equals("facing"))
                 {
                     shape = CreateFacingRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Facing);
                 }
-                else if (relationType.DefaultName.Equals("Above"))
+                else if (relationType.DefaultName.Equals("above"))
                 {
                     shape = CreateAboveRelationShape(addition, relationAsSource);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Above);
                 }
-                else if (relationType.DefaultName.Equals("Parallel"))
+                else if (relationType.DefaultName.Equals("parallel"))
                 {
                     shape = CreateParallelRelationShape(addition, relationAsSource, destinationShape.zpos);
                     relation = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.Parallel);
