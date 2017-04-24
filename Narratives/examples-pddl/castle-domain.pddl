@@ -1,7 +1,14 @@
 (define (domain castle)
 	(:requirements :strips :typing)
 	(:types 
-		character thing place - object)
+		character thing place - object
+		throneroom - place
+		bedroomprincess - place
+		guestroom - place
+		diningroom - place
+		kitchen - place
+		prison - place
+		corridor - place)
 	)
 	(:predicates
 		(dead ?x - character)

@@ -61,7 +61,7 @@ namespace NarrativeWorldCreator.Parsers
                 {
                     if (words[i].Equals(narrativeObject.Name))
                     {
-                        if (narrativeEvent.NarrativeAction.Parameters[i - 1].Type.Name.Equals(narrativeObject.Type.Name))
+                        if (Narrative.CheckType(narrativeObject.Type, narrativeEvent.NarrativeAction.Parameters[i - 1].Type))
                         {
                             narrativeEvent.NarrativeObjects.Add(narrativeObject);
                             break;

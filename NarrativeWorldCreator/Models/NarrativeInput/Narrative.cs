@@ -54,10 +54,23 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
             List<NarrativeObject> filteredNarrativeObjects = new List<NarrativeObject>();
             foreach(NarrativeObject narrativeObject in NarrativeObjects)
             {
-                if (narrativeObject.Type.Name.Equals(t.Name))
+                if (CheckType(narrativeObject.Type, t))
                     filteredNarrativeObjects.Add(narrativeObject);
             }
             return filteredNarrativeObjects;
+        }
+
+        public static bool CheckType(NarrativeObjectType type1, NarrativeObjectType type2)
+        {
+            if (type1.Name.Equals(type2.Name))
+            {
+                return true;
+            }
+            if (type1.ParentType != null)
+            {
+                return CheckType(type1.ParentType, type2);
+            }
+            return false;
         }
 
         public List<NarrativeObject> getNarrativeObjectsOfTypeOfLocation(string s, string location)
