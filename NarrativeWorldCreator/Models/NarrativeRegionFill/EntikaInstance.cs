@@ -24,10 +24,11 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public NarrativeShape OffLimitsShape { get; set; }
         public List<NarrativeShape> ClearanceShapes { get; set; }
 
-        public List<GeometricRelationshipBase> RelationshipsAsSource { get; set; }
+        public List<RelationshipInstance> RelationshipsAsSource { get; set; }
 
-        public List<GeometricRelationshipBase> RelationshipsAsTarget { get; set; }
+        public List<RelationshipInstance> RelationshipsAsTarget { get; set; }
 
+        public bool Frozen { get; set; }
 
         public EntikaInstance(string name, Vector3 pos, Model model, Matrix world)
         {
@@ -43,8 +44,8 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         private void SetupLists()
         {
             ClearanceShapes = new List<NarrativeShape>();
-            RelationshipsAsSource = new List<GeometricRelationshipBase>();
-            RelationshipsAsTarget = new List<GeometricRelationshipBase>();
+            RelationshipsAsSource = new List<RelationshipInstance>();
+            RelationshipsAsTarget = new List<RelationshipInstance>();
         }
 
         // Constructor for ground
@@ -89,7 +90,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
                     min = Vector3.Min(min, transformedPosition);
                     max = Vector3.Max(max, transformedPosition);
                 }
-
+                this.BoundingBox = new BoundingBox(min, max);
             }
         }
 

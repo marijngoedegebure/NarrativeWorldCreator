@@ -35,9 +35,6 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         public List<RelationshipInstance> InstancedRelations { get; set; }
         public List<EntikaInstance> InstancedObjects { get; set; }
 
-
-        public TimePointSpecificFill TimePointSpecificFill { get; set; }
-
         public NarrativeTimePoint(int timePoint, List<TangibleObject> DefaultTangibleObjects)
         {
             this.TimePoint = timePoint;
@@ -46,8 +43,6 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             PredicatesCausedByInstancedObjectsAndRelations = new List<Predicate>();
             InstancedRelations = new List<RelationshipInstance>();
             InstancedObjects = new List<EntikaInstance>();
-
-            TimePointSpecificFill = new TimePointSpecificFill();
             AvailableTangibleObjects = DefaultTangibleObjects;
         }
 
@@ -65,30 +60,30 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public List<EntikaInstance> GetEntikaInstancesWithoutFloor()
         {
-            return this.InstancedObjects.Where(io => !io.Name.Equals("Floor")).ToList();
+            return this.InstancedObjects.Where(io => !io.Name.Equals(Constants.Floor)).ToList();
         }
 
         // This function allows updating
         public void SetBaseShape(LocationNode selectedNode)
         {
-            if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
+            var floorInstance = this.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            if (floorInstance == null)
             {
+                // Create floor instance
                 SetupFloorInstance(selectedNode);
             }
             else
             {
-                // Update the shape all others reference
-                this.TimePointSpecificFill.NarrativeShapes[0].Polygon = new Polygon(selectedNode.Shape.Points);
-                var floor = this.InstancedObjects.Where(io => io.Name.Equals("Floor")).FirstOrDefault();
-                floor.Polygon = new Polygon(selectedNode.Shape.Points);
-                floor.UpdateBoundingBoxAndShape(null);
+                // Update floor instance
+                floorInstance.Polygon = new Polygon(selectedNode.Shape.Points);
+                floorInstance.UpdateBoundingBoxAndShape(null);
             }
         }
 
         // This only allows the new instantiation of the current floor instance when the timepoint is newly selected
         public void SwitchTimePoints(LocationNode selectedNode)
         {
-            if (this.TimePointSpecificFill.NarrativeShapes.Count == 0)
+            if (this.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault() == null)
             {
                 SetupFloorInstance(selectedNode);
             }
@@ -97,21 +92,8 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         private void SetupFloorInstance(LocationNode selectedNode)
         {
             // Setup EntikaInstance with on(X, floor) relationship
-            var floorInstance = new EntikaInstance("Floor", new Polygon(selectedNode.Shape.Points));
+            var floorInstance = new EntikaInstance(Constants.Floor, new Polygon(selectedNode.Shape.Points));
             this.InstancedObjects.Add(floorInstance);
-
-            // TimepointSpecificFill stuff:
-            var floorShape = new NarrativeShape(0, new Polygon(selectedNode.Shape.Points), NarrativeShape.ShapeType.Relationship, floorInstance);
-            var floorRelationship = new GeometricRelationshipBase(GeometricRelationshipBase.RelationshipTypes.On);
-            floorShape.Relations.Add(floorRelationship);
-            floorRelationship.Source = floorInstance;
-            // Add on(X, floor) relation
-            floorInstance.RelationshipsAsSource.Add(floorRelationship);
-
-            // Add everything to fill:
-            this.TimePointSpecificFill.NarrativeShapes.Add(floorShape);
-            this.TimePointSpecificFill.FloorInstance = floorInstance;
-            this.TimePointSpecificFill.Relationships.Add(floorRelationship);
         }
 
         internal void InstantiateRelationship(RelationshipInstance relationInstance)
@@ -159,6 +141,35 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
                 PredicateType = predicateType,
                 EntikaClassNames = new List<string> { instanceOfObjectToAdd.TangibleObject.DefaultName, this.Location.LocationName }
             });            
+        }
+
+        public List<Predicate> GetRemainingPredicates()
+        {
+            var ret = new List<Predicate>();
+            var temp = new Predicate[this.PredicatesCausedByInstancedObjectsAndRelations.Count];
+            this.PredicatesCausedByInstancedObjectsAndRelations.CopyTo(temp);
+            var predicatesOfInstancesCopy = temp.ToList();
+            foreach (var predicateFiltered in PredicatesFilteredByCurrentLocation)
+            {
+                Predicate foundPredicate = null;
+                foreach (var placedPredicate in predicatesOfInstancesCopy)
+                {
+                    if (predicateFiltered.Equals(placedPredicate))
+                    {
+                        foundPredicate = placedPredicate;
+                        break;
+                    }
+                }
+                if (foundPredicate == null)
+                {
+                    ret.Add(predicateFiltered);
+                }
+                else
+                {
+                    predicatesOfInstancesCopy.Remove(foundPredicate);
+                }
+            }
+            return ret;
         }
 
         public override bool Equals(object obj)

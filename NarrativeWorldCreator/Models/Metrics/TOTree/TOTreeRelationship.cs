@@ -7,20 +7,17 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Models.Metrics.TOTree
 {
-    public class TreeRelationship
+    public class TOTreeRelationship
     {
         public Relationship Relationship { get; set; }
 
-        public TreeTangibleObject Source { get; set; }
+        public TOTreeTangibleObject Source { get; set; }
 
-        public TreeTangibleObject Target { get; set; }
+        public TOTreeTangibleObject Target { get; set; }
 
-        public bool Required { get; set; }
-
-        public TreeRelationship(Relationship relationship)
+        public TOTreeRelationship(Relationship relationship)
         {
             this.Relationship = relationship;
-            this.Required = false;
         }
     }
 }

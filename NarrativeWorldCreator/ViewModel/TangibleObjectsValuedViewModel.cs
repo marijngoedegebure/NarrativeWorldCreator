@@ -16,8 +16,8 @@ namespace NarrativeWorldCreator.ViewModel
 {
     public class TangibleObjectsValuedViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<TreeTangibleObject> _tangibleObjectsValued;
-        public ObservableCollection<TreeTangibleObject> TangibleObjectsValued
+        private ObservableCollection<TOTreeTangibleObject> _tangibleObjectsValued;
+        public ObservableCollection<TOTreeTangibleObject> TangibleObjectsValued
         {
             get
             {
@@ -40,8 +40,8 @@ namespace NarrativeWorldCreator.ViewModel
 
         public void Load(NarrativeTimePoint ntp)
         {
-            ObservableCollection<TreeTangibleObject> octo = new ObservableCollection<TreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.PredicatesFilteredByCurrentLocation);
+            ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 octo.Add(to);

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Solvers;
@@ -126,17 +127,11 @@ namespace NarrativeWorldCreator
 
             if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
             {
-                drawNarrativeShapes();
+                drawFloorWireframe();
             }
             if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
             {
                 drawRegionPolygon();
-            }
-
-            // Draw all objects that have been added to the scene, potential accelleration by not first retrieving the narrativeshapes who use models and afterwards go through the list again to draw
-            foreach(EntikaInstance instance in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.OtherObjectInstances)
-            {
-                drawEntikaInstance(instance);
             }
 
             // Draw all objects that are known 2.0
@@ -155,7 +150,7 @@ namespace NarrativeWorldCreator
             GraphicsDevice.SamplerStates[0] = sampler;
         }
 
-        private void drawNarrativeShapes()
+        private void drawFloorWireframe()
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
             basicEffect.World = SystemStateTracker.world;
@@ -163,42 +158,22 @@ namespace NarrativeWorldCreator
             basicEffect.Projection = SystemStateTracker.proj;
             basicEffect.VertexColorEnabled = true;
             var selectedTO = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
-            foreach (var shape in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.NarrativeShapes)
+            var floorInstance = this._currentRegionPage.SelectedTimePoint.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            if (floorInstance != null)
             {
-                if (shape.Polygon != null)
+                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
+                // If shape is compatible with currently selected entika object that can be placed, use a different color
+                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
+                drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
+                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
-                    var result = HelperFunctions.GetMeshForPolygon(shape.Polygon);
-                    // If shape is compatible with currently selected entika object that can be placed, use a different color
-                    List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
-                    if (selectedTO != null)
-                    {
-                        var query = from ShapeRelation in shape.Relations
-                                    from toRelation in selectedTO.RelationshipsAsTarget
-                                    where ShapeRelation.Source.Name.Equals(toRelation.Source.DefaultName)
-                                    select ShapeRelation;
-                        if(query.Any())
-                        {
-                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Green);
-                        }
-                        else
-                        {
-                            drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
-                        }
-                    }
-                    else
-                    {
-                        drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
-                    }
-                    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-                    {
-                        // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                        pass.Apply();
-                        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                            PrimitiveType.TriangleList,
-                            drawableTriangles.ToArray(),
-                            0,
-                            drawableTriangles.Count / 3);
-                    }
+                    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
+                    pass.Apply();
+                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                        PrimitiveType.TriangleList,
+                        drawableTriangles.ToArray(),
+                        0,
+                        drawableTriangles.Count / 3);
                 }
             }
         }
@@ -503,7 +478,7 @@ namespace NarrativeWorldCreator
             {
                 CurrentRegionFillingMode = RegionFillingModes.ObjectDragging;
             }
-            else if(_keyboardState.IsKeyDown(Keys.P))
+            else if (_keyboardState.IsKeyDown(Keys.P))
             {
                 CurrentRegionFillingMode = RegionFillingModes.ObjectPlacement;
             }
@@ -515,48 +490,6 @@ namespace NarrativeWorldCreator
             // Handle object suggestion mode
             if (CurrentRegionFillingMode == RegionFillingModes.SuggestionMode)
             {
-                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-                {
-                    NarrativeTimePoint ntp = ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-                    // Update PlanningEngine's available information, update wishlist
-                    PlanningEngine.UpdateWishList(ntp);
-
-                    // Select one on ?? criteria
-                    var tuple = PlanningEngine.SelectTangibleObjectDestinationShape(ntp);
-                    var tangibleObjectName = tuple.Item1;
-                    var DestinationShape = tuple.Item2;
-
-                    // Get valid position for shape
-                    var position = PlanningEngine.GetPossibleLocationsV3(DestinationShape);
-                    Model model = LoadModel(Path.GetFileNameWithoutExtension(tangibleObjectName));
-
-                    // Create entika instance and update (currently relies on floor shape being used)
-                    var ei = new EntikaInstance(tangibleObjectName, position, SystemStateTracker.DefaultModel, SystemStateTracker.world);
-
-                    // Add new target to each of the overlapping relations of the shape
-                    var query = from ShapeRelation in DestinationShape.Relations
-                                from toRelation in ei.TangibleObject.RelationshipsAsTarget
-                                where ShapeRelation.Source.Name.Equals(toRelation.Source.DefaultName)
-                                select ShapeRelation;
-                    foreach (var relation in query)
-                    {
-                        relation.Targets.Add(ei);
-                        ei.RelationshipsAsTarget.Add(relation);
-                    } 
-
-                    // Determine shapes for entika class instances
-                    NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
-                    ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
-                }
-            }
-
-            // Handle object placement
-            if (CurrentRegionFillingMode == RegionFillingModes.ObjectPlacement)
-            {
-                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-                {
-                    HandleObjectPlacement();
-                }
             }
 
             // Handle object selection
@@ -564,90 +497,12 @@ namespace NarrativeWorldCreator
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
-                    HandleObjectSelection();
                 }
 
                 if (_currentRegionPage.SelectedEntikaObject != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
                 {
-                    HandleObjectRemoval();
                 }
             }
-        }
-
-        private void HandleObjectRemoval()
-        {
-            var ei = _currentRegionPage.SelectedEntikaObject;
-            NarrativeTimePoint ntp = ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-            SolvingEngine.RemoveEntikaInstanceFromTimePoint(ntp, ei);
-            _currentRegionPage.DeselectObject();
-        }
-
-        private void HandleObjectPlacement()
-        {
-            // Retrieve selected Tangible Object
-            var to = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
-            if (to == null)
-            {
-                _currentRegionPage.SetMessageBoxText("Please select an object from the list");
-                return;
-            }
-
-            // Get mouse coordinates
-            var mouseCoords = CalculateMouseHitOnSurface();
-
-            // Check if mouse coordinates are inside a shape
-            NarrativeTimePoint ntp = ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint;
-            NarrativeShape DestinationShape =  null;
-            // Todo, figure out if place is correct (within one of the shapes that allows placement of this object)
-            foreach (var shape in ntp.TimePointSpecificFill.NarrativeShapes)
-            {
-                if (shape.Polygon.Contains(new Vec2d(mouseCoords.X, mouseCoords.Y)))
-                {
-                    DestinationShape = ntp.TimePointSpecificFill.NarrativeShapes[0];
-                }                
-            }
-            if (DestinationShape == null)
-            {
-                _currentRegionPage.SetMessageBoxText("Selected position outside of allowed shape");
-                return;
-            }
-            // Create entika instance
-            Model model = LoadModel(Path.GetFileNameWithoutExtension(to.DefaultName));
-            var ei = new EntikaInstance(to.DefaultName, mouseCoords, SystemStateTracker.DefaultModel, SystemStateTracker.world);
-
-            // Add new target to each of the overlapping relations of the shape and of the instance
-            var query = from ShapeRelation in DestinationShape.Relations
-                        from toRelation in ei.TangibleObject.RelationshipsAsTarget
-                        where ShapeRelation.Source.Name.Equals(toRelation.Source.DefaultName)
-                        select ShapeRelation;
-            foreach (var relation in query)
-            {
-                relation.Targets.Add(ei);
-                ei.RelationshipsAsTarget.Add(relation);
-            }
-            
-            // Store changes
-            NarrativeTimePoint ntpRet = SolvingEngine.AddEntikaInstanceToTimePointBasic(ntp, ei, DestinationShape);
-            ((DetailTimePointViewModel)_currentRegionPage.RegionDetailTimePointView.DataContext).NarrativeTimePoint = ntpRet;
-        }
-
-        private void HandleObjectSelection()
-        {
-            Ray ray = CalculateMouseRay();
-            foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.TimePointSpecificFill.OtherObjectInstances)
-            {
-                // Calculate/retrieve boundingbox
-                ieo.UpdateBoundingBoxAndShape(SystemStateTracker.world);
-
-                // Intersect ray with bounding box, if distance then select model
-                float? distance = ray.Intersects(ieo.BoundingBox);
-                if (distance != null)
-                {
-                    _currentRegionPage.ChangeSelectedObject(ieo);
-                    return;
-                }
-            }
-            _currentRegionPage.DeselectObject();
         }
 
         private Vector3 CalculateMouseHitOnSurface()

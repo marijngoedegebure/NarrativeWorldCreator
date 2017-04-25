@@ -18,5 +18,7 @@ namespace NarrativeWorldCreator.Models
         public static List<string> GeometricRelationshipTypes = new List<string> { "on", "back", "front", "left", "right", "facing", "parallel", "rotated" };
 
         public const string DecorationRelationshipType = "regionTypeClassAssociation";
+
+        public const string Floor = "floor";
     }
 }

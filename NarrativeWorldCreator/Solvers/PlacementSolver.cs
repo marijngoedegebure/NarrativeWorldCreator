@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
@@ -15,7 +16,7 @@ namespace NarrativeWorldCreator.Solvers
         {
             var ret = new List<Vector3>();
 
-            var floor = ntp.InstancedObjects.Where(io => io.Name.Equals("Floor")).FirstOrDefault();
+            var floor = ntp.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             var minBB = floor.BoundingBox.Min;
             var maxBB = floor.BoundingBox.Max;
 

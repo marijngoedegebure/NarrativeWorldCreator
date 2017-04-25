@@ -29,7 +29,7 @@ namespace NarrativeWorldCreator.Views
 
         private void btnAddSelectedObject(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (TreeTangibleObject) this.ToListView.SelectedItem;
+            var selectedItem = (TOTreeTangibleObject) this.ToListView.SelectedItem;
 
             // Kick off addition process
             var regionPage = GetRegionPage();

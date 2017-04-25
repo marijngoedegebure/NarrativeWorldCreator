@@ -136,8 +136,28 @@ namespace NarrativeWorldCreator.Parsers
         private static void readAllTangibleObjects()
         {
             // Load all TangibleObjects that do not have any children, and thus are leafs
+            TangibleObject physicalObjectClass = DatabaseSearch.GetNodes<TangibleObject>("physical Object").FirstOrDefault();
+            List<TangibleObject> physicalClassLeaves = GetLeaves(physicalObjectClass);
             List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
-            NarrativeWorld.AvailableTangibleObjects = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
+            NarrativeWorld.AvailableTangibleObjects = physicalClassLeaves;
+        }
+
+        private static List<TangibleObject> GetLeaves(TangibleObject current)
+        {
+            var ret = new List<TangibleObject>();
+            foreach (TangibleObject child in current.PersonalChildren)
+            {
+                if (child.Children.Count == 0)
+                {
+                    ret.Add(child);
+                }
+                else
+                {
+                    ret.AddRange(GetLeaves(child));
+                }
+            }
+
+            return ret;
         }
 
         private static void parseDependencyGraph()

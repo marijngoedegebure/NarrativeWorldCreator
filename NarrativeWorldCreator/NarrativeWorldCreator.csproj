@@ -112,8 +112,11 @@
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
-    <Compile Include="Models\Metrics\TOTree\TreeRelationship.cs" />
-    <Compile Include="Models\Metrics\TOTree\TreeTangibleObject.cs" />
+    <Compile Include="MetricEngines\AddOrChangeMetricEngine.cs" />
+    <Compile Include="Models\Metrics\InstanceTree\InstanceTreeEntikaInstance.cs" />
+    <Compile Include="Models\Metrics\InstanceTree\InstanceTreeRelationship.cs" />
+    <Compile Include="Models\Metrics\TOTree\TOTreeRelationship.cs" />
+    <Compile Include="Models\Metrics\TOTree\TOTreeTangibleObject.cs" />
     <Compile Include="Parsers\BeliefSystem.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
@@ -158,8 +161,6 @@
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
     <Compile Include="Solvers\PlacementSolver.cs" />
-    <Compile Include="Solvers\PlanningEngine.cs" />
-    <Compile Include="Solvers\SolvingEngine.cs" />
     <Compile Include="MetricEngines\TangibleObjectMetricEngine.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />

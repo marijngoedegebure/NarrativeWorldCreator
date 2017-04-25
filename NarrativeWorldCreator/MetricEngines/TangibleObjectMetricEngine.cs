@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.Metrics;
+using NarrativeWorldCreator.Models.Metrics.InstanceTree;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
@@ -20,13 +21,18 @@ namespace NarrativeWorldCreator.MetricEngines
         public static MetricType OutEdgesDecorativeMT = new MetricType("outgoing decorative edges");
         public static MetricType IncEdgesRequiredMT = new MetricType("incoming required edges");
         public static MetricType OutEdgesRequiredMT = new MetricType("outgoing required edges");
+        public static MetricType IncEdgesAvailableMT = new MetricType("incoming edges available");
+        public static MetricType OutEdgesAvailableMT = new MetricType("outgoing edges available");
         public static MetricType requiredMT = new MetricType("required");
         public static MetricType requiredDependencyMT = new MetricType("required dependency");
         public static MetricType DecorationMT = new MetricType("decoration weight");
         public static MetricType AreaMT = new MetricType("area");
 
-        public static List<TreeTangibleObject> TTOs = new List<TreeTangibleObject>();
-        public static List<TreeRelationship> TreeRelationships = new List<TreeRelationship>();
+        public static List<TOTreeTangibleObject> TTOs = new List<TOTreeTangibleObject>();
+        public static List<TOTreeRelationship> TreeRelationships = new List<TOTreeRelationship>();
+
+        public static List<InstanceTreeEntikaInstance> ITEIs = new List<InstanceTreeEntikaInstance>();
+        public static List<InstanceTreeRelationship> InstanceTreeRelationships = new List<InstanceTreeRelationship>();
 
         public static void BuildUpTOTree(List<Semantics.Entities.TangibleObject> tangibleObjects)
         {
@@ -37,10 +43,11 @@ namespace NarrativeWorldCreator.MetricEngines
                                     select tto).FirstOrDefault();
                 if (treeTOSource == null)
                 {
-                    treeTOSource = new TreeTangibleObject(to);
+                    treeTOSource = new TOTreeTangibleObject(to);
                     TTOs.Add(treeTOSource);
                 }
-                foreach (var relationship in to.RelationshipsAsSource)
+                // Check all geometric relationships
+                foreach (var relationship in to.RelationshipsAsSource.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.RelationshipType.DefaultName)))
                 {
                     var treeTOTarget = (from tto in TTOs
                                         where tto.TangibleObject.Equals((Semantics.Entities.TangibleObject)relationship.Targets[0])
@@ -48,10 +55,10 @@ namespace NarrativeWorldCreator.MetricEngines
 
                     if (treeTOTarget  == null)
                     {
-                        treeTOTarget = new TreeTangibleObject((Semantics.Entities.TangibleObject)relationship.Targets[0]);
+                        treeTOTarget = new TOTreeTangibleObject((Semantics.Entities.TangibleObject)relationship.Targets[0]);
                         TTOs.Add(treeTOTarget);
                     }
-                    var Trelationship = new TreeRelationship(relationship);
+                    var Trelationship = new TOTreeRelationship(relationship);
                     Trelationship.Source = treeTOSource;
                     Trelationship.Target = treeTOTarget;
                     TreeRelationships.Add(Trelationship);
@@ -61,65 +68,60 @@ namespace NarrativeWorldCreator.MetricEngines
             }
         }
 
-        public static void ResetTree()
+        public static void BuildUpInstanceTree(List<EntikaInstance> instances)
         {
-            TTOs = new List<TreeTangibleObject>();
-            TreeRelationships = new List<TreeRelationship>();
+            foreach (var instance in instances)
+            {
+                var instanceTreeSource = (from itei in ITEIs
+                                          where itei.EntikaInstance.Equals(instance)
+                                          select itei).FirstOrDefault();
+                if (instanceTreeSource == null)
+                {
+                    instanceTreeSource = new InstanceTreeEntikaInstance(instance);
+                    ITEIs.Add(instanceTreeSource);
+                }
+                foreach (var relationship in instanceTreeSource.EntikaInstance.RelationshipsAsSource)
+                {
+                    var instanceTreeTarget = (from itei in ITEIs
+                                              where itei.EntikaInstance.Equals(relationship.Targets[0])
+                                              select itei).FirstOrDefault();
+
+                    if (instanceTreeTarget == null)
+                    {
+                        instanceTreeTarget = new InstanceTreeEntikaInstance(relationship.Targets[0]);
+                        ITEIs.Add(instanceTreeTarget);
+                    }
+                    var instanceTreeRelationship = new InstanceTreeRelationship(relationship);
+                    instanceTreeRelationship.Source = instanceTreeSource;
+                    instanceTreeRelationship.Target = instanceTreeTarget;
+                    InstanceTreeRelationships.Add(instanceTreeRelationship);
+                    instanceTreeSource.RelationshipsAsSource.Add(instanceTreeRelationship);
+                    instanceTreeTarget.RelationshipsAsTarget.Add(instanceTreeRelationship);
+                }
+            }
         }
 
-        public static List<TreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, List<Semantics.Entities.TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static void ResetTree()
+        {
+            TTOs = new List<TOTreeTangibleObject>();
+            TreeRelationships = new List<TOTreeRelationship>();
+        }
+
+        public static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, List<Semantics.Entities.TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             ResetTree();
             BuildUpTOTree(tangibleObjects);
+            BuildUpInstanceTree(ntp.GetEntikaInstancesWithoutFloor());
 
             // Incoming and outgoing geometric relationships
             foreach (var tto in TTOs)
             {
-                tto.Metrics.Add(new Metric(IncEdgesMT, tto.RelationshipsAsTarget.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count);
+                tto.Metrics.Add(new Metric(IncEdgesMT, tto.RelationshipsAsTarget.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count));
             }
 
             foreach (var tto in TTOs)
             {
                 tto.Metrics.Add(new Metric(OutEdgesMT, tto.RelationshipsAsSource.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count));
-            }
-
-            // Incoming and outgoing decorative edges
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, tto.RelationshipsAsTarget.Where(ras => ras.Relationship.RelationshipType.DefaultName.Equals(Constants.DecorationRelationshipType)).ToList().Count));
-            }
-
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, tto.RelationshipsAsSource.Where(ras => ras.Relationship.RelationshipType.DefaultName.Equals(Constants.DecorationRelationshipType)).ToList().Count));
-            }
-
-            // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
-            foreach (var tto in TTOs)
-            {
-                foreach (var predicate in predicates)
-                {
-                    foreach (var name in predicate.EntikaClassNames)
-                    {
-                        if (tto.TangibleObject.DefaultName.Equals(name))
-                        {
-                            tto.Metrics.Add(new Metric(requiredMT, 1.0));
-                            // Cascade through relations and get relations on which this object depends and add metrics
-                            CascadeRequiredMetricOnRelationships(tto);
-                        }
-                    }
-                }
-            }
-
-            // Incoming and outgoing required edges
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, tto.RelationshipsAsTarget.Where(ras => ras.Required).ToList().Count));
-            }
-
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, tto.RelationshipsAsSource.Where(ras => ras.Required).ToList().Count));
             }
 
             // Add decoration weight metric
@@ -132,10 +134,80 @@ namespace NarrativeWorldCreator.MetricEngines
                         if (relationship.Source.DefaultName.Equals(ntp.Location.LocationType))
                         {
                             // Add decorationweight metric
+                            tto.Decorative = true;
                             tto.Metrics.Add(new Metric(DecorationMT, Double.Parse(relationship.Attributes[0].Value.ToString())));
                         }
                     }
                 }
+            }
+
+            // Incoming and outgoing decorative edges, this is defined as an edge from or to an node with a decorative score
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, tto.RelationshipsAsSource.Where(ras => ras.Target.Decorative).ToList().Count));
+            }
+
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, tto.RelationshipsAsTarget.Where(ras => ras.Target.Decorative).ToList().Count));
+            }
+
+            // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
+            foreach (var tto in TTOs)
+            {
+                foreach (var predicate in predicates)
+                {
+                    foreach (var name in predicate.EntikaClassNames)
+                    {
+                        if (tto.TangibleObject.DefaultName.Equals(name))
+                        {
+                            tto.Required = true;
+                            tto.Metrics.Add(new Metric(requiredMT, 1.0));
+                            // Cascade through relations and get relations on which this object depends and add metrics
+                            CascadeRequiredMetricOnRelationships(tto);
+                        }
+                    }
+                }
+            }
+
+            // Incoming and outgoing required edges
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, tto.RelationshipsAsTarget.Where(ras => ras.Source.Required).ToList().Count));
+            }
+
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, tto.RelationshipsAsSource.Where(ras => ras.Target.Required).ToList().Count));
+            }
+
+            // Determine relationships for which instances have already been placed
+            foreach (var tto in TTOs)
+            {
+                var count = 0;
+                foreach (var relationship in tto.RelationshipsAsSource)
+                {
+                    foreach (var treeInstance in ITEIs)
+                    {
+                        if (relationship.Target.TangibleObject.Equals(treeInstance.EntikaInstance.TangibleObject)) {
+                            // if this is the case than there is an object available to link the relationship to
+                            count++;
+                        }
+                    }   
+                }
+                tto.Metrics.Add(new Metric(OutEdgesAvailableMT, count));
+                count = 0;
+                foreach (var relationship in tto.RelationshipsAsTarget)
+                {
+                    foreach (var treeInstance in ITEIs)
+                    {
+                        if (relationship.Source.TangibleObject.Equals(treeInstance.EntikaInstance.TangibleObject)) {
+                            // if this is the case than there is an object available to link the relationship to
+                            count++;
+                        }
+                    }
+                }
+                tto.Metrics.Add(new Metric(IncEdgesAvailableMT, count));
             }
 
             // Calculate size metric
@@ -168,13 +240,13 @@ namespace NarrativeWorldCreator.MetricEngines
             return TTOs;
         }
 
-        private static void CascadeRequiredMetricOnRelationships(TreeTangibleObject tto)
+        private static void CascadeRequiredMetricOnRelationships(TOTreeTangibleObject tto)
         {
             foreach (var relation in tto.RelationshipsAsTarget)
             {
                 if (relation.Relationship.RelationshipType.DefaultName.Equals(Constants.On))
                 {
-                    relation.Required = true;
+                    relation.Source.RequiredDependency = true;
                     var found = false;
                     foreach (var metric in relation.Source.Metrics)
                     {
