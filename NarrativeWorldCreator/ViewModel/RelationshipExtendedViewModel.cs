@@ -1,24 +1,70 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using Semantics.Components;
 using SharpDX.Collections;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class RelationshipInstanceViewModel : INotifyPropertyChanged
+    public class RelationshipExtendedViewModel : INotifyPropertyChanged
     {
-        private RelationshipInstance _relationshipInstance;
-        public RelationshipInstance RelationshipInstance
+        private Relationship _relationship;
+        public Relationship Relationship
         {
             get
             {
-                return _relationshipInstance;
+                return _relationship;
             }
-
             set
             {
-                _relationshipInstance = value;
-                OnPropertyChanged("RelationshipInstance");
+                _relationship = value;
+                OnPropertyChanged("Relationship");
+            }
+        }
+
+        private EntikaInstance _source;
+        public EntikaInstance Source
+        {
+            get
+            {
+                return _source;
+            }
+            set
+            {
+                _source = value;
+                OnPropertyChanged("Source");
+            }
+        }
+
+        private EntikaInstance _target;
+        public EntikaInstance Target
+        {
+            get
+            {
+                return _target;
+            }
+            set
+            {
+                _target = value;
+                OnPropertyChanged("Target");
+            }
+        }
+
+        private bool _selected;
+        public bool Selected
+        {
+            get
+            {
+                return _selected;
+            }
+            set
+            {
+                _selected = value;
+                OnPropertyChanged("Selected");
             }
         }
 
@@ -31,7 +77,7 @@ namespace NarrativeWorldCreator.ViewModel
             }
             set
             {
-                    _objectInstances = value;
+                _objectInstances = value;
                 OnPropertyChanged("ObjectInstances");
             }
         }
@@ -44,17 +90,19 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(RelationshipInstance relationship, List<EntikaInstance> objectInstances)
+        public void Load(Relationship r, List<EntikaInstance> objectInstances, EntikaInstance s, EntikaInstance t)
         {
-            RelationshipInstance = relationship;
-            // Filter object instances using relationshipInstance
+            this.Relationship = r;
+            this.Selected = false;
+            this.Source = s;
+            this.Target = t;
 
             ObservableCollection<EntikaInstanceSelectionViewModel> eioc = new ObservableCollection<EntikaInstanceSelectionViewModel>();
-            if (relationship.Source == null)
+            if (this.Source == null)
             {
                 foreach (var instance in objectInstances)
                 {
-                    if (instance.TangibleObject.Equals(relationship.BaseRelationship.Source))
+                    if (instance.TangibleObject.Equals(this.Relationship.Source))
                     {
                         var objectInstanceVM = new EntikaInstanceSelectionViewModel();
                         objectInstanceVM.EntikaInstance = instance;
@@ -63,11 +111,11 @@ namespace NarrativeWorldCreator.ViewModel
                     }
                 }
             }
-            else
+            if (this.Target == null)
             {
                 foreach (var instance in objectInstances)
                 {
-                    foreach(var target in relationship.BaseRelationship.Targets)
+                    foreach (var target in this.Relationship.Targets)
                     {
                         if (instance.TangibleObject.Equals(target))
                         {

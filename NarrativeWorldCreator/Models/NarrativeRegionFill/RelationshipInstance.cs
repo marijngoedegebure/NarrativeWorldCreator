@@ -10,7 +10,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
     public class RelationshipInstance
     {
         public EntikaInstance Source { get; set; }
-        public List<EntikaInstance> Targets { get; set; }
+        public EntikaInstance Target { get; set; }
         public Relationship BaseRelationship { get; set; }
 
         // Parameters for energy function
@@ -22,7 +22,6 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public RelationshipInstance()
         {
             Valued = false;
-            Targets = new List<EntikaInstance>();
         }
     }
 }

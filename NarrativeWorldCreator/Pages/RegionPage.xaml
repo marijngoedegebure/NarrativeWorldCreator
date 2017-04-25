@@ -97,8 +97,7 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <views:TangibleObjectsView Grid.Column="0" Grid.Row="0" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
-                            <views:RelationshipSelectionView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionView"/>
-                            <views:RelationInstancingView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationInstancingView"/>
+                            <views:RelationshipSelectionAndInstancingView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionAndInstancingView"/>
                             <views:ObjectPlacementView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="ObjectPlacementView"/>
                         </Grid>
                     </TabItem>

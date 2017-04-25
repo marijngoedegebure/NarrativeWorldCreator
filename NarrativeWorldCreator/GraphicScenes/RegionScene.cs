@@ -157,7 +157,6 @@ namespace NarrativeWorldCreator
             basicEffect.View = SystemStateTracker.view;
             basicEffect.Projection = SystemStateTracker.proj;
             basicEffect.VertexColorEnabled = true;
-            var selectedTO = _currentRegionPage.RetrieveSelectedTangibleObjectFromListView();
             var floorInstance = this._currentRegionPage.SelectedTimePoint.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance != null)
             {

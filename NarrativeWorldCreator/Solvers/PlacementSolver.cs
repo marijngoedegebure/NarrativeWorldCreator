@@ -37,7 +37,7 @@ namespace NarrativeWorldCreator.Solvers
         public static double CalculatePairwiseEnergy(RelationshipInstance instance)
         {
             // Calculate distance between two entikainstances
-            var distance = CalculateDistance(instance.Source, instance.Targets[0]);
+            var distance = CalculateDistance(instance.Source, instance.Target);
             // Determine output energy based distance, targetrange start, targetrange end and degree of attraction (static)
 
             return -1 * EnergyFunction(distance, instance.TargetRangeStart.GetValueOrDefault(), instance.TargetRangeEnd.GetValueOrDefault(), 2.0);

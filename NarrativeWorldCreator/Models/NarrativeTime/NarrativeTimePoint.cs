@@ -128,7 +128,7 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             this.PredicatesCausedByInstancedObjectsAndRelations.Add(new Predicate
             {
                 PredicateType = predicateType,
-                EntikaClassNames = new List<string> { relationInstance.Source.TangibleObject.DefaultName, relationInstance.Targets[0].TangibleObject.DefaultName, this.Location.LocationName }
+                EntikaClassNames = new List<string> { relationInstance.Source.TangibleObject.DefaultName, relationInstance.Target.TangibleObject.DefaultName, this.Location.LocationName }
             });
         }
 

@@ -83,12 +83,12 @@ namespace NarrativeWorldCreator.MetricEngines
                 foreach (var relationship in instanceTreeSource.EntikaInstance.RelationshipsAsSource)
                 {
                     var instanceTreeTarget = (from itei in ITEIs
-                                              where itei.EntikaInstance.Equals(relationship.Targets[0])
+                                              where itei.EntikaInstance.Equals(relationship.Target)
                                               select itei).FirstOrDefault();
 
                     if (instanceTreeTarget == null)
                     {
-                        instanceTreeTarget = new InstanceTreeEntikaInstance(relationship.Targets[0]);
+                        instanceTreeTarget = new InstanceTreeEntikaInstance(relationship.Target);
                         ITEIs.Add(instanceTreeTarget);
                     }
                     var instanceTreeRelationship = new InstanceTreeRelationship(relationship);

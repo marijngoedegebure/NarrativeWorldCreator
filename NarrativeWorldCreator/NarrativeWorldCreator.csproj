@@ -143,7 +143,6 @@
     <Compile Include="Models\NarrativeRegionFill\Predicate.cs" />
     <Compile Include="Models\NarrativeInput\NarrativeEffect.cs" />
     <Compile Include="Models\NarrativeRegionFill\PredicateType.cs" />
-    <Compile Include="Models\RelationshipTypes.cs" />
     <Compile Include="Pages\GraphPage.xaml.cs">
       <DependentUpon>GraphPage.xaml</DependentUpon>
     </Compile>
@@ -173,10 +172,9 @@
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\ObjectPlacementViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstancesSelectionViewModel.cs" />
-    <Compile Include="ViewModel\RelationInstancingViewModel.cs" />
+    <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
-    <Compile Include="ViewModel\RelationshipInstanceViewModel.cs" />
-    <Compile Include="ViewModel\RelationshipSelectionViewModel.cs" />
+    <Compile Include="ViewModel\RelationshipSelectionAndInstancingViewModel.cs" />
     <Compile Include="ViewModel\SelectedObjectDetailViewModel.cs" />
     <Compile Include="ViewModel\GraphDetailTimePointListViewModel.cs" />
     <Compile Include="ViewModel\NarrativeTimelineViewModel.cs" />
@@ -191,9 +189,6 @@
     </Compile>
     <Compile Include="Views\EntikaInstancesSelectionView.xaml.cs">
       <DependentUpon>EntikaInstancesSelectionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RelationInstancingView.xaml.cs">
-      <DependentUpon>RelationInstancingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ModeView.xaml.cs">
       <DependentUpon>ModeView.xaml</DependentUpon>
@@ -216,11 +211,11 @@
     <Compile Include="Views\RegionHeaderView.xaml.cs">
       <DependentUpon>RegionHeaderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RelationshipSelectionAndInstancingView.xaml.cs">
+      <DependentUpon>RelationshipSelectionAndInstancingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SelectedObjectDetailView.xaml.cs">
       <DependentUpon>SelectedObjectDetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RelationshipSelectionView.xaml.cs">
-      <DependentUpon>RelationshipSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TangibleObjectsView.xaml.cs">
       <DependentUpon>TangibleObjectsView.xaml</DependentUpon>
@@ -261,10 +256,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RelationInstancingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\ModeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -293,11 +284,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SelectedObjectDetailView.xaml">
+    <Page Include="Views\RelationshipSelectionAndInstancingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RelationshipSelectionView.xaml">
+    <Page Include="Views\SelectedObjectDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
