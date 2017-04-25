@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
@@ -71,28 +72,29 @@ namespace NarrativeWorldCreator.MetricEngines
             ResetTree();
             BuildUpTOTree(tangibleObjects);
 
-            // For each instance, for each decorationType, calculate value
+            // Incoming and outgoing geometric relationships
             foreach (var tto in TTOs)
             {
-                tto.Metrics.Add(new Metric(IncEdgesMT, tto.RelationshipsAsTarget.Count));
+                tto.Metrics.Add(new Metric(IncEdgesMT, tto.RelationshipsAsTarget.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count);
             }
 
             foreach (var tto in TTOs)
             {
-                tto.Metrics.Add(new Metric(OutEdgesMT, tto.RelationshipsAsSource.Count));
+                tto.Metrics.Add(new Metric(OutEdgesMT, tto.RelationshipsAsSource.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count));
+            }
+
+            // Incoming and outgoing decorative edges
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, tto.RelationshipsAsTarget.Where(ras => ras.Relationship.RelationshipType.DefaultName.Equals(Constants.DecorationRelationshipType)).ToList().Count));
             }
 
             foreach (var tto in TTOs)
             {
-                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, tto.RelationshipsAsTarget.Where(ras => ras.Relationship.RelationshipType.DefaultName.Equals("regionTypeClassAssociation")).ToList().Count));
+                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, tto.RelationshipsAsSource.Where(ras => ras.Relationship.RelationshipType.DefaultName.Equals(Constants.DecorationRelationshipType)).ToList().Count));
             }
 
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, tto.RelationshipsAsSource.Where(ras => ras.Relationship.RelationshipType.DefaultName.Equals("regionTypeClassAssociation")).ToList().Count));
-            }
-
-            // Go through objects and highlight the ones that are required by the predicates
+            // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
             foreach (var tto in TTOs)
             {
                 foreach (var predicate in predicates)
@@ -109,12 +111,23 @@ namespace NarrativeWorldCreator.MetricEngines
                 }
             }
 
+            // Incoming and outgoing required edges
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, tto.RelationshipsAsTarget.Where(ras => ras.Required).ToList().Count));
+            }
+
+            foreach (var tto in TTOs)
+            {
+                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, tto.RelationshipsAsSource.Where(ras => ras.Required).ToList().Count));
+            }
+
             // Add decoration weight metric
             foreach (var tto in TTOs)
             {
                 foreach (var relationship in tto.TangibleObject.RelationshipsAsTarget)
                 {
-                    if (relationship.RelationshipType.DefaultName.Equals("regionTypeClassAssociation"))
+                    if (relationship.RelationshipType.DefaultName.Equals(Constants.DecorationRelationshipType))
                     {
                         if (relationship.Source.DefaultName.Equals(ntp.Location.LocationType))
                         {
@@ -159,8 +172,9 @@ namespace NarrativeWorldCreator.MetricEngines
         {
             foreach (var relation in tto.RelationshipsAsTarget)
             {
-                if (relation.Relationship.RelationshipType.DefaultName.Equals("on"))
+                if (relation.Relationship.RelationshipType.DefaultName.Equals(Constants.On))
                 {
+                    relation.Required = true;
                     var found = false;
                     foreach (var metric in relation.Source.Metrics)
                     {

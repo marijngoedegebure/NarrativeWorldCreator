@@ -15,9 +15,12 @@ namespace NarrativeWorldCreator.Models.Metrics.TOTree
 
         public TreeTangibleObject Target { get; set; }
 
+        public bool Required { get; set; }
+
         public TreeRelationship(Relationship relationship)
         {
             this.Relationship = relationship;
+            this.Required = false;
         }
     }
 }
