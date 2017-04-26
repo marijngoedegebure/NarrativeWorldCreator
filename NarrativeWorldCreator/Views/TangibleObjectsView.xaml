@@ -32,6 +32,7 @@
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -53,7 +54,22 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <TextBlock x:Name="Dependent" Grid.Column="0" Grid.Row="2" Text="Dependent">
+                        <TextBlock x:Name="RequiredDependencyTextBlock" Grid.Column="0" Grid.Row="2" Text="Required Dependency">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding Path=RequiredDependency}" Value="True" />
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Background" Value="Green"/>
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock x:Name="Dependent" Grid.Column="0" Grid.Row="3" Text="Dependent">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -68,7 +84,7 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <TextBlock x:Name="DependencyAvailable" Grid.Column="0" Grid.Row="3" Text="Dependency available">
+                        <TextBlock x:Name="DependencyAvailable" Grid.Column="0" Grid.Row="4" Text="Dependency available">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -83,10 +99,10 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
+                        <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
                         <ItemsControl 
                             Grid.Column="0"
-                            Grid.Row="5"
+                            Grid.Row="6"
                             ItemsSource="{Binding Path=Metrics }">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>

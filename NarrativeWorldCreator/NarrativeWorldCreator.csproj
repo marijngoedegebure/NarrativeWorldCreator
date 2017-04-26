@@ -113,6 +113,7 @@
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
     <Compile Include="MetricEngines\AddOrChangeMetricEngine.cs" />
+    <Compile Include="MetricEngines\Normalization.cs" />
     <Compile Include="Models\Metrics\InstanceTree\InstanceTreeEntikaInstance.cs" />
     <Compile Include="Models\Metrics\InstanceTree\InstanceTreeRelationship.cs" />
     <Compile Include="Models\Metrics\TOTree\TOTreeRelationship.cs" />

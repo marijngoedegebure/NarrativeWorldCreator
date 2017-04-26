@@ -34,6 +34,10 @@ namespace NarrativeWorldCreator.MetricEngines
         public static List<InstanceTreeEntikaInstance> ITEIs = new List<InstanceTreeEntikaInstance>();
         public static List<InstanceTreeRelationship> InstanceTreeRelationships = new List<InstanceTreeRelationship>();
 
+        public static Dictionary<MetricType, Normalization> normalizationDictionary = new Dictionary<MetricType, Normalization>();
+
+        public static int MetricTypeCount = 0;
+
         public static void BuildUpTOTree(List<Semantics.Entities.TangibleObject> tangibleObjects)
         {
             foreach (var to in tangibleObjects)
@@ -108,6 +112,8 @@ namespace NarrativeWorldCreator.MetricEngines
         {
             TTOs = new List<TOTreeTangibleObject>();
             TreeRelationships = new List<TOTreeRelationship>();
+
+            normalizationDictionary = new Dictionary<MetricType, Normalization>();
         }
 
         public static void CheckForDependencies()
@@ -131,18 +137,273 @@ namespace NarrativeWorldCreator.MetricEngines
             BuildUpInstanceTree(ntp.InstancedObjects);
             CheckForDependencies();
 
+            MetricTypeCount = 0;
             // Incoming and outgoing geometric relationships
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(IncEdgesMT, tto.RelationshipsAsTarget.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count));
-            }
+            normalizationDictionary[IncEdgesMT] = IncomingEdges();
 
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(OutEdgesMT, tto.RelationshipsAsSource.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count));
-            }
+            normalizationDictionary[OutEdgesMT] = OutgoingEdges();
 
             // Add decoration weight metric
+            normalizationDictionary[DecorationMT] = DecorationWeights(ntp);
+
+            // Incoming and outgoing decorative edges, this is defined as an edge from or to an node with a decorative score
+            normalizationDictionary[IncEdgesDecorativeMT] = IncomingDecorativeEdges();
+
+            normalizationDictionary[OutEdgesDecorativeMT] = OutgoingDecorativeEdges();
+
+            // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
+            ApplyRequiredAndDependencies(predicates);
+            normalizationDictionary[requiredMT] = GetRequiredNormalization();
+            normalizationDictionary[requiredDependencyMT] = GetRequiredDependencyNormalization();
+
+            // Incoming and outgoing required edges
+            normalizationDictionary[IncEdgesRequiredMT] = IncomingRequiredEdges();
+
+            normalizationDictionary[OutEdgesRequiredMT] = OutgoingRequiredEdges();
+
+            // Determine relationships for which instances have already been placed
+            normalizationDictionary[IncEdgesAvailableMT] = InAvailableEdges();
+
+            normalizationDictionary[OutEdgesAvailableMT] = OutAvailableEdges();
+
+            // Calculate size metric
+            normalizationDictionary[AreaMT] = SizeMetric();
+
+            // Normalize before sorting?
+            //foreach (var tto in TTOs)
+            //{
+            //    foreach (var metric in tto.Metrics)
+            //    {
+            //        Normalize(metric, 
+            //    }
+            //    tto.EndValue = value / MetricTypeCount;
+            //}
+
+            // Sum and divide by amount of metrics
+            foreach (var tto in TTOs)
+            {
+                var value = 0.0;
+                foreach (var metric in tto.Metrics)
+                {
+                    value += metric.Value;
+                }
+                tto.EndValue = value / MetricTypeCount;
+            }
+
+            // Sort list using end values
+            TTOs = TTOs.OrderByDescending(inst => inst.EndValue).ToList();
+            return TTOs;
+        }
+
+        private static Normalization GetRequiredNormalization()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var requiredMetric = tto.Metrics.Where(m => m.MetricType.Equals(requiredMT)).FirstOrDefault();
+                if (requiredMetric == null)
+                    continue;
+                var currentValue = requiredMetric.Value;
+                if (currentValue < ret.Min)
+                    ret.Min = currentValue;
+                if (currentValue > ret.Max)
+                    ret.Max = currentValue;
+            }
+            return ret;
+        }
+
+        private static Normalization GetRequiredDependencyNormalization()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var requiredMetric = tto.Metrics.Where(m => m.MetricType.Equals(requiredDependencyMT)).FirstOrDefault();
+                if (requiredMetric == null)
+                    continue;
+                var currentValue = requiredMetric.Value;
+                if (currentValue < ret.Min)
+                    ret.Min = currentValue;
+                if (currentValue > ret.Max)
+                    ret.Max = currentValue;
+            }
+            return ret;
+        }
+
+        private static Normalization SizeMetric()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                // Change default model to model of classname
+                if (SystemStateTracker.DefaultModel != null)
+                {
+                    BoundingBox bb = EntikaInstance.GetBoundingBox(SystemStateTracker.DefaultModel, Matrix.Identity);
+                    var difference = (bb.Max - bb.Min);
+                    var currentArea = Math.Abs(difference.X) * Math.Abs(difference.Y);
+                    if (currentArea < ret.Min)
+                        ret.Min = currentArea;
+                    if (currentArea > ret.Max)
+                        ret.Max = currentArea;
+                    tto.Metrics.Add(new Metric(AreaMT, currentArea));
+                }
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static Normalization OutAvailableEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var count = 0;
+                foreach (var relationship in tto.RelationshipsAsSource)
+                {
+                    foreach (var treeInstance in ITEIs)
+                    {
+                        if (relationship.Target.TangibleObject.Equals(treeInstance.EntikaInstance.TangibleObject))
+                        {
+                            // if this is the case than there is an object available to link the relationship to
+                            count++;
+                        }
+                    }
+                }
+                if (count < ret.Min)
+                    ret.Min = count;
+                if (count > ret.Max)
+                    ret.Max = count;
+                tto.Metrics.Add(new Metric(OutEdgesAvailableMT, count));
+                
+            }
+            MetricTypeCount++;
+            return ret;
+
+        }
+
+        private static Normalization InAvailableEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var count = 0;
+                foreach (var relationship in tto.RelationshipsAsTarget)
+                {
+                    foreach (var treeInstance in ITEIs)
+                    {
+                        if (relationship.Source.TangibleObject.Equals(treeInstance.EntikaInstance.TangibleObject))
+                        {
+                            // if this is the case than there is an object available to link the relationship to
+                            count++;
+                        }
+                    }
+                }
+                if (count < ret.Min)
+                    ret.Min = count;
+                if (count > ret.Max)
+                    ret.Max = count;
+                tto.Metrics.Add(new Metric(IncEdgesAvailableMT, count));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static Normalization OutgoingRequiredEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var currentCount = tto.RelationshipsAsSource.Where(ras => ras.Target.Required).ToList().Count;
+                if (currentCount < ret.Min)
+                    ret.Min = currentCount;
+                if (currentCount > ret.Max)
+                    ret.Max = currentCount;
+                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, currentCount));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static Normalization IncomingRequiredEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var currentCount = tto.RelationshipsAsTarget.Where(ras => ras.Source.Required).ToList().Count;
+                if (currentCount < ret.Min)
+                    ret.Min = currentCount;
+                if (currentCount > ret.Max)
+                    ret.Max = currentCount;
+                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, currentCount));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static void ApplyRequiredAndDependencies(List<Predicate> predicates)
+        {
+            foreach (var tto in TTOs)
+            {
+                foreach (var predicate in predicates)
+                {
+                    foreach (var name in predicate.EntikaClassNames)
+                    {
+                        if (tto.TangibleObject.DefaultName.Equals(name))
+                        {
+                            tto.Required = true;
+                            var found = false;
+                            foreach (var metric in tto.Metrics)
+                            {
+                                if (metric.MetricType.Equals(requiredMT))
+                                {
+                                    metric.Value += 1.0;
+                                    found = true;
+                                }
+                            }
+                            if (!found)
+                                tto.Metrics.Add(new Metric(requiredMT, 1.0));
+                            // Cascade through relations and get relations on which this object depends and add metrics
+                            CascadeRequiredMetricOnRelationships(tto);
+                        }
+                    }
+                }
+            }
+        }
+
+        private static Normalization OutgoingDecorativeEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var currentCount = tto.RelationshipsAsTarget.Where(ras => ras.Target.Decorative).ToList().Count;
+                if (currentCount < ret.Min)
+                    ret.Min = currentCount;
+                if (currentCount > ret.Max)
+                    ret.Max = currentCount;
+                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, currentCount));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static Normalization IncomingDecorativeEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var currentCount = tto.RelationshipsAsSource.Where(ras => ras.Target.Decorative).ToList().Count;
+                if (currentCount < ret.Min)
+                    ret.Min = currentCount;
+                if (currentCount > ret.Max)
+                    ret.Max = currentCount;
+                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, currentCount));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static Normalization DecorationWeights(NarrativeTimePoint ntp)
+        {
+            Normalization ret = new Normalization();
             foreach (var tto in TTOs)
             {
                 foreach (var relationship in tto.TangibleObject.RelationshipsAsTarget)
@@ -153,110 +414,52 @@ namespace NarrativeWorldCreator.MetricEngines
                         {
                             // Add decorationweight metric
                             tto.Decorative = true;
-                            tto.Metrics.Add(new Metric(DecorationMT, Double.Parse(relationship.Attributes[0].Value.ToString())));
+                            var currentDecorativeWeight = Double.Parse(relationship.Attributes[0].Value.ToString());
+                            if (currentDecorativeWeight < ret.Min)
+                                ret.Min = currentDecorativeWeight;
+                            if (currentDecorativeWeight > ret.Max)
+                                ret.Max = currentDecorativeWeight;
+                            tto.Metrics.Add(new Metric(DecorationMT, currentDecorativeWeight));
                         }
                     }
                 }
             }
-
-            // Incoming and outgoing decorative edges, this is defined as an edge from or to an node with a decorative score
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, tto.RelationshipsAsSource.Where(ras => ras.Target.Decorative).ToList().Count));
-            }
-
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, tto.RelationshipsAsTarget.Where(ras => ras.Target.Decorative).ToList().Count));
-            }
-
-            // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
-            foreach (var tto in TTOs)
-            {
-                foreach (var predicate in predicates)
-                {
-                    foreach (var name in predicate.EntikaClassNames)
-                    {
-                        if (tto.TangibleObject.DefaultName.Equals(name))
-                        {
-                            tto.Required = true;
-                            tto.Metrics.Add(new Metric(requiredMT, 1.0));
-                            // Cascade through relations and get relations on which this object depends and add metrics
-                            CascadeRequiredMetricOnRelationships(tto);
-                        }
-                    }
-                }
-            }
-
-            // Incoming and outgoing required edges
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, tto.RelationshipsAsTarget.Where(ras => ras.Source.Required).ToList().Count));
-            }
-
-            foreach (var tto in TTOs)
-            {
-                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, tto.RelationshipsAsSource.Where(ras => ras.Target.Required).ToList().Count));
-            }
-
-            // Determine relationships for which instances have already been placed
-            foreach (var tto in TTOs)
-            {
-                var count = 0;
-                foreach (var relationship in tto.RelationshipsAsSource)
-                {
-                    foreach (var treeInstance in ITEIs)
-                    {
-                        if (relationship.Target.TangibleObject.Equals(treeInstance.EntikaInstance.TangibleObject)) {
-                            // if this is the case than there is an object available to link the relationship to
-                            count++;
-                        }
-                    }   
-                }
-                tto.Metrics.Add(new Metric(OutEdgesAvailableMT, count));
-                count = 0;
-                foreach (var relationship in tto.RelationshipsAsTarget)
-                {
-                    foreach (var treeInstance in ITEIs)
-                    {
-                        if (relationship.Source.TangibleObject.Equals(treeInstance.EntikaInstance.TangibleObject)) {
-                            // if this is the case than there is an object available to link the relationship to
-                            count++;
-                        }
-                    }
-                }
-                tto.Metrics.Add(new Metric(IncEdgesAvailableMT, count));
-            }
-
-            // Calculate size metric
-            foreach (var tto in TTOs)
-            {
-                // Change default model to model of classname
-                if (SystemStateTracker.DefaultModel != null)
-                {
-                    BoundingBox bb = EntikaInstance.GetBoundingBox(SystemStateTracker.DefaultModel, Matrix.Identity);
-                    var difference = (bb.Max - bb.Min);
-                    tto.Metrics.Add(new Metric(AreaMT, Math.Abs(difference.X) * Math.Abs(difference.Y)));
-                }
-            }
-
-            // Normalize before sorting?
-
-            // Sum and divide by amount of metrics
-            foreach (var tto in TTOs)
-            {
-                var value = 0.0;
-                foreach (var metric in tto.Metrics)
-                {
-                    value += metric.Value;
-                }
-                tto.EndValue = value / tto.Metrics.Count;
-            }
-
-            // Sort list using end values
-            TTOs = TTOs.OrderByDescending(inst => inst.EndValue).ToList();
-            return TTOs;
+            MetricTypeCount++;
+            return ret;
         }
+
+        private static Normalization OutgoingEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var currentCount = tto.RelationshipsAsSource.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count;
+                if (currentCount < ret.Min)
+                    ret.Min = currentCount;
+                if (currentCount > ret.Max)
+                    ret.Max = currentCount;
+                tto.Metrics.Add(new Metric(OutEdgesMT, currentCount));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
+        private static Normalization IncomingEdges()
+        {
+            Normalization ret = new Normalization();
+            foreach (var tto in TTOs)
+            {
+                var currentCount = tto.RelationshipsAsTarget.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.Relationship.RelationshipType.DefaultName)).ToList().Count;
+                if (currentCount < ret.Min)
+                    ret.Min = currentCount;
+                if (currentCount > ret.Max)
+                    ret.Max = currentCount;
+                tto.Metrics.Add(new Metric(IncEdgesMT, currentCount));
+            }
+            MetricTypeCount++;
+            return ret;
+        }
+
 
         private static void CascadeRequiredMetricOnRelationships(TOTreeTangibleObject tto)
         {
