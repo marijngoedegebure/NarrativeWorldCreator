@@ -27,6 +27,7 @@
 		(sparse ?location - place)
 		(scary ?location - place)
 		(around ?object1 - thing ?object2 - thing ?location - place)
+		(left ?object1 - thing ?object2 - thing ?location - place)
 	)
 	(:action move
 	 :parameters (?character - character ?from ?to - place)

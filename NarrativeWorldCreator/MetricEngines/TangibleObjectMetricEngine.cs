@@ -58,6 +58,9 @@ namespace NarrativeWorldCreator.MetricEngines
                         treeTOTarget = new TOTreeTangibleObject((Semantics.Entities.TangibleObject)relationship.Targets[0]);
                         TTOs.Add(treeTOTarget);
                     }
+                    if (relationship.RelationshipType.DefaultName.Equals(Constants.On))
+                        treeTOTarget.Dependent = true;
+
                     var Trelationship = new TOTreeRelationship(relationship);
                     Trelationship.Source = treeTOSource;
                     Trelationship.Target = treeTOTarget;
@@ -107,11 +110,26 @@ namespace NarrativeWorldCreator.MetricEngines
             TreeRelationships = new List<TOTreeRelationship>();
         }
 
+        public static void CheckForDependencies()
+        {
+            foreach (var tto in TTOs.Where(tto => tto.Dependent))
+            {
+                foreach (var itei in ITEIs)
+                {
+                    foreach (var relationship in tto.RelationshipsAsTarget) {
+                        if (relationship.Source.TangibleObject.Equals(itei.EntikaInstance.TangibleObject))
+                            tto.DependencyAvailable = true;
+                    }
+                }
+            }
+        }
+
         public static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, List<Semantics.Entities.TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             ResetTree();
             BuildUpTOTree(tangibleObjects);
-            BuildUpInstanceTree(ntp.GetEntikaInstancesWithoutFloor());
+            BuildUpInstanceTree(ntp.InstancedObjects);
+            CheckForDependencies();
 
             // Incoming and outgoing geometric relationships
             foreach (var tto in TTOs)

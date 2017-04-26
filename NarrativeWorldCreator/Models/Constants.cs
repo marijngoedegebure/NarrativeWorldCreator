@@ -16,6 +16,7 @@ namespace NarrativeWorldCreator.Models
         public const string GeneralRelationshipTypeValued = "valued";
         public const string GeneralRelationshipTypeBoolean = "boolean";
         public static List<string> GeometricRelationshipTypes = new List<string> { "on", "back", "front", "left", "right", "facing", "parallel", "rotated" };
+        public static List<string> OtherRelationshipTypes = new List<string> { "back", "front", "left", "right", "facing", "parallel", "rotated" };
 
         public const string DecorationRelationshipType = "regionTypeClassAssociation";
 

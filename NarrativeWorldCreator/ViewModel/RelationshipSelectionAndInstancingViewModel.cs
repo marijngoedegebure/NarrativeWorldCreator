@@ -1,5 +1,6 @@
 ﻿using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using Semantics.Components;
 using Semantics.Entities;
 using System;
@@ -14,31 +15,87 @@ namespace NarrativeWorldCreator.ViewModel
 {
     public class RelationshipSelectionAndInstancingViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<RelationshipExtendedViewModel> _OnRelationships;
-        public ObservableCollection<RelationshipExtendedViewModel> OnRelationships
+        private ObservableCollection<RelationshipExtendedViewModel> _OnRelationshipsMultiple;
+        public ObservableCollection<RelationshipExtendedViewModel> OnRelationshipsMultiple
         {
             get
             {
-                return _OnRelationships;
+                return _OnRelationshipsMultiple;
             }
             set
             {
-                _OnRelationships = value;
-                OnPropertyChanged("OnRelationships");
+                _OnRelationshipsMultiple = value;
+                OnPropertyChanged("OnRelationshipsMultiple");
             }
         }
 
-        private ObservableCollection<RelationshipExtendedViewModel> _otherRelationships;
-        public ObservableCollection<RelationshipExtendedViewModel> OtherRelationships
+        private ObservableCollection<RelationshipExtendedViewModel> _otherRelationshipsMultiple;
+        public ObservableCollection<RelationshipExtendedViewModel> OtherRelationshipsMultiple
         {
             get
             {
-                return _otherRelationships;
+                return _otherRelationshipsMultiple;
             }
             set
             {
-                _otherRelationships = value;
-                OnPropertyChanged("OtherRelationships");
+                _otherRelationshipsMultiple = value;
+                OnPropertyChanged("OtherRelationshipsMultiple");
+            }
+        }
+
+        private ObservableCollection<RelationshipExtendedViewModel> _OnRelationshipsSingle;
+        public ObservableCollection<RelationshipExtendedViewModel> OnRelationshipsSingle
+        {
+            get
+            {
+                return _OnRelationshipsSingle;
+            }
+            set
+            {
+                _OnRelationshipsSingle = value;
+                OnPropertyChanged("OnRelationshipsSingle");
+            }
+        }
+
+        private ObservableCollection<RelationshipExtendedViewModel> _otherRelationshipsSingle;
+        public ObservableCollection<RelationshipExtendedViewModel> OtherRelationshipsSingle
+        {
+            get
+            {
+                return _otherRelationshipsSingle;
+            }
+            set
+            {
+                _otherRelationshipsSingle = value;
+                OnPropertyChanged("OtherRelationshipsSingle");
+            }
+        }
+
+        private ObservableCollection<RelationshipExtendedViewModel> _OnRelationshipsNone;
+        public ObservableCollection<RelationshipExtendedViewModel> OnRelationshipsNone
+        {
+            get
+            {
+                return _OnRelationshipsNone;
+            }
+            set
+            {
+                _OnRelationshipsNone = value;
+                OnPropertyChanged("OnRelationshipsNone");
+            }
+        }
+
+        private ObservableCollection<RelationshipExtendedViewModel> _otherRelationshipsNone;
+        public ObservableCollection<RelationshipExtendedViewModel> OtherRelationshipsNone
+        {
+            get
+            {
+                return _otherRelationshipsNone;
+            }
+            set
+            {
+                _otherRelationshipsNone = value;
+                OnPropertyChanged("OtherRelationshipsNone");
             }
         }
 
@@ -50,42 +107,84 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(EntikaInstance ei, List<EntikaInstance> ObjectInstances)
+        public void Load(NarrativeTimePoint ntp, EntikaInstance ei, List<EntikaInstance> ObjectInstances, List<Models.NarrativeRegionFill.Predicate> predicates)
         {
+            // Setup Entika instance VMs
+            List<EntikaInstanceSelectionViewModel> eioc = new List<EntikaInstanceSelectionViewModel>();
+            foreach (var instance in ObjectInstances)
+            {
+                var objectInstanceVM = new EntikaInstanceSelectionViewModel();
+                objectInstanceVM.EntikaInstance = instance;
+                objectInstanceVM.Selected = false;
+                eioc.Add(objectInstanceVM);
+            }
+
             // Fill on relationships
-            var onRelationshipsTemp = new ObservableCollection<RelationshipExtendedViewModel>();
+            var onRelationshipsMultipleTemp = new ObservableCollection<RelationshipExtendedViewModel>();
+            var onRelationshipsSingleTemp = new ObservableCollection<RelationshipExtendedViewModel>();
+            var onRelationshipsNoneTemp = new ObservableCollection<RelationshipExtendedViewModel>();
             foreach (var rel in ei.TangibleObject.RelationshipsAsTarget)
             {
                 if (Constants.On.Equals(rel.RelationshipType.DefaultName))
                 {
                     var tempVM = new RelationshipExtendedViewModel();
-                    tempVM.Load(rel, ObjectInstances, null, ei);
-                    onRelationshipsTemp.Add(tempVM);
+                    tempVM.Load(ntp, rel, eioc, null, ei, predicates);
+                    if (tempVM.ObjectInstances.Count == 0)
+                        onRelationshipsNoneTemp.Add(tempVM);
+                    else if (tempVM.ObjectInstances.Count == 1)
+                    {
+                        tempVM.ObjectInstances[0].Selected = true;
+                        onRelationshipsSingleTemp.Add(tempVM);
+                    }
+                    else
+                        onRelationshipsMultipleTemp.Add(tempVM);
                 }
             }
-            this.OnRelationships = onRelationshipsTemp;
+            this.OnRelationshipsMultiple = onRelationshipsMultipleTemp;
+            this.OnRelationshipsSingle = onRelationshipsSingleTemp;
+            this.OnRelationshipsNone = onRelationshipsNoneTemp;
 
             // Fill other relationships
-            var otherRelationshipsTemp = new ObservableCollection<RelationshipExtendedViewModel>();
+            var otherRelationshipsMultipleTemp = new ObservableCollection<RelationshipExtendedViewModel>();
+            var otherRelationshipsSingleTemp = new ObservableCollection<RelationshipExtendedViewModel>();
+            var otherRelationshipsNoneTemp = new ObservableCollection<RelationshipExtendedViewModel>();
             foreach (var rel in ei.TangibleObject.RelationshipsAsTarget)
             {
-                if (Constants.GeometricRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
+                if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                 {
                     var tempVM = new RelationshipExtendedViewModel();
-                    tempVM.Load(rel, ObjectInstances, null, ei);
-                    otherRelationshipsTemp.Add(tempVM);
+                    tempVM.Load(ntp, rel, eioc, null, ei, predicates);
+                    if (tempVM.ObjectInstances.Count == 0)
+                        otherRelationshipsNoneTemp.Add(tempVM);
+                    else if (tempVM.ObjectInstances.Count == 1)
+                    {
+                        tempVM.ObjectInstances[0].Selected = true;
+                        otherRelationshipsSingleTemp.Add(tempVM);
+                    }
+                    else
+                        otherRelationshipsMultipleTemp.Add(tempVM);
                 }
             }
             foreach (var rel in ei.TangibleObject.RelationshipsAsSource)
             {
-                if (Constants.GeometricRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
+                if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                 {
                     var tempVM = new RelationshipExtendedViewModel();
-                    tempVM.Load(rel, ObjectInstances, ei, null);
-                    otherRelationshipsTemp.Add(tempVM);
+                    tempVM.Load(ntp, rel, eioc, ei, null, predicates);
+                    if (tempVM.ObjectInstances.Count == 0)
+                        otherRelationshipsNoneTemp.Add(tempVM);
+                    else if (tempVM.ObjectInstances.Count == 1)
+                    {
+                        tempVM.ObjectInstances[0].Selected = true;
+                        otherRelationshipsSingleTemp.Add(tempVM);
+                    }
+                    else
+                        otherRelationshipsMultipleTemp.Add(tempVM);
                 }
             }
-            this.OtherRelationships = otherRelationshipsTemp;
+            this.OtherRelationshipsMultiple = otherRelationshipsMultipleTemp;
+            this.OtherRelationshipsSingle = otherRelationshipsSingleTemp;
+            this.OtherRelationshipsNone = otherRelationshipsNoneTemp;
         }
     }
 }

@@ -15,6 +15,8 @@ namespace NarrativeWorldCreator.Models.Metrics.TOTree
         public bool Required { get; set; }
         public bool RequiredDependency { get; set; }
         public bool Decorative { get; set; }
+        public bool Dependent { get; set; }
+        public bool DependencyAvailable { get; set; }
 
         public TOTreeTangibleObject(TangibleObject to)
         {
@@ -23,6 +25,8 @@ namespace NarrativeWorldCreator.Models.Metrics.TOTree
             RelationshipsAsTarget = new List<TOTreeRelationship>();
             this.Required = false;
             this.Decorative = false;
+            this.Dependent = false;
+            this.DependencyAvailable = false;
         }
     }
 }

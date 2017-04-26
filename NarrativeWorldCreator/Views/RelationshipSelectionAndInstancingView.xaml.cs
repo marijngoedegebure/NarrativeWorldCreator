@@ -43,7 +43,7 @@ namespace NarrativeWorldCreator.Views
             GetRegionPage().SaveInstancingOfRelationsAndGotoPlacement(rivm);
         }
 
-        private void OnRelationshipsListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnRelationshipsMultipleListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItems = e.RemovedItems;
             if (removedItems.Count > 0)
@@ -65,7 +65,7 @@ namespace NarrativeWorldCreator.Views
             }
         }
 
-        private void OtherRelationshipsListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OtherRelationshipsMultipleListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItems = e.RemovedItems;
             if (removedItems.Count > 0)
@@ -87,7 +87,7 @@ namespace NarrativeWorldCreator.Views
             }
         }
 
-        private void OnRelationObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnRelationMultipleObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItems = e.RemovedItems;
             if (removedItems.Count > 0)
@@ -103,7 +103,7 @@ namespace NarrativeWorldCreator.Views
             }
         }
 
-        private void OtherRelationObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OtherRelationMultipleObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItems = e.RemovedItems;
             if (removedItems.Count > 0)
@@ -116,6 +116,50 @@ namespace NarrativeWorldCreator.Views
             {
                 EntikaInstanceSelectionViewModel entikaInstance = addedItems[0] as EntikaInstanceSelectionViewModel;
                 entikaInstance.Selected = true;
+            }
+        }
+
+        private void OnRelationshipsSingleListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var removedItems = e.RemovedItems;
+            if (removedItems.Count > 0)
+            {
+                if (removedItems[0].GetType().Equals(typeof(RelationshipExtendedViewModel)))
+                {
+                    RelationshipExtendedViewModel revm = removedItems[0] as RelationshipExtendedViewModel;
+                    revm.Selected = false;
+                }
+            }
+            var addedItems = e.AddedItems;
+            if (addedItems.Count > 0)
+            {
+                if (addedItems[0].GetType().Equals(typeof(RelationshipExtendedViewModel)))
+                {
+                    RelationshipExtendedViewModel revm = addedItems[0] as RelationshipExtendedViewModel;
+                    revm.Selected = true;
+                }
+            }
+        }
+
+        private void OtherRelationshipsSingleListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var removedItems = e.RemovedItems;
+            if (removedItems.Count > 0)
+            {
+                if (removedItems[0].GetType().Equals(typeof(RelationshipExtendedViewModel)))
+                {
+                    RelationshipExtendedViewModel revm = removedItems[0] as RelationshipExtendedViewModel;
+                    revm.Selected = false;
+                }
+            }
+            var addedItems = e.AddedItems;
+            if (addedItems.Count > 0)
+            {
+                if (addedItems[0].GetType().Equals(typeof(RelationshipExtendedViewModel)))
+                {
+                    RelationshipExtendedViewModel revm = addedItems[0] as RelationshipExtendedViewModel;
+                    revm.Selected = true;
+                }
             }
         }
     }

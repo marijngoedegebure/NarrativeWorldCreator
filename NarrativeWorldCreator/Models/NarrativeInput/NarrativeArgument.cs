@@ -24,7 +24,7 @@ namespace NarrativeWorldCreator.Models.NarrativeInput
 
             NarrativeArgument e = (NarrativeArgument)obj;
             // Equals if either both from nodes are equal and both to nodes are equal or if they are reversed.
-            return this.Name.Equals(e.Name) && this.Type.Equals(e.Type);
+            return this.Type.Equals(e.Type);
         }
 
         public override int GetHashCode()

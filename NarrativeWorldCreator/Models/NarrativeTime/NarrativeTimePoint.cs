@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeInput;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
-
+using Semantics.Components;
 using Semantics.Entities;
 using System;
 using System.Collections.Generic;
@@ -25,12 +25,12 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         // List of TangibleObjects selected for this region/timepoint
         public List<TangibleObject> AvailableTangibleObjects { get; set; }
 
-        public List<Predicate> AllPredicates { get; set; }
+        public List<NarrativeRegionFill.Predicate> AllPredicates { get; set; }
 
         // Story constraints for this timepoint, otherwise known as the goals
-        public List<Predicate> PredicatesFilteredByCurrentLocation { get; set; }
+        public List<NarrativeRegionFill.Predicate> PredicatesFilteredByCurrentLocation { get; set; }
 
-        public List<Predicate> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
+        public List<NarrativeRegionFill.Predicate> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
 
         public List<RelationshipInstance> InstancedRelations { get; set; }
         public List<EntikaInstance> InstancedObjects { get; set; }
@@ -38,9 +38,9 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         public NarrativeTimePoint(int timePoint, List<TangibleObject> DefaultTangibleObjects)
         {
             this.TimePoint = timePoint;
-            PredicatesFilteredByCurrentLocation = new List<Predicate>();
-            AllPredicates = new List<Predicate>();
-            PredicatesCausedByInstancedObjectsAndRelations = new List<Predicate>();
+            PredicatesFilteredByCurrentLocation = new List<NarrativeRegionFill.Predicate>();
+            AllPredicates = new List<NarrativeRegionFill.Predicate>();
+            PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.Predicate>();
             InstancedRelations = new List<RelationshipInstance>();
             InstancedObjects = new List<EntikaInstance>();
             AvailableTangibleObjects = DefaultTangibleObjects;
@@ -50,7 +50,7 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         {
             foreach (var predicate in initial.AllPredicates)
             {
-                this.AllPredicates.Add(new Predicate {
+                this.AllPredicates.Add(new NarrativeRegionFill.Predicate {
                     PredicateType = predicate.PredicateType,
                     EntikaClassNames = predicate.EntikaClassNames
                 });
@@ -103,10 +103,50 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             if (predicateType == null)
             {
                 // Add the new predicateType to the predicateTypes
-                predicateType = new PredicateType
-                {
-                    Name = relationInstance.BaseRelationship.RelationshipType.DefaultName,
-                    Arguments = new List<NarrativeArgument>() {
+                predicateType = GetNewRelationshipPredicateType(relationInstance.BaseRelationship);
+                SystemStateTracker.NarrativeWorld.NarrativeTimeline.PredicateTypes.Add(predicateType);
+            }
+            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new NarrativeRegionFill.Predicate
+            {
+                PredicateType = predicateType,
+                EntikaClassNames = new List<string> { relationInstance.Source.TangibleObject.DefaultName, relationInstance.Target.TangibleObject.DefaultName, this.Location.LocationName }
+            });
+        }
+
+        public static List<NarrativeRegionFill.Predicate> GetPredicates(Relationship r, TangibleObject source, TangibleObject target, string location)
+        {
+            var ret = new List<NarrativeRegionFill.Predicate>();
+            var predicateType = SystemStateTracker.NarrativeWorld.NarrativeTimeline.GetPredicateType(r.RelationshipType.DefaultName);
+            if (predicateType == null)
+            {
+                // Add the new predicateType to the predicateTypes
+                predicateType = GetNewRelationshipPredicateType(r);
+            }
+            ret.Add(new NarrativeRegionFill.Predicate
+            {
+                PredicateType = predicateType,
+                EntikaClassNames = new List<string> { r.Source.DefaultName, r.Targets[0].DefaultName, location }
+            });
+            ret.Add(GetNewAtPredicate(source, location));
+            ret.Add(GetNewAtPredicate(target, location));
+            return ret;
+        }
+
+        public static NarrativeRegionFill.Predicate GetNewRelationshipPredicate(Relationship r, string location)
+        {
+            return new NarrativeRegionFill.Predicate
+            {
+                PredicateType = GetNewRelationshipPredicateType(r),
+                EntikaClassNames = new List<string> { r.Source.DefaultName, r.Targets[0].DefaultName, location }
+            };
+        }
+
+        public static PredicateType GetNewRelationshipPredicateType(Relationship r)
+        {
+            return new PredicateType
+            {
+                Name = r.RelationshipType.DefaultName,
+                Arguments = new List<NarrativeArgument>() {
                         new NarrativeArgument {
                             Type = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectType("thing"),
                             Name = "?x"
@@ -122,36 +162,34 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
                             Name = "?z"
                         }
                     }
-                };
-                SystemStateTracker.NarrativeWorld.NarrativeTimeline.PredicateTypes.Add(predicateType);
-            }
-            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new Predicate
+            };
+        }
+
+        public static NarrativeRegionFill.Predicate GetNewAtPredicate(TangibleObject t, string location)
+        {
+            // Create At predicate
+            var predicateType = SystemStateTracker.NarrativeWorld.NarrativeTimeline.GetPredicateType("at");
+            return new NarrativeRegionFill.Predicate
             {
                 PredicateType = predicateType,
-                EntikaClassNames = new List<string> { relationInstance.Source.TangibleObject.DefaultName, relationInstance.Target.TangibleObject.DefaultName, this.Location.LocationName }
-            });
+                EntikaClassNames = new List<string> { t.DefaultName, location }
+            };
         }
 
         internal void InstantiateAtPredicateForInstance(EntikaInstance instanceOfObjectToAdd)
         {
-            // Create At predicate
-            var predicateType = SystemStateTracker.NarrativeWorld.NarrativeTimeline.GetPredicateType("at");
-
-            this.PredicatesCausedByInstancedObjectsAndRelations.Add(new Predicate {
-                PredicateType = predicateType,
-                EntikaClassNames = new List<string> { instanceOfObjectToAdd.TangibleObject.DefaultName, this.Location.LocationName }
-            });            
+            this.PredicatesCausedByInstancedObjectsAndRelations.Add(GetNewAtPredicate(instanceOfObjectToAdd.TangibleObject, this.Location.LocationName));            
         }
 
-        public List<Predicate> GetRemainingPredicates()
+        public List<NarrativeRegionFill.Predicate> GetRemainingPredicates()
         {
-            var ret = new List<Predicate>();
-            var temp = new Predicate[this.PredicatesCausedByInstancedObjectsAndRelations.Count];
+            var ret = new List<NarrativeRegionFill.Predicate>();
+            var temp = new NarrativeRegionFill.Predicate[this.PredicatesCausedByInstancedObjectsAndRelations.Count];
             this.PredicatesCausedByInstancedObjectsAndRelations.CopyTo(temp);
             var predicatesOfInstancesCopy = temp.ToList();
             foreach (var predicateFiltered in PredicatesFilteredByCurrentLocation)
             {
-                Predicate foundPredicate = null;
+                NarrativeRegionFill.Predicate foundPredicate = null;
                 foreach (var placedPredicate in predicatesOfInstancesCopy)
                 {
                     if (predicateFiltered.Equals(placedPredicate))

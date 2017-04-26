@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using Semantics.Components;
 using SharpDX.Collections;
 using System;
@@ -54,6 +55,20 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
+        private bool _hideDueToSingleObjectInstance;
+        public bool HideDueToSingleObjectInstance
+        {
+            get
+            {
+                return _hideDueToSingleObjectInstance;
+            }
+            set
+            {
+                _hideDueToSingleObjectInstance = value;
+                OnPropertyChanged("HideDueToSingleObjectInstance");
+            }
+        }
+
         private bool _selected;
         public bool Selected
         {
@@ -65,6 +80,20 @@ namespace NarrativeWorldCreator.ViewModel
             {
                 _selected = value;
                 OnPropertyChanged("Selected");
+            }
+        }
+
+        private bool _required;
+        public bool Required
+        {
+            get
+            {
+                return _required;
+            }
+            set
+            {
+                _required = value;
+                OnPropertyChanged("Required");
             }
         }
 
@@ -90,44 +119,44 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(Relationship r, List<EntikaInstance> objectInstances, EntikaInstance s, EntikaInstance t)
+        public void Load(NarrativeTimePoint ntp, Relationship r, List<EntikaInstanceSelectionViewModel> objectInstances, EntikaInstance s, EntikaInstance t, List<Models.NarrativeRegionFill.Predicate> predicates)
         {
             this.Relationship = r;
             this.Selected = false;
             this.Source = s;
             this.Target = t;
 
+            var relPred = NarrativeTimePoint.GetNewRelationshipPredicate(r, ntp.Location.LocationName);
+            if (predicates.Contains(relPred))
+                this.Required = true;
+            
+
+
             ObservableCollection<EntikaInstanceSelectionViewModel> eioc = new ObservableCollection<EntikaInstanceSelectionViewModel>();
             if (this.Source == null)
             {
-                foreach (var instance in objectInstances)
+                foreach (var instanceVM in objectInstances)
                 {
-                    if (instance.TangibleObject.Equals(this.Relationship.Source))
+                    if (instanceVM.EntikaInstance.TangibleObject.Equals(this.Relationship.Source))
                     {
-                        var objectInstanceVM = new EntikaInstanceSelectionViewModel();
-                        objectInstanceVM.EntikaInstance = instance;
-                        objectInstanceVM.Selected = false;
-                        eioc.Add(objectInstanceVM);
+                        eioc.Add(instanceVM);
                     }
                 }
             }
             if (this.Target == null)
             {
-                foreach (var instance in objectInstances)
+                foreach (var instanceVM in objectInstances)
                 {
                     foreach (var target in this.Relationship.Targets)
                     {
-                        if (instance.TangibleObject.Equals(target))
+                        if (instanceVM.EntikaInstance.TangibleObject.Equals(target))
                         {
-                            var objectInstanceVM = new EntikaInstanceSelectionViewModel();
-                            objectInstanceVM.EntikaInstance = instance;
-                            objectInstanceVM.Selected = false;
-                            eioc.Add(objectInstanceVM);
+                            eioc.Add(instanceVM);
                         }
                     }
                 }
             }
-
+           
             ObjectInstances = eioc;
         }
     }

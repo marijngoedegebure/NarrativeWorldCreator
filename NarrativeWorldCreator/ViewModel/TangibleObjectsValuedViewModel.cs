@@ -44,7 +44,8 @@ namespace NarrativeWorldCreator.ViewModel
             var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
-                octo.Add(to);
+                if (!to.TangibleObject.DefaultName.Equals("floor"))
+                    octo.Add(to);
             }
             TangibleObjectsValued = octo;
         }

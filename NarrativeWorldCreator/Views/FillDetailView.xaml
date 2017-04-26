@@ -81,13 +81,13 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding RelationshipInstance.BaseRelationship.RelationshipType.DefaultName }" FontWeight="Bold" />
                         <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path = RelationshipInstance.Source.Name, Mode = OneWay, StringFormat='Source: {0}'}" />
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Path = RelationshipInstance.Targets[0].Name, Mode = OneWay, StringFormat='Target: {0}'}" />
+                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Path = RelationshipInstance.Target.Name, Mode = OneWay, StringFormat='Target: {0}'}" />
                         <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path = RelationshipInstance.TargetRangeStart, Mode = OneWay, StringFormat='Target range start: {0}'}">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Valued}" Value="True">
+                                        <DataTrigger Binding="{Binding Path=RelationshipInstance.Valued}" Value="False">
                                             <Setter Property="Visibility" Value="Hidden"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -99,7 +99,7 @@
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Valued}" Value="True">
+                                        <DataTrigger Binding="{Binding Path=RelationshipInstance.Valued}" Value="False">
                                             <Setter Property="Visibility" Value="Hidden"/>
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -111,7 +111,7 @@
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible"/>
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Valued}" Value="True">
+                                        <DataTrigger Binding="{Binding Path=RelationshipInstance.Valued}" Value="False">
                                             <Setter Property="Visibility" Value="Hidden"/>
                                         </DataTrigger>
                                     </Style.Triggers>

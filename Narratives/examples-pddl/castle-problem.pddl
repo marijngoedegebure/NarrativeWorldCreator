@@ -31,6 +31,7 @@
             (at chair diningroom1)
             (at throne throneroom1)
             (at chair throneroom1)
+            (left table chair diningroom1)
             (around chair table diningroom1)
     )
 )
