@@ -53,10 +53,6 @@ namespace NarrativeWorldCreator.ViewModel
         public void Load(RelationshipInstance relationship)
         {
             this.RelationshipInstance = relationship;
-            if (relationship.Valued)
-            {
-                this.Energy = PlacementSolver.CalculatePairwiseEnergy(relationship);
-            }
         }
     }
 }

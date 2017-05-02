@@ -63,13 +63,31 @@ namespace NarrativeWorldCreator.ViewModel
             EntikaInstancesValued = eioc;
 
             ObservableCollection<RelationshipInstanceEnergyViewModel> rioc = new ObservableCollection<RelationshipInstanceEnergyViewModel>();
+            ObservableCollection<RelationshipInstanceEnergyViewModel> rioc2 = new ObservableCollection<RelationshipInstanceEnergyViewModel>();
             foreach (var relation in ntp.InstancedRelations)
             {
                 var relationshipEnergyVM = new RelationshipInstanceEnergyViewModel();
                 relationshipEnergyVM.Load(relation);
+                relationshipEnergyVM.Energy = PlacementSolver.CalculatePairwiseEnergy(relation);
                 rioc.Add(relationshipEnergyVM);
+
+                var relationshipEnergyVM2 = new RelationshipInstanceEnergyViewModel();
+                relationshipEnergyVM2.Load(relation);
+                rioc2.Add(relationshipEnergyVM2);
             }
-            RelationshipInstances = rioc;
+
+            var valuedRelationshipInstances = ntp.InstancedRelations.Where(ri => ri.Valued).ToList();
+            var values = new double[valuedRelationshipInstances.Count];
+            if (valuedRelationshipInstances.Count > 0)
+                values = PlacementSolverGPU.CalculatePairwiseEnergies(valuedRelationshipInstances);
+            //values = PlacementSolverGPU.CalculatePairwiseEnergies(valuedRelationshipInstances);
+            var valuedRioc = rioc2.Where(ri => ri.RelationshipInstance.Valued).ToList();
+            for (int i = 0; i < valuedRioc.Count; i++)
+            {
+                valuedRioc[i].Energy = values[i];
+            }
+
+            RelationshipInstances = rioc2;
         }
     }
 }
