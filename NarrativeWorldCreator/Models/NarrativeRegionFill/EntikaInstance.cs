@@ -66,9 +66,8 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             EntikaInstanceCount.Count++;
             TangibleObject = to;
             this.Model = SystemStateTracker.DefaultModel;
-            UpdateBoundingBoxAndShape(SystemStateTracker.world);
+            this.BoundingBox = GetBoundingBox(this.Model, SystemStateTracker.world);
         }
-
 
         public void UpdateBoundingBoxAndShape(Matrix? world)
         {
@@ -79,7 +78,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             // For each mesh of the model
             if (Model != null && world.HasValue)
             {
-                this.BoundingBox = GetBoundingBox(Model, world.GetValueOrDefault());
+                var bb = GetBoundingBox(Model, world.GetValueOrDefault());
             }
             else
             {

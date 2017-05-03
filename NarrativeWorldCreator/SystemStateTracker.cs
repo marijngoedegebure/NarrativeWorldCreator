@@ -28,5 +28,7 @@ namespace NarrativeWorldCreator
         public static Matrix proj;
 
         public static Model DefaultModel;
+
+        public static Texture2D BoxSelectTexture;
     }
 }

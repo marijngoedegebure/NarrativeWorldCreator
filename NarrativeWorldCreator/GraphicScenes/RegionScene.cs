@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
+using NarrativeWorldCreator.GraphicScenes.Primitives;
 using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
@@ -67,6 +68,10 @@ namespace NarrativeWorldCreator
 
         private Model Ship;
 
+        private Point BoxSelectInitialCoords;
+        private Point BoxSelectCurrentCoords;
+        private EntikaInstance repositioningObject;
+
         #endregion
 
         #region Methods
@@ -93,6 +98,8 @@ namespace NarrativeWorldCreator
 
             // Load test models
             SystemStateTracker.DefaultModel = Content.Load<Model>("Models/BeachBall");
+            SystemStateTracker.BoxSelectTexture = new Texture2D(GraphicsDevice, 1, 1);
+            SystemStateTracker.BoxSelectTexture.SetData(new[] { new Color(1.0f, 1.0f, 1.0f, 0.2f) });
             Ship = Content.Load<Model>("Models/Ship");
         }
 
@@ -134,12 +141,22 @@ namespace NarrativeWorldCreator
                 drawRegionPolygon();
             }
 
+            if (this._currentRegionPage.InstanceOfObjectToAdd != null && this._currentRegionPage.CurrentAdditionMode == RegionPage.AdditionMode.Placement)
+            {
+                drawEntikaInstance(this._currentRegionPage.InstanceOfObjectToAdd);
+            }
+            //if (this._currentRegionPage.MousePositionTest == null)
+            //    this._currentRegionPage.MousePositionTest = new EntikaInstance("table", new Vector3(0, 0, 0), SystemStateTracker.DefaultModel, SystemStateTracker.world);
+            //drawEntikaInstance(this._currentRegionPage.MousePositionTest);
+
             // Draw all objects that are known 2.0
-            foreach(EntikaInstance instance in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
             {
                 drawEntikaInstance2(instance);
             }
             this._currentRegionPage.UpdateFillDetailView();
+
+            drawBoxSelect();
 
             // this base.Draw call will draw "all" components
             base.Draw(time);
@@ -148,6 +165,20 @@ namespace NarrativeWorldCreator
             GraphicsDevice.DepthStencilState = depth;
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
+        }
+
+        private void drawBoxSelect()
+        {
+            if (!BoxSelectInitialCoords.Equals(new Point()))
+            {
+                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(BoxSelectInitialCoords.X, BoxSelectInitialCoords.Y, BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X, BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y), Color.White * 0.5f);
+
+                _spriteBatch.End();
+                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+            }
         }
 
         private void drawFloorWireframe()
@@ -335,27 +366,6 @@ namespace NarrativeWorldCreator
             // Rotation should be in radians, rotates model to top down view
             float modelRotation = ConvertToRadians(90.0f);
 
-            // Draw the model. A model can have multiple meshes, so loop.
-            //foreach (ModelMesh mesh in instance.Model.Meshes)
-            //{
-
-            //    foreach (Effect effect in mesh.Effects)
-            //    {
-            //        // Matrix.CreateRotationX(modelRotation) * , add later
-            //        effect.Parameters["WorldViewProjection"].SetValue(transforms[mesh.ParentBone.Index] * Matrix.CreateTranslation(modelPosition) * (view * proj));
-            //        effect.Parameters["Texture"].SetValue(texture);
-            //        if (_currentRegionPage.SelectedEntikaObject != null && _currentRegionPage.SelectedEntikaObject.Equals(instance))
-            //        {
-            //            effect.CurrentTechnique = effect.Techniques["TexturedSelected"];
-            //        }
-            //        else
-            //        {
-            //            effect.CurrentTechnique = effect.Techniques["Textured"];
-            //        }
-            //        mesh.Draw();
-            //    }
-            //}
-
             // FBX model draw:
             if (instance.Model == null)
             {
@@ -363,35 +373,56 @@ namespace NarrativeWorldCreator
                 instance.UpdateBoundingBoxAndShape(SystemStateTracker.world);
             }
 
-            if (!instance.Equals(_currentRegionPage.SelectedEntikaInstance))
+            foreach (ModelMesh mesh in SystemStateTracker.DefaultModel.Meshes)
             {
-                foreach (ModelMesh mesh in SystemStateTracker.DefaultModel.Meshes)
+                foreach (BasicEffect effect in mesh.Effects)
                 {
-                    foreach (BasicEffect effect in mesh.Effects)
+                    effect.EnableDefaultLighting();
+                    if (!_currentRegionPage.SelectedEntikaInstances.Contains(instance))
                     {
-                        effect.EnableDefaultLighting();
-                        effect.AmbientLightColor = new Vector3(0, 0, 0);
-                        effect.View = SystemStateTracker.view;
-                        effect.World = Matrix.CreateTranslation(modelPosition) * SystemStateTracker.world;
-                        effect.Projection = SystemStateTracker.proj;
+                        if (instance.Frozen)
+                            effect.AmbientLightColor = new Vector3(0, 1.0f, 0);
+                        else
+                            effect.AmbientLightColor = new Vector3(0, 0, 0);
                     }
-                    mesh.Draw();
+                    else
+                    {
+                        if (instance.Frozen)
+                            effect.AmbientLightColor = new Vector3(1.0f, 1.0f, 0);
+                        else
+                            effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
+                    }
+                    effect.View = SystemStateTracker.view;
+                    effect.World = Matrix.CreateTranslation(modelPosition) * SystemStateTracker.world;
+                    effect.Projection = SystemStateTracker.proj;
                 }
+                mesh.Draw();
             }
-            else
+
+            BasicEffect lineEffect = new BasicEffect(GraphicsDevice);
+            lineEffect.LightingEnabled = false;
+            lineEffect.TextureEnabled = false;
+            lineEffect.VertexColorEnabled = true;
+
+            var bbb = BoundingBoxBuffers.CreateBoundingBoxBuffers(instance.BoundingBox, GraphicsDevice);
+
+            DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, instance.Position);
+        }
+
+        private void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection, Vector3 position)
+        {
+            graphicsDevice.SetVertexBuffer(buffers.Vertices);
+            graphicsDevice.Indices = buffers.Indices;
+
+            effect.World = Matrix.Identity * Matrix.CreateTranslation(position);
+            effect.View = view;
+            effect.Projection = projection;
+
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
             {
-                foreach (ModelMesh mesh in SystemStateTracker.DefaultModel.Meshes)
-                {
-                    foreach (BasicEffect effect in mesh.Effects)
-                    {
-                        effect.EnableDefaultLighting();
-                        effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
-                        effect.View = SystemStateTracker.view;
-                        effect.World = Matrix.CreateTranslation(modelPosition) * SystemStateTracker.world;
-                        effect.Projection = SystemStateTracker.proj;
-                    }
-                    mesh.Draw();
-                }
+                pass.Apply();
+                graphicsDevice.DrawIndexedPrimitives(PrimitiveType.LineList, 0, 0,
+                    buffers.VertexCount, 0, buffers.PrimitiveCount);
             }
         }
 
@@ -435,6 +466,8 @@ namespace NarrativeWorldCreator
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
+            if (this._currentRegionPage.MousePositionTest != null)
+                this._currentRegionPage.MousePositionTest.Position = CalculateMouseHitOnSurface();
             // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
 
             if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
@@ -472,35 +505,148 @@ namespace NarrativeWorldCreator
             // Handle object selection
             if (CurrentRegionFillingMode == RegionFillingModes.None)
             {
-                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                if (_keyboardState.IsKeyDown(Keys.LeftShift))
                 {
-                    var mouseRay = CalculateMouseRay();
-                    foreach (var instance in this._currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                    if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
                     {
-                        if (mouseRay.Intersects(instance.BoundingBox) != null)
+                        // Initialize box
+                        BoxSelectInitialCoords = _mouseState.Position;
+                        BoxSelectCurrentCoords = _mouseState.Position;
+                    }
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        // reposition box to draw
+                        BoxSelectCurrentCoords = _mouseState.Position;
+                    }
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                    {
+                        var initialCoordsHit = CalculateHitOnSurface(BoxSelectInitialCoords, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
+                        var currentCoordsHit = CalculateHitOnSurface(BoxSelectCurrentCoords, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
+
+                        Vector3 bottomLeft = new Vector3(0, 0, -20.0f);
+                        Vector3 topRight = new Vector3(0, 0, 200f);
+                        // Determine topLeft and bottomRight of rectangle
+                        if (initialCoordsHit.X < currentCoordsHit.X)
                         {
-                            this._currentRegionPage.ChangeSelectedObject(instance);
+                            bottomLeft.X = initialCoordsHit.X;
+                            topRight.X = currentCoordsHit.X;
+                        }
+                        else
+                        {
+                            bottomLeft.X = currentCoordsHit.X;
+                            topRight.X = initialCoordsHit.X;
+                        }
+
+                        if (initialCoordsHit.Y < currentCoordsHit.Y)
+                        {
+                            bottomLeft.Y = initialCoordsHit.Y;
+                            topRight.Y = currentCoordsHit.Y;
+                        }
+                        else
+                        {
+                            bottomLeft.Y = currentCoordsHit.Y;
+                            topRight.Y = initialCoordsHit.Y;
+                        }
+                        var selectionBoxBB = new BoundingBox(bottomLeft, topRight);
+
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                        {
+                            // Create translated boundingbox
+                            var min = ieo.BoundingBox.Min;
+                            var max = ieo.BoundingBox.Max;
+
+                            var bb = new BoundingBox(Vector3.Transform(min, Matrix.CreateTranslation(ieo.Position)), Vector3.Transform(max, Matrix.CreateTranslation(ieo.Position)));
+                            var containmentType = selectionBoxBB.Contains(bb);
+                            if (!(containmentType == ContainmentType.Disjoint))
+                                this._currentRegionPage.ChangeSelectedObject(ieo);
+                        }
+
+                        // Figure out selection of objects inside box
+                        BoxSelectCurrentCoords = new Point();
+                        BoxSelectInitialCoords = new Point();
+                    }
+                }
+                else if (_keyboardState.IsKeyDown(Keys.LeftControl))
+                {
+                    if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        // Initialize box
+                        Ray ray = CalculateMouseRay();
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                        {
+                            // Create translated boundingbox
+                            var min = ieo.BoundingBox.Min;
+                            var max = ieo.BoundingBox.Max;
+
+                            var bb = new BoundingBox(Vector3.Transform(min, Matrix.CreateTranslation(ieo.Position)), Vector3.Transform(max, Matrix.CreateTranslation(ieo.Position)));
+
+                            // Intersect ray with bounding box, if distance then select model
+                            float? distance = ray.Intersects(bb);
+                            if (distance != null)
+                            {
+                                repositioningObject = ieo;
+                                var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), repositioningObject.Position.Z));
+                                repositioningObject.Position = hit;
+                                (this._currentRegionPage.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this._currentRegionPage.SelectedEntikaInstances);
+                            }
+                        }
+                    }
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && repositioningObject !=null)
+                    {
+                        // reposition box to draw
+                        var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), repositioningObject.Position.Z));
+                        repositioningObject.Position = hit;
+                    }
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && repositioningObject != null)
+                    {
+                        repositioningObject = null;
+                    }
+                }
+                else
+                {
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                    {
+                        Ray ray = CalculateMouseRay();
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                        {
+                            // Create translated boundingbox
+                            var min = ieo.BoundingBox.Min;
+                            var max = ieo.BoundingBox.Max;
+
+                            var bb = new BoundingBox(Vector3.Transform(min, Matrix.CreateTranslation(ieo.Position)), Vector3.Transform(max, Matrix.CreateTranslation(ieo.Position)));
+
+                            // Intersect ray with bounding box, if distance then select model
+                            float? distance = ray.Intersects(bb);
+                            if (distance != null)
+                            {
+                                _currentRegionPage.ChangeSelectedObject(ieo);
+                                return;
+                            }
                         }
                     }
                 }
-
-                if (_currentRegionPage.SelectedEntikaInstance != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
-                {
-                }
+                    //if (_currentRegionPage.SelectedEntikaInstance != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
+                    //{
+                    //}
             }
+        }
+
+        private Vector3 CalculateHitOnSurface(Point p, Microsoft.Xna.Framework.Plane plane)
+        {
+            Ray ray = CalculateRay(p);
+            float? distance = ray.Intersects(plane);
+            return ray.Position + ray.Direction * distance.Value;
         }
 
         private Vector3 CalculateMouseHitOnSurface()
         {
-            Ray ray = CalculateMouseRay();
-            float? distance = ray.Intersects(new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-            return ray.Position + ray.Direction * distance.Value;
+            return CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
         }
 
-        private Ray CalculateMouseRay()
+        private Ray CalculateRay(Point p)
         {
-            Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-            Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
+            Vector3 nearsource = new Vector3((float)p.X, (float)p.Y, 0f);
+            Vector3 farsource = new Vector3((float)p.X, (float)p.Y, 1f);
 
             Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
             Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
@@ -509,6 +655,11 @@ namespace NarrativeWorldCreator
             Vector3 direction = farPoint - nearPoint;
             direction.Normalize();
             return new Ray(nearPoint, direction);
+        }
+
+        private Ray CalculateMouseRay()
+        {
+            return CalculateRay(_mouseState.Position);
         }
 
         private int CalculateCollisionQuad()

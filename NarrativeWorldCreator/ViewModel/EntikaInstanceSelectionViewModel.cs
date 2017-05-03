@@ -47,5 +47,11 @@ namespace NarrativeWorldCreator.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
+
+        public void Load(EntikaInstance instance)
+        {
+            EntikaInstance = instance;
+            Selected = false;
+        }
     }
 }

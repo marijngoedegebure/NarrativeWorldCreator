@@ -34,9 +34,12 @@ namespace NarrativeWorldCreator
     {
         public LocationNode selectedNode;
 
-        public EntikaInstance SelectedEntikaInstance;
+        public List<EntikaInstance> SelectedEntikaInstances;
         public NarrativeTimePoint SelectedTimePoint { get; internal set; }
         public EntikaInstance InstanceOfObjectToAdd;
+        public RelationshipSelectionAndInstancingViewModel relationShipSelectionAndInstancing;
+
+        public EntikaInstance MousePositionTest;
 
         public enum RegionPageMode
         {
@@ -45,6 +48,15 @@ namespace NarrativeWorldCreator
         }
 
         public RegionPageMode CurrentMode;
+
+        public enum AdditionMode
+        {
+            ClassSelection = 0,
+            RelationSelectionAndInstancting = 1,
+            Placement = 2,
+        }
+
+        public AdditionMode CurrentAdditionMode = AdditionMode.ClassSelection;
 
         public bool RegionCreated = false;
 
@@ -55,6 +67,7 @@ namespace NarrativeWorldCreator
             CurrentMode = RegionPageMode.RegionCreation;
             List<NarrativeTimePoint> ntpsFiltered = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
             SelectedTimePoint = ntpsFiltered[0];
+            SelectedEntikaInstances = new List<EntikaInstance>();
         }
 
         internal void RemoveSelectedInstances(List<EntikaInstance> instances)
@@ -100,17 +113,70 @@ namespace NarrativeWorldCreator
 
         public void SaveInstancingOfRelationsAndGotoPlacement(RelationshipSelectionAndInstancingViewModel rivm)
         {
-            // Retrieve selected object for each relation
+            this.relationShipSelectionAndInstancing = rivm;
 
-            // First parse on relationship
-            // Check whether multiple or single has a relationship selected
-            var onRelationshipMultipleVM = rivm.OnRelationshipsMultiple.Where(or => or.Selected).FirstOrDefault();
-            var onRelationshipSingleVM = rivm.OnRelationshipsSingle.Where(or => or.Selected).FirstOrDefault();
+            // Generate positions and go to placement
+            List<Vector3> positions = PlacementSolver.GenerateRandomPosition(this.SelectedTimePoint, InstanceOfObjectToAdd);
+
+            ObjectPlacementViewModel opVM = new ObjectPlacementViewModel();
+            opVM.Load(positions);
+            ObjectPlacementView.DataContext = opVM;
+            ObjectPlacementView.OptionListView.SelectedIndex = 0;
+
+            CurrentAdditionMode = AdditionMode.Placement;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Visible;
+        }
+
+        public void AddSelectedTangibleObject(TangibleObject selectedItem)
+        {
+            InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
+            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
+            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.SelectedTimePoint.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
+            if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
+                throw new Exception("No on relationship at all");
+            RelationshipSelectionAndInstancingView.DataContext = riVM;
+            if (riVM.OnRelationshipsMultiple.Count > 0)
+                RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
+            if (riVM.OnRelationshipsSingle.Count > 0)
+                RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
+
+            CurrentAdditionMode = AdditionMode.RelationSelectionAndInstancting;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
+            ObjectPlacementView.Visibility = Visibility.Collapsed;
+        }
+
+        public void BackToTangibleObjectSelection()
+        {
+            CurrentAdditionMode = AdditionMode.ClassSelection;
+            TangibleObjectsView.Visibility = Visibility.Visible;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            ObjectPlacementView.Visibility = Visibility.Collapsed;
+            InstanceOfObjectToAdd = null;
+            relationShipSelectionAndInstancing = null;
+            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
+            RelationshipSelectionAndInstancingView.DataContext = riVM;
+        }
+
+        public void UpdateObjectPosition(Vector3 vector)
+        {
+            this.InstanceOfObjectToAdd.Position = vector;
+            this.InstanceOfObjectToAdd.UpdateBoundingBoxAndShape(SystemStateTracker.world);
+        }
+
+        public void PlaceObjectAndToEntityAddition(Vector3 vector)
+        {
+            this.InstanceOfObjectToAdd.Position = vector;
+
+            var onRelationshipMultipleVM = relationShipSelectionAndInstancing.OnRelationshipsMultiple.Where(or => or.Selected).FirstOrDefault();
+            var onRelationshipSingleVM = relationShipSelectionAndInstancing.OnRelationshipsSingle.Where(or => or.Selected).FirstOrDefault();
             RelationshipExtendedViewModel onRelationshipVM;
             if (onRelationshipMultipleVM != null)
             {
                 onRelationshipVM = onRelationshipMultipleVM;
-            }                
+            }
             else if (onRelationshipSingleVM != null)
             {
                 onRelationshipVM = onRelationshipSingleVM;
@@ -119,18 +185,18 @@ namespace NarrativeWorldCreator
             {
                 throw new Exception("No on relationship selected");
             }
-            
+
             var onRelationshipInstance = new RelationshipInstance();
             onRelationshipInstance.BaseRelationship = onRelationshipVM.Relationship;
             onRelationshipInstance.Target = onRelationshipVM.Target;
             onRelationshipInstance.Source = onRelationshipVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
-            
+
             this.SelectedTimePoint.InstancedRelations.Add(onRelationshipInstance);
             this.SelectedTimePoint.InstantiateRelationship(onRelationshipInstance);
 
             // Parse other relationships
             // Single
-            foreach (var otherRelationVM in rivm.OtherRelationshipsSingle.Where(or => or.Selected).ToList())
+            foreach (var otherRelationVM in relationShipSelectionAndInstancing.OtherRelationshipsSingle.Where(or => or.Selected).ToList())
             {
                 var otherRelationshipInstance = new RelationshipInstance();
                 otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
@@ -157,7 +223,7 @@ namespace NarrativeWorldCreator
             }
 
             // Multiple
-            foreach (var otherRelationVM in rivm.OtherRelationshipsMultiple.Where(or => or.Selected).ToList())
+            foreach (var otherRelationVM in relationShipSelectionAndInstancing.OtherRelationshipsMultiple.Where(or => or.Selected).ToList())
             {
                 var otherRelationshipInstance = new RelationshipInstance();
                 otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
@@ -170,7 +236,7 @@ namespace NarrativeWorldCreator
                 {
                     otherRelationshipInstance.Source = otherRelationVM.Source;
                     otherRelationshipInstance.Target = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
-                }                
+                }
 
                 if (Constants.IsRelationshipValued(otherRelationshipInstance.BaseRelationship.RelationshipType.DefaultName))
                 {
@@ -189,56 +255,10 @@ namespace NarrativeWorldCreator
             // Update Detail view
             UpdateFillDetailView();
 
-            // Generate positions and go to placement
-            List<Vector3> positions = PlacementSolver.GenerateRandomPosition(this.SelectedTimePoint, InstanceOfObjectToAdd);
-
-            ObjectPlacementViewModel opVM = new ObjectPlacementViewModel();
-            opVM.Load(positions);
-            ObjectPlacementView.DataContext = opVM;
-            ObjectPlacementView.OptionListView.SelectedIndex = 0;
-
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            ObjectPlacementView.Visibility = Visibility.Visible;
-        }
-
-        public void AddSelectedTangibleObject(TangibleObject selectedItem)
-        {
-            InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
-            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.SelectedTimePoint.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
-            if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
-                throw new Exception("No on relationship at all");
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
-            if (riVM.OnRelationshipsMultiple.Count > 0)
-                RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
-            if (riVM.OnRelationshipsSingle.Count > 0)
-                RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
-
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
-            ObjectPlacementView.Visibility = Visibility.Collapsed;
-        }
-
-        public void BackToTangibleObjectSelection()
-        {
-            TangibleObjectsView.Visibility = Visibility.Visible;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            ObjectPlacementView.Visibility = Visibility.Collapsed;
             InstanceOfObjectToAdd = null;
-            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
-        }
+            relationShipSelectionAndInstancing = null;
 
-        public void UpdateObjectPosition(Vector3 vector)
-        {
-            this.InstanceOfObjectToAdd.Position = vector;
-        }
-
-        public void PlaceObjectAndToEntityAddition(Vector3 vector)
-        {
-            this.InstanceOfObjectToAdd.Position = vector;
-
+            CurrentAdditionMode = AdditionMode.ClassSelection;
             TangibleObjectsView.Visibility = Visibility.Visible;
             RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
             ObjectPlacementView.Visibility = Visibility.Collapsed;
@@ -311,15 +331,13 @@ namespace NarrativeWorldCreator
 
         public void ChangeSelectedObject(EntikaInstance ieo)
         {
-            this.SelectedEntikaInstance = ieo;
-            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).ChangeSelectedObject(ieo);
-            SelectedObjectDetailView.ShowGrid();
-        }
-
-        public void DeselectObject()
-        {
-            this.SelectedEntikaInstance = null;
-            SelectedObjectDetailView.HideGrid();
+            if (!this.SelectedEntikaInstances.Contains(ieo))
+            {
+                this.SelectedEntikaInstances.Add(ieo);
+            }
+            else
+                this.SelectedEntikaInstances.Remove(ieo);
+            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
         }
 
         private void FillDetailView_Loaded(object sender, RoutedEventArgs e)
@@ -374,6 +392,7 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             region_filling_20.Visibility = Visibility.Visible;
             region_filling_21.Visibility = Visibility.Visible;
+            region_filling_22.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 1;
         }
 
@@ -390,6 +409,7 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             region_filling_20.Visibility = Visibility.Collapsed;
             region_filling_21.Visibility = Visibility.Collapsed;
+            region_filling_22.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 0;
         }
 

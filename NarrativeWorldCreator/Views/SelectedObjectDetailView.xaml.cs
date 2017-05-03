@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NarrativeWorldCreator.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,14 +26,32 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        internal void HideGrid()
+        private void btnFreeze(object sender, RoutedEventArgs e)
         {
-            DetailViewGrid.Visibility = Visibility.Collapsed;
+            var regionPage = GetRegionPage();
+            var data = this.DataContext as SelectedObjectDetailViewModel;
+            foreach (var instance in data.SelectedInstancedEntikaInstances)
+            {
+                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
+            }
+            (this.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(regionPage.SelectedEntikaInstances);
         }
 
-        internal void ShowGrid()
+        private RegionPage GetRegionPage()
         {
-            DetailViewGrid.Visibility = Visibility.Visible;
+            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+            return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+        }
+
+        private void btnUnFreeze(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            var data = this.DataContext as SelectedObjectDetailViewModel;
+            foreach (var instance in data.SelectedInstancedEntikaInstances)
+            {
+                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;
+            }
+            (this.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(regionPage.SelectedEntikaInstances);
         }
     }
 }

@@ -13,17 +13,17 @@ namespace NarrativeWorldCreator.ViewModel
     public class SelectedObjectDetailViewModel : INotifyPropertyChanged
     {
 
-        private EntikaInstance _selectedInstancedEntikaObject;
-        public EntikaInstance SelectedInstancedEntikaObject
+        private ObservableCollection<EntikaInstance> _selectedInstancedEntikaInstances;
+        public ObservableCollection<EntikaInstance> SelectedInstancedEntikaInstances
         {
             get
             {
-                return _selectedInstancedEntikaObject;
+                return _selectedInstancedEntikaInstances;
             }
             set
             {
-                _selectedInstancedEntikaObject = value;
-                OnPropertyChanged("SelectedInstancedEntikaObject");
+                _selectedInstancedEntikaInstances = value;
+                OnPropertyChanged("SelectedInstancedEntikaInstances");
             }
         }
 
@@ -35,9 +35,14 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void ChangeSelectedObject(EntikaInstance newlySelected)
+        internal void LoadSelectedInstances(List<EntikaInstance> selected)
         {
-            SelectedInstancedEntikaObject = newlySelected;
+            ObservableCollection<EntikaInstance> eisVMoc = new ObservableCollection<EntikaInstance>();
+            foreach (var instance in selected)
+            {
+                eisVMoc.Add(instance);
+            }
+            this.SelectedInstancedEntikaInstances = eisVMoc;
         }
     }
 }

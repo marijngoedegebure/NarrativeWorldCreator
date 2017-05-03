@@ -133,6 +133,7 @@
     </ApplicationDefinition>
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
+    <Compile Include="GraphicScenes\Primitives\BoundingBoxBuffers.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
     <Compile Include="MetricEngines\AddOrChangeMetricEngine.cs" />
     <Compile Include="MetricEngines\Normalization.cs" />
