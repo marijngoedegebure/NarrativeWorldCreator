@@ -363,7 +363,7 @@ namespace NarrativeWorldCreator
                 instance.UpdateBoundingBoxAndShape(SystemStateTracker.world);
             }
 
-            if (!instance.Equals(_currentRegionPage.SelectedEntikaObject))
+            if (!instance.Equals(_currentRegionPage.SelectedEntikaInstance))
             {
                 foreach (ModelMesh mesh in SystemStateTracker.DefaultModel.Meshes)
                 {
@@ -469,36 +469,22 @@ namespace NarrativeWorldCreator
 
         private void HandleRegionFilling()
         {
-            if (_keyboardState.IsKeyDown(Keys.LeftControl))
-            {
-                CurrentRegionFillingMode = RegionFillingModes.SuggestionMode;
-            }
-            else if (_keyboardState.IsKeyDown(Keys.LeftShift))
-            {
-                CurrentRegionFillingMode = RegionFillingModes.ObjectDragging;
-            }
-            else if (_keyboardState.IsKeyDown(Keys.P))
-            {
-                CurrentRegionFillingMode = RegionFillingModes.ObjectPlacement;
-            }
-            else
-            {
-                CurrentRegionFillingMode = RegionFillingModes.None;
-            }
-
-            // Handle object suggestion mode
-            if (CurrentRegionFillingMode == RegionFillingModes.SuggestionMode)
-            {
-            }
-
             // Handle object selection
             if (CurrentRegionFillingMode == RegionFillingModes.None)
             {
                 if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                 {
+                    var mouseRay = CalculateMouseRay();
+                    foreach (var instance in this._currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                    {
+                        if (mouseRay.Intersects(instance.BoundingBox) != null)
+                        {
+                            this._currentRegionPage.ChangeSelectedObject(instance);
+                        }
+                    }
                 }
 
-                if (_currentRegionPage.SelectedEntikaObject != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
+                if (_currentRegionPage.SelectedEntikaInstance != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
                 {
                 }
             }

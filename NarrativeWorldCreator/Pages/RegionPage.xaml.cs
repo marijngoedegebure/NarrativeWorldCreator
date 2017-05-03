@@ -34,7 +34,7 @@ namespace NarrativeWorldCreator
     {
         public LocationNode selectedNode;
 
-        public EntikaInstance SelectedEntikaObject;
+        public EntikaInstance SelectedEntikaInstance;
         public NarrativeTimePoint SelectedTimePoint { get; internal set; }
         public EntikaInstance InstanceOfObjectToAdd;
 
@@ -311,14 +311,14 @@ namespace NarrativeWorldCreator
 
         public void ChangeSelectedObject(EntikaInstance ieo)
         {
-            this.SelectedEntikaObject = ieo;
+            this.SelectedEntikaInstance = ieo;
             (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).ChangeSelectedObject(ieo);
             SelectedObjectDetailView.ShowGrid();
         }
 
         public void DeselectObject()
         {
-            this.SelectedEntikaObject = null;
+            this.SelectedEntikaInstance = null;
             SelectedObjectDetailView.HideGrid();
         }
 
@@ -446,6 +446,5 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 1;
         }
-
     }
 }
