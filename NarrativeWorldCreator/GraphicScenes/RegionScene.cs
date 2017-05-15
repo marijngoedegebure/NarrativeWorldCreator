@@ -398,7 +398,6 @@ namespace NarrativeWorldCreator
                 }
                 mesh.Draw();
             }
-
             BasicEffect lineEffect = new BasicEffect(GraphicsDevice);
             lineEffect.LightingEnabled = false;
             lineEffect.TextureEnabled = false;

@@ -19,6 +19,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public double? TargetRangeStart { get; set; }
         public double? TargetRangeEnd { get; set; }
 
+        public double Energy { get; set; }
 
         public RelationshipInstance()
         {

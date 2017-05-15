@@ -26,21 +26,6 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
-        private double _energy;
-        public double Energy
-        {
-            get
-            {
-                return _energy;
-            }
-
-            set
-            {
-                _energy = value;
-                OnPropertyChanged("Energy");
-            }
-        }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

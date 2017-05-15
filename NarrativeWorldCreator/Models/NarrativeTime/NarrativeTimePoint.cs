@@ -80,6 +80,11 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             }
         }
 
+        internal List<RelationshipInstance> GetValuedRelationships()
+        {
+            return this.InstancedRelations.Where(ir => ir.Valued).ToList();
+        }
+
         // This only allows the new instantiation of the current floor instance when the timepoint is newly selected
         public void SwitchTimePoints(LocationNode selectedNode)
         {

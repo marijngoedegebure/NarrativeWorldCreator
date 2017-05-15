@@ -106,7 +106,7 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <TextBlock Grid.Column="0" Grid.Row="5" Name="Energy" Text="{Binding Path = Energy, Mode = OneWay, StringFormat='Energy: {0}'}">
+                        <TextBlock Grid.Column="0" Grid.Row="5" Name="Energy" Text="{Binding Path = RelationshipInstance.Energy, Mode = OneWay, StringFormat='Energy: {0}'}">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible"/>

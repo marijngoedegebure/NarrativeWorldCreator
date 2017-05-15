@@ -191,6 +191,8 @@ namespace NarrativeWorldCreator
             onRelationshipInstance.Target = onRelationshipVM.Target;
             onRelationshipInstance.Source = onRelationshipVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
 
+            InstanceOfObjectToAdd.RelationshipsAsTarget.Add(onRelationshipInstance);
+
             this.SelectedTimePoint.InstancedRelations.Add(onRelationshipInstance);
             this.SelectedTimePoint.InstantiateRelationship(onRelationshipInstance);
 
@@ -200,6 +202,7 @@ namespace NarrativeWorldCreator
             {
                 var otherRelationshipInstance = new RelationshipInstance();
                 otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
+                bool source = false;
                 if (otherRelationVM.Source == null)
                 {
                     otherRelationshipInstance.Source = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
@@ -209,6 +212,7 @@ namespace NarrativeWorldCreator
                 {
                     otherRelationshipInstance.Source = otherRelationVM.Source;
                     otherRelationshipInstance.Target = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
+                    source = true;
                 }
 
                 if (Constants.IsRelationshipValued(otherRelationshipInstance.BaseRelationship.RelationshipType.DefaultName))
@@ -217,6 +221,11 @@ namespace NarrativeWorldCreator
                     otherRelationshipInstance.TargetRangeStart = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[0].Value.ToString());
                     otherRelationshipInstance.TargetRangeEnd = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[1].Value.ToString());
                 }
+                
+                if (source)
+                    InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
+                else
+                    InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
 
                 this.SelectedTimePoint.InstancedRelations.Add(otherRelationshipInstance);
                 this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
@@ -227,6 +236,7 @@ namespace NarrativeWorldCreator
             {
                 var otherRelationshipInstance = new RelationshipInstance();
                 otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
+                bool source = false;
                 if (otherRelationVM.Source == null)
                 {
                     otherRelationshipInstance.Source = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
@@ -236,6 +246,7 @@ namespace NarrativeWorldCreator
                 {
                     otherRelationshipInstance.Source = otherRelationVM.Source;
                     otherRelationshipInstance.Target = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
+                    source = true;
                 }
 
                 if (Constants.IsRelationshipValued(otherRelationshipInstance.BaseRelationship.RelationshipType.DefaultName))
@@ -245,12 +256,27 @@ namespace NarrativeWorldCreator
                     otherRelationshipInstance.TargetRangeEnd = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[1].Value.ToString());
                 }
 
+                if (source)
+                    InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
+                else
+                    InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
+
                 this.SelectedTimePoint.InstancedRelations.Add(otherRelationshipInstance);
                 this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
             }
 
             this.SelectedTimePoint.InstancedObjects.Add(InstanceOfObjectToAdd);
             this.SelectedTimePoint.InstantiateAtPredicateForInstance(InstanceOfObjectToAdd);
+
+            // Recalculate energies based on addition
+            // var energies = PlacementSolverGPU.CalculatePairwiseEnergies(this.SelectedTimePoint.InstancedRelations);
+            //for( int i = 0; i < energies.Length; i++)
+            //{
+            //    this.SelectedTimePoint.InstancedRelations[i].Energy = energies[i];
+            //}
+
+            // New GPU calls
+            var configs = PlacementSolverGPU.Optimization(this.SelectedTimePoint);
 
             // Update Detail view
             UpdateFillDetailView();

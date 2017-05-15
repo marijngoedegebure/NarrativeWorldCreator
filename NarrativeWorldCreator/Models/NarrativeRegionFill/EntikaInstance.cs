@@ -15,6 +15,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public TangibleObject TangibleObject { get; set; }
         // XNA Model
         public Vector3 Position { get; set; }
+        public Vector3 Rotation { get; set; }
 
         // Has either a polygon for a floor or a model
         public Model Model { get; set; }
@@ -37,6 +38,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             EntikaInstanceCount.Count++;
             this.TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
             this.Position = pos;
+            this.Rotation = Vector3.Zero;
             this.Model = model;
             UpdateBoundingBoxAndShape(world);
         }
@@ -54,6 +56,8 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             SetupLists();
             this.Name = name;
             this.Polygon = poly;
+            this.Position = Vector3.Zero;
+            this.Rotation = Vector3.Zero;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
             UpdateBoundingBoxAndShape(null);
         }
