@@ -1,6 +1,7 @@
 ﻿using Alea;
 using Alea.CSharp;
 using Alea.cuRAND;
+using Alea.Parallel;
 using Microsoft.Xna.Framework;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
@@ -148,15 +149,15 @@ namespace NarrativeWorldCreator.Solvers
             // Initialize return array
             var result = new PositionAndRotation[16, ntp.InstancedObjects.Count];
 
-            using (var rng = Generator.CreateGpu(gpu, RngType))
-            {
-                gpu.Launch(OptimizationKernel, lp, result, surface, config, relationshipStructs);
-            }
+            gpu.Launch(OptimizationKernel, lp, result, surface, config, relationshipStructs);
+
+            //using (var rng = Generator.CreateGpu(gpu, RngType))
+            //{
+            //}
             return result;
         }
 
-        [GpuManaged]
-        public static void OptimizationKernel(PositionAndRotation[,] result, Surface surface, Config config, RelationshipStruct[] relationships)
+        private static void OptimizationKernel(PositionAndRotation[,] result, Surface surface, Config config, RelationshipStruct[] relationships)
         {
             //deviceptr<uint> randomResult = new deviceptr<uint>();
             //Alea.cuRAND.Generator.Get().Generate()
@@ -165,11 +166,9 @@ namespace NarrativeWorldCreator.Solvers
             Console.WriteLine("Current costs: {0}", costCur);
 
             Config cfgBest = cfgCurrent;
-            
+
             double costBest = costCur;
             Console.WriteLine("Best costs: {0}", costBest);
-
-            Random r = new Random();
 
             for (int i = 0; i < IterationsAmount; i++)
             {
@@ -248,74 +247,6 @@ namespace NarrativeWorldCreator.Solvers
         private static bool Accept(double costStar, double costCur)
         {
             return true;
-        }
-
-
-        [GpuManaged]
-        public static double[] CalculatePairwiseEnergies(List<RelationshipInstance> instances)
-        {
-            var gpu = Gpu.Default;
-            var lp = new LaunchParam(16, 256);
-            var arg1 = new TargetRangeStruct[instances.Count];
-            var arg2 = DegreeOfAttraction;
-            // Source position
-            var arg3 = new PositionAndRotation[instances.Count];
-            // Target position
-            var arg4 = new PositionAndRotation[instances.Count];
-            for (int i = 0; i < instances.Count; i++)
-            {
-                arg1[i] = new TargetRangeStruct
-                {
-                    TargetRangeStart = instances[i].TargetRangeStart.GetValueOrDefault(),
-                    TargetRangeEnd = instances[i].TargetRangeEnd.GetValueOrDefault()
-                };
-                arg3[i] = new PositionAndRotation
-                {
-                    x = instances[i].Source.Position.X,
-                    y = instances[i].Source.Position.Y,
-                    z = instances[i].Source.Position.Z
-                };
-                arg4[i] = new PositionAndRotation
-                {
-                    x = instances[i].Target.Position.X,
-                    y = instances[i].Target.Position.Y,
-                    z = instances[i].Target.Position.Z
-
-                };
-            }
-            var result = new double[instances.Count];
-
-            gpu.Launch(PairwiseEnergyKernel, lp, result, arg1, arg2, arg3, arg4);
-            return result;
-        }
-
-        private static void PairwiseEnergyKernel(double[] result, TargetRangeStruct[] arg1, double arg2, PositionAndRotation[] sourcePositions, PositionAndRotation[] targetPositions)
-        {
-            var start = blockIdx.x * blockDim.x + threadIdx.x;
-            var stride = gridDim.x * blockDim.x;
-            for (var i = start; i < result.Length; i += stride)
-            {
-                var dX = sourcePositions[i].x - targetPositions[i].x;
-                var dY = sourcePositions[i].y - targetPositions[i].y;
-                var dZ = sourcePositions[i].z - targetPositions[i].z;
-                var distance = Math.Sqrt(dX * dX + dY * dY + dZ * dZ);
-                if (distance < arg1[i].TargetRangeStart)
-                {
-                    var fraction = distance / arg1[i].TargetRangeStart;
-                    result[i] = fraction * fraction;
-                }
-                else if (distance > arg1[i].TargetRangeEnd)
-                {
-                    var fraction = arg1[i].TargetRangeEnd / distance;
-                    // currently hardcoded on fraction^2:
-                    result[i] = fraction * fraction;
-                }
-                else
-                {
-                    result[i] = 1;
-                }
-            }
-
         }
     }
 }
