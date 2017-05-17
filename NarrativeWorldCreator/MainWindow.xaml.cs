@@ -16,6 +16,7 @@ using Semantics.Abstractions;
 using GameSemanticsEngine.Interfaces;
 using SemanticsEngine.Components;
 using GameSemanticsEngine.Components;
+using NarrativeWorldCreator.Solvers;
 
 namespace NarrativeWorldCreator
 {
@@ -39,6 +40,9 @@ namespace NarrativeWorldCreator
 
             GameSemanticsEngine.GameSemanticsEngine.Initialize();
 
+            // GPU Fast testing code
+            CudaGPUWrapper.CudaGPUWrapperCall();
+
             // Entika test code
             //List<PhysicalEntity> allPhysicalEntities = DatabaseSearch.GetNodes<PhysicalEntity>(true);
             //List<PhysicalObject> allPhysicalObjects = DatabaseSearch.GetNodes<PhysicalObject>(true);
@@ -46,7 +50,7 @@ namespace NarrativeWorldCreator
             //TangibleObject specificTangibleObject = DatabaseSearch.GetNode<TangibleObject>("couch");
             //List<Space> allSpaces = DatabaseSearch.GetNodes<Space>(true);
             //ReadOnlyCollection<GameObject> gameObjectForFirstPhysicalObject = GameDatabaseSearch.GetGameObjects(specificTangibleObject);
-            
+
             //TangibleObjectInstance semanticInstance = GameInstanceManager.Current.Create(gameObjectForFirstPhysicalObject[0]);
             //ContentWrapper contentWrapper;
             //Dictionary<ModelInstance, Node> geometry = new Dictionary<ModelInstance, Node>();

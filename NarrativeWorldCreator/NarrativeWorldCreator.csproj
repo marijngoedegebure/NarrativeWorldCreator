@@ -189,6 +189,7 @@
     <Compile Include="Parsers\Parser.cs" />
     <Compile Include="Parsers\PlanParser.cs" />
     <Compile Include="Parsers\ProblemParser.cs" />
+    <Compile Include="Solvers\CudaGPUWrapper.cs" />
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
     <Compile Include="Solvers\PlacementSolver.cs" />
@@ -408,6 +409,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Kernel.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <Import Project="..\packages\Alea.3.0.2\build\Alea.targets" Condition="Exists('..\packages\Alea.3.0.2\build\Alea.targets')" />

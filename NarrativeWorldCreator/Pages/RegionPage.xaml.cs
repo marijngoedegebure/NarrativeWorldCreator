@@ -276,7 +276,10 @@ namespace NarrativeWorldCreator
             //}
 
             // New GPU calls
-            var configs = PlacementSolverGPU.Optimization(this.SelectedTimePoint);
+            // var configs = PlacementSolverGPU.Optimization(this.SelectedTimePoint);
+
+            // DLL Test call
+            CudaGPUWrapper.CudaGPUWrapperCall();
 
             // Update Detail view
             UpdateFillDetailView();

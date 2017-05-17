@@ -22,6 +22,7 @@ namespace NarrativeWorldCreator.Solvers
         public const float WeightFocalDefault = -2.0f;
         public const float WeightPairWiseDefault = -2.0f;
 
+        [GpuParam]
         public const RngType RngType = Alea.cuRAND.RngType.PSEUDO_XORWOW;
 
         public struct TargetRangeStruct
@@ -149,15 +150,15 @@ namespace NarrativeWorldCreator.Solvers
             // Initialize return array
             var result = new PositionAndRotation[16, ntp.InstancedObjects.Count];
 
-            gpu.Launch(OptimizationKernel, lp, result, surface, config, relationshipStructs);
+            using (var rng = Generator.CreateGpu(gpu, RngType))
+            {
+                gpu.Launch(OptimizationKernel, lp, result, surface, config, relationshipStructs, RngType);
+            }
 
-            //using (var rng = Generator.CreateGpu(gpu, RngType))
-            //{
-            //}
             return result;
         }
 
-        private static void OptimizationKernel(PositionAndRotation[,] result, Surface surface, Config config, RelationshipStruct[] relationships)
+        private static void OptimizationKernel(PositionAndRotation[,] result, Surface surface, Config config, RelationshipStruct[] relationships, RngType rngType)
         {
             //deviceptr<uint> randomResult = new deviceptr<uint>();
             //Alea.cuRAND.Generator.Get().Generate()
