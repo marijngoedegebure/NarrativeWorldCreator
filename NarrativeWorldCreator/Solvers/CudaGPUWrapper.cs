@@ -23,8 +23,8 @@ namespace NarrativeWorldCreator.Solvers
         public struct RelationshipStruct
         {
             public TargetRangeStruct TargetRange;
-            public PositionAndRotation Source;
-            public PositionAndRotation Target;
+            public int SourceIndex;
+            public int TargetIndex;
             public double DegreesOfAtrraction;
         }
 
@@ -38,16 +38,32 @@ namespace NarrativeWorldCreator.Solvers
             public double rotX;
             public double rotY;
             public double rotZ;
+            public bool frozen;
+
+            public double length;
+            public double width;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct Surface
         {
             public int nObjs;
+            public int nRelationships;
 
             // Weights
-            public float WeightFocal;
+            public float WeightFocalPoint;
             public float WeightPairWise;
+            public float WeightVisualBalance;
+            public float WeightSymmetry;
+
+            //Centroid
+            public double centroidX;
+            public double centroidY;
+
+            // Focal point
+            public double focalX;
+            public double focalY;
+            public double focalRot;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -58,6 +74,7 @@ namespace NarrativeWorldCreator.Solvers
             public int blockxDim;
             public int blockyDim;
             public int blockzDim;
+            public int iterations;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -74,11 +91,22 @@ namespace NarrativeWorldCreator.Solvers
 
         public static void CudaGPUWrapperCall()
         {
-            const int N = 10;
-            var targetRange = new TargetRangeStruct
+            const int N = 2;
+            const int NRel = 1;
+
+            var surface = new Surface
             {
-                TargetRangeStart = 0.0,
-                TargetRangeEnd = 2.0
+                nObjs = N,
+                nRelationships = NRel,
+                WeightFocalPoint = -2.0f,
+                WeightPairWise = -2.0f,
+                WeightVisualBalance = 1.5f,
+                WeightSymmetry = -2.0f,
+                centroidX = 0.0,
+                centroidY = 0.0,
+                focalX = 5.0,
+                focalY = 5.0,
+                focalRot = 0.0
             };
 
             var currentConfig = new PositionAndRotation[N];
@@ -86,56 +114,45 @@ namespace NarrativeWorldCreator.Solvers
             {
                 currentConfig[i] = new PositionAndRotation
                 {
-                    x = 12.0,
-                    y = 13.0,
-                    z = 14.0,
-                    rotX = 15.0,
-                    rotY = 16.0,
-                    rotZ = 17.0
+                    x = 2.0,
+                    y = 2.0,
+                    z = 0.0,
+                    rotX = 0.0,
+                    rotY = 0.0,
+                    rotZ = 0.0,
+                    frozen = false,
+                    length = 1.0,
+                    width = 1.0
                 };
             }
 
-            var surface = new Surface
+
+            var targetRange = new TargetRangeStruct
             {
-                nObjs = N,
-                WeightPairWise = 2.0f
+                TargetRangeStart = 2.0,
+                TargetRangeEnd = 4.0
             };
 
-            var rss = new RelationshipStruct[N];
+            var rss = new RelationshipStruct[NRel];
             for (int i = 0; i < rss.Length; i++)
             {
                 rss[i] = new RelationshipStruct
                 {
                     TargetRange = targetRange,
-                    Source = new PositionAndRotation
-                    {
-                        x = 2.0,
-                        y = 3.0,
-                        z = 4.0,
-                        rotX = 5.0,
-                        rotY = 6.0,
-                        rotZ = 7.0
-                    },
-                    Target = new PositionAndRotation
-                    {
-                        x = 12.0,
-                        y = 13.0,
-                        z = 14.0,
-                        rotX = 15.0,
-                        rotY = 16.0,
-                        rotZ = 17.0
-                    },
-                    DegreesOfAtrraction = 25.0
+                    SourceIndex = 0,
+                    TargetIndex = 1,
+                    DegreesOfAtrraction = 2.0
                 };
             }
 
             gpuConfig gpuCfg = new gpuConfig
             {
-                gridxDim = 4,
+                gridxDim = 1,
                 gridyDim = 0,
-                blockxDim = 4,
+                blockxDim = 1,
                 blockyDim = 0,
-                blockzDim = 0
+                blockzDim = 0,
+                iterations = 10
             };
 
             Point[] result = new Point[(gpuCfg.gridxDim) * N];
@@ -144,7 +161,7 @@ namespace NarrativeWorldCreator.Solvers
             {
                 IntPtr data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * j);
                 Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
-
+                result[j] = ms;
                 Console.WriteLine();
             }
             return;
