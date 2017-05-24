@@ -139,6 +139,23 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             }
             return points;
         }
+
+        public override bool Equals(object obj)
+        {
+            var item = obj as EntikaInstance;
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return this.Name.Equals(item.Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode();
+        }
     }
 
     public static class EntikaInstanceCount

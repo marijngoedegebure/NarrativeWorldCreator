@@ -279,7 +279,7 @@ namespace NarrativeWorldCreator
             // var configs = PlacementSolverGPU.Optimization(this.SelectedTimePoint);
 
             // DLL Test call
-            CudaGPUWrapper.CudaGPUWrapperCall();
+            CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint);
 
             // Update Detail view
             UpdateFillDetailView();
