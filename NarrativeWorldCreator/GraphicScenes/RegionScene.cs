@@ -165,6 +165,11 @@ namespace NarrativeWorldCreator
                     drawGPUResultInstance(gpuResultInstance);
                 }
             }
+            if (this._currentRegionPage.CurrentFillingMode == RegionPage.FillingMode.Placement)
+            {
+                drawCentroidAndFocalPoint();
+            }
+
             this._currentRegionPage.UpdateFillDetailView();
 
             drawBoxSelect();
@@ -176,6 +181,50 @@ namespace NarrativeWorldCreator
             GraphicsDevice.DepthStencilState = depth;
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
+        }
+
+        private void drawCentroidAndFocalPoint()
+        {
+            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
+
+            basicEffect.World = SystemStateTracker.world;
+            basicEffect.View = SystemStateTracker.view;
+            basicEffect.Projection = SystemStateTracker.proj;
+            basicEffect.VertexColorEnabled = true;
+            // When in placement mode, visualize focal and centroid
+            Vector3 centroid = new Vector3((float)SystemStateTracker.centroidX, (float)SystemStateTracker.centroidY, 0);
+
+            // Create square based on centroid coordinates
+            Quad quad = new Quad(centroid, new Vector3(centroid.X, centroid.Y, 1), Vector3.Up, 1, 1, Color.Blue);
+
+            // Draw centroid
+            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                    PrimitiveType.TriangleStrip,
+                    quad.Vertices,
+                    0,
+                    2);
+            }
+
+            // Draw focal
+            Vector3 focalPoint = new Vector3((float)SystemStateTracker.focalX, (float)SystemStateTracker.focalY, 0);
+            Vector3 focalRotation = new Vector3(0.0f, (float)SystemStateTracker.focalRot, 0.0f);
+            Vector3 focalLinePointEnd = new Vector3(focalPoint.X + 2.0f, focalPoint.Y + 2.0f, 0);
+            focalLinePointEnd = Vector3.Transform(focalLinePointEnd, Matrix.CreateRotationY(focalRotation.Y));
+
+            Quad quad2 = new Quad(focalPoint, new Vector3(focalPoint.X, focalPoint.Y, 1), Vector3.Up, 1, 1, Color.Red);
+            var temp = CreateLine(focalPoint, focalLinePointEnd, Color.Red);
+            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                    PrimitiveType.TriangleStrip,
+                    quad2.Vertices,
+                    0,
+                    2);
+            }
         }
 
         private void drawBoxSelect()

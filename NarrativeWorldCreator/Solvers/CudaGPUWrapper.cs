@@ -91,6 +91,23 @@ namespace NarrativeWorldCreator.Solvers
             public float rotZ;
         }
 
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        struct ResultCosts
+        {
+            public float totalCosts;
+            public float PairWiseCosts;
+            public float VisualBalanceCosts;
+            public float FocalPointCosts;
+            public float SymmetryCosts;
+        };
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        struct Result
+        {
+            public IntPtr points;
+            public ResultCosts costs;
+        };
+
         public static List<GPUConfigurationResult> CudaGPUWrapperCall(Configuration configuration)
         {
             var valuedRelationships = configuration.GetValuedRelationships();
@@ -164,26 +181,45 @@ namespace NarrativeWorldCreator.Solvers
             List <GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
             GPUConfigurationResult temp = new GPUConfigurationResult();
             // Do the initial one
-            IntPtr data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * 0);
-            Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
-            temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[0], ms));
-            for (int j = 1; j < (gpuCfg.gridxDim) * N; j++)
+            for (int j = 0; j < gpuCfg.gridxDim; j++)
             {
-                data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * j);
-                ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
+                IntPtr resultPointer = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Result)) * j);
+                Result r = (Result)Marshal.PtrToStructure(resultPointer, typeof(Result));
+                temp.TotalCosts = r.costs.totalCosts;
+                temp.FocalPointCosts = r.costs.FocalPointCosts;
+                temp.PairWiseCosts = r.costs.PairWiseCosts;
+                temp.SymmetryCosts = r.costs.SymmetryCosts;
+                temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
 
-
-                var objectIndex = j % N;
-                // If 0 is reached again, save configuration and renew configuration
-                if (objectIndex == 0)
+                // Retrieve all points of result:
+                for (int k = 0; k < N; k++)
                 {
-                    configs.Add(temp);
-                    temp = new GPUConfigurationResult();
+                    IntPtr pointsPointer = new IntPtr(r.points.ToInt64() + Marshal.SizeOf(typeof(Point)) * k);
+                    Point point = (Point)Marshal.PtrToStructure(pointsPointer, typeof(Point));
+                    temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[k], point));
                 }
-                temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[objectIndex], ms));
-                Console.WriteLine();
+                configs.Add(temp);
+                temp = new GPUConfigurationResult();
             }
-            configs.Add(temp);
+
+            //Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
+            //temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[0], ms));
+            //for (int j = 1; j < (gpuCfg.gridxDim) * N; j++)
+            //{
+            //    data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * j);
+            //    ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
+
+
+            //    var objectIndex = j % N;
+            //    // If 0 is reached again, save configuration and renew configuration
+            //    if (objectIndex == 0)
+            //    {
+            //        configs.Add(temp);
+            //        temp = new GPUConfigurationResult();
+            //    }
+            //    temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[objectIndex], ms));
+            //    Console.WriteLine();
+            //}
             return configs;
         }
 

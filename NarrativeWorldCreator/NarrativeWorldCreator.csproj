@@ -204,9 +204,9 @@
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
     <Compile Include="ViewModel\FillDetailViewModel.cs" />
     <Compile Include="ViewModel\GenerateConfigurationsViewModel.cs" />
+    <Compile Include="ViewModel\GPUConfigurationResultViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
-    <Compile Include="ViewModel\ObjectPlacementViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstancesSelectionViewModel.cs" />
     <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
@@ -219,9 +219,6 @@
     <Compile Include="ViewModel\Vector3ViewModel.cs" />
     <Compile Include="Views\FillDetailView.xaml.cs">
       <DependentUpon>FillDetailView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ObjectPlacementView.xaml.cs">
-      <DependentUpon>ObjectPlacementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EntikaInstancesSelectionView.xaml.cs">
       <DependentUpon>EntikaInstancesSelectionView.xaml</DependentUpon>
@@ -284,10 +281,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FillDetailView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ObjectPlacementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

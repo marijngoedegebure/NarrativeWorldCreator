@@ -11,8 +11,8 @@ namespace NarrativeWorldCreator.ViewModel
 {
     public class GenerateConfigurationsViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<GPUConfigurationResult> _GPUConfigurationResults;
-        public ObservableCollection<GPUConfigurationResult> GPUConfigurationResults
+        private ObservableCollection<GPUConfigurationResultViewModel> _GPUConfigurationResults;
+        public ObservableCollection<GPUConfigurationResultViewModel> GPUConfigurationResults
         {
             get
             {
@@ -35,10 +35,12 @@ namespace NarrativeWorldCreator.ViewModel
 
         public void Load(List<GPUConfigurationResult> input)
         {
-            ObservableCollection<GPUConfigurationResult> gpcr = new ObservableCollection<GPUConfigurationResult>();
+            ObservableCollection<GPUConfigurationResultViewModel> gpcr = new ObservableCollection<GPUConfigurationResultViewModel>();
             foreach (var result in input)
             {
-                gpcr.Add(result);
+                var gpcrVM = new GPUConfigurationResultViewModel();
+                gpcrVM.Load(result);
+                gpcr.Add(gpcrVM);
             }
             GPUConfigurationResults = gpcr;
         }

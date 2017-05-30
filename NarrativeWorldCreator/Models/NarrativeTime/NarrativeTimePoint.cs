@@ -219,5 +219,19 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         {
             return this.TimePoint.GetHashCode();
         }
+
+        internal void RegeneratePredicates()
+        {
+            this.PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.Predicate>();
+            foreach (var rel in this.Configuration.InstancedRelations)
+            {
+                InstantiateRelationship(rel);
+            }
+
+            foreach (var obj in this.Configuration.InstancedObjects)
+            {
+                this.InstantiateAtPredicateForInstance(obj);
+            }
+        }
     }
 }

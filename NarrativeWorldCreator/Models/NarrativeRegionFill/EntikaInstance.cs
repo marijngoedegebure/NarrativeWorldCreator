@@ -73,12 +73,14 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 
         public EntikaInstance(EntikaInstance obj)
         {
+            SetupLists();
             this.Name = obj.Name;
             this.TangibleObject = obj.TangibleObject;
             this.Model = obj.Model;
             this.Position = new Vector3(obj.Position.X, obj.Position.Y, obj.Position.Z);
             this.Rotation = new Vector3(obj.Rotation.X, obj.Rotation.Y, obj.Rotation.Z);
-            this.Polygon = new Polygon(obj.Polygon.GetAllVertices());
+            if (obj.Polygon != null)
+                this.Polygon = new Polygon(obj.Polygon.GetAllVertices());
             this.BoundingBox = new BoundingBox(obj.BoundingBox.Min, obj.BoundingBox.Max);
             this.Frozen = obj.Frozen;        
         }

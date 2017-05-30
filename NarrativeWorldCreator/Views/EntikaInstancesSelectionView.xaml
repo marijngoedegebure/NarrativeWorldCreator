@@ -20,7 +20,7 @@
         <TextBlock Text="Objects in scene" Grid.Column="0" Grid.Row="0"></TextBlock>
         <Button Grid.Row="1" Grid.Column="0" x:Name="button1" Content="Back" Margin="10,10,0,0" Width="200" Click="btnBackToMainMenu"/>
         <Button Grid.Row="2" Grid.Column="0" x:Name="button2" Content="Remove selected instances" Margin="10,10,0,0" Width="200" Click="btnRemoveSelectedInstances"/>
-        <Button Grid.Row="3" Grid.Column="0" x:Name="button3" Content="Reposition selected instances" Margin="10,10,0,0" Width="200" Click="btnRepositionSelectedInstances"/>
+        <Button Grid.Row="3" Grid.Column="0" x:Name="button3" Content="Reposition selected instances" Margin="10,10,0,0" Width="200" Click="btnSuggestNewPositions"/>
         <ListView Name="EntikaInstancesSelectionIC"
                       Grid.Column="0"
                       Grid.Row="4"

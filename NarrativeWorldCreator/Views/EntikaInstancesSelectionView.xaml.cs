@@ -48,12 +48,12 @@ namespace NarrativeWorldCreator.Views
             regionPage.RemoveSelectedInstances(instances);
         }
 
-        private void btnRepositionSelectedInstances(object sender, RoutedEventArgs e)
+        private void btnSuggestNewPositions(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            System.Collections.IList items = (System.Collections.IList)EntikaInstancesSelectionIC.SelectedItems;
-            List<EntikaInstance> instances = items.Cast<EntikaInstance>().ToList();
-            regionPage.RepositionSelectedInstances(instances);
+            //System.Collections.IList items = (System.Collections.IList)EntikaInstancesSelectionIC.SelectedItems;
+            //List<EntikaInstance> instances = items.Cast<EntikaInstance>().ToList();
+            regionPage.SuggestNewPositions();
         }
     }
 }

@@ -31,6 +31,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -65,6 +66,8 @@
 
             <Button Grid.Row="14" Grid.Column="0" Content="Reset view" Click="ResetSelectionList"/>
             <Button Grid.Row="14" Grid.Column="1" Content="Refresh configurations" Click="RefreshConfigurations"/>
+            <Button Grid.Row="15" Grid.Column="0" Content="Back" Click="Back"/>
+            <Button Grid.Row="15" Grid.Column="1" Content="Save selected configuration" Click="SaveConfiguration"/>
         </Grid>
         <ListView Name="ConfigurationsList"
             Grid.Column="0"
@@ -76,7 +79,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
-                        <TextBlock Text="Configuration" FontWeight="Bold" />
+                        <TextBlock Text="{Binding TotalCosts, StringFormat='Total costs: {0}'}" FontWeight="Bold" />
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

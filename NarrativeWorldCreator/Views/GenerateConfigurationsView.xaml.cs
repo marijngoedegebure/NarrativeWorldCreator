@@ -48,7 +48,7 @@ namespace NarrativeWorldCreator.Views
             // Update list of configurations using generated list of regionpage
             var gcVM = (GenerateConfigurationsViewModel)this.DataContext;
             gcVM.Load(regionPage.GeneratedConfigurations);
-            // this.DataContext = gcVM;
+            this.DataContext = gcVM;
         }
 
         private RegionPage GetRegionPage()
@@ -72,6 +72,39 @@ namespace NarrativeWorldCreator.Views
             var regionPage = GetRegionPage();
 
             regionPage.SelectedGPUConfigurationResult = this.ConfigurationsList.SelectedIndex;
+        }
+
+        private void SaveConfiguration(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            if (regionPage.CurrentFillingMode == RegionPage.FillingMode.Repositioning)
+            {
+                if (this.ConfigurationsList.SelectedIndex != -1)
+                {
+                    regionPage.RepositionAndBackToMenu();
+                }
+            }
+            else
+            {
+                if (this.ConfigurationsList.SelectedIndex != -1)
+                {
+
+                    regionPage.PlaceObjectAndToEntityAddition();
+                }
+            }
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            if (regionPage.CurrentFillingMode == RegionPage.FillingMode.Repositioning)
+            {
+                regionPage.BackToMenu();
+            }
+            else
+            {
+                regionPage.BackToRelationshipSelectionAndInstancing();
+            }
         }
     }
 }

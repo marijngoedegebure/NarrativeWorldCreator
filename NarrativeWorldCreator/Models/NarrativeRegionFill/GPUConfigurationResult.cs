@@ -9,5 +9,11 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
     public class GPUConfigurationResult
     {
         public List<GPUInstanceResult> Instances = new List<GPUInstanceResult>();
+
+        public float TotalCosts;
+        public float PairWiseCosts;
+        public float VisualBalanceCosts;
+        public float FocalPointCosts;
+        public float SymmetryCosts;
     }
 }

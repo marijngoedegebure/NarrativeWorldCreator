@@ -40,7 +40,7 @@ namespace NarrativeWorldCreator
         public const int blockyDim = 0;
         public const int blockzDim = 0;
         // Number of iterations a configuration will see before the best encountered configuration is returned
-        public const int iterations = 1000;
+        public const int iterations = 10;
 
         // Algorithm
         // Weights for each cost function

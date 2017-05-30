@@ -6,6 +6,7 @@ using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Solvers;
 using NarrativeWorldCreator.ViewModel;
+using NarrativeWorldCreator.Views;
 using Semantics.Abstractions;
 using Semantics.Components;
 using Semantics.Data;
@@ -53,18 +54,46 @@ namespace NarrativeWorldCreator
 
         public RegionPageMode CurrentMode;
 
-        public enum AdditionMode
+        public enum FillingMode
         {
-            ClassSelection = 0,
-            RelationSelectionAndInstancting = 1,
-            Placement = 2,
+            None = 0,
+            ClassSelection = 1,
+            RelationSelectionAndInstancting = 2,
+            Placement = 3,
+            Repositioning = 4
         }
 
-        public AdditionMode CurrentAdditionMode = AdditionMode.ClassSelection;
+        public FillingMode CurrentFillingMode = FillingMode.ClassSelection;
 
         internal void GenerateConfigurations()
         {
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.WorkInProgressConfiguration);
+        }
+
+        internal void SuggestNewPositions()
+        {
+            this.WorkInProgressConfiguration = new Configuration();
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            CurrentFillingMode = FillingMode.Repositioning;
+            EntikaInstancesSelectionView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView2.Visibility = Visibility.Visible;
+        }
+
+        internal void RepositionAndBackToMenu()
+        {
+            ApplyConfiguration();
+            CurrentFillingMode = FillingMode.None;
+            EntikaInstancesSelectionView.Visibility = Visibility.Visible;
+            GenerateConfigurationsView2.Visibility = Visibility.Collapsed;
+        }
+
+        internal void BackToMenu()
+        {
+            EntikaInstancesSelectionView.Visibility = Visibility.Visible;
+            GenerateConfigurationsView2.Visibility = Visibility.Collapsed;
+            CurrentFillingMode = FillingMode.None;
+            WorkInProgressConfiguration = new Configuration();
         }
 
         public bool RegionCreated = false;
@@ -113,11 +142,6 @@ namespace NarrativeWorldCreator
             // Return to changing menu
             UpdateEntikaInstancesSelectionView();
             ChangeUIToChange();
-        }
-
-        internal void RepositionSelectedInstances(List<EntikaInstance> instances)
-        {
-            
         }
 
         public void SaveInstancingOfRelationsAndGotoPlacement(RelationshipSelectionAndInstancingViewModel rivm)
@@ -220,29 +244,39 @@ namespace NarrativeWorldCreator
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
 
-            IntializeGenerateConfigurationsView();
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
 
-            CurrentAdditionMode = AdditionMode.Placement;
+            CurrentFillingMode = FillingMode.Placement;
             TangibleObjectsView.Visibility = Visibility.Collapsed;
             RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
             GenerateConfigurationsView.Visibility = Visibility.Visible;
         }
 
-        public void IntializeGenerateConfigurationsView()
+        public void IntializeGenerateConfigurationsView(GenerateConfigurationsView view)
         {
             GenerateConfigurationsViewModel gcVM = new GenerateConfigurationsViewModel();
             gcVM.Load(new List<GPUConfigurationResult>());
-            GenerateConfigurationsView.DataContext = gcVM;
-            GenerateConfigurationsView.WeightFocalPoint.Text    = SystemStateTracker.WeightFocalPoint.ToString();
-            GenerateConfigurationsView.WeightPairWise.Text      = SystemStateTracker.WeightPairWise.ToString();
-            GenerateConfigurationsView.WeightSymmetry.Text      = SystemStateTracker.WeightSymmetry.ToString();
-            GenerateConfigurationsView.WeightVisualBalance.Text = SystemStateTracker.WeightVisualBalance.ToString();
-            GenerateConfigurationsView.centroidX.Text           = SystemStateTracker.centroidX.ToString();
-            GenerateConfigurationsView.centroidY.Text           = SystemStateTracker.centroidY.ToString();
-            GenerateConfigurationsView.focalX.Text              = SystemStateTracker.focalX.ToString();
-            GenerateConfigurationsView.focalY.Text              = SystemStateTracker.focalY.ToString();
-            GenerateConfigurationsView.focalRot.Text            = SystemStateTracker.focalRot.ToString();
-            GenerateConfigurationsView.gridxDim.Text            = SystemStateTracker.gridxDim.ToString();
+            view.DataContext = gcVM;
+            view.WeightFocalPoint.Text    = SystemStateTracker.WeightFocalPoint.ToString();
+            view.WeightPairWise.Text      = SystemStateTracker.WeightPairWise.ToString();
+            view.WeightSymmetry.Text      = SystemStateTracker.WeightSymmetry.ToString();
+            view.WeightVisualBalance.Text = SystemStateTracker.WeightVisualBalance.ToString();
+            view.centroidX.Text           = SystemStateTracker.centroidX.ToString();
+            view.centroidY.Text           = SystemStateTracker.centroidY.ToString();
+            view.focalX.Text              = SystemStateTracker.focalX.ToString();
+            view.focalY.Text              = SystemStateTracker.focalY.ToString();
+            view.focalRot.Text            = SystemStateTracker.focalRot.ToString();
+            view.gridxDim.Text            = SystemStateTracker.gridxDim.ToString();
+        }
+
+        public void BackToRelationshipSelectionAndInstancing()
+        {
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+
+            CurrentFillingMode = FillingMode.RelationSelectionAndInstancting;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
+            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
         }
 
         public void AddSelectedTangibleObject(TangibleObject selectedItem)
@@ -263,7 +297,7 @@ namespace NarrativeWorldCreator
                 RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
 
             // Switch UI to next step (relation selection and instancing)
-            CurrentAdditionMode = AdditionMode.RelationSelectionAndInstancting;
+            CurrentFillingMode = FillingMode.RelationSelectionAndInstancting;
             TangibleObjectsView.Visibility = Visibility.Collapsed;
             RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
             GenerateConfigurationsView.Visibility = Visibility.Collapsed;
@@ -271,7 +305,7 @@ namespace NarrativeWorldCreator
 
         public void BackToTangibleObjectSelection()
         {
-            CurrentAdditionMode = AdditionMode.ClassSelection;
+            CurrentFillingMode = FillingMode.ClassSelection;
             TangibleObjectsView.Visibility = Visibility.Visible;
             RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
             GenerateConfigurationsView.Visibility = Visibility.Collapsed;
@@ -286,28 +320,39 @@ namespace NarrativeWorldCreator
             this.InstanceOfObjectToAdd.UpdateBoundingBoxAndShape(SystemStateTracker.world);
         }
 
-        public void PlaceObjectAndToEntityAddition(Vector3 vector)
+        public void PlaceObjectAndToEntityAddition()
         {
-            // this.InstanceOfObjectToAdd.Position = vector;
             // Apply chosen results to timepoint
+            ApplyConfiguration();
+            InstanceOfObjectToAdd = null;
 
             // Regenerate predicates based on newly applied configuration
-            // this.SelectedTimePoint.InstantiateRelationship(onRelationshipInstance);
-            // this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
-            // this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
-            // this.SelectedTimePoint.InstantiateAtPredicateForInstance(InstanceOfObjectToAdd);
+            this.SelectedTimePoint.RegeneratePredicates();
 
             // Update Detail view
             UpdateFillDetailView();
 
-            InstanceOfObjectToAdd = null;
 
-            CurrentAdditionMode = AdditionMode.ClassSelection;
+            CurrentFillingMode = FillingMode.ClassSelection;
             TangibleObjectsView.Visibility = Visibility.Visible;
             RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
             GenerateConfigurationsView.Visibility = Visibility.Collapsed;
 
             ChangeUIToMainMenu();
+        }
+
+        private void ApplyConfiguration()
+        {
+            var gpuConfig = this.GeneratedConfigurations[this.SelectedGPUConfigurationResult];
+            for (int i = 0; i < gpuConfig.Instances.Count; i++)
+            {
+                this.WorkInProgressConfiguration.InstancedObjects[i].Position = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
+                this.WorkInProgressConfiguration.InstancedObjects[i].Rotation = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
+            }
+            this.SelectedTimePoint.Configuration = WorkInProgressConfiguration;
+
+            // Reset used variables
+            WorkInProgressConfiguration = new Configuration();
         }
 
         private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)

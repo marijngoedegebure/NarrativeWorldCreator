@@ -105,12 +105,12 @@
                         <Grid Name="region_filling_3_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <views:EntikaInstancesSelectionView Grid.Column="0" Grid.Row="0" x:Name="EntikaInstancesSelectionView" Loaded="EntikaInstancesSelectionView_Loaded" />
+                            <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="GenerateConfigurationsView2"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_20" Header="Fill details" Visibility="Collapsed">
