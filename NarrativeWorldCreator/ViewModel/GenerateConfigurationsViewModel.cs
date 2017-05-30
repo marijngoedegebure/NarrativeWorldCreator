@@ -1,5 +1,4 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
-using NarrativeWorldCreator.Models.NarrativeTime;
 using SharpDX.Collections;
 using System;
 using System.Collections.Generic;
@@ -10,19 +9,19 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    public class EntikaInstancesSelectionViewModel : INotifyPropertyChanged
+    public class GenerateConfigurationsViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<EntikaInstance> _entikaInstances;
-        public ObservableCollection<EntikaInstance> EntikaInstances
+        private ObservableCollection<GPUConfigurationResult> _GPUConfigurationResults;
+        public ObservableCollection<GPUConfigurationResult> GPUConfigurationResults
         {
             get
             {
-                return _entikaInstances;
+                return _GPUConfigurationResults;
             }
             set
             {
-                _entikaInstances = value;
-                OnPropertyChanged("EntikaInstances");
+                _GPUConfigurationResults = value;
+                OnPropertyChanged("GPUConfigurationResults");
             }
         }
 
@@ -34,14 +33,14 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(NarrativeTimePoint ntp)
+        public void Load(List<GPUConfigurationResult> input)
         {
-            ObservableCollection<EntikaInstance> eioc = new ObservableCollection<EntikaInstance>();
-            foreach (var instance in ntp.Configuration.GetEntikaInstancesWithoutFloor())
+            ObservableCollection<GPUConfigurationResult> gpcr = new ObservableCollection<GPUConfigurationResult>();
+            foreach (var result in input)
             {
-                eioc.Add(instance);
+                gpcr.Add(result);
             }
-            EntikaInstances = eioc;
+            GPUConfigurationResults = gpcr;
         }
     }
 }

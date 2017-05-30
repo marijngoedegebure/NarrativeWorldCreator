@@ -16,7 +16,7 @@ namespace NarrativeWorldCreator.Solvers
         {
             var ret = new List<Vector3>();
 
-            var floor = ntp.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floor = ntp.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             var minBB = floor.BoundingBox.Min;
             var maxBB = floor.BoundingBox.Max;
 

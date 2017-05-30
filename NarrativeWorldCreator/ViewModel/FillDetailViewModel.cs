@@ -63,7 +63,7 @@ namespace NarrativeWorldCreator.ViewModel
             EntikaInstancesValued = eioc;
 
             ObservableCollection<RelationshipInstanceEnergyViewModel> rioc = new ObservableCollection<RelationshipInstanceEnergyViewModel>();
-            foreach (var relation in ntp.InstancedRelations)
+            foreach (var relation in ntp.Configuration.InstancedRelations)
             {
                 var relationshipEnergyVM = new RelationshipInstanceEnergyViewModel();
                 relationshipEnergyVM.Load(relation);

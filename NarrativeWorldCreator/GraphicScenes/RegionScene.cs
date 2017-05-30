@@ -141,18 +141,29 @@ namespace NarrativeWorldCreator
                 drawRegionPolygon();
             }
 
-            if (this._currentRegionPage.InstanceOfObjectToAdd != null && this._currentRegionPage.CurrentAdditionMode == RegionPage.AdditionMode.Placement)
-            {
-                drawEntikaInstance(this._currentRegionPage.InstanceOfObjectToAdd);
-            }
+            //if (this._currentRegionPage.InstanceOfObjectToAdd != null && this._currentRegionPage.CurrentAdditionMode == RegionPage.AdditionMode.Placement)
+            //{
+            //    drawEntikaInstance(this._currentRegionPage.InstanceOfObjectToAdd, null);
+            //}
             //if (this._currentRegionPage.MousePositionTest == null)
             //    this._currentRegionPage.MousePositionTest = new EntikaInstance("table", new Vector3(0, 0, 0), SystemStateTracker.DefaultModel, SystemStateTracker.world);
             //drawEntikaInstance(this._currentRegionPage.MousePositionTest);
 
-            // Draw all objects that are known 2.0
-            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+            // Draw all objects that are known 2.0, but only when there is no other configuration selected
+            if (_currentRegionPage.SelectedGPUConfigurationResult == -1)
             {
-                drawEntikaInstance2(instance);
+                foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                {
+                    drawEntikaInstance2(instance);
+                }
+            }
+            else
+            {
+                // Draw each entika instance in GeneratedConfigurations
+                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.SelectedGPUConfigurationResult].Instances)
+                {
+                    drawGPUResultInstance(gpuResultInstance);
+                }
             }
             this._currentRegionPage.UpdateFillDetailView();
 
@@ -188,7 +199,7 @@ namespace NarrativeWorldCreator
             basicEffect.View = SystemStateTracker.view;
             basicEffect.Projection = SystemStateTracker.proj;
             basicEffect.VertexColorEnabled = true;
-            var floorInstance = this._currentRegionPage.SelectedTimePoint.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance != null)
             {
                 var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
@@ -359,10 +370,15 @@ namespace NarrativeWorldCreator
             return (float) (Math.PI / 180f) * angle;
         }
 
-        public void drawEntikaInstance(EntikaInstance instance)
+        public void drawEntikaInstance(EntikaInstance instance, Vector3? optionalAdjustedPosition)
         {
             Texture2D texture = Content.Load<Texture2D>("maps/couch_diff");
             Vector3 modelPosition = instance.Position;
+            if (optionalAdjustedPosition.HasValue)
+            {
+                modelPosition = optionalAdjustedPosition.GetValueOrDefault();
+            }
+            
             // Rotation should be in radians, rotates model to top down view
             float modelRotation = ConvertToRadians(90.0f);
 
@@ -402,10 +418,9 @@ namespace NarrativeWorldCreator
             lineEffect.LightingEnabled = false;
             lineEffect.TextureEnabled = false;
             lineEffect.VertexColorEnabled = true;
-
             var bbb = BoundingBoxBuffers.CreateBoundingBoxBuffers(instance.BoundingBox, GraphicsDevice);
 
-            DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, instance.Position);
+            DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition);
         }
 
         private void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection, Vector3 position)
@@ -429,7 +444,13 @@ namespace NarrativeWorldCreator
         {
             if (instance.Position == null)
                 return;
-            drawEntikaInstance(instance);
+            drawEntikaInstance(instance, null);
+        }
+
+        private void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
+        {
+            if (gpuResultInstance.entikaInstance.Name != Constants.Floor)
+                drawEntikaInstance(gpuResultInstance.entikaInstance, gpuResultInstance.Position);
         }
 
         public void drawModelExampleFunction()
@@ -548,7 +569,7 @@ namespace NarrativeWorldCreator
                         }
                         var selectionBoxBB = new BoundingBox(bottomLeft, topRight);
 
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;
@@ -571,7 +592,7 @@ namespace NarrativeWorldCreator
                     {
                         // Initialize box
                         Ray ray = CalculateMouseRay();
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;
@@ -606,7 +627,7 @@ namespace NarrativeWorldCreator
                     if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                     {
                         Ray ray = CalculateMouseRay();
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;

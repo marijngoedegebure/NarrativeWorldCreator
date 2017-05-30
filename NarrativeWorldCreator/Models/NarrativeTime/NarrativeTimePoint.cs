@@ -32,8 +32,9 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public List<NarrativeRegionFill.Predicate> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
 
-        public List<RelationshipInstance> InstancedRelations { get; set; }
-        public List<EntikaInstance> InstancedObjects { get; set; }
+
+        // Current configuration of a timepoint, used to generate new configurations from
+        public Configuration Configuration { get; set; }
 
         public NarrativeTimePoint(int timePoint, List<TangibleObject> DefaultTangibleObjects)
         {
@@ -41,8 +42,7 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             PredicatesFilteredByCurrentLocation = new List<NarrativeRegionFill.Predicate>();
             AllPredicates = new List<NarrativeRegionFill.Predicate>();
             PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.Predicate>();
-            InstancedRelations = new List<RelationshipInstance>();
-            InstancedObjects = new List<EntikaInstance>();
+            Configuration = new Configuration();
             AvailableTangibleObjects = DefaultTangibleObjects;
         }
 
@@ -57,16 +57,10 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             }
         }
 
-
-        public List<EntikaInstance> GetEntikaInstancesWithoutFloor()
-        {
-            return this.InstancedObjects.Where(io => !io.Name.Equals(Constants.Floor)).ToList();
-        }
-
         // This function allows updating
         public void SetBaseShape(LocationNode selectedNode)
         {
-            var floorInstance = this.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance == null)
             {
                 // Create floor instance
@@ -80,15 +74,10 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             }
         }
 
-        internal List<RelationshipInstance> GetValuedRelationships()
-        {
-            return this.InstancedRelations.Where(ir => ir.Valued).ToList();
-        }
-
         // This only allows the new instantiation of the current floor instance when the timepoint is newly selected
         public void SwitchTimePoints(LocationNode selectedNode)
         {
-            if (this.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault() == null)
+            if (this.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault() == null)
             {
                 SetupFloorInstance(selectedNode);
             }
@@ -98,7 +87,7 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         {
             // Setup EntikaInstance with on(X, floor) relationship
             var floorInstance = new EntikaInstance(Constants.Floor, new Polygon(selectedNode.Shape.Points));
-            this.InstancedObjects.Add(floorInstance);
+            this.Configuration.InstancedObjects.Add(floorInstance);
         }
 
         internal void InstantiateRelationship(RelationshipInstance relationInstance)

@@ -150,6 +150,9 @@
     <Compile Include="Models\Metrics\InstanceTree\InstanceTreeRelationship.cs" />
     <Compile Include="Models\Metrics\TOTree\TOTreeRelationship.cs" />
     <Compile Include="Models\Metrics\TOTree\TOTreeTangibleObject.cs" />
+    <Compile Include="Models\NarrativeRegionFill\Configuration.cs" />
+    <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
+    <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
     <Compile Include="Parsers\BeliefSystem.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
@@ -160,10 +163,7 @@
     <Compile Include="Models\NarrativeGraph\Graph.cs" />
     <Compile Include="Models\NarrativeGraph\LocationNode.cs" />
     <Compile Include="Models\NarrativeRegionFill\EntikaInstance.cs" />
-    <Compile Include="Models\NarrativeRegionFill\GeometricRelationshipBase.cs" />
-    <Compile Include="Models\NarrativeRegionFill\NarrativeShape.cs" />
     <Compile Include="Models\NarrativeRegionFill\RelationshipInstance.cs" />
-    <Compile Include="Models\NarrativeRegionFill\TimePointSpecificFill.cs" />
     <Compile Include="Models\NarrativeTime\NarrativeTimeline.cs" />
     <Compile Include="Models\NarrativeTime\NarrativeTimePoint.cs" />
     <Compile Include="Models\NarrativeWorld.cs" />
@@ -203,6 +203,7 @@
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
     <Compile Include="ViewModel\FillDetailViewModel.cs" />
+    <Compile Include="ViewModel\GenerateConfigurationsViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\ObjectPlacementViewModel.cs" />
@@ -251,6 +252,9 @@
     </Compile>
     <Compile Include="Views\SelectedObjectDetailView.xaml.cs">
       <DependentUpon>SelectedObjectDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GenerateConfigurationsView.xaml.cs">
+      <DependentUpon>GenerateConfigurationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TangibleObjectsView.xaml.cs">
       <DependentUpon>TangibleObjectsView.xaml</DependentUpon>
@@ -324,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SelectedObjectDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GenerateConfigurationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

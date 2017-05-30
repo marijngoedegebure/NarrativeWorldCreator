@@ -22,9 +22,6 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public Polygon Polygon { get; set; }
         public BoundingBox BoundingBox { get; set; }
 
-        public NarrativeShape OffLimitsShape { get; set; }
-        public List<NarrativeShape> ClearanceShapes { get; set; }
-
         public List<RelationshipInstance> RelationshipsAsSource { get; set; }
 
         public List<RelationshipInstance> RelationshipsAsTarget { get; set; }
@@ -45,7 +42,6 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 
         private void SetupLists()
         {
-            ClearanceShapes = new List<NarrativeShape>();
             RelationshipsAsSource = new List<RelationshipInstance>();
             RelationshipsAsTarget = new List<RelationshipInstance>();
         }
@@ -58,6 +54,8 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             this.Polygon = poly;
             this.Position = Vector3.Zero;
             this.Rotation = Vector3.Zero;
+            // Ground is always frozen!
+            this.Frozen = true;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
             UpdateBoundingBoxAndShape(null);
         }
@@ -71,6 +69,18 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             TangibleObject = to;
             this.Model = SystemStateTracker.DefaultModel;
             this.BoundingBox = GetBoundingBox(this.Model, SystemStateTracker.world);
+        }
+
+        public EntikaInstance(EntikaInstance obj)
+        {
+            this.Name = obj.Name;
+            this.TangibleObject = obj.TangibleObject;
+            this.Model = obj.Model;
+            this.Position = new Vector3(obj.Position.X, obj.Position.Y, obj.Position.Z);
+            this.Rotation = new Vector3(obj.Rotation.X, obj.Rotation.Y, obj.Rotation.Z);
+            this.Polygon = new Polygon(obj.Polygon.GetAllVertices());
+            this.BoundingBox = new BoundingBox(obj.BoundingBox.Min, obj.BoundingBox.Max);
+            this.Frozen = obj.Frozen;        
         }
 
         public void UpdateBoundingBoxAndShape(Matrix? world)

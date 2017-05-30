@@ -134,7 +134,7 @@ namespace NarrativeWorldCreator.MetricEngines
         {
             ResetTree();
             BuildUpTOTree(tangibleObjects);
-            BuildUpInstanceTree(ntp.InstancedObjects);
+            BuildUpInstanceTree(ntp.Configuration.InstancedObjects);
             CheckForDependencies();
 
             MetricTypeCount = 0;

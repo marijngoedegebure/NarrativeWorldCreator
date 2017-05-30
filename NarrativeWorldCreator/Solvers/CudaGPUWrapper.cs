@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models.NarrativeTime;
+﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,10 +91,10 @@ namespace NarrativeWorldCreator.Solvers
             public float rotZ;
         }
 
-        public static void CudaGPUWrapperCall(NarrativeTimePoint ntp)
+        public static List<GPUConfigurationResult> CudaGPUWrapperCall(Configuration configuration)
         {
-            var valuedRelationships = ntp.GetValuedRelationships();
-            var instances = ntp.GetEntikaInstancesWithoutFloor();
+            var valuedRelationships = configuration.GetValuedRelationships();
+            var instances = configuration.InstancedObjects;
 
             int N = instances.Count;
             int NRel = valuedRelationships.Count;
@@ -102,16 +103,16 @@ namespace NarrativeWorldCreator.Solvers
             {
                 nObjs = N,
                 nRelationships = NRel,
-                WeightFocalPoint = -2.0f,
-                WeightPairWise = -2.0f,
-                WeightVisualBalance = 1.5f,
-                WeightSymmetry = -2.0f,
-                // TODO: llow input for centroid and focal
-                centroidX = 0.0,
-                centroidY = 0.0,
-                focalX = 5.0,
-                focalY = 5.0,
-                focalRot = 0.0
+                WeightFocalPoint = SystemStateTracker.WeightFocalPoint,
+                WeightPairWise = SystemStateTracker.WeightPairWise,
+                WeightVisualBalance = SystemStateTracker.WeightVisualBalance,
+                WeightSymmetry = SystemStateTracker.WeightSymmetry,
+                // TODO: allow input for centroid and focal
+                centroidX = SystemStateTracker.centroidX,
+                centroidY = SystemStateTracker.centroidY,
+                focalX = SystemStateTracker.focalX,
+                focalY = SystemStateTracker.focalY,
+                focalRot = SystemStateTracker.focalRot
             };
 
             var currentConfig = new PositionAndRotation[N];
@@ -150,24 +151,40 @@ namespace NarrativeWorldCreator.Solvers
 
             gpuConfig gpuCfg = new gpuConfig
             {
-                gridxDim = 1,
-                gridyDim = 0,
-                blockxDim = 1,
-                blockyDim = 0,
-                blockzDim = 0,
-                iterations = 10
+                gridxDim = SystemStateTracker.gridxDim,
+                gridyDim = SystemStateTracker.gridyDim,
+                blockxDim = SystemStateTracker.blockxDim,
+                blockyDim = SystemStateTracker.blockyDim,
+                blockzDim = SystemStateTracker.blockzDim,
+                iterations = SystemStateTracker.iterations
             };
 
-            Point[] result = new Point[(gpuCfg.gridxDim) * N];
             var pointer = KernelWrapper(rss, currentConfig, ref surface, ref gpuCfg);
-            for (int j = 0; j < result.Length; j++)
+
+            List <GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
+            GPUConfigurationResult temp = new GPUConfigurationResult();
+            // Do the initial one
+            IntPtr data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * 0);
+            Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
+            temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[0], ms));
+            for (int j = 1; j < (gpuCfg.gridxDim) * N; j++)
             {
-                IntPtr data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * j);
-                Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
-                result[j] = ms;
+                data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * j);
+                ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
+
+
+                var objectIndex = j % N;
+                // If 0 is reached again, save configuration and renew configuration
+                if (objectIndex == 0)
+                {
+                    configs.Add(temp);
+                    temp = new GPUConfigurationResult();
+                }
+                temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[objectIndex], ms));
                 Console.WriteLine();
             }
-            return;
+            configs.Add(temp);
+            return configs;
         }
 
         public static void CudaGPUWrapperCallTestFunction()

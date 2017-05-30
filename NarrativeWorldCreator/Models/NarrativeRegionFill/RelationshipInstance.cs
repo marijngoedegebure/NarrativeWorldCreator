@@ -25,5 +25,14 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         {
             Valued = false;
         }
+
+        public RelationshipInstance(RelationshipInstance rel)
+        {
+            this.Valued = rel.Valued;
+            this.TargetRangeStart = rel.TargetRangeStart;
+            this.TargetRangeEnd = rel.TargetRangeEnd;
+            this.Energy = rel.Energy;
+            this.BaseRelationship = rel.BaseRelationship;
+        }
     }
 }

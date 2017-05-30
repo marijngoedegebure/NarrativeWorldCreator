@@ -36,8 +36,12 @@ namespace NarrativeWorldCreator
 
         public List<EntikaInstance> SelectedEntikaInstances;
         public NarrativeTimePoint SelectedTimePoint { get; internal set; }
+
+        public Configuration WorkInProgressConfiguration;
         public EntikaInstance InstanceOfObjectToAdd;
-        public RelationshipSelectionAndInstancingViewModel relationShipSelectionAndInstancing;
+
+        public List<GPUConfigurationResult> GeneratedConfigurations;
+        public int SelectedGPUConfigurationResult = -1;
 
         public EntikaInstance MousePositionTest;
 
@@ -58,6 +62,11 @@ namespace NarrativeWorldCreator
 
         public AdditionMode CurrentAdditionMode = AdditionMode.ClassSelection;
 
+        internal void GenerateConfigurations()
+        {
+            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.WorkInProgressConfiguration);
+        }
+
         public bool RegionCreated = false;
 
         public RegionPage(LocationNode selectedNode)
@@ -76,7 +85,7 @@ namespace NarrativeWorldCreator
             // Determine relationships to delete
             foreach (var instanceToRemove in instances)
             {
-                foreach (var relation in this.SelectedTimePoint.InstancedRelations)
+                foreach (var relation in this.SelectedTimePoint.Configuration.InstancedRelations)
                 {
                     if (relation.Source.Equals(instanceToRemove))
                     {
@@ -92,13 +101,13 @@ namespace NarrativeWorldCreator
             // Remove relationships
             foreach (var relationToRemove in relationsToRemove)
             {
-                this.SelectedTimePoint.InstancedRelations.Remove(relationToRemove);
+                this.SelectedTimePoint.Configuration.InstancedRelations.Remove(relationToRemove);
             }
 
             // Remove instances
             foreach (var instanceToRemove in instances)
             {
-                this.SelectedTimePoint.InstancedObjects.Remove(instanceToRemove);
+                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove);
             }
 
             // Return to changing menu
@@ -113,65 +122,11 @@ namespace NarrativeWorldCreator
 
         public void SaveInstancingOfRelationsAndGotoPlacement(RelationshipSelectionAndInstancingViewModel rivm)
         {
-            this.relationShipSelectionAndInstancing = rivm;
+            // this.relationShipSelectionAndInstancing = rivm;
 
-            // Generate positions and go to placement
-            List<Vector3> positions = PlacementSolver.GenerateRandomPosition(this.SelectedTimePoint, InstanceOfObjectToAdd);
-
-            ObjectPlacementViewModel opVM = new ObjectPlacementViewModel();
-            opVM.Load(positions);
-            ObjectPlacementView.DataContext = opVM;
-            ObjectPlacementView.OptionListView.SelectedIndex = 0;
-
-            CurrentAdditionMode = AdditionMode.Placement;
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            ObjectPlacementView.Visibility = Visibility.Visible;
-        }
-
-        public void AddSelectedTangibleObject(TangibleObject selectedItem)
-        {
-            InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
-            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.SelectedTimePoint.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
-            if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
-                throw new Exception("No on relationship at all");
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
-            if (riVM.OnRelationshipsMultiple.Count > 0)
-                RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
-            if (riVM.OnRelationshipsSingle.Count > 0)
-                RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
-
-            CurrentAdditionMode = AdditionMode.RelationSelectionAndInstancting;
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
-            ObjectPlacementView.Visibility = Visibility.Collapsed;
-        }
-
-        public void BackToTangibleObjectSelection()
-        {
-            CurrentAdditionMode = AdditionMode.ClassSelection;
-            TangibleObjectsView.Visibility = Visibility.Visible;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            ObjectPlacementView.Visibility = Visibility.Collapsed;
-            InstanceOfObjectToAdd = null;
-            relationShipSelectionAndInstancing = null;
-            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
-        }
-
-        public void UpdateObjectPosition(Vector3 vector)
-        {
-            this.InstanceOfObjectToAdd.Position = vector;
-            this.InstanceOfObjectToAdd.UpdateBoundingBoxAndShape(SystemStateTracker.world);
-        }
-
-        public void PlaceObjectAndToEntityAddition(Vector3 vector)
-        {
-            this.InstanceOfObjectToAdd.Position = vector;
-
-            var onRelationshipMultipleVM = relationShipSelectionAndInstancing.OnRelationshipsMultiple.Where(or => or.Selected).FirstOrDefault();
-            var onRelationshipSingleVM = relationShipSelectionAndInstancing.OnRelationshipsSingle.Where(or => or.Selected).FirstOrDefault();
+            // Save instance and relationships to WIPconfiguration
+            var onRelationshipMultipleVM = rivm.OnRelationshipsMultiple.Where(or => or.Selected).FirstOrDefault();
+            var onRelationshipSingleVM = rivm.OnRelationshipsSingle.Where(or => or.Selected).FirstOrDefault();
             RelationshipExtendedViewModel onRelationshipVM;
             if (onRelationshipMultipleVM != null)
             {
@@ -193,12 +148,11 @@ namespace NarrativeWorldCreator
 
             InstanceOfObjectToAdd.RelationshipsAsTarget.Add(onRelationshipInstance);
 
-            this.SelectedTimePoint.InstancedRelations.Add(onRelationshipInstance);
-            this.SelectedTimePoint.InstantiateRelationship(onRelationshipInstance);
+            this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
 
             // Parse other relationships
             // Single
-            foreach (var otherRelationVM in relationShipSelectionAndInstancing.OtherRelationshipsSingle.Where(or => or.Selected).ToList())
+            foreach (var otherRelationVM in rivm.OtherRelationshipsSingle.Where(or => or.Selected).ToList())
             {
                 var otherRelationshipInstance = new RelationshipInstance();
                 otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
@@ -221,18 +175,17 @@ namespace NarrativeWorldCreator
                     otherRelationshipInstance.TargetRangeStart = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[0].Value.ToString());
                     otherRelationshipInstance.TargetRangeEnd = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[1].Value.ToString());
                 }
-                
+
                 if (source)
                     InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
                 else
                     InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
 
-                this.SelectedTimePoint.InstancedRelations.Add(otherRelationshipInstance);
-                this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
+                this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
             }
 
             // Multiple
-            foreach (var otherRelationVM in relationShipSelectionAndInstancing.OtherRelationshipsMultiple.Where(or => or.Selected).ToList())
+            foreach (var otherRelationVM in rivm.OtherRelationshipsMultiple.Where(or => or.Selected).ToList())
             {
                 var otherRelationshipInstance = new RelationshipInstance();
                 otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
@@ -261,36 +214,98 @@ namespace NarrativeWorldCreator
                 else
                     InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
 
-                this.SelectedTimePoint.InstancedRelations.Add(otherRelationshipInstance);
-                this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
+                this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
+                
             }
 
-            this.SelectedTimePoint.InstancedObjects.Add(InstanceOfObjectToAdd);
-            this.SelectedTimePoint.InstantiateAtPredicateForInstance(InstanceOfObjectToAdd);
+            this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
 
-            // Recalculate energies based on addition
-            // var energies = PlacementSolverGPU.CalculatePairwiseEnergies(this.SelectedTimePoint.InstancedRelations);
-            //for( int i = 0; i < energies.Length; i++)
-            //{
-            //    this.SelectedTimePoint.InstancedRelations[i].Energy = energies[i];
-            //}
+            IntializeGenerateConfigurationsView();
 
-            // New GPU calls
-            // var configs = PlacementSolverGPU.Optimization(this.SelectedTimePoint);
+            CurrentAdditionMode = AdditionMode.Placement;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView.Visibility = Visibility.Visible;
+        }
 
-            // DLL Test call
-            CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint);
+        public void IntializeGenerateConfigurationsView()
+        {
+            GenerateConfigurationsViewModel gcVM = new GenerateConfigurationsViewModel();
+            gcVM.Load(new List<GPUConfigurationResult>());
+            GenerateConfigurationsView.DataContext = gcVM;
+            GenerateConfigurationsView.WeightFocalPoint.Text    = SystemStateTracker.WeightFocalPoint.ToString();
+            GenerateConfigurationsView.WeightPairWise.Text      = SystemStateTracker.WeightPairWise.ToString();
+            GenerateConfigurationsView.WeightSymmetry.Text      = SystemStateTracker.WeightSymmetry.ToString();
+            GenerateConfigurationsView.WeightVisualBalance.Text = SystemStateTracker.WeightVisualBalance.ToString();
+            GenerateConfigurationsView.centroidX.Text           = SystemStateTracker.centroidX.ToString();
+            GenerateConfigurationsView.centroidY.Text           = SystemStateTracker.centroidY.ToString();
+            GenerateConfigurationsView.focalX.Text              = SystemStateTracker.focalX.ToString();
+            GenerateConfigurationsView.focalY.Text              = SystemStateTracker.focalY.ToString();
+            GenerateConfigurationsView.focalRot.Text            = SystemStateTracker.focalRot.ToString();
+            GenerateConfigurationsView.gridxDim.Text            = SystemStateTracker.gridxDim.ToString();
+        }
+
+        public void AddSelectedTangibleObject(TangibleObject selectedItem)
+        {
+            // Copy current configuration of timepoint so it can be changed.
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+
+            // Determine instance to add:
+            InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
+            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
+            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.SelectedTimePoint.Configuration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
+            if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
+                throw new Exception("No on relationship at all");
+            RelationshipSelectionAndInstancingView.DataContext = riVM;
+            if (riVM.OnRelationshipsMultiple.Count > 0)
+                RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
+            if (riVM.OnRelationshipsSingle.Count > 0)
+                RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
+
+            // Switch UI to next step (relation selection and instancing)
+            CurrentAdditionMode = AdditionMode.RelationSelectionAndInstancting;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
+            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
+        }
+
+        public void BackToTangibleObjectSelection()
+        {
+            CurrentAdditionMode = AdditionMode.ClassSelection;
+            TangibleObjectsView.Visibility = Visibility.Visible;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
+            InstanceOfObjectToAdd = null;
+            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
+            RelationshipSelectionAndInstancingView.DataContext = riVM;
+        }
+
+        public void UpdateObjectPosition(Vector3 vector)
+        {
+            this.InstanceOfObjectToAdd.Position = vector;
+            this.InstanceOfObjectToAdd.UpdateBoundingBoxAndShape(SystemStateTracker.world);
+        }
+
+        public void PlaceObjectAndToEntityAddition(Vector3 vector)
+        {
+            // this.InstanceOfObjectToAdd.Position = vector;
+            // Apply chosen results to timepoint
+
+            // Regenerate predicates based on newly applied configuration
+            // this.SelectedTimePoint.InstantiateRelationship(onRelationshipInstance);
+            // this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
+            // this.SelectedTimePoint.InstantiateRelationship(otherRelationshipInstance);
+            // this.SelectedTimePoint.InstantiateAtPredicateForInstance(InstanceOfObjectToAdd);
 
             // Update Detail view
             UpdateFillDetailView();
 
             InstanceOfObjectToAdd = null;
-            relationShipSelectionAndInstancing = null;
 
             CurrentAdditionMode = AdditionMode.ClassSelection;
             TangibleObjectsView.Visibility = Visibility.Visible;
             RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            ObjectPlacementView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
 
             ChangeUIToMainMenu();
         }

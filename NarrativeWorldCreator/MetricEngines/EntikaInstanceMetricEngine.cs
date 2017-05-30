@@ -19,7 +19,7 @@ namespace NarrativeWorldCreator.MetricEngines
             var valuedInstances = new List<EntikaInstanceValued>();
 
             // For each instance, create new entika instance valued 
-            foreach (var instance in currentNTP.GetEntikaInstancesWithoutFloor())
+            foreach (var instance in currentNTP.Configuration.GetEntikaInstancesWithoutFloor())
             {
                 valuedInstances.Add(new EntikaInstanceValued(instance));
             }
