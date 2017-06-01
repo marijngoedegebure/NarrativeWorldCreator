@@ -171,6 +171,7 @@ namespace NarrativeWorldCreator
             }
 
             this._currentRegionPage.UpdateFillDetailView();
+            this.drawTestRuler();
 
             drawBoxSelect();
 
@@ -181,6 +182,38 @@ namespace NarrativeWorldCreator
             GraphicsDevice.DepthStencilState = depth;
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
+        }
+
+        private void drawTestRuler()
+        {
+            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
+
+            basicEffect.World = SystemStateTracker.world;
+            basicEffect.View = SystemStateTracker.view;
+            basicEffect.Projection = SystemStateTracker.proj;
+            basicEffect.VertexColorEnabled = true;
+            
+            for (int i = -40; i <= 40; i+=10)
+            {
+                for (int j = -40; j <= 40; j+=10)
+                {
+                    Color c = Color.DarkGreen;
+                    if (i == 0 && j == 0)
+                    {
+                        c = Color.DarkBlue;
+                    }
+                    var quad = new Quad(new Vector3(i, j, 0), new Vector3(0, 0, 1), Vector3.Up, 0.25f, 0.25f, c);
+                    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+                    {
+                        pass.Apply();
+                        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+                            PrimitiveType.TriangleStrip,
+                            quad.Vertices,
+                            0,
+                            2);
+                    }
+                }
+            }
         }
 
         private void drawCentroidAndFocalPoint()
