@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace NarrativeWorldCreator.Solvers
     public class CudaGPUWrapper
     {
         [DllImport("Kernel.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr KernelWrapper(RelationshipStruct[] rss, PositionAndRotation[] currentConfig, [MarshalAs(UnmanagedType.Struct)] ref Surface srf, [MarshalAs(UnmanagedType.Struct)] ref gpuConfig gpuCfg);
+        internal static extern IntPtr KernelWrapper(RelationshipStruct[] rss, PositionAndRotation[] currentConfig, Rectangle[] clearances, Rectangle[] offlimits, Vertex[] vertices, Vertex[] surfaceRectangle, [MarshalAs(UnmanagedType.Struct)] ref Surface srf, [MarshalAs(UnmanagedType.Struct)] ref gpuConfig gpuCfg);
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
         public struct TargetRangeStruct
@@ -47,16 +48,37 @@ namespace NarrativeWorldCreator.Solvers
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        public struct Rectangle
+        {
+            public int point1Index;
+            public int point2Index;
+            public int point3Index;
+            public int point4Index;
+            public int SourceIndex;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        public struct Vertex
+        {
+            public double x;
+            public double y;
+            public double z;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public struct Surface
         {
             public int nObjs;
             public int nRelationships;
+            public int nClearances;
 
             // Weights
             public float WeightFocalPoint;
             public float WeightPairWise;
             public float WeightVisualBalance;
             public float WeightSymmetry;
+            public float WeightClearance;
+            public float WeightSurfaceArea;
 
             //Centroid
             public double centroidX;
@@ -99,6 +121,8 @@ namespace NarrativeWorldCreator.Solvers
             public float VisualBalanceCosts;
             public float FocalPointCosts;
             public float SymmetryCosts;
+            public float ClearanceCosts;
+            public float SurfaceAreaCosts;
         };
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -108,7 +132,7 @@ namespace NarrativeWorldCreator.Solvers
             public ResultCosts costs;
         };
 
-        public static List<GPUConfigurationResult> CudaGPUWrapperCall(Configuration configuration)
+        public static List<GPUConfigurationResult> CudaGPUWrapperCall(NarrativeTimePoint ntp, Configuration configuration)
         {
             var valuedRelationships = configuration.GetValuedRelationships();
             var instances = configuration.InstancedObjects;
@@ -116,25 +140,12 @@ namespace NarrativeWorldCreator.Solvers
             int N = instances.Count;
             int NRel = valuedRelationships.Count;
 
-            var surface = new Surface
-            {
-                nObjs = N,
-                nRelationships = NRel,
-                WeightFocalPoint = SystemStateTracker.WeightFocalPoint,
-                WeightPairWise = SystemStateTracker.WeightPairWise,
-                WeightVisualBalance = SystemStateTracker.WeightVisualBalance,
-                WeightSymmetry = SystemStateTracker.WeightSymmetry,
-                // TODO: allow input for centroid and focal
-                centroidX = SystemStateTracker.centroidX,
-                centroidY = SystemStateTracker.centroidY,
-                focalX = SystemStateTracker.focalX,
-                focalY = SystemStateTracker.focalY,
-                focalRot = SystemStateTracker.focalRot
-            };
-
             var currentConfig = new PositionAndRotation[N];
+            int numberOfClearances = 0;
             for (int i = 0; i < currentConfig.Length; i++)
             {
+                numberOfClearances += instances[i].Clearances.Count();
+
                 currentConfig[i] = new PositionAndRotation
                 {
                     x = instances[i].Position.X,
@@ -145,9 +156,93 @@ namespace NarrativeWorldCreator.Solvers
                     rotZ = instances[i].Rotation.Z,
                     frozen = instances[i].Frozen,
                     length = instances[i].BoundingBox.Max.X - instances[i].BoundingBox.Min.X,
-                    width = instances[i].BoundingBox.Max.Y - instances[i].BoundingBox.Min.Y
+                    width = instances[i].BoundingBox.Max.Y - instances[i].BoundingBox.Min.Y,
                 };
             }
+
+
+            var clearances = new Rectangle[numberOfClearances];
+            var offlimits = new Rectangle[N];
+            var vertices = new Vertex[numberOfClearances * 4 + N * 4];
+            var clearanceIndex = 0;
+            var vertexIndex = 0;
+            for (int i = 0; i < N; i++)
+            {
+                foreach (var clearance in instances[i].Clearances)
+                {
+                    foreach (var point in clearance.GetAllVertices())
+                    {
+                        vertices[vertexIndex] = new Vertex
+                        {
+                            x = point.X,
+                            y = point.Y,
+                            z = 0
+                        };
+                        vertexIndex++;
+                    }
+                    int startIndexVertex = vertexIndex - 4;
+                    clearances[clearanceIndex] = new Rectangle
+                    {
+                        SourceIndex = i,
+                        point1Index = startIndexVertex,
+                        point2Index = startIndexVertex + 1,
+                        point3Index = startIndexVertex + 2,
+                        point4Index = startIndexVertex + 3
+                    };
+                    clearanceIndex++;
+                }
+
+                // Create offlimits shape
+                var bbCorners = instances[i].BoundingBox.GetCorners();
+                for (int j = 0; j < 4; j++) {
+                    vertices[vertexIndex] = new Vertex
+                    {
+                        x = bbCorners[j].X,
+                        y = bbCorners[j].Y,
+                        z = bbCorners[j].Z
+                    };
+                    vertexIndex++;
+                }
+                int startIndex = vertexIndex - 4;
+                offlimits[i] = new Rectangle
+                {
+                    SourceIndex = i,
+                    point1Index = startIndex,
+                    point2Index = startIndex + 1,
+                    point3Index = startIndex + 2,
+                    point4Index = startIndex + 3
+                };
+            }
+
+
+
+            var surfaceRectangle = new Vertex[4];
+            var bb = EntikaInstance.GetBoundingBox(configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault().Polygon);
+            var corners = bb.GetCorners();
+            for (int i = 0; i < 4; i++)
+            {
+                surfaceRectangle[i].x = corners[i].X;
+                surfaceRectangle[i].y = corners[i].Y;
+                surfaceRectangle[i].z = corners[i].Z;
+            }
+
+            var surface = new Surface
+            {
+                nObjs = N,
+                nRelationships = NRel,
+                nClearances = numberOfClearances,
+                WeightFocalPoint = SystemStateTracker.WeightFocalPoint,
+                WeightPairWise = SystemStateTracker.WeightPairWise,
+                WeightVisualBalance = SystemStateTracker.WeightVisualBalance,
+                WeightSymmetry = SystemStateTracker.WeightSymmetry,
+                WeightClearance = SystemStateTracker.WeightClearance,
+                // TODO: allow input for centroid and focal
+                centroidX = SystemStateTracker.centroidX,
+                centroidY = SystemStateTracker.centroidY,
+                focalX = SystemStateTracker.focalX,
+                focalY = SystemStateTracker.focalY,
+                focalRot = SystemStateTracker.focalRot
+            };
 
             var rss = new RelationshipStruct[NRel];
             for (int i = 0; i < rss.Length; i++)
@@ -176,7 +271,7 @@ namespace NarrativeWorldCreator.Solvers
                 iterations = SystemStateTracker.iterations
             };
 
-            var pointer = KernelWrapper(rss, currentConfig, ref surface, ref gpuCfg);
+            var pointer = KernelWrapper(rss, currentConfig, clearances, offlimits, vertices, surfaceRectangle, ref surface, ref gpuCfg);
 
             List <GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
             GPUConfigurationResult temp = new GPUConfigurationResult();
@@ -190,6 +285,8 @@ namespace NarrativeWorldCreator.Solvers
                 temp.PairWiseCosts = r.costs.PairWiseCosts;
                 temp.SymmetryCosts = r.costs.SymmetryCosts;
                 temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
+                temp.ClearanceCosts = r.costs.ClearanceCosts;
+                temp.SurfaceAreaCosts = r.costs.SurfaceAreaCosts;
 
                 // Retrieve all points of result:
                 for (int k = 0; k < N; k++)
@@ -221,84 +318,6 @@ namespace NarrativeWorldCreator.Solvers
             //    Console.WriteLine();
             //}
             return configs;
-        }
-
-        public static void CudaGPUWrapperCallTestFunction()
-        {
-            const int N = 2;
-            const int NRel = 1;
-
-            var surface = new Surface
-            {
-                nObjs = N,
-                nRelationships = NRel,
-                WeightFocalPoint = -2.0f,
-                WeightPairWise = -2.0f,
-                WeightVisualBalance = 1.5f,
-                WeightSymmetry = -2.0f,
-                centroidX = 0.0,
-                centroidY = 0.0,
-                focalX = 5.0,
-                focalY = 5.0,
-                focalRot = 0.0
-            };
-
-            var currentConfig = new PositionAndRotation[N];
-            for (int i = 0; i < currentConfig.Length; i++)
-            {
-                currentConfig[i] = new PositionAndRotation
-                {
-                    x = 2.0,
-                    y = 2.0,
-                    z = 0.0,
-                    rotX = 0.0,
-                    rotY = 0.0,
-                    rotZ = 0.0,
-                    frozen = false,
-                    length = 1.0,
-                    width = 1.0
-                };
-            }
-
-
-            var targetRange = new TargetRangeStruct
-            {
-                TargetRangeStart = 2.0,
-                TargetRangeEnd = 4.0
-            };
-
-            var rss = new RelationshipStruct[NRel];
-            for (int i = 0; i < rss.Length; i++)
-            {
-                rss[i] = new RelationshipStruct
-                {
-                    TargetRange = targetRange,
-                    SourceIndex = 0,
-                    TargetIndex = 1,
-                    DegreesOfAtrraction = 2.0
-                };
-            }
-
-            gpuConfig gpuCfg = new gpuConfig
-            {
-                gridxDim = 1,
-                gridyDim = 0,
-                blockxDim = 1,
-                blockyDim = 0,
-                blockzDim = 0,
-                iterations = 10
-            };
-
-            Point[] result = new Point[(gpuCfg.gridxDim) * N];
-            var pointer = KernelWrapper(rss, currentConfig, ref surface, ref gpuCfg);
-            for (int j = 0; j < result.Length; j++)
-            {
-                IntPtr data = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Point)) * j);
-                Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));
-                result[j] = ms;
-                Console.WriteLine();
-            }
-            return;
         }
     }
 }

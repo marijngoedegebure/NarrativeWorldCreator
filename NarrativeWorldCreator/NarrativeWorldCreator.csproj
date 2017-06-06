@@ -39,18 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alea, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ba52afc3c2e933d6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Alea.3.0.2\lib\net45\Alea.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Alea.IL, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ba52afc3c2e933d6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Alea.3.0.2\lib\net45\Alea.IL.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Alea.Parallel, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ba52afc3c2e933d6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Alea.3.0.2\lib\net45\Alea.Parallel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="CudaRand, Version=8.0.13.0, Culture=neutral, PublicKeyToken=fe981579f4e9a066, processorArchitecture=AMD64">
       <HintPath>..\packages\ManagedCuda-CURAND.8.0.13\lib\net45\CudaRand.dll</HintPath>
       <Private>True</Private>
@@ -61,10 +49,6 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="FSharp.Core, Version=4.4.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FSharp.Core.4.1.17\lib\net45\FSharp.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ManagedCuda, Version=8.0.13.0, Culture=neutral, PublicKeyToken=242d898828717aa0, processorArchitecture=MSIL">
@@ -193,9 +177,7 @@
     <Compile Include="Solvers\CudaGPUWrapper.cs" />
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
-    <Compile Include="Solvers\PlacementSolver.cs" />
     <Compile Include="MetricEngines\TangibleObjectMetricEngine.cs" />
-    <Compile Include="Solvers\PlacementSolverGPU.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
@@ -413,13 +395,4 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
-  <Import Project="..\packages\Alea.3.0.2\build\Alea.targets" Condition="Exists('..\packages\Alea.3.0.2\build\Alea.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Alea.3.0.2\build\Alea.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Alea.3.0.2\build\Alea.targets'))" />
-    <Error Condition="!Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
-  </Target>
-  <Import Project="..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />
 </Project>

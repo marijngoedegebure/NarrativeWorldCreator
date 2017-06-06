@@ -5,6 +5,7 @@ using Semantics.Entities;
 using System.Collections.Generic;
 using System;
 using Common;
+using NarrativeWorldCreator.Solvers;
 
 namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 {
@@ -26,22 +27,13 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 
         public List<RelationshipInstance> RelationshipsAsTarget { get; set; }
 
-        public bool Frozen { get; set; }
+        public List<Polygon> Clearances { get; set; }
 
-        public EntikaInstance(string name, Vector3 pos, Model model, Matrix world)
-        {
-            SetupLists();
-            this.Name = name + EntikaInstanceCount.Count;
-            EntikaInstanceCount.Count++;
-            this.TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
-            this.Position = pos;
-            this.Rotation = Vector3.Zero;
-            this.Model = model;
-            UpdateBoundingBoxAndShape(world);
-        }
+        public bool Frozen { get; set; }
 
         private void SetupLists()
         {
+            Clearances = new List<Polygon>();
             RelationshipsAsSource = new List<RelationshipInstance>();
             RelationshipsAsTarget = new List<RelationshipInstance>();
         }
@@ -66,11 +58,20 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             SetupLists();
             this.Name = to.DefaultName + EntikaInstanceCount.Count;
             EntikaInstanceCount.Count++;
-            TangibleObject = to;
+            this.TangibleObject = to;
             this.Model = SystemStateTracker.DefaultModel;
             this.BoundingBox = GetBoundingBox(this.Model, SystemStateTracker.world);
+            foreach (SpaceValued space in this.TangibleObject.Spaces)
+            {
+                if (space.Space.DefaultName.Equals(Constants.Clearance))
+                {
+                    // Clearance should always be described as a extruded line, this implies three parameters and results in four coordinates which can be used as a definition of shape
+                    this.Clearances.Add(new Polygon(HelperFunctions.ParseShapeDescription(space.ShapeDescription, this.BoundingBox)));
+                }
+            }
         }
 
+        // Constructor used to copy an entika instance
         public EntikaInstance(EntikaInstance obj)
         {
             SetupLists();
@@ -87,26 +88,34 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 
         public void UpdateBoundingBoxAndShape(Matrix? world)
         {
-            // Initialize minimum and maximum corners of the bounding box to max and min values
-            Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-            Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-
+            BoundingBox bb;
             // For each mesh of the model
             if (Model != null && world.HasValue)
             {
-                var bb = GetBoundingBox(Model, world.GetValueOrDefault());
+                bb = GetBoundingBox(Model, world.GetValueOrDefault());
             }
+            // Or using the declared polygon
             else
             {
-                foreach (var point in Polygon.GetAllVertices())
-                {
-                    Vector3 transformedPosition = new Vector3((float)point.X, (float)point.Y, 0);
-
-                    min = Vector3.Min(min, transformedPosition);
-                    max = Vector3.Max(max, transformedPosition);
-                }
-                this.BoundingBox = new BoundingBox(min, max);
+                bb = GetBoundingBox(this.Polygon);
             }
+            if (bb != null)
+                this.BoundingBox = bb;
+        }
+
+        internal static BoundingBox GetBoundingBox(Polygon polygon)
+        {
+            Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+            Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+
+            foreach (var point in polygon.GetAllVertices())
+            {
+                Vector3 transformedPosition = new Vector3((float)point.X, (float)point.Y, 0);
+
+                min = Vector3.Min(min, transformedPosition);
+                max = Vector3.Max(max, transformedPosition);
+            }
+            return new BoundingBox(min, max);
         }
 
         public static BoundingBox GetBoundingBox(Model m, Matrix world)

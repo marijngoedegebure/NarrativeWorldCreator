@@ -22,6 +22,8 @@ namespace NarrativeWorldCreator.Models
 
         public const string Floor = "floor";
 
+        public const string Clearance = "clearance";
+
         public enum RelationshipBooleanTypes
         {
             On,

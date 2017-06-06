@@ -40,8 +40,6 @@ namespace NarrativeWorldCreator
 
             GameSemanticsEngine.GameSemanticsEngine.Initialize();
 
-            CudaGPUWrapper.CudaGPUWrapperCallTestFunction();
-
             // Entika test code
             //List<PhysicalEntity> allPhysicalEntities = DatabaseSearch.GetNodes<PhysicalEntity>(true);
             //List<PhysicalObject> allPhysicalObjects = DatabaseSearch.GetNodes<PhysicalObject>(true);

@@ -67,7 +67,7 @@ namespace NarrativeWorldCreator
 
         internal void GenerateConfigurations()
         {
-            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.WorkInProgressConfiguration);
+            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint, this.WorkInProgressConfiguration);
         }
 
         internal void SuggestNewPositions()

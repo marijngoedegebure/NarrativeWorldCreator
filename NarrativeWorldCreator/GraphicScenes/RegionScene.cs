@@ -171,7 +171,7 @@ namespace NarrativeWorldCreator
             }
 
             this._currentRegionPage.UpdateFillDetailView();
-            this.drawTestRuler();
+            // this.drawTestRuler();
 
             drawBoxSelect();
 
@@ -503,6 +503,22 @@ namespace NarrativeWorldCreator
             var bbb = BoundingBoxBuffers.CreateBoundingBoxBuffers(instance.BoundingBox, GraphicsDevice);
 
             DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition);
+            // Draw clearance quads:
+            foreach (var clearance in instance.Clearances)
+            {
+                Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+                Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+                foreach (var point in clearance.GetAllVertices())
+                {
+                    Vector3 transformedPosition = new Vector3((float)point.X, (float)point.Y, 0);
+
+                    min = Vector3.Min(min, transformedPosition);
+                    max = Vector3.Max(max, transformedPosition);
+                }
+                var bb = new BoundingBox(min, max);
+                var bbb2 = BoundingBoxBuffers.CreateBoundingBoxBuffers(bb, GraphicsDevice);
+                DrawBoundingBox(bbb2, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition);
+            }
         }
 
         private void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection, Vector3 position)
