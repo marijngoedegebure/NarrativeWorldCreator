@@ -56,9 +56,66 @@ namespace NarrativeWorldCreator.Models
             { "right", RelationshipValuedTypes.Right }
         };
 
+        public static string ModelPath = "model path";
+
+        public static string All = "All";
+        public static string Decoration = "Decoration";
+        public static string Required = "Required";
+
         public static bool IsRelationshipValued(string name)
         {
             return RelationshipValuedDictionary.Keys.Contains(name);
         }
+
+        // All Metric Weights
+        public static Dictionary<string, double> AllMetricWeights = new Dictionary<string, double>
+        {
+            { "incoming edges", 1 },
+            { "outgoing edges", 1 },
+            { "incoming decorative edges", 1 },
+            { "outgoing decorative edges", 1 },
+            { "incoming required edges", 1 },
+            { "outgoing required edges", 1 },
+            { "incoming edges available", 1 },
+            { "outgoing edges available", 1 },
+            { "required", 1 },
+            { "required dependency", 1 },
+            { "decoration weight", 1 },
+            { "area", 1 }
+        };
+
+        // Required Metric Weights
+        public static Dictionary<string, double> RequiredMetricWeights = new Dictionary<string, double>
+        {
+            { "incoming edges", 1 },
+            { "outgoing edges", 1 },
+            { "incoming decorative edges", 1 },
+            { "outgoing decorative edges", 1 },
+            { "incoming required edges", 1 },
+            { "outgoing required edges", 1 },
+            { "incoming edges available", 1 },
+            { "outgoing edges available", 1 },
+            { "required", 10 },
+            { "required dependency", 1 },
+            { "decoration weight", 1 },
+            { "area", 1 }
+        };
+
+        // Decoration Metric Weights
+        public static Dictionary<string, double> DecorationMetricWeights = new Dictionary<string, double>
+        {
+            { "incoming edges", 1 },
+            { "outgoing edges", 1 },
+            { "incoming decorative edges", 1 },
+            { "outgoing decorative edges", 1 },
+            { "incoming required edges", 1 },
+            { "outgoing required edges", 1 },
+            { "incoming edges available", 1 },
+            { "outgoing edges available", 1 },
+            { "required", 1 },
+            { "required dependency", 1 },
+            { "decoration weight", 10 },
+            { "area", 1 }
+        };
     }
 }

@@ -34,7 +34,7 @@ namespace NarrativeWorldCreator.Views
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
             }
-            (this.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(regionPage.SelectedEntikaInstances);
+            regionPage.RefreshSelectedObjectView();
         }
 
         private RegionPage GetRegionPage()
@@ -51,7 +51,15 @@ namespace NarrativeWorldCreator.Views
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;
             }
-            (this.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(regionPage.SelectedEntikaInstances);
+            regionPage.RefreshSelectedObjectView();
+        }
+
+        private void btnRemoveSelectedInstances(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            var data = this.DataContext as SelectedObjectDetailViewModel;
+            regionPage.RemoveSelectedInstances(data.SelectedInstancedEntikaInstances.ToList());
+            regionPage.RefreshSelectedObjectView();
         }
     }
 }

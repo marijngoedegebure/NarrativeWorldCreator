@@ -28,8 +28,8 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
-        private ObservableCollection<Predicate> _predicates;
-        public ObservableCollection<Predicate> Predicates
+        private ObservableCollection<GoalViewModel> _predicates;
+        public ObservableCollection<GoalViewModel> Predicates
         {
             get
             {
@@ -67,12 +67,25 @@ namespace NarrativeWorldCreator.ViewModel
         internal void LoadObjects(LocationNode selectedNode, NarrativeTimePoint ntp)
         {
             this.NarrativeTimePoint = ntp;
-            ObservableCollection<Predicate> npioc = new ObservableCollection<Predicate>();
-
-            foreach (var pi in ntp.PredicatesFilteredByCurrentLocation)
+            ObservableCollection<GoalViewModel> npioc = new ObservableCollection<GoalViewModel>();
+            var remainingPredicates = ntp.GetRemainingPredicates();
+            var temp = new Predicate[remainingPredicates.Count];
+            remainingPredicates.CopyTo(temp);
+            var copyOfRemaining = temp.ToList();
+            // Determine remaining predicates
+            foreach (var pred in ntp.PredicatesFilteredByCurrentLocation)
             {
-                npioc.Add(pi);
+                if (copyOfRemaining.Contains(pred))
+                {
+                    copyOfRemaining.Remove(pred);
+                    npioc.Add(new GoalViewModel(pred, false));
+                }
+                else
+                {
+                    npioc.Add(new GoalViewModel(pred, true));
+                }
             }
+
             this.Predicates = npioc;
 
             ObservableCollection<Predicate> fpoc = new ObservableCollection<Predicate>();

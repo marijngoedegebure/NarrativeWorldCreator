@@ -56,7 +56,6 @@
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
@@ -113,14 +112,11 @@
                             <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="GenerateConfigurationsView2"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_20" Header="Fill details" Visibility="Collapsed">
-                        <views:FillDetailView x:Name="FillDetailView" Loaded = "FillDetailView_Loaded"/>
-                    </TabItem>
                     <TabItem Name="region_filling_21" Header="Region detail" Visibility="Collapsed">
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
                     <TabItem Name="region_filling_22" Header="Selection detail" Visibility="Collapsed">
-                        <views:SelectedObjectDetailView Grid.Column="0" Grid.Row="1" x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
+                        <views:SelectedObjectDetailView x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
                     </TabItem>
                 </TabControl>
             </Grid>

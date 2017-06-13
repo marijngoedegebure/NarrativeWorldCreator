@@ -38,34 +38,46 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Content="Weights:" Grid.Row="0" Grid.Column="0"/>
-            <Label Content="Focal point weight:" Grid.Row="1" Grid.Column="0"/>
-            <TextBox Name="WeightFocalPoint" Grid.Row="1" Grid.Column="1" />
-            <Label Content="Pair wise weight:" Grid.Row="2" Grid.Column="0"/>
-            <TextBox Name="WeightPairWise" Grid.Row="2" Grid.Column="1" />
-            <Label Content="Visual balance weight:" Grid.Row="3" Grid.Column="0"/>
-            <TextBox Name="WeightVisualBalance" Grid.Row="3" Grid.Column="1" />
-            <Label Content="Symmetry weight:" Grid.Row="4" Grid.Column="0"/>
-            <TextBox Name="WeightSymmetry" Grid.Row="4" Grid.Column="1" />
+            <DockPanel VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2" Grid.Row="1">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Focal point weight:</Label>
+                <TextBox Text="{Binding ElementName=SliderWeightFocalPoint, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Minimum="-5" Maximum="5" Name="SliderWeightFocalPoint" />
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2" Grid.Row="2">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Pair wise weight:</Label>
+                <TextBox Text="{Binding ElementName=SliderWeightPairWise, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Minimum="-5" Maximum="5" Name="SliderWeightPairWise" />
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2" Grid.Row="3">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Pair wise weight:</Label>
+                <TextBox Text="{Binding ElementName=SliderWeightVisualBalance, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Minimum="-5" Maximum="5" Name="SliderWeightVisualBalance" />
+            </DockPanel>
+            <DockPanel VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2" Grid.Row="4">
+                <Label DockPanel.Dock="Left" FontWeight="Bold">Pair wise weight:</Label>
+                <TextBox Text="{Binding ElementName=SliderWeightSymmetry, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                <Slider Minimum="-5" Maximum="5" Name="SliderWeightSymmetry" />
+            </DockPanel>
 
             <Label Content="Centroid:" Grid.Row="5" Grid.Column="0"/>
             <Label Content="X:" Grid.Row="6" Grid.Column="0"/>
-            <TextBox Name="centroidX" Grid.Row="6" Grid.Column="1" />
+            <TextBox Name="centroidX" Grid.Row="6" Grid.Column="1" TextChanged="centroidX_TextChanged" />
             <Label Content="Y:" Grid.Row="7" Grid.Column="0"/>
-            <TextBox Name="centroidY" Grid.Row="7" Grid.Column="1" />
+            <TextBox Name="centroidY" Grid.Row="7" Grid.Column="1" TextChanged="centroidY_TextChanged" />
 
             <Label Content="Focal:" Grid.Row="8" Grid.Column="0"/>
             <Label Content="X:" Grid.Row="9" Grid.Column="0"/>
-            <TextBox Name="focalX" Grid.Row="9" Grid.Column="1" />
+            <TextBox Name="focalX" Grid.Row="9" Grid.Column="1" TextChanged="focalX_TextChanged" />
             <Label Content="Y:" Grid.Row="10" Grid.Column="0"/>
-            <TextBox Name="focalY" Grid.Row="10" Grid.Column="1" />
+            <TextBox Name="focalY" Grid.Row="10" Grid.Column="1" TextChanged="focalY_TextChanged" />
             <Label Content="Rotation:" Grid.Row="11" Grid.Column="0"/>
-            <TextBox Name="focalRot" Grid.Row="11" Grid.Column="1" />
+            <TextBox Name="focalRot" Grid.Row="11" Grid.Column="1" TextChanged="focalRot_TextChanged" />
 
             <Label Content="Number of configurations generated:" Grid.Row="12" Grid.Column="0"/>
             <TextBox Name="gridxDim" Grid.Row="13" Grid.Column="1" />
 
             <Button Grid.Row="14" Grid.Column="0" Content="Reset view" Click="ResetSelectionList"/>
-            <Button Grid.Row="14" Grid.Column="1" Content="Refresh configurations" Click="RefreshConfigurations"/>
+            <Button Grid.Row="14" Grid.Column="1" Content="Refresh configurations" Click="btnRefreshConfigurations"/>
             <Button Grid.Row="15" Grid.Column="0" Content="Back" Click="Back"/>
             <Button Grid.Row="15" Grid.Column="1" Content="Save selected configuration" Click="SaveConfiguration"/>
         </Grid>

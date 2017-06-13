@@ -27,11 +27,11 @@ namespace NarrativeWorldCreator.MetricEngines
             // For each instance, for each decorationType, calculate value
             foreach (var instance in valuedInstances)
             {
-                var AreaMetric = new Metric(AreaMT, CalculateAreaMetric(instance));
+                var AreaMetric = new Metric(AreaMT, CalculateAreaMetric(instance), 1.0);
                 instance.Metrics.Add(AreaMetric);
-                var IncEdgesMetric = new Metric(IncEdgesMT, CalculateIncEdgesMetric(instance));
+                var IncEdgesMetric = new Metric(IncEdgesMT, CalculateIncEdgesMetric(instance), 1.0);
                 instance.Metrics.Add(IncEdgesMetric);
-                var OutEdgesMetric = new Metric(OutEdgesMT, CalculateOutEdgesMetric(instance));
+                var OutEdgesMetric = new Metric(OutEdgesMT, CalculateOutEdgesMetric(instance), 1.0);
                 instance.Metrics.Add(OutEdgesMetric);
 
 

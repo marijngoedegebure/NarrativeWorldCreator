@@ -11,13 +11,14 @@ namespace NarrativeWorldCreator
 {
     public class Camera3d
     {
-        public const float DEFAULTZOOM = 0.05f;
-        public const float DEFAULTMOVE = 5.0f;
+        public const float DEFAULTMOVEARROWS = 0.05f;
+        public const float DEFAULTZOOM = 2.0f;
         public const float SCROLLZOOMMODIFIER = 0.0005f;
         public const float NEARCLIP = 1.0f;
         public const float FARCLIP = 2000.0f;
         public static float VIEWANGLE = MathHelper.ToRadians(45.0f);
-        public static float MAXZOOM = 0.1f;
+        public static float MINZOOM = 1.6f;
+        public static float MAXZOOM = 100.0f;
 
         protected float _zoom; // Camera Zoom
         public Matrix _transform; // Matrix Transform
@@ -46,8 +47,13 @@ namespace NarrativeWorldCreator
         // Auxiliary function to move the camera
         public void Move(Vector3 amount)
         {
-            _pos += amount;
-            if (_pos.Z < Camera3d.MAXZOOM)
+            var zoomVector = new Vector3(_pos.Z, _pos.Z, 1);
+            _pos += amount * zoomVector;
+            if (_pos.Z < Camera3d.MINZOOM)
+            {
+                _pos.Z = Camera3d.MINZOOM;
+            }
+            if (_pos.Z > Camera3d.MAXZOOM)
             {
                 _pos.Z = Camera3d.MAXZOOM;
             }
@@ -57,16 +63,6 @@ namespace NarrativeWorldCreator
         {
             get { return _pos; }
             set { _pos = value; }
-        }
-
-        public Matrix get_transformation(GraphicsDevice graphicsDevice, float ViewportWidth, float ViewportHeight)
-        {
-            _transform =       // Thanks to o KB o for this solution
-              Matrix.CreateTranslation(new Vector3(-_pos.X, -_pos.Y, 0)) *
-                                         Matrix.CreateRotationZ(Rotation) *
-                                         Matrix.CreateScale(new Vector3(Zoom, Zoom, 1)) *
-                                         Matrix.CreateTranslation(new Vector3(ViewportWidth * 0.5f, ViewportHeight * 0.5f, 0));
-            return _transform;
         }
 
         public Vector3 getCameraLookAt()
@@ -89,27 +85,28 @@ namespace NarrativeWorldCreator
             // Handle Cam movement en zoom
             if (_keyboardState.IsKeyDown(Keys.Left))
             {
-                this.Move(new Vector3(-Camera3d.DEFAULTMOVE, 0.0f, 0.0f));
+                this.Move(new Vector3(-Camera3d.DEFAULTMOVEARROWS, 0.0f, 0.0f));
             }
             if (_keyboardState.IsKeyDown(Keys.Right))
             {
-                this.Move(new Vector3(Camera3d.DEFAULTMOVE, 0.0f, 0.0f));
+                this.Move(new Vector3(Camera3d.DEFAULTMOVEARROWS, 0.0f, 0.0f));
             }
             if (_keyboardState.IsKeyDown(Keys.Down))
             {
-                this.Move(new Vector3(0.0f, -Camera3d.DEFAULTMOVE, 0.0f));
+                this.Move(new Vector3(0.0f, -Camera3d.DEFAULTMOVEARROWS, 0.0f));
             }
             if (_keyboardState.IsKeyDown(Keys.Up))
             {
-                this.Move(new Vector3(0.0f, Camera3d.DEFAULTMOVE, 0.0f));
+                this.Move(new Vector3(0.0f, Camera3d.DEFAULTMOVEARROWS, 0.0f));
             }
             if (_keyboardState.IsKeyDown(Keys.OemMinus))
             {
-                this.Move(new Vector3(0.0f, 0.0f, Camera3d.DEFAULTMOVE));
+                // Adjust zoom level
+                this.Move(new Vector3(0.0f, 0.0f, Camera3d.DEFAULTZOOM));
             }
             if (_keyboardState.IsKeyDown(Keys.OemPlus))
             {
-                this.Move(new Vector3(0.0f, 0.0f, -Camera3d.DEFAULTMOVE));
+                this.Move(new Vector3(0.0f, 0.0f, -Camera3d.DEFAULTZOOM));
             }
         }
     }

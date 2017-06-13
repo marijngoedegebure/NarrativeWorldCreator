@@ -1,5 +1,7 @@
-﻿using NarrativeWorldCreator.Models.Metrics;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
+using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +48,30 @@ namespace NarrativeWorldCreator.Views
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
             return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Content.Equals(Constants.All))
+            {
+                var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
+                tovVM.LoadAll(regionPage.SelectedTimePoint);
+                this.DataContext = tovVM;
+            }
+            else if (rb.Content.Equals(Constants.Decoration))
+            {
+                var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
+                tovVM.LoadDecoration(regionPage.SelectedTimePoint);
+                this.DataContext = tovVM;
+            }
+            else if (rb.Content.Equals(Constants.Required))
+            {
+                var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
+                tovVM.LoadRequired(regionPage.SelectedTimePoint);
+                this.DataContext = tovVM;
+            }
         }
     }
 }

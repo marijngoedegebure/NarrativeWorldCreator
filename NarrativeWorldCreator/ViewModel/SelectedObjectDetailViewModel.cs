@@ -1,5 +1,8 @@
 ﻿
+using NarrativeWorldCreator.MetricEngines;
+using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,8 +16,8 @@ namespace NarrativeWorldCreator.ViewModel
     public class SelectedObjectDetailViewModel : INotifyPropertyChanged
     {
 
-        private ObservableCollection<EntikaInstance> _selectedInstancedEntikaInstances;
-        public ObservableCollection<EntikaInstance> SelectedInstancedEntikaInstances
+        private ObservableCollection<EntikaInstanceValued> _selectedInstancedEntikaInstances;
+        public ObservableCollection<EntikaInstanceValued> SelectedInstancedEntikaInstances
         {
             get
             {
@@ -35,12 +38,14 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void LoadSelectedInstances(List<EntikaInstance> selected)
+        internal void LoadSelectedInstances(List<EntikaInstance> selected, NarrativeTimePoint ntp)
         {
-            ObservableCollection<EntikaInstance> eisVMoc = new ObservableCollection<EntikaInstance>();
-            foreach (var instance in selected)
+            ObservableCollection<EntikaInstanceValued> eisVMoc = new ObservableCollection<EntikaInstanceValued>();
+            var listOfinstances = EntikaInstanceMetricEngine.GetDecorationOrderingEI(ntp);
+            foreach (var instance in listOfinstances)
             {
-                eisVMoc.Add(instance);
+                if (selected.Contains(instance.EntikaInstance))
+                    eisVMoc.Add(instance);
             }
             this.SelectedInstancedEntikaInstances = eisVMoc;
         }

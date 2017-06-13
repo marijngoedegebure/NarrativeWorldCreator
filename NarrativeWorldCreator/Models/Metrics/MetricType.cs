@@ -13,5 +13,10 @@ namespace NarrativeWorldCreator.Models.Metrics
         {
             this.Name = name;
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -39,20 +39,9 @@ namespace NarrativeWorldCreator.Views
             return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
-        private void btnRemoveSelectedInstances(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            System.Collections.IList items = (System.Collections.IList)EntikaInstancesSelectionIC.SelectedItems;
-            List<EntikaInstance> instances = items.Cast<EntikaInstance>().ToList();
-
-            regionPage.RemoveSelectedInstances(instances);
-        }
-
         private void btnSuggestNewPositions(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            //System.Collections.IList items = (System.Collections.IList)EntikaInstancesSelectionIC.SelectedItems;
-            //List<EntikaInstance> instances = items.Cast<EntikaInstance>().ToList();
             regionPage.SuggestNewPositions();
         }
     }

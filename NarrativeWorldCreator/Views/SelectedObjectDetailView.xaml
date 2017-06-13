@@ -11,160 +11,189 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ItemsControl Name="ToListView"
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl Name="ToListView"
             Grid.Column="0"
                   Grid.Row="0"
                   Margin="10" 
                   ItemsSource = "{Binding Path = SelectedInstancedEntikaInstances}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="10,10,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Name, StringFormat='Name: {0}' }" />
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding TangibleObject.DefaultName, StringFormat='Class: {0}' }" />
-                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Position, StringFormat='Position: {0}' }" />
-                        <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Frozen, StringFormat='Frozen: {0}' }" />
-                        <ItemsControl
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding EntikaInstance.Name, StringFormat='Name: {0}'}" />
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EntikaInstance.TangibleObject.DefaultName, StringFormat='Class: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding EntikaInstance.Position, StringFormat='Position: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding EntikaInstance.Rotation, StringFormat='Rotation: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding EntikaInstance.Frozen, StringFormat='Frozen: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
+                            <ItemsControl 
                             Grid.Column="0"
-                            Grid.Row="4"
-                            ItemsSource = "{Binding Path = RelationshipsAsSource}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding BaseRelationship.RelationshipType.DefaultName }" FontWeight="Bold" />
-                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Source.Name, StringFormat='Source: {0}' }" />
-                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Target.Name, StringFormat='Target: {0}' }" />
-                                        <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path = TargetRangeStart, Mode = OneWay, StringFormat='Target range start: {0}'}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=Valued}" Value="False">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Grid.Column="0" Grid.Row="4" Name="TargetRangeEnd" Text="{Binding Path = TargetRangeEnd, Mode = OneWay, StringFormat='Target range end: {0}'}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=Valued}" Value="False">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Grid.Column="0" Grid.Row="5" Name="Energy" Text="{Binding Path = Energy, Mode = OneWay, StringFormat='Energy: {0}'}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=Valued}" Value="False">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <ItemsControl
+                            Grid.Row="6"
+                            ItemsSource="{Binding Path=Metrics }">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Path=MetricType.Name, StringFormat='Metric type: {0}'}"/>
+                                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Value, StringFormat='Value: {0}'}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <ItemsControl
                             Grid.Column="0"
-                            Grid.Row="5"
-                            ItemsSource = "{Binding Path = RelationshipsAsTarget}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding BaseRelationship.RelationshipType.DefaultName }" FontWeight="Bold" />
-                                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Source.Name, StringFormat='Source: {0}' }" />
-                                        <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Target.Name, StringFormat='Target: {0}' }" />
-                                        <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path = TargetRangeStart, Mode = OneWay, StringFormat='Target range start: {0}'}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=Valued}" Value="False">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Grid.Column="0" Grid.Row="4" Name="TargetRangeEnd" Text="{Binding Path = TargetRangeEnd, Mode = OneWay, StringFormat='Target range end: {0}'}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=Valued}" Value="False">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                        <TextBlock Grid.Column="0" Grid.Row="5" Name="Energy" Text="{Binding Path = Energy, Mode = OneWay, StringFormat='Energy: {0}'}">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Visible"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Path=Valued}" Value="False">
-                                                            <Setter Property="Visibility" Value="Collapsed"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                            Grid.Row="7"
+                            ItemsSource = "{Binding Path = EntikaInstance.RelationshipsAsSource}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding BaseRelationship.RelationshipType.DefaultName }" FontWeight="Bold" />
+                                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Source.Name, StringFormat='Source: {0}' }" />
+                                            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Target.Name, StringFormat='Target: {0}' }" />
+                                            <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path = TargetRangeStart, Mode = OneWay, StringFormat='Target range start: {0}'}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Valued}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="0" Grid.Row="4" Name="TargetRangeEnd" Text="{Binding Path = TargetRangeEnd, Mode = OneWay, StringFormat='Target range end: {0}'}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Valued}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="0" Grid.Row="5" Name="Energy" Text="{Binding Path = Energy, Mode = OneWay, StringFormat='Energy: {0}'}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Valued}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <ItemsControl
+                            Grid.Column="0"
+                            Grid.Row="8"
+                            ItemsSource = "{Binding Path = EntikaInstance.RelationshipsAsTarget}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding BaseRelationship.RelationshipType.DefaultName }" FontWeight="Bold" />
+                                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Source.Name, StringFormat='Source: {0}' }" />
+                                            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Target.Name, StringFormat='Target: {0}' }" />
+                                            <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Path = TargetRangeStart, Mode = OneWay, StringFormat='Target range start: {0}'}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Valued}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="0" Grid.Row="4" Name="TargetRangeEnd" Text="{Binding Path = TargetRangeEnd, Mode = OneWay, StringFormat='Target range end: {0}'}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Valued}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="0" Grid.Row="5" Name="Energy" Text="{Binding Path = Energy, Mode = OneWay, StringFormat='Energy: {0}'}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Valued}" Value="False">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
         <Button Grid.Row="1" Grid.Column="0" x:Name="button1" Content="Freeze selected objects" Margin="10,10,0,0" Width="200" Click="btnFreeze"/>
         <Button Grid.Row="2" Grid.Column="0" x:Name="button2" Content="Unfreeze selected objects" Margin="10,10,0,0" Width="200" Click="btnUnFreeze"/>
+        <Button Grid.Row="3" Grid.Column="0" x:Name="button3" Content="Remove selected instances" Margin="10,10,0,0" Width="200" Click="btnRemoveSelectedInstances"/>
     </Grid>
 </UserControl>

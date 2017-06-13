@@ -184,8 +184,8 @@
     <Compile Include="GraphicScenes\RegionScene.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
-    <Compile Include="ViewModel\FillDetailViewModel.cs" />
     <Compile Include="ViewModel\GenerateConfigurationsViewModel.cs" />
+    <Compile Include="ViewModel\GoalViewModel.cs" />
     <Compile Include="ViewModel\GPUConfigurationResultViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
@@ -199,9 +199,6 @@
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsValuedViewModel.cs" />
     <Compile Include="ViewModel\Vector3ViewModel.cs" />
-    <Compile Include="Views\FillDetailView.xaml.cs">
-      <DependentUpon>FillDetailView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EntikaInstancesSelectionView.xaml.cs">
       <DependentUpon>EntikaInstancesSelectionView.xaml</DependentUpon>
     </Compile>
@@ -259,10 +256,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RegionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\FillDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

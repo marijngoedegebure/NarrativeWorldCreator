@@ -27,13 +27,13 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private void RefreshConfigurations(object sender, RoutedEventArgs e)
+        internal void RefreshConfigurations()
         {
             // Retrieve values of input fields (that may have changed) and pass them to systemstatetracker
-            SystemStateTracker.WeightFocalPoint = float.Parse(this.WeightFocalPoint.Text);
-            SystemStateTracker.WeightPairWise = float.Parse(this.WeightPairWise.Text);
-            SystemStateTracker.WeightSymmetry = float.Parse(this.WeightSymmetry.Text);
-            SystemStateTracker.WeightVisualBalance = float.Parse(this.WeightVisualBalance.Text);
+            SystemStateTracker.WeightFocalPoint = (float) this.SliderWeightFocalPoint.Value;
+            SystemStateTracker.WeightPairWise = (float) this.SliderWeightPairWise.Value;
+            SystemStateTracker.WeightSymmetry = (float)this.SliderWeightSymmetry.Value;
+            SystemStateTracker.WeightVisualBalance = (float)this.SliderWeightVisualBalance.Value;
             SystemStateTracker.centroidX = double.Parse(this.centroidX.Text);
             SystemStateTracker.centroidY = double.Parse(this.centroidY.Text);
             SystemStateTracker.focalX = double.Parse(this.focalX.Text);
@@ -104,6 +104,61 @@ namespace NarrativeWorldCreator.Views
             else
             {
                 regionPage.BackToRelationshipSelectionAndInstancing();
+            }
+        }
+
+        private void btnRefreshConfigurations(object sender, RoutedEventArgs e)
+        {
+            RefreshConfigurations();
+        }
+
+        private void centroidX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var value = 0.0f;
+            if (float.TryParse(textBox.Text, out value))
+            {
+                SystemStateTracker.centroidX = value;
+            }
+        }
+
+        private void centroidY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var value = 0.0f;
+            if (float.TryParse(textBox.Text, out value))
+            {
+                SystemStateTracker.centroidY = value;
+            }
+        }
+
+        private void focalX_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var value = 0.0f;
+            if (float.TryParse(textBox.Text, out value))
+            {
+                SystemStateTracker.focalX = value;
+            }
+        }
+
+        private void focalY_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var value = 0.0f;
+            if (float.TryParse(textBox.Text, out value))
+            {
+                SystemStateTracker.focalY = value;
+            }
+        }
+
+        private void focalRot_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var value = 0.0f;
+            if (float.TryParse(textBox.Text, out value))
+            {
+                SystemStateTracker.focalRot = value;
             }
         }
     }

@@ -10,11 +10,18 @@ namespace NarrativeWorldCreator.Models.Metrics
     {
         public MetricType MetricType { get; set; }
         public double Value { get; set; }
+        public double Weight { get; set; }
 
-        public Metric(MetricType mt, double value)
+        public Metric(MetricType mt, double value, double weight)
         {
             this.MetricType = mt;
             this.Value = value;
+            this.Weight = weight;
+        }
+
+        public override string ToString()
+        {
+            return MetricType.ToString() + " " + Value + " " + Weight;
         }
     }
 }

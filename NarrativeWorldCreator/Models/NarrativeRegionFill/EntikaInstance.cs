@@ -30,6 +30,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public List<Polygon> Clearances { get; set; }
 
         public bool Frozen { get; set; }
+        public string ModelPath { get; set; }
 
         private void SetupLists()
         {
@@ -59,8 +60,13 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             this.Name = to.DefaultName + EntikaInstanceCount.Count;
             EntikaInstanceCount.Count++;
             this.TangibleObject = to;
-            this.Model = SystemStateTracker.DefaultModel;
-            this.BoundingBox = GetBoundingBox(this.Model, SystemStateTracker.world);
+            foreach (var att in to.Attributes)
+            {
+                if (att.Node.DefaultName.Equals(Constants.ModelPath))
+                {
+                    this.ModelPath = att.Value.ToString();
+                }
+            }
             foreach (SpaceValued space in this.TangibleObject.Spaces)
             {
                 if (space.Space.DefaultName.Equals(Constants.Clearance))
@@ -83,7 +89,11 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             if (obj.Polygon != null)
                 this.Polygon = new Polygon(obj.Polygon.GetAllVertices());
             this.BoundingBox = new BoundingBox(obj.BoundingBox.Min, obj.BoundingBox.Max);
-            this.Frozen = obj.Frozen;        
+            this.Frozen = obj.Frozen;
+            foreach (var clearance in obj.Clearances)
+            {
+                this.Clearances.Add(new Polygon(clearance.GetAllVertices()));
+            }
         }
 
         public void UpdateBoundingBoxAndShape(Matrix? world)
@@ -124,8 +134,11 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 
             var worldTransform = world;
+            Matrix[] transforms = new Matrix[m.Bones.Count];
+            m.CopyAbsoluteBoneTransformsTo(transforms);
             foreach (ModelMesh mesh in m.Meshes)
             {
+                worldTransform = transforms[mesh.ParentBone.Index] * world;
                 foreach (ModelMeshPart meshPart in mesh.MeshParts)
                 {
                     // Vertex buffer parameters

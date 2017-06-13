@@ -168,50 +168,54 @@ namespace NarrativeWorldCreator.Solvers
             var vertexIndex = 0;
             for (int i = 0; i < N; i++)
             {
-                foreach (var clearance in instances[i].Clearances)
+                if (!instances[i].Name.Equals(Constants.Floor))
                 {
-                    foreach (var point in clearance.GetAllVertices())
+                    foreach (var clearance in instances[i].Clearances)
+                    {
+                        foreach (var point in clearance.GetAllVertices())
+                        {
+                            vertices[vertexIndex] = new Vertex
+                            {
+                                x = point.X,
+                                y = point.Y,
+                                z = 0
+                            };
+                            vertexIndex++;
+                        }
+                        int startIndexVertex = vertexIndex - 4;
+                        clearances[clearanceIndex] = new Rectangle
+                        {
+                            SourceIndex = i,
+                            point1Index = startIndexVertex,
+                            point2Index = startIndexVertex + 1,
+                            point3Index = startIndexVertex + 2,
+                            point4Index = startIndexVertex + 3
+                        };
+                        clearanceIndex++;
+                    }
+
+                    // Create offlimits shape
+                    var bbCorners = instances[i].BoundingBox.GetCorners();
+                    for (int j = 0; j < 4; j++)
                     {
                         vertices[vertexIndex] = new Vertex
                         {
-                            x = point.X,
-                            y = point.Y,
-                            z = 0
+                            x = bbCorners[j].X,
+                            y = bbCorners[j].Y,
+                            z = bbCorners[j].Z
                         };
                         vertexIndex++;
                     }
-                    int startIndexVertex = vertexIndex - 4;
-                    clearances[clearanceIndex] = new Rectangle
+                    int startIndex = vertexIndex - 4;
+                    offlimits[i] = new Rectangle
                     {
                         SourceIndex = i,
-                        point1Index = startIndexVertex,
-                        point2Index = startIndexVertex + 1,
-                        point3Index = startIndexVertex + 2,
-                        point4Index = startIndexVertex + 3
+                        point1Index = startIndex,
+                        point2Index = startIndex + 1,
+                        point3Index = startIndex + 2,
+                        point4Index = startIndex + 3
                     };
-                    clearanceIndex++;
                 }
-
-                // Create offlimits shape
-                var bbCorners = instances[i].BoundingBox.GetCorners();
-                for (int j = 0; j < 4; j++) {
-                    vertices[vertexIndex] = new Vertex
-                    {
-                        x = bbCorners[j].X,
-                        y = bbCorners[j].Y,
-                        z = bbCorners[j].Z
-                    };
-                    vertexIndex++;
-                }
-                int startIndex = vertexIndex - 4;
-                offlimits[i] = new Rectangle
-                {
-                    SourceIndex = i,
-                    point1Index = startIndex,
-                    point2Index = startIndex + 1,
-                    point3Index = startIndex + 2,
-                    point4Index = startIndex + 3
-                };
             }
 
 

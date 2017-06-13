@@ -38,7 +38,33 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(NarrativeTimePoint ntp)
+        public void LoadAll(NarrativeTimePoint ntp)
+        {
+            ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            foreach (var to in listOfValuedTangibleObjects)
+            {
+                if (!to.TangibleObject.DefaultName.Equals("floor"))
+                    octo.Add(to);
+            }
+            octo.OrderBy(to => to.EndValue);
+            TangibleObjectsValued = octo;
+        }
+
+        internal void LoadRequired(NarrativeTimePoint ntp)
+        {
+            ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetRequiredOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            foreach (var to in listOfValuedTangibleObjects)
+            {
+                if (!to.TangibleObject.DefaultName.Equals("floor"))
+                    octo.Add(to);
+            }
+            octo.OrderBy(to => to.EndValue);
+            TangibleObjectsValued = octo;
+        }
+
+        internal void LoadDecoration(NarrativeTimePoint ntp)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
             var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, ntp.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
@@ -47,6 +73,7 @@ namespace NarrativeWorldCreator.ViewModel
                 if (!to.TangibleObject.DefaultName.Equals("floor"))
                     octo.Add(to);
             }
+            octo.OrderBy(to => to.EndValue);
             TangibleObjectsValued = octo;
         }
     }

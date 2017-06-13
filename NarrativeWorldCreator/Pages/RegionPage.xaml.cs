@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
@@ -70,6 +71,16 @@ namespace NarrativeWorldCreator
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint, this.WorkInProgressConfiguration);
         }
 
+        internal void RefreshSelectedObjectView()
+        {
+            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.SelectedTimePoint.Configuration.InstancedObjects.Contains(sei)).ToList();
+            foreach ( var removal in removalinstances)
+            {
+                this.SelectedEntikaInstances.Remove(removal);
+            }
+            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
+        }
+
         internal void SuggestNewPositions()
         {
             this.WorkInProgressConfiguration = new Configuration();
@@ -108,7 +119,7 @@ namespace NarrativeWorldCreator
             SelectedEntikaInstances = new List<EntikaInstance>();
         }
 
-        internal void RemoveSelectedInstances(List<EntikaInstance> instances)
+        internal void RemoveSelectedInstances(List<EntikaInstanceValued> instances)
         {
             var relationsToRemove = new List<RelationshipInstance>();
             // Determine relationships to delete
@@ -116,11 +127,11 @@ namespace NarrativeWorldCreator
             {
                 foreach (var relation in this.SelectedTimePoint.Configuration.InstancedRelations)
                 {
-                    if (relation.Source.Equals(instanceToRemove))
+                    if (relation.Source.Equals(instanceToRemove.EntikaInstance))
                     {
                         relationsToRemove.Add(relation);
                     }
-                    else if (relation.Target.Equals(instanceToRemove))
+                    else if (relation.Target.Equals(instanceToRemove.EntikaInstance))
                     {
                         relationsToRemove.Add(relation);
                     }
@@ -136,12 +147,13 @@ namespace NarrativeWorldCreator
             // Remove instances
             foreach (var instanceToRemove in instances)
             {
-                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove);
+                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove.EntikaInstance);
             }
 
             // Return to changing menu
+            this.RefreshSelectedObjectView();
+            this.SelectedTimePoint.RegeneratePredicates();
             UpdateEntikaInstancesSelectionView();
-            ChangeUIToChange();
         }
 
         public void SaveInstancingOfRelationsAndGotoPlacement(RelationshipSelectionAndInstancingViewModel rivm)
@@ -257,16 +269,17 @@ namespace NarrativeWorldCreator
             GenerateConfigurationsViewModel gcVM = new GenerateConfigurationsViewModel();
             gcVM.Load(new List<GPUConfigurationResult>());
             view.DataContext = gcVM;
-            view.WeightFocalPoint.Text    = SystemStateTracker.WeightFocalPoint.ToString();
-            view.WeightPairWise.Text      = SystemStateTracker.WeightPairWise.ToString();
-            view.WeightSymmetry.Text      = SystemStateTracker.WeightSymmetry.ToString();
-            view.WeightVisualBalance.Text = SystemStateTracker.WeightVisualBalance.ToString();
+            view.SliderWeightFocalPoint.Value = SystemStateTracker.WeightFocalPoint;
+            view.SliderWeightPairWise.Value = SystemStateTracker.WeightPairWise;
+            view.SliderWeightSymmetry.Value = SystemStateTracker.WeightSymmetry;
+            view.SliderWeightVisualBalance.Value = SystemStateTracker.WeightVisualBalance;
             view.centroidX.Text           = SystemStateTracker.centroidX.ToString();
             view.centroidY.Text           = SystemStateTracker.centroidY.ToString();
             view.focalX.Text              = SystemStateTracker.focalX.ToString();
             view.focalY.Text              = SystemStateTracker.focalY.ToString();
             view.focalRot.Text            = SystemStateTracker.focalRot.ToString();
             view.gridxDim.Text            = SystemStateTracker.gridxDim.ToString();
+            view.RefreshConfigurations();
         }
 
         public void BackToRelationshipSelectionAndInstancing()
@@ -329,9 +342,6 @@ namespace NarrativeWorldCreator
             // Regenerate predicates based on newly applied configuration
             this.SelectedTimePoint.RegeneratePredicates();
 
-            // Update Detail view
-            UpdateFillDetailView();
-
 
             CurrentFillingMode = FillingMode.ClassSelection;
             TangibleObjectsView.Visibility = Visibility.Visible;
@@ -353,13 +363,16 @@ namespace NarrativeWorldCreator
 
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();
-        }
+            SelectedGPUConfigurationResult = -1;
+            GeneratedConfigurations = new List<GPUConfigurationResult>();
+    }
 
         private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
         {
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.Load(this.SelectedTimePoint);
+            toVM.LoadAll(this.SelectedTimePoint);
             TangibleObjectsView.DataContext = toVM;
+            TangibleObjectsView.DefaultRB.IsChecked = true;
         }
 
         private void ModeControl_Loaded(object sender, RoutedEventArgs e)
@@ -402,6 +415,7 @@ namespace NarrativeWorldCreator
         {
             SelectedObjectDetailViewModel selectedObjectViewModelObject =
                new SelectedObjectDetailViewModel();
+            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
             SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
         }
 
@@ -426,41 +440,20 @@ namespace NarrativeWorldCreator
             }
             else
                 this.SelectedEntikaInstances.Remove(ieo);
-            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
-        }
-
-        private void FillDetailView_Loaded(object sender, RoutedEventArgs e)
-        {
-            FillDetailViewModel fillDetailVM = new FillDetailViewModel();
-            fillDetailVM.Load(this.SelectedTimePoint);
-
-            FillDetailView.DataContext = fillDetailVM;
-        }
-
-        public void UpdateFillDetailView()
-        {
-            (FillDetailView.DataContext as FillDetailViewModel).Load(this.SelectedTimePoint);
+            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
         }
 
         public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
+            this.RefreshSelectedObjectView();
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
-            UpdateFillDetailView();
         }
 
         private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new GraphPage());
         }
-
-        //internal void fillDetailView()
-        //{
-        //    narrative_location_name.Content = selectedNode.LocationName;
-        //    number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeEventsOfLocation(selectedNode.LocationName).Distinct().Count();
-        //    number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.CharacterTypeName, selectedNode.LocationName).Distinct().Count();
-        //    number_narrative_objects.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfTypeOfLocation(SystemStateTracker.ObjectTypeName, selectedNode.LocationName).Distinct().Count();
-        //}
 
         private void changeModes(RegionPageMode newMode)
         {
@@ -479,7 +472,6 @@ namespace NarrativeWorldCreator
             region_filling_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            region_filling_20.Visibility = Visibility.Visible;
             region_filling_21.Visibility = Visibility.Visible;
             region_filling_22.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 1;
@@ -496,7 +488,6 @@ namespace NarrativeWorldCreator
             region_filling_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            region_filling_20.Visibility = Visibility.Collapsed;
             region_filling_21.Visibility = Visibility.Collapsed;
             region_filling_22.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 0;

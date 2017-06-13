@@ -30,6 +30,7 @@ namespace NarrativeWorldCreator
         public static Model DefaultModel;
 
         public static Texture2D BoxSelectTexture;
+        public static Texture2D RegionCreationTexture;
 
         // GPGPU settings
         // Number of results generated (threadblocks started):

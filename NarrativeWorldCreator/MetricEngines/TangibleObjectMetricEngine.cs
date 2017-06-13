@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Semantics.Entities;
 
 namespace NarrativeWorldCreator.MetricEngines
 {
@@ -26,17 +27,21 @@ namespace NarrativeWorldCreator.MetricEngines
         public static MetricType requiredMT = new MetricType("required");
         public static MetricType requiredDependencyMT = new MetricType("required dependency");
         public static MetricType DecorationMT = new MetricType("decoration weight");
+
         public static MetricType AreaMT = new MetricType("area");
 
         public static List<TOTreeTangibleObject> TTOs = new List<TOTreeTangibleObject>();
         public static List<TOTreeRelationship> TreeRelationships = new List<TOTreeRelationship>();
 
         public static List<InstanceTreeEntikaInstance> ITEIs = new List<InstanceTreeEntikaInstance>();
+
         public static List<InstanceTreeRelationship> InstanceTreeRelationships = new List<InstanceTreeRelationship>();
 
         public static Dictionary<MetricType, Normalization> normalizationDictionary = new Dictionary<MetricType, Normalization>();
 
         public static int MetricTypeCount = 0;
+
+        public static Dictionary<string, double> Weights = new Dictionary<string, double>();
 
         public static void BuildUpTOTree(List<Semantics.Entities.TangibleObject> tangibleObjects)
         {
@@ -130,7 +135,7 @@ namespace NarrativeWorldCreator.MetricEngines
             }
         }
 
-        public static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, List<Semantics.Entities.TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static List<TOTreeTangibleObject> CalculateValues(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             ResetTree();
             BuildUpTOTree(tangibleObjects);
@@ -185,14 +190,32 @@ namespace NarrativeWorldCreator.MetricEngines
                 var value = 0.0;
                 foreach (var metric in tto.Metrics)
                 {
-                    value += metric.Value;
+                    value += metric.Value * metric.Weight;
                 }
-                tto.EndValue = value / MetricTypeCount;
+                tto.EndValue = value;
             }
 
             // Sort list using end values
             TTOs = TTOs.OrderByDescending(inst => inst.EndValue).ToList();
             return TTOs;
+        }
+
+        public static List<TOTreeTangibleObject> GetOrderingTO(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        {
+            Weights = Constants.AllMetricWeights;
+            return CalculateValues(ntp, tangibleObjects, predicates);
+        }
+
+        internal static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        {
+            Weights = Constants.DecorationMetricWeights;
+            return CalculateValues(ntp, tangibleObjects, predicates);
+        }
+
+        internal static List<TOTreeTangibleObject> GetRequiredOrderingTO(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        {
+            Weights = Constants.RequiredMetricWeights;
+            return CalculateValues(ntp, tangibleObjects, predicates);
         }
 
         private static Normalization GetRequiredNormalization()
@@ -244,7 +267,7 @@ namespace NarrativeWorldCreator.MetricEngines
                         ret.Min = currentArea;
                     if (currentArea > ret.Max)
                         ret.Max = currentArea;
-                    tto.Metrics.Add(new Metric(AreaMT, currentArea));
+                    tto.Metrics.Add(new Metric(AreaMT, currentArea, Weights[AreaMT.Name]));
                 }
             }
             MetricTypeCount++;
@@ -272,7 +295,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = count;
                 if (count > ret.Max)
                     ret.Max = count;
-                tto.Metrics.Add(new Metric(OutEdgesAvailableMT, count));
+                tto.Metrics.Add(new Metric(OutEdgesAvailableMT, count, Weights[OutEdgesAvailableMT.Name]));
                 
             }
             MetricTypeCount++;
@@ -301,7 +324,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = count;
                 if (count > ret.Max)
                     ret.Max = count;
-                tto.Metrics.Add(new Metric(IncEdgesAvailableMT, count));
+                tto.Metrics.Add(new Metric(IncEdgesAvailableMT, count, Weights[IncEdgesAvailableMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -317,7 +340,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = currentCount;
                 if (currentCount > ret.Max)
                     ret.Max = currentCount;
-                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, currentCount));
+                tto.Metrics.Add(new Metric(OutEdgesRequiredMT, currentCount, Weights[OutEdgesRequiredMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -333,7 +356,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = currentCount;
                 if (currentCount > ret.Max)
                     ret.Max = currentCount;
-                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, currentCount));
+                tto.Metrics.Add(new Metric(IncEdgesRequiredMT, currentCount, Weights[IncEdgesRequiredMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -360,7 +383,7 @@ namespace NarrativeWorldCreator.MetricEngines
                                 }
                             }
                             if (!found)
-                                tto.Metrics.Add(new Metric(requiredMT, 1.0));
+                                tto.Metrics.Add(new Metric(requiredMT, 1.0, Weights[requiredMT.Name]));
                             // Cascade through relations and get relations on which this object depends and add metrics
                             CascadeRequiredMetricOnRelationships(tto);
                         }
@@ -379,7 +402,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = currentCount;
                 if (currentCount > ret.Max)
                     ret.Max = currentCount;
-                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, currentCount));
+                tto.Metrics.Add(new Metric(OutEdgesDecorativeMT, currentCount, Weights[OutEdgesDecorativeMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -395,7 +418,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = currentCount;
                 if (currentCount > ret.Max)
                     ret.Max = currentCount;
-                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, currentCount));
+                tto.Metrics.Add(new Metric(IncEdgesDecorativeMT, currentCount, Weights[IncEdgesDecorativeMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -419,7 +442,7 @@ namespace NarrativeWorldCreator.MetricEngines
                                 ret.Min = currentDecorativeWeight;
                             if (currentDecorativeWeight > ret.Max)
                                 ret.Max = currentDecorativeWeight;
-                            tto.Metrics.Add(new Metric(DecorationMT, currentDecorativeWeight));
+                            tto.Metrics.Add(new Metric(DecorationMT, currentDecorativeWeight, Weights[DecorationMT.Name]));
                         }
                     }
                 }
@@ -438,7 +461,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = currentCount;
                 if (currentCount > ret.Max)
                     ret.Max = currentCount;
-                tto.Metrics.Add(new Metric(OutEdgesMT, currentCount));
+                tto.Metrics.Add(new Metric(OutEdgesMT, currentCount, Weights[OutEdgesMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -454,7 +477,7 @@ namespace NarrativeWorldCreator.MetricEngines
                     ret.Min = currentCount;
                 if (currentCount > ret.Max)
                     ret.Max = currentCount;
-                tto.Metrics.Add(new Metric(IncEdgesMT, currentCount));
+                tto.Metrics.Add(new Metric(IncEdgesMT, currentCount, Weights[IncEdgesMT.Name]));
             }
             MetricTypeCount++;
             return ret;
@@ -478,7 +501,7 @@ namespace NarrativeWorldCreator.MetricEngines
                         }
                     }
                     if (!found)
-                        relation.Source.Metrics.Add(new Metric(requiredDependencyMT, 1.0));
+                        relation.Source.Metrics.Add(new Metric(requiredDependencyMT, 1.0, Weights[requiredDependencyMT.Name]));
                     CascadeRequiredMetricOnRelationships(relation.Source);
                 }
             }
