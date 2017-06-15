@@ -58,6 +58,8 @@ namespace NarrativeWorldCreator.MetricEngines
                 // Check all geometric relationships
                 foreach (var relationship in to.RelationshipsAsSource.Where(ras => Constants.GeometricRelationshipTypes.Contains(ras.RelationshipType.DefaultName)))
                 {
+                    if (!tangibleObjects.Contains(relationship.Targets[0]))
+                        continue;
                     var treeTOTarget = (from tto in TTOs
                                         where tto.TangibleObject.Equals((Semantics.Entities.TangibleObject)relationship.Targets[0])
                                         select tto).FirstOrDefault();
@@ -362,7 +364,7 @@ namespace NarrativeWorldCreator.MetricEngines
             return ret;
         }
 
-        private static void ApplyRequiredAndDependencies(List<Predicate> predicates)
+        internal static void ApplyRequiredAndDependencies(List<Predicate> predicates)
         {
             foreach (var tto in TTOs)
             {

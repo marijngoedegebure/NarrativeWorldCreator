@@ -105,6 +105,22 @@ namespace NarrativeWorldCreator
 
             SystemStateTracker.RegionCreationTexture = new Texture2D(GraphicsDevice, 1, 1);
             SystemStateTracker.RegionCreationTexture.SetData(new[] { new Color(1.0f, 1.0f, 1.0f, 0.2f) });
+
+            // Load all models for the currently selected timepoint
+            SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects = new Dictionary<Semantics.Entities.TangibleObject, Model>();
+            foreach (var to in SystemStateTracker.NarrativeWorld.AvailableTangibleObjects)
+            {
+                var modelPath = "";
+                foreach (var att in to.Attributes)
+                {
+                    if (att.Node.DefaultName.Equals(Constants.ModelPath))
+                    {
+                        modelPath = att.Value.ToString();
+                    }
+                }
+                modelPath = "Models/" + modelPath + "/" + modelPath;
+                SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects.Add(to, Content.Load<Model>(modelPath));
+            }
         }
 
         private Model LoadModel(string assetName)
@@ -507,16 +523,10 @@ namespace NarrativeWorldCreator
             }
 
             // FBX model draw:
-            if (instance.Model == null)
-            {
-                var modelPath = "Models/" + instance.ModelPath + "/" + instance.ModelPath;
-                instance.Model = Content.Load<Model>(modelPath);
-                instance.UpdateBoundingBoxAndShape(SystemStateTracker.world);
-            }
-
-            Matrix[] transforms = new Matrix[instance.Model.Bones.Count];
-            instance.Model.CopyAbsoluteBoneTransformsTo(transforms);
-            foreach (ModelMesh mesh in instance.Model.Meshes)
+            var model = SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[instance.TangibleObject];
+            Matrix[] transforms = new Matrix[model.Bones.Count];
+            model.CopyAbsoluteBoneTransformsTo(transforms);
+            foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {

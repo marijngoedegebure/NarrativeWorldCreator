@@ -19,7 +19,6 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public Vector3 Rotation { get; set; }
 
         // Has either a polygon for a floor or a model
-        public Model Model { get; set; }
         public Polygon Polygon { get; set; }
         public BoundingBox BoundingBox { get; set; }
 
@@ -30,7 +29,6 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public List<Polygon> Clearances { get; set; }
 
         public bool Frozen { get; set; }
-        public string ModelPath { get; set; }
 
         private void SetupLists()
         {
@@ -60,13 +58,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             this.Name = to.DefaultName + EntikaInstanceCount.Count;
             EntikaInstanceCount.Count++;
             this.TangibleObject = to;
-            foreach (var att in to.Attributes)
-            {
-                if (att.Node.DefaultName.Equals(Constants.ModelPath))
-                {
-                    this.ModelPath = att.Value.ToString();
-                }
-            }
+            this.UpdateBoundingBoxAndShape(SystemStateTracker.world);
             foreach (SpaceValued space in this.TangibleObject.Spaces)
             {
                 if (space.Space.DefaultName.Equals(Constants.Clearance))
@@ -83,7 +75,6 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             SetupLists();
             this.Name = obj.Name;
             this.TangibleObject = obj.TangibleObject;
-            this.Model = obj.Model;
             this.Position = new Vector3(obj.Position.X, obj.Position.Y, obj.Position.Z);
             this.Rotation = new Vector3(obj.Rotation.X, obj.Rotation.Y, obj.Rotation.Z);
             if (obj.Polygon != null)
@@ -100,14 +91,14 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         {
             BoundingBox bb;
             // For each mesh of the model
-            if (Model != null && world.HasValue)
+            if (this.Polygon != null)
             {
-                bb = GetBoundingBox(Model, world.GetValueOrDefault());
+                bb = GetBoundingBox(this.Polygon);
             }
             // Or using the declared polygon
             else
             {
-                bb = GetBoundingBox(this.Polygon);
+                bb = GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[this.TangibleObject], world.GetValueOrDefault());
             }
             if (bb != null)
                 this.BoundingBox = bb;

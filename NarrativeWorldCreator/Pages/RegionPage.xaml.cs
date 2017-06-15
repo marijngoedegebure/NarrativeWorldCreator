@@ -5,6 +5,7 @@ using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.Solvers;
 using NarrativeWorldCreator.ViewModel;
 using NarrativeWorldCreator.Views;
@@ -109,13 +110,12 @@ namespace NarrativeWorldCreator
 
         public bool RegionCreated = false;
 
-        public RegionPage(LocationNode selectedNode)
+        public RegionPage(LocationNode selectedNode, NarrativeTimePoint SelectedTimePont)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
             CurrentMode = RegionPageMode.RegionCreation;
-            List<NarrativeTimePoint> ntpsFiltered = (from a in SystemStateTracker.NarrativeWorld.NarrativeTimeline.getNarrativeTimePointsWithNode(selectedNode) orderby a.TimePoint select a).ToList();
-            SelectedTimePoint = ntpsFiltered[0];
+            this.SelectedTimePoint = SelectedTimePont;
             SelectedEntikaInstances = new List<EntikaInstance>();
         }
 
@@ -183,6 +183,7 @@ namespace NarrativeWorldCreator
             onRelationshipInstance.Source = onRelationshipVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
 
             InstanceOfObjectToAdd.RelationshipsAsTarget.Add(onRelationshipInstance);
+            InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z);
 
             this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
 
@@ -356,8 +357,9 @@ namespace NarrativeWorldCreator
             var gpuConfig = this.GeneratedConfigurations[this.SelectedGPUConfigurationResult];
             for (int i = 0; i < gpuConfig.Instances.Count; i++)
             {
-                this.WorkInProgressConfiguration.InstancedObjects[i].Position = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
-                this.WorkInProgressConfiguration.InstancedObjects[i].Rotation = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
+                var WIPinstance = this.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(gpuConfig.Instances[i].entikaInstance)).FirstOrDefault();
+                WIPinstance.Position = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
+                WIPinstance.Rotation = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
             }
             this.SelectedTimePoint.Configuration = WorkInProgressConfiguration;
 
@@ -450,7 +452,13 @@ namespace NarrativeWorldCreator
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
 
-        private void btnReturnToGraph_Click(object sender, RoutedEventArgs e)
+        private void btnReturnToInit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new RegionInitPage(selectedNode, this.SelectedTimePoint));
+        }
+
+
+        private void btnGraphPage_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new GraphPage());
         }

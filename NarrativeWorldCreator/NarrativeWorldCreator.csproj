@@ -137,6 +137,9 @@
     <Compile Include="Models\NarrativeRegionFill\Configuration.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
+    <Compile Include="Pages\RegionInitPage.xaml.cs">
+      <DependentUpon>RegionInitPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Parsers\BeliefSystem.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
@@ -190,6 +193,7 @@
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstancesSelectionViewModel.cs" />
+    <Compile Include="ViewModel\TangibleObjectsSwapViewModel.cs" />
     <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
     <Compile Include="ViewModel\RelationshipSelectionAndInstancingViewModel.cs" />
@@ -232,6 +236,9 @@
     <Compile Include="Views\GenerateConfigurationsView.xaml.cs">
       <DependentUpon>GenerateConfigurationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TangibleObjectsSwapView.xaml.cs">
+      <DependentUpon>TangibleObjectsSwapView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TangibleObjectsView.xaml.cs">
       <DependentUpon>TangibleObjectsView.xaml</DependentUpon>
     </Compile>
@@ -252,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\InitPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\RegionInitPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,6 +311,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GenerateConfigurationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TangibleObjectsSwapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

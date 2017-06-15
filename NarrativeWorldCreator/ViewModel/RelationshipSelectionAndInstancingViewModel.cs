@@ -150,6 +150,8 @@ namespace NarrativeWorldCreator.ViewModel
             var otherRelationshipsNoneTemp = new ObservableCollection<RelationshipExtendedViewModel>();
             foreach (var rel in ei.TangibleObject.RelationshipsAsTarget)
             {
+                if (!ntp.AvailableTangibleObjects.Contains(rel.Source))
+                    continue;
                 if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                 {
                     var tempVM = new RelationshipExtendedViewModel();
@@ -167,6 +169,9 @@ namespace NarrativeWorldCreator.ViewModel
             }
             foreach (var rel in ei.TangibleObject.RelationshipsAsSource)
             {
+                if (!ntp.AvailableTangibleObjects.Contains(rel.Targets[0]))
+                    continue;
+
                 if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                 {
                     var tempVM = new RelationshipExtendedViewModel();

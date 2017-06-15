@@ -4,7 +4,7 @@ using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Solvers;
 using Semantics.Data;
-using SharpDX.Collections;
+using System.Collections.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

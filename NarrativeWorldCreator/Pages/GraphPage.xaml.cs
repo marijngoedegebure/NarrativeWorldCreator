@@ -1,5 +1,6 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace NarrativeWorldCreator
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RegionPage(selectedNode));
+            this.NavigationService.Navigate(new RegionInitPage(selectedNode, (this.NarrativeTimelineControl.lvTimePointsDataBinding.SelectedItem as NarrativeTimePointViewModel).NarrativeTimePoint));
         }
 
         private void btnReloadGraph_Click(object sender, RoutedEventArgs e)

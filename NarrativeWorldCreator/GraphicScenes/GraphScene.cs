@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Framework.WpfInterop;
 using MonoGame.Framework.WpfInterop.Input;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using System;
 using System.Collections.Generic;

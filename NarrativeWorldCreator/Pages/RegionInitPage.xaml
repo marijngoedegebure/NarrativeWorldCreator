@@ -1,0 +1,79 @@
+﻿<Page x:Class="NarrativeWorldCreator.Pages.RegionInitPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NarrativeWorldCreator.Pages"
+      xmlns:views = "clr-namespace:NarrativeWorldCreator.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="RegionInitPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0,0,0,10">
+                <Button x:Name="GotoGraphPageButton" Content="Click here to go back to graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ItemsControl Name="RequiredTOIC"
+                  Grid.Column="0"
+                  Grid.Row="0"
+                  Margin="10" 
+                  ItemsSource = "{Binding Path = TangibleObjects }">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding DefaultName, StringFormat='Name: {0}'}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <views:TangibleObjectsSwapView Grid.Column="1" Grid.Row="0" x:Name="AvailableSwapView" Loaded = "AvailableSwapView_Loaded"/>
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"  Grid.Row="0" x:Name="MoveToSelected" Content="To Selected" Margin="10,10,0,0" Click="btnMoveToSelected"/>
+                    <Button Grid.Column="0"  Grid.Row="1" x:Name="MoveToAvailable" Content="To Available" Margin="10,10,0,0" Click="btnMoveToAvailable"/>
+                </Grid>
+                <views:TangibleObjectsSwapView Grid.Column="3" Grid.Row="0" x:Name="SelectedSwapView" Loaded = "SelectedSwapView_Loaded"/>
+                <Button Grid.ColumnSpan="4" Grid.Row="1" x:Name="RegionPageButton" Content="Save and goto Region" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnRegionPage_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

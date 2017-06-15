@@ -8,6 +8,7 @@ using Semantics.Entities;
 using NarrativeWorldCreator.Models.NarrativeInput;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Models.NarrativeGraph;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace NarrativeWorldCreator.Models
 {
@@ -20,6 +21,7 @@ namespace NarrativeWorldCreator.Models
 
         // Entika information
         public List<TangibleObject> AvailableTangibleObjects { get; set; }
+        public Dictionary<TangibleObject, Model> ModelsForTangibleObjects { get; set; }
 
         public NarrativeWorld ()
         {

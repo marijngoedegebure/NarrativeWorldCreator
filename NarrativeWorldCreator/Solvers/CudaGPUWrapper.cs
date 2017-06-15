@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models;
+﻿using Microsoft.Xna.Framework;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
@@ -132,8 +133,107 @@ namespace NarrativeWorldCreator.Solvers
             public ResultCosts costs;
         };
 
-        public static List<GPUConfigurationResult> CudaGPUWrapperCall(NarrativeTimePoint ntp, Configuration configuration)
+        public static List<GPUConfigurationResult> CudaGPUWrapperCall(NarrativeTimePoint ntp, Configuration WIPconfiguration)
         {
+            // Copy configuration so that it does not adjust work in progresse configuration
+            var configuration = WIPconfiguration.Copy();
+
+            // Divide configuration in sets of objects combined with each on relationship
+            // SurfaceConfigurations holds configuration for individual surfaces
+            Dictionary<EntikaInstance, Configuration> surfaceConfigurations = new Dictionary<EntikaInstance, Configuration>();
+
+            // All on relationships
+            var onRelationships = configuration.InstancedRelations.Where(rel => rel.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On)).ToList();
+
+            // All distinct sources
+            var distinctSources = new List<EntikaInstance>();
+            foreach (var onRel in onRelationships)
+            {
+                if (!distinctSources.Contains(onRel.Source))
+                    distinctSources.Add(onRel.Source);
+            }
+
+            // All surface instances for each surface source
+            foreach (var source in distinctSources)
+            {
+                var surfaceRelationships = configuration.InstancedRelations.Where(ir => ir.Source.Equals(source)).ToList();
+                var tempConfig = new Configuration();
+                foreach (var rel in surfaceRelationships)
+                {
+                    // Take all targets of this surface and collect and store their relationships
+                    foreach (var targetRel in rel.Target.RelationshipsAsTarget)
+                    {
+                        if (!tempConfig.InstancedObjects.Contains(targetRel.Target))
+                            tempConfig.InstancedObjects.Add(targetRel.Target);
+                        // Do not add on relationships, no use
+                        if (!targetRel.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On))
+                        {
+                            tempConfig.InstancedRelations.Add(targetRel);
+                        }
+                    }
+                }
+                surfaceConfigurations.Add(source, tempConfig);
+            }
+            foreach (var surfaceInstance in surfaceConfigurations.Keys)
+            {
+                // Translate each instance of a configuration according to its surface
+                foreach (var instance in surfaceConfigurations[surfaceInstance].InstancedObjects)
+                {
+                    // Go from absolute to relative position
+                    instance.Position = new Vector3(instance.Position.X - surfaceInstance.Position.X, instance.Position.Y - surfaceInstance.Position.Y, instance.Position.Z);
+                    instance.Rotation = instance.Rotation - surfaceInstance.Rotation;
+                }
+            }
+
+            Dictionary<EntikaInstance, List<GPUConfigurationResult>> resultPerSurface = new Dictionary<EntikaInstance, List<GPUConfigurationResult>>();
+            // Create strategy to resolve surface so that they do not influence each other
+            foreach (var key in surfaceConfigurations.Keys)
+            {
+                resultPerSurface.Add(key, GPUCallSurface(key, surfaceConfigurations[key]));
+            }
+
+            var trueGPUResults = new List<GPUConfigurationResult>();
+            for (int j = 0; j < SystemStateTracker.gridxDim; j++)
+            {
+                var gpuResult = new GPUConfigurationResult();
+                foreach (var surfaceInstance in resultPerSurface.Keys)
+                {
+                    // Find new position of each key
+                    foreach (var surfaceInstance2 in resultPerSurface.Keys)
+                    {
+                        foreach (var instance in resultPerSurface[surfaceInstance2][j].Instances)
+                        {
+                            if (instance.entikaInstance.Equals(surfaceInstance))
+                            {
+                                surfaceInstance.Position = instance.Position;
+                                surfaceInstance.Rotation = instance.Rotation;
+                            }
+                        }
+                    }
+                    // Convert relative positions to absolute positions
+                    foreach (var instance in resultPerSurface[surfaceInstance][j].Instances)
+                    {
+                        instance.Rotation = instance.Rotation + surfaceInstance.Rotation;
+                        instance.Position = new Vector3(instance.Position.X + surfaceInstance.Position.X, instance.Position.Y + surfaceInstance.Position.Y, instance.Position.Z);
+                    }
+                    // Recombine results, so that surface source translation is applied to all surface objects.
+                    gpuResult.Instances.AddRange(resultPerSurface[surfaceInstance][j].Instances);
+                    gpuResult.TotalCosts = gpuResult.TotalCosts + resultPerSurface[surfaceInstance][j].TotalCosts;
+                    gpuResult.FocalPointCosts = gpuResult.FocalPointCosts + resultPerSurface[surfaceInstance][j].FocalPointCosts;
+                    gpuResult.PairWiseCosts = gpuResult.PairWiseCosts + resultPerSurface[surfaceInstance][j].PairWiseCosts;
+                    gpuResult.SymmetryCosts = gpuResult.SymmetryCosts + resultPerSurface[surfaceInstance][j].SymmetryCosts;
+                    gpuResult.VisualBalanceCosts = gpuResult.VisualBalanceCosts + resultPerSurface[surfaceInstance][j].VisualBalanceCosts;
+                    gpuResult.ClearanceCosts = gpuResult.ClearanceCosts + resultPerSurface[surfaceInstance][j].ClearanceCosts;
+                    gpuResult.SurfaceAreaCosts = gpuResult.SurfaceAreaCosts + resultPerSurface[surfaceInstance][j].SurfaceAreaCosts;
+                }
+                trueGPUResults.Add(gpuResult);
+            }
+            return trueGPUResults;
+        }
+
+        public static List<GPUConfigurationResult> GPUCallSurface(EntikaInstance surfaceInstance, Configuration configuration)
+        {
+            // Call Gpu method for each set of objects
             var valuedRelationships = configuration.GetValuedRelationships();
             var instances = configuration.InstancedObjects;
 
@@ -221,7 +321,11 @@ namespace NarrativeWorldCreator.Solvers
 
 
             var surfaceRectangle = new Vertex[4];
-            var bb = EntikaInstance.GetBoundingBox(configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault().Polygon);
+            BoundingBox bb;
+            if (surfaceInstance.Name.Equals(Constants.Floor))
+                bb = EntikaInstance.GetBoundingBox(surfaceInstance.Polygon);
+            else
+                bb = surfaceInstance.BoundingBox;
             var corners = bb.GetCorners();
             for (int i = 0; i < 4; i++)
             {
@@ -277,7 +381,7 @@ namespace NarrativeWorldCreator.Solvers
 
             var pointer = KernelWrapper(rss, currentConfig, clearances, offlimits, vertices, surfaceRectangle, ref surface, ref gpuCfg);
 
-            List <GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
+            List<GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
             GPUConfigurationResult temp = new GPUConfigurationResult();
             // Do the initial one
             for (int j = 0; j < gpuCfg.gridxDim; j++)
