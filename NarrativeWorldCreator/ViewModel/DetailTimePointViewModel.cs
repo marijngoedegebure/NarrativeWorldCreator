@@ -42,8 +42,8 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
-        private ObservableCollection<Predicate> _fillPredicates;
-        public ObservableCollection<Predicate> FillPredicates
+        private ObservableCollection<InstancedPredicate> _fillPredicates;
+        public ObservableCollection<InstancedPredicate> FillPredicates
         {
             get
             {
@@ -88,7 +88,7 @@ namespace NarrativeWorldCreator.ViewModel
 
             this.Predicates = npioc;
 
-            ObservableCollection<Predicate> fpoc = new ObservableCollection<Predicate>();
+            ObservableCollection<InstancedPredicate> fpoc = new ObservableCollection<InstancedPredicate>();
             foreach(var predicate in ntp.PredicatesCausedByInstancedObjectsAndRelations)
             {
                 fpoc.Add(predicate);

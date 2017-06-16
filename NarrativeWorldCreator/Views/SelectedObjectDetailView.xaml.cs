@@ -32,7 +32,7 @@ namespace NarrativeWorldCreator.Views
             var data = this.DataContext as SelectedObjectDetailViewModel;
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
-                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
+                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
             }
             regionPage.RefreshSelectedObjectView();
         }
@@ -49,7 +49,7 @@ namespace NarrativeWorldCreator.Views
             var data = this.DataContext as SelectedObjectDetailViewModel;
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
-                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;
+                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = false;
             }
             regionPage.RefreshSelectedObjectView();
         }

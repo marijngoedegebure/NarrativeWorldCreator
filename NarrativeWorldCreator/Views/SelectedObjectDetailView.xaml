@@ -32,23 +32,29 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding EntikaInstance.Name, StringFormat='Name: {0}'}" />
-                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EntikaInstance.TangibleObject.DefaultName, StringFormat='Class: {0}' }" />
-                            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding EntikaInstance.Position, StringFormat='Position: {0}' }" />
-                            <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding EntikaInstance.Rotation, StringFormat='Rotation: {0}' }" />
-                            <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding EntikaInstance.Frozen, StringFormat='Frozen: {0}' }" />
-                            <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding EntikaInstanceValued.EntikaInstance.Name, StringFormat='Name: {0}'}" />
+                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EntikaInstanceValued.EntikaInstance.TangibleObject.DefaultName, StringFormat='Class: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding EntikaInstanceValued.EntikaInstance.Position, StringFormat='Position: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding EntikaInstanceValued.EntikaInstance.Rotation, StringFormat='Rotation: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding EntikaInstanceValued.EntikaInstance.Frozen, StringFormat='Frozen: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="5" Text="{Binding EntikaInstanceValued.EndValue, StringFormat='End value: {0}' }" />
+                            <TextBlock Grid.Column="0" Grid.Row="6"><Bold>Metrics:</Bold></TextBlock>
                             <ItemsControl 
                             Grid.Column="0"
-                            Grid.Row="6"
-                            ItemsSource="{Binding Path=Metrics }">
+                            Grid.Row="7"
+                            ItemsSource="{Binding Path=EntikaInstanceValued.Metrics }">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -65,10 +71,11 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <TextBlock Grid.Column="0" Grid.Row="8"><Bold>Relationships as source:</Bold></TextBlock>
                             <ItemsControl
                             Grid.Column="0"
-                            Grid.Row="7"
-                            ItemsSource = "{Binding Path = EntikaInstance.RelationshipsAsSource}">
+                            Grid.Row="9"
+                            ItemsSource = "{Binding Path = EntikaInstanceValued.EntikaInstance.RelationshipsAsSource}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -126,10 +133,11 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+                            <TextBlock Grid.Column="0" Grid.Row="10"><Bold>Relationships as target:</Bold></TextBlock>
                             <ItemsControl
                             Grid.Column="0"
-                            Grid.Row="8"
-                            ItemsSource = "{Binding Path = EntikaInstance.RelationshipsAsTarget}">
+                            Grid.Row="11"
+                            ItemsSource = "{Binding Path = EntikaInstanceValued.EntikaInstance.RelationshipsAsTarget}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -184,6 +192,26 @@
                                                 </TextBlock.Style>
                                             </TextBlock>
                                         </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <TextBlock Grid.Column="0" Grid.Row="12"><Bold>Predicates of this instance:</Bold></TextBlock>
+                            <ItemsControl 
+                            Grid.Column="0"
+                            Grid.Row="13"
+                            ItemsSource="{Binding Path=InstancedPredicates }">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Name="item" Orientation="Vertical" Margin="5">
+                                            <TextBlock Text="{Binding Path = Predicate.PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
+                                            <ItemsControl ItemsSource="{Binding Path=Instances }">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Name}"/>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

@@ -119,7 +119,7 @@ namespace NarrativeWorldCreator
             SelectedEntikaInstances = new List<EntikaInstance>();
         }
 
-        internal void RemoveSelectedInstances(List<EntikaInstanceValued> instances)
+        internal void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
         {
             var relationsToRemove = new List<RelationshipInstance>();
             // Determine relationships to delete
@@ -127,11 +127,11 @@ namespace NarrativeWorldCreator
             {
                 foreach (var relation in this.SelectedTimePoint.Configuration.InstancedRelations)
                 {
-                    if (relation.Source.Equals(instanceToRemove.EntikaInstance))
+                    if (relation.Source.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
                     {
                         relationsToRemove.Add(relation);
                     }
-                    else if (relation.Target.Equals(instanceToRemove.EntikaInstance))
+                    else if (relation.Target.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
                     {
                         relationsToRemove.Add(relation);
                     }
@@ -147,7 +147,7 @@ namespace NarrativeWorldCreator
             // Remove instances
             foreach (var instanceToRemove in instances)
             {
-                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove.EntikaInstance);
+                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove.EntikaInstanceValued.EntikaInstance);
             }
 
             // Return to changing menu
@@ -183,6 +183,7 @@ namespace NarrativeWorldCreator
             onRelationshipInstance.Source = onRelationshipVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
 
             InstanceOfObjectToAdd.RelationshipsAsTarget.Add(onRelationshipInstance);
+            onRelationshipInstance.Source.RelationshipsAsSource.Add(onRelationshipInstance);
             InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z);
 
             this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
@@ -214,9 +215,15 @@ namespace NarrativeWorldCreator
                 }
 
                 if (source)
+                {
                     InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
+                    otherRelationshipInstance.Target.RelationshipsAsTarget.Add(otherRelationshipInstance);
+                }
                 else
+                {
                     InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
+                    otherRelationshipInstance.Source.RelationshipsAsSource.Add(otherRelationshipInstance);
+                }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
             }
@@ -247,9 +254,15 @@ namespace NarrativeWorldCreator
                 }
 
                 if (source)
+                {
                     InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
+                    otherRelationshipInstance.Target.RelationshipsAsTarget.Add(otherRelationshipInstance);
+                }
                 else
+                {
                     InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
+                    otherRelationshipInstance.Source.RelationshipsAsSource.Add(otherRelationshipInstance);
+                }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
                 
@@ -301,7 +314,7 @@ namespace NarrativeWorldCreator
             // Determine instance to add:
             InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
             RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.SelectedTimePoint.Configuration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
+            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
             if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
                 throw new Exception("No on relationship at all");
             RelationshipSelectionAndInstancingView.DataContext = riVM;

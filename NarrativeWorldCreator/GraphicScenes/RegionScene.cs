@@ -780,6 +780,7 @@ namespace NarrativeWorldCreator
                     if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                     {
                         Ray ray = CalculateMouseRay();
+                        EntikaInstance hitMaxZ = null;
                         foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
@@ -792,10 +793,17 @@ namespace NarrativeWorldCreator
                             float? distance = ray.Intersects(bb);
                             if (distance != null)
                             {
-                                _currentRegionPage.ChangeSelectedObject(ieo);
-                                return;
+                                if (hitMaxZ == null)
+                                {
+                                    hitMaxZ = ieo;
+                                    continue;
+                                }
+                                if (hitMaxZ.Position.Z < ieo.Position.Z)
+                                    hitMaxZ = ieo;
                             }
                         }
+                        if (hitMaxZ != null)
+                            _currentRegionPage.ChangeSelectedObject(hitMaxZ);
                     }
                 }
                     //if (_currentRegionPage.SelectedEntikaInstance != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))

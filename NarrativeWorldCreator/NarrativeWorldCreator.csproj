@@ -137,6 +137,7 @@
     <Compile Include="Models\NarrativeRegionFill\Configuration.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
+    <Compile Include="Models\NarrativeRegionFill\InstancedPredicate.cs" />
     <Compile Include="Pages\RegionInitPage.xaml.cs">
       <DependentUpon>RegionInitPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +188,7 @@
     <Compile Include="GraphicScenes\RegionScene.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
+    <Compile Include="ViewModel\EntikaInstanceValuedPredicate.cs" />
     <Compile Include="ViewModel\GenerateConfigurationsViewModel.cs" />
     <Compile Include="ViewModel\GoalViewModel.cs" />
     <Compile Include="ViewModel\GPUConfigurationResultViewModel.cs" />

@@ -18,6 +18,12 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             EntikaClassNames = new List<string>();
         }
 
+        public Predicate(PredicateType pt, List<string> classNamesList)
+        {
+            this.PredicateType = pt;
+            this.EntikaClassNames = classNamesList;
+        }
+
         public override bool Equals(object obj)
         {
             var item = obj as Predicate;

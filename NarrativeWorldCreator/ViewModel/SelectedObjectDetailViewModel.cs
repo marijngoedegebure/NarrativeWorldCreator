@@ -16,8 +16,8 @@ namespace NarrativeWorldCreator.ViewModel
     public class SelectedObjectDetailViewModel : INotifyPropertyChanged
     {
 
-        private ObservableCollection<EntikaInstanceValued> _selectedInstancedEntikaInstances;
-        public ObservableCollection<EntikaInstanceValued> SelectedInstancedEntikaInstances
+        private ObservableCollection<EntikaInstanceValuedPredicate> _selectedInstancedEntikaInstances;
+        public ObservableCollection<EntikaInstanceValuedPredicate> SelectedInstancedEntikaInstances
         {
             get
             {
@@ -40,12 +40,15 @@ namespace NarrativeWorldCreator.ViewModel
 
         internal void LoadSelectedInstances(List<EntikaInstance> selected, NarrativeTimePoint ntp)
         {
-            ObservableCollection<EntikaInstanceValued> eisVMoc = new ObservableCollection<EntikaInstanceValued>();
+            ObservableCollection<EntikaInstanceValuedPredicate> eisVMoc = new ObservableCollection<EntikaInstanceValuedPredicate>();
             var listOfinstances = EntikaInstanceMetricEngine.GetDecorationOrderingEI(ntp);
             foreach (var instance in listOfinstances)
             {
                 if (selected.Contains(instance.EntikaInstance))
-                    eisVMoc.Add(instance);
+                {
+                    var eivp = new EntikaInstanceValuedPredicate(instance, ntp);
+                    eisVMoc.Add(eivp);
+                }
             }
             this.SelectedInstancedEntikaInstances = eisVMoc;
         }
