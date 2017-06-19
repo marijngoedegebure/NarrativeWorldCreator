@@ -45,11 +45,11 @@ namespace NarrativeWorldCreator
 
         // Algorithm
         // Weights for each cost function
-        public static float WeightFocalPoint = -2.0f;
-        public static float WeightPairWise = -2.0f;
-        public static float WeightVisualBalance = 1.5f;
-        public static float WeightSymmetry = -2.0f;
-        public static float WeightClearance = -2.0f;
+        public static float WeightFocalPoint = 1.0f;
+        public static float WeightPairWise = 1.0f;
+        public static float WeightVisualBalance = 1.0f;
+        public static float WeightSymmetry = 1.0f;
+        public static float WeightClearance = 1.0f;
         // TODO: allow input for centroid and focal
         // Configurable centroid and focal points in scene
         public static double centroidX = 0.0;
