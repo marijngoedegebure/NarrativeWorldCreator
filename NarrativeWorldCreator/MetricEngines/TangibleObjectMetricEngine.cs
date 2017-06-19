@@ -177,14 +177,15 @@ namespace NarrativeWorldCreator.MetricEngines
             normalizationDictionary[AreaMT] = SizeMetric();
 
             // Normalize before sorting?
-            //foreach (var tto in TTOs)
-            //{
-            //    foreach (var metric in tto.Metrics)
-            //    {
-            //        Normalize(metric, 
-            //    }
-            //    tto.EndValue = value / MetricTypeCount;
-            //}
+            foreach (var tto in TTOs)
+            {
+                foreach (var metric in tto.Metrics)
+                {
+                    // (x - min) / (max - min)
+                    if (normalizationDictionary[metric.MetricType].Max != normalizationDictionary[metric.MetricType].Min)
+                        metric.Value = (metric.Value - normalizationDictionary[metric.MetricType].Min) / (normalizationDictionary[metric.MetricType].Max - normalizationDictionary[metric.MetricType].Min); 
+                }
+            }
 
             // Sum and divide by amount of metrics
             foreach (var tto in TTOs)
