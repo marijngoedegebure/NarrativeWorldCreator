@@ -69,37 +69,24 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             }
         }
 
-        // This function allows updating
-        public void SetBaseShape(LocationNode selectedNode)
+        // This only allows the new instantiation of the current floor instance when the timepoint is newly selected
+        //public void SwitchTimePoints(LocationNode selectedNode)
+        //{
+        //    if (this.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault() == null)
+        //    {
+        //        SetupFloorInstance(selectedNode);
+        //    }
+        //}
+
+        internal void SetupFloorInstance()
         {
+            // Setup EntikaInstance with on(X, floor) relationship
             var floorInstance = this.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance == null)
             {
-                // Create floor instance
-                SetupFloorInstance(selectedNode);
+                floorInstance = new EntikaInstance(Constants.Floor, new Polygon(new List<Vec2d>()));
+                this.Configuration.InstancedObjects.Add(floorInstance);
             }
-            else
-            {
-                // Update floor instance
-                floorInstance.Polygon = new Polygon(selectedNode.Shape.Points);
-                floorInstance.UpdateBoundingBoxAndShape(null);
-            }
-        }
-
-        // This only allows the new instantiation of the current floor instance when the timepoint is newly selected
-        public void SwitchTimePoints(LocationNode selectedNode)
-        {
-            if (this.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault() == null)
-            {
-                SetupFloorInstance(selectedNode);
-            }
-        }
-
-        private void SetupFloorInstance(LocationNode selectedNode)
-        {
-            // Setup EntikaInstance with on(X, floor) relationship
-            var floorInstance = new EntikaInstance(Constants.Floor, new Polygon(selectedNode.Shape.Points));
-            this.Configuration.InstancedObjects.Add(floorInstance);
         }
 
         internal void InstantiateRelationship(RelationshipInstance relationInstance)

@@ -117,6 +117,7 @@ namespace NarrativeWorldCreator
             CurrentMode = RegionPageMode.RegionCreation;
             this.SelectedTimePoint = SelectedTimePont;
             SelectedEntikaInstances = new List<EntikaInstance>();
+            this.SelectedTimePoint.SetupFloorInstance();
         }
 
         internal void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
@@ -516,7 +517,8 @@ namespace NarrativeWorldCreator
 
         private void btnResetRegion(object sender, RoutedEventArgs e)
         {
-            selectedNode.Shape = new Common.Geometry.Shape(new List<Common.Vec2>());            
+            var floorInstance = this.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            floorInstance.Polygon = new Common.Polygon(new List<Common.Vec2d>());
         }
 
         public void SetMessageBoxText(string message)

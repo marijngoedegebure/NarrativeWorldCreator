@@ -367,17 +367,21 @@ namespace NarrativeWorldCreator
             // Triangles should be defined clockwise
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
             // Only draw triangles when there is 3 or more vertices
-            if (_currentRegionPage.selectedNode.Shape.Points.Count > 2)
+            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
+                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
+                // If shape is compatible with currently selected entika object that can be placed, use a different color
+                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
                 // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 List<VertexPositionColor> regionPoints = new List<VertexPositionColor>();
                 if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
                 {
-                    regionPoints = _currentRegionPage.selectedNode.GetDrawableTriangles(Color.White);
+                    regionPoints = DrawingEngine.GetDrawableTriangles(result, Color.White);
                 }
                 if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
                 {
-                    regionPoints = _currentRegionPage.selectedNode.GetDrawableTriangles(Color.Black);
+                    regionPoints = DrawingEngine.GetDrawableTriangles(result, Color.Black);
                 }
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
@@ -392,7 +396,7 @@ namespace NarrativeWorldCreator
             }
 
             // Draw lines for each triangle
-            if (_currentRegionPage.selectedNode.Shape.Points.Count > 2)
+            if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 GraphicsDevice.RasterizerState = RasterizerState.CullNone;
                 Color color;
@@ -400,8 +404,9 @@ namespace NarrativeWorldCreator
                     color = Color.Purple;
                 else
                     color = Color.Black;
-                var triangles = _currentRegionPage.selectedNode.Mesh.Triangles.ToList();
-                var vertices = _currentRegionPage.selectedNode.Mesh.Vertices.ToList();
+                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
+                var triangles = result.Triangles.ToList();
+                var vertices = result.Vertices.ToList();
                 foreach (var triangle in triangles)
                 {
                     VertexPositionColor[] verticesLine;
@@ -444,13 +449,20 @@ namespace NarrativeWorldCreator
             }
 
             // Always draw the vertices
-            if (_currentRegionPage.selectedNode.Shape.Points.Count > 0)
+            if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
+                // If shape is compatible with currently selected entika object that can be placed, use a different color
+                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
+                // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
+                List<VertexPositionColor> points = new List<VertexPositionColor>();
+                points = DrawingEngine.GetDrawableTriangles(result, Color.White);
+
                 // Create quads based off vertex points
-                List<Vector3> points = _currentRegionPage.selectedNode.GetXNAPointsOfShape();
                 for (int i = 0; i < points.Count; i++)
                 {
+
                     Color color = Color.Black;
                     if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
                         color = Color.Red;
@@ -458,7 +470,7 @@ namespace NarrativeWorldCreator
                         color = Color.Yellow;
                     if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
                         color = Color.DarkGray;
-                    Quad quad = new Quad(points[i], new Vector3(points[i].X, points[i].Y, 1), Vector3.Up, 1, 1, color);
+                    Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, color);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
                         pass.Apply();
@@ -664,8 +676,8 @@ namespace NarrativeWorldCreator
                     CurrentDrawingMode = DrawingModes.MinkowskiMinus;
                 }
             }
-
-            if (_currentRegionPage.selectedNode.Shape.Points.Count > 2)
+            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 _currentRegionPage.RegionCreated = true;
             }
@@ -846,11 +858,14 @@ namespace NarrativeWorldCreator
         private int CalculateCollisionQuad()
         {
             Ray ray = CalculateMouseRay();
-            List<Vector3> points = _currentRegionPage.selectedNode.GetXNAPointsOfShape();
+            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);    
+            List<VertexPositionColor> points = new List<VertexPositionColor>();
+            points = DrawingEngine.GetDrawableTriangles(result, Color.White);
             for (int i = 0; i < points.Count; i++)
             {
-                Quad quad = new Quad(points[i], new Vector3(points[i].X, points[i].Y, 1), Vector3.Up, 1, 1, Color.Red);
-                BoundingBox box = new BoundingBox(new Vector3(points[i].X - 1, points[i].Y - 1, points[i].Z), new Vector3(points[i].X + 1, points[i].Y + 1, points[i].Z));
+                Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, Color.Red);
+                BoundingBox box = new BoundingBox(new Vector3(points[i].Position.X - 1, points[i].Position.Y - 1, points[i].Position.Z), new Vector3(points[i].Position.X + 1, points[i].Position.Y + 1, points[i].Position.Z));
                 float? distance = ray.Intersects(box);
                 if (distance != null)
                     return i;
@@ -937,15 +952,46 @@ namespace NarrativeWorldCreator
                 {
                     vertices.Add(new Vec2(corner.X, corner.Y));
                 }
-                _currentRegionPage.selectedNode.Shape = new Shape(vertices);
-                _currentRegionPage.selectedNode.triangulatePolygon();
-                _currentRegionPage.SelectedTimePoint.SetBaseShape(_currentRegionPage.selectedNode);
+                var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+                floorInstance.Polygon = new Polygon(vertices);
+                floorInstance.UpdateBoundingBoxAndShape(null);
 
                 // Reset box
                 RegionCreationCurrentCoords = new Point();
                 RegionCreationInitialCoords = new Point();
             }
         }
+
+        //private void triangulatePolygon()
+        //{
+        //    if (Shape.Points.Count > 2)
+        //    {
+        //        // Triangulate using Triangle.NET
+        //        var geometry = new InputGeometry(Shape.Points.Count);
+        //        for (int i = 0; i < Shape.Points.Count; i++)
+        //        {
+        //            geometry.AddPoint(Shape.Points[i].X, Shape.Points[i].Y, 1);
+        //            geometry.AddSegment(i, (i + 1) % Shape.Points.Count, 2);
+        //        }
+        //        Mesh = new TriangleNet.Mesh();
+        //        Mesh.Triangulate(geometry);
+        //    }
+        //    return;
+        //}
+
+        //public List<VertexPositionColor> GetDrawableTriangles(Color color)
+        //{
+        //    List<VertexPositionColor> ret = new List<VertexPositionColor>();
+        //    var triangles = this.Mesh.Triangles.ToList();
+        //    var vertices = this.Mesh.Vertices.ToList();
+        //    for (int i = 0; i < triangles.Count; i++)
+        //    {
+        //        ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P0].X, (float)vertices[triangles[i].P0].Y, 0), color));
+        //        ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P1].X, (float)vertices[triangles[i].P1].Y, 0), color));
+        //        ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P2].X, (float)vertices[triangles[i].P2].Y, 0), color));
+        //    }
+        //    return ret;
+        //}
 
         private void HandleVertexCreation()
         {
@@ -968,11 +1014,11 @@ namespace NarrativeWorldCreator
                 Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
 
                 // Retrieve vertices from old shape and add the new vertex
-                var vertices = _currentRegionPage.selectedNode.Shape.Points;
-                vertices.Add(new Vec2(planeHit.X, planeHit.Y));
-                _currentRegionPage.selectedNode.Shape = new Shape(vertices);
-                _currentRegionPage.selectedNode.triangulatePolygon();
-                _currentRegionPage.SelectedTimePoint.SetBaseShape(_currentRegionPage.selectedNode);
+                var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+                var vertices = floorInstance.Polygon.GetAllVertices();
+                vertices.Add(new Vec2d(planeHit.X, planeHit.Y));
+                floorInstance.Polygon = new Polygon(vertices);
+                floorInstance.UpdateBoundingBoxAndShape(null);
             }
         }
 
@@ -984,12 +1030,12 @@ namespace NarrativeWorldCreator
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && draggingVertexIndex != -1)
             {
                 Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));
-                var vertices = _currentRegionPage.selectedNode.Shape.Points;
+                var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+                var vertices = floorInstance.Polygon.GetAllVertices();
                 Vector3 mouseCoordsOnZPlane = CalculateMouseHitOnSurface();
-                vertices[draggingVertexIndex] = new Vec2(mouseCoordsOnZPlane.X, mouseCoordsOnZPlane.Y);
-                _currentRegionPage.selectedNode.Shape = new Shape(vertices);
-                _currentRegionPage.selectedNode.triangulatePolygon();
-                _currentRegionPage.SelectedTimePoint.SetBaseShape(_currentRegionPage.selectedNode);
+                vertices[draggingVertexIndex] = new Vec2d(mouseCoordsOnZPlane.X, mouseCoordsOnZPlane.Y);
+                floorInstance.Polygon = new Polygon(vertices);
+                floorInstance.UpdateBoundingBoxAndShape(null);
             }
 
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)

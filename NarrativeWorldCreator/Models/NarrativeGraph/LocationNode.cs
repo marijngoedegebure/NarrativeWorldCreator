@@ -15,12 +15,7 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
     public class LocationNode
     {
         public string LocationName { get; set; }
-        // Store base shape of region so it can be easily rendered
-        public Shape Shape { get; set; }
-        // Triangulated region points
-        public TriangleNet.Mesh Mesh { get; set; }
-
-        // Subset of timepoints for this node
+                // Subset of timepoints for this node
         public List<NarrativeTimePoint> TimePoints { get; set; }
         public string LocationType { get; set; }
 
@@ -29,7 +24,6 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
             this.LocationName = locationName;
             this.LocationType = locationType;
             this.TimePoints = new List<NarrativeTimePoint>();
-            this.Shape = new Shape(new List<Common.Vec2>());
         }
 
         public override bool Equals(System.Object obj)
@@ -45,47 +39,6 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
         public override int GetHashCode()
         {
             return this.LocationName.GetHashCode();
-        }
-
-        public void triangulatePolygon()
-        {
-            if (Shape.Points.Count > 2)
-            {
-                // Triangulate using Triangle.NET
-                var geometry = new InputGeometry(Shape.Points.Count);
-                for (int i = 0; i < Shape.Points.Count; i++)
-                {
-                    geometry.AddPoint(Shape.Points[i].X, Shape.Points[i].Y, 1);
-                    geometry.AddSegment(i, (i + 1) % Shape.Points.Count, 2);
-                }
-                Mesh = new TriangleNet.Mesh();
-                Mesh.Triangulate(geometry);
-            }
-            return;
-        }
-
-        public List<VertexPositionColor> GetDrawableTriangles(Color color)
-        {
-            List<VertexPositionColor> ret = new List<VertexPositionColor>();
-            var triangles = this.Mesh.Triangles.ToList();
-            var vertices = this.Mesh.Vertices.ToList();
-            for (int i = 0; i < triangles.Count; i++)
-            {
-                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P0].X, (float)vertices[triangles[i].P0].Y, 0), color));
-                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P1].X, (float)vertices[triangles[i].P1].Y, 0), color));
-                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P2].X, (float)vertices[triangles[i].P2].Y, 0), color));
-            }
-            return ret;
-        }
-
-        public List<Vector3> GetXNAPointsOfShape()
-        {
-            List<Vector3> vertices = new List<Vector3>();
-            foreach (var point in Shape.Points)
-            {
-                vertices.Add(new Vector3(point.X, point.Y, 0));
-            }
-            return vertices;
         }
     }
 }
