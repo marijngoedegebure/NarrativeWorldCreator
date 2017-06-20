@@ -55,7 +55,15 @@ namespace NarrativeWorldCreator
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new RegionInitPage(selectedNode, (this.NarrativeTimelineControl.lvTimePointsDataBinding.SelectedItem as NarrativeTimePointViewModel).NarrativeTimePoint));
+            if (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel != null)
+            {
+                ErrorTB.Text = "";
+                this.NavigationService.Navigate(new RegionInitPage(selectedNode, (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel).NarrativeTimePoint));
+            }
+            else
+            {
+                ErrorTB.Text = "Please select a timepoint.";
+            }
         }
 
         private void btnReloadGraph_Click(object sender, RoutedEventArgs e)

@@ -9,8 +9,9 @@
     <Grid>
         <ListView
             Margin="10"
-            Name="icTimePointList"
+            Name="lvNodeDetailList"
             ScrollViewer.VerticalScrollBarVisibility="Visible"
+            SelectionMode="Single"
             ItemsSource = "{Binding Path = NarrativeTimePoints}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -23,6 +24,8 @@
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.TimePoint, Mode = OneWay, StringFormat='Timepoint: {0}'}" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name, Mode = OneWay,  StringFormat='Event: {0}'}" />
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.Location.LocationName, Mode = OneWay, StringFormat='Location: {0}'}" />
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.Configuration.InstancedObjects.Count, Mode = OneWay, StringFormat='Number of instances: {0}'}" />
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.Configuration.InstancedRelations.Count, Mode = OneWay, StringFormat='Number of relations: {0}'}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

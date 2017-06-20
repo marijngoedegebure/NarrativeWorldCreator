@@ -26,11 +26,6 @@
                         <TextBlock Text="{Binding Path = NarrativeActionName, Mode = TwoWay}" />
                         <TextBlock Text="{Binding Path = LocationName, Mode = TwoWay}" />
                     </StackPanel>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=Selected}" Value="True">
-                            <Setter TargetName="item" Property="Background" Value="Yellow"/>
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
