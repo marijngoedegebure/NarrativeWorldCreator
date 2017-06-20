@@ -40,37 +40,7 @@ namespace NarrativeWorldCreator
             InitializeComponent();
         }
 
-        private void btnOpenFileProblem_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                problemPath = openFileDialog.FileName;
-                problem_filename.Content = openFileDialog.SafeFileName;
-            }
-        }
-
-        private void btnOpenFileDomain_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                domainPath = openFileDialog.FileName;
-                domain_filename.Content = openFileDialog.SafeFileName;
-            }
-        }
-
-        private void btnOpenFilePlan_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-            {
-                planPath = openFileDialog.FileName;
-                plan_filename.Content = openFileDialog.SafeFileName;
-            }
-        }
-
-        private void btnLoadPDDL_Click(object sender, RoutedEventArgs e)
+        private void LoadPDDL()
         {
             Narrative narrative = Parser.parse(SystemStateTracker.LocationTypeName, SystemStateTracker.CharacterTypeName, SystemStateTracker.ObjectTypeName, SystemStateTracker.MoveActionName, domainPath, problemPath, planPath);
             NarrativeWorldParser.staticInput(
@@ -80,30 +50,6 @@ namespace NarrativeWorldCreator
                 SystemStateTracker.MoveActionName,
                 SystemStateTracker.AtPredicateName);
             SystemStateTracker.NarrativeWorld = NarrativeWorldParser.parse(narrative);
-            // Create associations between character/object classes and entika classes based on names
-
-            //List<TangibleObject> allTangibleObjects = DatabaseSearch.GetNodes<TangibleObject>(true);
-            //List<TangibleObject> filteredList = allTangibleObjects.Where(x => x.Children.Count == 0).ToList();
-            //foreach (TangibleObject to in filteredList)
-            //{
-            //    foreach (NarrativeCharacter nc in SystemStateTracker.NarrativeWorld.NarrativeCharacters)
-            //    {
-            //        if (to.Names[0].Equals(nc.Name))
-            //        {
-            //            nc.TangibleObject = to;
-            //            continue;
-            //        }
-            //    }
-            //    foreach (NarrativeThing nt in SystemStateTracker.NarrativeWorld.NarrativeThings)
-            //    {
-            //        if (to.Names[0].Equals(nt.Name))
-            //        {
-            //            nt.TangibleObject = to;
-            //            continue;
-            //        }
-            //    }
-            //}
-
             // Show information on loaded narrative
             fillDetailView();
             loaded_narrative_detail_grid.Visibility = Visibility.Visible;
@@ -111,6 +57,7 @@ namespace NarrativeWorldCreator
 
         private void fillDetailView()
         {
+            this.narrative_name_content.Content = SystemStateTracker.NarrativeWorld.Narrative.Name;
             number_narrative_events.Content = SystemStateTracker.NarrativeWorld.Narrative.NarrativeEvents.Count;
             number_narrative_characters.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(SystemStateTracker.CharacterTypeName).Count;
             number_narrative_locations.Content = SystemStateTracker.NarrativeWorld.Narrative.getNarrativeObjectsOfType(SystemStateTracker.LocationTypeName).Count;
@@ -119,8 +66,14 @@ namespace NarrativeWorldCreator
 
         private void btnGoToGraphPage_Click(object sender, RoutedEventArgs e)
         {
+            this.LoadPDDL();
             // Navigate to graph page
             this.NavigationService.Navigate(new GraphPage());
+        }
+
+        private void btnLoadNarrative_Click(object sender, RoutedEventArgs e)
+        {
+            LoadPDDL();
         }
     }
 }

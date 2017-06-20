@@ -12,22 +12,12 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"></ColumnDefinition>
-                <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Click here to problem from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileProblem_Click"/>
-            <Label Grid.Row="0" Grid.Column="1" Name="problem_filename" />
-            <Button Grid.Row="1" Grid.Column="0" x:Name="button2" Content="Click here to domain from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFileDomain_Click"/>
-            <Label Grid.Row="1" Grid.Column="1" Name="domain_filename" />
-            <Button Grid.Row="2" Grid.Column="0" x:Name="button3" Content="Click here to plan from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnOpenFilePlan_Click"/>
-            <Label Grid.Row="2" Grid.Column="1" Name="plan_filename" />
-            <Button Grid.Row="3" Grid.Column="0" x:Name="button4" Content="Click here to load Pddl from disk." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadPDDL_Click"/>
-            <Button Grid.Row="4" Grid.Column="0" x:Name="button5" Content="Click here see the region graph." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToGraphPage_Click"/>
+            <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Click here to load the narrative." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnLoadNarrative_Click"/>
+            <Button Grid.Row="1" Grid.Column="0" x:Name="button5" Content="Click here see the region graph." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToGraphPage_Click"/>
         </Grid>
         <Grid Name="loaded_narrative_detail_grid" Margin="0,163,0,-163" Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -35,19 +25,22 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"></ColumnDefinition>
                 <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" Name="narrative_events" Content="# of narrative events" />
-            <Label Grid.Row="0" Grid.Column="1" Name="number_narrative_events" />
-            <Label Grid.Row="1" Grid.Column="0" Name="narrative_locations" Content="# of narrative locations" />
-            <Label Grid.Row="1" Grid.Column="1" Name="number_narrative_locations" />
-            <Label Grid.Row="2" Grid.Column="0" Name="narrative_characters" Content="# of narrative characters" />
-            <Label Grid.Row="2" Grid.Column="1" Name="number_narrative_characters" />
-            <Label Grid.Row="3" Grid.Column="0" Name="narrative_objects" Content="# of narrative objects" />
-            <Label Grid.Row="3" Grid.Column="1" Name="number_narrative_objects" />
+            <Label Grid.Row="0" Grid.Column="0" Name="narrative_name_lbl" Content="Narrative name" />
+            <Label Grid.Row="0" Grid.Column="1" Name="narrative_name_content"/>
+            <Label Grid.Row="1" Grid.Column="0" Name="narrative_events" Content="# of narrative events" />
+            <Label Grid.Row="1" Grid.Column="1" Name="number_narrative_events" />
+            <Label Grid.Row="2" Grid.Column="0" Name="narrative_locations" Content="# of narrative locations" />
+            <Label Grid.Row="2" Grid.Column="1" Name="number_narrative_locations" />
+            <Label Grid.Row="3" Grid.Column="0" Name="narrative_characters" Content="# of narrative characters" />
+            <Label Grid.Row="3" Grid.Column="1" Name="number_narrative_characters" />
+            <Label Grid.Row="4" Grid.Column="0" Name="narrative_objects" Content="# of narrative objects" />
+            <Label Grid.Row="4" Grid.Column="1" Name="number_narrative_objects" />
         </Grid>
     </Grid>
 </Page>
