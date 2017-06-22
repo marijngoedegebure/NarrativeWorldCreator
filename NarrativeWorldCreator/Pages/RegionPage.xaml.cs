@@ -106,6 +106,7 @@ namespace NarrativeWorldCreator
             GenerateConfigurationsView2.Visibility = Visibility.Collapsed;
             CurrentFillingMode = FillingMode.None;
             WorkInProgressConfiguration = new Configuration();
+            SelectedGPUConfigurationResult = -1;
         }
 
         public bool RegionCreated = false;
@@ -300,6 +301,7 @@ namespace NarrativeWorldCreator
         public void BackToRelationshipSelectionAndInstancing()
         {
             this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            SelectedGPUConfigurationResult = -1;
 
             CurrentFillingMode = FillingMode.RelationSelectionAndInstancting;
             TangibleObjectsView.Visibility = Visibility.Collapsed;

@@ -344,7 +344,7 @@ namespace NarrativeWorldCreator.Solvers
                 WeightVisualBalance = SystemStateTracker.WeightVisualBalance,
                 WeightSymmetry = SystemStateTracker.WeightSymmetry,
                 WeightClearance = SystemStateTracker.WeightClearance,
-                // TODO: allow input for centroid and focal
+                WeightSurfaceArea = SystemStateTracker.WeightSurfaceArea,
                 centroidX = SystemStateTracker.centroidX,
                 centroidY = SystemStateTracker.centroidY,
                 focalX = SystemStateTracker.focalX,

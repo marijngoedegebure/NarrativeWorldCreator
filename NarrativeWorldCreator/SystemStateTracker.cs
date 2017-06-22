@@ -37,11 +37,11 @@ namespace NarrativeWorldCreator
         public static int gridxDim = 10;
         public const int gridyDim = 0;
         // Number of threads used for each threadblock, should be a multiple of 32 (probably 256)
-        public const int blockxDim = 1;
+        public const int blockxDim = 256;
         public const int blockyDim = 0;
         public const int blockzDim = 0;
         // Number of iterations a configuration will see before the best encountered configuration is returned
-        public const int iterations = 10;
+        public const int iterations = 100;
 
         // Algorithm
         // Weights for each cost function
@@ -50,7 +50,7 @@ namespace NarrativeWorldCreator
         public static float WeightVisualBalance = 1.0f;
         public static float WeightSymmetry = 1.0f;
         public static float WeightClearance = 1.0f;
-        // TODO: allow input for centroid and focal
+        public static float WeightSurfaceArea = 1.0f;
         // Configurable centroid and focal points in scene
         public static double centroidX = 0.0;
         public static double centroidY = 0.0;

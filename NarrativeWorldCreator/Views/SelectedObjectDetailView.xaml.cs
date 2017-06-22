@@ -33,6 +33,16 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
+                if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Repositioning))
+                {
+                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
+                    regionPage.GenerateConfigurationsView2.RefreshConfigurations();
+                }
+                else if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Placement))
+                {
+                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
+                    regionPage.GenerateConfigurationsView.RefreshConfigurations();
+                }
             }
             regionPage.RefreshSelectedObjectView();
         }
@@ -50,6 +60,16 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = false;
+                if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Repositioning))
+                {
+                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
+                    regionPage.GenerateConfigurationsView2.RefreshConfigurations();
+                }
+                else if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Placement))
+                {
+                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
+                    regionPage.GenerateConfigurationsView.RefreshConfigurations();
+                }
             }
             regionPage.RefreshSelectedObjectView();
         }

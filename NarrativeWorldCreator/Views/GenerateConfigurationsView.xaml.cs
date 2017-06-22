@@ -34,6 +34,8 @@ namespace NarrativeWorldCreator.Views
             SystemStateTracker.WeightPairWise = (float) this.SliderWeightPairWise.Value;
             SystemStateTracker.WeightSymmetry = (float)this.SliderWeightSymmetry.Value;
             SystemStateTracker.WeightVisualBalance = (float)this.SliderWeightVisualBalance.Value;
+            SystemStateTracker.WeightClearance = (float)this.SliderWeightClearance.Value;
+            SystemStateTracker.WeightSurfaceArea = (float)this.SliderWeightSurfaceArea.Value;
             SystemStateTracker.centroidX = double.Parse(this.centroidX.Text);
             SystemStateTracker.centroidY = double.Parse(this.centroidY.Text);
             SystemStateTracker.focalX = double.Parse(this.focalX.Text);
