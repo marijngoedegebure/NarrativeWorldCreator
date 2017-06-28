@@ -98,7 +98,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             // Or using the declared polygon
             else
             {
-                bb = GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[this.TangibleObject], world.GetValueOrDefault());
+                bb = GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[this.TangibleObject], world.GetValueOrDefault() * Matrix.CreateRotationZ(this.Rotation.Y));
             }
             if (bb != null)
                 this.BoundingBox = bb;

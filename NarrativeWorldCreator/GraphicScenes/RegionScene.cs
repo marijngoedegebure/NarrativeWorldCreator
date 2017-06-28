@@ -73,6 +73,7 @@ namespace NarrativeWorldCreator
         private Point RegionCreationCurrentCoords;
 
         private EntikaInstance repositioningObject;
+        private EntikaInstance rotationObject;
 
         public float LineThickness = 0.1f;
 
@@ -572,7 +573,7 @@ namespace NarrativeWorldCreator
             lineEffect.VertexColorEnabled = true;
             var bbb = BoundingBoxBuffers.CreateBoundingBoxBuffers(instance.BoundingBox, GraphicsDevice);
 
-            DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition);
+            DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition, modelRotation);
             // Draw clearance quads:
             foreach (var clearance in instance.Clearances)
             {
@@ -587,11 +588,11 @@ namespace NarrativeWorldCreator
                 }
                 var bb = new BoundingBox(min, max);
                 var bbb2 = BoundingBoxBuffers.CreateBoundingBoxBuffers(bb, GraphicsDevice);
-                DrawBoundingBox(bbb2, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition);
+                DrawBoundingBox(bbb2, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition, modelRotation);
             }
         }
 
-        private void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection, Vector3 position)
+        private void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection, Vector3 position, float rotation)
         {
             graphicsDevice.SetVertexBuffer(buffers.Vertices);
             graphicsDevice.Indices = buffers.Indices;
@@ -755,6 +756,74 @@ namespace NarrativeWorldCreator
                         BoxSelectInitialCoords = new Point();
                     }
                 }
+                else if (_keyboardState.IsKeyDown(Keys.R))
+                {
+                    if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        // Initialize box
+                        Ray ray = CalculateMouseRay();
+                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                        {
+                            // Create translated boundingbox
+                            var min = ieo.BoundingBox.Min;
+                            var max = ieo.BoundingBox.Max;
+
+                            var bb = new BoundingBox(Vector3.Transform(min, Matrix.CreateTranslation(ieo.Position)), Vector3.Transform(max, Matrix.CreateTranslation(ieo.Position)));
+
+                            // Intersect ray with bounding box, if distance then select model
+                            float? distance = ray.Intersects(bb);
+                            if (distance != null)
+                            {
+                                rotationObject = ieo;
+                                var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
+                                // Move hit around 0,0,0
+                                hit = hit - rotationObject.Position;
+                                hit.Normalize();
+                                // Calculate angle between forward vector (Y positive) and the hit)
+                                var angle = 0.0;
+                                if ( (hit.X > 0 && hit.Y > 0) || (hit.X > 0 && hit.Y < 0))
+                                {
+                                    angle = Math.Acos(Vector3.Dot(new Vector3(0, -1, 0), hit));
+                                    angle += Math.PI;
+                                }
+                                else
+                                {
+                                    angle = Math.Acos(Vector3.Dot(new Vector3(0, 1, 0), hit));
+                                }
+                                var delta = rotationObject.Rotation.Y - angle;
+                                rotationObject.Rotation = new Vector3(0, (float)angle, 0);
+                                CascadeRotation(rotationObject, delta);
+                            }
+                        }
+                    }
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && rotationObject != null)
+                    {
+                        // reposition box to draw
+                        var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
+                        // Move hit around 0,0,0
+                        hit = hit - rotationObject.Position;
+                        hit.Normalize();
+                        // Calculate angle between forward vector (Y positive) and the hit)
+                        var angle = 0.0;
+                        if ((hit.X > 0 && hit.Y > 0) || (hit.X > 0 && hit.Y < 0))
+                        {
+                            angle = Math.Acos(Vector3.Dot(new Vector3(0, -1, 0), hit));
+                            angle += Math.PI;
+                        }
+                        else
+                        {
+                            angle = Math.Acos(Vector3.Dot(new Vector3(0, 1, 0), hit));
+                        }
+                        var delta = rotationObject.Rotation.Y - angle;
+                        rotationObject.Rotation = new Vector3(0, (float)angle, 0);
+                        CascadeRotation(rotationObject, delta);
+                    }
+                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && rotationObject != null)
+                    {
+                        rotationObject = null;
+                    }
+                }
+
                 else if (_keyboardState.IsKeyDown(Keys.LeftControl))
                 {
                     if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
@@ -775,7 +844,10 @@ namespace NarrativeWorldCreator
                             {
                                 repositioningObject = ieo;
                                 var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                                repositioningObject.Position = new Vector3(hit.X, hit.Y, repositioningObject.Position.Z);
+                                var newPos = new Vector3(hit.X, hit.Y, repositioningObject.Position.Z);
+                                var delta = newPos - repositioningObject.Position;
+                                repositioningObject.Position = newPos;
+                                CascadeRepositioning(repositioningObject, delta);
                             }
                         }
                     }
@@ -783,7 +855,10 @@ namespace NarrativeWorldCreator
                     {
                         // reposition box to draw
                         var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                        repositioningObject.Position = new Vector3(hit.X, hit.Y, repositioningObject.Position.Z);
+                        var newPos = new Vector3(hit.X, hit.Y, repositioningObject.Position.Z);
+                        var delta = newPos - repositioningObject.Position;
+                        repositioningObject.Position = newPos;
+                        CascadeRepositioning(repositioningObject, delta);
                     }
                     if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && repositioningObject != null)
                     {
@@ -824,6 +899,30 @@ namespace NarrativeWorldCreator
                     //if (_currentRegionPage.SelectedEntikaInstance != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
                     //{
                     //}
+            }
+        }
+
+        private void CascadeRotation(EntikaInstance parentObj, double delta)
+        {
+            foreach (var relationship in parentObj.RelationshipsAsSource.Where(rel => rel.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On)))
+            {
+                // Translate object using parent object position, rotate and translate back
+                relationship.Target.Position -= parentObj.Position;
+                relationship.Target.Position = Vector3.Transform(relationship.Target.Position, Matrix.CreateRotationZ(-(float)delta));
+                relationship.Target.Position += parentObj.Position;
+                relationship.Target.Rotation = new Vector3(relationship.Target.Rotation.X, (float)((relationship.Target.Rotation.Y - (float)delta) % Math.PI), relationship.Target.Rotation.Z);
+                // fire of CascadeRepositioning again
+                CascadeRotation(relationship.Target, delta);
+            }
+        }
+
+        private void CascadeRepositioning(EntikaInstance parentObj, Vector3 delta)
+        {
+            foreach (var relationship in parentObj.RelationshipsAsSource.Where(rel => rel.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On)))
+            {
+                // For each source on relationship, move target object and fire of CascadeRepositioning again
+                relationship.Target.Position += delta;
+                CascadeRepositioning(relationship.Target, delta);
             }
         }
 
