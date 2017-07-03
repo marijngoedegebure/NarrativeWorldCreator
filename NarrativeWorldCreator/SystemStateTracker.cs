@@ -22,11 +22,6 @@ namespace NarrativeWorldCreator
         public static string LoadedFileName;
         public static string EntikaPath;
 
-        public static GraphicsDevice RegionGraphicsDevice;
-        public static Matrix view;
-        public static Matrix world;
-        public static Matrix proj;
-
         public static Model DefaultModel;
 
         public static Texture2D BoxSelectTexture;

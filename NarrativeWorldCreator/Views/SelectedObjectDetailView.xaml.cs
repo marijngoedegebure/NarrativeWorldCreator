@@ -33,12 +33,12 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Repositioning))
+                if (regionPage.CurrentFillingMode.Equals(BaseModeRegionPage.FillingMode.Repositioning))
                 {
                     regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
                     regionPage.GenerateConfigurationsView2.RefreshConfigurations();
                 }
-                else if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Placement))
+                else if (regionPage.CurrentFillingMode.Equals(BaseModeRegionPage.FillingMode.Placement))
                 {
                     regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
                     regionPage.GenerateConfigurationsView.RefreshConfigurations();
@@ -47,10 +47,10 @@ namespace NarrativeWorldCreator.Views
             regionPage.RefreshSelectedObjectView();
         }
 
-        private RegionPage GetRegionPage()
+        private BaseModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void btnUnFreeze(object sender, RoutedEventArgs e)
@@ -60,12 +60,12 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = false;
-                if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Repositioning))
+                if (regionPage.CurrentFillingMode.Equals(BaseModeRegionPage.FillingMode.Repositioning))
                 {
                     regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
                     regionPage.GenerateConfigurationsView2.RefreshConfigurations();
                 }
-                else if (regionPage.CurrentFillingMode.Equals(RegionPage.FillingMode.Placement))
+                else if (regionPage.CurrentFillingMode.Equals(BaseModeRegionPage.FillingMode.Placement))
                 {
                     regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
                     regionPage.GenerateConfigurationsView.RefreshConfigurations();

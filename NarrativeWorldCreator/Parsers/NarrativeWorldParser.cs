@@ -84,12 +84,12 @@ namespace NarrativeWorldCreator.Parsers
         public static void createNarrativeTimeline()
         {           
             // InitialTimePoint does not have a location node associated with it, possible solution would be the addition of annotation of a starting node for the story
-            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(0, NarrativeWorld.AvailableTangibleObjects);
+            NarrativeTimePoint initialTimePoint = new NarrativeTimePoint(0);
             NarrativeWorld.NarrativeTimeline.NarrativeTimePoints.Add(initialTimePoint);
             // Initialize each timepoint
             for (int i = 0; i < NarrativeWorld.Narrative.NarrativeEvents.Count; i++)
             {
-                NarrativeTimePoint timePoint = new NarrativeTimePoint(i+1, NarrativeWorld.AvailableTangibleObjects);
+                NarrativeTimePoint timePoint = new NarrativeTimePoint(i+1);
                 timePoint.NarrativeEvent = NarrativeWorld.Narrative.NarrativeEvents[i];
                 // Last "NarrativeObject" is the name of the location
                 var Node = NarrativeWorld.Graph.getNode(NarrativeWorld.Narrative.NarrativeEvents[i].NarrativeObjects.Last().Name);

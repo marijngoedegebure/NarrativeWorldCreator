@@ -24,12 +24,12 @@ namespace NarrativeWorldCreator.Pages
     /// <summary>
     /// Interaction logic for RegionInitPage.xaml
     /// </summary>
-    public partial class RegionInitPage : Page
+    public partial class ClassSelectionPage : Page
     {
         public LocationNode selectedNode;
         public NarrativeTimePoint SelectedTimePoint;
 
-        public RegionInitPage(LocationNode selectedNode, NarrativeTimePoint ntp)
+        public ClassSelectionPage(LocationNode selectedNode, NarrativeTimePoint ntp)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
@@ -70,7 +70,10 @@ namespace NarrativeWorldCreator.Pages
                 fillAvailableTO.Add(to);
             }
             this.SelectedTimePoint.AvailableTangibleObjects = fillAvailableTO;
-            this.NavigationService.Navigate(new RegionPage(selectedNode, this.SelectedTimePoint));
+            if (SelectedTimePoint.FloorCreated)
+                this.NavigationService.Navigate(new BaseModeRegionPage(selectedNode, this.SelectedTimePoint));
+            else
+                this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
         }
 
         private void AvailableSwapView_Loaded(object sender, RoutedEventArgs e)
@@ -82,14 +85,28 @@ namespace NarrativeWorldCreator.Pages
             {
                 toList.Remove(to);
             }
+            // Remove already selected from available TO list
+            foreach (var to in (this.SelectedTimePoint.AvailableTangibleObjects))
+            {
+                toList.Remove(to);
+            }
             TOSVM.Load(toList);
             this.AvailableSwapView.DataContext = TOSVM;
         }
 
         private void SelectedSwapView_Loaded(object sender, RoutedEventArgs e)
         {
+            var toArraySelected = new TangibleObject[this.SelectedTimePoint.AvailableTangibleObjects.Count];
+            this.SelectedTimePoint.AvailableTangibleObjects.CopyTo(toArraySelected);
+            var toListSelected = toArraySelected.ToList();
+            // Remove required from list of selected
+            foreach (var to in (this.DataContext as TangibleObjectsSwapViewModel).TangibleObjects)
+            {
+                toListSelected.Remove(to);
+            }
+
             var TOSVM = new TangibleObjectsSwapViewModel();
-            TOSVM.Load(new List<TangibleObject>());
+            TOSVM.Load(toListSelected);
             this.SelectedSwapView.DataContext = TOSVM;
         }
 

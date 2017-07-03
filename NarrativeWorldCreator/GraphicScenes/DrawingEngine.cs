@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TriangleNet.Geometry;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.GraphicScenes
 {
     public static class DrawingEngine
     {

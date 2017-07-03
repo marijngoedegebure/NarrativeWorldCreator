@@ -87,25 +87,8 @@
             <Label Content="Number of configurations generated:" Grid.Row="14" Grid.Column="0"/>
             <TextBox Name="gridxDim" Grid.Row="14" Grid.Column="1" />
 
-            <Button Grid.Row="15" Grid.Column="0" Content="Reset view" Click="ResetSelectionList"/>
             <Button Grid.Row="15" Grid.Column="1" Content="Refresh configurations" Click="btnRefreshConfigurations"/>
             <Button Grid.Row="16" Grid.Column="0" Content="Back" Click="Back"/>
-            <Button Grid.Row="16" Grid.Column="1" Content="Save selected configuration" Click="SaveConfiguration"/>
         </Grid>
-        <ListView Name="ConfigurationsList"
-            Grid.Column="0"
-            Grid.Row="1"
-            Margin="10"
-            SelectionMode="Single"
-            SelectionChanged="ConfigurationSelectionChanged"
-            ItemsSource = "{Binding Path = GPUConfigurationResults}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="{Binding TotalCosts, StringFormat='Total costs: {0}'}" FontWeight="Bold" />
-                    </WrapPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
     </Grid>
 </UserControl>

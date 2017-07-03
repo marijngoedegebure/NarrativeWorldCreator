@@ -33,18 +33,20 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public List<InstancedPredicate> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
 
+        public bool FloorCreated = false;
 
         // Current configuration of a timepoint, used to generate new configurations from
         public Configuration Configuration { get; set; }
 
-        public NarrativeTimePoint(int timePoint, List<TangibleObject> DefaultTangibleObjects)
+        public NarrativeTimePoint(int timePoint)
         {
             this.TimePoint = timePoint;
             PredicatesFilteredByCurrentLocation = new List<NarrativeRegionFill.Predicate>();
             AllPredicates = new List<NarrativeRegionFill.Predicate>();
             PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.InstancedPredicate>();
             Configuration = new Configuration();
-            AvailableTangibleObjects = DefaultTangibleObjects;
+            this.Configuration.InstancedObjects.Add(new EntikaInstance(Constants.Floor, new Polygon(new List<Vec2d>())));
+            AvailableTangibleObjects = new List<TangibleObject>();
         }
 
         internal List<InstancedPredicate> GetPredicatesOfInstance(EntikaInstance entikaInstance)
@@ -77,17 +79,6 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         //        SetupFloorInstance(selectedNode);
         //    }
         //}
-
-        internal void SetupFloorInstance()
-        {
-            // Setup EntikaInstance with on(X, floor) relationship
-            var floorInstance = this.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-            if (floorInstance == null)
-            {
-                floorInstance = new EntikaInstance(Constants.Floor, new Polygon(new List<Vec2d>()));
-                this.Configuration.InstancedObjects.Add(floorInstance);
-            }
-        }
 
         internal void InstantiateRelationship(RelationshipInstance relationInstance)
         {

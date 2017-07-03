@@ -46,60 +46,18 @@ namespace NarrativeWorldCreator.Views
             // Call configuration generation using current timepoint
             var regionPage = GetRegionPage();
             regionPage.GenerateConfigurations();
-
-            // Update list of configurations using generated list of regionpage
-            var gcVM = (GenerateConfigurationsViewModel)this.DataContext;
-            gcVM.Load(regionPage.GeneratedConfigurations);
-            this.DataContext = gcVM;
         }
 
-        private RegionPage GetRegionPage()
+        private BaseModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
-        }
-
-        private void ConfigurationSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            if (this.ConfigurationsList.SelectedItems.Count > 0)
-                regionPage.SelectedGPUConfigurationResult = this.ConfigurationsList.SelectedIndex;
-            else
-                regionPage.SelectedGPUConfigurationResult = -1;
-        }
-
-        private void ResetSelectionList(object sender, RoutedEventArgs e)
-        {
-            this.ConfigurationsList.SelectedIndex = -1;
-            var regionPage = GetRegionPage();
-
-            regionPage.SelectedGPUConfigurationResult = this.ConfigurationsList.SelectedIndex;
-        }
-
-        private void SaveConfiguration(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            if (regionPage.CurrentFillingMode == RegionPage.FillingMode.Repositioning)
-            {
-                if (this.ConfigurationsList.SelectedIndex != -1)
-                {
-                    regionPage.RepositionAndBackToMenu();
-                }
-            }
-            else
-            {
-                if (this.ConfigurationsList.SelectedIndex != -1)
-                {
-
-                    regionPage.PlaceObjectAndToEntityAddition();
-                }
-            }
+            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void Back(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (regionPage.CurrentFillingMode == RegionPage.FillingMode.Repositioning)
+            if (regionPage.CurrentFillingMode == BaseModeRegionPage.FillingMode.Repositioning)
             {
                 regionPage.BackToMenu();
             }

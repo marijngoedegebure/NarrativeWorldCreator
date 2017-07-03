@@ -126,8 +126,13 @@
     </ApplicationDefinition>
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
+    <Compile Include="GraphicScenes\BaseRegionFilling\GenerationSceneLeft.cs" />
+    <Compile Include="GraphicScenes\BaseRegionFilling\GenerationSceneRight.cs" />
+    <Compile Include="GraphicScenes\BaseRegionFilling\MainRegionScene.cs" />
     <Compile Include="GraphicScenes\Primitives\BoundingBoxBuffers.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
+    <Compile Include="GraphicScenes\BaseRegionFilling\GenerationScene.cs" />
+    <Compile Include="GraphicScenes\RegionCreationScene.cs" />
     <Compile Include="MetricEngines\AddOrChangeMetricEngine.cs" />
     <Compile Include="MetricEngines\Normalization.cs" />
     <Compile Include="Models\Metrics\InstanceTree\InstanceTreeEntikaInstance.cs" />
@@ -138,8 +143,14 @@
     <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\InstancedPredicate.cs" />
-    <Compile Include="Pages\RegionInitPage.xaml.cs">
-      <DependentUpon>RegionInitPage.xaml</DependentUpon>
+    <Compile Include="Pages\AlternativeModeRegionPage.xaml.cs">
+      <DependentUpon>AlternativeModeRegionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegionCreationPage.xaml.cs">
+      <DependentUpon>RegionCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ClassSelectionPage.xaml.cs">
+      <DependentUpon>ClassSelectionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Parsers\BeliefSystem.cs" />
     <Compile Include="Models\Constants.cs" />
@@ -170,8 +181,8 @@
     <Compile Include="Pages\InitPage.xaml.cs">
       <DependentUpon>InitPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RegionPage.xaml.cs">
-      <DependentUpon>RegionPage.xaml</DependentUpon>
+    <Compile Include="Pages\BaseModeRegionPage.xaml.cs">
+      <DependentUpon>BaseModeRegionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Parsers\DomainParser.cs" />
     <Compile Include="Parsers\NarrativeWorldParser.cs" />
@@ -182,10 +193,12 @@
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
     <Compile Include="MetricEngines\TangibleObjectMetricEngine.cs" />
+    <Compile Include="Solvers\RelationshipInstancingSolver.cs" />
+    <Compile Include="Solvers\RelationshipSelectionSolver.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
-    <Compile Include="GraphicScenes\RegionScene.cs" />
+    <Compile Include="GraphicScenes\BaseRegionFilling\RegionScene.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceValuedPredicate.cs" />
@@ -208,8 +221,8 @@
     <Compile Include="Views\EntikaInstancesSelectionView.xaml.cs">
       <DependentUpon>EntikaInstancesSelectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ModeView.xaml.cs">
-      <DependentUpon>ModeView.xaml</DependentUpon>
+    <Compile Include="Views\InspectGeneratedConfigurationsView.xaml.cs">
+      <DependentUpon>InspectGeneratedConfigurationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NarrativeEntitiesView.xaml.cs">
       <DependentUpon>NarrativeEntitiesView.xaml</DependentUpon>
@@ -256,6 +269,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AlternativeModeRegionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GraphPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -264,11 +281,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RegionInitPage.xaml">
+    <Page Include="Pages\RegionCreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\RegionPage.xaml">
+    <Page Include="Pages\ClassSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BaseModeRegionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,7 +297,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ModeView.xaml">
+    <Page Include="Views\InspectGeneratedConfigurationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -403,6 +424,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GraphicScenes\AlternativeRegionFilling\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>

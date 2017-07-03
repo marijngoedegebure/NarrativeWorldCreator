@@ -48,7 +48,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             // Ground is always frozen!
             this.Frozen = true;
             TangibleObject = DatabaseSearch.GetNode<TangibleObject>(name);
-            UpdateBoundingBoxAndShape(null);
+            UpdateBoundingBoxAndShape();
         }
 
         // Constructor for addition before placement
@@ -58,7 +58,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             this.Name = to.DefaultName + EntikaInstanceCount.Count;
             EntikaInstanceCount.Count++;
             this.TangibleObject = to;
-            this.UpdateBoundingBoxAndShape(SystemStateTracker.world);
+            this.UpdateBoundingBoxAndShape();
             foreach (SpaceValued space in this.TangibleObject.Spaces)
             {
                 if (space.Space.DefaultName.Equals(Constants.Clearance))
@@ -87,7 +87,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             }
         }
 
-        public void UpdateBoundingBoxAndShape(Matrix? world)
+        public void UpdateBoundingBoxAndShape()
         {
             BoundingBox bb;
             // For each mesh of the model
@@ -98,7 +98,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             // Or using the declared polygon
             else
             {
-                bb = GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[this.TangibleObject], world.GetValueOrDefault() * Matrix.CreateRotationZ(this.Rotation.Y));
+                bb = GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[this.TangibleObject], Matrix.CreateTranslation(this.Position));
             }
             if (bb != null)
                 this.BoundingBox = bb;

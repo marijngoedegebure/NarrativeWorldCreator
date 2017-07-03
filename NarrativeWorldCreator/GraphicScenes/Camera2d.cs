@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.GraphicScenes
 {
     public class Camera2d
     {

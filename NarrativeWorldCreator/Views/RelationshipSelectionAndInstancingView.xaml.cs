@@ -26,10 +26,10 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private RegionPage GetRegionPage()
+        private BaseModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void BackToSelection(object sender, RoutedEventArgs e)

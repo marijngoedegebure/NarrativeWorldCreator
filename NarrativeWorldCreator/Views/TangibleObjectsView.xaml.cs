@@ -44,10 +44,10 @@ namespace NarrativeWorldCreator.Views
             regionPage.ChangeUIToMainMenu();
         }
 
-        private RegionPage GetRegionPage()
+        private BaseModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

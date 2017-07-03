@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.GraphicScenes
 {
     public class GraphScene : WpfGame
     {

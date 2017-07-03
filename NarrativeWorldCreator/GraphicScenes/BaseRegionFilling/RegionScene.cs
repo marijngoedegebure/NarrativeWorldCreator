@@ -17,37 +17,29 @@ using System.IO;
 using System.Linq;
 using TriangleNet.Data;
 
-namespace NarrativeWorldCreator
+namespace NarrativeWorldCreator.GraphicScenes
 {
     public class RegionScene : WpfGame
     {
         #region Fields
 
-        private IGraphicsDeviceService _graphicsDeviceManager;
-        private WpfKeyboard _keyboard;
-        private KeyboardState _keyboardState;
-        private WpfMouse _mouse;
-        private MouseState _mouseState;
-        private MouseState _previousMouseState;
-        private SpriteBatch _spriteBatch;
+        public Matrix view;
+        public Matrix world;
+        public Matrix proj;
 
-        private Camera3d cam = new Camera3d();
+        protected IGraphicsDeviceService _graphicsDeviceManager;
+        protected WpfKeyboard _keyboard;
+        protected KeyboardState _keyboardState;
+        protected WpfMouse _mouse;
+        protected MouseState _mouseState;
+        protected MouseState _previousMouseState;
+        protected SpriteBatch _spriteBatch;
 
-        private RegionPage _currentRegionPage;
+        protected Camera3d cam = new Camera3d();
 
-        private int draggingVertexIndex;
+        protected BaseModeRegionPage _currentRegionPage;
 
-        private enum RegionCreationModes
-        {
-            None = 0,
-            VertexCreation = 1,
-            VertexDragging = 2,
-            VertexDeletion = 3,
-        }
-
-        private RegionCreationModes CurrentRegionCreationMode = RegionCreationModes.None;
-
-        private enum RegionFillingModes
+        protected enum RegionFillingModes
         {
             None = 0,
             ObjectPlacement = 1,
@@ -56,26 +48,23 @@ namespace NarrativeWorldCreator
             SuggestionMode = 4
         }
 
-        private RegionFillingModes CurrentRegionFillingMode = RegionFillingModes.None;
+        protected RegionFillingModes CurrentRegionFillingMode = RegionFillingModes.None;
 
-        private enum DrawingModes
+        protected enum DrawingModes
         {
             UnderlyingRegion = 0,
             MinkowskiMinus = 1,
         }
-        private DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
-        private KeyboardState _previousKeyboardState;
+        protected DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
+        protected KeyboardState _previousKeyboardState;
 
-        private Point BoxSelectInitialCoords;
-        private Point BoxSelectCurrentCoords;
+        protected Point BoxSelectInitialCoords;
+        protected Point BoxSelectCurrentCoords;
 
-        private Point RegionCreationInitialCoords;
-        private Point RegionCreationCurrentCoords;
+        protected EntikaInstance repositioningObject;
+        protected EntikaInstance rotationObject;
 
-        private EntikaInstance repositioningObject;
-        private EntikaInstance rotationObject;
-
-        public float LineThickness = 0.1f;
+        protected float LineThickness = 0.1f;
 
         #endregion
 
@@ -83,7 +72,6 @@ namespace NarrativeWorldCreator
         protected override void Initialize()
         {
             base.Initialize();
-            SystemStateTracker.RegionGraphicsDevice = this.GraphicsDevice;
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -99,7 +87,7 @@ namespace NarrativeWorldCreator
             GraphicsDevice.RasterizerState = state;
 
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            _currentRegionPage = (RegionPage)mainWindow._mainFrame.NavigationService.Content;
+            _currentRegionPage = (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
 
             // Load test models
             SystemStateTracker.DefaultModel = Content.Load<Model>("Models/beddresser1/beddresser1");
@@ -126,24 +114,24 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private Model LoadModel(string assetName)
+        protected Model LoadModel(string assetName)
         {
             Model newModel = Content.Load<Model>(assetName);
             return newModel;
         }
 
-        private void UpdateViewAndProj()
+        protected void UpdateViewAndProj()
         {
-            SystemStateTracker.view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
+            this.view = Matrix.CreateLookAt(cam.Pos, cam.getCameraLookAt(), Vector3.Up);
 
-            SystemStateTracker.proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
+            this.proj = Matrix.CreatePerspectiveFieldOfView(Camera3d.VIEWANGLE, _graphicsDeviceManager.GraphicsDevice.Viewport.AspectRatio,
                                               Camera3d.NEARCLIP, Camera3d.FARCLIP);
         }
 
         protected override void Draw(GameTime time)
         {
             GraphicsDevice.Clear(_mouseState.LeftButton == ButtonState.Pressed ? Color.Black : Color.CornflowerBlue);
-            SystemStateTracker.world = Matrix.Identity;
+            this.world = Matrix.Identity;
             UpdateViewAndProj();
             // since we share the GraphicsDevice with all hosts, we need to save and reset the states
             // this has to be done because spriteBatch internally sets states and doesn't reset themselves, fucking over any 3D rendering (which happens in the DemoScene)
@@ -170,32 +158,12 @@ namespace NarrativeWorldCreator
             //    drawEntikaInstance(this._currentRegionPage.InstanceOfObjectToAdd, null);
             //}
             //if (this._currentRegionPage.MousePositionTest == null)
-            //    this._currentRegionPage.MousePositionTest = new EntikaInstance("table", new Vector3(0, 0, 0), SystemStateTracker.DefaultModel, SystemStateTracker.world);
+            //    this._currentRegionPage.MousePositionTest = new EntikaInstance("table", new Vector3(0, 0, 0), this.DefaultModel, this.world);
             //drawEntikaInstance(this._currentRegionPage.MousePositionTest);
 
-            // Draw all objects that are known 2.0, but only when there is no other configuration selected
-            if (_currentRegionPage.SelectedGPUConfigurationResult == -1)
-            {
-                foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
-                {
-                    drawEntikaInstance2(instance);
-                }
-            }
-            else
-            {
-                // Draw each entika instance in GeneratedConfigurations
-                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.SelectedGPUConfigurationResult].Instances)
-                {
-                    drawGPUResultInstance(gpuResultInstance);
-                }
-            }
-            if (this._currentRegionPage.CurrentFillingMode == RegionPage.FillingMode.Placement)
-            {
-                drawCentroidAndFocalPoint();
-            }
+            // Draw all objects that are known 2.0
+            drawEntikaInstances();
             drawBoxSelect();
-
-            drawRegionCreationBox();
 
             // this base.Draw call will draw "all" components
             base.Draw(time);
@@ -206,13 +174,21 @@ namespace NarrativeWorldCreator
             GraphicsDevice.SamplerStates[0] = sampler;
         }
 
-        private void drawTestRuler()
+        protected virtual void drawEntikaInstances()
+        {
+            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+            {
+                drawEntikaInstance2(instance);
+            }
+        }
+
+        protected void drawTestRuler()
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
 
-            basicEffect.World = SystemStateTracker.world;
-            basicEffect.View = SystemStateTracker.view;
-            basicEffect.Projection = SystemStateTracker.proj;
+            basicEffect.World = this.world;
+            basicEffect.View = this.view;
+            basicEffect.Projection = this.proj;
             basicEffect.VertexColorEnabled = true;
 
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
@@ -241,71 +217,7 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private void drawCentroidAndFocalPoint()
-        {
-            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
-
-            basicEffect.World = SystemStateTracker.world;
-            basicEffect.View = SystemStateTracker.view;
-            basicEffect.Projection = SystemStateTracker.proj;
-            basicEffect.VertexColorEnabled = true;
-            // When in placement mode, visualize focal and centroid
-            Vector3 centroid = new Vector3((float)SystemStateTracker.centroidX, (float)SystemStateTracker.centroidY, 0);
-
-            // Create square based on centroid coordinates
-            Quad quad = new Quad(centroid, new Vector3(centroid.X, centroid.Y, 1), Vector3.Up,(float) (0.005 * cam._pos.Z), (float)(0.005 * cam._pos.Z), Color.Blue);
-
-            // Draw centroid
-            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-            {
-                pass.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                    PrimitiveType.TriangleStrip,
-                    quad.Vertices,
-                    0,
-                    2);
-            }
-
-            // Draw focal
-            Vector3 focalPoint = new Vector3((float)SystemStateTracker.focalX, (float)SystemStateTracker.focalY, 0);
-            Vector3 focalRotation = new Vector3(0.0f, (float)SystemStateTracker.focalRot, 0.0f);
-
-            // Draw rotation indicator
-            var rotMatrix = Matrix.CreateRotationZ(focalRotation.Y);
-            var length = 3.0f;
-
-            VertexPositionColor[] vertices = new VertexPositionColor[3];
-            vertices[0] = new VertexPositionColor(Vector3.Transform(new Vector3(0, (float)(0.015 * cam._pos.Z), 0), rotMatrix) + focalPoint, Color.DarkRed);
-            vertices[1] = new VertexPositionColor(Vector3.Transform(new Vector3((float)(0.0075 * cam._pos.Z), 0, 0), rotMatrix) + focalPoint, Color.DarkRed);
-            vertices[2] = new VertexPositionColor(Vector3.Transform(new Vector3(-(float)(0.0075 * cam._pos.Z), 0, 0), rotMatrix) + focalPoint, Color.DarkRed);
-            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-            {
-                pass.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                    PrimitiveType.TriangleList,
-                    vertices,
-                    0,
-                    1);
-            }
-
-            // Draw basic point
-            Vector3 focalLinePointEnd = new Vector3(focalPoint.X + 2.0f, focalPoint.Y + 2.0f, 0);
-            focalLinePointEnd = Vector3.Transform(focalLinePointEnd, Matrix.CreateRotationY(focalRotation.Y));
-
-            Quad quad2 = new Quad(focalPoint, new Vector3(focalPoint.X, focalPoint.Y, 1), Vector3.Up, (float)(0.005 * cam._pos.Z), (float)(0.005 * cam._pos.Z), Color.Red);
-            var temp = CreateLine(focalPoint, focalLinePointEnd, Color.Red);
-            foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-            {
-                pass.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                    PrimitiveType.TriangleStrip,
-                    quad2.Vertices,
-                    0,
-                    2);
-            }
-        }
-
-        private void drawBoxSelect()
+        protected void drawBoxSelect()
         {
             if (!BoxSelectInitialCoords.Equals(new Point()))
             {
@@ -319,26 +231,12 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private void drawRegionCreationBox()
-        {
-            if (!RegionCreationInitialCoords.Equals(new Point()))
-            {
-                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
-                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-
-                _spriteBatch.Draw(SystemStateTracker.RegionCreationTexture, new Rectangle(RegionCreationInitialCoords.X, RegionCreationInitialCoords.Y, RegionCreationCurrentCoords.X - RegionCreationInitialCoords.X, RegionCreationCurrentCoords.Y - RegionCreationInitialCoords.Y), Color.White * 1.0f);
-
-                _spriteBatch.End();
-                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-            }
-        }
-
-        private void drawFloorWireframe()
+        protected void drawFloorWireframe()
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
-            basicEffect.World = SystemStateTracker.world;
-            basicEffect.View = SystemStateTracker.view;
-            basicEffect.Projection = SystemStateTracker.proj;
+            basicEffect.World = this.world;
+            basicEffect.View = this.view;
+            basicEffect.Projection = this.proj;
             basicEffect.VertexColorEnabled = true;
             var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance != null)
@@ -360,13 +258,13 @@ namespace NarrativeWorldCreator
             }
         }
 
-        public void drawRegionPolygon()
+        protected void drawRegionPolygon()
         {
             BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
 
-            basicEffect.World = SystemStateTracker.world;
-            basicEffect.View = SystemStateTracker.view;
-            basicEffect.Projection = SystemStateTracker.proj;
+            basicEffect.World = this.world;
+            basicEffect.View = this.view;
+            basicEffect.Projection = this.proj;
             basicEffect.VertexColorEnabled = true;
             // Triangles should be defined clockwise
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
@@ -379,14 +277,7 @@ namespace NarrativeWorldCreator
                 List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
                 // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 List<VertexPositionColor> regionPoints = new List<VertexPositionColor>();
-                if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
-                {
-                    regionPoints = DrawingEngine.GetDrawableTriangles(result, Color.White);
-                }
-                if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
-                {
-                    regionPoints = DrawingEngine.GetDrawableTriangles(result, Color.Black);
-                }
+                regionPoints = DrawingEngine.GetDrawableTriangles(result, Color.White);
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
                     // This is the all-important line that sets the effect, and all of its settings, on the graphics device
@@ -466,14 +357,7 @@ namespace NarrativeWorldCreator
                 // Create quads based off vertex points
                 for (int i = 0; i < points.Count; i++)
                 {
-
-                    Color color = Color.Black;
-                    if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
-                        color = Color.Red;
-                    if (draggingVertexIndex != -1 && draggingVertexIndex == i)
-                        color = Color.Yellow;
-                    if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionFilling)
-                        color = Color.DarkGray;
+                    Color color = Color.DarkGray;
                     Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, (float) (0.001 * cam._pos.Z), (float)(0.001 * cam._pos.Z), color);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
@@ -488,7 +372,7 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private VertexPositionColor[] CreateLine(Vertex start, Vertex end, Color color)
+        protected VertexPositionColor[] CreateLine(Vertex start, Vertex end, Color color)
         {
             VertexPositionColor[] line = new VertexPositionColor[6];
             // line triangle 1
@@ -503,7 +387,7 @@ namespace NarrativeWorldCreator
             return line;
         }
 
-        private VertexPositionColor[] CreateLine(Vector3 start, Vector3 end, Color color)
+        protected VertexPositionColor[] CreateLine(Vector3 start, Vector3 end, Color color)
         {
             VertexPositionColor[] line = new VertexPositionColor[6];
             // line triangle 1
@@ -561,9 +445,9 @@ namespace NarrativeWorldCreator
                         else
                             effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
                     }
-                    effect.View = SystemStateTracker.view;
-                    effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationZ(modelRotation) * Matrix.CreateTranslation(modelPosition) * SystemStateTracker.world;
-                    effect.Projection = SystemStateTracker.proj;
+                    effect.View = this.view;
+                    effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationZ(modelRotation) * Matrix.CreateTranslation(modelPosition) * this.world;
+                    effect.Projection = this.proj;
                 }
                 mesh.Draw();
             }
@@ -571,9 +455,14 @@ namespace NarrativeWorldCreator
             lineEffect.LightingEnabled = false;
             lineEffect.TextureEnabled = false;
             lineEffect.VertexColorEnabled = true;
-            var bbb = BoundingBoxBuffers.CreateBoundingBoxBuffers(instance.BoundingBox, GraphicsDevice);
+            var bbOffLimits = instance.BoundingBox;
+            if (optionalAdjustedPosition.HasValue)
+            {
+                bbOffLimits = EntikaInstance.GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[instance.TangibleObject], Matrix.CreateTranslation(modelPosition));
+            }
+            var bbbOffLimits = BoundingBoxBuffers.CreateBoundingBoxBuffers(bbOffLimits, GraphicsDevice);
 
-            DrawBoundingBox(bbb, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition, modelRotation);
+            DrawBoundingBox(bbbOffLimits, lineEffect, GraphicsDevice, this.view, this.proj);
             // Draw clearance quads:
             foreach (var clearance in instance.Clearances)
             {
@@ -581,23 +470,23 @@ namespace NarrativeWorldCreator
                 Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
                 foreach (var point in clearance.GetAllVertices())
                 {
-                    Vector3 transformedPosition = new Vector3((float)point.X, (float)point.Y, 0);
+                    Vector3 transformedPosition = Vector3.Transform(new Vector3((float)point.X, (float)point.Y, 0), Matrix.CreateRotationZ(modelRotation) * Matrix.CreateTranslation(modelPosition));
 
                     min = Vector3.Min(min, transformedPosition);
                     max = Vector3.Max(max, transformedPosition);
                 }
-                var bb = new BoundingBox(min, max);
-                var bbb2 = BoundingBoxBuffers.CreateBoundingBoxBuffers(bb, GraphicsDevice);
-                DrawBoundingBox(bbb2, lineEffect, GraphicsDevice, SystemStateTracker.view, SystemStateTracker.proj, modelPosition, modelRotation);
+                var bbClearance = new BoundingBox(min, max);
+                var bbbClearance = BoundingBoxBuffers.CreateBoundingBoxBuffers(bbClearance, GraphicsDevice);
+                DrawBoundingBox(bbbClearance, lineEffect, GraphicsDevice, this.view, this.proj);
             }
         }
 
-        private void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection, Vector3 position, float rotation)
+        protected void DrawBoundingBox(BoundingBoxBuffers buffers, BasicEffect effect, GraphicsDevice graphicsDevice, Matrix view, Matrix projection)
         {
             graphicsDevice.SetVertexBuffer(buffers.Vertices);
             graphicsDevice.Indices = buffers.Indices;
 
-            effect.World = Matrix.Identity * Matrix.CreateTranslation(position);
+            effect.World = this.world;
             effect.View = view;
             effect.Projection = projection;
 
@@ -616,7 +505,7 @@ namespace NarrativeWorldCreator
             drawEntikaInstance(instance, null, null);
         }
 
-        private void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
+        protected void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
         {
             if (gpuResultInstance.entikaInstance.Name != Constants.Floor)
                 drawEntikaInstance(gpuResultInstance.entikaInstance, gpuResultInstance.Position, gpuResultInstance.Rotation);
@@ -640,8 +529,8 @@ namespace NarrativeWorldCreator
                     effect.World = transforms[mesh.ParentBone.Index] *
                         Matrix.CreateRotationY(modelRotation)
                         * Matrix.CreateTranslation(modelPosition);
-                    effect.View = SystemStateTracker.view;
-                    effect.Projection = SystemStateTracker.proj;
+                    effect.View = this.view;
+                    effect.Projection = this.proj;
                 }
                 // Draw the mesh, using the effects set above.
                 mesh.Draw();
@@ -655,19 +544,9 @@ namespace NarrativeWorldCreator
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
-            if (this._currentRegionPage.MousePositionTest != null)
-                this._currentRegionPage.MousePositionTest.Position = CalculateMouseHitOnSurface();
             // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
 
-            if (_currentRegionPage.CurrentMode == RegionPage.RegionPageMode.RegionCreation)
-            {
-                // Handle region creation input:
-                HandleRegionCreation();
-            }
-            else
-            {
-                HandleRegionFilling();
-            }
+            HandleRegionFilling();
 
             if (_keyboardState.IsKeyUp(Keys.Tab) && _previousKeyboardState.IsKeyDown(Keys.Tab))
             {
@@ -689,7 +568,7 @@ namespace NarrativeWorldCreator
             base.Update(time);
         }
 
-        private void HandleRegionFilling()
+        protected void HandleRegionFilling()
         {
             // Handle object selection
             if (CurrentRegionFillingMode == RegionFillingModes.None)
@@ -792,6 +671,7 @@ namespace NarrativeWorldCreator
                                 }
                                 var delta = rotationObject.Rotation.Y - angle;
                                 rotationObject.Rotation = new Vector3(0, (float)angle, 0);
+                                rotationObject.UpdateBoundingBoxAndShape();
                                 CascadeRotation(rotationObject, delta);
                             }
                         }
@@ -876,8 +756,9 @@ namespace NarrativeWorldCreator
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;
                             var max = ieo.BoundingBox.Max;
+                            // Check whether 
 
-                            var bb = new BoundingBox(Vector3.Transform(min, Matrix.CreateTranslation(ieo.Position)), Vector3.Transform(max, Matrix.CreateTranslation(ieo.Position)));
+                            var bb = new BoundingBox(min, max);
 
                             // Intersect ray with bounding box, if distance then select model
                             float? distance = ray.Intersects(bb);
@@ -902,7 +783,7 @@ namespace NarrativeWorldCreator
             }
         }
 
-        private void CascadeRotation(EntikaInstance parentObj, double delta)
+        protected void CascadeRotation(EntikaInstance parentObj, double delta)
         {
             foreach (var relationship in parentObj.RelationshipsAsSource.Where(rel => rel.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On)))
             {
@@ -911,40 +792,42 @@ namespace NarrativeWorldCreator
                 relationship.Target.Position = Vector3.Transform(relationship.Target.Position, Matrix.CreateRotationZ(-(float)delta));
                 relationship.Target.Position += parentObj.Position;
                 relationship.Target.Rotation = new Vector3(relationship.Target.Rotation.X, (float)((relationship.Target.Rotation.Y - (float)delta) % Math.PI), relationship.Target.Rotation.Z);
+                relationship.Target.UpdateBoundingBoxAndShape();
                 // fire of CascadeRepositioning again
                 CascadeRotation(relationship.Target, delta);
             }
         }
 
-        private void CascadeRepositioning(EntikaInstance parentObj, Vector3 delta)
+        protected void CascadeRepositioning(EntikaInstance parentObj, Vector3 delta)
         {
             foreach (var relationship in parentObj.RelationshipsAsSource.Where(rel => rel.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On)))
             {
                 // For each source on relationship, move target object and fire of CascadeRepositioning again
                 relationship.Target.Position += delta;
+                relationship.Target.UpdateBoundingBoxAndShape();
                 CascadeRepositioning(relationship.Target, delta);
             }
         }
 
-        private Vector3 CalculateHitOnSurface(Point p, Microsoft.Xna.Framework.Plane plane)
+        protected Vector3 CalculateHitOnSurface(Point p, Microsoft.Xna.Framework.Plane plane)
         {
             Ray ray = CalculateRay(p);
             float? distance = ray.Intersects(plane);
             return ray.Position + ray.Direction * distance.Value;
         }
 
-        private Vector3 CalculateMouseHitOnSurface()
+        protected Vector3 CalculateMouseHitOnSurface()
         {
             return CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
         }
 
-        private Ray CalculateRay(Point p)
+        protected Ray CalculateRay(Point p)
         {
             Vector3 nearsource = new Vector3((float)p.X, (float)p.Y, 0f);
             Vector3 farsource = new Vector3((float)p.X, (float)p.Y, 1f);
 
-            Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
-            Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
+            Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, this.proj, this.view, this.world);
+            Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, this.proj, this.view, this.world);
 
             // Create ray using far and near point
             Vector3 direction = farPoint - nearPoint;
@@ -952,12 +835,12 @@ namespace NarrativeWorldCreator
             return new Ray(nearPoint, direction);
         }
 
-        private Ray CalculateMouseRay()
+        protected Ray CalculateMouseRay()
         {
             return CalculateRay(_mouseState.Position);
         }
 
-        private int CalculateCollisionQuad()
+        protected int CalculateCollisionQuad()
         {
             Ray ray = CalculateMouseRay();
             var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
@@ -974,176 +857,6 @@ namespace NarrativeWorldCreator
             }
             return -1;
         }
-
-        private void HandleRegionCreation()
-        {
-            if (_keyboardState.IsKeyDown(Keys.LeftControl))
-            {
-                CurrentRegionCreationMode = RegionCreationModes.VertexDragging;
-            }
-            if (_keyboardState.IsKeyDown(Keys.LeftShift))
-            {
-                CurrentRegionCreationMode = RegionCreationModes.VertexCreation;
-            }
-            else
-            {
-                CurrentRegionCreationMode = RegionCreationModes.None;
-                draggingVertexIndex = -1;
-            }
-
-            // Vertex Dragging
-            if (CurrentRegionCreationMode.Equals(RegionCreationModes.VertexDragging))
-            {
-                HandleVertexDragging();
-            }
-
-            // Vertex creation 
-            if (CurrentRegionCreationMode.Equals(RegionCreationModes.VertexCreation))
-            {
-                // HandleVertexCreation();
-                HandleRegionBoxCreation();
-            }
-        }
-
-        private void HandleRegionBoxCreation()
-        {
-            if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
-            {
-                // Initialize box
-                RegionCreationInitialCoords = _mouseState.Position;
-                RegionCreationCurrentCoords = _mouseState.Position;
-            }
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed)
-            {
-                // reposition box to draw
-                RegionCreationCurrentCoords = _mouseState.Position;
-            }
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-            {
-                var initialCoordsHit = CalculateHitOnSurface(RegionCreationInitialCoords, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                var currentCoordsHit = CalculateHitOnSurface(RegionCreationCurrentCoords, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-
-                Vector3 bottomLeft = new Vector3(0, 0, 0);
-                Vector3 topRight = new Vector3(0, 0, 0);
-                // Determine topLeft and bottomRight of rectangle
-                if (initialCoordsHit.X < currentCoordsHit.X)
-                {
-                    bottomLeft.X = initialCoordsHit.X;
-                    topRight.X = currentCoordsHit.X;
-                }
-                else
-                {
-                    bottomLeft.X = currentCoordsHit.X;
-                    topRight.X = initialCoordsHit.X;
-                }
-
-                if (initialCoordsHit.Y < currentCoordsHit.Y)
-                {
-                    bottomLeft.Y = initialCoordsHit.Y;
-                    topRight.Y = currentCoordsHit.Y;
-                }
-                else
-                {
-                    bottomLeft.Y = currentCoordsHit.Y;
-                    topRight.Y = initialCoordsHit.Y;
-                }
-                var selectionBoxBB = new BoundingBox(bottomLeft, topRight);
-                var vertices = new List<Vec2>();
-                // Add each corner to region
-                foreach (var corner in selectionBoxBB.GetCorners())
-                {
-                    vertices.Add(new Vec2(corner.X, corner.Y));
-                }
-                var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-                floorInstance.Polygon = new Polygon(vertices);
-                floorInstance.UpdateBoundingBoxAndShape(null);
-
-                // Reset box
-                RegionCreationCurrentCoords = new Point();
-                RegionCreationInitialCoords = new Point();
-            }
-        }
-
-        //private void triangulatePolygon()
-        //{
-        //    if (Shape.Points.Count > 2)
-        //    {
-        //        // Triangulate using Triangle.NET
-        //        var geometry = new InputGeometry(Shape.Points.Count);
-        //        for (int i = 0; i < Shape.Points.Count; i++)
-        //        {
-        //            geometry.AddPoint(Shape.Points[i].X, Shape.Points[i].Y, 1);
-        //            geometry.AddSegment(i, (i + 1) % Shape.Points.Count, 2);
-        //        }
-        //        Mesh = new TriangleNet.Mesh();
-        //        Mesh.Triangulate(geometry);
-        //    }
-        //    return;
-        //}
-
-        //public List<VertexPositionColor> GetDrawableTriangles(Color color)
-        //{
-        //    List<VertexPositionColor> ret = new List<VertexPositionColor>();
-        //    var triangles = this.Mesh.Triangles.ToList();
-        //    var vertices = this.Mesh.Vertices.ToList();
-        //    for (int i = 0; i < triangles.Count; i++)
-        //    {
-        //        ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P0].X, (float)vertices[triangles[i].P0].Y, 0), color));
-        //        ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P1].X, (float)vertices[triangles[i].P1].Y, 0), color));
-        //        ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P2].X, (float)vertices[triangles[i].P2].Y, 0), color));
-        //    }
-        //    return ret;
-        //}
-
-        private void HandleVertexCreation()
-        {
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-            {
-                // Retrieve world coordinates of current mouse position
-                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
-
-                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
-                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, SystemStateTracker.proj, SystemStateTracker.view, SystemStateTracker.world);
-
-                // Create ray using far and near point
-                Vector3 direction = farPoint - nearPoint;
-                direction.Normalize();
-                Ray ray = new Ray(nearPoint, direction);
-
-                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                float? distance = ray.Intersects(new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-
-                // Retrieve vertices from old shape and add the new vertex
-                var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-                var vertices = floorInstance.Polygon.GetAllVertices();
-                vertices.Add(new Vec2d(planeHit.X, planeHit.Y));
-                floorInstance.Polygon = new Polygon(vertices);
-                floorInstance.UpdateBoundingBoxAndShape(null);
-            }
-        }
-
-        private void HandleVertexDragging()
-        {
-            if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
-                draggingVertexIndex = CalculateCollisionQuad();
-
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && draggingVertexIndex != -1)
-            {
-                Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));
-                var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-                var vertices = floorInstance.Polygon.GetAllVertices();
-                Vector3 mouseCoordsOnZPlane = CalculateMouseHitOnSurface();
-                vertices[draggingVertexIndex] = new Vec2d(mouseCoordsOnZPlane.X, mouseCoordsOnZPlane.Y);
-                floorInstance.Polygon = new Polygon(vertices);
-                floorInstance.UpdateBoundingBoxAndShape(null);
-            }
-
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-                draggingVertexIndex = -1;
-        }
-
         #endregion
     }
 }

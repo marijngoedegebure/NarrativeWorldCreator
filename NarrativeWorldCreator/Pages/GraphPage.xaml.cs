@@ -58,7 +58,19 @@ namespace NarrativeWorldCreator
             if (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel != null)
             {
                 ErrorTB.Text = "";
-                this.NavigationService.Navigate(new RegionInitPage(selectedNode, (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel).NarrativeTimePoint));
+                var SelectedTimePoint = (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel).NarrativeTimePoint;
+                if (SelectedTimePoint.AvailableTangibleObjects.Count == 0)
+                {
+                    this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, SelectedTimePoint));
+                }
+                else if (!SelectedTimePoint.FloorCreated)
+                {
+                    this.NavigationService.Navigate(new RegionCreationPage(selectedNode, SelectedTimePoint));
+                }
+                else
+                {
+                    this.NavigationService.Navigate(new BaseModeRegionPage(selectedNode, SelectedTimePoint));
+                }
             }
             else
             {
