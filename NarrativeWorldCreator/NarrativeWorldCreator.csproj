@@ -146,6 +146,7 @@
     <Compile Include="Pages\AlternativeModeRegionPage.xaml.cs">
       <DependentUpon>AlternativeModeRegionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BaseRegionPage.cs" />
     <Compile Include="Pages\RegionCreationPage.xaml.cs">
       <DependentUpon>RegionCreationPage.xaml</DependentUpon>
     </Compile>
@@ -181,8 +182,8 @@
     <Compile Include="Pages\InitPage.xaml.cs">
       <DependentUpon>InitPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\BaseModeRegionPage.xaml.cs">
-      <DependentUpon>BaseModeRegionPage.xaml</DependentUpon>
+    <Compile Include="Pages\MainModeRegionPage.xaml.cs">
+      <DependentUpon>MainModeRegionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Parsers\DomainParser.cs" />
     <Compile Include="Parsers\NarrativeWorldParser.cs" />
@@ -289,7 +290,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\BaseModeRegionPage.xaml">
+    <Page Include="Pages\MainModeRegionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

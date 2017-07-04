@@ -71,7 +71,7 @@ namespace NarrativeWorldCreator.Pages
             }
             this.SelectedTimePoint.AvailableTangibleObjects = fillAvailableTO;
             if (SelectedTimePoint.FloorCreated)
-                this.NavigationService.Navigate(new BaseModeRegionPage(selectedNode, this.SelectedTimePoint));
+                this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.SelectedTimePoint));
             else
                 this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
         }

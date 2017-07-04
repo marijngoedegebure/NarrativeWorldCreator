@@ -33,33 +33,8 @@ namespace NarrativeWorldCreator
     /// <summary>
     /// Interaction logic for RegionPage.xaml
     /// </summary>
-    public partial class AlternativeModeRegionPage : Page
+    public partial class AlternativeModeRegionPage : BaseRegionPage
     {
-        public LocationNode selectedNode;
-
-        public List<EntikaInstance> SelectedEntikaInstances;
-        public NarrativeTimePoint SelectedTimePoint { get; internal set; }
-
-        public Configuration WorkInProgressConfiguration;
-        public EntikaInstance InstanceOfObjectToAdd;
-
-        public List<GPUConfigurationResult> GeneratedConfigurations;
-        public int LeftSelectedGPUConfigurationResult = -1;
-        public int RightSelectedGPUConfigurationResult = -1;
-
-        public EntikaInstance MousePositionTest;
-
-        public enum FillingMode
-        {
-            None = 0,
-            ClassSelection = 1,
-            RelationSelectionAndInstancting = 2,
-            Placement = 3,
-            Repositioning = 4
-        }
-
-        public FillingMode CurrentFillingMode = FillingMode.ClassSelection;
-
         internal void GenerateConfigurations()
         {
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint, this.WorkInProgressConfiguration);
@@ -547,7 +522,7 @@ namespace NarrativeWorldCreator
 
         private void btnGotoBaseFillingMode_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new BaseModeRegionPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.SelectedTimePoint));
         }
     }
 }

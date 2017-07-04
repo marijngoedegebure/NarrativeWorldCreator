@@ -9,6 +9,7 @@ using NarrativeWorldCreator.GraphicScenes.Primitives;
 using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.Solvers;
 using NarrativeWorldCreator.ViewModel;
 using System;
@@ -37,8 +38,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected Camera3d cam = new Camera3d();
 
-        protected BaseModeRegionPage _currentRegionPage;
-
         protected enum RegionFillingModes
         {
             None = 0,
@@ -66,6 +65,10 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected float LineThickness = 0.1f;
 
+        protected MainWindow mainWindow;
+
+        protected MainModeRegionPage _currentRegionPage;
+
         #endregion
 
         #region Methods
@@ -86,8 +89,9 @@ namespace NarrativeWorldCreator.GraphicScenes
             state.FillMode = FillMode.WireFrame;
             GraphicsDevice.RasterizerState = state;
 
-            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            _currentRegionPage = (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+
+            this._currentRegionPage = (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
 
             // Load test models
             SystemStateTracker.DefaultModel = Content.Load<Model>("Models/beddresser1/beddresser1");
@@ -176,10 +180,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected virtual void drawEntikaInstances()
         {
-            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
-            {
-                drawEntikaInstance2(instance);
-            }
         }
 
         protected void drawTestRuler()
@@ -214,20 +214,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                             2);
                     }
                 }
-            }
-        }
-
-        protected void drawBoxSelect()
-        {
-            if (!BoxSelectInitialCoords.Equals(new Point()))
-            {
-                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
-                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-
-                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(BoxSelectInitialCoords.X, BoxSelectInitialCoords.Y, BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X, BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y), Color.White * 0.5f);
-
-                _spriteBatch.End();
-                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
             }
         }
 
@@ -534,6 +520,20 @@ namespace NarrativeWorldCreator.GraphicScenes
                 }
                 // Draw the mesh, using the effects set above.
                 mesh.Draw();
+            }
+        }
+
+        protected void drawBoxSelect()
+        {
+            if (!BoxSelectInitialCoords.Equals(new Point()))
+            {
+                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(BoxSelectInitialCoords.X, BoxSelectInitialCoords.Y, BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X, BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y), Color.White * 0.5f);
+
+                _spriteBatch.End();
+                GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
             }
         }
 

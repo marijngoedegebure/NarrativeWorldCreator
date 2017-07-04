@@ -34,7 +34,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         protected override void Draw(GameTime time)
         {
             base.Draw(time);
-            if (this._currentRegionPage.CurrentFillingMode == BaseModeRegionPage.FillingMode.Placement)
+            if (this._currentRegionPage.CurrentFillingMode == MainModeRegionPage.FillingMode.Placement)
             {
                 drawCentroidAndFocalPoint();
             }

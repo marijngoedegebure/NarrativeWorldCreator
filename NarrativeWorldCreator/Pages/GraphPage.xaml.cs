@@ -69,7 +69,7 @@ namespace NarrativeWorldCreator
                 }
                 else
                 {
-                    this.NavigationService.Navigate(new BaseModeRegionPage(selectedNode, SelectedTimePoint));
+                    this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, SelectedTimePoint));
                 }
             }
             else

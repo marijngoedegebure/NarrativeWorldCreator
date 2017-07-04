@@ -48,16 +48,16 @@ namespace NarrativeWorldCreator.Views
             regionPage.GenerateConfigurations();
         }
 
-        private BaseModeRegionPage GetRegionPage()
+        private MainModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void Back(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (regionPage.CurrentFillingMode == BaseModeRegionPage.FillingMode.Repositioning)
+            if (regionPage.CurrentFillingMode == MainModeRegionPage.FillingMode.Repositioning)
             {
                 regionPage.BackToMenu();
             }

@@ -41,7 +41,7 @@ namespace NarrativeWorldCreator.Pages
         private void btnRegionPage_Click(object sender, RoutedEventArgs e)
         {
             // Forward to region page
-            this.NavigationService.Navigate(new BaseModeRegionPage(selectedNode, this.selectedTimePoint));
+            this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.selectedTimePoint));
         }
 
         private void btnClassSelectionPage_Click(object sender, RoutedEventArgs e)

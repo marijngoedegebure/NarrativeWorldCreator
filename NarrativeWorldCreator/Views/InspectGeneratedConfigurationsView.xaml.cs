@@ -25,10 +25,10 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private BaseModeRegionPage GetRegionPage()
+        private MainModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void ConfigurationSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,7 +49,7 @@ namespace NarrativeWorldCreator.Views
         private void SaveConfiguration(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (regionPage.CurrentFillingMode == BaseModeRegionPage.FillingMode.Repositioning)
+            if (regionPage.CurrentFillingMode == MainModeRegionPage.FillingMode.Repositioning)
             {
                 if (this.ConfigurationsList.SelectedIndex != -1)
                 {

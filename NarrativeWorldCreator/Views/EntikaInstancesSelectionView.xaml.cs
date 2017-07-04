@@ -33,10 +33,10 @@ namespace NarrativeWorldCreator.Views
             regionPage.ChangeUIToMainMenu();
         }
 
-        private BaseModeRegionPage GetRegionPage()
+        private MainModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void btnSuggestNewPositions(object sender, RoutedEventArgs e)
