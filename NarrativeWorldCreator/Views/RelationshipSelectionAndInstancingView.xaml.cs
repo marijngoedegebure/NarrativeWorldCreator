@@ -34,13 +34,12 @@ namespace NarrativeWorldCreator.Views
 
         private void BackToSelection(object sender, RoutedEventArgs e)
         {
-            GetRegionPage().BackToTangibleObjectSelection();
+            GetRegionPage().Back();
         }
 
         private void NextStep(object sender, RoutedEventArgs e)
         {
-            var rivm = this.DataContext as RelationshipSelectionAndInstancingViewModel;
-            GetRegionPage().SaveInstancingOfRelationsAndGotoPlacement(rivm);
+            GetRegionPage().Next();
         }
 
         private void OnRelationshipsMultipleListViewSelectionChanged(object sender, SelectionChangedEventArgs e)

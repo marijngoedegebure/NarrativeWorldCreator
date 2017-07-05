@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -48,23 +49,16 @@ namespace NarrativeWorldCreator.Views
             regionPage.GenerateConfigurations();
         }
 
-        private MainModeRegionPage GetRegionPage()
+        private BaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void Back(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (regionPage.CurrentFillingMode == MainModeRegionPage.FillingMode.Repositioning)
-            {
-                regionPage.BackToMenu();
-            }
-            else
-            {
-                regionPage.BackToRelationshipSelectionAndInstancing();
-            }
+            regionPage.Back();
         }
 
         private void btnRefreshConfigurations(object sender, RoutedEventArgs e)

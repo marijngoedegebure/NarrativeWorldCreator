@@ -35,54 +35,20 @@ namespace NarrativeWorldCreator
     /// </summary>
     public partial class MainModeRegionPage : BaseRegionPage
     {
-        internal void GenerateConfigurations()
-        {
-            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint, this.WorkInProgressConfiguration);
-            // Update list of configurations using generated list of regionpage
-            var gcVM = (GenerateConfigurationsViewModel)InspectGeneratedConfigurationsView.DataContext;
-            gcVM.Load(GeneratedConfigurations);
-            this.InspectGeneratedConfigurationsView.DataContext = gcVM;
-        }
+        // List of states
+        #region Fields
+        internal MainFillingMode CurrentFillingMode = MainFillingMode.None;
 
-        internal void RefreshSelectedObjectView()
+        internal enum MainFillingMode
         {
-            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.SelectedTimePoint.Configuration.InstancedObjects.Contains(sei)).ToList();
-            foreach ( var removal in removalinstances)
-            {
-                this.SelectedEntikaInstances.Remove(removal);
-            }
-            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
+            None = 0,
+            ClassSelection = 1,
+            RelationSelectionAndInstancting = 2,
+            Placement = 3,
+            Reposition = 4
         }
-
-        internal void SuggestNewPositions()
-        {
-            this.WorkInProgressConfiguration = new Configuration();
-            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
-            CurrentFillingMode = FillingMode.Repositioning;
-            EntikaInstancesSelectionView.Visibility = Visibility.Collapsed;
-            GenerateConfigurationsView2.Visibility = Visibility.Visible;
-        }
-
-        internal void RepositionAndBackToMenu()
-        {
-            ApplyConfiguration();
-            CurrentFillingMode = FillingMode.None;
-            EntikaInstancesSelectionView.Visibility = Visibility.Visible;
-            GenerateConfigurationsView2.Visibility = Visibility.Collapsed;
-        }
-
-        internal void BackToMenu()
-        {
-            EntikaInstancesSelectionView.Visibility = Visibility.Visible;
-            GenerateConfigurationsView2.Visibility = Visibility.Collapsed;
-            CurrentFillingMode = FillingMode.None;
-            WorkInProgressConfiguration = new Configuration();
-            LeftSelectedGPUConfigurationResult = -1;
-            RightSelectedGPUConfigurationResult = -1;
-        }
-
-        public bool RegionCreated = false;
+        #endregion
+        #region Setup
 
         public MainModeRegionPage(LocationNode selectedNode, NarrativeTimePoint SelectedTimePont)
         {
@@ -92,7 +58,205 @@ namespace NarrativeWorldCreator
             SelectedEntikaInstances = new List<EntikaInstance>();
         }
 
-        internal void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
+        private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
+        {
+            TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
+            toVM.LoadAll(this.SelectedTimePoint);
+            TangibleObjectsView.DataContext = toVM;
+            TangibleObjectsView.DefaultRB.IsChecked = true;
+        }
+
+        private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
+        {
+            NodeViewModel nodeVM = new NodeViewModel();
+            nodeVM.Load(selectedNode);
+            RegionHeaderControl.DataContext = nodeVM;
+        }
+
+        private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Fill control with stuff
+            NarrativeTimelineViewModel narrativeTimelineViewModelObject =
+               new NarrativeTimelineViewModel();
+            narrativeTimelineViewModelObject.LoadFilteredTimePoints(selectedNode);
+
+            NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
+
+            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(SelectedTimePoint)).FirstOrDefault();
+            ntpVM.Selected = true;
+        }
+
+        private void RegionDetailTimePointView_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Fill control with stuff
+            DetailTimePointViewModel timePointViewModelObject =
+               new DetailTimePointViewModel();
+            timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
+            RegionDetailTimePointView.DataContext = timePointViewModelObject;
+        }
+
+        private void SelectedObjectDetailView_Loaded(object sender, RoutedEventArgs e)
+        {
+            SelectedObjectDetailViewModel selectedObjectViewModelObject =
+               new SelectedObjectDetailViewModel();
+            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
+            SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
+        }
+
+        private void EntikaInstancesSelectionView_Loaded(object sender, RoutedEventArgs e)
+        {
+            EntikaInstancesSelectionViewModel eisVM = new EntikaInstancesSelectionViewModel();
+            eisVM.Load(this.SelectedTimePoint);
+
+            EntikaInstancesSelectionView.DataContext = eisVM;
+        }
+        #endregion
+
+
+        #region UIChanges
+        internal override void Back()
+        {
+            // Check current mode
+            switch (CurrentFillingMode)
+            {
+                case MainFillingMode.ClassSelection:
+                    ChangeUIToMainMenu();
+                    break;
+                case MainFillingMode.RelationSelectionAndInstancting:
+                    ChangeUIToTOClassSelection();
+                    break;
+                case MainFillingMode.Placement:
+                    ChangeUIToRelationshipSelectionAndInstancing();
+                    break;
+                case MainFillingMode.Reposition:
+                    ChangeUIToMainMenu();
+                    break;
+                default:
+                    break;
+            }
+            // Call function to switch to different mode
+        }
+
+        internal override void Next()
+        {
+            // Check current mode
+            // Call function to switch to different mode
+            switch (CurrentFillingMode)
+            {
+                case MainFillingMode.ClassSelection:
+                    AddSelectedTangibleObject();
+                    ChangeUIToRelationshipSelectionAndInstancing();
+                    break;
+                case MainFillingMode.RelationSelectionAndInstancting:
+                    SaveInstancingOfRelations();
+                    ChangeUIToPlacement();
+                    break;
+                case MainFillingMode.Placement:
+                    ApplyConfiguration();
+                    ChangeUIToMainMenu();
+                    break;
+                case MainFillingMode.Reposition:
+                    ApplyConfiguration();
+                    ChangeUIToMainMenu();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        internal void ChangeUIToTOClassSelection()
+        {
+            this.CurrentFillingMode = MainFillingMode.ClassSelection;
+            // Reset values
+            InstanceOfObjectToAdd = null;
+            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
+            RelationshipSelectionAndInstancingView.DataContext = riVM;
+
+            HideGenerationScenes();
+
+            // Set views of region filling 1 to correct state
+            TangibleObjectsView.Visibility = Visibility.Visible;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
+            generation_1.Visibility = Visibility.Collapsed;
+            // Set tabitems to show correct ones
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            region_filling_2.Visibility = Visibility.Visible;
+            region_filling_2_content.Visibility = Visibility.Visible;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 1;
+        }
+
+        internal void ChangeUIToRelationshipSelectionAndInstancing()
+        {
+            // Reset values
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            LeftSelectedGPUConfigurationResult = -1;
+            RightSelectedGPUConfigurationResult = -1;
+
+            HideGenerationScenes();
+
+            // Switch UI to next step (relation selection and instancing)
+            CurrentFillingMode = MainFillingMode.RelationSelectionAndInstancting;
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
+            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
+            generation_1.Visibility = Visibility.Collapsed;
+        }
+
+        internal void ChangeUIToPlacement()
+        {
+            
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView.Visibility = Visibility.Visible;
+
+            CurrentFillingMode = MainFillingMode.Placement;
+            ShowGenerationScenes();
+            TangibleObjectsView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            GenerateConfigurationsView.Visibility = Visibility.Visible;
+            generation_1.Visibility = Visibility.Visible;
+
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
+        }
+
+        internal void ShowGenerationScenes()
+        {
+            BasicScene.Visibility = Visibility.Collapsed;
+            GenerationSceneLeft.Visibility = Visibility.Visible;
+            GenerationSceneRight.Visibility = Visibility.Visible;
+            BasicWindow.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+        }
+
+        internal void HideGenerationScenes()
+        {
+            BasicScene.Visibility = Visibility.Visible;
+            GenerationSceneLeft.Visibility = Visibility.Collapsed;
+            GenerationSceneRight.Visibility = Visibility.Collapsed;
+            BasicWindow.ColumnDefinitions[1].Width = new GridLength(0);
+        }
+        #endregion
+
+        internal override void GenerateConfigurations()
+        {
+            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint, this.WorkInProgressConfiguration);
+            // Update list of configurations using generated list of regionpage
+            var gcVM = (GenerateConfigurationsViewModel)InspectGeneratedConfigurationsView.DataContext;
+            gcVM.Load(GeneratedConfigurations);
+            this.InspectGeneratedConfigurationsView.DataContext = gcVM;
+        }
+
+        internal override void SuggestNewPositions()
+        {
+            this.WorkInProgressConfiguration = new Configuration();
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+        }
+
+        internal override void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
         {
             var relationsToRemove = new List<RelationshipInstance>();
             // Determine relationships to delete
@@ -129,8 +293,9 @@ namespace NarrativeWorldCreator
             UpdateEntikaInstancesSelectionView();
         }
 
-        public void SaveInstancingOfRelationsAndGotoPlacement(RelationshipSelectionAndInstancingViewModel rivm)
+        public void SaveInstancingOfRelations()
         {
+            var rivm = this.RelationshipSelectionAndInstancingView.DataContext as RelationshipSelectionAndInstancingViewModel;
             // this.relationShipSelectionAndInstancing = rivm;
 
             // Save instance and relationships to WIPconfiguration
@@ -242,18 +407,6 @@ namespace NarrativeWorldCreator
             }
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
-
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
-
-            CurrentFillingMode = FillingMode.Placement;
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            GenerateConfigurationsView.Visibility = Visibility.Visible;
-            generation_1.Visibility = Visibility.Visible;
-            BasicWindow.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
-            BasicScene.Visibility = Visibility.Collapsed;
-            GenerationSceneLeft.Visibility = Visibility.Visible;
-            GenerationSceneRight.Visibility = Visibility.Visible;
         }
 
         public void IntializeGenerateConfigurationsView(GenerateConfigurationsView view)
@@ -274,23 +427,9 @@ namespace NarrativeWorldCreator
             view.RefreshConfigurations();
         }
 
-        public void BackToRelationshipSelectionAndInstancing()
+        internal void AddSelectedTangibleObject()
         {
-            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
-            LeftSelectedGPUConfigurationResult = -1;
-            RightSelectedGPUConfigurationResult = -1;
-
-            CurrentFillingMode = FillingMode.RelationSelectionAndInstancting;
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
-            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
-            BasicScene.Visibility = Visibility.Visible;
-            GenerationSceneLeft.Visibility = Visibility.Collapsed;
-            GenerationSceneRight.Visibility = Visibility.Collapsed;
-        }
-
-        public void AddSelectedTangibleObject(TangibleObject selectedItem)
-        {
+            var selectedItem = ((TOTreeTangibleObject)this.TangibleObjectsView.ToListView.SelectedItem).TangibleObject;
             // Copy current configuration of timepoint so it can be changed.
             this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
 
@@ -305,50 +444,11 @@ namespace NarrativeWorldCreator
                 RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
             if (riVM.OnRelationshipsSingle.Count > 0)
                 RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
-
-            // Switch UI to next step (relation selection and instancing)
-            CurrentFillingMode = FillingMode.RelationSelectionAndInstancting;
-            TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
-            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
         }
 
-        public void BackToTangibleObjectSelection()
-        {
-            CurrentFillingMode = FillingMode.ClassSelection;
-            TangibleObjectsView.Visibility = Visibility.Visible;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
-            InstanceOfObjectToAdd = null;
-            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
-        }
-
-        public void PlaceObjectAndToEntityAddition()
+        public void ApplyConfiguration()
         {
             // Apply chosen results to timepoint
-            ApplyConfiguration();
-            InstanceOfObjectToAdd = null;
-
-            // Regenerate predicates based on newly applied configuration
-            this.SelectedTimePoint.RegeneratePredicates();
-
-
-            CurrentFillingMode = FillingMode.ClassSelection;
-            TangibleObjectsView.Visibility = Visibility.Visible;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
-            GenerateConfigurationsView.Visibility = Visibility.Collapsed;
-            generation_1.Visibility = Visibility.Collapsed;
-            BasicWindow.ColumnDefinitions[1].Width = new GridLength(0);
-            BasicScene.Visibility = Visibility.Visible;
-            GenerationSceneLeft.Visibility = Visibility.Collapsed;
-            GenerationSceneRight.Visibility = Visibility.Collapsed;
-
-            ChangeUIToMainMenu();
-        }
-
-        private void ApplyConfiguration()
-        {
             var gpuConfig = this.GeneratedConfigurations[this.RightSelectedGPUConfigurationResult];
             for (int i = 0; i < gpuConfig.Instances.Count; i++)
             {
@@ -358,65 +458,15 @@ namespace NarrativeWorldCreator
                 WIPinstance.UpdateBoundingBoxAndShape();
             }
             this.SelectedTimePoint.Configuration = WorkInProgressConfiguration;
-
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();
             LeftSelectedGPUConfigurationResult = -1;
             RightSelectedGPUConfigurationResult = -1;
             GeneratedConfigurations = new List<GPUConfigurationResult>();
-    }
+            InstanceOfObjectToAdd = null;
 
-        private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
-        {
-            TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.LoadAll(this.SelectedTimePoint);
-            TangibleObjectsView.DataContext = toVM;
-            TangibleObjectsView.DefaultRB.IsChecked = true;
-        }
-
-        private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
-        {
-            NodeViewModel nodeVM = new NodeViewModel();
-            nodeVM.Load(selectedNode);
-            RegionHeaderControl.DataContext = nodeVM;
-        }
-
-        private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Fill control with stuff
-            NarrativeTimelineViewModel narrativeTimelineViewModelObject =
-               new NarrativeTimelineViewModel();
-            narrativeTimelineViewModelObject.LoadFilteredTimePoints(selectedNode);
-
-            NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
-
-            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(SelectedTimePoint)).FirstOrDefault();
-            ntpVM.Selected = true;
-        }
-
-        private void RegionDetailTimePointView_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Fill control with stuff
-            DetailTimePointViewModel timePointViewModelObject =
-               new DetailTimePointViewModel();
-            timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
-            RegionDetailTimePointView.DataContext = timePointViewModelObject;
-        }
-
-        private void SelectedObjectDetailView_Loaded(object sender, RoutedEventArgs e)
-        {
-            SelectedObjectDetailViewModel selectedObjectViewModelObject =
-               new SelectedObjectDetailViewModel();
-            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
-            SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
-        }
-
-        private void EntikaInstancesSelectionView_Loaded(object sender, RoutedEventArgs e)
-        {
-            EntikaInstancesSelectionViewModel eisVM = new EntikaInstancesSelectionViewModel();
-            eisVM.Load(this.SelectedTimePoint);
-
-            EntikaInstancesSelectionView.DataContext = eisVM;
+            // Regenerate predicates based on newly applied configuration
+            this.SelectedTimePoint.RegeneratePredicates();
         }
 
         public void UpdateEntikaInstancesSelectionView()
@@ -424,22 +474,61 @@ namespace NarrativeWorldCreator
             (EntikaInstancesSelectionView.DataContext as EntikaInstancesSelectionViewModel).Load(this.SelectedTimePoint);
         }
 
-        public void ChangeSelectedObject(EntikaInstance ieo)
-        {
-            if (!this.SelectedEntikaInstances.Contains(ieo))
-            {
-                this.SelectedEntikaInstances.Add(ieo);
-            }
-            else
-                this.SelectedEntikaInstances.Remove(ieo);
-            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
-        }
-
         public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
             this.RefreshSelectedObjectView();
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
+        }
+
+        private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
+        {
+            ChangeUIToTOClassSelection();
+        }
+
+        private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
+        {
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+
+            this.CurrentFillingMode = MainFillingMode.Reposition;
+            UpdateEntikaInstancesSelectionView();
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_2_content.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Visible;
+            region_filling_3_content.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 2;
+        }
+
+        internal override void ChangeUIToMainMenu()
+        {
+            // Reset views when coming from TO addition/placement
+            generation_1.Visibility = Visibility.Collapsed;
+            BasicWindow.ColumnDefinitions[1].Width = new GridLength(0);
+            BasicScene.Visibility = Visibility.Visible;
+            GenerationSceneLeft.Visibility = Visibility.Collapsed;
+            GenerationSceneRight.Visibility = Visibility.Collapsed;
+
+            this.CurrentFillingMode = MainFillingMode.None;
+            region_filling_1.Visibility = Visibility.Visible;
+            region_filling_1_content.Visibility = Visibility.Visible;
+            region_filling_2.Visibility = Visibility.Collapsed;
+            region_filling_2_content.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 0;
+        }
+
+        private void btnReturnToRegionCreation_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GetNavigationService(this);
+            this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
+        }
+
+        private void btnGotoAlternativeFillingMode_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AlternativeModeRegionPage(selectedNode, this.SelectedTimePoint));
         }
 
         private void btnReturnToInit_Click(object sender, RoutedEventArgs e)
@@ -458,59 +547,26 @@ namespace NarrativeWorldCreator
             MessageTextBox.Text = message;
         }
 
-        private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
+        internal override void ChangeSelectedObject(EntikaInstance ieo)
         {
-            ChangeUIToAddition();
+            if (!this.SelectedEntikaInstances.Contains(ieo))
+            {
+                this.SelectedEntikaInstances.Add(ieo);
+            }
+            else
+                this.SelectedEntikaInstances.Remove(ieo);
+            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
         }
 
-        internal void ChangeUIToAddition()
+        internal override void RefreshSelectedObjectView()
         {
-            region_filling_1.Visibility = Visibility.Collapsed;
-            region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2.Visibility = Visibility.Visible;
-            region_filling_2_content.Visibility = Visibility.Visible;
-            region_filling_3.Visibility = Visibility.Collapsed;
-            region_filling_3_content.Visibility = Visibility.Collapsed;
-            region_tabcontrol.SelectedIndex = 1;
+            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.SelectedTimePoint.Configuration.InstancedObjects.Contains(sei)).ToList();
+            foreach (var removal in removalinstances)
+            {
+                this.SelectedEntikaInstances.Remove(removal);
+            }
+            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
         }
 
-        private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
-        {
-            UpdateEntikaInstancesSelectionView();
-            ChangeUIToChange();
-        }
-
-        internal void ChangeUIToChange()
-        {
-            region_filling_1.Visibility = Visibility.Collapsed;
-            region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2.Visibility = Visibility.Collapsed;
-            region_filling_2_content.Visibility = Visibility.Collapsed;
-            region_filling_3.Visibility = Visibility.Visible;
-            region_filling_3_content.Visibility = Visibility.Visible;
-            region_tabcontrol.SelectedIndex = 2;
-        }
-
-        internal void ChangeUIToMainMenu()
-        {
-            region_filling_1.Visibility = Visibility.Visible;
-            region_filling_1_content.Visibility = Visibility.Visible;
-            region_filling_2.Visibility = Visibility.Collapsed;
-            region_filling_2_content.Visibility = Visibility.Collapsed;
-            region_filling_3.Visibility = Visibility.Collapsed;
-            region_filling_3_content.Visibility = Visibility.Collapsed;
-            region_tabcontrol.SelectedIndex = 1;
-        }
-
-        private void btnReturnToRegionCreation_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GetNavigationService(this);
-            this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
-        }
-
-        private void btnGotoAlternativeFillingMode_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new AlternativeModeRegionPage(selectedNode, this.SelectedTimePoint));
-        }
     }
 }

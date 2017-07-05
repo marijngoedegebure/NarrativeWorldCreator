@@ -9,6 +9,7 @@ using NarrativeWorldCreator.GraphicScenes.Primitives;
 using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.Solvers;
 using NarrativeWorldCreator.ViewModel;
 using System;
@@ -34,7 +35,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         protected override void Draw(GameTime time)
         {
             base.Draw(time);
-            if (this._currentRegionPage.CurrentFillingMode == MainModeRegionPage.FillingMode.Placement)
+            if (this._currentRegionPage.editing)
             {
                 drawCentroidAndFocalPoint();
             }
@@ -90,7 +91,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
             // Draw rotation indicator
             var rotMatrix = Matrix.CreateRotationZ(focalRotation.Y);
-            var length = 3.0f;
 
             VertexPositionColor[] vertices = new VertexPositionColor[3];
             vertices[0] = new VertexPositionColor(Vector3.Transform(new Vector3(0, (float)(0.015 * cam._pos.Z), 0), rotMatrix) + focalPoint, Color.DarkRed);
@@ -124,7 +124,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         }
 
         
-        private void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
+        protected override void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
         {
             if (gpuResultInstance.entikaInstance.Name != Constants.Floor)
                 drawEntikaInstance(gpuResultInstance.entikaInstance, gpuResultInstance.Position, gpuResultInstance.Rotation);

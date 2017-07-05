@@ -49,20 +49,9 @@ namespace NarrativeWorldCreator.Views
         private void SaveConfiguration(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (regionPage.CurrentFillingMode == MainModeRegionPage.FillingMode.Repositioning)
+            if (this.ConfigurationsList.SelectedIndex != -1)
             {
-                if (this.ConfigurationsList.SelectedIndex != -1)
-                {
-                    regionPage.RepositionAndBackToMenu();
-                }
-            }
-            else
-            {
-                if (this.ConfigurationsList.SelectedIndex != -1)
-                {
-
-                    regionPage.PlaceObjectAndToEntityAddition();
-                }
+                regionPage.Next();
             }
         }
     }

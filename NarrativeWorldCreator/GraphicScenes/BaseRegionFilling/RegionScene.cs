@@ -67,7 +67,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected MainWindow mainWindow;
 
-        protected MainModeRegionPage _currentRegionPage;
+        protected BaseRegionPage _currentRegionPage;
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
             mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
 
-            this._currentRegionPage = (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            this._currentRegionPage = (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
 
             // Load test models
             SystemStateTracker.DefaultModel = Content.Load<Model>("Models/beddresser1/beddresser1");
@@ -491,7 +491,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             drawEntikaInstance(instance, null, null);
         }
 
-        protected void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
+        protected virtual void drawGPUResultInstance(GPUInstanceResult gpuResultInstance)
         {
             if (gpuResultInstance.entikaInstance.Name != Constants.Floor)
                 drawEntikaInstance(gpuResultInstance.entikaInstance, gpuResultInstance.Position, gpuResultInstance.Rotation);
@@ -559,12 +559,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                     CurrentDrawingMode = DrawingModes.MinkowskiMinus;
                 }
             }
-            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-            if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
-            {
-                _currentRegionPage.RegionCreated = true;
-            }
-
             base.Update(time);
         }
 

@@ -1,6 +1,9 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.ViewModel;
+using NarrativeWorldCreator.Views;
+using Semantics.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,30 +15,36 @@ namespace NarrativeWorldCreator.Pages
 {
     public class BaseRegionPage : Page
     {
-        public LocationNode selectedNode;
+        internal LocationNode selectedNode;
 
-        public List<EntikaInstance> SelectedEntikaInstances;
-        public NarrativeTimePoint SelectedTimePoint { get; internal set; }
+        internal List<EntikaInstance> SelectedEntikaInstances;
+        internal NarrativeTimePoint SelectedTimePoint;
 
-        public Configuration WorkInProgressConfiguration;
-        public EntikaInstance InstanceOfObjectToAdd;
+        internal Configuration WorkInProgressConfiguration;
+        internal EntikaInstance InstanceOfObjectToAdd;
 
-        public List<GPUConfigurationResult> GeneratedConfigurations;
-        public int LeftSelectedGPUConfigurationResult = -1;
-        public int RightSelectedGPUConfigurationResult = -1;
+        internal List<GPUConfigurationResult> GeneratedConfigurations;
+        internal int LeftSelectedGPUConfigurationResult = -1;
+        internal int RightSelectedGPUConfigurationResult = -1;
 
-        public EntikaInstance MousePositionTest;
+        internal bool editing = false;
 
-        public FillingMode CurrentFillingMode = FillingMode.ClassSelection;
+        internal EntikaInstance MousePositionTest;
 
-        public enum FillingMode
-        {
-            None = 0,
-            ClassSelection = 1,
-            RelationSelectionAndInstancting = 2,
-            Placement = 3,
-            Repositioning = 4
-        }
+        internal virtual void ChangeSelectedObject(EntikaInstance ieo) {}
 
+        internal virtual void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances) { }
+
+        internal virtual void RefreshSelectedObjectView() {}
+
+        internal virtual void ChangeUIToMainMenu() { }
+
+        internal virtual void SuggestNewPositions() { }
+
+        internal virtual void Back() { }
+
+        internal virtual void Next() { }
+
+        internal virtual void GenerateConfigurations() { }
     }
 }

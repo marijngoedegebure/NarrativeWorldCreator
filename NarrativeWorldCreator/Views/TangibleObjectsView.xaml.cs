@@ -1,6 +1,7 @@
 ﻿using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
+using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace NarrativeWorldCreator.Views
 
             // Kick off addition process
             var regionPage = GetRegionPage();
-            regionPage.AddSelectedTangibleObject(selectedItem.TangibleObject);
+            regionPage.Next();
         }
 
         private void btnBackToMainMenu(object sender, RoutedEventArgs e)
@@ -44,10 +45,10 @@ namespace NarrativeWorldCreator.Views
             regionPage.ChangeUIToMainMenu();
         }
 
-        private MainModeRegionPage GetRegionPage()
+        private BaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

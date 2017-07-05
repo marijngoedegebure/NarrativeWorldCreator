@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.ViewModel;
+﻿using NarrativeWorldCreator.Pages;
+using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,24 +34,19 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                if (regionPage.CurrentFillingMode.Equals(MainModeRegionPage.FillingMode.Repositioning))
+                // If it is being adjusted, refresh configurations
+                if (regionPage.editing)
                 {
-                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                    regionPage.GenerateConfigurationsView2.RefreshConfigurations();
-                }
-                else if (regionPage.CurrentFillingMode.Equals(MainModeRegionPage.FillingMode.Placement))
-                {
-                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                    regionPage.GenerateConfigurationsView.RefreshConfigurations();
+                    regionPage.SuggestNewPositions();
                 }
             }
             regionPage.RefreshSelectedObjectView();
         }
 
-        private MainModeRegionPage GetRegionPage()
+        private BaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void btnUnFreeze(object sender, RoutedEventArgs e)
@@ -60,15 +56,9 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = false;
-                if (regionPage.CurrentFillingMode.Equals(MainModeRegionPage.FillingMode.Repositioning))
+                if (regionPage.editing)
                 {
-                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                    regionPage.GenerateConfigurationsView2.RefreshConfigurations();
-                }
-                else if (regionPage.CurrentFillingMode.Equals(MainModeRegionPage.FillingMode.Placement))
-                {
-                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                    regionPage.GenerateConfigurationsView.RefreshConfigurations();
+                    regionPage.SuggestNewPositions();
                 }
             }
             regionPage.RefreshSelectedObjectView();
