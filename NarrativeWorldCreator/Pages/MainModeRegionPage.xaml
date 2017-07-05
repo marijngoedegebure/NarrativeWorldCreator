@@ -1,4 +1,4 @@
-﻿<my:BaseRegionPage x:Class="NarrativeWorldCreator.MainModeRegionPage"
+﻿<my:ModeBaseRegionPage x:Class="NarrativeWorldCreator.MainModeRegionPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -42,7 +42,8 @@
                 <Button Grid.Column="2" Grid.Row="0" x:Name="button76" Content="Click here to redefine the floor" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
                 <TextBlock Grid.Column="3" Grid.Row="0">Current filling mode: Main</TextBlock>
                 <Button Grid.Column="4" Grid.Row="0" x:Name="button94123" Content="Go to alternative filling mode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoAlternativeFillingMode_Click"/>
-                <views:RegionHeaderView Grid.Column="5" Grid.Row="0" x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded"/>
+                <Button Grid.Column="5" Grid.Row="0" x:Name="button12345" Content="Go to debug mode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoDebugMode_Click"/>
+                <views:RegionHeaderView Grid.Column="6" Grid.Row="0" x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <views:NarrativeTimelineRegionView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
@@ -107,18 +108,14 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:EntikaInstancesSelectionView Grid.Column="0" Grid.Row="0" x:Name="EntikaInstancesSelectionView" Loaded="EntikaInstancesSelectionView_Loaded" />
-                            <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="GenerateConfigurationsView2"/>
+                            <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView2"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_21" Header="Region detail" >
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
-                    <TabItem Name="region_filling_22" Header="Selection detail" >
-                        <views:SelectedObjectDetailView x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
-                    </TabItem>
                 </TabControl>
             </Grid>
         </Grid>
     </Grid>
-</my:BaseRegionPage>
+</my:ModeBaseRegionPage>

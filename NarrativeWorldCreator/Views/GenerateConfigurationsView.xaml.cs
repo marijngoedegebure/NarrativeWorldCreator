@@ -49,10 +49,10 @@ namespace NarrativeWorldCreator.Views
             regionPage.GenerateConfigurations();
         }
 
-        private BaseRegionPage GetRegionPage()
+        private ModeBaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void Back(object sender, RoutedEventArgs e)

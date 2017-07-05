@@ -33,7 +33,7 @@ namespace NarrativeWorldCreator
     /// <summary>
     /// Interaction logic for RegionPage.xaml
     /// </summary>
-    public partial class MainModeRegionPage : BaseRegionPage
+    public partial class MainModeRegionPage : ModeBaseRegionPage
     {
         // List of states
         #region Fields
@@ -47,6 +47,9 @@ namespace NarrativeWorldCreator
             Placement = 3,
             Reposition = 4
         }
+
+        EntikaInstance InstanceOfObjectToAdd;
+
         #endregion
         #region Setup
 
@@ -93,22 +96,6 @@ namespace NarrativeWorldCreator
                new DetailTimePointViewModel();
             timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
-        }
-
-        private void SelectedObjectDetailView_Loaded(object sender, RoutedEventArgs e)
-        {
-            SelectedObjectDetailViewModel selectedObjectViewModelObject =
-               new SelectedObjectDetailViewModel();
-            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
-            SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
-        }
-
-        private void EntikaInstancesSelectionView_Loaded(object sender, RoutedEventArgs e)
-        {
-            EntikaInstancesSelectionViewModel eisVM = new EntikaInstancesSelectionViewModel();
-            eisVM.Load(this.SelectedTimePoint);
-
-            EntikaInstancesSelectionView.DataContext = eisVM;
         }
         #endregion
 
@@ -168,7 +155,6 @@ namespace NarrativeWorldCreator
         {
             this.CurrentFillingMode = MainFillingMode.ClassSelection;
             // Reset values
-            InstanceOfObjectToAdd = null;
             RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
             RelationshipSelectionAndInstancingView.DataContext = riVM;
 
@@ -253,44 +239,10 @@ namespace NarrativeWorldCreator
         {
             this.WorkInProgressConfiguration = new Configuration();
             this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
-        }
-
-        internal override void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
-        {
-            var relationsToRemove = new List<RelationshipInstance>();
-            // Determine relationships to delete
-            foreach (var instanceToRemove in instances)
-            {
-                foreach (var relation in this.SelectedTimePoint.Configuration.InstancedRelations)
-                {
-                    if (relation.Source.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
-                    {
-                        relationsToRemove.Add(relation);
-                    }
-                    else if (relation.Target.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
-                    {
-                        relationsToRemove.Add(relation);
-                    }
-                }
-            }
-
-            // Remove relationships
-            foreach (var relationToRemove in relationsToRemove)
-            {
-                this.SelectedTimePoint.Configuration.InstancedRelations.Remove(relationToRemove);
-            }
-
-            // Remove instances
-            foreach (var instanceToRemove in instances)
-            {
-                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove.EntikaInstanceValued.EntikaInstance);
-            }
-
-            // Return to changing menu
-            this.RefreshSelectedObjectView();
-            this.SelectedTimePoint.RegeneratePredicates();
-            UpdateEntikaInstancesSelectionView();
+            if (this.CurrentFillingMode == MainFillingMode.Reposition)
+                IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            else
+                IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
         }
 
         public void SaveInstancingOfRelations()
@@ -469,11 +421,6 @@ namespace NarrativeWorldCreator
             this.SelectedTimePoint.RegeneratePredicates();
         }
 
-        public void UpdateEntikaInstancesSelectionView()
-        {
-            (EntikaInstancesSelectionView.DataContext as EntikaInstancesSelectionViewModel).Load(this.SelectedTimePoint);
-        }
-
         public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
@@ -488,20 +435,24 @@ namespace NarrativeWorldCreator
 
         private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
         {
+            this.WorkInProgressConfiguration = new Configuration();
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
             IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
 
+            ShowGenerationScenes();
+
             this.CurrentFillingMode = MainFillingMode.Reposition;
-            UpdateEntikaInstancesSelectionView();
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
             region_filling_2.Visibility = Visibility.Collapsed;
             region_filling_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Visible;
             region_filling_3_content.Visibility = Visibility.Visible;
-            region_tabcontrol.SelectedIndex = 2;
+            generation_1.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 3;
         }
 
-        internal override void ChangeUIToMainMenu()
+        internal void ChangeUIToMainMenu()
         {
             // Reset views when coming from TO addition/placement
             generation_1.Visibility = Visibility.Collapsed;
@@ -542,31 +493,14 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new GraphPage());
         }
 
+        private void btnGotoDebugMode_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new DebugRegionPage(this.selectedNode, this.SelectedTimePoint));
+        }
+
         public void SetMessageBoxText(string message)
         {
             MessageTextBox.Text = message;
         }
-
-        internal override void ChangeSelectedObject(EntikaInstance ieo)
-        {
-            if (!this.SelectedEntikaInstances.Contains(ieo))
-            {
-                this.SelectedEntikaInstances.Add(ieo);
-            }
-            else
-                this.SelectedEntikaInstances.Remove(ieo);
-            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
-        }
-
-        internal override void RefreshSelectedObjectView()
-        {
-            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.SelectedTimePoint.Configuration.InstancedObjects.Contains(sei)).ToList();
-            foreach (var removal in removalinstances)
-            {
-                this.SelectedEntikaInstances.Remove(removal);
-            }
-            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
-        }
-
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NarrativeWorldCreator.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,10 +26,10 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private MainModeRegionPage GetRegionPage()
+        private ModeBaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void ConfigurationSelectionChanged(object sender, SelectionChangedEventArgs e)

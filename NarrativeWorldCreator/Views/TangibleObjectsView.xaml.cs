@@ -42,13 +42,13 @@ namespace NarrativeWorldCreator.Views
         private void btnBackToMainMenu(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            regionPage.ChangeUIToMainMenu();
+            regionPage.Back();
         }
 
-        private BaseRegionPage GetRegionPage()
+        private ModeBaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)

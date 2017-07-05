@@ -9,12 +9,5 @@ namespace NarrativeWorldCreator.GraphicScenes
 {
     public class MainRegionScene : RegionScene
     {
-        protected override void drawEntikaInstances()
-        {
-            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
-            {
-                drawEntikaInstance2(instance);
-            }
-        }
     }
 }

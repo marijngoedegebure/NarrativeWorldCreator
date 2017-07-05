@@ -20,31 +20,55 @@ namespace NarrativeWorldCreator.Pages
         internal List<EntikaInstance> SelectedEntikaInstances;
         internal NarrativeTimePoint SelectedTimePoint;
 
-        internal Configuration WorkInProgressConfiguration;
-        internal EntikaInstance InstanceOfObjectToAdd;
+        internal void ChangeSelectedObject(EntikaInstance ieo)
+        {
+            if (!this.SelectedEntikaInstances.Contains(ieo))
+            {
+                this.SelectedEntikaInstances.Add(ieo);
+            }
+            else
+                this.SelectedEntikaInstances.Remove(ieo);
 
-        internal List<GPUConfigurationResult> GeneratedConfigurations;
-        internal int LeftSelectedGPUConfigurationResult = -1;
-        internal int RightSelectedGPUConfigurationResult = -1;
+        }
 
-        internal bool editing = false;
+        internal void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
+        {
+            var relationsToRemove = new List<RelationshipInstance>();
+            // Determine relationships to delete
+            foreach (var instanceToRemove in instances)
+            {
+                foreach (var relation in this.SelectedTimePoint.Configuration.InstancedRelations)
+                {
+                    if (relation.Source.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
+                    {
+                        relationsToRemove.Add(relation);
+                    }
+                    else if (relation.Target.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
+                    {
+                        relationsToRemove.Add(relation);
+                    }
+                }
+            }
 
-        internal EntikaInstance MousePositionTest;
+            // Remove relationships
+            foreach (var relationToRemove in relationsToRemove)
+            {
+                this.SelectedTimePoint.Configuration.InstancedRelations.Remove(relationToRemove);
+            }
 
-        internal virtual void ChangeSelectedObject(EntikaInstance ieo) {}
+            // Remove instances
+            foreach (var instanceToRemove in instances)
+            {
+                this.SelectedTimePoint.Configuration.InstancedObjects.Remove(instanceToRemove.EntikaInstanceValued.EntikaInstance);
+            }
 
-        internal virtual void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances) { }
+            // Return to changing menu
+            this.RefreshSelectedObjectView();
+            this.SelectedTimePoint.RegeneratePredicates();
+        }
+
+        internal virtual void UpdateSelectedObjectDetailView() { }
 
         internal virtual void RefreshSelectedObjectView() {}
-
-        internal virtual void ChangeUIToMainMenu() { }
-
-        internal virtual void SuggestNewPositions() { }
-
-        internal virtual void Back() { }
-
-        internal virtual void Next() { }
-
-        internal virtual void GenerateConfigurations() { }
     }
 }

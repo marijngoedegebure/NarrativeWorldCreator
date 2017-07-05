@@ -126,12 +126,13 @@
     </ApplicationDefinition>
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
-    <Compile Include="GraphicScenes\BaseRegionFilling\GenerationSceneLeft.cs" />
-    <Compile Include="GraphicScenes\BaseRegionFilling\GenerationSceneRight.cs" />
-    <Compile Include="GraphicScenes\BaseRegionFilling\MainRegionScene.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\DebugScene.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneLeft.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneRight.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\MainRegionScene.cs" />
     <Compile Include="GraphicScenes\Primitives\BoundingBoxBuffers.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
-    <Compile Include="GraphicScenes\BaseRegionFilling\GenerationScene.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationScene.cs" />
     <Compile Include="GraphicScenes\RegionCreationScene.cs" />
     <Compile Include="MetricEngines\AddOrChangeMetricEngine.cs" />
     <Compile Include="MetricEngines\Normalization.cs" />
@@ -147,6 +148,10 @@
       <DependentUpon>AlternativeModeRegionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\BaseRegionPage.cs" />
+    <Compile Include="Pages\DebugRegionPage.xaml.cs">
+      <DependentUpon>DebugRegionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ModeBaseRegionPage.cs" />
     <Compile Include="Pages\RegionCreationPage.xaml.cs">
       <DependentUpon>RegionCreationPage.xaml</DependentUpon>
     </Compile>
@@ -194,12 +199,11 @@
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
     <Compile Include="MetricEngines\TangibleObjectMetricEngine.cs" />
-    <Compile Include="Solvers\RelationshipInstancingSolver.cs" />
-    <Compile Include="Solvers\RelationshipSelectionSolver.cs" />
+    <Compile Include="Solvers\RelationshipSelectionAndInstancingSolver.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
-    <Compile Include="GraphicScenes\BaseRegionFilling\RegionScene.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\RegionScene.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceValuedPredicate.cs" />
@@ -271,6 +275,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AlternativeModeRegionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DebugRegionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -426,8 +434,6 @@
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GraphicScenes\AlternativeRegionFilling\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
 </Project>
