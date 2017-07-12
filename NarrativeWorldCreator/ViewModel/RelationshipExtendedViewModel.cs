@@ -97,6 +97,21 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
+        private bool _focusable;
+        public bool Focusable
+        {
+            get
+            {
+                return _focusable;
+            }
+
+            set
+            {
+                _focusable = value;
+                OnPropertyChanged("Focusable");
+            }
+        }
+
         private ObservableCollection<EntikaInstanceSelectionViewModel> _objectInstances;
         public ObservableCollection<EntikaInstanceSelectionViewModel> ObjectInstances
         {
@@ -123,6 +138,7 @@ namespace NarrativeWorldCreator.ViewModel
         {
             this.Relationship = r;
             this.Selected = false;
+            this.Focusable = true;
             this.Source = s;
             this.Target = t;
 

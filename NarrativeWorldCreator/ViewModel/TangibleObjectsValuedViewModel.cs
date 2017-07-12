@@ -38,6 +38,24 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
+        public TangibleObjectsValuedViewModel()
+        {
+            ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
+            TangibleObjectsValued = octo;
+        }
+
+        public void LoadList(List<TOTreeTangibleObject> input)
+        {
+            ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
+            foreach (var to in input)
+            {
+                if (!to.TangibleObject.DefaultName.Equals("floor"))
+                    octo.Add(to);
+            }
+            octo.OrderBy(to => to.EndValue);
+            TangibleObjectsValued = octo;
+        }
+
         public void LoadAll(NarrativeTimePoint ntp)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();

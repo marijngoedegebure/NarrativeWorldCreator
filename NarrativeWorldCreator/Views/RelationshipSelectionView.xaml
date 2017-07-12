@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="NarrativeWorldCreator.Views.RelationshipSelectionAndInstancingView"
+﻿<UserControl x:Class="NarrativeWorldCreator.Views.RelationshipSelectionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -80,7 +80,13 @@
                   SelectionMode="Single"
                   SelectionChanged="OnRelationshipsSingleListViewSelectionChanged"
                   ItemsSource = "{Binding Path = OnRelationshipsSingle}">
-                <ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="{Binding Path=Focusable}"/>
+                            <Setter Property="IsSelected" Value="{Binding Path=Selected}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -142,7 +148,13 @@
                   SelectionMode="Single"
                   SelectionChanged="OnRelationshipsMultipleListViewSelectionChanged"
                   ItemsSource = "{Binding Path = OnRelationshipsMultiple}">
-                <ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="{Binding Path=Focusable}"/>
+                            <Setter Property="IsSelected" Value="{Binding Path=Selected}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -168,12 +180,16 @@
                             </TextBlock>
                             <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path = Target.TangibleObject.DefaultName, Mode = OneWay, StringFormat='Target: {0}'}" />
                             <TextBlock Grid.Column="0" Grid.Row="2" Text="Possible Sources:" />
-                            <ListView 
+                            <ItemsControl 
                             Grid.Column="0" Grid.Row="3"
-                            ItemsSource="{Binding Path=ObjectInstances }"
-                            SelectionMode="Single"
-                            SelectionChanged="OnRelationMultipleObjectInstanceSelectionChanged">
-                                <ListView.ItemTemplate>
+                            ItemsSource="{Binding Path=ObjectInstances }">
+                                    <ItemsControl.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Focusable" Value="{Binding Path=Focusable}"/>
+                                            <Setter Property="IsSelected" Value="{Binding Path=Selected}"/>
+                                        </Style>
+                                    </ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
                                             <TextBlock Text="{Binding Path= EntikaInstance.Name}">
@@ -190,8 +206,8 @@
                                             </TextBlock>
                                         </WrapPanel>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -228,7 +244,13 @@
                   SelectionMode="Multiple"
                   SelectionChanged="OtherRelationshipsSingleListViewSelectionChanged"
                   ItemsSource = "{Binding Path = OtherRelationshipsSingle}">
-                <ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="{Binding Path=Focusable}"/>
+                            <Setter Property="IsSelected" Value="{Binding Path=Selected}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -289,7 +311,13 @@
                   SelectionMode="Multiple"
                   SelectionChanged="OtherRelationshipsMultipleListViewSelectionChanged"
                   ItemsSource = "{Binding Path = OtherRelationshipsMultiple}">
-                <ListView.ItemTemplate>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="{Binding Path=Focusable}"/>
+                            <Setter Property="IsSelected" Value="{Binding Path=Selected}"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -315,12 +343,16 @@
                             </TextBlock>
                             <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path = Target.TangibleObject.DefaultName, Mode = OneWay, StringFormat='Target: {0}'}" />
                             <TextBlock Grid.Column="0" Grid.Row="2" Text="Possible Sources:" />
-                            <ListView 
+                            <ItemsControl 
                             Grid.Column="0" Grid.Row="3"
-                            ItemsSource="{Binding Path=ObjectInstances }"
-                            SelectionMode="Single"
-                            SelectionChanged="OtherRelationMultipleObjectInstanceSelectionChanged">
-                                <ListView.ItemTemplate>
+                            ItemsSource="{Binding Path=ObjectInstances }">
+                                    <ItemsControl.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                            <Setter Property="Focusable" Value="{Binding Path=Focusable}"/>
+                                            <Setter Property="IsSelected" Value="{Binding Path=Selected}"/>
+                                        </Style>
+                                    </ItemsControl.ItemContainerStyle>
+                                    <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <WrapPanel>
                                             <TextBlock Text="{Binding Path= EntikaInstance.Name}">
@@ -337,8 +369,8 @@
                                             </TextBlock>
                                         </WrapPanel>
                                     </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

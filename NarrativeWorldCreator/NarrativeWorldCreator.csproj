@@ -158,6 +158,9 @@
     <Compile Include="Pages\ClassSelectionPage.xaml.cs">
       <DependentUpon>ClassSelectionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\StepGenerationSettingPage.xaml.cs">
+      <DependentUpon>StepGenerationSettingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Parsers\BeliefSystem.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
@@ -195,6 +198,7 @@
     <Compile Include="Parsers\Parser.cs" />
     <Compile Include="Parsers\PlanParser.cs" />
     <Compile Include="Parsers\ProblemParser.cs" />
+    <Compile Include="Solvers\ClassSelectionSolver.cs" />
     <Compile Include="Solvers\CudaGPUWrapper.cs" />
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
@@ -247,14 +251,20 @@
     <Compile Include="Views\RegionHeaderView.xaml.cs">
       <DependentUpon>RegionHeaderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RelationshipSelectionAndInstancingView.xaml.cs">
-      <DependentUpon>RelationshipSelectionAndInstancingView.xaml</DependentUpon>
+    <Compile Include="Views\RelationshipInstancingView.xaml.cs">
+      <DependentUpon>RelationshipInstancingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RelationshipSelectionView.xaml.cs">
+      <DependentUpon>RelationshipSelectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectedObjectDetailView.xaml.cs">
       <DependentUpon>SelectedObjectDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GenerateConfigurationsView.xaml.cs">
       <DependentUpon>GenerateConfigurationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SystemViews\TangibleObjectsSystemView.xaml.cs">
+      <DependentUpon>TangibleObjectsSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TangibleObjectsSwapView.xaml.cs">
       <DependentUpon>TangibleObjectsSwapView.xaml</DependentUpon>
@@ -302,6 +312,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\StepGenerationSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EntikaInstancesSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -334,7 +348,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RelationshipSelectionAndInstancingView.xaml">
+    <Page Include="Views\RelationshipInstancingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RelationshipSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -343,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GenerateConfigurationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystemViews\TangibleObjectsSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

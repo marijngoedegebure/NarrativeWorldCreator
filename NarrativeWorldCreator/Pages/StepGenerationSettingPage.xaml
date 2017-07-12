@@ -1,0 +1,32 @@
+﻿<Page x:Class="NarrativeWorldCreator.Pages.StepGenerationSettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NarrativeWorldCreator.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="StepGenerationSettingPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Column="0" Grid.Row="0" x:Name="button1" Content="Discard changes and go back to region editor page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnDiscardAndBackRegionEditor"/>
+        <Button Grid.Column="1" Grid.Row="0" x:Name="button2" Content="Save changes and go back to region editor page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnSaveAndBackRegionEditor"/>
+        <ToggleButton x:Name="ClassSelector" Grid.Column="0" Grid.Row="1" Content = "Toggle Class selection"  
+         Margin = "20" Width = "108" HorizontalAlignment = "Center" />
+        <ToggleButton x:Name="RelationshipSelector" Grid.Column="1" Grid.Row="1" Content = "Toggle Relationship selection"  
+         Margin = "20" Width = "108" HorizontalAlignment = "Center" />
+        <ToggleButton x:Name="InstanceSelector" Grid.Column="0" Grid.Row="2" Content = "Toggle Instance selection"  
+         Margin = "20" Width = "108" HorizontalAlignment = "Center" />
+        <ToggleButton x:Name="PositionSelector" Grid.Column="1" Grid.Row="2" Content = "Toggle Position selection" 
+         Margin = "20" Width = "108" HorizontalAlignment = "Center" />
+    </Grid>
+</Page>

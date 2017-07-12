@@ -40,10 +40,9 @@
                 <Button Grid.Column="0" Grid.Row="0" x:Name="button1" Content="Click here to go to Graph page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
                 <Button Grid.Column="1" Grid.Row="0" x:Name="button5" Content="Click here to reselect available classes." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToInit_Click"/>
                 <Button Grid.Column="2" Grid.Row="0" x:Name="button76" Content="Click here to redefine the floor" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
-                <TextBlock Grid.Column="3" Grid.Row="0">Current filling mode: Main</TextBlock>
-                <Button Grid.Column="4" Grid.Row="0" x:Name="button94123" Content="Go to alternative filling mode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoAlternativeFillingMode_Click"/>
-                <Button Grid.Column="5" Grid.Row="0" x:Name="button12345" Content="Go to debug mode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoDebugMode_Click"/>
-                <views:RegionHeaderView Grid.Column="6" Grid.Row="0" x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded"/>
+                <Button Grid.Column="3" Grid.Row="0" x:Name="button12345" Content="Go to debug mode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoDebugMode_Click"/>
+                <Button Grid.Column="4" Grid.Row="0" x:Name="button94123" Content="Go to process setting" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoProcessSettingAdjustment"/>
+                <views:RegionHeaderView Grid.Column="5" Grid.Row="0" x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <views:NarrativeTimelineRegionView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
@@ -84,17 +83,49 @@
                             <Button Grid.Column="0" Grid.Row="1" x:Name="button3" Content="Change current region" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnChangeCurrentRegion"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2" Header="Entity addition" Visibility="Collapsed">
-                        <Grid Name="region_filling_2_content">
+                    <TabItem Name="region_filling_2_1" Header="Tangible object selection" Visibility="Collapsed">
+                        <Grid Name="region_filling_2_1_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:TangibleObjectsView Grid.Column="0" Grid.Row="0" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
-                            <views:RelationshipSelectionAndInstancingView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionAndInstancingView"/>
-                            <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="GenerateConfigurationsView"/>
+                            <views:TangibleObjectsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="TangibleObjectsView" Loaded="TangibleObjectsView_Loaded" />
+                            <views:TangibleObjectsSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="TangibleObjectsSystemView" Loaded="TangibleObjectsSystemView_Loaded" />
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="region_filling_2_2" Header="Relationships selection" Visibility="Collapsed">
+                        <Grid Name="region_filling_2_2_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:RelationshipSelectionView Grid.Column="0" Grid.Row="0" x:Name="RelationshipSelectionView"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="region_filling_2_3" Header="Relationships instancing" Visibility="Collapsed">
+                        <Grid Name="region_filling_2_3_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:RelationshipInstancingView Grid.Column="0" Grid.Row="0" x:Name="InstanceSelectionView"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="region_filling_2_4" Header="Position selection" Visibility="Collapsed">
+                        <Grid Name="region_filling_2_4_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="generation_1" Header="Configuration comparison" Visibility="Collapsed">

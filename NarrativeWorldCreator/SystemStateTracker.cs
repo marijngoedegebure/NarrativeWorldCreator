@@ -27,6 +27,15 @@ namespace NarrativeWorldCreator
         public static Texture2D BoxSelectTexture;
         public static Texture2D RegionCreationTexture;
 
+        // Process settings
+        public static bool SelectClassSystem = false;
+        public static bool SelectRelationshipSystem = false;
+        public static bool SelectInstancesSystem = false;
+        public static bool SelectPositionSystem = false;
+
+        // UI Settings
+        internal static int NumberOfChoices = 4;
+
         // GPGPU settings
         // Number of results generated (threadblocks started):
         public static int gridxDim = 10;

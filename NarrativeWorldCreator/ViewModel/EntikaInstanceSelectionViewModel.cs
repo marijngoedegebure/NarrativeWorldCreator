@@ -40,6 +40,20 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
+        private bool _focusable;
+        public bool Focusable
+        {
+            get
+            {
+                return _focusable;
+            }
+            set
+            {
+                _focusable = value;
+                OnPropertyChanged("Focusable");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string PropertyName)
@@ -52,6 +66,7 @@ namespace NarrativeWorldCreator.ViewModel
         {
             EntikaInstance = instance;
             Selected = false;
+            Focusable = true;
         }
     }
 }

@@ -19,9 +19,9 @@ namespace NarrativeWorldCreator.Views
     /// <summary>
     /// Interaction logic for RelationshipSelectionAndInstancingView.xaml
     /// </summary>
-    public partial class RelationshipSelectionAndInstancingView : UserControl
+    public partial class RelationshipSelectionView : UserControl
     {
-        public RelationshipSelectionAndInstancingView()
+        public RelationshipSelectionView()
         {
             InitializeComponent();
         }

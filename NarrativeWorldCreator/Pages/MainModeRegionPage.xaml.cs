@@ -43,9 +43,10 @@ namespace NarrativeWorldCreator
         {
             None = 0,
             ClassSelection = 1,
-            RelationSelectionAndInstancting = 2,
-            Placement = 3,
-            Reposition = 4
+            RelationshipSelection = 2,
+            RelationshipInstancing = 3,
+            Placement = 4,
+            Repositioning = 5
         }
 
         EntikaInstance InstanceOfObjectToAdd;
@@ -59,14 +60,6 @@ namespace NarrativeWorldCreator
             this.selectedNode = selectedNode;
             this.SelectedTimePoint = SelectedTimePont;
             SelectedEntikaInstances = new List<EntikaInstance>();
-        }
-
-        private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
-        {
-            TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.LoadAll(this.SelectedTimePoint);
-            TangibleObjectsView.DataContext = toVM;
-            TangibleObjectsView.DefaultRB.IsChecked = true;
         }
 
         private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
@@ -109,13 +102,13 @@ namespace NarrativeWorldCreator
                 case MainFillingMode.ClassSelection:
                     ChangeUIToMainMenu();
                     break;
-                case MainFillingMode.RelationSelectionAndInstancting:
+                case MainFillingMode.RelationshipSelection:
                     ChangeUIToTOClassSelection();
                     break;
                 case MainFillingMode.Placement:
                     ChangeUIToRelationshipSelectionAndInstancing();
                     break;
-                case MainFillingMode.Reposition:
+                case MainFillingMode.Repositioning:
                     ChangeUIToMainMenu();
                     break;
                 default:
@@ -134,15 +127,15 @@ namespace NarrativeWorldCreator
                     AddSelectedTangibleObject();
                     ChangeUIToRelationshipSelectionAndInstancing();
                     break;
-                case MainFillingMode.RelationSelectionAndInstancting:
-                    SaveInstancingOfRelations();
+                case MainFillingMode.RelationshipSelection:
+                    //SaveRelationsAndInstancing();
                     ChangeUIToPlacement();
                     break;
                 case MainFillingMode.Placement:
                     ApplyConfiguration();
                     ChangeUIToMainMenu();
                     break;
-                case MainFillingMode.Reposition:
+                case MainFillingMode.Repositioning:
                     ApplyConfiguration();
                     ChangeUIToMainMenu();
                     break;
@@ -156,20 +149,20 @@ namespace NarrativeWorldCreator
             this.CurrentFillingMode = MainFillingMode.ClassSelection;
             // Reset values
             RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
+            RelationshipSelectionView.DataContext = riVM;
 
             HideGenerationScenes();
 
             // Set views of region filling 1 to correct state
             TangibleObjectsView.Visibility = Visibility.Visible;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            RelationshipSelectionView.Visibility = Visibility.Collapsed;
             GenerateConfigurationsView.Visibility = Visibility.Collapsed;
             generation_1.Visibility = Visibility.Collapsed;
             // Set tabitems to show correct ones
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2.Visibility = Visibility.Visible;
-            region_filling_2_content.Visibility = Visibility.Visible;
+            region_filling_2_1.Visibility = Visibility.Visible;
+            region_filling_2_1_content.Visibility = Visibility.Visible;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 1;
@@ -181,28 +174,113 @@ namespace NarrativeWorldCreator
             this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
             LeftSelectedGPUConfigurationResult = -1;
             RightSelectedGPUConfigurationResult = -1;
-
             HideGenerationScenes();
-
             // Switch UI to next step (relation selection and instancing)
-            CurrentFillingMode = MainFillingMode.RelationSelectionAndInstancting;
+            //CurrentFillingMode = MainFillingMode.RelationSelectionAndInstancting;
             TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
+            // RelationshipSelectionAndInstancingView.Visibility = Visibility.Visible;
             GenerateConfigurationsView.Visibility = Visibility.Collapsed;
             generation_1.Visibility = Visibility.Collapsed;
         }
 
+        internal void HideAllAddition()
+        {
+            region_filling_2_1.Visibility = Visibility.Collapsed;
+            region_filling_2_2.Visibility = Visibility.Collapsed;
+            region_filling_2_3.Visibility = Visibility.Collapsed;
+            region_filling_2_4.Visibility = Visibility.Collapsed;
+            generation_1.Visibility = Visibility.Collapsed;
+        }
+
+        internal void ShowTOSelection()
+        {
+            region_filling_2_1.Visibility = Visibility.Visible;
+            if (SystemStateTracker.SelectClassSystem)
+            {
+                TangibleObjectsView.Visibility = Visibility.Collapsed;
+                TangibleObjectsSystemView.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TangibleObjectsView.Visibility = Visibility.Visible;
+                TangibleObjectsSystemView.Visibility = Visibility.Collapsed;
+            }
+            region_filling_2_2.Visibility = Visibility.Collapsed;
+            region_filling_2_3.Visibility = Visibility.Collapsed;
+            region_filling_2_4.Visibility = Visibility.Collapsed;
+            generation_1.Visibility = Visibility.Collapsed;
+        }
+
+        internal void ShowRelationshipSelection()
+        {
+            region_filling_2_1.Visibility = Visibility.Collapsed;
+            region_filling_2_2.Visibility = Visibility.Visible;
+            region_filling_2_3.Visibility = Visibility.Collapsed;
+            region_filling_2_4.Visibility = Visibility.Collapsed;
+            generation_1.Visibility = Visibility.Collapsed;
+        }
+
+        internal void ShowInstanceSelection()
+        {
+            region_filling_2_1.Visibility = Visibility.Collapsed;
+            region_filling_2_2.Visibility = Visibility.Collapsed;
+            region_filling_2_3.Visibility = Visibility.Visible;
+            region_filling_2_4.Visibility = Visibility.Collapsed;
+            generation_1.Visibility = Visibility.Collapsed;
+        }
+
+        internal void ShowPositionSelection()
+        {
+            region_filling_2_1.Visibility = Visibility.Collapsed;
+            region_filling_2_2.Visibility = Visibility.Collapsed;
+            region_filling_2_3.Visibility = Visibility.Collapsed;
+            region_filling_2_4.Visibility = Visibility.Visible;
+            generation_1.Visibility = Visibility.Visible;
+        }
+
+        internal void ChangeUIToAddition()
+        {
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            ShowTOSelection();
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 1;
+        }
+
+        internal void ChangeUIToChange()
+        {
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            HideAllAddition();
+            region_filling_3.Visibility = Visibility.Visible;
+            region_filling_3_content.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 2;
+        }
+
+        internal void ChangeUIToMainMenu()
+        {
+            region_filling_1.Visibility = Visibility.Visible;
+            region_filling_1_content.Visibility = Visibility.Visible;
+            HideAllAddition();
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 0;
+        }
+
+        public bool RegionCreated = false;
+
         internal void ChangeUIToPlacement()
         {
-            
+
             TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            //RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
             GenerateConfigurationsView.Visibility = Visibility.Visible;
 
             CurrentFillingMode = MainFillingMode.Placement;
             ShowGenerationScenes();
             TangibleObjectsView.Visibility = Visibility.Collapsed;
-            RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
+            //RelationshipSelectionAndInstancingView.Visibility = Visibility.Collapsed;
             GenerateConfigurationsView.Visibility = Visibility.Visible;
             generation_1.Visibility = Visibility.Visible;
 
@@ -239,17 +317,35 @@ namespace NarrativeWorldCreator
         {
             this.WorkInProgressConfiguration = new Configuration();
             this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
-            if (this.CurrentFillingMode == MainFillingMode.Reposition)
+            if (this.CurrentFillingMode == MainFillingMode.Repositioning)
                 IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
             else
                 IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
         }
 
-        public void SaveInstancingOfRelations()
+        internal void SaveInstancingAndGotoPlacement(RelationshipSelectionAndInstancingViewModel rivm)
         {
-            var rivm = this.RelationshipSelectionAndInstancingView.DataContext as RelationshipSelectionAndInstancingViewModel;
-            // this.relationShipSelectionAndInstancing = rivm;
+            SaveRelationsAndInstancing(rivm);
 
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
+
+            CurrentFillingMode = MainFillingMode.Placement;
+            BasicWindow.ColumnDefinitions[1].Width = new GridLength(1, GridUnitType.Star);
+            BasicScene.Visibility = Visibility.Collapsed;
+            GenerationSceneLeft.Visibility = Visibility.Visible;
+            GenerationSceneRight.Visibility = Visibility.Visible;
+        }
+
+        public void SaveRelationsAndGotoInstancing(RelationshipSelectionAndInstancingViewModel rivm)
+        {
+            // Transmit rivm to next view
+
+            // Change ui to next view
+            ShowInstanceSelection();
+        }
+
+        private void SaveRelationsAndInstancing(RelationshipSelectionAndInstancingViewModel rivm)
+        {
             // Save instance and relationships to WIPconfiguration
             var onRelationshipMultipleVM = rivm.OnRelationshipsMultiple.Where(or => or.Selected).FirstOrDefault();
             var onRelationshipSingleVM = rivm.OnRelationshipsSingle.Where(or => or.Selected).FirstOrDefault();
@@ -355,7 +451,7 @@ namespace NarrativeWorldCreator
                 }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
-                
+
             }
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
@@ -370,14 +466,29 @@ namespace NarrativeWorldCreator
             view.SliderWeightPairWise.Value = SystemStateTracker.WeightPairWise;
             view.SliderWeightSymmetry.Value = SystemStateTracker.WeightSymmetry;
             view.SliderWeightVisualBalance.Value = SystemStateTracker.WeightVisualBalance;
-            view.centroidX.Text           = SystemStateTracker.centroidX.ToString();
-            view.centroidY.Text           = SystemStateTracker.centroidY.ToString();
-            view.focalX.Text              = SystemStateTracker.focalX.ToString();
-            view.focalY.Text              = SystemStateTracker.focalY.ToString();
-            view.focalRot.Text            = SystemStateTracker.focalRot.ToString();
-            view.gridxDim.Text            = SystemStateTracker.gridxDim.ToString();
+            view.centroidX.Text = SystemStateTracker.centroidX.ToString();
+            view.centroidY.Text = SystemStateTracker.centroidY.ToString();
+            view.focalX.Text = SystemStateTracker.focalX.ToString();
+            view.focalY.Text = SystemStateTracker.focalY.ToString();
+            view.focalRot.Text = SystemStateTracker.focalRot.ToString();
+            view.gridxDim.Text = SystemStateTracker.gridxDim.ToString();
             view.RefreshConfigurations();
         }
+
+        public void BackToRelationshipInstancing()
+        {
+            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            LeftSelectedGPUConfigurationResult = -1;
+            RightSelectedGPUConfigurationResult = -1;
+
+            CurrentFillingMode = MainFillingMode.RelationshipInstancing;
+            ShowInstanceSelection();
+            BasicScene.Visibility = Visibility.Visible;
+            GenerationSceneLeft.Visibility = Visibility.Collapsed;
+            GenerationSceneRight.Visibility = Visibility.Collapsed;
+        }
+
+
 
         internal void AddSelectedTangibleObject()
         {
@@ -391,16 +502,77 @@ namespace NarrativeWorldCreator
             riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
             if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
                 throw new Exception("No on relationship at all");
-            RelationshipSelectionAndInstancingView.DataContext = riVM;
-            if (riVM.OnRelationshipsMultiple.Count > 0)
-                RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
-            if (riVM.OnRelationshipsSingle.Count > 0)
-                RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
+            //RelationshipSelectionAndInstancingView.DataContext = riVM;
+            //if (riVM.OnRelationshipsMultiple.Count > 0)
+            //    RelationshipSelectionAndInstancingView.OnRelationshipsMultipleListView.SelectedIndex = 0;
+            //if (riVM.OnRelationshipsSingle.Count > 0)
+            //    RelationshipSelectionAndInstancingView.OnRelationshipsSingleListView.SelectedIndex = 0;
+
+            // Apply chosen results to timepoint
+            // check whether it is the systems job or the user's
+            //if (SystemStateTracker.SelectRelationshipSystem)
+            //{
+            //    RelationshipSelectionSolver.GetRandomRelationships(riVM);
+            //}
+            else
+            {
+                // Switch UI to next step (relation selection and instancing)
+
+                if (riVM.OnRelationshipsMultiple.Count > 0)
+                    RelationshipSelectionView.OnRelationshipsMultipleListView.SelectedIndex = 0;
+                if (riVM.OnRelationshipsSingle.Count > 0)
+                    RelationshipSelectionView.OnRelationshipsSingleListView.SelectedIndex = 0;
+            }
+            if (SystemStateTracker.SelectInstancesSystem)
+            {
+                //RelationshipInstancingSolver.GetRandomInstances(riVM);
+            }
+
+            // If both are done by system, skip the UI. Otherwise show the UI.
+            if (SystemStateTracker.SelectRelationshipSystem && SystemStateTracker.SelectInstancesSystem)
+            {
+                SaveRelationsAndGotoInstancing(riVM);
+            }
+            else
+            {
+                RelationshipSelectionView.DataContext = riVM;
+                CurrentFillingMode = MainFillingMode.RelationshipSelection;
+                TangibleObjectsView.Visibility = Visibility.Collapsed;
+                RelationshipSelectionView.Visibility = Visibility.Visible;
+                GenerateConfigurationsView.Visibility = Visibility.Collapsed;
+            }
         }
 
-        public void ApplyConfiguration()
+        public void BackToTangibleObjectSelection()
+        {
+            ShowTOSelection();
+            InstanceOfObjectToAdd = null;
+            RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
+            RelationshipSelectionView.DataContext = riVM;
+        }
+
+        public void PlaceObjectAndToEntityAddition()
         {
             // Apply chosen results to timepoint
+            ApplyConfiguration();
+            InstanceOfObjectToAdd = null;
+
+            // Regenerate predicates based on newly applied configuration
+            this.SelectedTimePoint.RegeneratePredicates();
+
+
+            CurrentFillingMode = MainFillingMode.ClassSelection;
+            ShowTOSelection();
+            BasicWindow.ColumnDefinitions[1].Width = new GridLength(0);
+            BasicScene.Visibility = Visibility.Visible;
+            GenerationSceneLeft.Visibility = Visibility.Collapsed;
+            GenerationSceneRight.Visibility = Visibility.Collapsed;
+
+            ChangeUIToMainMenu();
+        }
+
+        private void ApplyConfiguration()
+        {
             var gpuConfig = this.GeneratedConfigurations[this.RightSelectedGPUConfigurationResult];
             for (int i = 0; i < gpuConfig.Instances.Count; i++)
             {
@@ -416,9 +588,28 @@ namespace NarrativeWorldCreator
             RightSelectedGPUConfigurationResult = -1;
             GeneratedConfigurations = new List<GPUConfigurationResult>();
             InstanceOfObjectToAdd = null;
+        }
 
-            // Regenerate predicates based on newly applied configuration
-            this.SelectedTimePoint.RegeneratePredicates();
+        private void TangibleObjectsView_Loaded(object sender, RoutedEventArgs e)
+        {
+            RefreshTangibleObjectsView();
+        }
+
+        private void RefreshTangibleObjectsView()
+        {
+            TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
+            toVM.LoadAll(this.SelectedTimePoint);
+            TangibleObjectsView.DataContext = toVM;
+            TangibleObjectsView.DefaultRB.IsChecked = true;
+        }
+
+        private void TangibleObjectsSystemView_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (TangibleObjectsSystemView.DataContext == null)
+            {
+                TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
+                TangibleObjectsSystemView.DataContext = toVM;
+            }
         }
 
         public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
@@ -428,9 +619,37 @@ namespace NarrativeWorldCreator
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
 
+        private void btnReturnToInit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, this.SelectedTimePoint));
+        }
+
+        private void RefreshTangibleObjectsSystemView()
+        {
+            // Load all Tangible objects
+            TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
+            toVM.LoadAll(this.SelectedTimePoint);
+            // Select #NumberOfChoices from available classes
+            var tangibleObjectOptions = ClassSelectionSolver.GetRandomClasses(toVM, SystemStateTracker.NumberOfChoices);
+
+            // Load options into right view
+            TangibleObjectsValuedViewModel toVMOPtions = (TangibleObjectsSystemView.DataContext as TangibleObjectsValuedViewModel);
+            toVMOPtions.LoadList(tangibleObjectOptions);
+            //TangibleObjectsSystemView.DataContext = toVMOPtions;
+        }
+
         private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
         {
-            ChangeUIToTOClassSelection();
+            // Check whether the first step is done by system or user:
+            if (SystemStateTracker.SelectClassSystem)
+            {
+                RefreshTangibleObjectsSystemView();
+            }
+            else
+            {
+                RefreshTangibleObjectsView();
+            }
+            ChangeUIToAddition();
         }
 
         private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
@@ -438,38 +657,37 @@ namespace NarrativeWorldCreator
             this.WorkInProgressConfiguration = new Configuration();
             this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
             IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
-
             ShowGenerationScenes();
 
-            this.CurrentFillingMode = MainFillingMode.Reposition;
+            this.CurrentFillingMode = MainFillingMode.Repositioning;
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2.Visibility = Visibility.Collapsed;
-            region_filling_2_content.Visibility = Visibility.Collapsed;
+            region_filling_2_1.Visibility = Visibility.Collapsed;
+            region_filling_2_1_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Visible;
             region_filling_3_content.Visibility = Visibility.Visible;
             generation_1.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 3;
         }
 
-        internal void ChangeUIToMainMenu()
-        {
-            // Reset views when coming from TO addition/placement
-            generation_1.Visibility = Visibility.Collapsed;
-            BasicWindow.ColumnDefinitions[1].Width = new GridLength(0);
-            BasicScene.Visibility = Visibility.Visible;
-            GenerationSceneLeft.Visibility = Visibility.Collapsed;
-            GenerationSceneRight.Visibility = Visibility.Collapsed;
+        //internal void ChangeUIToMainMenu()
+        //{
+        //    // Reset views when coming from TO addition/placement
+        //    generation_1.Visibility = Visibility.Collapsed;
+        //    BasicWindow.ColumnDefinitions[1].Width = new GridLength(0);
+        //    BasicScene.Visibility = Visibility.Visible;
+        //    GenerationSceneLeft.Visibility = Visibility.Collapsed;
+        //    GenerationSceneRight.Visibility = Visibility.Collapsed;
 
-            this.CurrentFillingMode = MainFillingMode.None;
-            region_filling_1.Visibility = Visibility.Visible;
-            region_filling_1_content.Visibility = Visibility.Visible;
-            region_filling_2.Visibility = Visibility.Collapsed;
-            region_filling_2_content.Visibility = Visibility.Collapsed;
-            region_filling_3.Visibility = Visibility.Collapsed;
-            region_filling_3_content.Visibility = Visibility.Collapsed;
-            region_tabcontrol.SelectedIndex = 0;
-        }
+        //    this.CurrentFillingMode = MainFillingMode.None;
+        //    region_filling_1.Visibility = Visibility.Visible;
+        //    region_filling_1_content.Visibility = Visibility.Visible;
+        //    region_filling_2.Visibility = Visibility.Collapsed;
+        //    region_filling_2_content.Visibility = Visibility.Collapsed;
+        //    region_filling_3.Visibility = Visibility.Collapsed;
+        //    region_filling_3_content.Visibility = Visibility.Collapsed;
+        //    region_tabcontrol.SelectedIndex = 0;
+        //}
 
         private void btnReturnToRegionCreation_Click(object sender, RoutedEventArgs e)
         {
@@ -480,11 +698,6 @@ namespace NarrativeWorldCreator
         private void btnGotoAlternativeFillingMode_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AlternativeModeRegionPage(selectedNode, this.SelectedTimePoint));
-        }
-
-        private void btnReturnToInit_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, this.SelectedTimePoint));
         }
 
 
@@ -501,6 +714,11 @@ namespace NarrativeWorldCreator
         public void SetMessageBoxText(string message)
         {
             MessageTextBox.Text = message;
+        }
+
+        private void btnGotoProcessSettingAdjustment(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new StepGenerationSettingPage(selectedNode, this.SelectedTimePoint));
         }
     }
 }
