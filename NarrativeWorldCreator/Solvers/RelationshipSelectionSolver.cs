@@ -10,64 +10,74 @@ namespace NarrativeWorldCreator.Solvers
     public static class RelationshipSelectionSolver
     {
         // Randomly choose from available relationships. Make sure to atleast select an on relationship
-        public static void GetRandomRelationships(RelationshipSelectionAndInstancingViewModel riVM)
+        public static List<RelationshipSelectionAndInstancingViewModel> GetRandomRelationships(RelationshipSelectionAndInstancingViewModel riVM, int NumberOfChoices)
         {
             // Set relationships/entika instances to selected when used, they will be extracted using the view model
             var rnd = new Random();
-            // First select one on relationship from all on relationships
-            var count = riVM.OnRelationshipsSingle.Count + riVM.OnRelationshipsMultiple.Count;
-            var index = rnd.Next(0, count);
+            var list = new List<RelationshipSelectionAndInstancingViewModel>();
 
-            if (index < riVM.OnRelationshipsSingle.Count)
+            for (int i = 0; i < NumberOfChoices; i++)
             {
-                riVM.OnRelationshipsSingle[index].Selected = true;
-                riVM.OnRelationshipsSingle[index].Focusable = false;
-            }
-            else
-            {
-                riVM.OnRelationshipsMultiple[index - riVM.OnRelationshipsSingle.Count].Selected = true;
-                riVM.OnRelationshipsMultiple[index - riVM.OnRelationshipsSingle.Count].Focusable = false;
-            }
+                // Make copy of original object
+                var riVMCopy = riVM.CreateCopy();
 
-            // Set each on relationship to no focusable
-            foreach (var rel in riVM.OnRelationshipsSingle)
-            {
-                rel.Focusable = false;
-            }
+                // First select one on relationship from all on relationships
+                var count = riVMCopy.OnRelationshipsSingle.Count + riVMCopy.OnRelationshipsMultiple.Count;
+                var index = rnd.Next(0, count);
 
-            foreach (var rel in riVM.OnRelationshipsMultiple)
-            {
-                rel.Focusable = false;
-            }
-
-            // Use a 50/50 chance to select an "other" relationship
-            for (int i = 0; i < riVM.OtherRelationshipsSingle.Count; i++)
-            {
-                // Use a single side of the coin toss
-                if (rnd.Next(2) == 0)
+                if (index < riVMCopy.OnRelationshipsSingle.Count)
                 {
-                    riVM.OtherRelationshipsSingle[i].Selected = true;
+                    riVMCopy.OnRelationshipsSingle[index].Selected = true;
+                    riVMCopy.OnRelationshipsSingle[index].Focusable = false;
                 }
-                riVM.OtherRelationshipsSingle[i].Focusable = false;
-                foreach (var instance in riVM.OtherRelationshipsSingle[i].ObjectInstances)
+                else
                 {
-                    instance.Focusable = false;
+                    riVMCopy.OnRelationshipsMultiple[index - riVMCopy.OnRelationshipsSingle.Count].Selected = true;
+                    riVMCopy.OnRelationshipsMultiple[index - riVMCopy.OnRelationshipsSingle.Count].Focusable = false;
                 }
-            }
 
-            for (int i = 0; i < riVM.OtherRelationshipsMultiple.Count; i++)
-            {
-                // Use a single side of the coin toss
-                if (rnd.Next(2) == 0)
+                // Set each on relationship to no focusable
+                foreach (var rel in riVMCopy.OnRelationshipsSingle)
                 {
-                    riVM.OtherRelationshipsMultiple[i].Selected = true;
+                    rel.Focusable = false;
                 }
-                riVM.OtherRelationshipsMultiple[i].Focusable = false;
-                foreach (var instance in riVM.OtherRelationshipsMultiple[i].ObjectInstances)
+
+                foreach (var rel in riVMCopy.OnRelationshipsMultiple)
                 {
-                    instance.Focusable = false;
+                    rel.Focusable = false;
                 }
+
+                // Use a 50/50 chance to select an "other" relationship
+                for (int j = 0; j < riVMCopy.OtherRelationshipsSingle.Count; j++)
+                {
+                    // Use a single side of the coin toss
+                    if (rnd.Next(2) == 0)
+                    {
+                        riVMCopy.OtherRelationshipsSingle[j].Selected = true;
+                    }
+                    riVMCopy.OtherRelationshipsSingle[j].Focusable = false;
+                    foreach (var instance in riVMCopy.OtherRelationshipsSingle[j].ObjectInstances)
+                    {
+                        instance.Focusable = false;
+                    }
+                }
+
+                for (int j = 0; j < riVMCopy.OtherRelationshipsMultiple.Count; j++)
+                {
+                    // Use a single side of the coin toss
+                    if (rnd.Next(2) == 0)
+                    {
+                        riVMCopy.OtherRelationshipsMultiple[j].Selected = true;
+                    }
+                    riVMCopy.OtherRelationshipsMultiple[j].Focusable = false;
+                    foreach (var instance in riVMCopy.OtherRelationshipsMultiple[j].ObjectInstances)
+                    {
+                        instance.Focusable = false;
+                    }
+                }
+                list.Add(riVMCopy);
             }
+            return list;
         }
     }
 }

@@ -28,27 +28,6 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        internal void RefreshConfigurations()
-        {
-            // Retrieve values of input fields (that may have changed) and pass them to systemstatetracker
-            SystemStateTracker.WeightFocalPoint = (float) this.SliderWeightFocalPoint.Value;
-            SystemStateTracker.WeightPairWise = (float) this.SliderWeightPairWise.Value;
-            SystemStateTracker.WeightSymmetry = (float)this.SliderWeightSymmetry.Value;
-            SystemStateTracker.WeightVisualBalance = (float)this.SliderWeightVisualBalance.Value;
-            SystemStateTracker.WeightClearance = (float)this.SliderWeightClearance.Value;
-            SystemStateTracker.WeightSurfaceArea = (float)this.SliderWeightSurfaceArea.Value;
-            SystemStateTracker.centroidX = double.Parse(this.centroidX.Text);
-            SystemStateTracker.centroidY = double.Parse(this.centroidY.Text);
-            SystemStateTracker.focalX = double.Parse(this.focalX.Text);
-            SystemStateTracker.focalY = double.Parse(this.focalY.Text);
-            SystemStateTracker.focalRot = double.Parse(this.focalRot.Text);
-            SystemStateTracker.gridxDim = int.Parse(this.gridxDim.Text);
-
-            // Call configuration generation using current timepoint
-            var regionPage = GetRegionPage();
-            regionPage.GenerateConfigurations();
-        }
-
         private ModeBaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
@@ -63,7 +42,8 @@ namespace NarrativeWorldCreator.Views
 
         private void btnRefreshConfigurations(object sender, RoutedEventArgs e)
         {
-            RefreshConfigurations();
+            var regionPage = GetRegionPage();
+            regionPage.GenerateConfigurations();
         }
 
         private void centroidX_TextChanged(object sender, TextChangedEventArgs e)

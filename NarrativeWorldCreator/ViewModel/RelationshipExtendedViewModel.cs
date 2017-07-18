@@ -175,5 +175,26 @@ namespace NarrativeWorldCreator.ViewModel
            
             ObjectInstances = eioc;
         }
+
+        internal RelationshipExtendedViewModel CreateCopy()
+        {
+            var rel = new RelationshipExtendedViewModel();
+            rel.Relationship = this.Relationship;
+            rel.Source = this.Source;
+            rel.Target = this.Target;
+            rel.HideDueToSingleObjectInstance = this.HideDueToSingleObjectInstance;
+            rel.Selected = this.Selected;
+            rel.Required = this.Required;
+            rel.Focusable = this.Focusable;
+
+            var listOC = new ObservableCollection<EntikaInstanceSelectionViewModel>();
+            foreach (var instance in this.ObjectInstances)
+            {
+                var instanceCopy = instance.CreateCopy();
+                listOC.Add(instanceCopy);
+            }
+            rel.ObjectInstances = listOC;
+            return rel;
+        }
     }
 }

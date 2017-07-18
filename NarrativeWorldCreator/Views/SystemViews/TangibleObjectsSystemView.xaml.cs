@@ -33,19 +33,19 @@ namespace NarrativeWorldCreator.Views
 
             // Kick off addition process
             var regionPage = GetRegionPage();
-            //regionPage.AddSelectedTangibleObject(selectedItem.TangibleObject);
+            regionPage.Next();
         }
 
         private void btnBackToMainMenu(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            //regionPage.ChangeUIToMainMenu();
+            regionPage.Back();
         }
 
-        private BaseRegionPage GetRegionPage()
+        private ModeBaseRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
     }
 }

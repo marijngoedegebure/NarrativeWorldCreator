@@ -86,38 +86,6 @@ namespace NarrativeWorldCreator.Views
             }
         }
 
-        private void OnRelationMultipleObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var removedItems = e.RemovedItems;
-            if (removedItems.Count > 0)
-            {
-                EntikaInstanceSelectionViewModel entikaInstance = removedItems[0] as EntikaInstanceSelectionViewModel;
-                entikaInstance.Selected = false;
-            }
-            var addedItems = e.AddedItems;
-            if (addedItems.Count > 0)
-            {
-                EntikaInstanceSelectionViewModel entikaInstance = addedItems[0] as EntikaInstanceSelectionViewModel;
-                entikaInstance.Selected = true;
-            }
-        }
-
-        private void OtherRelationMultipleObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var removedItems = e.RemovedItems;
-            if (removedItems.Count > 0)
-            {
-                EntikaInstanceSelectionViewModel entikaInstance = removedItems[0] as EntikaInstanceSelectionViewModel;
-                entikaInstance.Selected = false;
-            }
-            var addedItems = e.AddedItems;
-            if (addedItems.Count > 0)
-            {
-                EntikaInstanceSelectionViewModel entikaInstance = addedItems[0] as EntikaInstanceSelectionViewModel;
-                entikaInstance.Selected = true;
-            }
-        }
-
         private void OnRelationshipsSingleListViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var removedItems = e.RemovedItems;

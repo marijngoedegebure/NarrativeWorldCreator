@@ -191,5 +191,60 @@ namespace NarrativeWorldCreator.ViewModel
             this.OtherRelationshipsSingle = otherRelationshipsSingleTemp;
             this.OtherRelationshipsNone = otherRelationshipsNoneTemp;
         }
+
+        internal RelationshipSelectionAndInstancingViewModel CreateCopy()
+        {
+            var riVM = new RelationshipSelectionAndInstancingViewModel();
+            var relOC = new ObservableCollection<RelationshipExtendedViewModel>();
+            foreach (var rel in this.OnRelationshipsMultiple)
+            {
+                var relCopy = rel.CreateCopy();
+                relOC.Add(relCopy);
+            }
+            riVM.OnRelationshipsMultiple = relOC;
+
+            relOC = new ObservableCollection<RelationshipExtendedViewModel>();
+            foreach (var rel in this.OnRelationshipsSingle)
+            {
+                var relCopy = rel.CreateCopy();
+                relOC.Add(relCopy);
+            }
+            riVM.OnRelationshipsSingle = relOC;
+
+            relOC = new ObservableCollection<RelationshipExtendedViewModel>();
+            foreach (var rel in this.OnRelationshipsNone)
+            {
+                var relCopy = rel.CreateCopy();
+                relOC.Add(relCopy);
+            }
+            riVM.OnRelationshipsNone = relOC;
+
+            relOC = new ObservableCollection<RelationshipExtendedViewModel>();
+            foreach (var rel in this.OtherRelationshipsMultiple)
+            {
+                var relCopy = rel.CreateCopy();
+                relOC.Add(relCopy);
+            }
+            riVM.OtherRelationshipsMultiple = relOC;
+
+            relOC = new ObservableCollection<RelationshipExtendedViewModel>();
+            foreach (var rel in this.OtherRelationshipsSingle)
+            {
+                var relCopy = rel.CreateCopy();
+                relOC.Add(relCopy);
+            }
+            riVM.OtherRelationshipsSingle = relOC;
+
+            relOC = new ObservableCollection<RelationshipExtendedViewModel>();
+            foreach (var rel in this.OtherRelationshipsNone)
+            {
+                var relCopy = rel.CreateCopy();
+                relOC.Add(relCopy);
+            }
+            riVM.OtherRelationshipsNone = relOC;
+
+
+            return riVM;
+        }
     }
 }

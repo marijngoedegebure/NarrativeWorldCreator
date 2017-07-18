@@ -96,11 +96,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                         foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
-                            var min = ieo.BoundingBox.Min;
-                            var max = ieo.BoundingBox.Max;
-
-                            var bb = new BoundingBox(Vector3.Transform(min, Matrix.CreateTranslation(ieo.Position)), Vector3.Transform(max, Matrix.CreateTranslation(ieo.Position)));
-                            var containmentType = selectionBoxBB.Contains(bb);
+                            var containmentType = selectionBoxBB.Contains(ieo.BoundingBox);
                             if (!(containmentType == ContainmentType.Disjoint))
                                 this._currentRegionPage.ChangeSelectedObject(ieo);
                         }

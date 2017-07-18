@@ -19,11 +19,11 @@ using TriangleNet.Data;
 
 namespace NarrativeWorldCreator.GraphicScenes
 {
-    public class GenerationSceneRight : GenerationScene
+    public class GenerationSceneTopRight : GenerationScene
     {
         protected override void drawEntikaInstances()
         {
-            if (_currentRegionPage.RightSelectedGPUConfigurationResult == -1)
+            if (_currentRegionPage.TopRightSelectedGPUConfigurationResult == -1)
             {
                 foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                 {
@@ -33,7 +33,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             else
             {
                 // Draw each entika instance in GeneratedConfigurations
-                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.RightSelectedGPUConfigurationResult].Instances)
+                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.TopRightSelectedGPUConfigurationResult].Instances)
                 {
                     drawGPUResultInstance(gpuResultInstance);
                 }

@@ -22,7 +22,7 @@ namespace NarrativeWorldCreator.Pages
     /// <summary>
     /// Interaction logic for DebugRegionPage.xaml
     /// </summary>
-    public partial class DebugRegionPage : BaseRegionPage
+    public partial class DebugRegionPage : ModeBaseRegionPage
     {
         #region Fields
         internal MainFillingMode CurrentFillingMode = MainFillingMode.None;
@@ -92,11 +92,6 @@ namespace NarrativeWorldCreator.Pages
         {
             NavigationService.GetNavigationService(this);
             this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
-        }
-
-        private void btnGotoAlternativeFillingMode_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new AlternativeModeRegionPage(selectedNode, this.SelectedTimePoint));
         }
 
         private void btnReturnToInit_Click(object sender, RoutedEventArgs e)

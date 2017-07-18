@@ -10,17 +10,68 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button Grid.Row="0" Grid.Column="1" Content="Save selected configuration" Click="SaveConfiguration"/>
-        <ListView Name="ConfigurationsList"
+        <ListView Name="ConfigurationsListTopLeft"
             Grid.Column="0"
             Grid.Row="1"
             Margin="10"
             SelectionMode="Single"
-            SelectionChanged="ConfigurationSelectionChanged"
+                  SelectionChanged="ConfigurationSelectionTopLeftChanged"
+            ItemsSource = "{Binding Path = GPUConfigurationResults}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding TotalCosts, StringFormat='Total costs: {0}'}" FontWeight="Bold" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Name="ConfigurationsListTopRight"
+            Grid.Column="0"
+            Grid.Row="2"
+            Margin="10"
+            SelectionMode="Single"
+                  SelectionChanged="ConfigurationSelectionTopRightChanged"
+            ItemsSource = "{Binding Path = GPUConfigurationResults}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding TotalCosts, StringFormat='Total costs: {0}'}" FontWeight="Bold" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Name="ConfigurationsListBottomLeft"
+            Grid.Column="0"
+            Grid.Row="3"
+            Margin="10"
+            SelectionMode="Single"
+                  SelectionChanged="ConfigurationSelectionBottomLeftChanged"
+            ItemsSource = "{Binding Path = GPUConfigurationResults}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding TotalCosts, StringFormat='Total costs: {0}'}" FontWeight="Bold" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ListView Name="ConfigurationsListBottomRight"
+            Grid.Column="0"
+            Grid.Row="4"
+            Margin="10"
+            SelectionMode="Single"
+                  SelectionChanged="ConfigurationSelectionBottomRightChanged"
             ItemsSource = "{Binding Path = GPUConfigurationResults}">
             <ListView.ItemTemplate>
                 <DataTemplate>

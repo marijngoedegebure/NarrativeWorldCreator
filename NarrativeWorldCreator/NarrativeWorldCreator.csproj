@@ -127,8 +127,10 @@
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
     <Compile Include="GraphicScenes\RegionFilling\DebugScene.cs" />
-    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneLeft.cs" />
-    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneRight.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneBottomRight.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneBottomLeft.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneTopLeft.cs" />
+    <Compile Include="GraphicScenes\RegionFilling\GenerationSceneTopRight.cs" />
     <Compile Include="GraphicScenes\RegionFilling\MainRegionScene.cs" />
     <Compile Include="GraphicScenes\Primitives\BoundingBoxBuffers.cs" />
     <Compile Include="GraphicScenes\Primitives\Quad.cs" />
@@ -144,9 +146,6 @@
     <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\InstancedPredicate.cs" />
-    <Compile Include="Pages\AlternativeModeRegionPage.xaml.cs">
-      <DependentUpon>AlternativeModeRegionPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\BaseRegionPage.cs" />
     <Compile Include="Pages\DebugRegionPage.xaml.cs">
       <DependentUpon>DebugRegionPage.xaml</DependentUpon>
@@ -203,7 +202,9 @@
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
     <Compile Include="MetricEngines\TangibleObjectMetricEngine.cs" />
+    <Compile Include="Solvers\RelationshipInstancingSolver.cs" />
     <Compile Include="Solvers\RelationshipSelectionAndInstancingSolver.cs" />
+    <Compile Include="Solvers\RelationshipSelectionSolver.cs" />
     <Compile Include="SystemStateTracker.cs" />
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstancesSelectionViewModel.cs" />
+    <Compile Include="ViewModel\RelationshipSelectionGeneratedOptionsViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsSwapViewModel.cs" />
     <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
@@ -227,9 +229,6 @@
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsValuedViewModel.cs" />
     <Compile Include="ViewModel\Vector3ViewModel.cs" />
-    <Compile Include="Views\EntikaInstancesSelectionView.xaml.cs">
-      <DependentUpon>EntikaInstancesSelectionView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\InspectGeneratedConfigurationsView.xaml.cs">
       <DependentUpon>InspectGeneratedConfigurationsView.xaml</DependentUpon>
     </Compile>
@@ -263,6 +262,15 @@
     <Compile Include="Views\GenerateConfigurationsView.xaml.cs">
       <DependentUpon>GenerateConfigurationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SystemViews\InspectGeneratedConfigurationsSystemView.xaml.cs">
+      <DependentUpon>InspectGeneratedConfigurationsSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SystemViews\RelationshipInstancingSystemView.xaml.cs">
+      <DependentUpon>RelationshipInstancingSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SystemViews\RelationshipSelectionSystemView.xaml.cs">
+      <DependentUpon>RelationshipSelectionSystemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SystemViews\TangibleObjectsSystemView.xaml.cs">
       <DependentUpon>TangibleObjectsSystemView.xaml</DependentUpon>
     </Compile>
@@ -284,10 +292,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\AlternativeModeRegionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\DebugRegionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,10 +317,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\StepGenerationSettingPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EntikaInstancesSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -361,6 +361,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\GenerateConfigurationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystemViews\InspectGeneratedConfigurationsSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystemViews\RelationshipInstancingSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystemViews\RelationshipSelectionSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

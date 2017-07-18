@@ -68,5 +68,14 @@ namespace NarrativeWorldCreator.ViewModel
             Selected = false;
             Focusable = true;
         }
+
+        internal EntikaInstanceSelectionViewModel CreateCopy()
+        {
+            var instanceCopy = new EntikaInstanceSelectionViewModel();
+            instanceCopy.EntikaInstance = this.EntikaInstance;
+            instanceCopy.Selected = this.Selected;
+            instanceCopy.Focusable = this.Focusable;
+            return instanceCopy;
+        }
     }
 }

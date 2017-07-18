@@ -35,28 +35,14 @@ namespace NarrativeWorldCreator.GraphicScenes
         protected override void Draw(GameTime time)
         {
             base.Draw(time);
-            if (this._currentRegionPage.editing)
-            {
-                drawCentroidAndFocalPoint();
-            }
+            drawCentroidAndFocalPoint();
         }
 
         protected override void drawEntikaInstances()
         {
-            if (_currentRegionPage.LeftSelectedGPUConfigurationResult == -1)
+            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
             {
-                foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
-                {
-                    drawEntikaInstance2(instance);
-                }
-            }
-            else
-            {
-                // Draw each entika instance in GeneratedConfigurations
-                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.LeftSelectedGPUConfigurationResult].Instances)
-                {
-                    drawGPUResultInstance(gpuResultInstance);
-                }
+                drawEntikaInstance2(instance);
             }
         }
 

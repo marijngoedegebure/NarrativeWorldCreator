@@ -27,21 +27,21 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private BaseRegionPage GetRegionPage()
+        private MainModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (BaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void BackToSelection(object sender, RoutedEventArgs e)
         {
-            // GetRegionPage().BackToTangibleObjectSelection();
+            GetRegionPage().Back();
         }
 
         private void NextStep(object sender, RoutedEventArgs e)
         {
             var rivm = this.DataContext as RelationshipSelectionAndInstancingViewModel;
-            // GetRegionPage().SaveRelationsAndGotoInstancing(rivm);
+            GetRegionPage().Next();
         }
 
         private void OnRelationMultipleObjectInstanceSelectionChanged(object sender, SelectionChangedEventArgs e)

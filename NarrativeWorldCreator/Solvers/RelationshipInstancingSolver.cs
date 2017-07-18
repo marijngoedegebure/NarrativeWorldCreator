@@ -10,28 +10,37 @@ namespace NarrativeWorldCreator.Solvers
     public static class RelationshipInstancingSolver
     {
         // Given set of relationships with more than one option of instancing, randomly select an instance
-        internal static void GetRandomInstances(RelationshipSelectionAndInstancingViewModel riVM)
+        internal static List<RelationshipSelectionAndInstancingViewModel> GetRandomInstances(RelationshipSelectionAndInstancingViewModel riVM, int NumberOfChoices)
         {
             var rnd = new Random();
-            foreach (var rel in riVM.OnRelationshipsMultiple)
-            {
-                var index = rnd.Next(0, rel.ObjectInstances.Count);
-                rel.ObjectInstances[index].Selected = true;
-                foreach (var instance in rel.ObjectInstances)
-                {
-                    instance.Focusable = false;
-                }
-            }
+            var list = new List<RelationshipSelectionAndInstancingViewModel>();
 
-            foreach (var rel in riVM.OtherRelationshipsMultiple)
+            for (int i = 0; i < NumberOfChoices; i++)
             {
-                var index = rnd.Next(0, rel.ObjectInstances.Count);
-                rel.ObjectInstances[index].Selected = true;
-                foreach (var instance in rel.ObjectInstances)
+                var riVMCopy = riVM.CreateCopy();
+
+                foreach (var rel in riVMCopy.OnRelationshipsMultiple)
                 {
-                    instance.Focusable = false;
+                    var index = rnd.Next(0, rel.ObjectInstances.Count);
+                    rel.ObjectInstances[index].Selected = true;
+                    foreach (var instance in rel.ObjectInstances)
+                    {
+                        instance.Focusable = false;
+                    }
                 }
+
+                foreach (var rel in riVMCopy.OtherRelationshipsMultiple)
+                {
+                    var index = rnd.Next(0, rel.ObjectInstances.Count);
+                    rel.ObjectInstances[index].Selected = true;
+                    foreach (var instance in rel.ObjectInstances)
+                    {
+                        instance.Focusable = false;
+                    }
+                }
+                list.Add(riVMCopy);
             }
+            return list;
         }
     }
 }

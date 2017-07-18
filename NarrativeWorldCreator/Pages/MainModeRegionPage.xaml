@@ -56,13 +56,32 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="0"></ColumnDefinition>
                 <ColumnDefinition Width="300"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:MainRegionScene x:Name="BasicScene" Grid.Row="0" Grid.Column="0"/>
-            <local:GenerationSceneLeft x:Name="GenerationSceneLeft" Grid.Row="0" Grid.Column="0" Visibility="Collapsed"/>
-            <local:GenerationSceneRight x:Name="GenerationSceneRight" Grid.Row="0" Grid.Column="1" Visibility="Collapsed"/>
-            <Grid Grid.Row="0" Grid.Column="2">
+            <Grid Grid.Row="0" Grid.Column="0" x:Name="BasicScene">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <local:MainRegionScene  Grid.Row="0" Grid.Column="0"/>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="0" Visibility="Collapsed" x:Name="GeneratedScenes">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <local:GenerationSceneTopLeft x:Name="GenerationSceneTopLeft" Grid.Row="0" Grid.Column="0"/>
+                <local:GenerationSceneTopRight x:Name="GenerationSceneTopRight" Grid.Row="0" Grid.Column="1"/>
+                <local:GenerationSceneBottomLeft x:Name="GenerationSceneBottomLeft" Grid.Row="1" Grid.Column="0"/>
+                <local:GenerationSceneBottomRight x:Name="GenerationSceneBottomRight" Grid.Row="1" Grid.Column="1"/>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -103,7 +122,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:RelationshipSelectionView Grid.Column="0" Grid.Row="0" x:Name="RelationshipSelectionView"/>
+                            <views:RelationshipSelectionView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionView"/>
+                            <views:RelationshipSelectionSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionSystemView"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_2_3" Header="Relationships instancing" Visibility="Collapsed">
@@ -114,7 +134,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:RelationshipInstancingView Grid.Column="0" Grid.Row="0" x:Name="InstanceSelectionView"/>
+                            <views:RelationshipInstancingView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InstanceSelectionView"/>
+                            <views:RelationshipInstancingSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InstanceSelectionSystemView"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_2_4" Header="Position selection" Visibility="Collapsed">
@@ -128,8 +149,17 @@
                             <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="generation_1" Header="Configuration comparison" Visibility="Collapsed">
-                        <views:InspectGeneratedConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="InspectGeneratedConfigurationsView"/>
+                    <TabItem Name="region_filling_2_5" Header="Configuration comparison" Visibility="Collapsed">
+                        <Grid Name="region_filling_2_5_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:InspectGeneratedConfigurationsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InspectGeneratedConfigurationsView"/>
+                            <views:InspectGeneratedConfigurationsSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InspectGeneratedConfigurationsSystemView"/>
+                        </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_3" Header="Entity removal and repositioning" Visibility="Collapsed">
                         <Grid Name="region_filling_3_content">

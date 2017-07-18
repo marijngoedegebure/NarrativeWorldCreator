@@ -34,11 +34,6 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-                // If it is being adjusted, refresh configurations
-                if (regionPage.editing)
-                {
-                    regionPage.SuggestNewPositions();
-                }
             }
             regionPage.RefreshSelectedObjectView();
         }
@@ -56,10 +51,6 @@ namespace NarrativeWorldCreator.Views
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = false;
-                if (regionPage.editing)
-                {
-                    regionPage.SuggestNewPositions();
-                }
             }
             regionPage.RefreshSelectedObjectView();
         }

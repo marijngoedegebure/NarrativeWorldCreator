@@ -10,6 +10,20 @@ namespace NarrativeWorldCreator.ViewModel
 {
     public class GPUConfigurationResultViewModel : INotifyPropertyChanged
     {
+        private GPUConfigurationResult _GPUConfigurationResult;
+        public GPUConfigurationResult GPUConfigurationResult
+        {
+            get
+            {
+                return _GPUConfigurationResult;
+            }
+            set
+            {
+                _GPUConfigurationResult = value;
+                OnPropertyChanged("GPUConfigurationResult");
+            }
+        }
+
         private float _totalCosts;
         public float TotalCosts
         {
@@ -91,6 +105,7 @@ namespace NarrativeWorldCreator.ViewModel
 
         public void Load(GPUConfigurationResult input)
         {
+            this.GPUConfigurationResult = input;
             this.TotalCosts = input.TotalCosts;
             this.PairWiseCosts = input.PairWiseCosts;
             this.FocalPointCosts = input.FocalPointCosts;

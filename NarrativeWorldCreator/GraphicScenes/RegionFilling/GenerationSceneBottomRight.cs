@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.GraphicScenes
 {
-    public class GenerationSceneLeft : GenerationScene
+    public class GenerationSceneBottomRight : GenerationScene
     {
         protected override void drawEntikaInstances()
         {
-            if (_currentRegionPage.LeftSelectedGPUConfigurationResult == -1)
+            if (_currentRegionPage.BottomRightSelectedGPUConfigurationResult == -1)
             {
                 foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
                 {
@@ -21,7 +21,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             else
             {
                 // Draw each entika instance in GeneratedConfigurations
-                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.LeftSelectedGPUConfigurationResult].Instances)
+                foreach (var gpuResultInstance in _currentRegionPage.GeneratedConfigurations[_currentRegionPage.BottomRightSelectedGPUConfigurationResult].Instances)
                 {
                     drawGPUResultInstance(gpuResultInstance);
                 }

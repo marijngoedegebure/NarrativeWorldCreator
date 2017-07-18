@@ -1,6 +1,4 @@
-﻿
-using NarrativeWorldCreator.Models.NarrativeRegionFill;
-using NarrativeWorldCreator.Pages;
+﻿using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +17,13 @@ using System.Windows.Shapes;
 namespace NarrativeWorldCreator.Views
 {
     /// <summary>
-    /// Interaction logic for ObjectSelectionView.xaml
+    /// Interaction logic for RelationshipSelectionSystemView.xaml
     /// </summary>
-    public partial class EntikaInstancesSelectionView : UserControl
+    public partial class RelationshipSelectionSystemView : UserControl
     {
-        public EntikaInstancesSelectionView()
+        public RelationshipSelectionSystemView()
         {
             InitializeComponent();
-        }
-
-        private void btnBackToMainMenu(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            regionPage.ChangeUIToMainMenu();
         }
 
         private MainModeRegionPage GetRegionPage()
@@ -40,10 +32,15 @@ namespace NarrativeWorldCreator.Views
             return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
-        private void btnSuggestNewPositions(object sender, RoutedEventArgs e)
+        private void BackToSelection(object sender, RoutedEventArgs e)
         {
-            var regionPage = GetRegionPage();
-            regionPage.SuggestNewPositions();
+            GetRegionPage().Back();
+        }
+
+        private void NextStep(object sender, RoutedEventArgs e)
+        {
+            var rivm = this.DataContext as RelationshipSelectionAndInstancingViewModel;
+            GetRegionPage().Next();
         }
     }
 }

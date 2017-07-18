@@ -32,25 +32,62 @@ namespace NarrativeWorldCreator.Views
             return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
-        private void ConfigurationSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ConfigurationSelectionTopLeftChanged(object sender, SelectionChangedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (this.ConfigurationsList.SelectedItems.Count > 0)
+            if (this.ConfigurationsListTopLeft.SelectedItems.Count > 0)
             {
-                regionPage.LeftSelectedGPUConfigurationResult = this.ConfigurationsList.SelectedIndex;
-                regionPage.RightSelectedGPUConfigurationResult = this.ConfigurationsList.SelectedIndex;
+                regionPage.TopLeftSelectedGPUConfigurationResult = this.ConfigurationsListTopLeft.SelectedIndex;
             }
             else
             {
-                regionPage.LeftSelectedGPUConfigurationResult = -1;
-                regionPage.RightSelectedGPUConfigurationResult = -1;
+                regionPage.TopLeftSelectedGPUConfigurationResult = -1;
+            }
+        }
+
+        private void ConfigurationSelectionTopRightChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            if (this.ConfigurationsListTopRight.SelectedItems.Count > 0)
+            {
+                regionPage.TopRightSelectedGPUConfigurationResult = this.ConfigurationsListTopRight.SelectedIndex;
+            }
+            else
+            {
+                regionPage.TopRightSelectedGPUConfigurationResult = -1;
+            }
+        }
+
+        private void ConfigurationSelectionBottomLeftChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            if (this.ConfigurationsListBottomLeft.SelectedItems.Count > 0)
+            {
+                regionPage.BottomLeftSelectedGPUConfigurationResult = this.ConfigurationsListBottomLeft.SelectedIndex;
+            }
+            else
+            {
+                regionPage.BottomRightSelectedGPUConfigurationResult = -1;
+            }
+        }
+
+        private void ConfigurationSelectionBottomRightChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            if (this.ConfigurationsListBottomRight.SelectedItems.Count > 0)
+            {
+                regionPage.BottomRightSelectedGPUConfigurationResult = this.ConfigurationsListBottomRight.SelectedIndex;
+            }
+            else
+            {
+                regionPage.TopRightSelectedGPUConfigurationResult = -1;
             }
         }
 
         private void SaveConfiguration(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (this.ConfigurationsList.SelectedIndex != -1)
+            if (this.ConfigurationsListTopLeft.SelectedIndex != -1)
             {
                 regionPage.Next();
             }

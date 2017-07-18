@@ -16,11 +16,10 @@ namespace NarrativeWorldCreator.Pages
         internal Configuration WorkInProgressConfiguration = new Configuration();
 
         internal List<GPUConfigurationResult> GeneratedConfigurations;
-        internal int LeftSelectedGPUConfigurationResult = -1;
-        internal int RightSelectedGPUConfigurationResult = -1;
-
-        // Other stuff
-        internal bool editing = false;
+        internal int TopLeftSelectedGPUConfigurationResult = -1;
+        internal int BottomLeftSelectedGPUConfigurationResult = -1;
+        internal int TopRightSelectedGPUConfigurationResult = -1;
+        internal int BottomRightSelectedGPUConfigurationResult = -1;
 
         internal virtual void Back() { }
 
@@ -29,5 +28,9 @@ namespace NarrativeWorldCreator.Pages
         internal virtual void SuggestNewPositions() { }
 
         internal virtual void GenerateConfigurations() { }
+
+        internal override void UpdateSelectedObjectDetailView() { }
+
+        internal override void RefreshSelectedObjectView() { }
     }
 }
