@@ -9,6 +9,7 @@ namespace NarrativeWorldCreator.Pages
 {
     public class ModeBaseRegionPage : BaseRegionPage
     {
+
         // Newest way of generating stuff
         internal Dictionary<Configuration, GPUConfigurationResult> WIPandGenerationDict = new Dictionary<Configuration, GPUConfigurationResult>();
 

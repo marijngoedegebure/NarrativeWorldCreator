@@ -219,7 +219,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             basicEffect.View = this.view;
             basicEffect.Projection = this.proj;
             basicEffect.VertexColorEnabled = true;
-            var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentPage.Floor;
             if (floorInstance != null)
             {
                 var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
@@ -250,7 +250,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             // Triangles should be defined clockwise
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
             // Only draw triangles when there is 3 or more vertices
-            var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentPage.Floor;
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
@@ -440,7 +440,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                     CurrentDrawingMode = DrawingModes.MinkowskiMinus;
                 }
             }
-            var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentPage.Floor;
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 _currentPage.selectedTimePoint.FloorCreated = true;
@@ -483,7 +483,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         private int CalculateCollisionQuad()
         {
             Ray ray = CalculateMouseRay();
-            var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentPage.Floor;
             var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);    
             List<VertexPositionColor> points = new List<VertexPositionColor>();
             points = DrawingEngine.GetDrawableTriangles(result, Color.White);
@@ -577,7 +577,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                 {
                     vertices.Add(new Vec2(corner.X, corner.Y));
                 }
-                var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+                var floorInstance = this._currentPage.Floor;
                 floorInstance.Polygon = new Polygon(vertices);
                 floorInstance.UpdateBoundingBoxAndShape();
 

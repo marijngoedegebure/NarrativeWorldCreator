@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeTime;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 
 namespace NarrativeWorldCreator.Pages
 {
@@ -24,6 +25,8 @@ namespace NarrativeWorldCreator.Pages
     {
         public LocationNode selectedNode;
         public NarrativeTimePoint selectedTimePoint;
+
+        public EntikaInstance Floor;
 
         public RegionCreationPage(LocationNode selectedNode, NarrativeTimePoint selectedTimePoint)
         {

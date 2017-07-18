@@ -147,6 +147,7 @@
     <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\InstancedPredicate.cs" />
+    <Compile Include="Models\NarrativeRegionFill\RelationshipDelta.cs" />
     <Compile Include="Pages\BaseRegionPage.cs" />
     <Compile Include="Pages\DebugRegionPage.xaml.cs">
       <DependentUpon>DebugRegionPage.xaml</DependentUpon>

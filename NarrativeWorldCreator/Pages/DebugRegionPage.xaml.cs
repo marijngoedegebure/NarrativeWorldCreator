@@ -44,6 +44,9 @@ namespace NarrativeWorldCreator.Pages
             this.selectedNode = selectedNode;
             this.SelectedTimePoint = SelectedTimePont;
             SelectedEntikaInstances = new List<EntikaInstance>();
+
+            Configuration = new Configuration();
+            // Determine current configuration using deltas
         }
 
         private void RegionHeader_Loaded(object sender, RoutedEventArgs e)

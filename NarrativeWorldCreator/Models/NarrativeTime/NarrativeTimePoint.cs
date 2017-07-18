@@ -32,17 +32,12 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public bool FloorCreated = false;
 
-        // Current configuration of a timepoint, used to generate new configurations from
-        public Configuration Configuration { get; set; }
-
         public NarrativeTimePoint(int timePoint)
         {
             this.TimePoint = timePoint;
             PredicatesFilteredByCurrentLocation = new List<NarrativeRegionFill.Predicate>();
             AllPredicates = new List<NarrativeRegionFill.Predicate>();
             PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.InstancedPredicate>();
-            Configuration = new Configuration();
-            this.Configuration.InstancedObjects.Add(new EntikaInstance(Constants.Floor, new Polygon(new List<Vec2d>())));
         }
 
         internal List<InstancedPredicate> GetPredicatesOfInstance(EntikaInstance entikaInstance)
@@ -209,15 +204,15 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             return this.TimePoint.GetHashCode();
         }
 
-        internal void RegeneratePredicates()
+        internal void RegeneratePredicates(Configuration c)
         {
             this.PredicatesCausedByInstancedObjectsAndRelations = new List<InstancedPredicate>();
-            foreach (var rel in this.Configuration.InstancedRelations)
+            foreach (var rel in c.InstancedRelations)
             {
                 InstantiateRelationship(rel);
             }
 
-            foreach (var obj in this.Configuration.InstancedObjects)
+            foreach (var obj in c.InstancedObjects)
             {
                 this.InstantiateAtPredicateForInstance(obj);
             }

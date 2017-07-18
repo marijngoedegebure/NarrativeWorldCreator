@@ -20,6 +20,9 @@ namespace NarrativeWorldCreator.Pages
         internal List<EntikaInstance> SelectedEntikaInstances;
         internal NarrativeTimePoint SelectedTimePoint;
 
+        // Current configuration of a timepoint
+        public Configuration Configuration { get; set; }
+
         internal void ChangeSelectedObject(EntikaInstance ieo)
         {
             if (!this.SelectedEntikaInstances.Contains(ieo))
