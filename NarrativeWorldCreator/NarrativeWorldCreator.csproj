@@ -143,6 +143,7 @@
     <Compile Include="Models\Metrics\TOTree\TOTreeRelationship.cs" />
     <Compile Include="Models\Metrics\TOTree\TOTreeTangibleObject.cs" />
     <Compile Include="Models\NarrativeRegionFill\Configuration.cs" />
+    <Compile Include="Models\NarrativeRegionFill\InstanceDelta.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUConfigurationResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\GPUInstanceResult.cs" />
     <Compile Include="Models\NarrativeRegionFill\InstancedPredicate.cs" />
