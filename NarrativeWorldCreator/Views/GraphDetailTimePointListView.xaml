@@ -7,18 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <ListView
+        <ScrollViewer>
+        <ItemsControl
             Margin="10"
             Name="lvNodeDetailList"
-            ScrollViewer.VerticalScrollBarVisibility="Visible"
-            SelectionMode="Single"
             ItemsSource = "{Binding Path = NarrativeTimePoints}">
-            <ListView.ItemsPanel>
+            <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical"></StackPanel>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Name="item" Orientation="Vertical" Margin="5">
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.TimePoint, Mode = OneWay, StringFormat='Timepoint: {0}'}" FontWeight="Bold"/>
@@ -28,7 +27,8 @@
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.Configuration.InstancedRelations.Count, Mode = OneWay, StringFormat='Number of relations: {0}'}" />
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

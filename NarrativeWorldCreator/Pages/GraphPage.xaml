@@ -19,7 +19,6 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,9 +27,6 @@
                 <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
                 <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
             </WrapPanel>
-            <Grid Grid.Row="1" Grid.Column="0">
-                <views:NarrativeTimelineView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
-            </Grid>
         </Grid>        
         <Grid Grid.Row="1" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>

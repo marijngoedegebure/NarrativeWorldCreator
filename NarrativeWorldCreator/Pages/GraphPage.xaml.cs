@@ -35,16 +35,6 @@ namespace NarrativeWorldCreator
                 SystemStateTracker.NarrativeWorld.Graph.initForceDirectedGraph();
         }
 
-        private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            // Fill control with stuff
-            NarrativeTimelineViewModel narrativeTimelineViewModelObject =
-               new NarrativeTimelineViewModel();
-            narrativeTimelineViewModelObject.LoadTimePoints();
-
-            NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
-        }
-
         private void GraphDetailTimePointListControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Fill control with stuff
@@ -55,10 +45,10 @@ namespace NarrativeWorldCreator
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
-            if (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel != null)
+            if ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0] != null)
             {
                 ErrorTB.Text = "";
-                var SelectedTimePoint = (this.GraphDetailTimePointListControl.lvNodeDetailList.SelectedItem as DetailTimePointViewModel).NarrativeTimePoint;
+                var SelectedTimePoint = ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0]).NarrativeTimePoint;
                 if (SelectedTimePoint.AvailableTangibleObjects.Count == 0)
                 {
                     this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, SelectedTimePoint));
