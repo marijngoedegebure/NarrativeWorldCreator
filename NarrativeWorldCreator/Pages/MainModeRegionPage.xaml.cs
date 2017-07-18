@@ -554,7 +554,7 @@ namespace NarrativeWorldCreator
             // Determine instance to add:
             InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
             RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            riVM.Load(this.SelectedTimePoint, InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
+            riVM.Load(this.selectedNode, this.SelectedTimePoint, InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
             if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
                 throw new Exception("No on relationship at all");
 
@@ -612,7 +612,7 @@ namespace NarrativeWorldCreator
         private void RefreshTangibleObjectsView()
         {
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.LoadAll(this.SelectedTimePoint);
+            toVM.LoadAll(this.selectedNode, this.SelectedTimePoint);
             TangibleObjectsView.DataContext = toVM;
             TangibleObjectsView.DefaultRB.IsChecked = true;
         }
@@ -621,7 +621,7 @@ namespace NarrativeWorldCreator
         {
             // Load all Tangible objects
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.LoadAll(this.SelectedTimePoint);
+            toVM.LoadAll(this.selectedNode, this.SelectedTimePoint);
             // Select #NumberOfChoices from available classes
             var tangibleObjectOptions = ClassSelectionSolver.GetRandomClasses(toVM, SystemStateTracker.NumberOfChoices);
 

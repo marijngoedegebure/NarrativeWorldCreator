@@ -23,9 +23,6 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
         // Location mentioned in the narrative event
         public LocationNode Location { get; set; }
 
-        // List of TangibleObjects selected for this region/timepoint
-        public List<TangibleObject> AvailableTangibleObjects { get; set; }
-
         public List<NarrativeRegionFill.Predicate> AllPredicates { get; set; }
 
         // Story constraints for this timepoint, otherwise known as the goals
@@ -46,7 +43,6 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.InstancedPredicate>();
             Configuration = new Configuration();
             this.Configuration.InstancedObjects.Add(new EntikaInstance(Constants.Floor, new Polygon(new List<Vec2d>())));
-            AvailableTangibleObjects = new List<TangibleObject>();
         }
 
         internal List<InstancedPredicate> GetPredicatesOfInstance(EntikaInstance entikaInstance)

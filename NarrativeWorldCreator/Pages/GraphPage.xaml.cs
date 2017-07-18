@@ -49,7 +49,7 @@ namespace NarrativeWorldCreator
             {
                 ErrorTB.Text = "";
                 var SelectedTimePoint = ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0]).NarrativeTimePoint;
-                if (SelectedTimePoint.AvailableTangibleObjects.Count == 0)
+                if (selectedNode.AvailableTangibleObjects.Count == 0)
                 {
                     this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, SelectedTimePoint));
                 }

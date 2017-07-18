@@ -70,7 +70,7 @@ namespace NarrativeWorldCreator.Pages
             {
                 fillAvailableTO.Add(to.TangibleObject);
             }
-            this.SelectedTimePoint.AvailableTangibleObjects = fillAvailableTO;
+            this.selectedNode.AvailableTangibleObjects = fillAvailableTO;
             if (SelectedTimePoint.FloorCreated)
                 this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.SelectedTimePoint));
             else
@@ -89,7 +89,7 @@ namespace NarrativeWorldCreator.Pages
                 listOfValuedTangibleObjects.Remove(listOfValuedTangibleObjects.Where(listVTO => listVTO.TangibleObject.Equals(to)).FirstOrDefault());
             }
             // Remove already selected from available TO list
-            foreach (var to in (this.SelectedTimePoint.AvailableTangibleObjects))
+            foreach (var to in (this.selectedNode.AvailableTangibleObjects))
             {
                 listOfValuedTangibleObjects.Remove(listOfValuedTangibleObjects.Where(listVTO => listVTO.TangibleObject.Equals(to)).FirstOrDefault());
             }
@@ -105,7 +105,7 @@ namespace NarrativeWorldCreator.Pages
             // Determine to's to remove
             foreach (var tto in listOfValuedTangibleObjects)
             {
-                if (this.SelectedTimePoint.AvailableTangibleObjects.Where(ato => ato.Equals(tto.TangibleObject)).FirstOrDefault() == null)
+                if (this.selectedNode.AvailableTangibleObjects.Where(ato => ato.Equals(tto.TangibleObject)).FirstOrDefault() == null)
                 {
                     listToRemove.Add(tto);
                 }

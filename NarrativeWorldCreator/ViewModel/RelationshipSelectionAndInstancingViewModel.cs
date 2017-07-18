@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using Semantics.Components;
@@ -107,7 +108,7 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(NarrativeTimePoint ntp, EntikaInstance ei, List<EntikaInstance> ObjectInstances, List<Models.NarrativeRegionFill.Predicate> predicates)
+        public void Load(LocationNode ln, NarrativeTimePoint ntp, EntikaInstance ei, List<EntikaInstance> ObjectInstances, List<Models.NarrativeRegionFill.Predicate> predicates)
         {
             // Setup Entika instance VMs
             List<EntikaInstanceSelectionViewModel> eioc = new List<EntikaInstanceSelectionViewModel>();
@@ -150,7 +151,7 @@ namespace NarrativeWorldCreator.ViewModel
             var otherRelationshipsNoneTemp = new ObservableCollection<RelationshipExtendedViewModel>();
             foreach (var rel in ei.TangibleObject.RelationshipsAsTarget)
             {
-                if (!ntp.AvailableTangibleObjects.Contains(rel.Source))
+                if (!ln.AvailableTangibleObjects.Contains(rel.Source))
                     continue;
                 if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                 {
@@ -169,7 +170,7 @@ namespace NarrativeWorldCreator.ViewModel
             }
             foreach (var rel in ei.TangibleObject.RelationshipsAsSource)
             {
-                if (!ntp.AvailableTangibleObjects.Contains(rel.Targets[0]))
+                if (!ln.AvailableTangibleObjects.Contains(rel.Targets[0]))
                     continue;
 
                 if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
