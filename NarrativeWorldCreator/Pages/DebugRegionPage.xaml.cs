@@ -38,15 +38,14 @@ namespace NarrativeWorldCreator.Pages
         #endregion
         #region Setup
 
-        public DebugRegionPage(LocationNode selectedNode, NarrativeTimePoint SelectedTimePont)
+        public DebugRegionPage(LocationNode selectedNode, int SelectedTimePoint)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
-            this.SelectedTimePoint = SelectedTimePont;
+            this.SelectedTimePoint = SelectedTimePoint;
             SelectedEntikaInstances = new List<EntikaInstance>();
 
-            Configuration = new Configuration();
-            // Determine current configuration using deltas
+            UpdateConfiguration();
         }
 
         private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
@@ -65,7 +64,7 @@ namespace NarrativeWorldCreator.Pages
 
             NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
 
-            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(SelectedTimePoint)).FirstOrDefault();
+            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(this.selectedNode.TimePoints[SelectedTimePoint])).FirstOrDefault();
             ntpVM.Selected = true;
         }
 
@@ -74,7 +73,7 @@ namespace NarrativeWorldCreator.Pages
             // Fill control with stuff
             DetailTimePointViewModel timePointViewModelObject =
                new DetailTimePointViewModel();
-            timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
+            timePointViewModelObject.LoadObjects(selectedNode, this.selectedNode.TimePoints[SelectedTimePoint]);
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
         }
 
@@ -82,7 +81,7 @@ namespace NarrativeWorldCreator.Pages
         {
             SelectedObjectDetailViewModel selectedObjectViewModelObject =
                new SelectedObjectDetailViewModel();
-            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
+            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
             SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
         }
         #endregion
@@ -94,12 +93,12 @@ namespace NarrativeWorldCreator.Pages
         private void btnReturnToRegionCreation_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GetNavigationService(this);
-            this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
         }
 
         private void btnReturnToInit_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
         }
 
 
@@ -110,7 +109,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnGotoMainFillingMode_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
         }
 
         public void SetMessageBoxText(string message)
@@ -120,17 +119,24 @@ namespace NarrativeWorldCreator.Pages
 
         internal override void UpdateSelectedObjectDetailView()
         {
-            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
+            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
         }
 
         internal override void RefreshSelectedObjectView()
         {
-            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.SelectedTimePoint.Configuration.InstancedObjects.Contains(sei)).ToList();
+            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.Configuration.InstancedObjects.Contains(sei)).ToList();
             foreach (var removal in removalinstances)
             {
                 this.SelectedEntikaInstances.Remove(removal);
             }
-            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.SelectedTimePoint);
+            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
+        }
+
+        public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
+        {
+            // Update detailtab
+            this.RefreshSelectedObjectView();
+            (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
     }
 }

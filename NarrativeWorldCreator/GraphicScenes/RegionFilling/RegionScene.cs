@@ -179,7 +179,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected virtual void drawEntikaInstances()
         {
-            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+            foreach (EntikaInstance instance in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
             {
                 drawEntikaInstance2(instance);
             }
@@ -227,7 +227,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             basicEffect.View = this.view;
             basicEffect.Projection = this.proj;
             basicEffect.VertexColorEnabled = true;
-            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentRegionPage.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance != null)
             {
                 var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
@@ -258,7 +258,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             // Triangles should be defined clockwise
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
             // Only draw triangles when there is 3 or more vertices
-            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentRegionPage.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);

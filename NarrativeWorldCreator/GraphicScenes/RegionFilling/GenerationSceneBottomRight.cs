@@ -13,7 +13,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         {
             if (_currentRegionPage.BottomRightSelectedGPUConfigurationResult == -1)
             {
-                foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                foreach (EntikaInstance instance in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
                 {
                     drawEntikaInstance2(instance);
                 }

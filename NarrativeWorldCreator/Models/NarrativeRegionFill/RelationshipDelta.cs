@@ -16,10 +16,13 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             Remove = 1
         }
 
-        RelationshipInstance RelatedInstance;
+        internal int TimePoint;
 
-        public RelationshipDelta(RelationshipInstance inst, RelationshipDeltaType deltaType)
+        internal RelationshipInstance RelatedInstance;
+
+        public RelationshipDelta(int tp, RelationshipInstance inst, RelationshipDeltaType deltaType)
         {
+            this.TimePoint = tp;
             this.DT = deltaType;
             this.RelatedInstance = inst;
         }

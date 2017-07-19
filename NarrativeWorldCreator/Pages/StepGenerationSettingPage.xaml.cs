@@ -45,12 +45,12 @@ namespace NarrativeWorldCreator.Pages
             SystemStateTracker.SelectRelationshipSystem = this.RelationshipSelector.IsChecked.GetValueOrDefault();
             SystemStateTracker.SelectInstancesSystem = this.InstanceSelector.IsChecked.GetValueOrDefault();
             SystemStateTracker.SelectPositionSystem = this.PositionSelector.IsChecked.GetValueOrDefault();
-            this.NavigationService.Navigate(new MainModeRegionPage(this.selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new MainModeRegionPage(this.selectedNode));
         }
 
         private void btnDiscardAndBackRegionEditor(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MainModeRegionPage(this.selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new MainModeRegionPage(this.selectedNode));
         }
     }
 }

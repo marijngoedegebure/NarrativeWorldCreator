@@ -93,7 +93,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                         }
                         var selectionBoxBB = new BoundingBox(bottomLeft, topRight);
 
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var containmentType = selectionBoxBB.Contains(ieo.BoundingBox);
@@ -113,7 +113,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                     {
                         // Initialize box
                         Ray ray = CalculateMouseRay();
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;
@@ -182,7 +182,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                     {
                         // Initialize box
                         Ray ray = CalculateMouseRay();
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;
@@ -223,7 +223,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                     {
                         Ray ray = CalculateMouseRay();
                         EntikaInstance hitMaxZ = null;
-                        foreach (EntikaInstance ieo in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+                        foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
                         {
                             // Create translated boundingbox
                             var min = ieo.BoundingBox.Min;
@@ -315,7 +315,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         protected int CalculateCollisionQuad()
         {
             Ray ray = CalculateMouseRay();
-            var floorInstance = this._currentRegionPage.SelectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
+            var floorInstance = this._currentRegionPage.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
             var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
             List<VertexPositionColor> points = new List<VertexPositionColor>();
             points = DrawingEngine.GetDrawableTriangles(result, Color.White);

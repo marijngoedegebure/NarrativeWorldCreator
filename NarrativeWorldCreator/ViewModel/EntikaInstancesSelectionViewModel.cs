@@ -34,10 +34,10 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public void Load(NarrativeTimePoint ntp)
+        public void Load(Configuration c)
         {
             ObservableCollection<EntikaInstance> eioc = new ObservableCollection<EntikaInstance>();
-            foreach (var instance in ntp.Configuration.GetEntikaInstancesWithoutFloor())
+            foreach (var instance in c.GetEntikaInstancesWithoutFloor())
             {
                 eioc.Add(instance);
             }

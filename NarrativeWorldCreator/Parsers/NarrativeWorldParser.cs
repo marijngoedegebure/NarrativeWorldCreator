@@ -1,4 +1,6 @@
-﻿using NarrativeWorldCreator.Models;
+﻿using Common;
+using Microsoft.Xna.Framework;
+using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeInput;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
@@ -107,6 +109,13 @@ namespace NarrativeWorldCreator.Parsers
                     NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[i],
                     NarrativeWorld.Narrative.NarrativeEvents[i],
                     NarrativeWorld.NarrativeTimeline.NarrativeTimePoints[i + 1]);
+            }
+
+            foreach (var node in NarrativeWorld.Graph.getNodeList())
+            {
+                // Add basic floor instance to delta for each location node
+                var floorInstance = new EntikaInstance(Constants.Floor, new Common.Polygon(new List<Vec2d>()));
+                node.TimePoints[0].InstanceDeltas.Add(new InstanceDelta(0, floorInstance, InstanceDelta.InstanceDeltaType.Add, new Vector3(0, 0, 0), new Vector3(0, 0, 0)));
             }
         }
 

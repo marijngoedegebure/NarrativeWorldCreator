@@ -28,18 +28,18 @@ namespace NarrativeWorldCreator.Pages
     public partial class ClassSelectionPage : Page
     {
         public LocationNode selectedNode;
-        public NarrativeTimePoint SelectedTimePoint;
 
-        public ClassSelectionPage(LocationNode selectedNode, NarrativeTimePoint ntp)
+        public ClassSelectionPage(LocationNode selectedNode)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
-            this.SelectedTimePoint = ntp;
 
             // Retrieve required and dependent objects
             TangibleObjectMetricEngine.Weights = Constants.AllMetricWeights;
             TangibleObjectMetricEngine.BuildUpTOTree(SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList());
-            TangibleObjectMetricEngine.ApplyRequiredAndDependencies(this.SelectedTimePoint.PredicatesFilteredByCurrentLocation);
+            foreach (var timepoint in this.selectedNode.TimePoints) {
+                TangibleObjectMetricEngine.ApplyRequiredAndDependencies(timepoint.PredicatesFilteredByCurrentLocation);
+            }
             var requiredAndDependentTTOs = TangibleObjectMetricEngine.TTOs.Where(tto => tto.Required || tto.RequiredDependency).ToList();
             // Create List for viewing
             var requiredTOs = new List<TangibleObject>();
@@ -71,16 +71,16 @@ namespace NarrativeWorldCreator.Pages
                 fillAvailableTO.Add(to.TangibleObject);
             }
             this.selectedNode.AvailableTangibleObjects = fillAvailableTO;
-            if (SelectedTimePoint.FloorCreated)
-                this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.SelectedTimePoint));
+            if (selectedNode.FloorCreated)
+                this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
             else
-                this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
+                this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
         }
 
         private void AvailableSwapView_Loaded(object sender, RoutedEventArgs e)
         {
             // Determine scores for each TO:
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(this.SelectedTimePoint, SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.SelectedTimePoint.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(this.selectedNode.TimePoints[0], new Models.NarrativeRegionFill.Configuration(), SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
 
             // Remove required from available TO list
             // var toList = SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList();
@@ -100,7 +100,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void SelectedSwapView_Loaded(object sender, RoutedEventArgs e)
         {
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(this.SelectedTimePoint, SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.SelectedTimePoint.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(this.selectedNode.TimePoints[0], new Models.NarrativeRegionFill.Configuration(), SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
             var listToRemove = new List<TOTreeTangibleObject>();
             // Determine to's to remove
             foreach (var tto in listOfValuedTangibleObjects)

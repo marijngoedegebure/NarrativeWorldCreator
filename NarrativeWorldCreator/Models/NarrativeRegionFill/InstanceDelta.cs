@@ -15,18 +15,24 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         {
             Add = 0,
             Remove = 1,
-            Move = 2
+            Change = 2
         }
 
-        EntikaInstance RelatedInstance;
+        internal EntikaInstance RelatedInstance;
 
-        Vector3 Position;
+        internal Vector3 Position;
+        internal Vector3 Rotation;
 
-        public InstanceDelta(EntikaInstance inst, InstanceDeltaType deltaType, Vector3? pos)
+        // Timepoint relative to selected node
+        internal int TimePoint;
+
+        public InstanceDelta(int tp, EntikaInstance inst, InstanceDeltaType deltaType, Vector3? pos, Vector3? rot)
         {
+            this.TimePoint = tp;
             this.DT = deltaType;
             this.RelatedInstance = inst;
             this.Position = pos.GetValueOrDefault();
+            this.Rotation = rot.GetValueOrDefault();
         }
     }
 }

@@ -137,11 +137,11 @@ namespace NarrativeWorldCreator.MetricEngines
             }
         }
 
-        public static List<TOTreeTangibleObject> CalculateValues(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static List<TOTreeTangibleObject> CalculateValues(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             ResetTree();
             BuildUpTOTree(tangibleObjects);
-            BuildUpInstanceTree(ntp.Configuration.InstancedObjects);
+            BuildUpInstanceTree(c.InstancedObjects);
             CheckForDependencies();
 
             MetricTypeCount = 0;
@@ -203,22 +203,22 @@ namespace NarrativeWorldCreator.MetricEngines
             return TTOs;
         }
 
-        public static List<TOTreeTangibleObject> GetOrderingTO(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static List<TOTreeTangibleObject> GetOrderingTO(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             Weights = Constants.AllMetricWeights;
-            return CalculateValues(ntp, tangibleObjects, predicates);
+            return CalculateValues(ntp, c, tangibleObjects, predicates);
         }
 
-        internal static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        internal static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             Weights = Constants.DecorationMetricWeights;
-            return CalculateValues(ntp, tangibleObjects, predicates);
+            return CalculateValues(ntp, c, tangibleObjects, predicates);
         }
 
-        internal static List<TOTreeTangibleObject> GetRequiredOrderingTO(NarrativeTimePoint ntp, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        internal static List<TOTreeTangibleObject> GetRequiredOrderingTO(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
             Weights = Constants.RequiredMetricWeights;
-            return CalculateValues(ntp, tangibleObjects, predicates);
+            return CalculateValues(ntp, c, tangibleObjects, predicates);
         }
 
         private static Normalization GetRequiredNormalization()

@@ -443,7 +443,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             var floorInstance = this._currentPage.Floor;
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
-                _currentPage.selectedTimePoint.FloorCreated = true;
+                _currentPage.selectedNode.FloorCreated = true;
             }
 
             base.Update(time);
@@ -577,9 +577,8 @@ namespace NarrativeWorldCreator.GraphicScenes
                 {
                     vertices.Add(new Vec2(corner.X, corner.Y));
                 }
-                var floorInstance = this._currentPage.Floor;
-                floorInstance.Polygon = new Polygon(vertices);
-                floorInstance.UpdateBoundingBoxAndShape();
+                this._currentPage.Floor.Polygon = new Polygon(vertices);
+                this._currentPage.Floor.UpdateBoundingBoxAndShape();
 
                 // Reset box
                 RegionCreationCurrentCoords = new Point();
@@ -608,11 +607,10 @@ namespace NarrativeWorldCreator.GraphicScenes
                 Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
 
                 // Retrieve vertices from old shape and add the new vertex
-                var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-                var vertices = floorInstance.Polygon.GetAllVertices();
+                var vertices = this._currentPage.Floor.Polygon.GetAllVertices();
                 vertices.Add(new Vec2d(planeHit.X, planeHit.Y));
-                floorInstance.Polygon = new Polygon(vertices);
-                floorInstance.UpdateBoundingBoxAndShape();
+                this._currentPage.Floor.Polygon = new Polygon(vertices);
+                this._currentPage.Floor.UpdateBoundingBoxAndShape();
             }
         }
 
@@ -624,12 +622,11 @@ namespace NarrativeWorldCreator.GraphicScenes
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && draggingVertexIndex != -1)
             {
                 Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));
-                var floorInstance = this._currentPage.selectedTimePoint.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-                var vertices = floorInstance.Polygon.GetAllVertices();
+                var vertices = this._currentPage.Floor.Polygon.GetAllVertices();
                 Vector3 mouseCoordsOnZPlane = CalculateMouseHitOnSurface();
                 vertices[draggingVertexIndex] = new Vec2d(mouseCoordsOnZPlane.X, mouseCoordsOnZPlane.Y);
-                floorInstance.Polygon = new Polygon(vertices);
-                floorInstance.UpdateBoundingBoxAndShape();
+                this._currentPage.Floor.Polygon = new Polygon(vertices);
+                this._currentPage.Floor.UpdateBoundingBoxAndShape();
             }
 
             if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)

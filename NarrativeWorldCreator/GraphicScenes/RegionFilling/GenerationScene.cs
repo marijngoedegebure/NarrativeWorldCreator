@@ -40,7 +40,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected override void drawEntikaInstances()
         {
-            foreach (EntikaInstance instance in _currentRegionPage.SelectedTimePoint.Configuration.GetEntikaInstancesWithoutFloor())
+            foreach (EntikaInstance instance in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
             {
                 drawEntikaInstance2(instance);
             }

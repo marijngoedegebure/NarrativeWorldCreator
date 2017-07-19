@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.ViewModel;
+﻿using NarrativeWorldCreator.Pages;
+using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,19 +51,13 @@ namespace NarrativeWorldCreator.Views
                 {
                     timePoint.Selected = true;
                     var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-                    if (mainWindow._mainFrame.NavigationService.Content.GetType().Equals(typeof(GraphPage)))
-                    {
-                        var graphPage = (GraphPage)mainWindow._mainFrame.NavigationService.Content;
-                        graphPage.fillDetailView(timePoint.NarrativeTimePoint.Location);
-                    }
-                    else
-                    {
-                        var regionPage = (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
-                        regionPage.SelectedTimePoint = timePoint.NarrativeTimePoint;
-                        regionPage.UpdateDetailView(timePoint.NarrativeTimePoint);
-                        // regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
-                        // regionPage.SelectedTimePoint.SwitchTimePoints(regionPage.selectedNode);
-                    }
+                    var regionPage = (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+                        
+                    regionPage.SelectedTimePoint = regionPage.selectedNode.TimePoints.IndexOf(timePoint.NarrativeTimePoint);
+                    regionPage.UpdateConfiguration();
+                    regionPage.UpdateDetailView(timePoint.NarrativeTimePoint);
+                    // regionPage.fillNarrativeEntitiesList(timePoint.NarrativeTimePoint);
+                    // regionPage.SelectedTimePoint.SwitchTimePoints(regionPage.selectedNode);
                 }
             }
         }

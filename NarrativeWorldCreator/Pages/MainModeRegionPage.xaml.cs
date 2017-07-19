@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Common;
+using Microsoft.Xna.Framework;
 using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.Metrics;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
@@ -54,16 +55,15 @@ namespace NarrativeWorldCreator
         #endregion
         #region Setup
 
-        public MainModeRegionPage(LocationNode selectedNode, NarrativeTimePoint SelectedTimePont)
+        public MainModeRegionPage(LocationNode selectedNode)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
-            this.SelectedTimePoint = SelectedTimePont;
+            this.SelectedTimePoint = 0;
             SelectedEntikaInstances = new List<EntikaInstance>();
 
-            Configuration = new Configuration();
-            // Determine current configuration using deltas
-            this.Configuration.InstancedObjects.Add(new EntikaInstance(Constants.Floor, new Polygon(new List<Vec2d>())));
+            UpdateConfiguration();
+            
         }
 
         private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
@@ -82,7 +82,7 @@ namespace NarrativeWorldCreator
 
             NarrativeTimelineControl.DataContext = narrativeTimelineViewModelObject;
 
-            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(SelectedTimePoint)).FirstOrDefault();
+            var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(this.selectedNode.TimePoints[SelectedTimePoint])).FirstOrDefault();
             ntpVM.Selected = true;
         }
 
@@ -91,7 +91,7 @@ namespace NarrativeWorldCreator
             // Fill control with stuff
             DetailTimePointViewModel timePointViewModelObject =
                new DetailTimePointViewModel();
-            timePointViewModelObject.LoadObjects(selectedNode, SelectedTimePoint);
+            timePointViewModelObject.LoadObjects(selectedNode, this.selectedNode.TimePoints[SelectedTimePoint]);
             RegionDetailTimePointView.DataContext = timePointViewModelObject;
         }
 
@@ -209,7 +209,7 @@ namespace NarrativeWorldCreator
         internal void ChangeUIToRelationshipSelection()
         {
             // Reset values
-            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
             TopLeftSelectedGPUConfigurationResult = -1;
             BottomLeftSelectedGPUConfigurationResult = -1;
             TopRightSelectedGPUConfigurationResult = -1;
@@ -249,7 +249,9 @@ namespace NarrativeWorldCreator
         internal void ChangeUIToRelationshipInstancing()
         {
             // Reset values
-            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
+            this.WIPAdditionDelta = null;
+            this.WIPRelationshipDeltas = new List<RelationshipDelta>();
             TopLeftSelectedGPUConfigurationResult = -1;
             BottomLeftSelectedGPUConfigurationResult = -1;
             TopRightSelectedGPUConfigurationResult = -1;
@@ -336,7 +338,7 @@ namespace NarrativeWorldCreator
 
         internal override void GenerateConfigurations()
         {
-            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.SelectedTimePoint, this.WorkInProgressConfiguration);
+            GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.selectedNode.TimePoints[SelectedTimePoint], this.WorkInProgressConfiguration);
             if (SystemStateTracker.SelectPositionSystem)
             {
                 GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).Take(4).ToList();
@@ -435,6 +437,7 @@ namespace NarrativeWorldCreator
             InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z);
 
             this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
+            this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, onRelationshipInstance, RelationshipDelta.RelationshipDeltaType.Add));
 
             // Parse other relationships
             // Single
@@ -474,6 +477,7 @@ namespace NarrativeWorldCreator
                 }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
+                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDelta.RelationshipDeltaType.Add));
             }
 
             // Multiple
@@ -513,10 +517,11 @@ namespace NarrativeWorldCreator
                 }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
-
+                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDelta.RelationshipDeltaType.Add));
             }
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
+            this.WIPAdditionDelta = new InstanceDelta(this.SelectedTimePoint, InstanceOfObjectToAdd, InstanceDelta.InstanceDeltaType.Add, null, null);
         }
 
         public void IntializeGenerateConfigurationsView(GenerateConfigurationsView view)
@@ -553,12 +558,12 @@ namespace NarrativeWorldCreator
                 throw new Exception("Selected item is null given the current system/user configuration");
             }
             // Copy current configuration of timepoint so it can be changed.
-            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
 
             // Determine instance to add:
             InstanceOfObjectToAdd = new EntikaInstance(selectedItem);
             RelationshipSelectionAndInstancingViewModel riVM = new RelationshipSelectionAndInstancingViewModel();
-            riVM.Load(this.selectedNode, this.SelectedTimePoint, InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.SelectedTimePoint.GetRemainingPredicates());
+            riVM.Load(this.selectedNode, this.selectedNode.TimePoints[SelectedTimePoint], InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.selectedNode.TimePoints[SelectedTimePoint].GetRemainingPredicates());
             if (riVM.OnRelationshipsMultiple.Count == 0 && riVM.OnRelationshipsSingle.Count == 0 && riVM.OnRelationshipsNone.Count == 0)
                 throw new Exception("No on relationship at all");
 
@@ -598,13 +603,31 @@ namespace NarrativeWorldCreator
             for (int i = 0; i < gpuConfig.Instances.Count; i++)
             {
                 var WIPinstance = this.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(gpuConfig.Instances[i].entikaInstance)).FirstOrDefault();
-                WIPinstance.Position = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
-                WIPinstance.Rotation = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
-                WIPinstance.UpdateBoundingBoxAndShape();
+                var adjustedPos = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
+                var adjustedRot = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
+                if (!WIPinstance.Position.Equals(adjustedPos) || !WIPinstance.Rotation.Equals(adjustedRot))
+                {
+                    WIPinstance.Position = adjustedPos;
+                    WIPinstance.Rotation = adjustedRot;
+                    WIPinstance.UpdateBoundingBoxAndShape();
+                    this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDelta.InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                }
             }
-            this.SelectedTimePoint.Configuration = WorkInProgressConfiguration;
+            this.WIPAdditionDelta.Position = this.WIPAdditionDelta.RelatedInstance.Position;
+            this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Position;
+            this.Configuration = WorkInProgressConfiguration;
+
+            // Save deltas
+            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
+            foreach (var WIPRelationshipDelta in WIPRelationshipDeltas)
+            {
+                this.selectedNode.TimePoints[this.SelectedTimePoint].RelationshipDeltas.Add(WIPRelationshipDelta);
+            }
+
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();
+            this.WIPAdditionDelta = null;
+            this.WIPRelationshipDeltas = new List<RelationshipDelta>();
             TopLeftSelectedGPUConfigurationResult = -1;
             BottomLeftSelectedGPUConfigurationResult = -1;
             TopRightSelectedGPUConfigurationResult = -1;
@@ -616,7 +639,7 @@ namespace NarrativeWorldCreator
         private void RefreshTangibleObjectsView()
         {
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.LoadAll(this.selectedNode, this.SelectedTimePoint);
+            toVM.LoadAll(this.selectedNode, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
             TangibleObjectsView.DataContext = toVM;
             TangibleObjectsView.DefaultRB.IsChecked = true;
         }
@@ -625,7 +648,7 @@ namespace NarrativeWorldCreator
         {
             // Load all Tangible objects
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
-            toVM.LoadAll(this.selectedNode, this.SelectedTimePoint);
+            toVM.LoadAll(this.selectedNode, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
             // Select #NumberOfChoices from available classes
             var tangibleObjectOptions = ClassSelectionSolver.GetRandomClasses(toVM, SystemStateTracker.NumberOfChoices);
 
@@ -635,7 +658,7 @@ namespace NarrativeWorldCreator
             //TangibleObjectsSystemView.DataContext = toVMOPtions;
         }
 
-        public void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
+        internal override void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
             this.RefreshSelectedObjectView();
@@ -644,7 +667,7 @@ namespace NarrativeWorldCreator
 
         private void btnReturnToInit_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
         }
 
         private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
@@ -664,7 +687,7 @@ namespace NarrativeWorldCreator
         private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
         {
             this.WorkInProgressConfiguration = new Configuration();
-            this.WorkInProgressConfiguration = this.SelectedTimePoint.Configuration.Copy();
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
             IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
             ShowGenerationScenes();
 
@@ -710,7 +733,7 @@ namespace NarrativeWorldCreator
         private void btnReturnToRegionCreation_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GetNavigationService(this);
-            this.NavigationService.Navigate(new RegionCreationPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
         }
 
         private void btnGraphPage_Click(object sender, RoutedEventArgs e)
@@ -730,7 +753,7 @@ namespace NarrativeWorldCreator
 
         private void btnGotoProcessSettingAdjustment(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new StepGenerationSettingPage(selectedNode, this.SelectedTimePoint));
+            this.NavigationService.Navigate(new StepGenerationSettingPage(selectedNode, this.selectedNode.TimePoints[SelectedTimePoint]));
         }
     }
 }

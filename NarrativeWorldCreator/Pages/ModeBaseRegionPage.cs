@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,12 @@ namespace NarrativeWorldCreator.Pages
     public class ModeBaseRegionPage : BaseRegionPage
     {
 
-        // Newest way of generating stuff
-        internal Dictionary<Configuration, GPUConfigurationResult> WIPandGenerationDict = new Dictionary<Configuration, GPUConfigurationResult>();
-
         // Used for repositioning
         internal Configuration WorkInProgressConfiguration = new Configuration();
+
+        internal InstanceDelta WIPAdditionDelta;
+        internal List<RelationshipDelta> WIPRelationshipDeltas;
+
 
         internal List<GPUConfigurationResult> GeneratedConfigurations;
         internal int TopLeftSelectedGPUConfigurationResult = -1;
@@ -33,5 +35,7 @@ namespace NarrativeWorldCreator.Pages
         internal override void UpdateSelectedObjectDetailView() { }
 
         internal override void RefreshSelectedObjectView() { }
+
+        internal virtual void UpdateDetailView(NarrativeTimePoint narrativeTimePoint) { }
     }
 }

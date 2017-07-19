@@ -30,7 +30,9 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
 
         public List<InstancedPredicate> PredicatesCausedByInstancedObjectsAndRelations { get; set; }
 
-        public bool FloorCreated = false;
+        internal List<InstanceDelta> InstanceDeltas { get; set; }
+
+        internal List<RelationshipDelta> RelationshipDeltas { get; set; }
 
         public NarrativeTimePoint(int timePoint)
         {
@@ -38,6 +40,8 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             PredicatesFilteredByCurrentLocation = new List<NarrativeRegionFill.Predicate>();
             AllPredicates = new List<NarrativeRegionFill.Predicate>();
             PredicatesCausedByInstancedObjectsAndRelations = new List<NarrativeRegionFill.InstancedPredicate>();
+            InstanceDeltas = new List<InstanceDelta>();
+            RelationshipDeltas = new List<RelationshipDelta>();
         }
 
         internal List<InstancedPredicate> GetPredicatesOfInstance(EntikaInstance entikaInstance)

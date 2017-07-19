@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 
 namespace NarrativeWorldCreator.ViewModel
 {
@@ -57,10 +58,10 @@ namespace NarrativeWorldCreator.ViewModel
             TangibleObjectsValued = octo;
         }
 
-        public void LoadAll(LocationNode ln, NarrativeTimePoint ntp)
+        public void LoadAll(LocationNode ln, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(ntp, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(ntp, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 if (!to.TangibleObject.DefaultName.Equals("floor"))
@@ -70,10 +71,10 @@ namespace NarrativeWorldCreator.ViewModel
             TangibleObjectsValued = octo;
         }
 
-        internal void LoadRequired(LocationNode ln, NarrativeTimePoint ntp)
+        internal void LoadRequired(LocationNode ln, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetRequiredOrderingTO(ntp, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetRequiredOrderingTO(ntp, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 if (!to.TangibleObject.DefaultName.Equals("floor"))
@@ -83,10 +84,10 @@ namespace NarrativeWorldCreator.ViewModel
             TangibleObjectsValued = octo;
         }
 
-        internal void LoadDecoration(LocationNode ln, NarrativeTimePoint ntp)
+        internal void LoadDecoration(LocationNode ln, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 if (!to.TangibleObject.DefaultName.Equals("floor"))

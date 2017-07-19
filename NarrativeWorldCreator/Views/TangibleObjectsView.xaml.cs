@@ -58,19 +58,19 @@ namespace NarrativeWorldCreator.Views
             if (rb.Content.Equals(Constants.All))
             {
                 var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
-                tovVM.LoadAll(regionPage.selectedNode, regionPage.SelectedTimePoint);
+                tovVM.LoadAll(regionPage.selectedNode, regionPage.selectedNode.TimePoints[regionPage.SelectedTimePoint], regionPage.Configuration);
                 this.DataContext = tovVM;
             }
             else if (rb.Content.Equals(Constants.Decoration))
             {
                 var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
-                tovVM.LoadDecoration(regionPage.selectedNode, regionPage.SelectedTimePoint);
+                tovVM.LoadDecoration(regionPage.selectedNode, regionPage.selectedNode.TimePoints[regionPage.SelectedTimePoint], regionPage.Configuration);
                 this.DataContext = tovVM;
             }
             else if (rb.Content.Equals(Constants.Required))
             {
                 var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
-                tovVM.LoadRequired(regionPage.selectedNode, regionPage.SelectedTimePoint);
+                tovVM.LoadRequired(regionPage.selectedNode, regionPage.selectedNode.TimePoints[regionPage.SelectedTimePoint], regionPage.Configuration);
                 this.DataContext = tovVM;
             }
         }

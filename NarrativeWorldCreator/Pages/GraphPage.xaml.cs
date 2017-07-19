@@ -51,15 +51,15 @@ namespace NarrativeWorldCreator
                 var SelectedTimePoint = ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0]).NarrativeTimePoint;
                 if (selectedNode.AvailableTangibleObjects.Count == 0)
                 {
-                    this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, SelectedTimePoint));
+                    this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
                 }
-                else if (!SelectedTimePoint.FloorCreated)
+                else if (!this.selectedNode.FloorCreated)
                 {
-                    this.NavigationService.Navigate(new RegionCreationPage(selectedNode, SelectedTimePoint));
+                    this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
                 }
                 else
                 {
-                    this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, SelectedTimePoint));
+                    this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
                 }
             }
             else

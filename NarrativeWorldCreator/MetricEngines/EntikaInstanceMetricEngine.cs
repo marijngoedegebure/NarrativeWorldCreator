@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Models.Metrics;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,12 @@ namespace NarrativeWorldCreator.MetricEngines
         public static MetricType IncEdgesMT = new MetricType("Incoming edges");
         public static MetricType OutEdgesMT = new MetricType("Outgoing edges");
 
-        public static List<EntikaInstanceValued> GetDecorationOrderingEI(NarrativeTimePoint currentNTP)
+        public static List<EntikaInstanceValued> GetDecorationOrderingEI(NarrativeTimePoint currentNTP, Configuration c)
         {
             var valuedInstances = new List<EntikaInstanceValued>();
 
             // For each instance, create new entika instance valued 
-            foreach (var instance in currentNTP.Configuration.GetEntikaInstancesWithoutFloor())
+            foreach (var instance in c.GetEntikaInstancesWithoutFloor())
             {
                 valuedInstances.Add(new EntikaInstanceValued(instance));
             }

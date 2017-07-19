@@ -38,10 +38,10 @@ namespace NarrativeWorldCreator.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        internal void LoadSelectedInstances(List<EntikaInstance> selected, NarrativeTimePoint ntp)
+        internal void LoadSelectedInstances(List<EntikaInstance> selected, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<EntikaInstanceValuedPredicate> eisVMoc = new ObservableCollection<EntikaInstanceValuedPredicate>();
-            var listOfinstances = EntikaInstanceMetricEngine.GetDecorationOrderingEI(ntp);
+            var listOfinstances = EntikaInstanceMetricEngine.GetDecorationOrderingEI(ntp, c);
             foreach (var instance in listOfinstances)
             {
                 if (selected.Contains(instance.EntikaInstance))

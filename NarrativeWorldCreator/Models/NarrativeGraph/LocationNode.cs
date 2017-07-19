@@ -24,6 +24,8 @@ namespace NarrativeWorldCreator.Models.NarrativeGraph
         // List of TangibleObjects selected for this region/timepoint
         public List<TangibleObject> AvailableTangibleObjects { get; set; }
 
+        public bool FloorCreated = false;
+
         public LocationNode(String locationName, string locationType)
         {
             this.LocationName = locationName;

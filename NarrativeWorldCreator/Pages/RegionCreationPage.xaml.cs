@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.Models;
 
 namespace NarrativeWorldCreator.Pages
 {
@@ -28,11 +29,12 @@ namespace NarrativeWorldCreator.Pages
 
         public EntikaInstance Floor;
 
-        public RegionCreationPage(LocationNode selectedNode, NarrativeTimePoint selectedTimePoint)
+        public RegionCreationPage(LocationNode selectedNode)
         {
             InitializeComponent();
             this.selectedNode = selectedNode;
-            this.selectedTimePoint = selectedTimePoint;
+            // The first delta is added
+            this.Floor = selectedNode.TimePoints[0].InstanceDeltas[0].RelatedInstance;
         }
 
         private void btnGraphPage_Click(object sender, RoutedEventArgs e)
@@ -44,13 +46,13 @@ namespace NarrativeWorldCreator.Pages
         private void btnRegionPage_Click(object sender, RoutedEventArgs e)
         {
             // Forward to region page
-            this.NavigationService.Navigate(new MainModeRegionPage(selectedNode, this.selectedTimePoint));
+            this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
         }
 
         private void btnClassSelectionPage_Click(object sender, RoutedEventArgs e)
         {
             // Back to class selection page
-            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode, this.selectedTimePoint));
+            this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
         }
 
         private void btnResetRegion(object sender, RoutedEventArgs e)
