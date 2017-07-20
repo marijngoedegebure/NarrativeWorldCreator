@@ -115,7 +115,7 @@ namespace NarrativeWorldCreator.Parsers
             {
                 // Add basic floor instance to delta for each location node
                 var floorInstance = new EntikaInstance(Constants.Floor, new Common.Polygon(new List<Vec2d>()));
-                node.TimePoints[0].InstanceDeltas.Add(new InstanceDelta(0, floorInstance, InstanceDelta.InstanceDeltaType.Add, new Vector3(0, 0, 0), new Vector3(0, 0, 0)));
+                node.TimePoints[0].InstanceDeltas.Add(new InstanceDelta(0, floorInstance, InstanceDeltaType.Add, new Vector3(0, 0, 0), new Vector3(0, 0, 0)));
             }
         }
 

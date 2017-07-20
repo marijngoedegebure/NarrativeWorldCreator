@@ -247,11 +247,9 @@ namespace NarrativeWorldCreator.GraphicScenes
                         }
                         if (hitMaxZ != null)
                             _currentRegionPage.ChangeSelectedObject(hitMaxZ);
+                        _currentRegionPage.RefreshSelectedObjectView();
                     }
                 }
-                //if (_currentRegionPage.SelectedEntikaInstance != null && _keyboardState.IsKeyUp(Keys.Delete) && _previousKeyboardState.IsKeyDown(Keys.Delete))
-                //{
-                //}
             }
         }
 

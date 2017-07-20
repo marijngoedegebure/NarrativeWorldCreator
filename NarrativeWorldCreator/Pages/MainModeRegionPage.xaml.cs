@@ -437,7 +437,7 @@ namespace NarrativeWorldCreator
             InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z);
 
             this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
-            this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, onRelationshipInstance, RelationshipDelta.RelationshipDeltaType.Add));
+            this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, onRelationshipInstance, RelationshipDeltaType.Add));
 
             // Parse other relationships
             // Single
@@ -477,7 +477,7 @@ namespace NarrativeWorldCreator
                 }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
-                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDelta.RelationshipDeltaType.Add));
+                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDeltaType.Add));
             }
 
             // Multiple
@@ -517,11 +517,11 @@ namespace NarrativeWorldCreator
                 }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
-                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDelta.RelationshipDeltaType.Add));
+                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDeltaType.Add));
             }
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
-            this.WIPAdditionDelta = new InstanceDelta(this.SelectedTimePoint, InstanceOfObjectToAdd, InstanceDelta.InstanceDeltaType.Add, null, null);
+            this.WIPAdditionDelta = new InstanceDelta(this.SelectedTimePoint, InstanceOfObjectToAdd, InstanceDeltaType.Add, null, null);
         }
 
         public void IntializeGenerateConfigurationsView(GenerateConfigurationsView view)
@@ -599,7 +599,9 @@ namespace NarrativeWorldCreator
             {
                 gpuConfig = this.GeneratedConfigurations[this.TopLeftSelectedGPUConfigurationResult];
             }
-            
+
+            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
+
             for (int i = 0; i < gpuConfig.Instances.Count; i++)
             {
                 var WIPinstance = this.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(gpuConfig.Instances[i].entikaInstance)).FirstOrDefault();
@@ -610,15 +612,24 @@ namespace NarrativeWorldCreator
                     WIPinstance.Position = adjustedPos;
                     WIPinstance.Rotation = adjustedRot;
                     WIPinstance.UpdateBoundingBoxAndShape();
-                    this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDelta.InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                    var additionDeltaOfInstance = this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(WIPinstance)).FirstOrDefault();
+                    if (additionDeltaOfInstance == null)
+                    {
+                        this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                    }
+                    else
+                    {
+                        additionDeltaOfInstance.Position = adjustedPos;
+                        additionDeltaOfInstance.Rotation = adjustedRot;
+                    }
+                        
                 }
             }
             this.WIPAdditionDelta.Position = this.WIPAdditionDelta.RelatedInstance.Position;
-            this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Position;
+            this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Rotation;
             this.Configuration = WorkInProgressConfiguration;
 
             // Save deltas
-            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
             foreach (var WIPRelationshipDelta in WIPRelationshipDeltas)
             {
                 this.selectedNode.TimePoints[this.SelectedTimePoint].RelationshipDeltas.Add(WIPRelationshipDelta);

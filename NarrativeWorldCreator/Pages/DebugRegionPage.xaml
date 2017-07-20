@@ -74,6 +74,9 @@
                     <TabItem Name="region_filling_22" Header="Selection detail" >
                         <views:SelectedObjectDetailView x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
                     </TabItem>
+                    <TabItem Name="region_filling_23" Header="Delta detail" >
+                        <views:DeltaListView x:Name="DeltaListView" Loaded="DeltaListView_Loaded" />
+                    </TabItem>
                 </TabControl>
             </Grid>
         </Grid>

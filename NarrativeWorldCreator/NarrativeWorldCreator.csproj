@@ -203,7 +203,7 @@
     <Compile Include="Solvers\CudaGPUWrapper.cs" />
     <Compile Include="Solvers\HelperFunctions.cs" />
     <Compile Include="MetricEngines\EntikaInstanceMetricEngine.cs" />
-    <Compile Include="MetricEngines\TangibleObjectMetricEngine.cs" />
+    <Compile Include="MetricEngines\MetricEngine.cs" />
     <Compile Include="Solvers\RelationshipInstancingSolver.cs" />
     <Compile Include="Solvers\RelationshipSelectionAndInstancingSolver.cs" />
     <Compile Include="Solvers\RelationshipSelectionSolver.cs" />
@@ -211,6 +211,7 @@
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionFilling\RegionScene.cs" />
+    <Compile Include="ViewModel\DeltaListViewModel.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceValuedPredicate.cs" />
@@ -231,6 +232,9 @@
     <Compile Include="ViewModel\NarrativeTimePointViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsValuedViewModel.cs" />
     <Compile Include="ViewModel\Vector3ViewModel.cs" />
+    <Compile Include="Views\DeltaListView.xaml.cs">
+      <DependentUpon>DeltaListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InspectGeneratedConfigurationsView.xaml.cs">
       <DependentUpon>InspectGeneratedConfigurationsView.xaml</DependentUpon>
     </Compile>
@@ -319,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\StepGenerationSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeltaListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

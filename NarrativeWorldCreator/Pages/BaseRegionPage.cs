@@ -35,6 +35,20 @@ namespace NarrativeWorldCreator.Pages
 
         }
 
+        internal void RemoveDeltas(List<InstanceDelta> instanceDeltasToRemove, List<RelationshipDelta> relationshipDeltasToRemove)
+        {
+            foreach (var instanceDeltaToRemove in instanceDeltasToRemove)
+            {
+                this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Remove(instanceDeltaToRemove);
+            }
+
+            foreach (var relationshipDeltaToRemove in relationshipDeltasToRemove)
+            {
+                this.selectedNode.TimePoints[this.SelectedTimePoint].RelationshipDeltas.Remove(relationshipDeltaToRemove);
+            }
+            UpdateConfiguration();
+        }
+
         internal void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
         {
             // Add removal delta's or delete add delta. Second is done when the delta has been added at the current timepoint
@@ -44,7 +58,7 @@ namespace NarrativeWorldCreator.Pages
             foreach (var instance in instances) {
                 foreach (var instanceDelta in this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas)
                 {
-                    if (instanceDelta.DT.Equals(InstanceDelta.InstanceDeltaType.Add) && instanceDelta.RelatedInstance.Equals(instance.EntikaInstanceValued.EntikaInstance) && instanceDelta.TimePoint.Equals(this.SelectedTimePoint))
+                    if (instanceDelta.DT.Equals(InstanceDeltaType.Add) && instanceDelta.RelatedInstance.Equals(instance.EntikaInstanceValued.EntikaInstance) && instanceDelta.TimePoint.Equals(this.SelectedTimePoint))
                     {
                         // Remove delta
                         instanceDeltasToRemove.Add(instanceDelta);
@@ -54,7 +68,7 @@ namespace NarrativeWorldCreator.Pages
                 }
                 if (!found)
                 {
-                    instanceRemovalDeltasToAdd.Add(new InstanceDelta(this.SelectedTimePoint, instance.EntikaInstanceValued.EntikaInstance, InstanceDelta.InstanceDeltaType.Remove, null, null));
+                    instanceRemovalDeltasToAdd.Add(new InstanceDelta(this.SelectedTimePoint, instance.EntikaInstanceValued.EntikaInstance, InstanceDeltaType.Remove, null, null));
                 }
             }
 
@@ -83,7 +97,7 @@ namespace NarrativeWorldCreator.Pages
             {
                 foreach (var relationDelta in this.selectedNode.TimePoints[SelectedTimePoint].RelationshipDeltas)
                 {
-                    if (relationDelta.DT.Equals(RelationshipDelta.RelationshipDeltaType.Add) && relationDelta.RelatedInstance.Equals(relationToRemove) && relationDelta.TimePoint.Equals(this.SelectedTimePoint))
+                    if (relationDelta.DT.Equals(RelationshipDeltaType.Add) && relationDelta.RelatedInstance.Equals(relationToRemove) && relationDelta.TimePoint.Equals(this.SelectedTimePoint))
                     {
                         // Remove delta
                         relationDeltasToRemove.Add(relationDelta);
@@ -93,7 +107,7 @@ namespace NarrativeWorldCreator.Pages
                 }
                 if (!found)
                 {
-                    relationshipRemovalDeltasToAdd.Add(new RelationshipDelta(this.SelectedTimePoint, relationToRemove, RelationshipDelta.RelationshipDeltaType.Remove));
+                    relationshipRemovalDeltasToAdd.Add(new RelationshipDelta(this.SelectedTimePoint, relationToRemove, RelationshipDeltaType.Remove));
                 }
             }
 
@@ -125,27 +139,40 @@ namespace NarrativeWorldCreator.Pages
             this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
         }
 
+        internal void ConsistencyCheckDeltas()
+        {
+            // Check whether there are delta's in later timepoints that do change delta's on removed delta's
+            // Check whether there are change/removal delta's that relate to instances that were never added
+        }
+
         internal void UpdateConfiguration()
         {
             Configuration = new Configuration();
+
             // Determine current configuration using deltas
             for (int i = 0; i <= this.SelectedTimePoint; i++)
             {
+                var instanceDeltaToRemoveDueToInconsistency = new List<InstanceDelta>();
                 foreach (var instanceDelta in this.selectedNode.TimePoints[i].InstanceDeltas)
                 {
-                    if (instanceDelta.DT.Equals(InstanceDelta.InstanceDeltaType.Add))
+                    if (instanceDelta.DT.Equals(InstanceDeltaType.Add))
                     {
                         instanceDelta.RelatedInstance.Position = instanceDelta.Position;
                         instanceDelta.RelatedInstance.Rotation = instanceDelta.Rotation;
                         instanceDelta.RelatedInstance.UpdateBoundingBoxAndShape();
                         this.Configuration.InstancedObjects.Add(instanceDelta.RelatedInstance);
                     }
-                    else if (instanceDelta.DT.Equals(InstanceDelta.InstanceDeltaType.Remove))
+                    else if (instanceDelta.DT.Equals(InstanceDeltaType.Remove))
                     {
-                        this.Configuration.InstancedObjects.Remove(instanceDelta.RelatedInstance);
+                        // If not succesfully removed, it can not be found ergo the removal delta is inconsistent
+                        if (!this.Configuration.InstancedObjects.Remove(instanceDelta.RelatedInstance))
+                        {
+                            instanceDeltaToRemoveDueToInconsistency.Add(instanceDelta);
+                        }
                     }
-                    else
+                    else if (instanceDelta.DT.Equals(InstanceDeltaType.Change))
                     {
+                        var found = false;
                         foreach (var instance in this.Configuration.InstancedObjects)
                         {
                             if (instance.Equals(instanceDelta.RelatedInstance))
@@ -153,22 +180,44 @@ namespace NarrativeWorldCreator.Pages
                                 instance.Position = instanceDelta.Position;
                                 instance.Rotation = instanceDelta.Rotation;
                                 instance.UpdateBoundingBoxAndShape();
+                                found = true;
                             }
+                        }
+                        if (!found)
+                        {
+                            instanceDeltaToRemoveDueToInconsistency.Add(instanceDelta);
                         }
                     }
                 }
+                // Remove inconsistent delta's
+                foreach (var instanceDelta in instanceDeltaToRemoveDueToInconsistency)
+                {
+                    this.selectedNode.TimePoints[i].InstanceDeltas.Remove(instanceDelta);
+                }
 
+
+                // Do the same for relationshipdelta's
+                var relationshipDeltaToRemoveDueToInconsistency = new List<RelationshipDelta>();
                 foreach (var relationshipDelta in this.selectedNode.TimePoints[i].RelationshipDeltas)
                 {
-                    if (relationshipDelta.DT.Equals(RelationshipDelta.RelationshipDeltaType.Add))
+                    if (relationshipDelta.DT.Equals(RelationshipDeltaType.Add))
                     {
                         this.Configuration.InstancedRelations.Add(relationshipDelta.RelatedInstance);
                     }
-                    else if (relationshipDelta.DT.Equals(RelationshipDelta.RelationshipDeltaType.Remove))
+                    else if (relationshipDelta.DT.Equals(RelationshipDeltaType.Remove))
                     {
-                        this.Configuration.InstancedRelations.Remove(relationshipDelta.RelatedInstance);
+                        if(!this.Configuration.InstancedRelations.Remove(relationshipDelta.RelatedInstance))
+                        {
+                            relationshipDeltaToRemoveDueToInconsistency.Add(relationshipDelta);
+                        }
                     }
                 }
+                // Remove inconsistent delta's
+                foreach (var relationshipDelta in relationshipDeltaToRemoveDueToInconsistency)
+                {
+                    this.selectedNode.TimePoints[i].RelationshipDeltas.Remove(relationshipDelta);
+                }
+
             }
         }
 

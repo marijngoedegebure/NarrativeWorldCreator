@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 {
-    internal class RelationshipDelta
+    public enum RelationshipDeltaType
     {
-        internal RelationshipDeltaType DT;
+        Add = 0,
+        Remove = 1
+    }
 
-        internal enum RelationshipDeltaType
-        {
-            Add = 0,
-            Remove = 1
-        }
+    public class RelationshipDelta
+    {
+        public RelationshipDeltaType DT { get; set; }
 
-        internal int TimePoint;
+        public int TimePoint { get; set; }
 
-        internal RelationshipInstance RelatedInstance;
+        public RelationshipInstance RelatedInstance { get; set; }
 
         public RelationshipDelta(int tp, RelationshipInstance inst, RelationshipDeltaType deltaType)
         {

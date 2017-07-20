@@ -138,5 +138,17 @@ namespace NarrativeWorldCreator.Pages
             this.RefreshSelectedObjectView();
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
+
+        private void DeltaListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateDeltaListView();
+        }
+
+        public void UpdateDeltaListView()
+        {
+            var dlvm = new DeltaListViewModel();
+            dlvm.Load(selectedNode, SelectedTimePoint);
+            this.DeltaListView.DataContext = dlvm;
+        }
     }
 }

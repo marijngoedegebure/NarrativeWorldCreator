@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.Models.NarrativeRegionFill
 {
-    internal class InstanceDelta
+    public enum InstanceDeltaType
     {
-        internal InstanceDeltaType DT;
+        Add = 0,
+        Remove = 1,
+        Change = 2
+    }
 
-        internal enum InstanceDeltaType
-        {
-            Add = 0,
-            Remove = 1,
-            Change = 2
-        }
+    public class InstanceDelta
+    {
+        public InstanceDeltaType DT { get; set; }
 
-        internal EntikaInstance RelatedInstance;
+        public EntikaInstance RelatedInstance { get; set; }
 
-        internal Vector3 Position;
-        internal Vector3 Rotation;
+        public Vector3 Position { get; set; }
+        public Vector3 Rotation { get; set; }
 
         // Timepoint relative to selected node
-        internal int TimePoint;
+        public int TimePoint;
 
         public InstanceDelta(int tp, EntikaInstance inst, InstanceDeltaType deltaType, Vector3? pos, Vector3? rot)
         {
