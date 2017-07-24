@@ -451,7 +451,7 @@ namespace NarrativeWorldCreator.MetricEngines
                 // Change default model to model of classname
                 if (SystemStateTracker.DefaultModel != null)
                 {
-                    BoundingBox bb = EntikaInstance.GetBoundingBox(SystemStateTracker.DefaultModel, Matrix.Identity);
+                    BoundingBox bb = EntikaInstance.GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[tto.TangibleObject], Matrix.Identity);
                     var difference = (bb.Max - bb.Min);
                     var currentArea = Math.Abs(difference.X) * Math.Abs(difference.Y);
                     if (currentArea < ret.Min)
