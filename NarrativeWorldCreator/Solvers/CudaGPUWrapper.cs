@@ -80,6 +80,7 @@ namespace NarrativeWorldCreator.Solvers
             public float WeightSymmetry;
             public float WeightClearance;
             public float WeightSurfaceArea;
+            public float WeightOffLimits;
 
             //Centroid
             public double centroidX;
@@ -123,6 +124,7 @@ namespace NarrativeWorldCreator.Solvers
             public float FocalPointCosts;
             public float SymmetryCosts;
             public float ClearanceCosts;
+            public float OffLimitsCosts;
             public float SurfaceAreaCosts;
         };
 
@@ -224,6 +226,7 @@ namespace NarrativeWorldCreator.Solvers
                     gpuResult.SymmetryCosts = gpuResult.SymmetryCosts + resultPerSurface[surfaceInstance][j].SymmetryCosts;
                     gpuResult.VisualBalanceCosts = gpuResult.VisualBalanceCosts + resultPerSurface[surfaceInstance][j].VisualBalanceCosts;
                     gpuResult.ClearanceCosts = gpuResult.ClearanceCosts + resultPerSurface[surfaceInstance][j].ClearanceCosts;
+                    gpuResult.OffLimitsCosts = gpuResult.OffLimitsCosts + resultPerSurface[surfaceInstance][j].OffLimitsCosts;
                     gpuResult.SurfaceAreaCosts = gpuResult.SurfaceAreaCosts + resultPerSurface[surfaceInstance][j].SurfaceAreaCosts;
                 }
                 trueGPUResults.Add(gpuResult);
@@ -344,6 +347,7 @@ namespace NarrativeWorldCreator.Solvers
                 WeightVisualBalance = SystemStateTracker.WeightVisualBalance,
                 WeightSymmetry = SystemStateTracker.WeightSymmetry,
                 WeightClearance = SystemStateTracker.WeightClearance,
+                WeightOffLimits = SystemStateTracker.WeightOffLimits,
                 WeightSurfaceArea = SystemStateTracker.WeightSurfaceArea,
                 centroidX = SystemStateTracker.centroidX,
                 centroidY = SystemStateTracker.centroidY,
@@ -393,6 +397,7 @@ namespace NarrativeWorldCreator.Solvers
                 temp.PairWiseCosts = r.costs.PairWiseCosts;
                 temp.SymmetryCosts = r.costs.SymmetryCosts;
                 temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
+                temp.OffLimitsCosts = r.costs.OffLimitsCosts;
                 temp.ClearanceCosts = r.costs.ClearanceCosts;
                 temp.SurfaceAreaCosts = r.costs.SurfaceAreaCosts;
 

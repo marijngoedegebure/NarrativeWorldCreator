@@ -42,8 +42,22 @@ namespace NarrativeWorldCreator.Views
 
         private void btnRefreshConfigurations(object sender, RoutedEventArgs e)
         {
+            SaveValues();
             var regionPage = GetRegionPage();
             regionPage.GenerateConfigurations();
+        }
+
+        private void SaveValues()
+        {
+            SystemStateTracker.WeightFocalPoint = (float) this.SliderWeightFocalPoint.Value;
+            SystemStateTracker.WeightPairWise = (float) this.SliderWeightPairWise.Value;
+            SystemStateTracker.WeightSurfaceArea = (float) this.SliderWeightSurfaceArea.Value;
+            SystemStateTracker.WeightClearance = (float) this.SliderWeightClearance.Value;
+            SystemStateTracker.WeightOffLimits = (float)this.SliderWeightOffLimits.Value;
+            SystemStateTracker.WeightSymmetry = (float)this.SliderWeightSymmetry.Value;
+            SystemStateTracker.WeightVisualBalance = (float)this.SliderWeightVisualBalance.Value;
+
+            SystemStateTracker.gridxDim = int.Parse(this.gridxDim.Text);
         }
 
         private void centroidX_TextChanged(object sender, TextChangedEventArgs e)

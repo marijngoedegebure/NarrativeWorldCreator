@@ -54,6 +54,7 @@ namespace NarrativeWorldCreator
         public static float WeightVisualBalance = 1.0f;
         public static float WeightSymmetry = 1.0f;
         public static float WeightClearance = 1.0f;
+        public static float WeightOffLimits = 1.0f;
         public static float WeightSurfaceArea = 1.0f;
         // Configurable centroid and focal points in scene
         public static double centroidX = 0.0;

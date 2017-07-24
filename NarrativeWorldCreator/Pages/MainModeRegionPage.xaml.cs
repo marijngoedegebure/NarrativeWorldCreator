@@ -533,6 +533,8 @@ namespace NarrativeWorldCreator
             view.SliderWeightPairWise.Value = SystemStateTracker.WeightPairWise;
             view.SliderWeightSymmetry.Value = SystemStateTracker.WeightSymmetry;
             view.SliderWeightVisualBalance.Value = SystemStateTracker.WeightVisualBalance;
+            view.SliderWeightClearance.Value = SystemStateTracker.WeightClearance;
+            view.SliderWeightOffLimits.Value = SystemStateTracker.WeightOffLimits;
             view.centroidX.Text = SystemStateTracker.centroidX.ToString();
             view.centroidY.Text = SystemStateTracker.centroidY.ToString();
             view.focalX.Text = SystemStateTracker.focalX.ToString();

@@ -39,7 +39,7 @@ namespace NarrativeWorldCreator.Pages
             MetricEngine.SetWeightsToAll();
             var predicates = new List<Predicate>();
             foreach (var timepoint in this.selectedNode.TimePoints) {
-                predicates.Concat(timepoint.PredicatesFilteredByCurrentLocation);
+                predicates = predicates.Concat(timepoint.PredicatesFilteredByCurrentLocation).ToList();
             }
 
             MetricEngine.SetupMetricEngineUsingTO(SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList(), predicates);

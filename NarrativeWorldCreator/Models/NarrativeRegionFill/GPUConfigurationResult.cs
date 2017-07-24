@@ -17,6 +17,7 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
         public float SymmetryCosts;
 
         public float ClearanceCosts;
+        public float OffLimitsCosts;
 
         public float SurfaceAreaCosts;
     }
