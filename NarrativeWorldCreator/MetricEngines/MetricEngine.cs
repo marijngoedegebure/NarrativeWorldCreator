@@ -235,7 +235,8 @@ namespace NarrativeWorldCreator.MetricEngines
             normalizationDictionary[OutEdgesRequiredMT] = OutgoingRequiredEdges();
 
             // Calculate size metric
-            normalizationDictionary[AreaMT] = SizeMetric();
+            // Does not work because 
+            // normalizationDictionary[AreaMT] = SizeMetric();
 
             // Normalize before sorting?
             foreach (var tto in TTOs)

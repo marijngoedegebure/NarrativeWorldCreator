@@ -16,6 +16,7 @@ using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models;
+using Common;
 
 namespace NarrativeWorldCreator.Pages
 {
@@ -57,7 +58,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void btnResetRegion(object sender, RoutedEventArgs e)
         {
-
+            this.Floor.Polygon = new Common.Polygon(new List<Vec2d>());
         }
     }
 }

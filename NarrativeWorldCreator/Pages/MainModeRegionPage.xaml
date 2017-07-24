@@ -138,7 +138,7 @@
                             <views:RelationshipInstancingSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InstanceSelectionSystemView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_4" Header="Position selection" Visibility="Collapsed">
+                    <TabItem Name="region_filling_2_4" Header="Placement settings" Visibility="Collapsed">
                         <Grid Name="region_filling_2_4_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>

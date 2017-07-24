@@ -103,7 +103,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void SelectedSwapView_Loaded(object sender, RoutedEventArgs e)
         {
-            var listOfValuedTangibleObjects = MetricEngine.GetOrderingTOUsingTOAndConfig(this.selectedNode, new Models.NarrativeRegionFill.Configuration(), SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
+            var listOfValuedTangibleObjects = MetricEngine.GetOrderingTOUsingTO(this.selectedNode, SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
             var listToRemove = new List<TOTreeTangibleObject>();
             // Determine to's to remove
             foreach (var tto in listOfValuedTangibleObjects)
