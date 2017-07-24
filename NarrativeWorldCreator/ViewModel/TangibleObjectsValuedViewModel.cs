@@ -61,7 +61,7 @@ namespace NarrativeWorldCreator.ViewModel
         public void LoadAll(LocationNode ln, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(ntp, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = MetricEngine.GetOrderingTOUsingTOAndConfig(ln, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 if (!to.TangibleObject.DefaultName.Equals("floor"))
@@ -74,7 +74,7 @@ namespace NarrativeWorldCreator.ViewModel
         internal void LoadRequired(LocationNode ln, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetRequiredOrderingTO(ntp, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = MetricEngine.GetRequiredOrderingTOUsingTOAndConfig(ln, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 if (!to.TangibleObject.DefaultName.Equals("floor"))
@@ -87,7 +87,7 @@ namespace NarrativeWorldCreator.ViewModel
         internal void LoadDecoration(LocationNode ln, NarrativeTimePoint ntp, Configuration c)
         {
             ObservableCollection<TOTreeTangibleObject> octo = new ObservableCollection<TOTreeTangibleObject>();
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetDecorationOrderingTO(ntp, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
+            var listOfValuedTangibleObjects = MetricEngine.GetDecorationOrderingTOUsingTOAndConfig(ln, c, ln.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), ntp.GetRemainingPredicates());
             foreach (var to in listOfValuedTangibleObjects)
             {
                 if (!to.TangibleObject.DefaultName.Equals("floor"))

@@ -11,11 +11,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Semantics.Entities;
+using NarrativeWorldCreator.Models.NarrativeGraph;
 
 namespace NarrativeWorldCreator.MetricEngines
 {
-    public static class TangibleObjectMetricEngine
+    public static class MetricEngine
     {
+        #region Fields
         public static MetricType IncEdgesMT = new MetricType("incoming edges");
         public static MetricType OutEdgesMT = new MetricType("outgoing edges");
         public static MetricType IncEdgesDecorativeMT = new MetricType("incoming decorative edges");
@@ -23,6 +25,7 @@ namespace NarrativeWorldCreator.MetricEngines
         public static MetricType IncEdgesRequiredMT = new MetricType("incoming required edges");
         public static MetricType OutEdgesRequiredMT = new MetricType("outgoing required edges");
         public static MetricType IncEdgesAvailableMT = new MetricType("incoming edges available");
+
         public static MetricType OutEdgesAvailableMT = new MetricType("outgoing edges available");
         public static MetricType requiredMT = new MetricType("required");
         public static MetricType requiredDependencyMT = new MetricType("required dependency");
@@ -42,7 +45,9 @@ namespace NarrativeWorldCreator.MetricEngines
         public static int MetricTypeCount = 0;
 
         public static Dictionary<string, double> Weights = new Dictionary<string, double>();
+        #endregion
 
+        #region Setup
         public static void BuildUpTOTree(List<Semantics.Entities.TangibleObject> tangibleObjects)
         {
             foreach (var to in tangibleObjects)
@@ -115,6 +120,69 @@ namespace NarrativeWorldCreator.MetricEngines
             }
         }
 
+        internal static void ApplyRequiredAndDependencies(List<Predicate> predicates)
+        {
+            foreach (var tto in TTOs)
+            {
+                foreach (var predicate in predicates)
+                {
+                    foreach (var name in predicate.EntikaClassNames)
+                    {
+                        if (tto.TangibleObject.DefaultName.Equals(name))
+                        {
+                            tto.Required = true;
+                            // Cascade through relations and get relations on which this object depends and add metrics
+                            CascadeRequiredOnRelationships(tto);
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void CascadeRequiredOnRelationships(TOTreeTangibleObject tto)
+        {
+            foreach (var relation in tto.RelationshipsAsTarget)
+            {
+                if (relation.Relationship.RelationshipType.DefaultName.Equals(Constants.On))
+                {
+                    relation.Source.RequiredDependency = true;
+                    CascadeRequiredMetricOnRelationships(relation.Source);
+                }
+            }
+        }
+
+        public static void CheckIfDependenciesAreAvailable()
+        {
+            foreach (var tto in TTOs.Where(tto => tto.Dependent))
+            {
+                foreach (var itei in ITEIs)
+                {
+                    foreach (var relationship in tto.RelationshipsAsTarget)
+                    {
+                        if (relationship.Source.TangibleObject.Equals(itei.EntikaInstance.TangibleObject))
+                            tto.DependencyAvailable = true;
+                    }
+                }
+            }
+        }
+
+        internal static void SetWeightsToAll()
+        {
+            Weights = Constants.AllMetricWeights;
+        }
+
+        internal static void SetWeightsToRequired()
+        {
+            Weights = Constants.RequiredMetricWeights;
+        }
+
+        internal static void SetWeightsToDecoration()
+        {
+            Weights = Constants.DecorationMetricWeights;
+        }
+        #endregion
+
+        #region Usage
         public static void ResetTree()
         {
             TTOs = new List<TOTreeTangibleObject>();
@@ -123,35 +191,33 @@ namespace NarrativeWorldCreator.MetricEngines
             normalizationDictionary = new Dictionary<MetricType, Normalization>();
         }
 
-        public static void CheckForDependencies()
+        public static void SetupMetricEngineUsingTO(List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
-            foreach (var tto in TTOs.Where(tto => tto.Dependent))
-            {
-                foreach (var itei in ITEIs)
-                {
-                    foreach (var relationship in tto.RelationshipsAsTarget) {
-                        if (relationship.Source.TangibleObject.Equals(itei.EntikaInstance.TangibleObject))
-                            tto.DependencyAvailable = true;
-                    }
-                }
-            }
+            ResetTree();
+            BuildUpTOTree(tangibleObjects);
+            ApplyRequiredAndDependencies(predicates);
         }
 
-        public static List<TOTreeTangibleObject> CalculateValues(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static void SetupMetricEngineUsingTOAndConfig(List<TangibleObject> tangibleObjects, Configuration c, List<Predicate> predicates)
         {
             ResetTree();
             BuildUpTOTree(tangibleObjects);
             BuildUpInstanceTree(c.InstancedObjects);
-            CheckForDependencies();
+            ApplyRequiredAndDependencies(predicates);
+            CheckIfDependenciesAreAvailable();
+        }
 
+        public static List<TOTreeTangibleObject> CalculateValuesMetricsUsingTO(LocationNode ln, List<Predicate> predicates)
+        {
             MetricTypeCount = 0;
+            CalculateRequiredDependency(predicates);
             // Incoming and outgoing geometric relationships
             normalizationDictionary[IncEdgesMT] = IncomingEdges();
 
             normalizationDictionary[OutEdgesMT] = OutgoingEdges();
 
             // Add decoration weight metric
-            normalizationDictionary[DecorationMT] = DecorationWeights(ntp);
+            normalizationDictionary[DecorationMT] = DecorationWeights(ln);
 
             // Incoming and outgoing decorative edges, this is defined as an edge from or to an node with a decorative score
             normalizationDictionary[IncEdgesDecorativeMT] = IncomingDecorativeEdges();
@@ -159,7 +225,66 @@ namespace NarrativeWorldCreator.MetricEngines
             normalizationDictionary[OutEdgesDecorativeMT] = OutgoingDecorativeEdges();
 
             // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
-            ApplyRequiredAndDependencies(predicates);
+
+            normalizationDictionary[requiredMT] = GetRequiredNormalization();
+            normalizationDictionary[requiredDependencyMT] = GetRequiredDependencyNormalization();
+
+            // Incoming and outgoing required edges
+            normalizationDictionary[IncEdgesRequiredMT] = IncomingRequiredEdges();
+
+            normalizationDictionary[OutEdgesRequiredMT] = OutgoingRequiredEdges();
+
+            // Calculate size metric
+            normalizationDictionary[AreaMT] = SizeMetric();
+
+            // Normalize before sorting?
+            foreach (var tto in TTOs)
+            {
+                foreach (var metric in tto.Metrics)
+                {
+                    // (x - min) / (max - min)
+                    if (normalizationDictionary[metric.MetricType].Max != normalizationDictionary[metric.MetricType].Min)
+                        metric.Value = (metric.Value - normalizationDictionary[metric.MetricType].Min) / (normalizationDictionary[metric.MetricType].Max - normalizationDictionary[metric.MetricType].Min);
+                }
+            }
+
+            // Sum and divide by amount of metrics
+            foreach (var tto in TTOs)
+            {
+                var value = 0.0;
+                foreach (var metric in tto.Metrics)
+                {
+                    value += metric.Value * metric.Weight;
+                }
+                tto.EndValue = value;
+            }
+
+            // Sort list using end values
+            TTOs = TTOs.OrderByDescending(inst => inst.EndValue).ToList();
+            return TTOs;
+        }
+
+
+        public static List<TOTreeTangibleObject> CalculateValuesMetricsUsingTOAndConfig(LocationNode ln, List<Predicate> predicates)
+        {
+            MetricTypeCount = 0;
+            CalculateRequiredDependency(predicates);
+
+            // Incoming and outgoing geometric relationships
+            normalizationDictionary[IncEdgesMT] = IncomingEdges();
+
+            normalizationDictionary[OutEdgesMT] = OutgoingEdges();
+
+            // Add decoration weight metric
+            normalizationDictionary[DecorationMT] = DecorationWeights(ln);
+
+            // Incoming and outgoing decorative edges, this is defined as an edge from or to an node with a decorative score
+            normalizationDictionary[IncEdgesDecorativeMT] = IncomingDecorativeEdges();
+
+            normalizationDictionary[OutEdgesDecorativeMT] = OutgoingDecorativeEdges();
+
+            // Go through objects and highlight objects and relationships that are required by the predicates or are dependencies of a required object
+            
             normalizationDictionary[requiredMT] = GetRequiredNormalization();
             normalizationDictionary[requiredDependencyMT] = GetRequiredDependencyNormalization();
 
@@ -203,22 +328,85 @@ namespace NarrativeWorldCreator.MetricEngines
             return TTOs;
         }
 
-        public static List<TOTreeTangibleObject> GetOrderingTO(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static List<TOTreeTangibleObject> GetOrderingTOUsingTO(LocationNode ln, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
-            Weights = Constants.AllMetricWeights;
-            return CalculateValues(ntp, c, tangibleObjects, predicates);
+            SetWeightsToAll();
+            SetupMetricEngineUsingTO(tangibleObjects, predicates);
+            return CalculateValuesMetricsUsingTO(ln, predicates);
         }
 
-        internal static List<TOTreeTangibleObject> GetDecorationOrderingTO(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        public static List<TOTreeTangibleObject> GetOrderingTOUsingTOAndConfig(LocationNode ln, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
-            Weights = Constants.DecorationMetricWeights;
-            return CalculateValues(ntp, c, tangibleObjects, predicates);
+            SetWeightsToAll();
+            SetupMetricEngineUsingTOAndConfig(tangibleObjects, c, predicates);
+            return CalculateValuesMetricsUsingTOAndConfig(ln, predicates);
         }
 
-        internal static List<TOTreeTangibleObject> GetRequiredOrderingTO(NarrativeTimePoint ntp, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        internal static List<TOTreeTangibleObject> GetDecorationOrderingTOUsingTOAndConfig(LocationNode ln, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
         {
-            Weights = Constants.RequiredMetricWeights;
-            return CalculateValues(ntp, c, tangibleObjects, predicates);
+            SetWeightsToDecoration();
+            SetupMetricEngineUsingTOAndConfig(tangibleObjects, c, predicates);
+            return CalculateValuesMetricsUsingTOAndConfig(ln, predicates);
+        }
+
+        internal static List<TOTreeTangibleObject> GetRequiredOrderingTOUsingTOAndConfig(LocationNode ln, Configuration c, List<TangibleObject> tangibleObjects, List<Predicate> predicates)
+        {
+            SetWeightsToRequired();
+            SetupMetricEngineUsingTOAndConfig(tangibleObjects, c, predicates);
+            return CalculateValuesMetricsUsingTOAndConfig(ln, predicates);
+        }
+        #endregion
+
+        #region Private
+        private static void CalculateRequiredDependency(List<Predicate> predicates)
+        {
+            foreach (var tto in TTOs)
+            {
+                foreach (var predicate in predicates)
+                {
+                    foreach (var name in predicate.EntikaClassNames)
+                    {
+                        if (tto.TangibleObject.DefaultName.Equals(name))
+                        {
+                            var found = false;
+                            foreach (var metric in tto.Metrics)
+                            {
+                                if (metric.MetricType.Equals(requiredMT))
+                                {
+                                    metric.Value += 1.0;
+                                    found = true;
+                                }
+                            }
+                            if (!found)
+                                tto.Metrics.Add(new Metric(requiredMT, 1.0, Weights[requiredMT.Name]));
+                            // Cascade through relations and get relations on which this object depends and add metrics
+                            CascadeRequiredMetricOnRelationships(tto);
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void CascadeRequiredMetricOnRelationships(TOTreeTangibleObject tto)
+        {
+            foreach (var relation in tto.RelationshipsAsTarget)
+            {
+                if (relation.Relationship.RelationshipType.DefaultName.Equals(Constants.On))
+                {
+                    var found = false;
+                    foreach (var metric in relation.Source.Metrics)
+                    {
+                        if (metric.MetricType.Equals(requiredDependencyMT))
+                        {
+                            metric.Value += 1.0;
+                            found = true;
+                        }
+                    }
+                    if (!found)
+                        relation.Source.Metrics.Add(new Metric(requiredDependencyMT, 1.0, Weights[requiredDependencyMT.Name]));
+                    CascadeRequiredMetricOnRelationships(relation.Source);
+                }
+            }
         }
 
         private static Normalization GetRequiredNormalization()
@@ -365,36 +553,6 @@ namespace NarrativeWorldCreator.MetricEngines
             return ret;
         }
 
-        internal static void ApplyRequiredAndDependencies(List<Predicate> predicates)
-        {
-            foreach (var tto in TTOs)
-            {
-                foreach (var predicate in predicates)
-                {
-                    foreach (var name in predicate.EntikaClassNames)
-                    {
-                        if (tto.TangibleObject.DefaultName.Equals(name))
-                        {
-                            tto.Required = true;
-                            var found = false;
-                            foreach (var metric in tto.Metrics)
-                            {
-                                if (metric.MetricType.Equals(requiredMT))
-                                {
-                                    metric.Value += 1.0;
-                                    found = true;
-                                }
-                            }
-                            if (!found)
-                                tto.Metrics.Add(new Metric(requiredMT, 1.0, Weights[requiredMT.Name]));
-                            // Cascade through relations and get relations on which this object depends and add metrics
-                            CascadeRequiredMetricOnRelationships(tto);
-                        }
-                    }
-                }
-            }
-        }
-
         private static Normalization OutgoingDecorativeEdges()
         {
             Normalization ret = new Normalization();
@@ -427,7 +585,7 @@ namespace NarrativeWorldCreator.MetricEngines
             return ret;
         }
 
-        private static Normalization DecorationWeights(NarrativeTimePoint ntp)
+        private static Normalization DecorationWeights(LocationNode ln)
         {
             Normalization ret = new Normalization();
             foreach (var tto in TTOs)
@@ -436,7 +594,7 @@ namespace NarrativeWorldCreator.MetricEngines
                 {
                     if (relationship.RelationshipType.DefaultName.Equals(Constants.DecorationRelationshipType))
                     {
-                        if (relationship.Source.DefaultName.Equals(ntp.Location.LocationType))
+                        if (relationship.Source.DefaultName.Equals(ln.LocationType))
                         {
                             // Add decorationweight metric
                             tto.Decorative = true;
@@ -485,29 +643,6 @@ namespace NarrativeWorldCreator.MetricEngines
             MetricTypeCount++;
             return ret;
         }
-
-
-        private static void CascadeRequiredMetricOnRelationships(TOTreeTangibleObject tto)
-        {
-            foreach (var relation in tto.RelationshipsAsTarget)
-            {
-                if (relation.Relationship.RelationshipType.DefaultName.Equals(Constants.On))
-                {
-                    relation.Source.RequiredDependency = true;
-                    var found = false;
-                    foreach (var metric in relation.Source.Metrics)
-                    {
-                        if (metric.MetricType.Equals(requiredDependencyMT))
-                        {
-                            metric.Value += 1.0;
-                            found = true;
-                        }
-                    }
-                    if (!found)
-                        relation.Source.Metrics.Add(new Metric(requiredDependencyMT, 1.0, Weights[requiredDependencyMT.Name]));
-                    CascadeRequiredMetricOnRelationships(relation.Source);
-                }
-            }
-        }
+        #endregion
     }
 }

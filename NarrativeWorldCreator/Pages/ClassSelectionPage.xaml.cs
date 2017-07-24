@@ -2,6 +2,7 @@
 using NarrativeWorldCreator.Models;
 using NarrativeWorldCreator.Models.Metrics.TOTree;
 using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.ViewModel;
 using Semantics.Entities;
@@ -35,20 +36,22 @@ namespace NarrativeWorldCreator.Pages
             this.selectedNode = selectedNode;
 
             // Retrieve required and dependent objects
-            TangibleObjectMetricEngine.Weights = Constants.AllMetricWeights;
-            TangibleObjectMetricEngine.BuildUpTOTree(SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList());
+            MetricEngine.SetWeightsToAll();
+            var predicates = new List<Predicate>();
             foreach (var timepoint in this.selectedNode.TimePoints) {
-                TangibleObjectMetricEngine.ApplyRequiredAndDependencies(timepoint.PredicatesFilteredByCurrentLocation);
+                predicates.Concat(timepoint.PredicatesFilteredByCurrentLocation);
             }
-            var requiredAndDependentTTOs = TangibleObjectMetricEngine.TTOs.Where(tto => tto.Required || tto.RequiredDependency).ToList();
+
+            MetricEngine.SetupMetricEngineUsingTO(SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList(), predicates);
+            var requiredAndDependentTTOs = MetricEngine.TTOs.Where(tto => tto.Required || tto.RequiredDependency).ToList();
             // Create List for viewing
-            var requiredTOs = new List<TangibleObject>();
+            var requiredAndDependentTOs = new List<TangibleObject>();
             foreach (var reqTO in requiredAndDependentTTOs)
             {
-                requiredTOs.Add(reqTO.TangibleObject);
+                requiredAndDependentTOs.Add(reqTO.TangibleObject);
             }
             var TOSVM = new TangibleObjectsSwapViewModel();
-            TOSVM.Load(requiredTOs);
+            TOSVM.Load(requiredAndDependentTOs);
             this.DataContext = TOSVM;
         }
 
@@ -80,7 +83,7 @@ namespace NarrativeWorldCreator.Pages
         private void AvailableSwapView_Loaded(object sender, RoutedEventArgs e)
         {
             // Determine scores for each TO:
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(this.selectedNode.TimePoints[0], new Models.NarrativeRegionFill.Configuration(), SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
+            var listOfValuedTangibleObjects = MetricEngine.GetOrderingTOUsingTO(this.selectedNode, SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
 
             // Remove required from available TO list
             // var toList = SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList();
@@ -100,7 +103,7 @@ namespace NarrativeWorldCreator.Pages
 
         private void SelectedSwapView_Loaded(object sender, RoutedEventArgs e)
         {
-            var listOfValuedTangibleObjects = TangibleObjectMetricEngine.GetOrderingTO(this.selectedNode.TimePoints[0], new Models.NarrativeRegionFill.Configuration(), SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
+            var listOfValuedTangibleObjects = MetricEngine.GetOrderingTOUsingTOAndConfig(this.selectedNode, new Models.NarrativeRegionFill.Configuration(), SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(x => x.Children.Count == 0).ToList(), this.selectedNode.TimePoints[0].GetRemainingPredicates());
             var listToRemove = new List<TOTreeTangibleObject>();
             // Determine to's to remove
             foreach (var tto in listOfValuedTangibleObjects)
