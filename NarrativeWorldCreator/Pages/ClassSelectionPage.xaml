@@ -37,7 +37,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text=""/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="In this screen you are able to select the entities which you will later use to instance objects from. The left column shows the entities which are mentioned in the story for this location. The middle and right column allow selection and deselection of entities."/>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0" Margin="10">
             <Grid>
