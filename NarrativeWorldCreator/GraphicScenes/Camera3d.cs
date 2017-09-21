@@ -18,7 +18,7 @@ namespace NarrativeWorldCreator.GraphicScenes
         public const float FARCLIP = 2000.0f;
         public static float VIEWANGLE = MathHelper.ToRadians(45.0f);
         public static float MINZOOM = 1.6f;
-        public static float MAXZOOM = 300.0f;
+        public static float MAXZOOM = 28.0f;
 
         protected float _zoom; // Camera Zoom
         public Matrix _transform; // Matrix Transform
