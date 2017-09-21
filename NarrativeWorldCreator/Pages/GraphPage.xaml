@@ -52,15 +52,15 @@
                 <Grid Grid.Row="0" Grid.Column="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="button5" Grid.Column="0" Grid.Row="0" Content="Create/Fill this location" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToRegionPage_Click"/>
-                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="10, 10, 0 ,0" VerticalAlignment="Top" Width="200" FontWeight="Bold">List of events of the selected location</TextBlock>
-                    <views:GraphDetailTimePointListView Grid.Column="0" Grid.Row="2" x:Name="GraphDetailTimePointListControl" Loaded = "GraphDetailTimePointListControl_Loaded"/>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin="10, 10, 0 ,0" VerticalAlignment="Top" FontWeight="Bold">List of events of the selected location</TextBlock>
+                    <views:GraphDetailTimePointListView Grid.Column="0" Grid.Row="1" x:Name="GraphDetailTimePointListControl" Loaded = "GraphDetailTimePointListControl_Loaded"/>
+                    <Button x:Name="button5" Grid.Column="0" Grid.Row="2" Content="Create/Fill this location" HorizontalAlignment="Center" MinWidth="200" Margin="10,10,0,0" VerticalAlignment="Top" Click="btnGoToRegionPage_Click"/>
                 </Grid>
             </Grid>
         </Grid>
