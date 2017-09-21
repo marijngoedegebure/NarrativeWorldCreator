@@ -36,6 +36,14 @@
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="IsEnabled" Value="{Binding Active,Mode=TwoWay}" />
                     <Setter Property="Background" Value="DarkGray"/>
+                    <Setter Property="BorderBrush" Value="Black" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="Margin" Value="1" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Active}" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListView>
