@@ -334,9 +334,10 @@ namespace NarrativeWorldCreator
         internal override void GenerateConfigurations()
         {
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.selectedNode.TimePoints[SelectedTimePoint], this.WorkInProgressConfiguration);
+            GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).ToList();
             if (SystemStateTracker.SelectPositionSystem)
             {
-                GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).Take(4).ToList();
+                GeneratedConfigurations = GeneratedConfigurations.Take(4).ToList();
             }
 
             // Update list of configurations using generated list of regionpage
