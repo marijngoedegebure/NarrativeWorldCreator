@@ -41,7 +41,6 @@
                     <Button x:Name="button5" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToInit_Click"/>
                     <Button x:Name="button76" Content="Back to environment creation" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
                     <Button x:Name="button12345" Content="Go to debug mode" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGotoDebugMode_Click"/>
-                    <Button x:Name="button94123" Content="Go to process setting" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGotoProcessSettingAdjustment"/>
                 </WrapPanel>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
