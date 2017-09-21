@@ -101,7 +101,7 @@
                             <Button Grid.Column="0" Grid.Row="1" x:Name="button3" Content="Change current region" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnChangeCurrentRegion"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_1" Header="Tangible object selection" Visibility="Collapsed">
+                    <TabItem Name="region_filling_2_1" Header="Entity selection" Visibility="Collapsed">
                         <Grid Name="region_filling_2_1_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
@@ -113,7 +113,7 @@
                             <views:TangibleObjectsSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="TangibleObjectsSystemView" Loaded="TangibleObjectsSystemView_Loaded" />
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_2" Header="Relationships selection" Visibility="Collapsed">
+                    <TabItem Name="region_filling_2_2" Header="Relationship selection" Visibility="Collapsed">
                         <Grid Name="region_filling_2_2_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
@@ -125,7 +125,7 @@
                             <views:RelationshipSelectionSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionSystemView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_3" Header="Relationships instancing" Visibility="Collapsed">
+                    <TabItem Name="region_filling_2_3" Header="Relationship instancing" Visibility="Collapsed">
                         <Grid Name="region_filling_2_3_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
@@ -148,7 +148,7 @@
                             <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_5" Header="Configuration comparison" Visibility="Collapsed">
+                    <TabItem Name="region_filling_2_5" Header="Placement" Visibility="Collapsed">
                         <Grid Name="region_filling_2_5_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>

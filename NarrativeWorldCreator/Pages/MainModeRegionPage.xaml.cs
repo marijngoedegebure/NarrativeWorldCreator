@@ -758,10 +758,5 @@ namespace NarrativeWorldCreator
         {
             MessageTextBox.Text = message;
         }
-
-        private void btnGotoProcessSettingAdjustment(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new StepGenerationSettingPage(selectedNode, this.selectedNode.TimePoints[SelectedTimePoint]));
-        }
     }
 }
