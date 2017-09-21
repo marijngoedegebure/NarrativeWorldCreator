@@ -167,12 +167,33 @@ namespace NarrativeWorldCreator.GraphicScenes
 
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
+            // calculate max and min of floor:
+            double minX = Double.MaxValue;
+            double minY = Double.MaxValue;
+            double maxX = 0;
+            double maxY = 0;
+            if (_currentPage.selectedNode.FloorCreated)
+            {
+                foreach (var point in _currentPage.Floor.Polygon.GetAllVertices())
+                {
+                    minX = Math.Min(minX, point.X);
+                    minY = Math.Min(minY, point.Y);
+                    maxX = Math.Max(maxX, point.X);
+                    maxY = Math.Max(maxY, point.Y);
+                }
+            }
             // Draws a square of 0.05 by 0.05 ever 1 unit
             for (int i = -10; i <= 10; i+=1)
             {
                 for (int j = -10; j <= 10; j+=1)
                 {
                     Color c = Color.White;
+                    if (_currentPage.selectedNode.FloorCreated)
+                    {
+                        if (i > minX && i < maxX && j > minY && j < maxY)
+                            c = Color.DarkGray;
+                    }
+
                     var quad = new Quad(new Vector3(i, j, 0), new Vector3(0, 0, 1), Vector3.Up, 0.05f, 0.05f, c);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
