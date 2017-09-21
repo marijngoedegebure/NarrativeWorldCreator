@@ -390,8 +390,6 @@ namespace NarrativeWorldCreator.GraphicScenes
             _previousKeyboardState = _keyboardState;
             _mouseState = _mouse.GetState();
             _keyboardState = _keyboard.GetState();
-            cam.handleCamMovementKeyboardInput(_keyboardState);
-            // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
             // Handle region creation input:
             HandleRegionCreation();
     
@@ -455,32 +453,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         private void HandleRegionCreation()
         {
-            if (_keyboardState.IsKeyDown(Keys.LeftControl))
-            {
-                CurrentRegionCreationMode = RegionCreationModes.VertexDragging;
-            }
-            if (_keyboardState.IsKeyDown(Keys.LeftShift))
-            {
-                CurrentRegionCreationMode = RegionCreationModes.VertexCreation;
-            }
-            else
-            {
-                CurrentRegionCreationMode = RegionCreationModes.None;
-                draggingVertexIndex = -1;
-            }
-
-            // Vertex Dragging
-            if (CurrentRegionCreationMode.Equals(RegionCreationModes.VertexDragging))
-            {
-                HandleVertexDragging();
-            }
-
-            // Vertex creation 
-            if (CurrentRegionCreationMode.Equals(RegionCreationModes.VertexCreation))
-            {
-                // HandleVertexCreation();
-                HandleRegionBoxCreation();
-            }
+            HandleRegionBoxCreation();
         }
 
         private void HandleRegionBoxCreation()
@@ -539,53 +512,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                 RegionCreationCurrentCoords = new Point();
                 RegionCreationInitialCoords = new Point();
             }
-        }
-
-        private void HandleVertexCreation()
-        {
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-            {
-                // Retrieve world coordinates of current mouse position
-                Vector3 nearsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 0f);
-                Vector3 farsource = new Vector3((float)_mouseState.X, (float)_mouseState.Y, 1f);
-
-                Vector3 nearPoint = GraphicsDevice.Viewport.Unproject(nearsource, this.proj, this.view, this.world);
-                Vector3 farPoint = GraphicsDevice.Viewport.Unproject(farsource, this.proj, this.view, this.world);
-
-                // Create ray using far and near point
-                Vector3 direction = farPoint - nearPoint;
-                direction.Normalize();
-                Ray ray = new Ray(nearPoint, direction);
-
-                // Calculate intersection with the plane through x = 0, y = 0, which should always hit due to the camera pointing directly downward
-                float? distance = ray.Intersects(new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                Vector3 planeHit = ray.Position + ray.Direction * distance.Value;
-
-                // Retrieve vertices from old shape and add the new vertex
-                var vertices = this._currentPage.Floor.Polygon.GetAllVertices();
-                vertices.Add(new Vec2d(planeHit.X, planeHit.Y));
-                this._currentPage.Floor.Polygon = new Polygon(vertices);
-                this._currentPage.Floor.UpdateBoundingBoxAndShape();
-            }
-        }
-
-        private void HandleVertexDragging()
-        {
-            if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
-                draggingVertexIndex = CalculateCollisionQuad();
-
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Pressed && draggingVertexIndex != -1)
-            {
-                Vector3 delta = Vector3.Subtract(new Vector3(_previousMouseState.Position.ToVector2(), 0f), new Vector3(_mouseState.Position.ToVector2(), 0f));
-                var vertices = this._currentPage.Floor.Polygon.GetAllVertices();
-                Vector3 mouseCoordsOnZPlane = CalculateMouseHitOnSurface();
-                vertices[draggingVertexIndex] = new Vec2d(mouseCoordsOnZPlane.X, mouseCoordsOnZPlane.Y);
-                this._currentPage.Floor.Polygon = new Polygon(vertices);
-                this._currentPage.Floor.UpdateBoundingBoxAndShape();
-            }
-
-            if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-                draggingVertexIndex = -1;
         }
 
         #endregion
