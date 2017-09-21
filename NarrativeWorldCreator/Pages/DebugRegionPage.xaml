@@ -42,7 +42,6 @@
                 <Button Grid.Column="2" Grid.Row="0" x:Name="button76" Content="Click here to redefine the floor" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
                 <TextBlock Grid.Column="3" Grid.Row="0">Current filling mode: Main</TextBlock>
                 <Button Grid.Column="4" Grid.Row="0" x:Name="button12345" Content="Go to Main filling mode" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGotoMainFillingMode_Click"/>
-                <views:RegionHeaderView Grid.Column="5" Grid.Row="0" x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded"/>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
                 <views:NarrativeTimelineRegionView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>

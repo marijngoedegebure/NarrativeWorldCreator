@@ -48,13 +48,6 @@ namespace NarrativeWorldCreator.Pages
             UpdateConfiguration();
         }
 
-        private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
-        {
-            NodeViewModel nodeVM = new NodeViewModel();
-            nodeVM.Load(selectedNode);
-            RegionHeaderControl.DataContext = nodeVM;
-        }
-
         private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
         {
             // Fill control with stuff

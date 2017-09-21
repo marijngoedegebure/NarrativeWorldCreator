@@ -36,6 +36,9 @@ namespace NarrativeWorldCreator.Pages
             this.selectedNode = selectedNode;
             // The first delta is added
             this.Floor = selectedNode.TimePoints[0].InstanceDeltas[0].RelatedInstance;
+
+            // Set content of header
+            this.PageHeader.Text = "Environment creation - " + this.selectedNode.LocationName;
         }
 
         private void btnGraphPage_Click(object sender, RoutedEventArgs e)

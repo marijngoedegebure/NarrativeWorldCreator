@@ -253,9 +253,6 @@
     <Compile Include="Views\NarrativeTimelineView.xaml.cs">
       <DependentUpon>NarrativeTimelineView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RegionHeaderView.xaml.cs">
-      <DependentUpon>RegionHeaderView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RelationshipInstancingView.xaml.cs">
       <DependentUpon>RelationshipInstancingView.xaml</DependentUpon>
     </Compile>
@@ -351,10 +348,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NarrativeTimelineView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RegionHeaderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

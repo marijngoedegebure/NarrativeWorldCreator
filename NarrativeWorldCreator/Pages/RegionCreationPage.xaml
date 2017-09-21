@@ -25,8 +25,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0">Environment creation</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you can create a surface for the environment."/>
+            <TextBlock x:Name="PageHeader" Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you can create a surface for the environment. The dots are drawn to be used as an indicator of size. Two dots, horizontal or vertical, are 1 meter apart."/>
             <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
                 <Button x:Name="GotoGraphPageButton" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
                 <Button x:Name="GotoClassSelectionPageButton" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnClassSelectionPage_Click"/>
@@ -59,8 +59,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Use &lt;shift&lt; + &lt;left mouse click&lt; to create a region outline by defining the corners in a clockwise matter." TextWrapping="Wrap"/>
-                            <Button Grid.Column="0" Grid.Row="1"  x:Name="region_outlining_5" Content="Reset region" Click="btnResetRegion"/>
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Use &lt;left mouse click&gt; to create a surface by clicking and dragging across the screen." TextWrapping="Wrap" Margin="10"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

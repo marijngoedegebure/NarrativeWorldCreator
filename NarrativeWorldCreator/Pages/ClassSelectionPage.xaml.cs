@@ -53,6 +53,9 @@ namespace NarrativeWorldCreator.Pages
             var TOSVM = new TangibleObjectsSwapViewModel();
             TOSVM.Load(requiredAndDependentTOs);
             this.DataContext = TOSVM;
+
+            // Set content of header
+            this.PageHeader.Text = "Entity selection - " + this.selectedNode.LocationName;
         }
 
         private void btnGraphPage_Click(object sender, RoutedEventArgs e)

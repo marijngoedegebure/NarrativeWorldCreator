@@ -34,7 +34,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0">Environment filling</TextBlock>
+                <TextBlock x:Name="PageHeader" Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0"/>
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you can create a surface for the environment."/>
                 <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
                     <Button x:Name="button1" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
@@ -42,7 +42,6 @@
                     <Button x:Name="button76" Content="Back to environment creation" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
                     <Button x:Name="button12345" Content="Go to debug mode" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGotoDebugMode_Click"/>
                     <Button x:Name="button94123" Content="Go to process setting" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGotoProcessSettingAdjustment"/>
-                    <views:RegionHeaderView  x:Name="RegionHeaderControl" Loaded="RegionHeader_Loaded" Margin="0,0,10,0"/>
                 </WrapPanel>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">

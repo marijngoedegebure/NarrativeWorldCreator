@@ -63,14 +63,9 @@ namespace NarrativeWorldCreator
             SelectedEntikaInstances = new List<EntikaInstance>();
 
             UpdateConfiguration();
-            
-        }
 
-        private void RegionHeader_Loaded(object sender, RoutedEventArgs e)
-        {
-            NodeViewModel nodeVM = new NodeViewModel();
-            nodeVM.Load(selectedNode);
-            RegionHeaderControl.DataContext = nodeVM;
+            // Set content of header
+            this.PageHeader.Text = "Environment filling - " + this.selectedNode.LocationName;
         }
 
         private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
