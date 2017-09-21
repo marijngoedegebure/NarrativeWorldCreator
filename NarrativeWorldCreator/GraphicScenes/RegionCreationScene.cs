@@ -63,6 +63,8 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         public float LineThickness = 0.1f;
 
+        private Model ExampleModel;
+
         #endregion
 
         #region Methods
@@ -109,6 +111,8 @@ namespace NarrativeWorldCreator.GraphicScenes
                 modelPath = "Models/" + modelPath + "/" + modelPath;
                 SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects.Add(to, Content.Load<Model>(modelPath));
             }
+
+            this.ExampleModel = Content.Load<Model>("Models/person1/person1");
         }
 
         private Model LoadModel(string assetName)
@@ -146,6 +150,9 @@ namespace NarrativeWorldCreator.GraphicScenes
             // Draw all objects that are known 2.0, but only when there is no other configuration selected
             drawRegionCreationBox();
 
+            // Draw example model
+            drawExampleModel();
+
             // this base.Draw call will draw "all" components
             base.Draw(time);
 
@@ -153,6 +160,26 @@ namespace NarrativeWorldCreator.GraphicScenes
             GraphicsDevice.DepthStencilState = depth;
             GraphicsDevice.RasterizerState = raster;
             GraphicsDevice.SamplerStates[0] = sampler;
+        }
+
+        private void drawExampleModel()
+        {
+            Vector3 modelPosition = new Vector3(9.5f,7.5f,0);
+
+            // FBX model draw:
+            Matrix[] transforms = new Matrix[this.ExampleModel.Bones.Count];
+            this.ExampleModel.CopyAbsoluteBoneTransformsTo(transforms);
+            foreach (ModelMesh mesh in this.ExampleModel.Meshes)
+            {
+                foreach (BasicEffect effect in mesh.Effects)
+                {
+                    effect.EnableDefaultLighting();
+                    effect.View = this.view;
+                    effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationZ(0) * Matrix.CreateTranslation(modelPosition) * this.world;
+                    effect.Projection = this.proj;
+                }
+                mesh.Draw();
+            }
         }
 
         private void drawTestRuler()
