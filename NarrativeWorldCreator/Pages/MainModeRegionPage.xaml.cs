@@ -623,8 +623,11 @@ namespace NarrativeWorldCreator
                         
                 }
             }
-            this.WIPAdditionDelta.Position = this.WIPAdditionDelta.RelatedInstance.Position;
-            this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Rotation;
+            if (this.WIPAdditionDelta != null)
+            {
+                this.WIPAdditionDelta.Position = this.WIPAdditionDelta.RelatedInstance.Position;
+                this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Rotation;
+            }
             this.Configuration = WorkInProgressConfiguration;
 
             // Save deltas
