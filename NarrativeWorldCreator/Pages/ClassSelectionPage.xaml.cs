@@ -35,10 +35,19 @@ namespace NarrativeWorldCreator.Pages
             InitializeComponent();
             this.selectedNode = selectedNode;
 
+            calculateMetricsAndRefreshLists();
+
+            // Set content of header
+            this.PageHeader.Text = "Entity selection - " + this.selectedNode.LocationName;
+        }
+
+        private void calculateMetricsAndRefreshLists()
+        {
             // Retrieve required and dependent objects
             MetricEngine.SetWeightsToAll();
             var predicates = new List<Predicate>();
-            foreach (var timepoint in this.selectedNode.TimePoints) {
+            foreach (var timepoint in this.selectedNode.TimePoints)
+            {
                 predicates = predicates.Concat(timepoint.PredicatesFilteredByCurrentLocation).ToList();
             }
 
@@ -53,9 +62,6 @@ namespace NarrativeWorldCreator.Pages
             var TOSVM = new TangibleObjectsSwapViewModel();
             TOSVM.Load(requiredAndDependentTOs);
             this.DataContext = TOSVM;
-
-            // Set content of header
-            this.PageHeader.Text = "Entity selection - " + this.selectedNode.LocationName;
         }
 
         private void btnGraphPage_Click(object sender, RoutedEventArgs e)
