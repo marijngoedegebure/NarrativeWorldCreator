@@ -173,10 +173,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                 for (int j = -10; j <= 10; j+=1)
                 {
                     Color c = Color.White;
-                    if (i == 0 && j == 0)
-                    {
-                        c = Color.DarkBlue;
-                    }
                     var quad = new Quad(new Vector3(i, j, 0), new Vector3(0, 0, 1), Vector3.Up, 0.05f, 0.05f, c);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
