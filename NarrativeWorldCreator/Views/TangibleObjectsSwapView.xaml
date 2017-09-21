@@ -24,7 +24,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding TangibleObject.DefaultName, StringFormat='Name: {0}'}"/>
-                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EndValue, StringFormat='End value: {0}' }" />
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding EndValue, StringFormat='Importance value: {0}' }" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
