@@ -701,6 +701,7 @@ namespace NarrativeWorldCreator
             this.WorkInProgressConfiguration = new Configuration();
             this.WorkInProgressConfiguration = this.Configuration.Copy();
             IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            GenerateConfigurations();
             ShowGenerationScenes();
 
             this.CurrentFillingMode = MainFillingMode.Repositioning;
@@ -716,7 +717,7 @@ namespace NarrativeWorldCreator
             region_filling_2_4_content.Visibility = Visibility.Visible;
             region_filling_2_5.Visibility = Visibility.Visible;
             region_filling_2_5_content.Visibility = Visibility.Visible;
-            region_tabcontrol.SelectedIndex = 4;
+            region_tabcontrol.SelectedIndex = 5;
         }
 
         internal void ChangeUIToMainMenu()
