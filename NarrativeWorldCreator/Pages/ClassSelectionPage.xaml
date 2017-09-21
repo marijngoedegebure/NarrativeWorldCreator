@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -26,38 +27,48 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0">Entity selection</TextBlock>
+            <TextBlock x:Name="PageHeader" Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you are able to select the entities which you will later use to instance objects from. The left column shows the entities which are mentioned in the story for this location. The middle and right column allow selection and deselection of entities."/>
             <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
-                <Button x:Name="GotoGraphPageButton" Content="Back" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
-                <Button x:Name="RegionPageButton" Content="Next" Margin="0,0,10,0" HorizontalAlignment="Right" Width="200" Click="btnRegionPage_Click"/>
+                <Button x:Name="GotoGraphPageButton" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
             </WrapPanel>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="0" Margin="0,50,0,0">
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0,20,0,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="10,10,0,0" Grid.Column="0" Grid.Row="0" FontWeight="Bold">Required entities</TextBlock>
-                <TextBlock Margin="10,10,0,0" Grid.Column="1" Grid.Row="0" FontWeight="Bold">Available entities</TextBlock>
-                <TextBlock Margin="10,10,0,0" Grid.Column="2" Grid.Row="0"></TextBlock>
-                <TextBlock Margin="10,10,0,0" Grid.Column="3" Grid.Row="0" FontWeight="Bold">Selected entities</TextBlock>
-                <TextBlock Margin="10,0,0,0" Grid.Column="0" Grid.Row="1">The list of entities that are mentioned in the story and are thus required to be placed.</TextBlock>
-                <TextBlock Margin="10,0,0,0" Grid.Column="1" Grid.Row="1">The list of available entities, ordered using criteria that measure fill value.</TextBlock>
-                <TextBlock Margin="10,0,0,0" Grid.Column="2" Grid.Row="1"></TextBlock>
-                <TextBlock Margin="10,0,0,0" Grid.Column="3" Grid.Row="1">The list of selected entities.</TextBlock>
+                <TextBlock Margin="10,10,0,0" Grid.Column="0" Grid.Row="0" FontWeight="Bold">Available entities</TextBlock>
+                <TextBlock Margin="10,10,0,0" Grid.Column="1" Grid.Row="0"></TextBlock>
+                <TextBlock Margin="10,10,0,0" Grid.Column="2" Grid.Row="0" FontWeight="Bold">Selected entities</TextBlock>
+                <TextBlock Margin="10,0,0,0" Grid.Column="0" Grid.Row="1">The list of available entities, ordered using criteria that measure fill value.</TextBlock>
+                <TextBlock Margin="10,0,0,0" Grid.Column="1" Grid.Row="1"></TextBlock>
+                <TextBlock Margin="10,0,0,0" Grid.Column="2" Grid.Row="1">The list of required and the list of selected entities. The required entities are derived from the events in the story.</TextBlock>
                 
+                <views:TangibleObjectsSwapView Grid.Column="0" Grid.Row="2" Grid.RowSpan="2" x:Name="AvailableSwapView" Loaded = "AvailableSwapView_Loaded"/>
+                <Grid Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"  Grid.Row="0" x:Name="MoveToSelected" Content="To Selected &gt;" Margin="50" Click="btnMoveToSelected"/>
+                    <Button Grid.Column="0"  Grid.Row="2" x:Name="MoveToAvailable" Content="&lt; To Available" Margin="50" Click="btnMoveToAvailable"/>
+                </Grid>
                 <ItemsControl Name="RequiredTOIC"
-                  Grid.Column="0"
+                  Grid.Column="2"
                   Grid.Row="2"
                   Margin="10" 
                   ItemsSource = "{Binding Path = TangibleObjects }">
@@ -75,22 +86,9 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <views:TangibleObjectsSwapView Grid.Column="1" Grid.Row="2" x:Name="AvailableSwapView" Loaded = "AvailableSwapView_Loaded"/>
-                <Grid Grid.Row="2" Grid.Column="2" Margin="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0"  Grid.Row="0" x:Name="MoveToSelected" Content="To Selected" Margin="50" Click="btnMoveToSelected"/>
-                    <Button Grid.Column="0"  Grid.Row="2" x:Name="MoveToAvailable" Content="To Available" Margin="50" Click="btnMoveToAvailable"/>
-                </Grid>
-                <views:TangibleObjectsSwapView Grid.Column="3" Grid.Row="2" x:Name="SelectedSwapView" Loaded = "SelectedSwapView_Loaded"/>
+                <views:TangibleObjectsSwapView Grid.Column="2" Grid.Row="3" x:Name="SelectedSwapView" Loaded = "SelectedSwapView_Loaded"/>
             </Grid>
         </Grid>
+        <Button Grid.Column="0" Grid.Row="2" x:Name="RegionPageButton" Content="Next" Margin="10" HorizontalAlignment="Right" MinWidth="200" Click="btnRegionPage_Click"/>
     </Grid>
 </Page>
