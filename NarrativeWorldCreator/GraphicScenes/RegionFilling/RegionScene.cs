@@ -133,7 +133,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected override void Draw(GameTime time)
         {
-            GraphicsDevice.Clear(_mouseState.LeftButton == ButtonState.Pressed ? Color.Black : Color.CornflowerBlue);
             this.world = Matrix.Identity;
             UpdateViewAndProj();
             // since we share the GraphicsDevice with all hosts, we need to save and reset the states
@@ -144,8 +143,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             var raster = GraphicsDevice.RasterizerState;
             var sampler = GraphicsDevice.SamplerStates[0];
 
-            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
-            this.drawTestRuler();
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Brown);
 
             if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
             {
@@ -155,6 +153,8 @@ namespace NarrativeWorldCreator.GraphicScenes
             {
                 drawRegionPolygon();
             }
+
+            this.drawTestRuler();
 
             //if (this._currentRegionPage.InstanceOfObjectToAdd != null && this._currentRegionPage.CurrentAdditionMode == RegionPage.AdditionMode.Placement)
             //{
@@ -195,16 +195,35 @@ namespace NarrativeWorldCreator.GraphicScenes
 
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
+            // calculate max and min of floor:
+            double minX = Double.MaxValue;
+            double minY = Double.MaxValue;
+            double maxX = 0;
+            double maxY = 0;
+            if (_currentRegionPage.selectedNode.FloorCreated)
+            {
+                foreach (var point in this._currentRegionPage.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault().Polygon.GetAllVertices())
+                {
+                    minX = Math.Min(minX, point.X);
+                    minY = Math.Min(minY, point.Y);
+                    maxX = Math.Max(maxX, point.X);
+                    maxY = Math.Max(maxY, point.Y);
+                }
+            }
+
             // Draws a square of 0.25 by 0.25 ever 10 units
             for (int i = -10; i <= 10; i+=1)
             {
                 for (int j = -10; j <= 10; j+=1)
                 {
-                    Color c = Color.DarkGreen;
-                    if (i == 0 && j == 0)
+                    Color c = Color.Gray;
+
+                    if (_currentRegionPage.selectedNode.FloorCreated)
                     {
-                        c = Color.DarkBlue;
+                        if (i > minX && i < maxX && j > minY && j < maxY)
+                            c = Color.DarkGray;
                     }
+
                     var quad = new Quad(new Vector3(i, j, 0), new Vector3(0, 0, 1), Vector3.Up, 0.05f, 0.05f, c);
                     foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                     {
@@ -260,7 +279,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 List<VertexPositionColor> regionPoints = new List<VertexPositionColor>();
-                regionPoints = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.White);
+                regionPoints = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.Black);
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
                     // This is the all-important line that sets the effect, and all of its settings, on the graphics device
