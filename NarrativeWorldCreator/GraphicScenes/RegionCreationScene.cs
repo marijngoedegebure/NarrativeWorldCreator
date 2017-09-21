@@ -139,17 +139,10 @@ namespace NarrativeWorldCreator.GraphicScenes
             var raster = GraphicsDevice.RasterizerState;
             var sampler = GraphicsDevice.SamplerStates[0];
 
-            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Blue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Brown);
+            
+            drawRegionPolygon();
             this.drawTestRuler();
-
-            if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
-            {
-                drawFloorWireframe();
-            }
-            if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
-            {
-                drawRegionPolygon();
-            }
 
             // Draw all objects that are known 2.0, but only when there is no other configuration selected
             drawRegionCreationBox();
@@ -174,12 +167,12 @@ namespace NarrativeWorldCreator.GraphicScenes
 
             GraphicsDevice.RasterizerState = RasterizerState.CullNone;
 
-            // Draws a square of 0.25 by 0.25 ever 10 units
+            // Draws a square of 0.05 by 0.05 ever 1 unit
             for (int i = -10; i <= 10; i+=1)
             {
                 for (int j = -10; j <= 10; j+=1)
                 {
-                    Color c = Color.DarkGreen;
+                    Color c = Color.White;
                     if (i == 0 && j == 0)
                     {
                         c = Color.DarkBlue;
@@ -205,37 +198,10 @@ namespace NarrativeWorldCreator.GraphicScenes
                 GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
-                _spriteBatch.Draw(SystemStateTracker.RegionCreationTexture, new Rectangle(RegionCreationInitialCoords.X, RegionCreationInitialCoords.Y, RegionCreationCurrentCoords.X - RegionCreationInitialCoords.X, RegionCreationCurrentCoords.Y - RegionCreationInitialCoords.Y), Color.White * 1.0f);
+                _spriteBatch.Draw(SystemStateTracker.RegionCreationTexture, new Rectangle(RegionCreationInitialCoords.X, RegionCreationInitialCoords.Y, RegionCreationCurrentCoords.X - RegionCreationInitialCoords.X, RegionCreationCurrentCoords.Y - RegionCreationInitialCoords.Y), Color.Gray);
 
                 _spriteBatch.End();
                 GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
-            }
-        }
-
-        private void drawFloorWireframe()
-        {
-            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
-            basicEffect.World = this.world;
-            basicEffect.View = this.view;
-            basicEffect.Projection = this.proj;
-            basicEffect.VertexColorEnabled = true;
-            var floorInstance = this._currentPage.Floor;
-            if (floorInstance != null)
-            {
-                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
-                // If shape is compatible with currently selected entika object that can be placed, use a different color
-                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
-                drawableTriangles = DrawingEngine.GetDrawableTriangles(result, Color.Red);
-                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-                {
-                    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                    pass.Apply();
-                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                        PrimitiveType.TriangleList,
-                        drawableTriangles.ToArray(),
-                        0,
-                        drawableTriangles.Count / 3);
-                }
             }
         }
 
@@ -325,36 +291,36 @@ namespace NarrativeWorldCreator.GraphicScenes
             //}
 
             // Always draw the vertices
-            if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
-            {
-                GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
-                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
-                // If shape is compatible with currently selected entika object that can be placed, use a different color
-                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
-                // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
-                List<VertexPositionColor> points = new List<VertexPositionColor>();
-                points = DrawingEngine.GetDrawableTriangles(result, Color.White);
+            //if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
+            //{
+            //    GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
+            //    var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
+            //    // If shape is compatible with currently selected entika object that can be placed, use a different color
+            //    List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
+            //    // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
+            //    List<VertexPositionColor> points = new List<VertexPositionColor>();
+            //    points = DrawingEngine.GetDrawableTriangles(result, Color.White);
 
-                // Create quads based off vertex points
-                for (int i = 0; i < points.Count; i++)
-                {
+            //    // Create quads based off vertex points
+            //    for (int i = 0; i < points.Count; i++)
+            //    {
 
-                    Color color = Color.Black;
-                    color = Color.Red;
-                    if (draggingVertexIndex != -1 && draggingVertexIndex == i)
-                        color = Color.Yellow;
-                    Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, (float) (0.001 * cam._pos.Z), (float)(0.001 * cam._pos.Z), color);
-                    foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-                    {
-                        pass.Apply();
-                        GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                            PrimitiveType.TriangleStrip,
-                            quad.Vertices,
-                            0,
-                            2);
-                    }
-                }
-            }
+            //        Color color = Color.Black;
+            //        color = Color.Red;
+            //        if (draggingVertexIndex != -1 && draggingVertexIndex == i)
+            //            color = Color.Yellow;
+            //        Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, (float) (0.001 * cam._pos.Z), (float)(0.001 * cam._pos.Z), color);
+            //        foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
+            //        {
+            //            pass.Apply();
+            //            GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
+            //                PrimitiveType.TriangleStrip,
+            //                quad.Vertices,
+            //                0,
+            //                2);
+            //        }
+            //    }
+            //}
         }
 
         private VertexPositionColor[] CreateLine(Vertex start, Vertex end, Color color)
@@ -428,18 +394,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
             // Handle region creation input:
             HandleRegionCreation();
-
-            if (_keyboardState.IsKeyUp(Keys.Tab) && _previousKeyboardState.IsKeyDown(Keys.Tab))
-            {
-                if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
-                {
-                    CurrentDrawingMode = DrawingModes.UnderlyingRegion;
-                }
-                else if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
-                {
-                    CurrentDrawingMode = DrawingModes.MinkowskiMinus;
-                }
-            }
+    
             var floorInstance = this._currentPage.Floor;
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
