@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TriangleNet.Geometry;
 
 namespace NarrativeWorldCreator.Solvers
 {
@@ -70,32 +69,6 @@ namespace NarrativeWorldCreator.Solvers
         {
             foreach (Vec2 a in A)
                 yield return a - min;
-        }
-
-        public static TriangleNet.Mesh GetMeshForPolygon(Polygon p)
-        {
-            // Triangulate using Triangle.NET
-            var geometry = new InputGeometry(p.GetAllVertices().Count());
-            var contours = p.Contours.ToList();
-            for (int i = 0; i < p.NumContours; i++)
-            {
-                var points = new List<TriangleNet.Geometry.Point>();
-                foreach (var vector in contours[i])
-                {
-                    points.Add(new TriangleNet.Geometry.Point(vector.X, vector.Y));
-                }
-                if (p.IsHole(i))
-                {
-                    geometry.AddRingAsHole(points);
-                }
-                else
-                {
-                    geometry.AddRing(points);
-                }
-            }
-            TriangleNet.Mesh mesh = new TriangleNet.Mesh();
-            mesh.Triangulate(geometry);
-            return mesh;
         }
 
         // Only converts the first contour of a polygon

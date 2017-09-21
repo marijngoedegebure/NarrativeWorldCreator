@@ -447,10 +447,6 @@
       <Project>{621ef42a-7018-4b4c-9cc5-80636fd2d398}</Project>
       <Name>Semantics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Triangle\Triangle.csproj">
-      <Project>{F7907A0A-B75F-400B-9E78-BFAD00DB4D6B}</Project>
-      <Name>Triangle</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

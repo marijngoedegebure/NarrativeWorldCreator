@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TriangleNet.Data;
 
 namespace NarrativeWorldCreator.GraphicScenes
 {
@@ -236,12 +235,9 @@ namespace NarrativeWorldCreator.GraphicScenes
             var floorInstance = this._currentPage.Floor;
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
-                var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
-                // If shape is compatible with currently selected entika object that can be placed, use a different color
-                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
                 // List<VertexPositionColor> regionPoints = _currentRegionPage.selectedNode.RegionOutlinePoints;
                 List<VertexPositionColor> regionPoints = new List<VertexPositionColor>();
-                regionPoints = DrawingEngine.GetDrawableTriangles(result, Color.Black);
+                regionPoints = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.Black);
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
                     // This is the all-important line that sets the effect, and all of its settings, on the graphics device
@@ -338,21 +334,6 @@ namespace NarrativeWorldCreator.GraphicScenes
             //        }
             //    }
             //}
-        }
-
-        private VertexPositionColor[] CreateLine(Vertex start, Vertex end, Color color)
-        {
-            VertexPositionColor[] line = new VertexPositionColor[6];
-            // line triangle 1
-            line[0] = new VertexPositionColor(new Vector3((float)start.X - this.LineThickness/2, (float)start.Y - this.LineThickness / 2, 0), color);
-            line[1] = new VertexPositionColor(new Vector3((float)start.X + this.LineThickness / 2, (float)start.Y + this.LineThickness / 2, 0), color);
-            line[2] = new VertexPositionColor(new Vector3((float)end.X + this.LineThickness / 2, (float)end.Y + this.LineThickness / 2, 0), color);
-
-            // Line triangle 2
-            line[3] = new VertexPositionColor(new Vector3((float)end.X + this.LineThickness / 2, (float)end.Y + this.LineThickness / 2, 0), color);
-            line[4] = new VertexPositionColor(new Vector3((float)end.X - this.LineThickness / 2, (float)end.Y - 1, 0), color);
-            line[5] = new VertexPositionColor(new Vector3((float)start.X - this.LineThickness / 2, (float)start.Y - this.LineThickness / 2, 0), color);
-            return line;
         }
 
         private VertexPositionColor[] CreateLine(Vector3 start, Vector3 end, Color color)
@@ -453,10 +434,9 @@ namespace NarrativeWorldCreator.GraphicScenes
         private int CalculateCollisionQuad()
         {
             Ray ray = CalculateMouseRay();
-            var floorInstance = this._currentPage.Floor;
-            var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);    
+            var floorInstance = this._currentPage.Floor;   
             List<VertexPositionColor> points = new List<VertexPositionColor>();
-            points = DrawingEngine.GetDrawableTriangles(result, Color.White);
+            points = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.White);
             for (int i = 0; i < points.Count; i++)
             {
                 Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, Color.Red);

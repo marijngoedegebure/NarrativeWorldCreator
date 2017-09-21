@@ -314,9 +314,8 @@ namespace NarrativeWorldCreator.GraphicScenes
         {
             Ray ray = CalculateMouseRay();
             var floorInstance = this._currentRegionPage.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-            var result = HelperFunctions.GetMeshForPolygon(floorInstance.Polygon);
             List<VertexPositionColor> points = new List<VertexPositionColor>();
-            points = DrawingEngine.GetDrawableTriangles(result, Color.White);
+            points = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.White);
             for (int i = 0; i < points.Count; i++)
             {
                 Quad quad = new Quad(points[i].Position, new Vector3(points[i].Position.X, points[i].Position.Y, 1), Vector3.Up, 1, 1, Color.Red);

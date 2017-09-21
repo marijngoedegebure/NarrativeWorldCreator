@@ -7,41 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TriangleNet.Geometry;
 
 namespace NarrativeWorldCreator.GraphicScenes
 {
     public static class DrawingEngine
     {
-        public static TriangleNet.Mesh triangulatePolygon(Shape shape)
-        {
-            if (shape.Points.Count > 2)
-            {
-                // Triangulate using Triangle.NET
-                var geometry = new InputGeometry(shape.Points.Count);
-                for (int i = 0; i < shape.Points.Count; i++)
-                {
-                    geometry.AddPoint(shape.Points[i].X, shape.Points[i].Y, 1);
-                    geometry.AddSegment(i, (i + 1) % shape.Points.Count, 2);
-                }
-                TriangleNet.Mesh mesh = new TriangleNet.Mesh();
-                mesh.Triangulate(geometry);
-                return mesh;
-            }
-            return null;
-        }
 
-        public static List<VertexPositionColor> GetDrawableTriangles(TriangleNet.Mesh mesh, Color color)
+        public static List<VertexPositionColor> GetDrawableTriangles(List<Vec2d> vertices, Color color)
         {
             List<VertexPositionColor> ret = new List<VertexPositionColor>();
-            var triangles = mesh.Triangles.ToList();
-            var vertices = mesh.Vertices.ToList();
-            for (int i = 0; i < triangles.Count; i++)
-            {
-                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P0].X, (float)vertices[triangles[i].P0].Y, 0), color));
-                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P1].X, (float)vertices[triangles[i].P1].Y, 0), color));
-                ret.Add(new VertexPositionColor(new Vector3((float)vertices[triangles[i].P2].X, (float)vertices[triangles[i].P2].Y, 0), color));
-            }
+            // Triangle 1 of rectanle
+            ret.Add(new VertexPositionColor(new Vector3((float)vertices[3].X, (float)vertices[3].Y, 0), color));
+            ret.Add(new VertexPositionColor(new Vector3((float)vertices[0].X, (float)vertices[0].Y, 0), color));
+            ret.Add(new VertexPositionColor(new Vector3((float)vertices[1].X, (float)vertices[1].Y, 0), color));
+
+            // Triangle 2 of rectangle
+            ret.Add(new VertexPositionColor(new Vector3((float)vertices[3].X, (float)vertices[3].Y, 0), color));
+            ret.Add(new VertexPositionColor(new Vector3((float)vertices[1].X, (float)vertices[1].Y, 0), color));
+            ret.Add(new VertexPositionColor(new Vector3((float)vertices[2].X, (float)vertices[2].Y, 0), color));
+
             return ret;
         }
 
