@@ -21,7 +21,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Name="item" Orientation="Vertical" MinWidth="50">
+                    <StackPanel Name="item" Orientation="Vertical" Width="70" Height="50">
                         <TextBlock Text="{Binding Path = TimePoint, Mode = TwoWay}" FontWeight="Bold"/>
                         <TextBlock Text="{Binding Path = NarrativeActionName, Mode = TwoWay}" />
                     </StackPanel>

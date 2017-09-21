@@ -12,21 +12,24 @@
             Margin="10"
             Name="lvNodeDetailList"
             ItemsSource = "{Binding Path = NarrativeTimePoints}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"></StackPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Name="item" Orientation="Vertical" Margin="5">
-                        <TextBlock Text="{Binding Path = NarrativeTimePoint.TimePoint, Mode = OneWay, StringFormat='Timepoint: {0}'}" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Path = NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name, Mode = OneWay,  StringFormat='Event: {0}'}" />
-                        <TextBlock Text="{Binding Path = NarrativeTimePoint.Location.LocationName, Mode = OneWay, StringFormat='Location: {0}'}" />
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="4">
+                        <StackPanel Name="item" Orientation="Vertical" Margin="5">
+
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.TimePoint, Mode = OneWay, StringFormat='Timepoint: {0}'}"/>
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name, Mode = OneWay,  StringFormat='Event: {0}'}" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path = NarrativeTimePoint.Location.LocationName, Mode = OneWay, StringFormat='Location: {0}'}" FontWeight="Bold" />
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.Configuration.InstancedObjects.Count, Mode = OneWay, StringFormat='Number of instances: {0}'}" />
                         <TextBlock Text="{Binding Path = NarrativeTimePoint.Configuration.InstancedRelations.Count, Mode = OneWay, StringFormat='Number of relations: {0}'}" />
-                    </StackPanel>
-                </DataTemplate>
+                        </StackPanel>
+                        </Border>
+                    </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         </ScrollViewer>

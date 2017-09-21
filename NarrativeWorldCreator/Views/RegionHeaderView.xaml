@@ -8,13 +8,11 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="0" x:Name="regionHeader" HorizontalAlignment="Center" Text="{Binding SelectedNode.LocationName }"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" x:Name="regionHeader" HorizontalAlignment="Center" Text="{Binding SelectedNode.LocationName }"></TextBlock>
     </Grid>
 </UserControl>

@@ -19,14 +19,18 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0,0,0,10">
-                <Button x:Name="GotoGraphPageButton" Content="Back to graph" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
-                <Button x:Name="GotoClassSelectionPageButton" Content="Back to selection" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnClassSelectionPage_Click"/>
-                <Button x:Name="GotoRegionPageButton" Content="Next" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnRegionPage_Click"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0">Environment creation</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you can create a surface for the environment."/>
+            <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
+                <Button x:Name="GotoGraphPageButton" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
+                <Button x:Name="GotoClassSelectionPageButton" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnClassSelectionPage_Click"/>
+                <Button x:Name="GotoRegionPageButton" Content="Next" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnRegionPage_Click"/>
             </WrapPanel>
         </Grid>
         <Grid x:Name="BasicWindow" Grid.Row="1" Grid.Column="0" Margin="10" Visibility="Visible">

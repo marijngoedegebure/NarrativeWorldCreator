@@ -45,26 +45,18 @@ namespace NarrativeWorldCreator
 
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
-            if ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0] != null)
+            var SelectedTimePoint = ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0]).NarrativeTimePoint;
+            if (selectedNode.AvailableTangibleObjects.Count == 0)
             {
-                ErrorTB.Text = "";
-                var SelectedTimePoint = ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0]).NarrativeTimePoint;
-                if (selectedNode.AvailableTangibleObjects.Count == 0)
-                {
-                    this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
-                }
-                else if (!this.selectedNode.FloorCreated)
-                {
-                    this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
-                }
-                else
-                {
-                    this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
-                }
+                this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
+            }
+            else if (!this.selectedNode.FloorCreated)
+            {
+                this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
             }
             else
             {
-                ErrorTB.Text = "Please select a timepoint.";
+                this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
             }
         }
 

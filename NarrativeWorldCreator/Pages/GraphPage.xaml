@@ -11,6 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -19,16 +20,20 @@
         <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <WrapPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="0,0,0,10">
-                <Button x:Name="GotoInitPageButton" Content="Click here to go to Init page." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
-                <Button x:Name="ReloadGraphButton" Content="Reload Graph" Margin="10,10,0,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
+            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0">Location selection</TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="This screen shows the locations of the story and their connections. You can select a location by clicking on the yellow circle, this will show the events that happen in this location. You can then start to create/fill this location by pressing the button at the top of the list."/>
+            <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
+                <Button x:Name="GotoInitPageButton" Content="Go back to parsing the story" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnInit_Click"/>
+                <Button x:Name="ReloadGraphButton" Content="Refresh visualization" Margin="0,0,10,0" HorizontalAlignment="Left" Width="200" Click="btnReloadGraph_Click"/>
             </WrapPanel>
-        </Grid>        
-        <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -53,8 +58,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="button5" Grid.Column="0" Grid.Row="0" Content="Select timepoint from below and click here to see the region." HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToRegionPage_Click"/>
-                    <TextBlock x:Name="ErrorTB" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="10, 10, 0 ,0" VerticalAlignment="Top" Width="200"/>
+                    <Button x:Name="button5" Grid.Column="0" Grid.Row="0" Content="Create/Fill this location" HorizontalAlignment="Center" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Click="btnGoToRegionPage_Click"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="10, 10, 0 ,0" VerticalAlignment="Top" Width="200" FontWeight="Bold">List of events of the selected location</TextBlock>
                     <views:GraphDetailTimePointListView Grid.Column="0" Grid.Row="2" x:Name="GraphDetailTimePointListControl" Loaded = "GraphDetailTimePointListControl_Loaded"/>
                 </Grid>
             </Grid>
