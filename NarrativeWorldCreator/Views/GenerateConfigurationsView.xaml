@@ -94,7 +94,6 @@
             <TextBox Name="gridxDim" Grid.Row="15" Grid.Column="1" />
 
             <Button Grid.Row="16" Grid.Column="1" Content="Refresh configurations" Click="btnRefreshConfigurations"/>
-            <Button Grid.Row="17" Grid.Column="0" Content="Back" Click="Back"/>
         </Grid>
     </Grid>
 </UserControl>

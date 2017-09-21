@@ -92,5 +92,11 @@ namespace NarrativeWorldCreator.Views
                 regionPage.Next();
             }
         }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            regionPage.Back();
+        }
     }
 }

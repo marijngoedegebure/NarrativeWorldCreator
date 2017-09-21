@@ -34,12 +34,6 @@ namespace NarrativeWorldCreator.Views
             return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
-        private void Back(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            regionPage.Back();
-        }
-
         private void btnRefreshConfigurations(object sender, RoutedEventArgs e)
         {
             SaveValues();

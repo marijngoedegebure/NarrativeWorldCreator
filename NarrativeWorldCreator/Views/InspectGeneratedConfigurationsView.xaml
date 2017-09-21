@@ -13,11 +13,12 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="1" Content="Save selected configuration" Click="SaveConfiguration"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Back" Click="Back"/>
         <ListView Name="ConfigurationsListTopLeft"
             Grid.Column="0"
             Grid.Row="1"
@@ -81,5 +82,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Grid.Row="5" Grid.Column="0" Content="Save selected configuration" Click="SaveConfiguration"/>
     </Grid>
 </UserControl>
