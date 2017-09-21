@@ -22,7 +22,7 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" Margin="10,10,0,0">Story parsing</TextBlock>
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="Here you can load in the story and view some details about it."/>
