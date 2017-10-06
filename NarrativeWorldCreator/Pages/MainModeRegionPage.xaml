@@ -40,7 +40,6 @@
                     <Button x:Name="button1" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
                     <Button x:Name="button5" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToInit_Click"/>
                     <Button x:Name="button76" Content="Back to environment creation" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
-                    <Button x:Name="button12345" Content="Go to debug mode" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGotoDebugMode_Click"/>
                 </WrapPanel>
             </Grid>
             <Grid Grid.Row="1" Grid.Column="0">
@@ -173,6 +172,12 @@
                     </TabItem>
                     <TabItem Name="region_filling_21" Header="Region detail" >
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
+                    </TabItem>
+                    <TabItem Name="region_filling_23" Header="Delta detail" >
+                        <views:DeltaListView x:Name="DeltaListView" Loaded="DeltaListView_Loaded" />
+                    </TabItem>
+                    <TabItem Name="region_filling_22" Header="Selection detail" >
+                        <views:SelectedObjectDetailView x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
                     </TabItem>
                 </TabControl>
             </Grid>

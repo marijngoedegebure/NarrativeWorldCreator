@@ -44,10 +44,10 @@ namespace NarrativeWorldCreator.Views
             parentPage.UpdateDeltaListView();
         }
 
-        private DebugRegionPage GetParentPage()
+        private MainModeRegionPage GetParentPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (DebugRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
     }
 }

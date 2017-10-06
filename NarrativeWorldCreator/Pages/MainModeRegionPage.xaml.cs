@@ -189,7 +189,7 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 1;
             // Determine which view to be shown:
-            if (SystemStateTracker.SelectClassSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 TangibleObjectsView.Visibility = Visibility.Collapsed;
                 TangibleObjectsSystemView.Visibility = Visibility.Visible;
@@ -229,7 +229,7 @@ namespace NarrativeWorldCreator
             region_tabcontrol.SelectedIndex = 2;
 
             // Determine which view to be shown:
-            if (SystemStateTracker.SelectRelationshipSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 RelationshipSelectionView.Visibility = Visibility.Collapsed;
                 RelationshipSelectionSystemView.Visibility = Visibility.Visible;
@@ -271,7 +271,7 @@ namespace NarrativeWorldCreator
             region_tabcontrol.SelectedIndex = 3;
 
             // Determine which view to be shown:
-            if (SystemStateTracker.SelectInstancesSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 InstanceSelectionView.Visibility = Visibility.Collapsed;
                 InstanceSelectionSystemView.Visibility = Visibility.Visible;
@@ -304,7 +304,7 @@ namespace NarrativeWorldCreator
 
             region_tabcontrol.SelectedIndex = 5;
 
-            if (SystemStateTracker.SelectPositionSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 InspectGeneratedConfigurationsView.Visibility = Visibility.Collapsed;
                 InspectGeneratedConfigurationsSystemView.Visibility = Visibility.Visible;
@@ -335,7 +335,7 @@ namespace NarrativeWorldCreator
         {
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.selectedNode.TimePoints[SelectedTimePoint], this.WorkInProgressConfiguration);
             GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).ToList();
-            if (SystemStateTracker.SelectPositionSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 GeneratedConfigurations = GeneratedConfigurations.Take(4).ToList();
             }
@@ -343,7 +343,7 @@ namespace NarrativeWorldCreator
             // Update list of configurations using generated list of regionpage
             var gcVM = (GenerateConfigurationsViewModel)InspectGeneratedConfigurationsView.DataContext;
             gcVM.Load(GeneratedConfigurations);
-            if (SystemStateTracker.SelectPositionSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 this.InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
                 this.TopLeftSelectedGPUConfigurationResult = 0;
@@ -361,7 +361,7 @@ namespace NarrativeWorldCreator
         {
             RelationshipSelectionAndInstancingViewModel rivm;
             // Retrieve rivm from correct source, system or user view
-            if (SystemStateTracker.SelectInstancesSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 rivm = this.InstanceSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedItem as RelationshipSelectionAndInstancingViewModel;
             }
@@ -378,7 +378,7 @@ namespace NarrativeWorldCreator
         {
             // Retrieve data from correct view
             RelationshipSelectionAndInstancingViewModel rivm;
-            if (SystemStateTracker.SelectRelationshipSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 rivm = RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedItem as RelationshipSelectionAndInstancingViewModel;
             }
@@ -388,7 +388,7 @@ namespace NarrativeWorldCreator
             }
 
             // Transmit rivm to next (correct) view
-            if (SystemStateTracker.SelectInstancesSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 // Generated instance options
                 var list = RelationshipSelectionSolver.GetRandomRelationships(rivm, SystemStateTracker.NumberOfChoices);
@@ -543,7 +543,7 @@ namespace NarrativeWorldCreator
         {
             // Retrieve selected item from correct source
             TangibleObject selectedItem;
-            if (SystemStateTracker.SelectClassSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 selectedItem = ((TOTreeTangibleObject)this.TangibleObjectsSystemView.ToListView.SelectedItem).TangibleObject;
             }
@@ -567,7 +567,7 @@ namespace NarrativeWorldCreator
 
             // Apply chosen results to timepoint
             // check whether it is the systems job or the user's
-            if (SystemStateTracker.SelectRelationshipSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 var list = RelationshipSelectionSolver.GetRandomRelationships(riVM, SystemStateTracker.NumberOfChoices);
                 
@@ -589,7 +589,7 @@ namespace NarrativeWorldCreator
         private void ApplyConfiguration()
         {
             GPUConfigurationResult gpuConfig;
-            if (SystemStateTracker.SelectPositionSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 gpuConfig = (this.InspectGeneratedConfigurationsSystemView.ConfigurationsList.SelectedItem as GPUConfigurationResultViewModel).GPUConfigurationResult;
             }
@@ -685,7 +685,7 @@ namespace NarrativeWorldCreator
         private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
         {
             // Check whether the first step is done by system or user:
-            if (SystemStateTracker.SelectClassSystem)
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 RefreshTangibleObjectsSystemView();
             }
@@ -741,6 +741,42 @@ namespace NarrativeWorldCreator
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 0;
+        }
+
+        private void DeltaListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateDeltaListView();
+        }
+
+        public void UpdateDeltaListView()
+        {
+            var dlvm = new DeltaListViewModel();
+            dlvm.Load(selectedNode, SelectedTimePoint);
+            this.DeltaListView.DataContext = dlvm;
+        }
+
+
+        internal override void UpdateSelectedObjectDetailView()
+        {
+            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
+        }
+
+        internal override void RefreshSelectedObjectView()
+        {
+            var removalinstances = this.SelectedEntikaInstances.Where(sei => !this.Configuration.InstancedObjects.Contains(sei)).ToList();
+            foreach (var removal in removalinstances)
+            {
+                this.SelectedEntikaInstances.Remove(removal);
+            }
+            (this.SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
+        }
+
+        private void SelectedObjectDetailView_Loaded(object sender, RoutedEventArgs e)
+        {
+            SelectedObjectDetailViewModel selectedObjectViewModelObject =
+               new SelectedObjectDetailViewModel();
+            selectedObjectViewModelObject.LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
+            SelectedObjectDetailView.DataContext = selectedObjectViewModelObject;
         }
 
         private void btnReturnToRegionCreation_Click(object sender, RoutedEventArgs e)

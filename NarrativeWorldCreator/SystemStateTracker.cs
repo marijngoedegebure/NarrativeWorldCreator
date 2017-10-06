@@ -27,11 +27,17 @@ namespace NarrativeWorldCreator
         public static Texture2D BoxSelectTexture;
         public static Texture2D RegionCreationTexture;
 
-        // Process settings
-        public static bool SelectClassSystem = false;
-        public static bool SelectRelationshipSystem = false;
-        public static bool SelectInstancesSystem = false;
-        public static bool SelectPositionSystem = false;
+        
+        // Automation settings
+        public static Dictionary<string, bool> AutomationDictionary = new Dictionary<string, bool> {
+            { "throneroom1", true },
+            { "bedroomprincess1", false },
+            { "guestroom1", true },
+            { "diningroom1", false },
+            { "kitchen1", true },
+            { "prison1", false },
+            { "corridor1", true },
+        };
 
         // UI Settings
         internal static int NumberOfChoices = 4;

@@ -159,9 +159,6 @@
     <Compile Include="Pages\ClassSelectionPage.xaml.cs">
       <DependentUpon>ClassSelectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StepGenerationSettingPage.xaml.cs">
-      <DependentUpon>StepGenerationSettingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Parsers\BeliefSystem.cs" />
     <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Metrics\EntikaInstanceValued.cs" />
@@ -316,10 +313,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MainModeRegionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\StepGenerationSettingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
