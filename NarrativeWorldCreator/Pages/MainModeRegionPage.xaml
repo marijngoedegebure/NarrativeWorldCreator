@@ -74,10 +74,58 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <local:GenerationSceneTopLeft x:Name="GenerationSceneTopLeft" Grid.Row="0" Grid.Column="0"/>
-                <local:GenerationSceneTopRight x:Name="GenerationSceneTopRight" Grid.Row="0" Grid.Column="1"/>
-                <local:GenerationSceneBottomLeft x:Name="GenerationSceneBottomLeft" Grid.Row="1" Grid.Column="0"/>
-                <local:GenerationSceneBottomRight x:Name="GenerationSceneBottomRight" Grid.Row="1" Grid.Column="1"/>
+                <Border BorderBrush="Black" BorderThickness="2">
+                    <Grid Grid.Row="0" Grid.Column="0" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #1" Margin="10"/>
+                        <local:GenerationSceneTopLeft x:Name="GenerationSceneTopLeft" Grid.Row="1" Grid.Column="0"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="2">
+                    <Grid Grid.Row="0" Grid.Column="1" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #2" Margin="10"/>
+                        <local:GenerationSceneTopRight x:Name="GenerationSceneTopRight" Grid.Row="1" Grid.Column="0"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="2">
+                    <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #3" Margin="10"/>
+                        <local:GenerationSceneBottomLeft x:Name="GenerationSceneBottomLeft" Grid.Row="1" Grid.Column="0"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="2">
+                    <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #4" Margin="10"/>
+                        <local:GenerationSceneBottomRight x:Name="GenerationSceneBottomRight" Grid.Row="1" Grid.Column="0"/>
+                    </Grid>
+                </Border>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -145,7 +193,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:InspectGeneratedConfigurationsView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InspectGeneratedConfigurationsView"/>
+                            <views:ManualPlacementView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="ManualPlacementView"/>
                             <views:InspectGeneratedConfigurationsSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InspectGeneratedConfigurationsSystemView"/>
                         </Grid>
                     </TabItem>

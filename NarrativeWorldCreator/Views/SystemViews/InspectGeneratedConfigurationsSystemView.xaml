@@ -10,11 +10,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="1" Content="Save selected system configuration" Click="SaveConfiguration"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Back to relationship selection" Click="Back"/>
         <ListView Name="ConfigurationsList"
             Grid.Column="0"
             Grid.Row="1"
@@ -29,5 +31,20 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Grid Grid.Column="0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" Margin="10" Content="Show on screen 1" Click="ShowOnScreen1"/>
+            <Button Grid.Row="1" Grid.Column="0" Margin="10" Content="Show on screen 2" Click="ShowOnScreen2"/>
+            <Button Grid.Row="0" Grid.Column="1" Margin="10" Content="Show on screen 3" Click="ShowOnScreen3"/>
+            <Button Grid.Row="1" Grid.Column="1" Margin="10" Content="Show on screen 4" Click="ShowOnScreen4"/>
+        </Grid>
+        <Button Grid.Row="3" Grid.Column="0" Content="Save selected system configuration" Click="SaveConfiguration"/>
     </Grid>
 </UserControl>

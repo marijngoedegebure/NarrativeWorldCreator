@@ -40,5 +40,30 @@ namespace NarrativeWorldCreator.Views
                 regionPage.Next();
             }
         }
+
+        private void ShowOnScreen1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowOnScreen2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowOnScreen3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowOnScreen4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

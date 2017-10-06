@@ -234,8 +234,8 @@
     <Compile Include="Views\DeltaListView.xaml.cs">
       <DependentUpon>DeltaListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InspectGeneratedConfigurationsView.xaml.cs">
-      <DependentUpon>InspectGeneratedConfigurationsView.xaml</DependentUpon>
+    <Compile Include="Views\ManualPlacementView.xaml.cs">
+      <DependentUpon>ManualPlacementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NarrativeEntitiesView.xaml.cs">
       <DependentUpon>NarrativeEntitiesView.xaml</DependentUpon>
@@ -312,7 +312,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InspectGeneratedConfigurationsView.xaml">
+    <Page Include="Views\ManualPlacementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

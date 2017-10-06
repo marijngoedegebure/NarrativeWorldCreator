@@ -253,14 +253,14 @@ namespace NarrativeWorldCreator
 
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
-                InspectGeneratedConfigurationsView.Visibility = Visibility.Collapsed;
+                ManualPlacementView.Visibility = Visibility.Collapsed;
                 InspectGeneratedConfigurationsSystemView.Visibility = Visibility.Visible;
                 region_filling_2_4.Visibility = Visibility.Collapsed;
                 region_filling_2_4_content.Visibility = Visibility.Collapsed;
             }
             else
             {
-                InspectGeneratedConfigurationsView.Visibility = Visibility.Visible;
+                ManualPlacementView.Visibility = Visibility.Visible;
                 InspectGeneratedConfigurationsSystemView.Visibility = Visibility.Collapsed;
             }
         }
@@ -288,7 +288,7 @@ namespace NarrativeWorldCreator
             }
 
             // Update list of configurations using generated list of regionpage
-            var gcVM = (GenerateConfigurationsViewModel)InspectGeneratedConfigurationsView.DataContext;
+            var gcVM = (GenerateConfigurationsViewModel)InspectGeneratedConfigurationsSystemView.DataContext;
             gcVM.Load(GeneratedConfigurations);
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
@@ -300,7 +300,7 @@ namespace NarrativeWorldCreator
             }
             else
             {
-                this.InspectGeneratedConfigurationsView.DataContext = gcVM;
+                this.InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
             }
         }
 
@@ -311,6 +311,8 @@ namespace NarrativeWorldCreator
             {
                 AutomatedRelationshipSelectionViewModel arsVM = this.RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedItem as AutomatedRelationshipSelectionViewModel;
                 SaveRelationships(arsVM.OnRelationship, arsVM.OtherRelationships.ToList());
+                IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
+                GenerateConfigurations();
             }
             else
             {
@@ -318,8 +320,6 @@ namespace NarrativeWorldCreator
                 var otherRelationships = RelationshipSelectionView.OtherRelationshipsListView.SelectedItems.Cast<OtherRelationshipViewModel>().ToList();
                 SaveRelationships(onRelationship, otherRelationships);
             }
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
-            GenerateConfigurations();
         }
 
         private void SaveRelationships(OnRelationshipViewModel onRelationship, List<OtherRelationshipViewModel> otherRelationships)
@@ -379,7 +379,7 @@ namespace NarrativeWorldCreator
         {
             GenerateConfigurationsViewModel gcVM = new GenerateConfigurationsViewModel();
             gcVM.Load(new List<GPUConfigurationResult>());
-            InspectGeneratedConfigurationsView.DataContext = gcVM;
+            InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
             view.SliderWeightFocalPoint.Value = SystemStateTracker.WeightFocalPoint;
             view.SliderWeightPairWise.Value = SystemStateTracker.WeightPairWise;
             view.SliderWeightSymmetry.Value = SystemStateTracker.WeightSymmetry;
