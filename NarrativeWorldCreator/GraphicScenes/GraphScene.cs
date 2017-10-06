@@ -75,6 +75,16 @@ namespace NarrativeWorldCreator.GraphicScenes
                         null,
                         null,
                         cam.get_transformation(_graphicsDeviceManager.GraphicsDevice, (float) this.ActualWidth, (float) this.ActualHeight));
+
+            // Draw each edge
+            foreach (Edge e in graph.getEdgeList())
+            {
+                DrawLine(spriteBatch, //draw line
+                    new Vector2(graph.NodeCollisionBoxes[e.from].X + (graph.nodeWidth / 2), graph.NodeCollisionBoxes[e.from].Y + (graph.nodeHeight / 2)), //start of line
+                    new Vector2(graph.NodeCollisionBoxes[e.to].X + (graph.nodeWidth / 2), graph.NodeCollisionBoxes[e.to].Y + (graph.nodeHeight / 2)) //end of line
+                );
+            }
+
             // Draw each node
             if (!SystemStateTracker.NarrativeWorld.Graph.nodeCoordinatesGenerated)
                 return;
@@ -95,14 +105,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                 spriteBatch.DrawString(spriteFontCourierNew, n.LocationName, new Vector2(graph.NodeCollisionBoxes[n].X +
                     (graph.nodeWidth / 2), graph.NodeCollisionBoxes[n].Y + (graph.nodeHeight / 2)), Color.Black,
                     0, spriteFontCourierNew.MeasureString(n.LocationName) / 2, 1.0f, SpriteEffects.None, 0.5f);
-            }
-            // Draw each edge
-            foreach (Edge e in graph.getEdgeList())
-            {
-                DrawLine(spriteBatch, //draw line
-                    new Vector2(graph.NodeCollisionBoxes[e.from].X + (graph.nodeWidth / 2), graph.NodeCollisionBoxes[e.from].Y + (graph.nodeHeight / 2)), //start of line
-                    new Vector2(graph.NodeCollisionBoxes[e.to].X + (graph.nodeWidth / 2), graph.NodeCollisionBoxes[e.to].Y + (graph.nodeHeight / 2)) //end of line
-                );
             }
             spriteBatch.End();
         }
