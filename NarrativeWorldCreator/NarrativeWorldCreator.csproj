@@ -205,6 +205,8 @@
     <Compile Include="GraphicScenes\Camera2d.cs" />
     <Compile Include="GraphicScenes\GraphScene.cs" />
     <Compile Include="GraphicScenes\RegionFilling\RegionScene.cs" />
+    <Compile Include="ViewModel\AutomatedRelationshipSelectionViewModel.cs" />
+    <Compile Include="ViewModel\AutomatedResultsRelationshipSelectionViewModel.cs" />
     <Compile Include="ViewModel\DeltaListViewModel.cs" />
     <Compile Include="ViewModel\DetailTimePointViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstanceSelectionViewModel.cs" />
@@ -212,9 +214,12 @@
     <Compile Include="ViewModel\GenerateConfigurationsViewModel.cs" />
     <Compile Include="ViewModel\GoalViewModel.cs" />
     <Compile Include="ViewModel\GPUConfigurationResultViewModel.cs" />
+    <Compile Include="ViewModel\ManualRelationshipsViewModel.cs" />
     <Compile Include="ViewModel\ModeViewModel.cs" />
     <Compile Include="ViewModel\NodeViewModel.cs" />
     <Compile Include="ViewModel\EntikaInstancesSelectionViewModel.cs" />
+    <Compile Include="ViewModel\OnRelationshipViewModel.cs" />
+    <Compile Include="ViewModel\OtherRelationshipViewModel.cs" />
     <Compile Include="ViewModel\RelationshipSelectionGeneratedOptionsViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsSwapViewModel.cs" />
     <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
@@ -247,9 +252,6 @@
     <Compile Include="Views\NarrativeTimelineView.xaml.cs">
       <DependentUpon>NarrativeTimelineView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RelationshipInstancingView.xaml.cs">
-      <DependentUpon>RelationshipInstancingView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\RelationshipSelectionView.xaml.cs">
       <DependentUpon>RelationshipSelectionView.xaml</DependentUpon>
     </Compile>
@@ -261,9 +263,6 @@
     </Compile>
     <Compile Include="Views\SystemViews\InspectGeneratedConfigurationsSystemView.xaml.cs">
       <DependentUpon>InspectGeneratedConfigurationsSystemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SystemViews\RelationshipInstancingSystemView.xaml.cs">
-      <DependentUpon>RelationshipInstancingSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SystemViews\RelationshipSelectionSystemView.xaml.cs">
       <DependentUpon>RelationshipSelectionSystemView.xaml</DependentUpon>
@@ -337,10 +336,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RelationshipInstancingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\RelationshipSelectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -354,10 +349,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SystemViews\InspectGeneratedConfigurationsSystemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SystemViews\RelationshipInstancingSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

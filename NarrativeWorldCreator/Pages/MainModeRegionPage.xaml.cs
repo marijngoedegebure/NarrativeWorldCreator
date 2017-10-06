@@ -118,11 +118,8 @@ namespace NarrativeWorldCreator
                 case MainFillingMode.RelationshipSelection:
                     ChangeUIToTOClassSelection();
                     break;
-                case MainFillingMode.RelationshipInstancing:
-                    ChangeUIToRelationshipSelection();
-                    break;
                 case MainFillingMode.Placement:
-                    ChangeUIToRelationshipInstancing();
+                    ChangeUIToRelationshipSelection();
                     break;
                 case MainFillingMode.Repositioning:
                     ChangeUIToMainMenu();
@@ -144,10 +141,6 @@ namespace NarrativeWorldCreator
                     ChangeUIToRelationshipSelection();
                     break;
                 case MainFillingMode.RelationshipSelection:
-                    SetupInstancing();
-                    ChangeUIToRelationshipInstancing();
-                    break;
-                case MainFillingMode.RelationshipInstancing:
                     SaveInstancingAndSetupPlacement();
                     ChangeUIToPlacement();
                     break;
@@ -179,8 +172,6 @@ namespace NarrativeWorldCreator
             region_filling_2_1_content.Visibility = Visibility.Visible;
             region_filling_2_2.Visibility = Visibility.Collapsed;
             region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_3.Visibility = Visibility.Collapsed;
-            region_filling_2_3_content.Visibility = Visibility.Collapsed;
             region_filling_2_4.Visibility = Visibility.Collapsed;
             region_filling_2_4_content.Visibility = Visibility.Collapsed;
             region_filling_2_5.Visibility = Visibility.Collapsed;
@@ -205,6 +196,8 @@ namespace NarrativeWorldCreator
         {
             // Reset values
             this.WorkInProgressConfiguration = this.Configuration.Copy();
+            this.WIPAdditionDelta = null;
+            this.WIPRelationshipDeltas = new List<RelationshipDelta>();
             TopLeftSelectedGPUConfigurationResult = -1;
             BottomLeftSelectedGPUConfigurationResult = -1;
             TopRightSelectedGPUConfigurationResult = -1;
@@ -218,8 +211,6 @@ namespace NarrativeWorldCreator
             region_filling_2_1_content.Visibility = Visibility.Collapsed;
             region_filling_2_2.Visibility = Visibility.Visible;
             region_filling_2_2_content.Visibility = Visibility.Visible;
-            region_filling_2_3.Visibility = Visibility.Collapsed;
-            region_filling_2_3_content.Visibility = Visibility.Collapsed;
             region_filling_2_4.Visibility = Visibility.Collapsed;
             region_filling_2_4_content.Visibility = Visibility.Collapsed;
             region_filling_2_5.Visibility = Visibility.Collapsed;
@@ -241,48 +232,6 @@ namespace NarrativeWorldCreator
             }
         }
 
-        internal void ChangeUIToRelationshipInstancing()
-        {
-            // Reset values
-            this.WorkInProgressConfiguration = this.Configuration.Copy();
-            this.WIPAdditionDelta = null;
-            this.WIPRelationshipDeltas = new List<RelationshipDelta>();
-            TopLeftSelectedGPUConfigurationResult = -1;
-            BottomLeftSelectedGPUConfigurationResult = -1;
-            TopRightSelectedGPUConfigurationResult = -1;
-            BottomRightSelectedGPUConfigurationResult = -1;
-            HideGenerationScenes();
-            // Switch UI to next step (relation selection and instancing)
-            CurrentFillingMode = MainFillingMode.RelationshipInstancing;
-            region_filling_1.Visibility = Visibility.Collapsed;
-            region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_1.Visibility = Visibility.Collapsed;
-            region_filling_2_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_2.Visibility = Visibility.Collapsed;
-            region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_3.Visibility = Visibility.Visible;
-            region_filling_2_3_content.Visibility = Visibility.Visible;
-            region_filling_2_4.Visibility = Visibility.Collapsed;
-            region_filling_2_4_content.Visibility = Visibility.Collapsed;
-            region_filling_2_5.Visibility = Visibility.Collapsed;
-            region_filling_2_5_content.Visibility = Visibility.Collapsed;
-            region_filling_3.Visibility = Visibility.Collapsed;
-            region_filling_3_content.Visibility = Visibility.Collapsed;
-            region_tabcontrol.SelectedIndex = 3;
-
-            // Determine which view to be shown:
-            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
-            {
-                InstanceSelectionView.Visibility = Visibility.Collapsed;
-                InstanceSelectionSystemView.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                InstanceSelectionView.Visibility = Visibility.Visible;
-                InstanceSelectionSystemView.Visibility = Visibility.Collapsed;
-            }
-        }
-
         internal void ChangeUIToPlacement()
         {
             CurrentFillingMode = MainFillingMode.Placement;
@@ -293,8 +242,6 @@ namespace NarrativeWorldCreator
             region_filling_2_1_content.Visibility = Visibility.Collapsed;
             region_filling_2_2.Visibility = Visibility.Collapsed;
             region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_3.Visibility = Visibility.Collapsed;
-            region_filling_2_3_content.Visibility = Visibility.Collapsed;
             region_filling_2_4.Visibility = Visibility.Visible;
             region_filling_2_4_content.Visibility = Visibility.Visible;
             region_filling_2_5.Visibility = Visibility.Visible;
@@ -359,162 +306,70 @@ namespace NarrativeWorldCreator
 
         internal void SaveInstancingAndSetupPlacement()
         {
-            RelationshipSelectionAndInstancingViewModel rivm;
             // Retrieve rivm from correct source, system or user view
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
-                rivm = this.InstanceSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedItem as RelationshipSelectionAndInstancingViewModel;
+                AutomatedRelationshipSelectionViewModel arsVM = this.RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedItem as AutomatedRelationshipSelectionViewModel;
+                SaveRelationships(arsVM.OnRelationship, arsVM.OtherRelationships.ToList());
             }
             else
             {
-                rivm = this.InstanceSelectionView.DataContext as RelationshipSelectionAndInstancingViewModel;
+                var onRelationship = (OnRelationshipViewModel)RelationshipSelectionView.OnRelationshipsListView.SelectedItems[0];
+                var otherRelationships = RelationshipSelectionView.OtherRelationshipsListView.SelectedItems.Cast<OtherRelationshipViewModel>().ToList();
+                SaveRelationships(onRelationship, otherRelationships);
             }
-            SaveRelationsAndInstancing(rivm);
             IntializeGenerateConfigurationsView(this.GenerateConfigurationsView);
             GenerateConfigurations();
         }
 
-        internal void SetupInstancing()
+        private void SaveRelationships(OnRelationshipViewModel onRelationship, List<OtherRelationshipViewModel> otherRelationships)
         {
-            // Retrieve data from correct view
-            RelationshipSelectionAndInstancingViewModel rivm;
-            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
-            {
-                rivm = RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedItem as RelationshipSelectionAndInstancingViewModel;
-            }
-            else
-            {
-                rivm = RelationshipSelectionView.DataContext as RelationshipSelectionAndInstancingViewModel;
-            }
-
-            // Transmit rivm to next (correct) view
-            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
-            {
-                // Generated instance options
-                var list = RelationshipSelectionSolver.GetRandomRelationships(rivm, SystemStateTracker.NumberOfChoices);
-
-                var VM = new RelationshipSelectionGeneratedOptionsViewModel();
-                VM.Load(list);
-                // Set datacontext of instance selection view
-                this.InstanceSelectionSystemView.DataContext = VM;
-            }
-            else
-            {
-                this.InstanceSelectionView.DataContext = rivm;
-            }
-        }
-
-        private void SaveRelationsAndInstancing(RelationshipSelectionAndInstancingViewModel rivm)
-        {
-            // Save instance and relationships to WIPconfiguration
-            var onRelationshipMultipleVM = rivm.OnRelationshipsMultiple.Where(or => or.Selected).FirstOrDefault();
-            var onRelationshipSingleVM = rivm.OnRelationshipsSingle.Where(or => or.Selected).FirstOrDefault();
-            RelationshipExtendedViewModel onRelationshipVM;
-            if (onRelationshipMultipleVM != null)
-            {
-                onRelationshipVM = onRelationshipMultipleVM;
-            }
-            else if (onRelationshipSingleVM != null)
-            {
-                onRelationshipVM = onRelationshipSingleVM;
-            }
-            else
-            {
-                throw new Exception("No on relationship selected");
-            }
-
+            
+            // Create new relationship instance
             var onRelationshipInstance = new RelationshipInstance();
-            onRelationshipInstance.BaseRelationship = onRelationshipVM.Relationship;
-            onRelationshipInstance.Target = onRelationshipVM.Target;
-            onRelationshipInstance.Source = onRelationshipVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
+            onRelationshipInstance.BaseRelationship = onRelationship.Relationship;
+            onRelationshipInstance.Target = InstanceOfObjectToAdd;
+            onRelationshipInstance.Source = onRelationship.Source;
 
+            // Add relationship to different instances
             InstanceOfObjectToAdd.RelationshipsAsTarget.Add(onRelationshipInstance);
             onRelationshipInstance.Source.RelationshipsAsSource.Add(onRelationshipInstance);
+            // Set start position of instance to add
             InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z);
 
+            // Add on relationship to work in progress configuration
             this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
             this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, onRelationshipInstance, RelationshipDeltaType.Add));
 
-            // Parse other relationships
-            // Single
-            foreach (var otherRelationVM in rivm.OtherRelationshipsSingle.Where(or => or.Selected).ToList())
+            foreach (var selectedItem in otherRelationships)
             {
+                var other = selectedItem as OtherRelationshipViewModel;
                 var otherRelationshipInstance = new RelationshipInstance();
-                otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
-                bool source = false;
-                if (otherRelationVM.Source == null)
+                otherRelationshipInstance.BaseRelationship = other.Relationship;
+                if (other.AsTarget)
                 {
-                    otherRelationshipInstance.Source = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
-                    otherRelationshipInstance.Target = otherRelationVM.Target;
-                }
-                else
-                {
-                    otherRelationshipInstance.Source = otherRelationVM.Source;
-                    otherRelationshipInstance.Target = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
-                    source = true;
-                }
+                    otherRelationshipInstance.Target = InstanceOfObjectToAdd;
+                    otherRelationshipInstance.Source = other.SubjectInstance;
 
-                if (Constants.IsRelationshipValued(otherRelationshipInstance.BaseRelationship.RelationshipType.DefaultName))
-                {
-                    otherRelationshipInstance.Valued = true;
-                    otherRelationshipInstance.TargetRangeStart = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[0].Value.ToString());
-                    otherRelationshipInstance.TargetRangeEnd = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[1].Value.ToString());
-                }
-
-                if (source)
-                {
-                    InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
-                    otherRelationshipInstance.Target.RelationshipsAsTarget.Add(otherRelationshipInstance);
-                }
-                else
-                {
                     InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
                     otherRelationshipInstance.Source.RelationshipsAsSource.Add(otherRelationshipInstance);
+                }
+                else
+                {
+                    otherRelationshipInstance.Target = other.SubjectInstance;
+                    otherRelationshipInstance.Source = InstanceOfObjectToAdd;
+
+                    InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
+                    otherRelationshipInstance.Target.RelationshipsAsTarget.Add(otherRelationshipInstance);
                 }
 
                 this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
                 this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDeltaType.Add));
             }
 
-            // Multiple
-            foreach (var otherRelationVM in rivm.OtherRelationshipsMultiple.Where(or => or.Selected).ToList())
-            {
-                var otherRelationshipInstance = new RelationshipInstance();
-                otherRelationshipInstance.BaseRelationship = otherRelationVM.Relationship;
-                bool source = false;
-                if (otherRelationVM.Source == null)
-                {
-                    otherRelationshipInstance.Source = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
-                    otherRelationshipInstance.Target = otherRelationVM.Target;
-                }
-                else
-                {
-                    otherRelationshipInstance.Source = otherRelationVM.Source;
-                    otherRelationshipInstance.Target = otherRelationVM.ObjectInstances.Where(oi => oi.Selected).FirstOrDefault().EntikaInstance;
-                    source = true;
-                }
 
-                if (Constants.IsRelationshipValued(otherRelationshipInstance.BaseRelationship.RelationshipType.DefaultName))
-                {
-                    otherRelationshipInstance.Valued = true;
-                    otherRelationshipInstance.TargetRangeStart = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[0].Value.ToString());
-                    otherRelationshipInstance.TargetRangeEnd = Double.Parse(otherRelationshipInstance.BaseRelationship.Attributes[1].Value.ToString());
-                }
-
-                if (source)
-                {
-                    InstanceOfObjectToAdd.RelationshipsAsSource.Add(otherRelationshipInstance);
-                    otherRelationshipInstance.Target.RelationshipsAsTarget.Add(otherRelationshipInstance);
-                }
-                else
-                {
-                    InstanceOfObjectToAdd.RelationshipsAsTarget.Add(otherRelationshipInstance);
-                    otherRelationshipInstance.Source.RelationshipsAsSource.Add(otherRelationshipInstance);
-                }
-
-                this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
-                this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDeltaType.Add));
-            }
+            // this.WorkInProgressConfiguration.InstancedRelations.Add(otherRelationshipInstance);
+            // this.WIPRelationshipDeltas.Add(new RelationshipDelta(this.SelectedTimePoint, otherRelationshipInstance, RelationshipDeltaType.Add));
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
             this.WIPAdditionDelta = new InstanceDelta(this.SelectedTimePoint, InstanceOfObjectToAdd, InstanceDeltaType.Add, null, null);
@@ -569,20 +424,16 @@ namespace NarrativeWorldCreator
             // check whether it is the systems job or the user's
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
-                var list = RelationshipSelectionSolver.GetRandomRelationships(riVM, SystemStateTracker.NumberOfChoices);
-                
-                var VM = new RelationshipSelectionGeneratedOptionsViewModel();
-                VM.Load(list);
+                var VM = new AutomatedResultsRelationshipSelectionViewModel();
 
-                RelationshipSelectionSystemView.DataContext = VM;
+                RelationshipSelectionSystemView.DataContext = RelationshipSelectionSolver.GetRandomRelationships(VM, SystemStateTracker.NumberOfChoices, InstanceOfObjectToAdd, this.selectedNode, this.WorkInProgressConfiguration.InstancedObjects);
             }
             else
             {
-                if (riVM.OnRelationshipsMultiple.Count > 0)
-                    RelationshipSelectionView.OnRelationshipsMultipleListView.SelectedIndex = 0;
-                if (riVM.OnRelationshipsSingle.Count > 0)
-                    RelationshipSelectionView.OnRelationshipsSingleListView.SelectedIndex = 0;
-                RelationshipSelectionView.DataContext = riVM;
+                ManualRelationshipsViewModel mrVM = new ManualRelationshipsViewModel();
+                mrVM.Load(this.selectedNode, InstanceOfObjectToAdd, this.WorkInProgressConfiguration.InstancedObjects, this.selectedNode.TimePoints[SelectedTimePoint].GetRemainingPredicates());
+                RelationshipSelectionView.DataContext = mrVM;
+                RelationshipSelectionView.OnRelationshipsListView.SelectedIndex = 0;
             }
         }
 
@@ -717,8 +568,6 @@ namespace NarrativeWorldCreator
             region_filling_2_1_content.Visibility = Visibility.Collapsed;
             region_filling_2_2.Visibility = Visibility.Collapsed;
             region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_3.Visibility = Visibility.Collapsed;
-            region_filling_2_3_content.Visibility = Visibility.Collapsed;
             region_filling_2_4.Visibility = Visibility.Visible;
             region_filling_2_4_content.Visibility = Visibility.Visible;
             region_filling_2_5.Visibility = Visibility.Visible;
@@ -738,8 +587,6 @@ namespace NarrativeWorldCreator
             region_filling_2_1_content.Visibility = Visibility.Collapsed;
             region_filling_2_2.Visibility = Visibility.Collapsed;
             region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_3.Visibility = Visibility.Collapsed;
-            region_filling_2_3_content.Visibility = Visibility.Collapsed;
             region_filling_2_4.Visibility = Visibility.Collapsed;
             region_filling_2_4_content.Visibility = Visibility.Collapsed;
             region_filling_2_5.Visibility = Visibility.Collapsed;

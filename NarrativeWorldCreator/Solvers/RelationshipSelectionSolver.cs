@@ -1,6 +1,12 @@
-﻿using NarrativeWorldCreator.ViewModel;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeGraph;
+using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using NarrativeWorldCreator.ViewModel;
+using Semantics.Data;
+using Semantics.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,75 +15,95 @@ namespace NarrativeWorldCreator.Solvers
 {
     public static class RelationshipSelectionSolver
     {
-        // Randomly choose from available relationships. Make sure to atleast select an on relationship
-        public static List<RelationshipSelectionAndInstancingViewModel> GetRandomRelationships(RelationshipSelectionAndInstancingViewModel riVM, int NumberOfChoices)
+        internal static AutomatedResultsRelationshipSelectionViewModel GetRandomRelationships(AutomatedResultsRelationshipSelectionViewModel vM, int NumberOfChoices, EntikaInstance instanceOfObjectToAdd, LocationNode selectedNode, List<EntikaInstance> instancedObjects)
         {
-            // Set relationships/entika instances to selected when used, they will be extracted using the view model
             var rnd = new Random();
-            var list = new List<RelationshipSelectionAndInstancingViewModel>();
+            ObservableCollection<AutomatedRelationshipSelectionViewModel> resultsOC = new ObservableCollection<AutomatedRelationshipSelectionViewModel>();
 
             for (int i = 0; i < NumberOfChoices; i++)
             {
-                // Make copy of original object
-                var riVMCopy = riVM.CreateCopy();
-
-                // First select one on relationship from all on relationships
-                var count = riVMCopy.OnRelationshipsSingle.Count + riVMCopy.OnRelationshipsMultiple.Count;
-                var index = rnd.Next(0, count);
-
-                if (index < riVMCopy.OnRelationshipsSingle.Count)
+                var arsVM = new AutomatedRelationshipSelectionViewModel();
+                arsVM.CurrentInstance = instanceOfObjectToAdd;
+                // Figure out on relationship with atleast one instance
+                var ListOfInstanceIndicesPerOnRelationship = new Dictionary<int, List<int>>();
+                for (int j = 0; j < instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget.Count; j++)
                 {
-                    riVMCopy.OnRelationshipsSingle[index].Selected = true;
-                    riVMCopy.OnRelationshipsSingle[index].Focusable = false;
-                }
-                else
-                {
-                    riVMCopy.OnRelationshipsMultiple[index - riVMCopy.OnRelationshipsSingle.Count].Selected = true;
-                    riVMCopy.OnRelationshipsMultiple[index - riVMCopy.OnRelationshipsSingle.Count].Focusable = false;
-                }
-
-                // Set each on relationship to no focusable
-                foreach (var rel in riVMCopy.OnRelationshipsSingle)
-                {
-                    rel.Focusable = false;
-                }
-
-                foreach (var rel in riVMCopy.OnRelationshipsMultiple)
-                {
-                    rel.Focusable = false;
-                }
-
-                // Use a 50/50 chance to select an "other" relationship
-                for (int j = 0; j < riVMCopy.OtherRelationshipsSingle.Count; j++)
-                {
-                    // Use a single side of the coin toss
-                    if (rnd.Next(2) == 0)
+                    var instanceList = new List<int>();
+                    var rel = instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget[j];
+                    if (!selectedNode.AvailableTangibleObjects.Contains(rel.Source) && !rel.Source.Equals(DatabaseSearch.GetNode<TangibleObject>(Constants.Floor)))
+                        continue;
+                    if (Constants.On.Equals(rel.RelationshipType.DefaultName))
                     {
-                        riVMCopy.OtherRelationshipsSingle[j].Selected = true;
-                    }
-                    riVMCopy.OtherRelationshipsSingle[j].Focusable = false;
-                    foreach (var instance in riVMCopy.OtherRelationshipsSingle[j].ObjectInstances)
-                    {
-                        instance.Focusable = false;
+                        for (var k = 0; k < instancedObjects.Count; k++)
+                        {
+                            var instance = instancedObjects[k];
+                            if (rel.Source.Equals(instance.TangibleObject))
+                            {
+                                instanceList.Add(k);
+                            }
+                        }
+                        ListOfInstanceIndicesPerOnRelationship[j] = instanceList;
                     }
                 }
+                var onRelIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship.Keys.Count);
+                var instanceIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship[onRelIndex].Count);
+                var orVM = new OnRelationshipViewModel();
+                orVM.Load(instancedObjects[instanceIndex], instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget[onRelIndex]);
+                arsVM.OnRelationship = orVM;
 
-                for (int j = 0; j < riVMCopy.OtherRelationshipsMultiple.Count; j++)
+                // Figure out other relationships
+                var OtherRelationshipsOC = new ObservableCollection<OtherRelationshipViewModel>();
+                // First as target
+                foreach (var rel in instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget)
                 {
-                    // Use a single side of the coin toss
-                    if (rnd.Next(2) == 0)
+                    if (!selectedNode.AvailableTangibleObjects.Contains(rel.Source))
+                        continue;
+                    if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                     {
-                        riVMCopy.OtherRelationshipsMultiple[j].Selected = true;
-                    }
-                    riVMCopy.OtherRelationshipsMultiple[j].Focusable = false;
-                    foreach (var instance in riVMCopy.OtherRelationshipsMultiple[j].ObjectInstances)
-                    {
-                        instance.Focusable = false;
+                        var availableInstances = instancedObjects.Where(io => io.TangibleObject.Equals(rel.Source)).ToList();
+                        if (availableInstances.Count > 0)
+                        {
+                            // 50/50 chance of continuing
+                            if (rnd.Next(2) == 0)
+                            {
+                                var index = rnd.Next(0, availableInstances.Count);
+                                var otherRVM = new OtherRelationshipViewModel();
+                                otherRVM.Load(availableInstances[index], rel, true);
+                                OtherRelationshipsOC.Add(otherRVM);
+                            }
+                        }
                     }
                 }
-                list.Add(riVMCopy);
+
+                // Second as source
+                foreach (var rel in instanceOfObjectToAdd.TangibleObject.RelationshipsAsSource)
+                {
+                    if (!selectedNode.AvailableTangibleObjects.Contains(rel.Targets[0]))
+                        continue;
+                    if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
+                    {
+                        var availableInstances = instancedObjects.Where(io => io.TangibleObject.Equals(rel.Targets[0])).ToList();
+                        if (availableInstances.Count > 0)
+                        {
+                            // 50/50 chance of continuing
+                            if (rnd.Next(2) == 0)
+                            {
+                                var index = rnd.Next(0, availableInstances.Count);
+                                var otherRVM = new OtherRelationshipViewModel();
+                                otherRVM.Load(availableInstances[index], rel, true);
+                                OtherRelationshipsOC.Add(otherRVM);
+                            }
+                        }
+                    }
+                }
+                arsVM.OtherRelationships = OtherRelationshipsOC;
+
+                resultsOC.Add(arsVM);
             }
-            return list;
+            vM.CurrentInstance = instanceOfObjectToAdd;
+            vM.Results = resultsOC;
+            return vM;
         }
+        
     }
 }

@@ -82,7 +82,7 @@ namespace NarrativeWorldCreator.Pages
             {
                 fillAvailableTO.Add(to.TangibleObject);
             }
-            this.selectedNode.AvailableTangibleObjects = fillAvailableTO;
+            this.selectedNode.AvailableTangibleObjects = SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList();
             if (selectedNode.FloorCreated)
                 this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
             else
