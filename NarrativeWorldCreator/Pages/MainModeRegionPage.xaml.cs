@@ -655,7 +655,6 @@ namespace NarrativeWorldCreator
             // Order by name
             toVM.TangibleObjectsValued.OrderBy(s => s.TangibleObject.DefaultName);
             TangibleObjectsView.DataContext = toVM;
-            TangibleObjectsView.DefaultRB.IsChecked = true;
         }
 
         private void RefreshTangibleObjectsSystemView()
@@ -673,7 +672,7 @@ namespace NarrativeWorldCreator
             // Select #NumberOfChoices from available classes using importance value
             // Order by importance value
             toVM.TangibleObjectsValued.OrderBy(s => s.EndValue);
-
+            TangibleObjectsSystemView.DefaultRB.IsChecked = true;
             TangibleObjectsSystemView.DataContext = toVM;
         }
 
