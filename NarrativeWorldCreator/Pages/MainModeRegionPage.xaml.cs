@@ -652,22 +652,29 @@ namespace NarrativeWorldCreator
         {
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
             toVM.LoadAll(this.selectedNode, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
+            // Order by name
+            toVM.TangibleObjectsValued.OrderBy(s => s.TangibleObject.DefaultName);
             TangibleObjectsView.DataContext = toVM;
             TangibleObjectsView.DefaultRB.IsChecked = true;
         }
 
         private void RefreshTangibleObjectsSystemView()
         {
+            //// Load options
+            //var tangibleObjectOptions = ClassSelectionSolver.GetRandomClasses(toVM, SystemStateTracker.NumberOfChoices);
+
+            //// Load options into right view
+            //TangibleObjectsValuedViewModel toVMOPtions = (TangibleObjectsSystemView.DataContext as TangibleObjectsValuedViewModel);
+            //toVMOPtions.LoadList(tangibleObjectOptions);
+
             // Load all Tangible objects
             TangibleObjectsValuedViewModel toVM = new TangibleObjectsValuedViewModel();
             toVM.LoadAll(this.selectedNode, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
-            // Select #NumberOfChoices from available classes
-            var tangibleObjectOptions = ClassSelectionSolver.GetRandomClasses(toVM, SystemStateTracker.NumberOfChoices);
+            // Select #NumberOfChoices from available classes using importance value
+            // Order by importance value
+            toVM.TangibleObjectsValued.OrderBy(s => s.EndValue);
 
-            // Load options into right view
-            TangibleObjectsValuedViewModel toVMOPtions = (TangibleObjectsSystemView.DataContext as TangibleObjectsValuedViewModel);
-            toVMOPtions.LoadList(tangibleObjectOptions);
-            //TangibleObjectsSystemView.DataContext = toVMOPtions;
+            TangibleObjectsSystemView.DataContext = toVM;
         }
 
         internal override void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
@@ -682,7 +689,7 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
         }
 
-        private void btnAddToCurrentRegion(object sender, RoutedEventArgs e)
+        private void btnAddMode(object sender, RoutedEventArgs e)
         {
             // Check whether the first step is done by system or user:
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
@@ -696,7 +703,7 @@ namespace NarrativeWorldCreator
             ChangeUIToTOClassSelection();
         }
 
-        private void btnChangeCurrentRegion(object sender, RoutedEventArgs e)
+        private void btnChangeMode(object sender, RoutedEventArgs e)
         {
             this.WorkInProgressConfiguration = new Configuration();
             this.WorkInProgressConfiguration = this.Configuration.Copy();
@@ -790,14 +797,14 @@ namespace NarrativeWorldCreator
             this.NavigationService.Navigate(new GraphPage());
         }
 
-        private void btnGotoDebugMode_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new DebugRegionPage(this.selectedNode, this.SelectedTimePoint));
-        }
-
         public void SetMessageBoxText(string message)
         {
             MessageTextBox.Text = message;
+        }
+
+        private void btnRemoveMode(object sender, RoutedEventArgs e)
+        {
+            // Enable removal mode
         }
     }
 }

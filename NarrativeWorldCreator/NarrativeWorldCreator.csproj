@@ -149,9 +149,6 @@
     <Compile Include="Models\NarrativeRegionFill\InstancedPredicate.cs" />
     <Compile Include="Models\NarrativeRegionFill\RelationshipDelta.cs" />
     <Compile Include="Pages\BaseRegionPage.cs" />
-    <Compile Include="Pages\DebugRegionPage.xaml.cs">
-      <DependentUpon>DebugRegionPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\ModeBaseRegionPage.cs" />
     <Compile Include="Pages\RegionCreationPage.xaml.cs">
       <DependentUpon>RegionCreationPage.xaml</DependentUpon>
@@ -292,10 +289,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\DebugRegionPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\GraphPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

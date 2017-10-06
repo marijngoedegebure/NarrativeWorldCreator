@@ -87,17 +87,19 @@
                     <ColumnDefinition Width="300"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TabControl Name="region_tabcontrol" Grid.Row="0" Grid.Column="0" SelectedIndex="0">
-                    <TabItem Name="region_filling_1" Header="Change current or add to current">
+                    <TabItem Name="region_filling_1" Header="Main menu">
                         <Grid Name="region_filling_1_content">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Grid.Row="0" x:Name="button2" Content="Add to current region" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnAddToCurrentRegion"/>
-                            <Button Grid.Column="0" Grid.Row="1" x:Name="button3" Content="Change current region" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnChangeCurrentRegion"/>
+                            <Button Grid.Column="0" Grid.Row="0" x:Name="button2" Content="Add" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnAddMode"/>
+                            <Button Grid.Column="0" Grid.Row="1" x:Name="button3" Content="Change" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnChangeMode"/>
+                            <Button Grid.Column="0" Grid.Row="2" x:Name="button4" Content="Remove" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnRemoveMode"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_2_1" Header="Entity selection" Visibility="Collapsed">
