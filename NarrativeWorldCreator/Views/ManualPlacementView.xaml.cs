@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,32 @@ namespace NarrativeWorldCreator.Views
         public ManualPlacementView()
         {
             InitializeComponent();
+        }
+
+
+        private MainModeRegionPage GetRegionPage()
+        {
+            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
+        }
+
+        private void Back(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            regionPage.Back();
+        }
+
+        private void SaveConfiguration(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            regionPage.Next();
+        }
+
+        private void ResetPlacement(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            regionPage.manualPlacementPosition = new Vector3();
+            regionPage.manualPlacementRotation = new Vector3();
         }
     }
 }

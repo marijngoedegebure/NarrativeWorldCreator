@@ -55,7 +55,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected MainWindow mainWindow;
 
-        protected ModeBaseRegionPage _currentRegionPage;
+        protected MainModeRegionPage _currentRegionPage;
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace NarrativeWorldCreator.GraphicScenes
 
             mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
 
-            this._currentRegionPage = (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            this._currentRegionPage = (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
 
             // Load test models
             SystemStateTracker.DefaultModel = Content.Load<Model>("Models/beddresser1/beddresser1");

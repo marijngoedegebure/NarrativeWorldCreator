@@ -235,18 +235,6 @@
                             <Button Grid.Column="0" Grid.Row="0" x:Name="button12124" Content="Back" Margin="10" Width="200" Height="50" Click="btnBack"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="change_mode_3" Header="Repositioning" Visibility="Collapsed">
-                        <Grid Name="change_mode_3_content">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                        </Grid>
-                    </TabItem>
                     <TabItem Name="region_filling_3" Header="Entity removal and repositioning" Visibility="Collapsed">
                         <Grid Name="region_filling_3_content">
                             <Grid.RowDefinitions>

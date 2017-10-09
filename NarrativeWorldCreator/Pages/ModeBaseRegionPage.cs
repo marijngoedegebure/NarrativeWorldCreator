@@ -26,6 +26,8 @@ namespace NarrativeWorldCreator.Pages
             SelectionChangeMode = 7
         }
 
+        internal EntikaInstance InstanceOfObjectToAdd;
+
         // Used for repositioning
         internal Configuration WorkInProgressConfiguration = new Configuration();
 

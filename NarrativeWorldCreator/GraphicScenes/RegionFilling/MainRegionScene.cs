@@ -17,8 +17,42 @@ namespace NarrativeWorldCreator.GraphicScenes
         protected override void Draw(GameTime time)
         {
             base.Draw(time);
+            var blend = GraphicsDevice.BlendState;
+            var depth = GraphicsDevice.DepthStencilState;
+            var raster = GraphicsDevice.RasterizerState;
+            var sampler = GraphicsDevice.SamplerStates[0];
+
             if (this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.MainMenu)
                 drawBoxSelect();
+
+            if (this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.ManualPlacement)
+                drawPlacementInstance();
+
+            GraphicsDevice.BlendState = blend;
+            GraphicsDevice.DepthStencilState = depth;
+            GraphicsDevice.RasterizerState = raster;
+            GraphicsDevice.SamplerStates[0] = sampler;
+        }
+
+        private void drawPlacementInstance()
+        {
+            GraphicsDevice.RasterizerState = RasterizerState.CullNone;
+            var position = new Vector3();
+            var rotation = new Vector3();
+            if (this._currentRegionPage.manualPlacementPosition.Equals(new Vector3()))
+            {
+                // Calculate 3D point of mouse
+                position = CalculateMouseHitOnSurface();
+            }
+            else
+            {
+                position = this._currentRegionPage.manualPlacementPosition;
+            }
+            if (!this._currentRegionPage.manualPlacementRotation.Equals(new Vector3()))
+            {
+                rotation = this._currentRegionPage.manualPlacementRotation;
+            }
+            drawEntikaInstance(this._currentRegionPage.InstanceOfObjectToAdd, position, rotation);
         }
 
         protected void drawBoxSelect()
@@ -167,7 +201,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                         rotationObject = null;
                     }
                 }
-
                 else if (_keyboardState.IsKeyDown(Keys.LeftControl))
                 {
                     if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
@@ -241,6 +274,38 @@ namespace NarrativeWorldCreator.GraphicScenes
                             _currentRegionPage.ChangeSelectedObject(hitMaxZ);
                         _currentRegionPage.RefreshSelectedObjectView();
                     }
+                }
+            }
+            // Manual placement
+            if (this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.ManualPlacement)
+            {
+                if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                {
+                    var mouseHitOnSurface = CalculateMouseHitOnSurface();
+                    this._currentRegionPage.manualPlacementPosition = new Vector3(mouseHitOnSurface.X, mouseHitOnSurface.Y, this._currentRegionPage.InstanceOfObjectToAdd.Position.Z);                    
+                }
+
+                else if (_keyboardState.IsKeyDown(Keys.R))
+                {
+                    // Save rotation
+                    // Handle continuous update of rotation
+                    var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), _currentRegionPage.manualPlacementPosition.Z));
+                    // Move hit around 0,0,0
+                    hit = hit - _currentRegionPage.manualPlacementPosition;
+                    hit.Normalize();
+                    // Calculate angle between forward vector (Y positive) and the hit)
+                    var angle = 0.0;
+                    if ((hit.X > 0 && hit.Y > 0) || (hit.X > 0 && hit.Y < 0))
+                    {
+                        angle = Math.Acos(Vector3.Dot(new Vector3(0, -1, 0), hit));
+                        angle += Math.PI;
+                    }
+                    else
+                    {
+                        angle = Math.Acos(Vector3.Dot(new Vector3(0, 1, 0), hit));
+                    }
+                    var delta = _currentRegionPage.manualPlacementRotation.Y - angle;
+                    _currentRegionPage.manualPlacementRotation = new Vector3(0, (float)angle, 0);
                 }
             }
         }

@@ -12,7 +12,7 @@ namespace NarrativeWorldCreator.GraphicScenes
     public class Camera3d
     {
         public const float DEFAULTMOVEARROWS = 0.05f;
-        public const float DEFAULTZOOM = 2.0f;
+        public const float DEFAULTZOOM = 0.5f;
         public const float SCROLLZOOMMODIFIER = 0.0005f;
         public const float NEARCLIP = 1.0f;
         public const float FARCLIP = 2000.0f;

@@ -38,9 +38,8 @@ namespace NarrativeWorldCreator
     {
         // List of states
         #region Fields
-
-        EntikaInstance InstanceOfObjectToAdd;
-
+        internal Vector3 manualPlacementPosition = new Vector3();
+        internal Vector3 manualPlacementRotation = new Vector3();
         #endregion
         #region Setup
 
@@ -264,7 +263,6 @@ namespace NarrativeWorldCreator
 
         internal void ChangeUIToPlacement()
         {
-            ShowGenerationScenes();
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
             add_mode_1.Visibility = Visibility.Collapsed;
@@ -276,8 +274,6 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             inspection_3.Visibility = Visibility.Collapsed;
 
-            region_tabcontrol.SelectedIndex = 5;
-
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 this.CurrentFillingMode = MainFillingMode.AutomatedPlacement;
@@ -287,6 +283,8 @@ namespace NarrativeWorldCreator
                 add_mode_3_2_content.Visibility = Visibility.Visible;
                 add_mode_3_3.Visibility = Visibility.Collapsed;
                 add_mode_3_3_content.Visibility = Visibility.Collapsed;
+                ShowGenerationScenes();
+                region_tabcontrol.SelectedIndex = 4;
             }
             else
             {
@@ -297,6 +295,8 @@ namespace NarrativeWorldCreator
                 add_mode_3_2_content.Visibility = Visibility.Collapsed;
                 add_mode_3_3.Visibility = Visibility.Visible;
                 add_mode_3_3_content.Visibility = Visibility.Visible;
+                HideGenerationScenes();
+                region_tabcontrol.SelectedIndex = 5;
             }
         }
 
@@ -321,9 +321,8 @@ namespace NarrativeWorldCreator
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Visible;
             this.change_mode_2_content.Visibility = Visibility.Visible;
-            this.change_mode_3.Visibility = Visibility.Collapsed;
-            this.change_mode_3_content.Visibility = Visibility.Collapsed;
             inspection_3.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 7;
         }
 
         private void ChangeUIToChangeModeSelection()
@@ -336,9 +335,8 @@ namespace NarrativeWorldCreator
             this.change_mode_1_content.Visibility = Visibility.Visible;
             this.change_mode_2.Visibility = Visibility.Collapsed;
             this.change_mode_2_content.Visibility = Visibility.Collapsed;
-            this.change_mode_3.Visibility = Visibility.Collapsed;
-            this.change_mode_3_content.Visibility = Visibility.Collapsed;
             inspection_3.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 6;
         }
 
         private void ChangeUIToAutomatedRepositioning()
@@ -346,21 +344,6 @@ namespace NarrativeWorldCreator
             this.CurrentFillingMode = MainFillingMode.Repositioning;
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
-            this.change_mode_1.Visibility = Visibility.Collapsed;
-            this.change_mode_1_content.Visibility = Visibility.Collapsed;
-            this.change_mode_2.Visibility = Visibility.Collapsed;
-            this.change_mode_2_content.Visibility = Visibility.Collapsed;
-            this.change_mode_3.Visibility = Visibility.Visible;
-            this.change_mode_3_content.Visibility = Visibility.Visible;
-            inspection_3.Visibility = Visibility.Collapsed;
-
-            this.WorkInProgressConfiguration = new Configuration();
-            this.WorkInProgressConfiguration = this.Configuration.Copy();
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
-            GenerateConfigurations();
-            ShowGenerationScenes();
-
-            this.CurrentFillingMode = MainFillingMode.Repositioning;
             add_mode_1.Visibility = Visibility.Collapsed;
             add_mode_1_content.Visibility = Visibility.Collapsed;
             add_mode_2.Visibility = Visibility.Collapsed;
@@ -369,7 +352,19 @@ namespace NarrativeWorldCreator
             add_mode_3_1_content.Visibility = Visibility.Visible;
             add_mode_3_2.Visibility = Visibility.Visible;
             add_mode_3_2_content.Visibility = Visibility.Visible;
-            region_tabcontrol.SelectedIndex = 5;
+
+            this.change_mode_1.Visibility = Visibility.Collapsed;
+            this.change_mode_1_content.Visibility = Visibility.Collapsed;
+            this.change_mode_2.Visibility = Visibility.Collapsed;
+            this.change_mode_2_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 4;
+
+            this.WorkInProgressConfiguration = new Configuration();
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            GenerateConfigurations();
+            ShowGenerationScenes();
         }
 
         #endregion
@@ -470,6 +465,7 @@ namespace NarrativeWorldCreator
 
             this.WorkInProgressConfiguration.InstancedObjects.Add(InstanceOfObjectToAdd);
             this.WIPAdditionDelta = new InstanceDelta(this.SelectedTimePoint, InstanceOfObjectToAdd, InstanceDeltaType.Add, null, null);
+            this.manualPlacementPosition = InstanceOfObjectToAdd.Position;
         }
 
         public void IntializeGenerateConfigurationsView(GenerateConfigurationsView view)
@@ -524,6 +520,7 @@ namespace NarrativeWorldCreator
                 var VM = new AutomatedResultsRelationshipSelectionViewModel();
 
                 RelationshipSelectionSystemView.DataContext = RelationshipSelectionSolver.GetRandomRelationships(VM, SystemStateTracker.NumberOfChoices, InstanceOfObjectToAdd, this.selectedNode, this.WorkInProgressConfiguration.InstancedObjects);
+                RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedIndex = 0;
             }
             else
             {
@@ -536,46 +533,54 @@ namespace NarrativeWorldCreator
 
         private void ApplyConfiguration()
         {
-            GPUConfigurationResult gpuConfig;
+            // Automatic application
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
+                GPUConfigurationResult gpuConfig;
                 gpuConfig = (this.InspectGeneratedConfigurationsSystemView.ConfigurationsList.SelectedItem as GPUConfigurationResultViewModel).GPUConfigurationResult;
-            }
-            else
-            {
-                gpuConfig = this.GeneratedConfigurations[this.TopLeftSelectedGPUConfigurationResult];
-            }
 
-            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
-
-            for (int i = 0; i < gpuConfig.Instances.Count; i++)
-            {
-                var WIPinstance = this.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(gpuConfig.Instances[i].entikaInstance)).FirstOrDefault();
-                var adjustedPos = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
-                var adjustedRot = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
-                if (!WIPinstance.Position.Equals(adjustedPos) || !WIPinstance.Rotation.Equals(adjustedRot))
+                for (int i = 0; i < gpuConfig.Instances.Count; i++)
                 {
-                    WIPinstance.Position = adjustedPos;
-                    WIPinstance.Rotation = adjustedRot;
-                    WIPinstance.UpdateBoundingBoxAndShape();
-                    var additionDeltaOfInstance = this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(WIPinstance)).FirstOrDefault();
-                    if (additionDeltaOfInstance == null)
+                    var WIPinstance = this.WorkInProgressConfiguration.InstancedObjects.Where(io => io.Equals(gpuConfig.Instances[i].entikaInstance)).FirstOrDefault();
+                    var adjustedPos = new Vector3(gpuConfig.Instances[i].Position.X, gpuConfig.Instances[i].Position.Y, gpuConfig.Instances[i].Position.Z);
+                    var adjustedRot = new Vector3(gpuConfig.Instances[i].Rotation.X, gpuConfig.Instances[i].Rotation.Y, gpuConfig.Instances[i].Rotation.Z);
+                    if (!WIPinstance.Position.Equals(adjustedPos) || !WIPinstance.Rotation.Equals(adjustedRot))
                     {
-                        this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                        WIPinstance.Position = adjustedPos;
+                        WIPinstance.Rotation = adjustedRot;
+                        WIPinstance.UpdateBoundingBoxAndShape();
+                        var additionDeltaOfInstance = this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(WIPinstance)).FirstOrDefault();
+                        if (additionDeltaOfInstance == null)
+                        {
+                            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                        }
+                        else
+                        {
+                            additionDeltaOfInstance.Position = adjustedPos;
+                            additionDeltaOfInstance.Rotation = adjustedRot;
+                        }
+
                     }
-                    else
-                    {
-                        additionDeltaOfInstance.Position = adjustedPos;
-                        additionDeltaOfInstance.Rotation = adjustedRot;
-                    }
-                        
+                }
+                if (this.WIPAdditionDelta != null)
+                {
+                    this.WIPAdditionDelta.Position = this.WIPAdditionDelta.RelatedInstance.Position;
+                    this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Rotation;
                 }
             }
-            if (this.WIPAdditionDelta != null)
+            // Manual application
+            else
             {
-                this.WIPAdditionDelta.Position = this.WIPAdditionDelta.RelatedInstance.Position;
-                this.WIPAdditionDelta.Rotation = this.WIPAdditionDelta.RelatedInstance.Rotation;
+                this.InstanceOfObjectToAdd.Position = manualPlacementPosition;
+                this.InstanceOfObjectToAdd.Rotation = manualPlacementRotation;
+
+                if (this.WIPAdditionDelta != null)
+                {
+                    this.WIPAdditionDelta.Position = manualPlacementPosition;
+                    this.WIPAdditionDelta.Rotation = manualPlacementRotation;
+                }
             }
+
             this.Configuration = WorkInProgressConfiguration;
 
             // Save deltas
@@ -583,6 +588,7 @@ namespace NarrativeWorldCreator
             {
                 this.selectedNode.TimePoints[this.SelectedTimePoint].RelationshipDeltas.Add(WIPRelationshipDelta);
             }
+            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
 
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();
@@ -594,6 +600,9 @@ namespace NarrativeWorldCreator
             BottomRightSelectedGPUConfigurationResult = -1; ;
             GeneratedConfigurations = new List<GPUConfigurationResult>();
             InstanceOfObjectToAdd = null;
+
+            manualPlacementRotation = new Vector3();
+            manualPlacementPosition = new Vector3();
         }
 
         private void RefreshTangibleObjectsView()
@@ -678,6 +687,10 @@ namespace NarrativeWorldCreator
             add_mode_3_1_content.Visibility = Visibility.Collapsed;
             add_mode_3_2.Visibility = Visibility.Collapsed;
             add_mode_3_2_content.Visibility = Visibility.Collapsed;
+            change_mode_1.Visibility = Visibility.Collapsed;
+            change_mode_1_content.Visibility = Visibility.Collapsed;
+            change_mode_2.Visibility = Visibility.Collapsed;
+            change_mode_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
             inspection_3.Visibility = Visibility.Visible;
