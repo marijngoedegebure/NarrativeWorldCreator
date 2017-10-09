@@ -126,7 +126,6 @@
     </ApplicationDefinition>
     <Compile Include="GraphicScenes\Camera3d.cs" />
     <Compile Include="GraphicScenes\DrawingEngine.cs" />
-    <Compile Include="GraphicScenes\RegionFilling\DebugScene.cs" />
     <Compile Include="GraphicScenes\RegionFilling\GenerationSceneBottomRight.cs" />
     <Compile Include="GraphicScenes\RegionFilling\GenerationSceneBottomLeft.cs" />
     <Compile Include="GraphicScenes\RegionFilling\GenerationSceneTopLeft.cs" />

@@ -10,6 +10,21 @@ namespace NarrativeWorldCreator.Pages
 {
     public class ModeBaseRegionPage : BaseRegionPage
     {
+        internal MainFillingMode CurrentFillingMode = MainFillingMode.MainMenu;
+
+        // Class selection, relationship selection and placement belong to add mode
+        // Manual and repositioning to change mode
+        internal enum MainFillingMode
+        {
+            MainMenu = 0,
+            ClassSelection = 1,
+            RelationshipSelection = 2,
+            ManualPlacement = 3,
+            AutomatedPlacement = 4,
+            Repositioning = 5,
+            ManualChange = 6,
+            SelectionChangeMode = 7
+        }
 
         // Used for repositioning
         internal Configuration WorkInProgressConfiguration = new Configuration();

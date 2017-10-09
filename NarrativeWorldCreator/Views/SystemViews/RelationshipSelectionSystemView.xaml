@@ -73,6 +73,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Grid.Row="3" Grid.Column="0" x:Name="button2" Content="Next" Width="200" Click="NextStep"/>
+        <Button Grid.Row="3" Grid.Column="0" x:Name="button2" Content="Next" Width="200" Click="NextStep" Margin="10"/>
     </Grid>
 </UserControl>

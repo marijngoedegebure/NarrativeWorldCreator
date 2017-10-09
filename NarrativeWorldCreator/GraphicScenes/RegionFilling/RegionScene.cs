@@ -37,17 +37,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected Camera3d cam = new Camera3d();
 
-        protected enum RegionFillingModes
-        {
-            None = 0,
-            ObjectPlacement = 1,
-            ObjectDragging = 2,
-            ObjectDeletion = 3,
-            SuggestionMode = 4
-        }
-
-        protected RegionFillingModes CurrentRegionFillingMode = RegionFillingModes.None;
-
         protected enum DrawingModes
         {
             UnderlyingRegion = 0,

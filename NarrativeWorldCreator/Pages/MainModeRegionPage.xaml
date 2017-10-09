@@ -74,8 +74,8 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Border BorderBrush="Black" BorderThickness="2">
-                    <Grid Grid.Row="0" Grid.Column="0" Margin="10">
+                <Border Grid.Row="0" Grid.Column="0"  BorderBrush="Black" BorderThickness="2" Margin="10">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
@@ -83,12 +83,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #1" Margin="10"/>
+                        <TextBlock x:Name="header_screen_1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #1" Margin="10"/>
                         <local:GenerationSceneTopLeft x:Name="GenerationSceneTopLeft" Grid.Row="1" Grid.Column="0"/>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="2">
-                    <Grid Grid.Row="0" Grid.Column="1" Margin="10">
+                <Border Grid.Row="0" Grid.Column="1"  BorderBrush="Black" BorderThickness="2" Margin="10">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
@@ -96,12 +96,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #2" Margin="10"/>
+                        <TextBlock x:Name="header_screen_2" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #2" Margin="10"/>
                         <local:GenerationSceneTopRight x:Name="GenerationSceneTopRight" Grid.Row="1" Grid.Column="0"/>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="2">
-                    <Grid Grid.Row="1" Grid.Column="0" Margin="10">
+                <Border Grid.Row="1" Grid.Column="0"  BorderBrush="Black" BorderThickness="2" Margin="10">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
@@ -109,12 +109,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #3" Margin="10"/>
+                        <TextBlock x:Name="header_screen_3" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #3" Margin="10"/>
                         <local:GenerationSceneBottomLeft x:Name="GenerationSceneBottomLeft" Grid.Row="1" Grid.Column="0"/>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="2">
-                    <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+                <Border Grid.Row="1" Grid.Column="1"  BorderBrush="Black" BorderThickness="2" Margin="10">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
@@ -122,7 +122,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #4" Margin="10"/>
+                        <TextBlock x:Name="header_screen_4" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Text="Screen #4" Margin="10"/>
                         <local:GenerationSceneBottomRight x:Name="GenerationSceneBottomRight" Grid.Row="1" Grid.Column="0"/>
                     </Grid>
                 </Border>
@@ -150,8 +150,8 @@
                             <Button Grid.Column="0" Grid.Row="2" x:Name="button4" Content="Remove" Margin="10,10,0,0" VerticalAlignment="Top" Width="200" Height="50" Click="btnRemoveMode"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_1" Header="Entity selection" Visibility="Collapsed">
-                        <Grid Name="region_filling_2_1_content">
+                    <TabItem Name="add_mode_1" Header="Entity selection" Visibility="Collapsed">
+                        <Grid Name="add_mode_1_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -162,8 +162,8 @@
                             <views:TangibleObjectsSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="TangibleObjectsSystemView" Loaded="TangibleObjectsSystemView_Loaded" />
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_2" Header="Relationship selection" Visibility="Collapsed">
-                        <Grid Name="region_filling_2_2_content">
+                    <TabItem Name="add_mode_2" Header="Relationship selection" Visibility="Collapsed">
+                        <Grid Name="add_mode_2_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -174,8 +174,8 @@
                             <views:RelationshipSelectionSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="RelationshipSelectionSystemView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_4" Header="Placement settings" Visibility="Collapsed">
-                        <Grid Name="region_filling_2_4_content">
+                    <TabItem Name="add_mode_3_1" Header="Placement settings" Visibility="Collapsed">
+                        <Grid Name="add_mode_3_1_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
@@ -185,16 +185,66 @@
                             <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_2_5" Header="Placement" Visibility="Collapsed">
-                        <Grid Name="region_filling_2_5_content">
+                    <TabItem Name="add_mode_3_2" Header="Placement" Visibility="Collapsed">
+                        <Grid Name="add_mode_3_2_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <views:ManualPlacementView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="ManualPlacementView"/>
-                            <views:InspectGeneratedConfigurationsSystemView Grid.Column="0" Grid.Row="0" Visibility="Collapsed" x:Name="InspectGeneratedConfigurationsSystemView"/>
+                            <views:InspectGeneratedConfigurationsSystemView Grid.Column="0" Grid.Row="0" x:Name="InspectGeneratedConfigurationsSystemView"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="add_mode_3_3" Header="Manual" Visibility="Collapsed">
+                        <Grid Name="add_mode_3_3_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:ManualPlacementView Grid.Column="0" Grid.Row="0" x:Name="ManualPlacementView"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="change_mode_1" Header="Changing" Visibility="Collapsed">
+                        <Grid Name="change_mode_1_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Grid.Row="0" x:Name="button12314" Content="Back" Margin="10" Width="200" Height="50" Click="btnBack"/>
+                            <Button Grid.Column="0" Grid.Row="1" x:Name="button53252" Content="Manual changing" Margin="10" Width="200" Height="50" Click="btnManualChangeMode"/>
+                            <Button Grid.Column="0" Grid.Row="2" x:Name="button1412252" Content="Automated repositioning" Margin="10" Width="200" Height="50" Click="btnAutomatedRepositionMode"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="change_mode_2" Header="Manual" Visibility="Collapsed">
+                        <Grid Name="change_mode_2_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Grid.Row="0" x:Name="button12124" Content="Back" Margin="10" Width="200" Height="50" Click="btnBack"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="change_mode_3" Header="Repositioning" Visibility="Collapsed">
+                        <Grid Name="change_mode_3_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
                         </Grid>
                     </TabItem>
                     <TabItem Name="region_filling_3" Header="Entity removal and repositioning" Visibility="Collapsed">
@@ -208,13 +258,13 @@
                             <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView2"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_21" Header="Region detail" >
+                    <TabItem Name="inspection_1" Header="Region detail" >
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
-                    <TabItem Name="region_filling_23" Header="Delta detail" >
+                    <TabItem Name="inspection_2" Header="Delta detail" >
                         <views:DeltaListView x:Name="DeltaListView" Loaded="DeltaListView_Loaded" />
                     </TabItem>
-                    <TabItem Name="region_filling_22" Header="Selection detail" >
+                    <TabItem Name="inspection_3" Header="Selection detail" >
                         <views:SelectedObjectDetailView x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
                     </TabItem>
                 </TabControl>

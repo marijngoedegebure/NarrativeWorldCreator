@@ -45,9 +45,14 @@ namespace NarrativeWorldCreator.Solvers
                         ListOfInstanceIndicesPerOnRelationship[j] = instanceList;
                     }
                 }
-                var onRelIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship.Keys.Count);
-                var instanceIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship[onRelIndex].Count);
+                // Find random index of keys in the dictionary that points to a relationship index of the tangible object
+                var randomRelKeyIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship.Keys.Count);
+                var onRelIndex = ListOfInstanceIndicesPerOnRelationship.Keys.ToList()[randomRelKeyIndex];
+                // Find random index that points to an instance index
+                var randomInstanceListIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship[onRelIndex].Count);
+                var instanceIndex = ListOfInstanceIndicesPerOnRelationship[onRelIndex][randomInstanceListIndex];
                 var orVM = new OnRelationshipViewModel();
+                // Use randomized instance index to find index in instancedObjects list
                 orVM.Load(instancedObjects[instanceIndex], instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget[onRelIndex]);
                 arsVM.OnRelationship = orVM;
 

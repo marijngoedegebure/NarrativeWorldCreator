@@ -38,17 +38,6 @@ namespace NarrativeWorldCreator
     {
         // List of states
         #region Fields
-        internal MainFillingMode CurrentFillingMode = MainFillingMode.None;
-
-        internal enum MainFillingMode
-        {
-            None = 0,
-            ClassSelection = 1,
-            RelationshipSelection = 2,
-            RelationshipInstancing = 3,
-            Placement = 4,
-            Repositioning = 5
-        }
 
         EntikaInstance InstanceOfObjectToAdd;
 
@@ -79,6 +68,30 @@ namespace NarrativeWorldCreator
 
             var ntpVM = (NarrativeTimelineControl.DataContext as NarrativeTimelineViewModel).NarrativeTimePoints.Where(ntp => ntp.NarrativeTimePoint.Equals(this.selectedNode.TimePoints[SelectedTimePoint])).FirstOrDefault();
             ntpVM.Selected = true;
+        }
+
+        internal void SelectForScreen1(int selection)
+        {
+            this.TopLeftSelectedGPUConfigurationResult = selection;
+            this.header_screen_1.Text = "Screen #1, showing option #" + (selection + 1);
+        }
+
+        internal void SelectForScreen2(int selection)
+        {
+            this.TopRightSelectedGPUConfigurationResult = selection;
+            this.header_screen_2.Text = "Screen #2, showing option #" + (selection + 1);
+        }
+
+        internal void SelectForScreen3(int selection)
+        {
+            this.BottomLeftSelectedGPUConfigurationResult = selection;
+            this.header_screen_3.Text = "Screen #3, showing option #" + (selection + 1);
+        }
+
+        internal void SelectForScreen4(int selection)
+        {
+            this.BottomRightSelectedGPUConfigurationResult = selection;
+            this.header_screen_4.Text = "Screen #4, showing option #" + (selection + 1);
         }
 
         private void RegionDetailTimePointView_Loaded(object sender, RoutedEventArgs e)
@@ -118,8 +131,17 @@ namespace NarrativeWorldCreator
                 case MainFillingMode.RelationshipSelection:
                     ChangeUIToTOClassSelection();
                     break;
-                case MainFillingMode.Placement:
+                case MainFillingMode.AutomatedPlacement:
                     ChangeUIToRelationshipSelection();
+                    break;
+                case MainFillingMode.ManualPlacement:
+                    ChangeUIToRelationshipSelection();
+                    break;
+                case MainFillingMode.SelectionChangeMode:
+                    ChangeUIToMainMenu();
+                    break;
+                case MainFillingMode.ManualChange:
+                    ChangeUIToMainMenu();
                     break;
                 case MainFillingMode.Repositioning:
                     ChangeUIToMainMenu();
@@ -144,7 +166,11 @@ namespace NarrativeWorldCreator
                     SaveInstancingAndSetupPlacement();
                     ChangeUIToPlacement();
                     break;
-                case MainFillingMode.Placement:
+                case MainFillingMode.AutomatedPlacement:
+                    ApplyConfiguration();
+                    ChangeUIToMainMenu();
+                    break;
+                case MainFillingMode.ManualPlacement:
                     ApplyConfiguration();
                     ChangeUIToMainMenu();
                     break;
@@ -168,16 +194,17 @@ namespace NarrativeWorldCreator
             // Set tabitems to show correct ones
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_1.Visibility = Visibility.Visible;
-            region_filling_2_1_content.Visibility = Visibility.Visible;
-            region_filling_2_2.Visibility = Visibility.Collapsed;
-            region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_4.Visibility = Visibility.Collapsed;
-            region_filling_2_4_content.Visibility = Visibility.Collapsed;
-            region_filling_2_5.Visibility = Visibility.Collapsed;
-            region_filling_2_5_content.Visibility = Visibility.Visible;
+            add_mode_1.Visibility = Visibility.Visible;
+            add_mode_1_content.Visibility = Visibility.Visible;
+            add_mode_2.Visibility = Visibility.Collapsed;
+            add_mode_2_content.Visibility = Visibility.Collapsed;
+            add_mode_3_1.Visibility = Visibility.Collapsed;
+            add_mode_3_1_content.Visibility = Visibility.Collapsed;
+            add_mode_3_2.Visibility = Visibility.Collapsed;
+            add_mode_3_2_content.Visibility = Visibility.Visible;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 1;
             // Determine which view to be shown:
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
@@ -194,6 +221,8 @@ namespace NarrativeWorldCreator
 
         internal void ChangeUIToRelationshipSelection()
         {
+            this.CurrentFillingMode = MainFillingMode.RelationshipSelection;
+
             // Reset values
             this.WorkInProgressConfiguration = this.Configuration.Copy();
             this.WIPAdditionDelta = null;
@@ -207,16 +236,17 @@ namespace NarrativeWorldCreator
             CurrentFillingMode = MainFillingMode.RelationshipSelection;
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_1.Visibility = Visibility.Collapsed;
-            region_filling_2_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_2.Visibility = Visibility.Visible;
-            region_filling_2_2_content.Visibility = Visibility.Visible;
-            region_filling_2_4.Visibility = Visibility.Collapsed;
-            region_filling_2_4_content.Visibility = Visibility.Collapsed;
-            region_filling_2_5.Visibility = Visibility.Collapsed;
-            region_filling_2_5_content.Visibility = Visibility.Collapsed;
+            add_mode_1.Visibility = Visibility.Collapsed;
+            add_mode_1_content.Visibility = Visibility.Collapsed;
+            add_mode_2.Visibility = Visibility.Visible;
+            add_mode_2_content.Visibility = Visibility.Visible;
+            add_mode_3_1.Visibility = Visibility.Collapsed;
+            add_mode_3_1_content.Visibility = Visibility.Collapsed;
+            add_mode_3_2.Visibility = Visibility.Collapsed;
+            add_mode_3_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 2;
 
             // Determine which view to be shown:
@@ -234,34 +264,39 @@ namespace NarrativeWorldCreator
 
         internal void ChangeUIToPlacement()
         {
-            CurrentFillingMode = MainFillingMode.Placement;
             ShowGenerationScenes();
             region_filling_1.Visibility = Visibility.Collapsed;
             region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_1.Visibility = Visibility.Collapsed;
-            region_filling_2_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_2.Visibility = Visibility.Collapsed;
-            region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_4.Visibility = Visibility.Visible;
-            region_filling_2_4_content.Visibility = Visibility.Visible;
-            region_filling_2_5.Visibility = Visibility.Visible;
-            region_filling_2_5_content.Visibility = Visibility.Visible;
+            add_mode_1.Visibility = Visibility.Collapsed;
+            add_mode_1_content.Visibility = Visibility.Collapsed;
+            add_mode_2.Visibility = Visibility.Collapsed;
+            add_mode_2_content.Visibility = Visibility.Collapsed;
+
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Collapsed;
 
             region_tabcontrol.SelectedIndex = 5;
 
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
-                ManualPlacementView.Visibility = Visibility.Collapsed;
-                InspectGeneratedConfigurationsSystemView.Visibility = Visibility.Visible;
-                region_filling_2_4.Visibility = Visibility.Collapsed;
-                region_filling_2_4_content.Visibility = Visibility.Collapsed;
+                this.CurrentFillingMode = MainFillingMode.AutomatedPlacement;
+                add_mode_3_1.Visibility = Visibility.Collapsed;
+                add_mode_3_1_content.Visibility = Visibility.Collapsed;
+                add_mode_3_2.Visibility = Visibility.Visible;
+                add_mode_3_2_content.Visibility = Visibility.Visible;
+                add_mode_3_3.Visibility = Visibility.Collapsed;
+                add_mode_3_3_content.Visibility = Visibility.Collapsed;
             }
             else
             {
-                ManualPlacementView.Visibility = Visibility.Visible;
-                InspectGeneratedConfigurationsSystemView.Visibility = Visibility.Collapsed;
+                this.CurrentFillingMode = MainFillingMode.ManualPlacement;
+                add_mode_3_1.Visibility = Visibility.Collapsed;
+                add_mode_3_1_content.Visibility = Visibility.Collapsed;
+                add_mode_3_2.Visibility = Visibility.Collapsed;
+                add_mode_3_2_content.Visibility = Visibility.Collapsed;
+                add_mode_3_3.Visibility = Visibility.Visible;
+                add_mode_3_3_content.Visibility = Visibility.Visible;
             }
         }
 
@@ -276,6 +311,67 @@ namespace NarrativeWorldCreator
             BasicScene.Visibility = Visibility.Visible;
             GeneratedScenes.Visibility = Visibility.Collapsed;
         }
+
+        private void ChangeUIToManualChangeMode()
+        {
+            this.CurrentFillingMode = MainFillingMode.ManualChange;
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            this.change_mode_1.Visibility = Visibility.Collapsed;
+            this.change_mode_1_content.Visibility = Visibility.Collapsed;
+            this.change_mode_2.Visibility = Visibility.Visible;
+            this.change_mode_2_content.Visibility = Visibility.Visible;
+            this.change_mode_3.Visibility = Visibility.Collapsed;
+            this.change_mode_3_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Visible;
+        }
+
+        private void ChangeUIToChangeModeSelection()
+        {
+            this.CurrentFillingMode = MainFillingMode.SelectionChangeMode;
+
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            this.change_mode_1.Visibility = Visibility.Visible;
+            this.change_mode_1_content.Visibility = Visibility.Visible;
+            this.change_mode_2.Visibility = Visibility.Collapsed;
+            this.change_mode_2_content.Visibility = Visibility.Collapsed;
+            this.change_mode_3.Visibility = Visibility.Collapsed;
+            this.change_mode_3_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Visible;
+        }
+
+        private void ChangeUIToAutomatedRepositioning()
+        {
+            this.CurrentFillingMode = MainFillingMode.Repositioning;
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            this.change_mode_1.Visibility = Visibility.Collapsed;
+            this.change_mode_1_content.Visibility = Visibility.Collapsed;
+            this.change_mode_2.Visibility = Visibility.Collapsed;
+            this.change_mode_2_content.Visibility = Visibility.Collapsed;
+            this.change_mode_3.Visibility = Visibility.Visible;
+            this.change_mode_3_content.Visibility = Visibility.Visible;
+            inspection_3.Visibility = Visibility.Collapsed;
+
+            this.WorkInProgressConfiguration = new Configuration();
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            GenerateConfigurations();
+            ShowGenerationScenes();
+
+            this.CurrentFillingMode = MainFillingMode.Repositioning;
+            add_mode_1.Visibility = Visibility.Collapsed;
+            add_mode_1_content.Visibility = Visibility.Collapsed;
+            add_mode_2.Visibility = Visibility.Collapsed;
+            add_mode_2_content.Visibility = Visibility.Collapsed;
+            add_mode_3_1.Visibility = Visibility.Visible;
+            add_mode_3_1_content.Visibility = Visibility.Visible;
+            add_mode_3_2.Visibility = Visibility.Visible;
+            add_mode_3_2_content.Visibility = Visibility.Visible;
+            region_tabcontrol.SelectedIndex = 5;
+        }
+
         #endregion
 
         internal override void GenerateConfigurations()
@@ -284,7 +380,8 @@ namespace NarrativeWorldCreator
             GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).ToList();
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
-                GeneratedConfigurations = GeneratedConfigurations.Take(4).ToList();
+                // Take X to reduce options
+                GeneratedConfigurations = GeneratedConfigurations.ToList();
             }
 
             // Update list of configurations using generated list of regionpage
@@ -293,10 +390,10 @@ namespace NarrativeWorldCreator
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 this.InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
-                this.TopLeftSelectedGPUConfigurationResult = 0;
-                this.TopRightSelectedGPUConfigurationResult = 1;
-                this.BottomLeftSelectedGPUConfigurationResult = 2;
-                this.BottomRightSelectedGPUConfigurationResult = 3;
+                this.SelectForScreen1(0);
+                this.SelectForScreen2(1);
+                this.SelectForScreen3(2);
+                this.SelectForScreen4(3);
             }
             else
             {
@@ -555,24 +652,14 @@ namespace NarrativeWorldCreator
 
         private void btnChangeMode(object sender, RoutedEventArgs e)
         {
-            this.WorkInProgressConfiguration = new Configuration();
-            this.WorkInProgressConfiguration = this.Configuration.Copy();
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
-            GenerateConfigurations();
-            ShowGenerationScenes();
-
-            this.CurrentFillingMode = MainFillingMode.Repositioning;
-            region_filling_1.Visibility = Visibility.Collapsed;
-            region_filling_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_1.Visibility = Visibility.Collapsed;
-            region_filling_2_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_2.Visibility = Visibility.Collapsed;
-            region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_4.Visibility = Visibility.Visible;
-            region_filling_2_4_content.Visibility = Visibility.Visible;
-            region_filling_2_5.Visibility = Visibility.Visible;
-            region_filling_2_5_content.Visibility = Visibility.Visible;
-            region_tabcontrol.SelectedIndex = 5;
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
+            {
+                ChangeUIToChangeModeSelection();
+            }
+            else
+            {
+                ChangeUIToManualChangeMode();
+            }
         }
 
         internal void ChangeUIToMainMenu()
@@ -580,19 +667,20 @@ namespace NarrativeWorldCreator
             // Reset views when coming from TO addition/placement
             HideGenerationScenes();
 
-            this.CurrentFillingMode = MainFillingMode.None;
+            this.CurrentFillingMode = MainFillingMode.MainMenu;
             region_filling_1.Visibility = Visibility.Visible;
             region_filling_1_content.Visibility = Visibility.Visible;
-            region_filling_2_1.Visibility = Visibility.Collapsed;
-            region_filling_2_1_content.Visibility = Visibility.Collapsed;
-            region_filling_2_2.Visibility = Visibility.Collapsed;
-            region_filling_2_2_content.Visibility = Visibility.Collapsed;
-            region_filling_2_4.Visibility = Visibility.Collapsed;
-            region_filling_2_4_content.Visibility = Visibility.Collapsed;
-            region_filling_2_5.Visibility = Visibility.Collapsed;
-            region_filling_2_5_content.Visibility = Visibility.Collapsed;
+            add_mode_1.Visibility = Visibility.Collapsed;
+            add_mode_1_content.Visibility = Visibility.Collapsed;
+            add_mode_2.Visibility = Visibility.Collapsed;
+            add_mode_2_content.Visibility = Visibility.Collapsed;
+            add_mode_3_1.Visibility = Visibility.Collapsed;
+            add_mode_3_1_content.Visibility = Visibility.Collapsed;
+            add_mode_3_2.Visibility = Visibility.Collapsed;
+            add_mode_3_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 0;
         }
 
@@ -651,6 +739,21 @@ namespace NarrativeWorldCreator
         private void btnRemoveMode(object sender, RoutedEventArgs e)
         {
             // Enable removal mode
+        }
+
+        private void btnManualChangeMode(object sender, RoutedEventArgs e)
+        {
+            this.ChangeUIToManualChangeMode();
+        }
+
+        private void btnAutomatedRepositionMode(object sender, RoutedEventArgs e)
+        {
+            this.ChangeUIToAutomatedRepositioning();
+        }
+
+        private void btnBack(object sender, RoutedEventArgs e)
+        {
+            this.Back();
         }
     }
 }

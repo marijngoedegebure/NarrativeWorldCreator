@@ -16,7 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" Content="Back to relationship selection" Click="Back"/>
+        <Button Grid.Row="0" Grid.Column="0" Content="Back to relationship selection" Click="Back" Margin="10"/>
         <ListView Name="ConfigurationsList"
             Grid.Column="0"
             Grid.Row="1"
@@ -31,7 +31,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Column="0" Grid.Row="2">
+        <Grid Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -40,11 +40,11 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Margin="10" Content="Show on screen 1" Click="ShowOnScreen1"/>
-            <Button Grid.Row="1" Grid.Column="0" Margin="10" Content="Show on screen 2" Click="ShowOnScreen2"/>
-            <Button Grid.Row="0" Grid.Column="1" Margin="10" Content="Show on screen 3" Click="ShowOnScreen3"/>
-            <Button Grid.Row="1" Grid.Column="1" Margin="10" Content="Show on screen 4" Click="ShowOnScreen4"/>
+            <Button Grid.Row="0" Grid.Column="0" Margin="10" Content="Show on screen 1" Padding="5,2" Click="ShowOnScreen1"/>
+            <Button Grid.Row="0" Grid.Column="1" Margin="10" Content="Show on screen 2" Padding="5,2" Click="ShowOnScreen2"/>
+            <Button Grid.Row="1" Grid.Column="0" Margin="10" Content="Show on screen 3" Padding="5,2" Click="ShowOnScreen3"/>
+            <Button Grid.Row="1" Grid.Column="1" Margin="10" Content="Show on screen 4" Padding="5,2" Click="ShowOnScreen4"/>
         </Grid>
-        <Button Grid.Row="3" Grid.Column="0" Content="Save selected system configuration" Click="SaveConfiguration"/>
+        <Button Grid.Row="3" Grid.Column="0" Content="Save top left selection" Click="SaveConfiguration" Margin="10"/>
     </Grid>
 </UserControl>

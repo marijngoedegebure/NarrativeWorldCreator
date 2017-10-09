@@ -1,4 +1,5 @@
 ﻿using NarrativeWorldCreator.Pages;
+using NarrativeWorldCreator.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,10 @@ namespace NarrativeWorldCreator.Views
             InitializeComponent();
         }
 
-        private ModeBaseRegionPage GetRegionPage()
+        private MainModeRegionPage GetRegionPage()
         {
             var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
+            return (MainModeRegionPage)mainWindow._mainFrame.NavigationService.Content;
         }
 
         private void SaveConfiguration(object sender, RoutedEventArgs e)
@@ -43,27 +44,36 @@ namespace NarrativeWorldCreator.Views
 
         private void ShowOnScreen1(object sender, RoutedEventArgs e)
         {
-
+            var regionPage = GetRegionPage();
+            var selection = this.ConfigurationsList.SelectedIndex;
+            regionPage.SelectForScreen1(selection);
         }
 
         private void ShowOnScreen2(object sender, RoutedEventArgs e)
         {
-
+            var regionPage = GetRegionPage();
+            var selection = this.ConfigurationsList.SelectedIndex;
+            regionPage.SelectForScreen2(selection);
         }
 
         private void ShowOnScreen3(object sender, RoutedEventArgs e)
         {
-
+            var regionPage = GetRegionPage();
+            var selection = this.ConfigurationsList.SelectedIndex;
+            regionPage.SelectForScreen3(selection);
         }
 
         private void ShowOnScreen4(object sender, RoutedEventArgs e)
         {
-
+            var regionPage = GetRegionPage();
+            var selection = this.ConfigurationsList.SelectedIndex;
+            regionPage.SelectForScreen4(selection);
         }
 
         private void Back(object sender, RoutedEventArgs e)
         {
-
+            var regionPage = GetRegionPage();
+            regionPage.Back();
         }
     }
 }
