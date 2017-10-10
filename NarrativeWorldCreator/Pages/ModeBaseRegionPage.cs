@@ -23,7 +23,10 @@ namespace NarrativeWorldCreator.Pages
             AutomatedPlacement = 4,
             Repositioning = 5,
             ManualChange = 6,
-            SelectionChangeMode = 7
+            SelectionChangeMode = 7,
+            Removal = 8,
+            Freeze = 9,
+            None = 10
         }
 
         internal EntikaInstance InstanceOfObjectToAdd;
@@ -52,6 +55,8 @@ namespace NarrativeWorldCreator.Pages
         internal override void UpdateSelectedObjectDetailView() { }
 
         internal override void RefreshSelectedObjectView() { }
+
+        internal override void RefreshViewsUsingSelected() { }
 
         internal virtual void UpdateDetailView(NarrativeTimePoint narrativeTimePoint) { }
     }

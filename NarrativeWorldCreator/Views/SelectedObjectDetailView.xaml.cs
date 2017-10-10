@@ -26,41 +26,5 @@ namespace NarrativeWorldCreator.Views
         {
             InitializeComponent();
         }
-
-        private void btnFreeze(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            var data = this.DataContext as SelectedObjectDetailViewModel;
-            foreach (var instance in data.SelectedInstancedEntikaInstances)
-            {
-                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = true;
-            }
-            regionPage.RefreshSelectedObjectView();
-        }
-
-        private ModeBaseRegionPage GetRegionPage()
-        {
-            var mainWindow = System.Windows.Application.Current.MainWindow as MainWindow;
-            return (ModeBaseRegionPage)mainWindow._mainFrame.NavigationService.Content;
-        }
-
-        private void btnUnFreeze(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            var data = this.DataContext as SelectedObjectDetailViewModel;
-            foreach (var instance in data.SelectedInstancedEntikaInstances)
-            {
-                regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance.EntikaInstanceValued.EntikaInstance)).FirstOrDefault().Frozen = false;
-            }
-            regionPage.RefreshSelectedObjectView();
-        }
-
-        private void btnRemoveSelectedInstances(object sender, RoutedEventArgs e)
-        {
-            var regionPage = GetRegionPage();
-            var data = this.DataContext as SelectedObjectDetailViewModel;
-            regionPage.RemoveSelectedInstances(data.SelectedInstancedEntikaInstances.ToList());
-            regionPage.RefreshSelectedObjectView();
-        }
     }
 }

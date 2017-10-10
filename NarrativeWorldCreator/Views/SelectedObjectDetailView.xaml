@@ -9,9 +9,6 @@
     <Grid x:Name="DetailViewGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -220,8 +217,5 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        <Button Grid.Row="1" Grid.Column="0" x:Name="button1" Content="Freeze selected objects" Margin="10,10,0,0" Width="200" Click="btnFreeze"/>
-        <Button Grid.Row="2" Grid.Column="0" x:Name="button2" Content="Unfreeze selected objects" Margin="10,10,0,0" Width="200" Click="btnUnFreeze"/>
-        <Button Grid.Row="3" Grid.Column="0" x:Name="button3" Content="Remove selected instances" Margin="10,10,0,0" Width="200" Click="btnRemoveSelectedInstances"/>
     </Grid>
 </UserControl>

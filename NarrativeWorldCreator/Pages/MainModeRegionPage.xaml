@@ -134,7 +134,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TabControl Name="region_tabcontrol" Grid.Row="0" Grid.Column="0" SelectedIndex="0">
+                <TabControl Name="region_tabcontrol" Grid.Row="0" Grid.Column="0" SelectedIndex="0" SelectionChanged="TabControl_SelectionChanged">
                     <TabItem Name="region_filling_1" Header="Main menu">
                         <Grid Name="region_filling_1_content">
                             <Grid.RowDefinitions>
@@ -233,9 +233,11 @@
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Button Grid.Column="0" Grid.Row="0" x:Name="button12124" Content="Back" Margin="10" Width="200" Height="50" Click="btnBack"/>
+                            <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" TextWrapping="Wrap">Press &lt;Control&gt; and click with the mouse cursor on an object to select a single object. Press &lt;Shift&gt; and click and drag the mouse cursor to do a box selection, release the left mouse button to select the objects inside the box.</TextBlock>
+                            <TextBlock Grid.Column="0" Grid.Row="2" Margin="10" TextWrapping="Wrap">With the objects selected, press the &lt;R&gt; and drag the mouse to rotate the objects. Hold the cursor above an object and click and drag to move all selected objects.</TextBlock>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="region_filling_3" Header="Entity removal and repositioning" Visibility="Collapsed">
+                    <TabItem Name="region_filling_3" Header="Repositioning" Visibility="Collapsed">
                         <Grid Name="region_filling_3_content">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"></RowDefinition>
@@ -245,6 +247,20 @@
                             </Grid.ColumnDefinitions>
                             <views:GenerateConfigurationsView Grid.Column="0" Grid.Row="0" x:Name="GenerateConfigurationsView2"/>
                         </Grid>
+                    </TabItem>
+                    <TabItem Name="removal_mode_1" Header="Removal" Visibility="Collapsed">
+                        <Grid Name="removal_mode_1_content">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <views:RemovalModeView Grid.Column="0" Grid.Row="0" x:Name="RemovalModeView" Loaded = "RemovalModeView_Loaded"/>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Name="freeze_1" Header="Freeze" Visibility="Collapsed" >
+                        <views:FreezeView x:Name="FreezeView" Loaded="FreezeView_Loaded" />
                     </TabItem>
                     <TabItem Name="inspection_1" Header="Region detail" >
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>

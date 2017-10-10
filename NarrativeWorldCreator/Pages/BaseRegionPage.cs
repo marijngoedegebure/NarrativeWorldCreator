@@ -49,7 +49,7 @@ namespace NarrativeWorldCreator.Pages
             UpdateConfiguration();
         }
 
-        internal void RemoveSelectedInstances(List<EntikaInstanceValuedPredicate> instances)
+        internal void RemoveSelectedInstances(List<EntikaInstance> instances)
         {
             // Add removal delta's or delete add delta. Second is done when the delta has been added at the current timepoint
             var instanceDeltasToRemove = new List<InstanceDelta>();
@@ -58,7 +58,7 @@ namespace NarrativeWorldCreator.Pages
             foreach (var instance in instances) {
                 foreach (var instanceDelta in this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas)
                 {
-                    if (instanceDelta.DT.Equals(InstanceDeltaType.Add) && instanceDelta.RelatedInstance.Equals(instance.EntikaInstanceValued.EntikaInstance) && instanceDelta.TimePoint.Equals(this.SelectedTimePoint))
+                    if (instanceDelta.DT.Equals(InstanceDeltaType.Add) && instanceDelta.RelatedInstance.Equals(instance) && instanceDelta.TimePoint.Equals(this.SelectedTimePoint))
                     {
                         // Remove delta
                         instanceDeltasToRemove.Add(instanceDelta);
@@ -68,7 +68,7 @@ namespace NarrativeWorldCreator.Pages
                 }
                 if (!found)
                 {
-                    instanceRemovalDeltasToAdd.Add(new InstanceDelta(this.SelectedTimePoint, instance.EntikaInstanceValued.EntikaInstance, InstanceDeltaType.Remove, null, null));
+                    instanceRemovalDeltasToAdd.Add(new InstanceDelta(this.SelectedTimePoint, instance, InstanceDeltaType.Remove, null, null));
                 }
             }
 
@@ -78,11 +78,11 @@ namespace NarrativeWorldCreator.Pages
             {
                 foreach (var relation in this.Configuration.InstancedRelations)
                 {
-                    if (relation.Source.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
+                    if (relation.Source.Equals(instanceToRemove))
                     {
                         relationsToRemove.Add(relation);
                     }
-                    else if (relation.Target.Equals(instanceToRemove.EntikaInstanceValued.EntikaInstance))
+                    else if (relation.Target.Equals(instanceToRemove))
                     {
                         relationsToRemove.Add(relation);
                     }
@@ -135,7 +135,7 @@ namespace NarrativeWorldCreator.Pages
             this.UpdateConfiguration();
 
             // Return to changing menu
-            this.RefreshSelectedObjectView();
+            this.RefreshViewsUsingSelected();
             this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
         }
 
@@ -224,5 +224,7 @@ namespace NarrativeWorldCreator.Pages
         internal virtual void UpdateSelectedObjectDetailView() { }
 
         internal virtual void RefreshSelectedObjectView() {}
+
+        internal virtual void RefreshViewsUsingSelected() { }
     }
 }

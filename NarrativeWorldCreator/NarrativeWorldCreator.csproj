@@ -220,6 +220,7 @@
     <Compile Include="ViewModel\OnRelationshipViewModel.cs" />
     <Compile Include="ViewModel\OtherRelationshipViewModel.cs" />
     <Compile Include="ViewModel\RelationshipSelectionGeneratedOptionsViewModel.cs" />
+    <Compile Include="ViewModel\RemovalModeViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsSwapViewModel.cs" />
     <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
@@ -232,6 +233,9 @@
     <Compile Include="ViewModel\Vector3ViewModel.cs" />
     <Compile Include="Views\DeltaListView.xaml.cs">
       <DependentUpon>DeltaListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FreezeView.xaml.cs">
+      <DependentUpon>FreezeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManualPlacementView.xaml.cs">
       <DependentUpon>ManualPlacementView.xaml</DependentUpon>
@@ -253,6 +257,9 @@
     </Compile>
     <Compile Include="Views\RelationshipSelectionView.xaml.cs">
       <DependentUpon>RelationshipSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RemovalModeView.xaml.cs">
+      <DependentUpon>RemovalModeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectedObjectDetailView.xaml.cs">
       <DependentUpon>SelectedObjectDetailView.xaml</DependentUpon>
@@ -311,6 +318,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\FreezeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ManualPlacementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -336,6 +347,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RelationshipSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RemovalModeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

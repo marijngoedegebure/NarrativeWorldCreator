@@ -299,7 +299,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             {
                 GraphicsDevice.RasterizerState = RasterizerState.CullCounterClockwise;
                 List<VertexPositionColor> points = new List<VertexPositionColor>();
-                points = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.White);
+                points = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.LightGray);
 
                 // Create quads based off vertex points
                 for (int i = 0; i < points.Count; i++)

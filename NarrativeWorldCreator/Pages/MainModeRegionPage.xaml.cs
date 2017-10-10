@@ -40,6 +40,8 @@ namespace NarrativeWorldCreator
         #region Fields
         internal Vector3 manualPlacementPosition = new Vector3();
         internal Vector3 manualPlacementRotation = new Vector3();
+
+        internal MainFillingMode PreviousFillingMode { get; private set; }
         #endregion
         #region Setup
 
@@ -54,6 +56,15 @@ namespace NarrativeWorldCreator
 
             // Set content of header
             this.PageHeader.Text = "Environment filling - " + this.selectedNode.LocationName;
+
+            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
+            {
+                this.freeze_1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.freeze_1.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void NarrativeTimelineControl_Loaded(object sender, RoutedEventArgs e)
@@ -145,10 +156,12 @@ namespace NarrativeWorldCreator
                 case MainFillingMode.Repositioning:
                     ChangeUIToMainMenu();
                     break;
+                case MainFillingMode.Removal:
+                    ChangeUIToMainMenu();
+                    break;
                 default:
                     break;
             }
-            // Call function to switch to different mode
         }
 
         internal override void Next()
@@ -636,7 +649,7 @@ namespace NarrativeWorldCreator
         internal override void UpdateDetailView(NarrativeTimePoint narrativeTimePoint)
         {
             // Update detailtab
-            this.RefreshSelectedObjectView();
+            this.RefreshViewsUsingSelected();
             (RegionDetailTimePointView.DataContext as DetailTimePointViewModel).LoadObjects(selectedNode, narrativeTimePoint);
         }
 
@@ -671,6 +684,11 @@ namespace NarrativeWorldCreator
             }
         }
 
+        private void btnRemoveMode(object sender, RoutedEventArgs e)
+        {
+            ChangeUIToRemovalMode();
+        }
+
         internal void ChangeUIToMainMenu()
         {
             // Reset views when coming from TO addition/placement
@@ -693,6 +711,35 @@ namespace NarrativeWorldCreator
             change_mode_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
+            removal_mode_1.Visibility = Visibility.Collapsed;
+            removal_mode_1_content.Visibility = Visibility.Collapsed;
+            inspection_3.Visibility = Visibility.Collapsed;
+            region_tabcontrol.SelectedIndex = 0;
+        }
+
+        private void ChangeUIToRemovalMode()
+        {
+            HideGenerationScenes();
+
+            this.CurrentFillingMode = MainFillingMode.Removal;
+            region_filling_1.Visibility = Visibility.Collapsed;
+            region_filling_1_content.Visibility = Visibility.Collapsed;
+            add_mode_1.Visibility = Visibility.Collapsed;
+            add_mode_1_content.Visibility = Visibility.Collapsed;
+            add_mode_2.Visibility = Visibility.Collapsed;
+            add_mode_2_content.Visibility = Visibility.Collapsed;
+            add_mode_3_1.Visibility = Visibility.Collapsed;
+            add_mode_3_1_content.Visibility = Visibility.Collapsed;
+            add_mode_3_2.Visibility = Visibility.Collapsed;
+            add_mode_3_2_content.Visibility = Visibility.Collapsed;
+            change_mode_1.Visibility = Visibility.Collapsed;
+            change_mode_1_content.Visibility = Visibility.Collapsed;
+            change_mode_2.Visibility = Visibility.Collapsed;
+            change_mode_2_content.Visibility = Visibility.Collapsed;
+            region_filling_3.Visibility = Visibility.Collapsed;
+            region_filling_3_content.Visibility = Visibility.Collapsed;
+            removal_mode_1.Visibility = Visibility.Visible;
+            removal_mode_1_content.Visibility = Visibility.Visible;
             inspection_3.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 0;
         }
@@ -709,10 +756,35 @@ namespace NarrativeWorldCreator
             this.DeltaListView.DataContext = dlvm;
         }
 
-
-        internal override void UpdateSelectedObjectDetailView()
+        private void RemovalModeView_Loaded(object sender, RoutedEventArgs e)
         {
-            (SelectedObjectDetailView.DataContext as SelectedObjectDetailViewModel).LoadSelectedInstances(this.SelectedEntikaInstances, this.selectedNode.TimePoints[SelectedTimePoint], this.Configuration);
+            RemovalModeViewModel rmVM = new RemovalModeViewModel();
+            rmVM.LoadSelectedInstances(this.SelectedEntikaInstances);
+            RemovalModeView.DataContext = rmVM;
+        }
+
+        internal void UpdateRemovalModeView()
+        {
+            (RemovalModeView.DataContext as RemovalModeViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
+        }
+
+        private void FreezeView_Loaded(object sender, RoutedEventArgs e)
+        {
+            RemovalModeViewModel rmVM = new RemovalModeViewModel();
+            rmVM.LoadSelectedInstances(this.SelectedEntikaInstances);
+            FreezeView.DataContext = rmVM;
+        }
+
+        internal void UpdateFreezeModeView()
+        {
+            (FreezeView.DataContext as RemovalModeViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
+        }
+
+        internal void RefreshViewsUsingSelected()
+        {
+            RefreshSelectedObjectView();
+            UpdateRemovalModeView();
+            UpdateFreezeModeView();
         }
 
         internal override void RefreshSelectedObjectView()
@@ -749,11 +821,6 @@ namespace NarrativeWorldCreator
             MessageTextBox.Text = message;
         }
 
-        private void btnRemoveMode(object sender, RoutedEventArgs e)
-        {
-            // Enable removal mode
-        }
-
         private void btnManualChangeMode(object sender, RoutedEventArgs e)
         {
             this.ChangeUIToManualChangeMode();
@@ -767,6 +834,26 @@ namespace NarrativeWorldCreator
         private void btnBack(object sender, RoutedEventArgs e)
         {
             this.Back();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string tabItem = ((sender as TabControl).SelectedItem as TabItem).Header as string;
+
+            switch (tabItem)
+            {
+                case "Freeze":
+                    this.PreviousFillingMode = this.CurrentFillingMode;
+                    this.CurrentFillingMode = MainFillingMode.Freeze;
+                    break;
+                default:
+                    if (this.PreviousFillingMode != MainFillingMode.None)
+                    {
+                        this.CurrentFillingMode = this.PreviousFillingMode;
+                        this.PreviousFillingMode = MainFillingMode.None;
+                    }
+                    return;
+            }
         }
     }
 }
