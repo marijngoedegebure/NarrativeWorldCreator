@@ -37,12 +37,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected Camera3d cam = new Camera3d();
 
-        protected enum DrawingModes
-        {
-            UnderlyingRegion = 0,
-            MinkowskiMinus = 1,
-        }
-        protected DrawingModes CurrentDrawingMode = DrawingModes.UnderlyingRegion;
         protected KeyboardState _previousKeyboardState;
 
         protected Point BoxSelectInitialCoords;
@@ -133,15 +127,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             var sampler = GraphicsDevice.SamplerStates[0];
 
             GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Brown);
-
-            if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
-            {
-                drawFloorWireframe();
-            }
-            if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
-            {
-                drawRegionPolygon();
-            }
+            drawRegionPolygon();
 
             this.drawTestRuler();
 
@@ -223,32 +209,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                             0,
                             2);
                     }
-                }
-            }
-        }
-
-        protected void drawFloorWireframe()
-        {
-            BasicEffect basicEffect = new BasicEffect(GraphicsDevice);
-            basicEffect.World = this.world;
-            basicEffect.View = this.view;
-            basicEffect.Projection = this.proj;
-            basicEffect.VertexColorEnabled = true;
-            var floorInstance = this._currentRegionPage.Configuration.InstancedObjects.Where(io => io.Name.Equals(Constants.Floor)).FirstOrDefault();
-            if (floorInstance != null)
-            {
-                // If shape is compatible with currently selected entika object that can be placed, use a different color
-                List<VertexPositionColor> drawableTriangles = new List<VertexPositionColor>();
-                drawableTriangles = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.Red);
-                foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
-                {
-                    // This is the all-important line that sets the effect, and all of its settings, on the graphics device
-                    pass.Apply();
-                    GraphicsDevice.DrawUserPrimitives<VertexPositionColor>(
-                        PrimitiveType.TriangleList,
-                        drawableTriangles.ToArray(),
-                        0,
-                        drawableTriangles.Count / 3);
                 }
             }
         }
@@ -520,18 +480,6 @@ namespace NarrativeWorldCreator.GraphicScenes
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
             // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
-
-            if (_keyboardState.IsKeyUp(Keys.Tab) && _previousKeyboardState.IsKeyDown(Keys.Tab))
-            {
-                if (CurrentDrawingMode == DrawingModes.MinkowskiMinus)
-                {
-                    CurrentDrawingMode = DrawingModes.UnderlyingRegion;
-                }
-                else if (CurrentDrawingMode == DrawingModes.UnderlyingRegion)
-                {
-                    CurrentDrawingMode = DrawingModes.MinkowskiMinus;
-                }
-            }
             base.Update(time);
         }
         #endregion
