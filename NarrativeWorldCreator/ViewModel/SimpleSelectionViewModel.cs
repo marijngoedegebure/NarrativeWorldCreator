@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NarrativeWorldCreator.ViewModel
 {
-    class RemovalModeViewModel : INotifyPropertyChanged
+    class SimpleSelectionViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<EntikaInstance> _selectedInstancedEntikaInstances;
         public ObservableCollection<EntikaInstance> SelectedInstancedEntikaInstances

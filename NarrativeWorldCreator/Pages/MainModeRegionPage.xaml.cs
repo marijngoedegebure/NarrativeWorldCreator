@@ -333,7 +333,6 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Collapsed;
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Visible;
-            this.change_mode_2_content.Visibility = Visibility.Visible;
             inspection_3.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 7;
         }
@@ -347,7 +346,6 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Visible;
             this.change_mode_1_content.Visibility = Visibility.Visible;
             this.change_mode_2.Visibility = Visibility.Collapsed;
-            this.change_mode_2_content.Visibility = Visibility.Collapsed;
             inspection_3.Visibility = Visibility.Visible;
             region_tabcontrol.SelectedIndex = 6;
         }
@@ -369,7 +367,6 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Collapsed;
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Collapsed;
-            this.change_mode_2_content.Visibility = Visibility.Collapsed;
             inspection_3.Visibility = Visibility.Collapsed;
             region_tabcontrol.SelectedIndex = 4;
 
@@ -708,7 +705,6 @@ namespace NarrativeWorldCreator
             change_mode_1.Visibility = Visibility.Collapsed;
             change_mode_1_content.Visibility = Visibility.Collapsed;
             change_mode_2.Visibility = Visibility.Collapsed;
-            change_mode_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
             removal_mode_1.Visibility = Visibility.Collapsed;
@@ -735,7 +731,6 @@ namespace NarrativeWorldCreator
             change_mode_1.Visibility = Visibility.Collapsed;
             change_mode_1_content.Visibility = Visibility.Collapsed;
             change_mode_2.Visibility = Visibility.Collapsed;
-            change_mode_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
             removal_mode_1.Visibility = Visibility.Visible;
@@ -758,33 +753,46 @@ namespace NarrativeWorldCreator
 
         private void RemovalModeView_Loaded(object sender, RoutedEventArgs e)
         {
-            RemovalModeViewModel rmVM = new RemovalModeViewModel();
+            SimpleSelectionViewModel rmVM = new SimpleSelectionViewModel();
             rmVM.LoadSelectedInstances(this.SelectedEntikaInstances);
             RemovalModeView.DataContext = rmVM;
         }
 
         internal void UpdateRemovalModeView()
         {
-            (RemovalModeView.DataContext as RemovalModeViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
+            (RemovalModeView.DataContext as SimpleSelectionViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
         }
 
         private void FreezeView_Loaded(object sender, RoutedEventArgs e)
         {
-            RemovalModeViewModel rmVM = new RemovalModeViewModel();
+            SimpleSelectionViewModel rmVM = new SimpleSelectionViewModel();
             rmVM.LoadSelectedInstances(this.SelectedEntikaInstances);
             FreezeView.DataContext = rmVM;
         }
 
         internal void UpdateFreezeModeView()
         {
-            (FreezeView.DataContext as RemovalModeViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
+            (FreezeView.DataContext as SimpleSelectionViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
         }
 
-        internal void RefreshViewsUsingSelected()
+        private void ManualChangeView_Loaded(object sender, RoutedEventArgs e)
+        {
+            SimpleSelectionViewModel rmVM = new SimpleSelectionViewModel();
+            rmVM.LoadSelectedInstances(this.SelectedEntikaInstances);
+            ManualChangeView.DataContext = rmVM;
+        }
+
+        internal void UpdateManualPlacementView()
+        {
+            (ManualChangeView.DataContext as SimpleSelectionViewModel).LoadSelectedInstances(this.SelectedEntikaInstances);
+        }
+
+        internal override void RefreshViewsUsingSelected()
         {
             RefreshSelectedObjectView();
             UpdateRemovalModeView();
             UpdateFreezeModeView();
+            UpdateManualPlacementView();
         }
 
         internal override void RefreshSelectedObjectView()

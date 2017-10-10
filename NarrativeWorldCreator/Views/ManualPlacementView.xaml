@@ -10,6 +10,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -19,8 +20,27 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Row="0" Grid.Column="0" Content="Back to relationship selection" Click="Back" Margin="10"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="10" TextWrapping="Wrap">Drag the object to desired location and click the left mouse button to store this position. Press &lt;R&gt; and drag the mouse cursor to rotate the object. Release &lt;R&gt; to store. You can reset the objects' position and rotation by pressing the 'Reset placement' button below.</TextBlock>
-            <Button Grid.Row="2" Grid.Column="0" Content="Reset placement" Click="ResetPlacement" Margin="10"/>
-            <Button Grid.Row="3" Grid.Column="0" Content="Done" Click="SaveConfiguration" Margin="10"/>
+            <ScrollViewer Grid.Column="0" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                <ItemsControl Name="ToListView"
+                  Margin="10" 
+                  ItemsSource = "{Binding Path = SelectedInstancedEntikaInstances}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Name, StringFormat='Name: {0}'}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Button Grid.Row="3" Grid.Column="0" Content="Reset placement" Click="ResetPlacement" Margin="10"/>
+            <Button Grid.Row="4" Grid.Column="0" Content="Done" Click="SaveConfiguration" Margin="10"/>
         </Grid>
     </Grid>
 </UserControl>

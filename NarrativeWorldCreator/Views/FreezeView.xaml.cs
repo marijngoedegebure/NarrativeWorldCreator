@@ -29,7 +29,7 @@ namespace NarrativeWorldCreator.Views
         private void btnFreeze(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            var data = this.DataContext as RemovalModeViewModel;
+            var data = this.DataContext as SimpleSelectionViewModel;
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
@@ -46,7 +46,7 @@ namespace NarrativeWorldCreator.Views
         private void btnUnFreeze(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            var data = this.DataContext as RemovalModeViewModel;
+            var data = this.DataContext as SimpleSelectionViewModel;
             foreach (var instance in data.SelectedInstancedEntikaInstances)
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;

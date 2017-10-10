@@ -220,7 +220,7 @@
     <Compile Include="ViewModel\OnRelationshipViewModel.cs" />
     <Compile Include="ViewModel\OtherRelationshipViewModel.cs" />
     <Compile Include="ViewModel\RelationshipSelectionGeneratedOptionsViewModel.cs" />
-    <Compile Include="ViewModel\RemovalModeViewModel.cs" />
+    <Compile Include="ViewModel\SimpleSelectionViewModel.cs" />
     <Compile Include="ViewModel\TangibleObjectsSwapViewModel.cs" />
     <Compile Include="ViewModel\RelationshipExtendedViewModel.cs" />
     <Compile Include="ViewModel\RelationshipInstanceEnergyViewModel.cs" />
@@ -236,6 +236,9 @@
     </Compile>
     <Compile Include="Views\FreezeView.xaml.cs">
       <DependentUpon>FreezeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManualChangeView.xaml.cs">
+      <DependentUpon>ManualChangeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManualPlacementView.xaml.cs">
       <DependentUpon>ManualPlacementView.xaml</DependentUpon>
@@ -319,6 +322,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FreezeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ManualChangeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
