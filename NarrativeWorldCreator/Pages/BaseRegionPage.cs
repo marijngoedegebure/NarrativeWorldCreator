@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models.NarrativeGraph;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.ViewModel;
@@ -51,41 +52,53 @@ namespace NarrativeWorldCreator.Pages
 
         internal void RemoveSelectedInstances(List<EntikaInstance> instances)
         {
+            //
+            foreach(var instance in instances)
+            {
+                if (this.Configuration.InstancedObjects.Contains(instance))
+                {
+                    CascadingDeletion(instance);
+                    this.UpdateConfiguration();
+                }
+            }
+            // Update configuration
+            this.UpdateConfiguration();
+
+            // Return to changing menu
+            this.RefreshViewsUsingSelected();
+            this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
+        }
+
+        internal void CascadingDeletion(EntikaInstance instance)
+        {
             // Add removal delta's or delete add delta. Second is done when the delta has been added at the current timepoint
-            var instanceDeltasToRemove = new List<InstanceDelta>();
             var found = false;
-            var instanceRemovalDeltasToAdd = new List<InstanceDelta>();
-            foreach (var instance in instances) {
-                foreach (var instanceDelta in this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas)
+            foreach (var instanceDelta in this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas)
+            {
+                if (instanceDelta.DT.Equals(InstanceDeltaType.Add) && instanceDelta.RelatedInstance.Equals(instance) && instanceDelta.TimePoint.Equals(this.SelectedTimePoint))
                 {
-                    if (instanceDelta.DT.Equals(InstanceDeltaType.Add) && instanceDelta.RelatedInstance.Equals(instance) && instanceDelta.TimePoint.Equals(this.SelectedTimePoint))
-                    {
-                        // Remove delta
-                        instanceDeltasToRemove.Add(instanceDelta);
-                        found = true;
-                        break;
-                    }
+                    // Remove delta
+                    this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas.Remove(instanceDelta);
+                    found = true;
+                    break;
                 }
-                if (!found)
-                {
-                    instanceRemovalDeltasToAdd.Add(new InstanceDelta(this.SelectedTimePoint, instance, InstanceDeltaType.Remove, null, null));
-                }
+            }
+            if (!found)
+            {
+                this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, instance, InstanceDeltaType.Remove, null, null));
             }
 
             // Determine relevant relationships of instance
             var relationsToRemove = new List<RelationshipInstance>();
-            foreach (var instanceToRemove in instances)
+            foreach (var relation in this.Configuration.InstancedRelations)
             {
-                foreach (var relation in this.Configuration.InstancedRelations)
+                if (relation.Source.Equals(instance))
                 {
-                    if (relation.Source.Equals(instanceToRemove))
-                    {
-                        relationsToRemove.Add(relation);
-                    }
-                    else if (relation.Target.Equals(instanceToRemove))
-                    {
-                        relationsToRemove.Add(relation);
-                    }
+                    relationsToRemove.Add(relation);
+                }
+                else if (relation.Target.Equals(instance))
+                {
+                    relationsToRemove.Add(relation);
                 }
             }
 
@@ -113,30 +126,22 @@ namespace NarrativeWorldCreator.Pages
 
             // Update delta lists
             // Delete deltas
-            foreach (var deltaToRemove in instanceDeltasToRemove)
-            {
-                this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas.Remove(deltaToRemove);
-            }
             foreach (var deltaToRemove in relationDeltasToRemove)
             {
                 this.selectedNode.TimePoints[SelectedTimePoint].RelationshipDeltas.Remove(deltaToRemove);
             }
             // Add removal deltas
-            foreach (var removalDelta in instanceRemovalDeltasToAdd)
-            {
-                this.selectedNode.TimePoints[SelectedTimePoint].InstanceDeltas.Add(removalDelta);
-            }
             foreach (var removalDelta in relationshipRemovalDeltasToAdd)
             {
                 this.selectedNode.TimePoints[SelectedTimePoint].RelationshipDeltas.Add(removalDelta);
             }
+            // Determine on relationships with this instance as source and cascade deletion to those
+            foreach (var relation in relationsToRemove)
+            {
+                if (relation.BaseRelationship.RelationshipType.DefaultName.Equals(Constants.On) && relation.Source.Equals(instance))
+                    CascadingDeletion(relation.Target);
+            }
 
-            // Update configuration
-            this.UpdateConfiguration();
-
-            // Return to changing menu
-            this.RefreshViewsUsingSelected();
-            this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
         }
 
         internal void ConsistencyCheckDeltas()
