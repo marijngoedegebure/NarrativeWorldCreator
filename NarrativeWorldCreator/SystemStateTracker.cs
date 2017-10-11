@@ -33,7 +33,7 @@ namespace NarrativeWorldCreator
             { "throneroom1", true },
             { "bedroomprincess1", false },
             { "guestroom1", true },
-            { "diningroom1", false },
+            { "diningroom1", true },
             { "kitchen1", true },
             { "prison1", false },
             { "corridor1", true },

@@ -388,6 +388,19 @@ namespace NarrativeWorldCreator
         {
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.selectedNode.TimePoints[SelectedTimePoint], this.WorkInProgressConfiguration);
             GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).ToList();
+            foreach (var configuration in GeneratedConfigurations)
+            {
+                Console.WriteLine("Configuration #?");
+                Console.WriteLine("Clearance costs: " + configuration.ClearanceCosts);
+                Console.WriteLine("Focal point costs: " + configuration.FocalPointCosts);
+                Console.WriteLine("Off limits costs: " + configuration.OffLimitsCosts);
+                Console.WriteLine("Pair wise costs: " + configuration.PairWiseCosts);
+                Console.WriteLine("Surface area costs: " +  configuration.SurfaceAreaCosts);
+                Console.WriteLine("Symmertry costs: " + configuration.SymmetryCosts);
+                Console.WriteLine("Visual balance costs: " + configuration.VisualBalanceCosts);
+                Console.WriteLine();
+            }
+
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 // Take X to reduce options

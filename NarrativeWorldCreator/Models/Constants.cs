@@ -81,7 +81,7 @@ namespace NarrativeWorldCreator.Models
             { "required", 1 },
             { "required dependency", 1 },
             { "decoration weight", 1 },
-            { "area", 1 }
+            { "area", 3 }
         };
 
         // Required Metric Weights
@@ -89,16 +89,16 @@ namespace NarrativeWorldCreator.Models
         {
             { "incoming edges", 1 },
             { "outgoing edges", 1 },
-            { "incoming decorative edges", 1 },
-            { "outgoing decorative edges", 1 },
-            { "incoming required edges", 1 },
-            { "outgoing required edges", 1 },
+            { "incoming decorative edges", 0.1 },
+            { "outgoing decorative edges", 0.1 },
+            { "incoming required edges", 2 },
+            { "outgoing required edges", 2 },
             { "incoming edges available", 1 },
             { "outgoing edges available", 1 },
-            { "required", 10 },
-            { "required dependency", 1 },
-            { "decoration weight", 1 },
-            { "area", 1 }
+            { "required", 3 },
+            { "required dependency", 3 },
+            { "decoration weight", 0.1 },
+            { "area", 3 }
         };
 
         // Decoration Metric Weights
@@ -106,16 +106,16 @@ namespace NarrativeWorldCreator.Models
         {
             { "incoming edges", 1 },
             { "outgoing edges", 1 },
-            { "incoming decorative edges", 1 },
-            { "outgoing decorative edges", 1 },
-            { "incoming required edges", 1 },
-            { "outgoing required edges", 1 },
+            { "incoming decorative edges", 3 },
+            { "outgoing decorative edges", 3 },
+            { "incoming required edges", 0.1 },
+            { "outgoing required edges", 0.1 },
             { "incoming edges available", 1 },
             { "outgoing edges available", 1 },
-            { "required", 1 },
-            { "required dependency", 1 },
-            { "decoration weight", 10 },
-            { "area", 1 }
+            { "required", 0.1 },
+            { "required dependency", 0.1 },
+            { "decoration weight", 3 },
+            { "area", 3 }
         };
     }
 }
