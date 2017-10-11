@@ -41,6 +41,7 @@ namespace NarrativeWorldCreator
 
         // UI Settings
         internal static int NumberOfChoices = 4;
+        public static int NumberOfTries = 100;
 
         // GPGPU settings
         // Number of results generated (threadblocks started):

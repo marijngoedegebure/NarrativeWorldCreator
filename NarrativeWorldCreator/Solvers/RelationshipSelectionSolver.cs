@@ -15,12 +15,13 @@ namespace NarrativeWorldCreator.Solvers
 {
     public static class RelationshipSelectionSolver
     {
-        internal static AutomatedResultsRelationshipSelectionViewModel GetRandomRelationships(AutomatedResultsRelationshipSelectionViewModel vM, int NumberOfChoices, EntikaInstance instanceOfObjectToAdd, LocationNode selectedNode, List<EntikaInstance> instancedObjects)
+        internal static AutomatedResultsRelationshipSelectionViewModel GetRandomRelationships(AutomatedResultsRelationshipSelectionViewModel vM, int NumberOfTries, EntikaInstance instanceOfObjectToAdd, LocationNode selectedNode, List<EntikaInstance> instancedObjects)
         {
             var rnd = new Random();
+            // This stores the unique solutions
             ObservableCollection<AutomatedRelationshipSelectionViewModel> resultsOC = new ObservableCollection<AutomatedRelationshipSelectionViewModel>();
 
-            for (int i = 0; i < NumberOfChoices; i++)
+            for (int i = 0; i < NumberOfTries; i++)
             {
                 var arsVM = new AutomatedRelationshipSelectionViewModel();
                 arsVM.CurrentInstance = instanceOfObjectToAdd;
@@ -102,8 +103,8 @@ namespace NarrativeWorldCreator.Solvers
                     }
                 }
                 arsVM.OtherRelationships = OtherRelationshipsOC;
-
-                resultsOC.Add(arsVM);
+                if (!resultsOC.Contains(arsVM))
+                    resultsOC.Add(arsVM);
             }
             vM.CurrentInstance = instanceOfObjectToAdd;
             vM.Results = resultsOC;

@@ -64,5 +64,33 @@ namespace NarrativeWorldCreator.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
+
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            AutomatedRelationshipSelectionViewModel arsVM = (AutomatedRelationshipSelectionViewModel)obj;
+            if (!this.CurrentInstance.Equals(arsVM.CurrentInstance))
+                return false;
+            if (!this.OnRelationship.Equals(arsVM.OnRelationship))
+                return false;
+            foreach (var otherRVM in this.OtherRelationships)
+            {
+                var found = false;
+                foreach (var arsVMOtherVM in arsVM.OtherRelationships)
+                {
+                    if (otherRVM.Equals(arsVMOtherVM))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    return false;
+            }
+            return true;
+        }
     }
 }

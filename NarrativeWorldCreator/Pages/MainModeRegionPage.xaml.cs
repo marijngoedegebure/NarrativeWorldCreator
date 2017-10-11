@@ -525,7 +525,7 @@ namespace NarrativeWorldCreator
             {
                 var VM = new AutomatedResultsRelationshipSelectionViewModel();
 
-                RelationshipSelectionSystemView.DataContext = RelationshipSelectionSolver.GetRandomRelationships(VM, SystemStateTracker.NumberOfChoices, InstanceOfObjectToAdd, this.selectedNode, this.WorkInProgressConfiguration.InstancedObjects);
+                RelationshipSelectionSystemView.DataContext = RelationshipSelectionSolver.GetRandomRelationships(VM, SystemStateTracker.NumberOfTries, InstanceOfObjectToAdd, this.selectedNode, this.WorkInProgressConfiguration.InstancedObjects);
                 RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedIndex = 0;
             }
             else

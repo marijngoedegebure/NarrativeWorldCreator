@@ -105,5 +105,25 @@ namespace NarrativeWorldCreator.ViewModel
             }
             this.Required = false;
         }
+
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            OtherRelationshipViewModel orVM = (OtherRelationshipViewModel)obj;
+            if (!this.SubjectInstance.Equals(orVM.SubjectInstance))
+                return false;
+            if (!this.TextblockText.Equals(orVM.TextblockText))
+                return false;
+            if (!this.AsTarget.Equals(orVM.AsTarget))
+                return false;
+            if (!this.Relationship.Equals(orVM.Relationship))
+                return false;
+            if (!this.Required.Equals(orVM.Required))
+                return false;
+            return true;
+        }
     }
 }

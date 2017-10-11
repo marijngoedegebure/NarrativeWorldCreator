@@ -67,5 +67,21 @@ namespace NarrativeWorldCreator.ViewModel
             this.Relationship = rel;
             this.Required = false;
         }
+
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            OnRelationshipViewModel orVM = (OnRelationshipViewModel)obj;
+            if (!this.Source.Equals(orVM.Source))
+                return false;
+            if (!this.Relationship.Equals(orVM.Relationship))
+                return false;
+            if (!this.Required.Equals(orVM.Required))
+                return false;
+            return true;
+        }
     }
 }
