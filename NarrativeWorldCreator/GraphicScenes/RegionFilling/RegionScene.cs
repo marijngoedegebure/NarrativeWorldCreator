@@ -51,6 +51,8 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected MainModeRegionPage _currentRegionPage;
 
+        public bool DebugMode { get; private set; }
+
         #endregion
 
         #region Methods
@@ -383,36 +385,39 @@ namespace NarrativeWorldCreator.GraphicScenes
                 }
                 mesh.Draw();
             }
-            
-            // Draw boundingbox
-            BasicEffect lineEffect = new BasicEffect(GraphicsDevice);
-            lineEffect.LightingEnabled = false;
-            lineEffect.TextureEnabled = false;
-            lineEffect.VertexColorEnabled = true;
-            instance.UpdateBoundingBoxAndShape();
-            var bbOffLimits = instance.BoundingBox;
-            if (optionalAdjustedPosition.HasValue)
-            {
-                bbOffLimits = EntikaInstance.GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[instance.TangibleObject], Matrix.CreateTranslation(modelPosition));
-            }
-            var bbbOffLimits = BoundingBoxBuffers.CreateBoundingBoxBuffers(bbOffLimits, GraphicsDevice);
 
-            DrawBoundingBox(bbbOffLimits, lineEffect, GraphicsDevice, this.view, this.proj);
-            // Draw clearance quads:
-            foreach (var clearance in instance.Clearances)
+            // Draw boundingbox  - debug mode
+            if (this.DebugMode)
             {
-                Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-                Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-                foreach (var point in clearance.GetAllVertices())
+                BasicEffect lineEffect = new BasicEffect(GraphicsDevice);
+                lineEffect.LightingEnabled = false;
+                lineEffect.TextureEnabled = false;
+                lineEffect.VertexColorEnabled = true;
+                // instance.UpdateBoundingBoxAndShape();
+                var bbOffLimits = instance.BoundingBox;
+                if (optionalAdjustedPosition.HasValue)
                 {
-                    Vector3 transformedPosition = Vector3.Transform(new Vector3((float)point.X, (float)point.Y, 0), Matrix.CreateRotationZ(modelRotation) * Matrix.CreateTranslation(modelPosition));
-
-                    min = Vector3.Min(min, transformedPosition);
-                    max = Vector3.Max(max, transformedPosition);
+                    bbOffLimits = EntikaInstance.GetBoundingBox(SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects[instance.TangibleObject], Matrix.CreateTranslation(modelPosition));
                 }
-                var bbClearance = new BoundingBox(min, max);
-                var bbbClearance = BoundingBoxBuffers.CreateBoundingBoxBuffers(bbClearance, GraphicsDevice);
-                DrawBoundingBox(bbbClearance, lineEffect, GraphicsDevice, this.view, this.proj);
+                var bbbOffLimits = BoundingBoxBuffers.CreateBoundingBoxBuffers(bbOffLimits, GraphicsDevice);
+
+                DrawBoundingBox(bbbOffLimits, lineEffect, GraphicsDevice, this.view, this.proj);
+                // Draw clearance quads:
+                foreach (var clearance in instance.Clearances)
+                {
+                    Vector3 min = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+                    Vector3 max = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+                    foreach (var point in clearance.GetAllVertices())
+                    {
+                        Vector3 transformedPosition = Vector3.Transform(new Vector3((float)point.X, (float)point.Y, 0), Matrix.CreateRotationZ(modelRotation) * Matrix.CreateTranslation(modelPosition));
+
+                        min = Vector3.Min(min, transformedPosition);
+                        max = Vector3.Max(max, transformedPosition);
+                    }
+                    var bbClearance = new BoundingBox(min, max);
+                    var bbbClearance = BoundingBoxBuffers.CreateBoundingBoxBuffers(bbClearance, GraphicsDevice);
+                    DrawBoundingBox(bbbClearance, lineEffect, GraphicsDevice, this.view, this.proj);
+                }
             }
         }
 
@@ -481,6 +486,14 @@ namespace NarrativeWorldCreator.GraphicScenes
             _keyboardState = _keyboard.GetState();
             cam.handleCamMovementKeyboardInput(_keyboardState);
             // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
+
+            if (_keyboardState.IsKeyDown(Keys.LeftControl) && _keyboardState.IsKeyDown(Keys.LeftAlt) && _keyboardState.IsKeyDown(Keys.T)) {
+                if (this.DebugMode)
+                    this.DebugMode = false;
+                else
+                    this.DebugMode = true;
+            }
+
             base.Update(time);
         }
         #endregion
