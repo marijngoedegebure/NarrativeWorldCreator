@@ -34,5 +34,30 @@ namespace NarrativeWorldCreator.Models.NarrativeRegionFill
             this.Energy = rel.Energy;
             this.BaseRelationship = rel.BaseRelationship;
         }
+
+        public override bool Equals(Object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            RelationshipInstance rel = (RelationshipInstance)obj;
+            if (!this.Source.Equals(rel.Source))
+                return false;
+            if (!this.Target.Equals(rel.Target))
+                return false;
+            if (!this.BaseRelationship.Equals(rel.BaseRelationship))
+                return false;
+            if (!this.Valued.Equals(rel.Valued))
+                return false;
+            if (!this.TargetRangeStart.Equals(rel.TargetRangeStart))
+                return false;
+            if (!this.TargetRangeEnd.Equals(rel.TargetRangeEnd))
+                return false;
+            if (!this.Energy.Equals(rel.Energy))
+                return false;
+
+            return true;
+        }
     }
 }
