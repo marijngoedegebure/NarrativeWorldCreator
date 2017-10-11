@@ -36,10 +36,7 @@ namespace NarrativeWorldCreator.Views
         private void SaveConfiguration(object sender, RoutedEventArgs e)
         {
             var regionPage = GetRegionPage();
-            if (this.ConfigurationsList.SelectedIndex != -1)
-            {
-                regionPage.Next();
-            }
+            regionPage.Next();
         }
 
         private void ShowOnScreen1(object sender, RoutedEventArgs e)

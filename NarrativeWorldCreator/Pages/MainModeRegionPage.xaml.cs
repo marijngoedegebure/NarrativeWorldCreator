@@ -395,18 +395,11 @@ namespace NarrativeWorldCreator
             // Update list of configurations using generated list of regionpage
             var gcVM = (GenerateConfigurationsViewModel)InspectGeneratedConfigurationsSystemView.DataContext;
             gcVM.Load(GeneratedConfigurations);
-            if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
-            {
-                this.InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
-                this.SelectForScreen1(0);
-                this.SelectForScreen2(1);
-                this.SelectForScreen3(2);
-                this.SelectForScreen4(3);
-            }
-            else
-            {
-                this.InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
-            }
+            this.InspectGeneratedConfigurationsSystemView.DataContext = gcVM;
+            this.SelectForScreen1(0);
+            this.SelectForScreen2(1);
+            this.SelectForScreen3(2);
+            this.SelectForScreen4(3);
         }
 
         internal void SaveInstancingAndSetupPlacement()
@@ -550,7 +543,7 @@ namespace NarrativeWorldCreator
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 GPUConfigurationResult gpuConfig;
-                gpuConfig = (this.InspectGeneratedConfigurationsSystemView.ConfigurationsList.SelectedItem as GPUConfigurationResultViewModel).GPUConfigurationResult;
+                gpuConfig = (this.InspectGeneratedConfigurationsSystemView.ConfigurationsList.DataContext as GenerateConfigurationsViewModel).GPUConfigurationResults[this.TopLeftSelectedGPUConfigurationResult].GPUConfigurationResult;
 
                 for (int i = 0; i < gpuConfig.Instances.Count; i++)
                 {
@@ -694,6 +687,8 @@ namespace NarrativeWorldCreator
         {
             // Reset views when coming from TO addition/placement
             HideGenerationScenes();
+
+            this.SelectedEntikaInstances = new List<EntikaInstance>();
 
             this.CurrentFillingMode = MainFillingMode.MainMenu;
             region_filling_1.Visibility = Visibility.Visible;
