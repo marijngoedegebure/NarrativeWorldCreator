@@ -103,6 +103,13 @@ namespace NarrativeWorldCreator.GraphicScenes
                     var delta = _currentRegionPage.manualPlacementRotation.Y - angle;
                     _currentRegionPage.manualPlacementRotation = new Vector3(0, (float)angle, 0);
                 }
+                else if (_previousKeyboardState.IsKeyDown(Keys.R) && _keyboardState.IsKeyUp(Keys.R))
+                {
+                    foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
+                    {
+                        _currentRegionPage.InstanceOfObjectToAdd.UpdateBoundingBoxAndShape();
+                    }
+                }
             }
 
             // Removal or freezing
@@ -266,7 +273,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                 }
                 else
                 {
-                    if (_keyboardState.IsKeyDown(Keys.R))
+                    if (_previousKeyboardState.IsKeyDown(Keys.R) && _keyboardState.IsKeyDown(Keys.R))
                     {
                         // When multiple selected rotate around 0,0,0
                         var rotationPos = new Vector3(0, 0, 0);
@@ -297,6 +304,13 @@ namespace NarrativeWorldCreator.GraphicScenes
                         {
                             instance.Rotation = new Vector3(0, (float)angle, 0);
                             // CascadeRotation(instance, delta);
+                        }
+                    }
+                    else if (_previousKeyboardState.IsKeyDown(Keys.R) && _keyboardState.IsKeyUp(Keys.R))
+                    {
+                        foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
+                        {
+                            instance.UpdateBoundingBoxAndShape();
                         }
                     }
                     // Move
@@ -334,6 +348,10 @@ namespace NarrativeWorldCreator.GraphicScenes
                         }
                         if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released && repositioningObject != null)
                         {
+                            foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
+                            {
+                                instance.UpdateBoundingBoxAndShape();
+                            }
                             repositioningObject = null;
                         }
                     }
