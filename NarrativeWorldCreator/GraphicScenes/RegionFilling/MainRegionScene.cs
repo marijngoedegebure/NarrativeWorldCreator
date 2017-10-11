@@ -330,7 +330,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                         foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
                         {
                             instance.Rotation = new Vector3(0, (float)angle, 0);
-                            CascadeRotation(instance, delta);
+                            // CascadeRotation(instance, delta);
                         }
                     }
                     // Move
@@ -338,15 +338,12 @@ namespace NarrativeWorldCreator.GraphicScenes
                     {
                         if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
                         {
-                            // Initialize box
                             Ray ray = CalculateMouseRay();
                             foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
                             {
                                 // Create translated boundingbox
                                 var min = ieo.BoundingBox.Min;
                                 var max = ieo.BoundingBox.Max;
-                                // Check whether 
-
                                 var bb = new BoundingBox(min, max);
 
                                 // Intersect ray with bounding box, if distance then select model
@@ -354,11 +351,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                                 if (distance != null)
                                 {
                                     repositioningObject = ieo;
-                                    var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                                    var newPos = new Vector3(hit.X, hit.Y, repositioningObject.Position.Z);
-                                    var delta = newPos - repositioningObject.Position;
-                                    repositioningObject.Position = newPos;
-                                    CascadeRepositioning(repositioningObject, delta);
                                 }
                             }
                         }
