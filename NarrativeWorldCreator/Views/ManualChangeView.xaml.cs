@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NarrativeWorldCreator.Models.NarrativeRegionFill;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,11 @@ namespace NarrativeWorldCreator.Views
         private void btnBack(object sender, RoutedEventArgs e)
         {
             GetRegionPage().Back();
+        }
+
+        private void btnDeselectAll(object sender, RoutedEventArgs e)
+        {
+            GetRegionPage().SelectedEntikaInstances = new List<EntikaInstance>();
         }
     }
 }
