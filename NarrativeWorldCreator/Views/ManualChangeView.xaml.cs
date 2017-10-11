@@ -40,6 +40,7 @@ namespace NarrativeWorldCreator.Views
         private void btnDeselectAll(object sender, RoutedEventArgs e)
         {
             GetRegionPage().SelectedEntikaInstances = new List<EntikaInstance>();
+            GetRegionPage().RefreshViewsUsingSelected();
         }
     }
 }

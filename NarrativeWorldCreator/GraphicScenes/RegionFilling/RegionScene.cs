@@ -230,7 +230,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             if (floorInstance != null && floorInstance.Polygon.GetAllVertices().Count > 2)
             {
                 List<VertexPositionColor> regionPoints = new List<VertexPositionColor>();
-                regionPoints = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.Black);
+                regionPoints = DrawingEngine.GetDrawableTriangles(floorInstance.Polygon.GetAllVertices(), Color.White);
                 foreach (EffectPass pass in basicEffect.CurrentTechnique.Passes)
                 {
                     // This is the all-important line that sets the effect, and all of its settings, on the graphics device

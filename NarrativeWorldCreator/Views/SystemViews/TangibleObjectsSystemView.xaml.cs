@@ -35,7 +35,8 @@ namespace NarrativeWorldCreator.Views
 
             // Kick off addition process
             var regionPage = GetRegionPage();
-            regionPage.Next();
+            if (selectedItem != null)
+                regionPage.Next();
         }
 
         private void btnBackToMainMenu(object sender, RoutedEventArgs e)

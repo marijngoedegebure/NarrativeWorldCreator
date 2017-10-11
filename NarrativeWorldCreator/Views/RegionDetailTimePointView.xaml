@@ -38,7 +38,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Goals: " FontWeight="Bold" />
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Remaining goals: " FontSize="20" FontWeight="Bold" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           Grid.Column="0"
                           Grid.Row="1">

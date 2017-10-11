@@ -49,65 +49,68 @@ namespace NarrativeWorldCreator.Solvers
                 // Find random index of keys in the dictionary that points to a relationship index of the tangible object
                 var randomRelKeyIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship.Keys.Count);
                 var onRelIndex = ListOfInstanceIndicesPerOnRelationship.Keys.ToList()[randomRelKeyIndex];
-                // Find random index that points to an instance index
-                var randomInstanceListIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship[onRelIndex].Count);
-                var instanceIndex = ListOfInstanceIndicesPerOnRelationship[onRelIndex][randomInstanceListIndex];
-                var orVM = new OnRelationshipViewModel();
-                // Use randomized instance index to find index in instancedObjects list
-                orVM.Load(instancedObjects[instanceIndex], instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget[onRelIndex]);
-                arsVM.OnRelationship = orVM;
-
-                // Figure out other relationships
-                var OtherRelationshipsOC = new ObservableCollection<OtherRelationshipViewModel>();
-                // First as target
-                foreach (var rel in instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget)
+                if (ListOfInstanceIndicesPerOnRelationship[onRelIndex].Count > 0)
                 {
-                    if (!selectedNode.AvailableTangibleObjects.Contains(rel.Source))
-                        continue;
-                    if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
+                    // Find random index that points to an instance index
+                    var randomInstanceListIndex = rnd.Next(0, ListOfInstanceIndicesPerOnRelationship[onRelIndex].Count);
+                    var instanceIndex = ListOfInstanceIndicesPerOnRelationship[onRelIndex][randomInstanceListIndex];
+                    var orVM = new OnRelationshipViewModel();
+                    // Use randomized instance index to find index in instancedObjects list
+                    orVM.Load(instancedObjects[instanceIndex], instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget[onRelIndex]);
+                    arsVM.OnRelationship = orVM;
+
+                    // Figure out other relationships
+                    var OtherRelationshipsOC = new ObservableCollection<OtherRelationshipViewModel>();
+                    // First as target
+                    foreach (var rel in instanceOfObjectToAdd.TangibleObject.RelationshipsAsTarget)
                     {
-                        var availableInstances = instancedObjects.Where(io => io.TangibleObject.Equals(rel.Source)).ToList();
-                        if (availableInstances.Count > 0)
+                        if (!selectedNode.AvailableTangibleObjects.Contains(rel.Source))
+                            continue;
+                        if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                         {
-                            // 50/50 chance of continuing
-                            if (rnd.Next(2) == 0)
+                            var availableInstances = instancedObjects.Where(io => io.TangibleObject.Equals(rel.Source)).ToList();
+                            if (availableInstances.Count > 0)
                             {
-                                var index = rnd.Next(0, availableInstances.Count);
-                                var otherRVM = new OtherRelationshipViewModel();
-                                otherRVM.Load(availableInstances[index], rel, true);
-                                OtherRelationshipsOC.Add(otherRVM);
+                                // 50/50 chance of continuing
+                                if (rnd.Next(2) == 0)
+                                {
+                                    var index = rnd.Next(0, availableInstances.Count);
+                                    var otherRVM = new OtherRelationshipViewModel();
+                                    otherRVM.Load(availableInstances[index], rel, true);
+                                    OtherRelationshipsOC.Add(otherRVM);
+                                }
                             }
                         }
                     }
-                }
 
-                // Second as source
-                foreach (var rel in instanceOfObjectToAdd.TangibleObject.RelationshipsAsSource)
-                {
-                    if (!selectedNode.AvailableTangibleObjects.Contains(rel.Targets[0]))
-                        continue;
-                    if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
+                    // Second as source
+                    foreach (var rel in instanceOfObjectToAdd.TangibleObject.RelationshipsAsSource)
                     {
-                        var availableInstances = instancedObjects.Where(io => io.TangibleObject.Equals(rel.Targets[0])).ToList();
-                        if (availableInstances.Count > 0)
+                        if (!selectedNode.AvailableTangibleObjects.Contains(rel.Targets[0]))
+                            continue;
+                        if (Constants.OtherRelationshipTypes.Contains(rel.RelationshipType.DefaultName))
                         {
-                            // 50/50 chance of continuing
-                            if (rnd.Next(2) == 0)
+                            var availableInstances = instancedObjects.Where(io => io.TangibleObject.Equals(rel.Targets[0])).ToList();
+                            if (availableInstances.Count > 0)
                             {
-                                var index = rnd.Next(0, availableInstances.Count);
-                                var otherRVM = new OtherRelationshipViewModel();
-                                otherRVM.Load(availableInstances[index], rel, true);
-                                OtherRelationshipsOC.Add(otherRVM);
+                                // 50/50 chance of continuing
+                                if (rnd.Next(2) == 0)
+                                {
+                                    var index = rnd.Next(0, availableInstances.Count);
+                                    var otherRVM = new OtherRelationshipViewModel();
+                                    otherRVM.Load(availableInstances[index], rel, true);
+                                    OtherRelationshipsOC.Add(otherRVM);
+                                }
                             }
                         }
                     }
+                    arsVM.OtherRelationships = OtherRelationshipsOC;
+                    if (!resultsOC.Contains(arsVM))
+                        resultsOC.Add(arsVM);
                 }
-                arsVM.OtherRelationships = OtherRelationshipsOC;
-                if (!resultsOC.Contains(arsVM))
-                    resultsOC.Add(arsVM);
+                vM.CurrentInstance = instanceOfObjectToAdd;
+                vM.Results = resultsOC;
             }
-            vM.CurrentInstance = instanceOfObjectToAdd;
-            vM.Results = resultsOC;
             return vM;
         }
         

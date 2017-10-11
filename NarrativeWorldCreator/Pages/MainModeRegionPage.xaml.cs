@@ -226,11 +226,13 @@ namespace NarrativeWorldCreator
             {
                 TangibleObjectsView.Visibility = Visibility.Collapsed;
                 TangibleObjectsSystemView.Visibility = Visibility.Visible;
+                TangibleObjectsSystemView.ToListView.SelectedIndex = 0;
             }
             else
             {
                 TangibleObjectsView.Visibility = Visibility.Visible;
                 TangibleObjectsSystemView.Visibility = Visibility.Collapsed;
+                TangibleObjectsView.ToListView.SelectedIndex = 0;
             }
         }
 
@@ -523,8 +525,8 @@ namespace NarrativeWorldCreator
             // check whether it is the systems job or the user's
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
+                // Check whether class has atleast one on relationship
                 var VM = new AutomatedResultsRelationshipSelectionViewModel();
-
                 RelationshipSelectionSystemView.DataContext = RelationshipSelectionSolver.GetRandomRelationships(VM, SystemStateTracker.NumberOfTries, InstanceOfObjectToAdd, this.selectedNode, this.WorkInProgressConfiguration.InstancedObjects);
                 RelationshipSelectionSystemView.GeneratedOptionsRelationshipSelectionListView.SelectedIndex = 0;
             }

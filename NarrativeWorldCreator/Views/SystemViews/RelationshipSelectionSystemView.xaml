@@ -16,8 +16,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Back" Width="200" Click="BackToSelection"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="CurrentInstance" Margin="10" Width="200" Text="{Binding Path=CurrentInstance.Name}" FontWeight="Bold"></TextBlock>
+        <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Back" Margin="10" Width="200" Click="BackToSelection"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="CurrentInstance" Margin="10" Width="200" Text="{Binding Path=CurrentInstance.Name, StringFormat='Current object: {0}'}" FontWeight="Bold"></TextBlock>
         <ListView Name="GeneratedOptionsRelationshipSelectionListView"
             Grid.Column="0"
             Grid.Row="2"

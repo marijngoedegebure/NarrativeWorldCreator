@@ -39,8 +39,8 @@ namespace NarrativeWorldCreator.Views
 
         private void NextStep(object sender, RoutedEventArgs e)
         {
-            var rivm = this.DataContext as RelationshipSelectionAndInstancingViewModel;
-            GetRegionPage().Next();
+            if (this.GeneratedOptionsRelationshipSelectionListView.SelectedIndex != -1)
+                GetRegionPage().Next();
         }
     }
 }
