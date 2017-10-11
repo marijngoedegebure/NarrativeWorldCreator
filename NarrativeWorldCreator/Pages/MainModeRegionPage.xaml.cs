@@ -583,6 +583,7 @@ namespace NarrativeWorldCreator
             {
                 this.InstanceOfObjectToAdd.Position = manualPlacementPosition;
                 this.InstanceOfObjectToAdd.Rotation = manualPlacementRotation;
+                this.InstanceOfObjectToAdd.UpdateBoundingBoxAndShape();
 
                 if (this.WIPAdditionDelta != null)
                 {

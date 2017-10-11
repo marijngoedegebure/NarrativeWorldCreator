@@ -389,6 +389,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             lineEffect.LightingEnabled = false;
             lineEffect.TextureEnabled = false;
             lineEffect.VertexColorEnabled = true;
+            instance.UpdateBoundingBoxAndShape();
             var bbOffLimits = instance.BoundingBox;
             if (optionalAdjustedPosition.HasValue)
             {
