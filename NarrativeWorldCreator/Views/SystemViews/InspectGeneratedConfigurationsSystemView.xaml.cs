@@ -75,5 +75,11 @@ namespace NarrativeWorldCreator.Views
             var regionPage = GetRegionPage();
             regionPage.Back();
         }
+
+        private void RefreshOptions(object sender, RoutedEventArgs e)
+        {
+            var regionPage = GetRegionPage();
+            regionPage.GenerateConfigurations();
+        }
     }
 }

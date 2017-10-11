@@ -19,7 +19,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Grid.Row="0" x:Name="button8098" Content="Back" Margin="10" Width="200" Height="50" Click="btnBack"/>
+        <Button Grid.Column="0" Grid.Row="0" x:Name="button8098" Content="Back" Margin="10" Width="200" Click="btnBack"/>
         <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" TextWrapping="Wrap">Press &lt;Control&gt; and click with the mouse cursor on an object to select a single object. Press &lt;Shift&gt; and click and drag the mouse cursor to do a box selection, release the left mouse button to select the objects inside the box.</TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="2" Margin="10" TextWrapping="Wrap">With the objects selected, press the 'Freeze selected objects' to freeze and 'Unfreeze selected objects' to unfreeze.</TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="3" Margin="10,10,10,0">The selected objects:</TextBlock>

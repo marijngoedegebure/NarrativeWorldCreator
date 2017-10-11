@@ -264,7 +264,7 @@
                     <TabItem Name="inspection_2" Header="Delta detail" >
                         <views:DeltaListView x:Name="DeltaListView" Loaded="DeltaListView_Loaded" />
                     </TabItem>
-                    <TabItem Name="inspection_3" Header="Selection detail" >
+                    <TabItem Name="inspection_3" Header="Selection detail" Visibility="Collapsed" >
                         <views:SelectedObjectDetailView x:Name="SelectedObjectDetailView" Loaded="SelectedObjectDetailView_Loaded" />
                     </TabItem>
                 </TabControl>

@@ -159,6 +159,9 @@ namespace NarrativeWorldCreator
                 case MainFillingMode.Removal:
                     ChangeUIToMainMenu();
                     break;
+                case MainFillingMode.Freeze:
+                    ChangeUIToMainMenu();
+                    break;
                 default:
                     break;
             }
@@ -703,6 +706,8 @@ namespace NarrativeWorldCreator
             add_mode_3_1_content.Visibility = Visibility.Collapsed;
             add_mode_3_2.Visibility = Visibility.Collapsed;
             add_mode_3_2_content.Visibility = Visibility.Collapsed;
+            add_mode_3_3.Visibility = Visibility.Collapsed;
+            add_mode_3_3_content.Visibility = Visibility.Collapsed;
             change_mode_1.Visibility = Visibility.Collapsed;
             change_mode_1_content.Visibility = Visibility.Collapsed;
             change_mode_2.Visibility = Visibility.Collapsed;
@@ -729,6 +734,8 @@ namespace NarrativeWorldCreator
             add_mode_3_1_content.Visibility = Visibility.Collapsed;
             add_mode_3_2.Visibility = Visibility.Collapsed;
             add_mode_3_2_content.Visibility = Visibility.Collapsed;
+            add_mode_3_3.Visibility = Visibility.Collapsed;
+            add_mode_3_3_content.Visibility = Visibility.Collapsed;
             change_mode_1.Visibility = Visibility.Collapsed;
             change_mode_1_content.Visibility = Visibility.Collapsed;
             change_mode_2.Visibility = Visibility.Collapsed;
@@ -737,7 +744,7 @@ namespace NarrativeWorldCreator
             removal_mode_1.Visibility = Visibility.Visible;
             removal_mode_1_content.Visibility = Visibility.Visible;
             inspection_3.Visibility = Visibility.Visible;
-            region_tabcontrol.SelectedIndex = 0;
+            region_tabcontrol.SelectedIndex = 9;
         }
 
         private void DeltaListView_Loaded(object sender, RoutedEventArgs e)
