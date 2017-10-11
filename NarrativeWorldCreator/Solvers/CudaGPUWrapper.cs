@@ -326,15 +326,35 @@ namespace NarrativeWorldCreator.Solvers
             var surfaceRectangle = new Vertex[4];
             BoundingBox bb;
             if (surfaceInstance.Name.Equals(Constants.Floor))
-                bb = EntikaInstance.GetBoundingBox(surfaceInstance.Polygon);
-            else
-                bb = surfaceInstance.BoundingBox;
-            var corners = bb.GetCorners();
-            for (int i = 0; i < 4; i++)
             {
-                surfaceRectangle[i].x = corners[i].X;
-                surfaceRectangle[i].y = corners[i].Y;
-                surfaceRectangle[i].z = corners[i].Z;
+                bb = EntikaInstance.GetBoundingBox(surfaceInstance.Polygon);
+                var corners = bb.GetCorners();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    surfaceRectangle[i].x = corners[i].X;
+                    surfaceRectangle[i].y = corners[i].Y;
+                    surfaceRectangle[i].z = corners[i].Z;
+                }
+            }
+            else
+            {
+                bb = surfaceInstance.BoundingBox;
+                surfaceRectangle[0].x = -(bb.Max.X - bb.Min.X) / 2;
+                surfaceRectangle[0].y = (bb.Max.Y - bb.Min.Y) / 2;
+                surfaceRectangle[0].z = (bb.Max.Z - bb.Min.Z) / 2;
+
+                surfaceRectangle[1].x = (bb.Max.X - bb.Min.X) / 2;
+                surfaceRectangle[1].y = (bb.Max.Y - bb.Min.Y) / 2;
+                surfaceRectangle[1].z = (bb.Max.Z - bb.Min.Z) / 2;
+
+                surfaceRectangle[2].x = (bb.Max.X - bb.Min.X) / 2;
+                surfaceRectangle[2].y = -(bb.Max.Y - bb.Min.Y) / 2;
+                surfaceRectangle[2].z = (bb.Max.Z - bb.Min.Z) / 2;
+
+                surfaceRectangle[3].x = -(bb.Max.X - bb.Min.X) / 2;
+                surfaceRectangle[3].y = -(bb.Max.Y - bb.Min.Y) / 2;
+                surfaceRectangle[3].z = (bb.Max.Z - bb.Min.Z) / 2;
             }
 
             var surface = new Surface
