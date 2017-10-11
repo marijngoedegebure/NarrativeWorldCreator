@@ -555,17 +555,24 @@ namespace NarrativeWorldCreator
                         WIPinstance.Position = adjustedPos;
                         WIPinstance.Rotation = adjustedRot;
                         WIPinstance.UpdateBoundingBoxAndShape();
-                        var additionDeltaOfInstance = this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(WIPinstance)).FirstOrDefault();
-                        if (additionDeltaOfInstance == null)
+                        if (WIPAdditionDelta != null && WIPAdditionDelta.RelatedInstance.Equals(WIPinstance))
                         {
-                            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                            WIPAdditionDelta.RelatedInstance.Position = adjustedPos;
+                            WIPAdditionDelta.RelatedInstance.Rotation = adjustedRot;
                         }
                         else
                         {
-                            additionDeltaOfInstance.Position = adjustedPos;
-                            additionDeltaOfInstance.Rotation = adjustedRot;
+                            var additionDeltaOfInstance = this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(WIPinstance)).FirstOrDefault();
+                            if (additionDeltaOfInstance == null && !WIPAdditionDelta.RelatedInstance.Equals(WIPinstance))
+                            {
+                                this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this.SelectedTimePoint, WIPinstance, InstanceDeltaType.Change, adjustedPos, adjustedRot));
+                            }
+                            else
+                            {
+                                additionDeltaOfInstance.Position = adjustedPos;
+                                additionDeltaOfInstance.Rotation = adjustedRot;
+                            }
                         }
-
                     }
                 }
                 if (this.WIPAdditionDelta != null)

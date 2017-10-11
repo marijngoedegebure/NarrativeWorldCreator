@@ -168,7 +168,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                     }
                 }
                 // Single selection
-                if (_keyboardState.IsKeyDown(Keys.LeftControl))
+                else
                 {
                     if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
                     {
@@ -264,40 +264,6 @@ namespace NarrativeWorldCreator.GraphicScenes
                         BoxSelectInitialCoords = new Point();
                     }
                 }
-                // Single selection
-                if(_keyboardState.IsKeyDown(Keys.LeftControl))
-                {
-                    if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
-                    {
-                        Ray ray = CalculateMouseRay();
-                        EntikaInstance hitMaxZ = null;
-                        foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
-                        {
-                            // Create translated boundingbox
-                            var min = ieo.BoundingBox.Min;
-                            var max = ieo.BoundingBox.Max;
-                            // Check whether 
-
-                            var bb = new BoundingBox(min, max);
-
-                            // Intersect ray with bounding box, if distance then select model
-                            float? distance = ray.Intersects(bb);
-                            if (distance != null)
-                            {
-                                if (hitMaxZ == null)
-                                {
-                                    hitMaxZ = ieo;
-                                    continue;
-                                }
-                                if (hitMaxZ.Position.Z < ieo.Position.Z)
-                                    hitMaxZ = ieo;
-                            }
-                        }
-                        if (hitMaxZ != null)
-                            _currentRegionPage.ChangeSelectedObject(hitMaxZ);
-                        _currentRegionPage.RefreshViewsUsingSelected();
-                    }
-                }
                 else
                 {
                     if (_keyboardState.IsKeyDown(Keys.R))
@@ -334,7 +300,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                         }
                     }
                     // Move
-                    else
+                    else if (_keyboardState.IsKeyDown(Keys.M))
                     {
                         if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
                         {
@@ -370,6 +336,41 @@ namespace NarrativeWorldCreator.GraphicScenes
                         {
                             repositioningObject = null;
                         }
+                    }
+                    else
+                    {
+                        // Single selection
+                        if (_previousMouseState.LeftButton == ButtonState.Pressed && _mouseState.LeftButton == ButtonState.Released)
+                        {
+                            Ray ray = CalculateMouseRay();
+                            EntikaInstance hitMaxZ = null;
+                            foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
+                            {
+                                // Create translated boundingbox
+                                var min = ieo.BoundingBox.Min;
+                                var max = ieo.BoundingBox.Max;
+                                // Check whether 
+
+                                var bb = new BoundingBox(min, max);
+
+                                // Intersect ray with bounding box, if distance then select model
+                                float? distance = ray.Intersects(bb);
+                                if (distance != null)
+                                {
+                                    if (hitMaxZ == null)
+                                    {
+                                        hitMaxZ = ieo;
+                                        continue;
+                                    }
+                                    if (hitMaxZ.Position.Z < ieo.Position.Z)
+                                        hitMaxZ = ieo;
+                                }
+                            }
+                            if (hitMaxZ != null)
+                                _currentRegionPage.ChangeSelectedObject(hitMaxZ);
+                            _currentRegionPage.RefreshViewsUsingSelected();
+                        }
+                        
                     }
                 }
             }
