@@ -261,7 +261,7 @@
                     <TabItem Name="inspection_1" Header="Region detail" >
                         <views:RegionDetailTimePointView x:Name="RegionDetailTimePointView" Loaded = "RegionDetailTimePointView_Loaded"/>
                     </TabItem>
-                    <TabItem Name="inspection_2" Header="Delta detail" >
+                    <TabItem Name="inspection_2" Header="Delta detail" Visibility="Collapsed" >
                         <views:DeltaListView x:Name="DeltaListView" Loaded="DeltaListView_Loaded" />
                     </TabItem>
                     <TabItem Name="inspection_3" Header="Selection detail" Visibility="Collapsed" >

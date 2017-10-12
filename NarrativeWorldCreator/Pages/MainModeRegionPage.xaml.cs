@@ -42,6 +42,8 @@ namespace NarrativeWorldCreator
         internal Vector3 manualPlacementRotation = new Vector3();
 
         internal MainFillingMode PreviousFillingMode { get; private set; }
+
+        public bool DebugMode;
         #endregion
         #region Setup
 
@@ -219,7 +221,11 @@ namespace NarrativeWorldCreator
             add_mode_3_2_content.Visibility = Visibility.Visible;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            inspection_3.Visibility = Visibility.Visible;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 1;
             // Determine which view to be shown:
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
@@ -263,7 +269,11 @@ namespace NarrativeWorldCreator
             add_mode_3_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            inspection_3.Visibility = Visibility.Visible;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 2;
 
             // Determine which view to be shown:
@@ -290,7 +300,11 @@ namespace NarrativeWorldCreator
 
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            inspection_3.Visibility = Visibility.Collapsed;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
 
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
@@ -338,7 +352,11 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Collapsed;
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Visible;
-            inspection_3.Visibility = Visibility.Visible;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 7;
         }
 
@@ -351,7 +369,11 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Visible;
             this.change_mode_1_content.Visibility = Visibility.Visible;
             this.change_mode_2.Visibility = Visibility.Collapsed;
-            inspection_3.Visibility = Visibility.Visible;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 6;
         }
 
@@ -372,7 +394,11 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Collapsed;
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Collapsed;
-            inspection_3.Visibility = Visibility.Collapsed;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 4;
 
             this.WorkInProgressConfiguration = new Configuration();
@@ -387,20 +413,19 @@ namespace NarrativeWorldCreator
         internal override void GenerateConfigurations()
         {
             GeneratedConfigurations = CudaGPUWrapper.CudaGPUWrapperCall(this.selectedNode.TimePoints[SelectedTimePoint], this.WorkInProgressConfiguration);
-            GeneratedConfigurations = GeneratedConfigurations.OrderBy(gc => gc.TotalCosts).ToList();
-            foreach (var configuration in GeneratedConfigurations)
-            {
-                Console.WriteLine("Configuration #?");
-                Console.WriteLine("Clearance costs: " + configuration.ClearanceCosts);
-                Console.WriteLine("Focal point costs: " + configuration.FocalPointCosts);
-                Console.WriteLine("Off limits costs: " + configuration.OffLimitsCosts);
-                Console.WriteLine("Pair wise costs: " + configuration.PairWiseCosts);
-                Console.WriteLine("Surface area costs: " +  configuration.SurfaceAreaCosts);
-                Console.WriteLine("Symmertry costs: " + configuration.SymmetryCosts);
-                Console.WriteLine("Visual balance costs: " + configuration.VisualBalanceCosts);
-                Console.WriteLine();
-            }
-
+            GeneratedConfigurations = GeneratedConfigurations.OrderByDescending(gc => gc.TotalCosts).ToList();
+            //foreach (var configuration in GeneratedConfigurations)
+            //{
+            //    Console.WriteLine("Configuration #?");
+            //    Console.WriteLine("Clearance costs: " + configuration.ClearanceCosts);
+            //    Console.WriteLine("Focal point costs: " + configuration.FocalPointCosts);
+            //    Console.WriteLine("Off limits costs: " + configuration.OffLimitsCosts);
+            //    Console.WriteLine("Pair wise costs: " + configuration.PairWiseCosts);
+            //    Console.WriteLine("Surface area costs: " +  configuration.SurfaceAreaCosts);
+            //    Console.WriteLine("Symmertry costs: " + configuration.SymmetryCosts);
+            //    Console.WriteLine("Visual balance costs: " + configuration.VisualBalanceCosts);
+            //    Console.WriteLine();
+            //}
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 // Take X to reduce options
@@ -732,7 +757,11 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             removal_mode_1.Visibility = Visibility.Collapsed;
             removal_mode_1_content.Visibility = Visibility.Collapsed;
-            inspection_3.Visibility = Visibility.Collapsed;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 0;
         }
 
@@ -760,7 +789,11 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             removal_mode_1.Visibility = Visibility.Visible;
             removal_mode_1_content.Visibility = Visibility.Visible;
-            inspection_3.Visibility = Visibility.Visible;
+            if (!this.DebugMode)
+            {
+                inspection_2.Visibility = Visibility.Visible;
+                inspection_3.Visibility = Visibility.Visible;
+            }
             region_tabcontrol.SelectedIndex = 9;
         }
 

@@ -51,8 +51,6 @@ namespace NarrativeWorldCreator.GraphicScenes
 
         protected MainModeRegionPage _currentRegionPage;
 
-        public bool DebugMode { get; private set; }
-
         #endregion
 
         #region Methods
@@ -387,7 +385,7 @@ namespace NarrativeWorldCreator.GraphicScenes
             }
 
             // Draw boundingbox  - debug mode
-            if (this.DebugMode)
+            if (this._currentRegionPage.DebugMode)
             {
                 BasicEffect lineEffect = new BasicEffect(GraphicsDevice);
                 lineEffect.LightingEnabled = false;
@@ -488,10 +486,10 @@ namespace NarrativeWorldCreator.GraphicScenes
             // cam.handleCamMoovementMouseInput(_mouseState, _previousMouseState, _keyboardState);
 
             if (_keyboardState.IsKeyDown(Keys.LeftControl) && _keyboardState.IsKeyDown(Keys.LeftAlt) && _keyboardState.IsKeyDown(Keys.T)) {
-                if (this.DebugMode)
-                    this.DebugMode = false;
+                if (this._currentRegionPage.DebugMode)
+                    this._currentRegionPage.DebugMode = false;
                 else
-                    this.DebugMode = true;
+                    this._currentRegionPage.DebugMode = true;
             }
 
             base.Update(time);
