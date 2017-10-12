@@ -58,6 +58,7 @@ namespace NarrativeWorldCreator
             {
                 this.NavigationService.Navigate(new MainModeRegionPage(selectedNode));
             }
+            SystemStateTracker.StartOfLocation = DateTime.Now;
         }
 
         private void btnReloadGraph_Click(object sender, RoutedEventArgs e)

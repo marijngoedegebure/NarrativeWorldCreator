@@ -43,7 +43,7 @@ namespace NarrativeWorldCreator
 
         internal MainFillingMode PreviousFillingMode { get; private set; }
 
-        public bool DebugMode;
+        public bool DebugMode = false;
         #endregion
         #region Setup
 
@@ -139,6 +139,7 @@ namespace NarrativeWorldCreator
             {
                 case MainFillingMode.ClassSelection:
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAddActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 case MainFillingMode.RelationshipSelection:
                     ChangeUIToTOClassSelection();
@@ -154,12 +155,17 @@ namespace NarrativeWorldCreator
                     break;
                 case MainFillingMode.ManualChange:
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnManualChangeActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAllChangeActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 case MainFillingMode.Repositioning:
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAutomatedChangeActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAllChangeActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 case MainFillingMode.Removal:
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnRemoveActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 case MainFillingMode.Freeze:
                     ChangeUIToMainMenu();
@@ -186,14 +192,17 @@ namespace NarrativeWorldCreator
                 case MainFillingMode.AutomatedPlacement:
                     ApplyConfiguration();
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAddActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 case MainFillingMode.ManualPlacement:
                     ApplyConfiguration();
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAddActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 case MainFillingMode.Repositioning:
                     ApplyConfiguration();
                     ChangeUIToMainMenu();
+                    SystemStateTracker.TimeSpentOnActionsPerLocation[this.selectedNode.LocationName].TimeSpentOnAutomatedChangeActions += DateTime.Now.Ticks - SystemStateTracker.StartOfAction.Ticks;
                     break;
                 default:
                     break;
@@ -644,6 +653,8 @@ namespace NarrativeWorldCreator
             }
             this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
 
+            this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
+
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();
             this.WIPAdditionDelta = null;
@@ -711,6 +722,10 @@ namespace NarrativeWorldCreator
                 RefreshTangibleObjectsView();
             }
             ChangeUIToTOClassSelection();
+
+            // Metrics
+            SystemStateTracker.TotalNumberOfAddActions++;
+            SystemStateTracker.StartOfAction = DateTime.Now;
         }
 
         private void btnChangeMode(object sender, RoutedEventArgs e)
@@ -718,16 +733,22 @@ namespace NarrativeWorldCreator
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 ChangeUIToChangeModeSelection();
+                SystemStateTracker.TotalNumberOfAutomatedChangeActions++;
             }
             else
             {
                 ChangeUIToManualChangeMode();
+                SystemStateTracker.TotalNumberOfManualChangeActions++;
             }
+            SystemStateTracker.StartOfAction = DateTime.Now;
+            SystemStateTracker.TotalNumberOfTotalChangeActions++;
         }
 
         private void btnRemoveMode(object sender, RoutedEventArgs e)
         {
             ChangeUIToRemovalMode();
+            SystemStateTracker.TotalNumberOfRemoveActions++;
+            SystemStateTracker.StartOfAction = DateTime.Now;
         }
 
         internal void ChangeUIToMainMenu()
@@ -880,6 +901,7 @@ namespace NarrativeWorldCreator
         private void btnGraphPage_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new GraphPage());
+            SystemStateTracker.TimeSpentTotalPerLocation[this.selectedNode.LocationName] += DateTime.Now.Ticks - SystemStateTracker.StartOfLocation.Ticks;
         }
 
         public void SetMessageBoxText(string message)

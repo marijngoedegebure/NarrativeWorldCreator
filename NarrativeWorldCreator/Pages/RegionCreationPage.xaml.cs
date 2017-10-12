@@ -45,6 +45,7 @@ namespace NarrativeWorldCreator.Pages
         {
             // Back to graph
             this.NavigationService.Navigate(new GraphPage());
+            SystemStateTracker.TimeSpentTotalPerLocation[this.selectedNode.LocationName] += DateTime.Now.Ticks - SystemStateTracker.StartOfLocation.Ticks;
         }
 
         private void btnRegionPage_Click(object sender, RoutedEventArgs e)
