@@ -209,6 +209,11 @@ namespace NarrativeWorldCreator
             }
         }
 
+        internal void ChangeUIToFreeze()
+        {
+            HideGenerationScenes();
+        }
+
         internal void ChangeUIToTOClassSelection()
         {
             this.CurrentFillingMode = MainFillingMode.ClassSelection;
@@ -230,7 +235,7 @@ namespace NarrativeWorldCreator
             add_mode_3_2_content.Visibility = Visibility.Visible;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -278,7 +283,7 @@ namespace NarrativeWorldCreator
             add_mode_3_2_content.Visibility = Visibility.Collapsed;
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -309,7 +314,7 @@ namespace NarrativeWorldCreator
 
             region_filling_3.Visibility = Visibility.Collapsed;
             region_filling_3_content.Visibility = Visibility.Collapsed;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -361,7 +366,7 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Collapsed;
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Visible;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -378,7 +383,7 @@ namespace NarrativeWorldCreator
             this.change_mode_1.Visibility = Visibility.Visible;
             this.change_mode_1_content.Visibility = Visibility.Visible;
             this.change_mode_2.Visibility = Visibility.Collapsed;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -395,25 +400,25 @@ namespace NarrativeWorldCreator
             add_mode_1_content.Visibility = Visibility.Collapsed;
             add_mode_2.Visibility = Visibility.Collapsed;
             add_mode_2_content.Visibility = Visibility.Collapsed;
-            add_mode_3_1.Visibility = Visibility.Visible;
-            add_mode_3_1_content.Visibility = Visibility.Visible;
+            add_mode_3_1.Visibility = Visibility.Collapsed;
+            add_mode_3_1_content.Visibility = Visibility.Collapsed;
             add_mode_3_2.Visibility = Visibility.Visible;
             add_mode_3_2_content.Visibility = Visibility.Visible;
 
             this.change_mode_1.Visibility = Visibility.Collapsed;
             this.change_mode_1_content.Visibility = Visibility.Collapsed;
             this.change_mode_2.Visibility = Visibility.Collapsed;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
             }
             region_tabcontrol.SelectedIndex = 4;
 
-            this.WorkInProgressConfiguration = new Configuration();
-            this.WorkInProgressConfiguration = this.Configuration.Copy();
-            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
-            GenerateConfigurations();
+            //this.WorkInProgressConfiguration = new Configuration();
+            //this.WorkInProgressConfiguration = this.Configuration.Copy();
+            //IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            //GenerateConfigurations();
             ShowGenerationScenes();
         }
 
@@ -778,7 +783,7 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             removal_mode_1.Visibility = Visibility.Collapsed;
             removal_mode_1_content.Visibility = Visibility.Collapsed;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -810,7 +815,7 @@ namespace NarrativeWorldCreator
             region_filling_3_content.Visibility = Visibility.Collapsed;
             removal_mode_1.Visibility = Visibility.Visible;
             removal_mode_1_content.Visibility = Visibility.Visible;
-            if (!this.DebugMode)
+            if (this.DebugMode)
             {
                 inspection_2.Visibility = Visibility.Visible;
                 inspection_3.Visibility = Visibility.Visible;
@@ -904,11 +909,6 @@ namespace NarrativeWorldCreator
             SystemStateTracker.TimeSpentTotalPerLocation[this.selectedNode.LocationName] += DateTime.Now.Ticks - SystemStateTracker.StartOfLocation.Ticks;
         }
 
-        public void SetMessageBoxText(string message)
-        {
-            MessageTextBox.Text = message;
-        }
-
         private void btnManualChangeMode(object sender, RoutedEventArgs e)
         {
             this.ChangeUIToManualChangeMode();
@@ -916,6 +916,9 @@ namespace NarrativeWorldCreator
 
         private void btnAutomatedRepositionMode(object sender, RoutedEventArgs e)
         {
+            IntializeGenerateConfigurationsView(this.GenerateConfigurationsView2);
+            this.WorkInProgressConfiguration = this.Configuration.Copy();
+            GenerateConfigurations();
             this.ChangeUIToAutomatedRepositioning();
         }
 
@@ -933,12 +936,42 @@ namespace NarrativeWorldCreator
                 case "Freeze":
                     this.PreviousFillingMode = this.CurrentFillingMode;
                     this.CurrentFillingMode = MainFillingMode.Freeze;
+                    ChangeUIToFreeze();
                     break;
                 default:
                     if (this.PreviousFillingMode != MainFillingMode.None)
                     {
                         this.CurrentFillingMode = this.PreviousFillingMode;
                         this.PreviousFillingMode = MainFillingMode.None;
+                        switch(this.CurrentFillingMode)
+                        {
+                            case MainFillingMode.ClassSelection:
+                                ChangeUIToTOClassSelection();
+                                break;
+                            case MainFillingMode.RelationshipSelection:
+                                ChangeUIToRelationshipSelection();
+                                break;
+                            case MainFillingMode.AutomatedPlacement:
+                                ChangeUIToPlacement();
+                                break;
+                            case MainFillingMode.ManualPlacement:
+                                ChangeUIToPlacement();
+                                break;
+                            case MainFillingMode.SelectionChangeMode:
+                                ChangeUIToChangeModeSelection();
+                                break;
+                            case MainFillingMode.ManualChange:
+                                ChangeUIToManualChangeMode();
+                                break;
+                            case MainFillingMode.Repositioning:
+                                ChangeUIToAutomatedRepositioning();
+                                break;
+                            case MainFillingMode.Removal:
+                                ChangeUIToRemovalMode();
+                                break;
+                            default:
+                                break;
+                        }
                     }
                     return;
             }

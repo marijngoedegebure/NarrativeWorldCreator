@@ -20,7 +20,7 @@
         <Button Grid.Row="0" Grid.Column="0" x:Name="button1" Content="Back" Margin="10,10,0,0" Width="200" Click="btnBackToMainMenu"/>
         <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" TextWrapping="Wrap">Select an object which you want to place inside the environment. Use the buttons below to sort the objects using different criteria.</TextBlock>
         <StackPanel Grid.Row="2" Grid.Column="0">
-            <RadioButton x:Name="DefaultRB" GroupName="Filter" Content="All" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="DefaultRB" GroupName="Filter" Content="Neutral" Checked="RadioButton_Checked"/>
             <RadioButton GroupName="Filter" Content="Decoration" Checked="RadioButton_Checked"/>
             <RadioButton GroupName="Filter" Content="Required" Checked="RadioButton_Checked"/>
         </StackPanel>

@@ -46,7 +46,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>        
-        <Button Grid.Row="6" Grid.Column="0" x:Name="button1" Content="Freeze selected objects" Margin="10,10,0,0" Width="200" Click="btnFreeze"/>
-        <Button Grid.Row="7" Grid.Column="0" x:Name="button2" Content="Unfreeze selected objects" Margin="10,10,0,0" Width="200" Click="btnUnFreeze"/>
+        <Button Grid.Row="6" Grid.Column="0" x:Name="button1" Content="Freeze selected objects" Margin="10" Width="200" Click="btnFreeze"/>
+        <Button Grid.Row="7" Grid.Column="0" x:Name="button2" Content="Unfreeze selected objects" Margin="10" Width="200" Click="btnUnFreeze"/>
     </Grid>
 </UserControl>

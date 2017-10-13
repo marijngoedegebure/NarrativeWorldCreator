@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -21,7 +22,8 @@
         <Button Grid.Column="0" Grid.Row="1" x:Name="button801341" Content="Deselect all" Margin="10" Width="200" Click="btnDeselectAll"/>
         <TextBlock Grid.Column="0" Grid.Row="2" Margin="10" TextWrapping="Wrap">Click with the mouse cursor on an object to select a single object. Press &lt;Shift&gt; and click and drag the mouse cursor to do a box selection, release the left mouse button to select the objects inside the box.</TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="3" Margin="10" TextWrapping="Wrap">With the objects selected, press the &lt;R&gt; and drag the mouse to rotate the objects. Press &lt;M&gt;, hold the cursor above an object and click, and drag to move all selected objects.</TextBlock>
-        <ScrollViewer Grid.Column="0" Grid.Row="4" VerticalScrollBarVisibility="Auto">
+        <TextBlock Grid.Column="0" Grid.Row="4" Margin="10,10,10,0">The selected objects:</TextBlock>
+        <ScrollViewer Grid.Column="0" Grid.Row="5" VerticalScrollBarVisibility="Auto">
             <ItemsControl Name="ToListView"
                   Margin="10" 
                   ItemsSource = "{Binding Path = SelectedInstancedEntikaInstances}">

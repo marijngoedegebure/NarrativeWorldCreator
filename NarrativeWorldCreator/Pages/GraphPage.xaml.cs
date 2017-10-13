@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models.NarrativeGraph;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using NarrativeWorldCreator.Pages;
 using NarrativeWorldCreator.ViewModel;
@@ -46,11 +47,13 @@ namespace NarrativeWorldCreator
         private void btnGoToRegionPage_Click(object sender, RoutedEventArgs e)
         {
             var SelectedTimePoint = ((this.GraphDetailTimePointListControl.lvNodeDetailList.DataContext as GraphDetailTimePointListViewModel).NarrativeTimePoints[0]).NarrativeTimePoint;
-            if (selectedNode.AvailableTangibleObjects.Count == 0)
-            {
-                this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
-            }
-            else if (!this.selectedNode.FloorCreated)
+            this.selectedNode.AvailableTangibleObjects = SystemStateTracker.NarrativeWorld.AvailableTangibleObjects.Where(ato => !ato.DefaultName.Equals(Constants.Floor)).ToList();
+
+            //if (selectedNode.AvailableTangibleObjects.Count == 0)
+            //{
+            //    this.NavigationService.Navigate(new ClassSelectionPage(selectedNode));
+            //}
+            if (!this.selectedNode.FloorCreated)
             {
                 this.NavigationService.Navigate(new RegionCreationPage(selectedNode));
             }

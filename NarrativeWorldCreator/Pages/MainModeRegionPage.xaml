@@ -20,7 +20,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -38,15 +37,13 @@
                 <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you can create a surface for the environment."/>
                 <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
                     <Button x:Name="button1" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
-                    <Button x:Name="button5" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToInit_Click"/>
+                    <!--<Button x:Name="button5" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToInit_Click"/>-->
                     <Button x:Name="button76" Content="Back to environment creation" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnReturnToRegionCreation_Click"/>
                 </WrapPanel>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="0">
+            <Grid Grid.Row="1" Grid.Column="0" Visibility="Collapsed">
                 <views:NarrativeTimelineRegionView x:Name="NarrativeTimelineControl" Loaded = "NarrativeTimelineControl_Loaded"/>
             </Grid>
-            <TextBox x:Name="MessageTextBox" Grid.Row="2" Grid.Column="0">
-            </TextBox>
         </Grid>
         <Grid x:Name="BasicWindow" Grid.Row="1" Grid.Column="0" Margin="10" Visibility="Visible">
             <Grid.RowDefinitions>
@@ -219,7 +216,7 @@
                             </Grid.ColumnDefinitions>
                             <Button Grid.Column="0" Grid.Row="0" x:Name="button12314" Content="Back" Margin="10" Width="200" Height="50" Click="btnBack"/>
                             <Button Grid.Column="0" Grid.Row="1" x:Name="button53252" Content="Manual changing" Margin="10" Width="200" Height="50" Click="btnManualChangeMode"/>
-                            <Button Grid.Column="0" Grid.Row="2" x:Name="button1412252" Content="Automated repositioning" Margin="10" Width="200" Height="50" Click="btnAutomatedRepositionMode"/>
+                            <Button Grid.Column="0" Grid.Row="2" x:Name="button1412252" Content="Assisted changing" Margin="10" Width="200" Height="50" Click="btnAutomatedRepositionMode"/>
                         </Grid>
                     </TabItem>
                     <TabItem Name="change_mode_2" Header="Manual" Visibility="Collapsed">

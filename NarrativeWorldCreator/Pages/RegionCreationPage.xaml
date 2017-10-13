@@ -30,7 +30,7 @@
             <TextBlock Grid.Row="1" Grid.Column="0" Margin="10,0,0,0" Text="In this screen you can create a surface for the environment. The dots are drawn to be used as an indicator of size. Two dots, horizontal or vertical, are 1 meter apart."/>
             <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" DockPanel.Dock="Top" Margin="10">
                 <Button x:Name="GotoGraphPageButton" Content="Back to location selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnGraphPage_Click"/>
-                <Button x:Name="GotoClassSelectionPageButton" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnClassSelectionPage_Click"/>
+                <!--<Button x:Name="GotoClassSelectionPageButton" Content="Back to entity selection" HorizontalAlignment="Left" Margin="0,0,10,0" VerticalAlignment="Top" Width="200" Click="btnClassSelectionPage_Click"/>-->
             </WrapPanel>
         </Grid>
         <Grid x:Name="BasicWindow" Grid.Row="1" Grid.Column="0" Margin="10" Visibility="Visible">

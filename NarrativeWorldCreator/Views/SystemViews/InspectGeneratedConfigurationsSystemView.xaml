@@ -47,6 +47,6 @@
             <Button Grid.Row="1" Grid.Column="0" Margin="10" Content="Show on screen 3" Padding="5,2" Click="ShowOnScreen3"/>
             <Button Grid.Row="1" Grid.Column="1" Margin="10" Content="Show on screen 4" Padding="5,2" Click="ShowOnScreen4"/>
         </Grid>
-        <Button Grid.Row="4" Grid.Column="0" Content="Save top left selection" Click="SaveConfiguration" Margin="10"/>
+        <Button Grid.Row="4" Grid.Column="0" Content="Save selected option shown in screen 1" Click="SaveConfiguration" Margin="10"/>
     </Grid>
 </UserControl>

@@ -35,6 +35,7 @@ namespace NarrativeWorldCreator.Views
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
             }
+            regionPage.WorkInProgressConfiguration = regionPage.Configuration.Copy();
             regionPage.RefreshViewsUsingSelected();
         }
 
@@ -52,6 +53,7 @@ namespace NarrativeWorldCreator.Views
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;
             }
+            regionPage.WorkInProgressConfiguration = regionPage.Configuration.Copy();
             regionPage.RefreshViewsUsingSelected();
         }
 
