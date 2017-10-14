@@ -1,4 +1,5 @@
-﻿using NarrativeWorldCreator.Models.NarrativeGraph;
+﻿using NarrativeWorldCreator.Models;
+using NarrativeWorldCreator.Models.NarrativeGraph;
 using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
@@ -56,6 +57,20 @@ namespace NarrativeWorldCreator.ViewModel
             }
         }
 
+        private ObservableCollection<string> _requiredObjects;
+        public ObservableCollection<string> RequiredObjects
+        {
+            get
+            {
+                return _requiredObjects;
+            }
+            set
+            {
+                _requiredObjects = value;
+                OnPropertyChanged("RequiredObjects");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string PropertyName)
@@ -69,10 +84,11 @@ namespace NarrativeWorldCreator.ViewModel
             this.NarrativeTimePoint = ntp;
             ObservableCollection<GoalViewModel> npioc = new ObservableCollection<GoalViewModel>();
             var remainingPredicates = ntp.GetRemainingPredicates();
+            remainingPredicates = remainingPredicates.Where(rp => rp.PredicateType.Name.Equals(Constants.At)).ToList();
             var temp = new Predicate[remainingPredicates.Count];
             remainingPredicates.CopyTo(temp);
             var copyOfRemaining = temp.ToList();
-            // Determine remaining predicates
+            // Determine remaining at predicates
             foreach (var pred in ntp.PredicatesFilteredByCurrentLocation)
             {
                 if (copyOfRemaining.Contains(pred))
@@ -87,6 +103,15 @@ namespace NarrativeWorldCreator.ViewModel
             }
 
             this.Predicates = npioc;
+
+            ObservableCollection<string> requiredObjectsOC = new ObservableCollection<string>();
+
+            foreach (var pred in npioc)
+            {
+                requiredObjectsOC.Add(pred.EntikaClassNames[0]);
+            }
+
+            RequiredObjects = requiredObjectsOC;
 
             ObservableCollection<InstancedPredicate> fpoc = new ObservableCollection<InstancedPredicate>();
             foreach(var predicate in ntp.PredicatesCausedByInstancedObjectsAndRelations)

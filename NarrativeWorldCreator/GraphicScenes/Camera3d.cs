@@ -99,12 +99,12 @@ namespace NarrativeWorldCreator.GraphicScenes
             {
                 this.Move(new Vector3(0.0f, Camera3d.DEFAULTMOVEARROWS, 0.0f));
             }
-            if (_keyboardState.IsKeyDown(Keys.OemMinus))
+            if (_keyboardState.IsKeyDown(Keys.OemMinus) || _keyboardState.IsKeyDown(Keys.Subtract))
             {
                 // Adjust zoom level
                 this.Move(new Vector3(0.0f, 0.0f, Camera3d.DEFAULTZOOM));
             }
-            if (_keyboardState.IsKeyDown(Keys.OemPlus))
+            if (_keyboardState.IsKeyDown(Keys.OemPlus) || _keyboardState.IsKeyDown(Keys.Add))
             {
                 this.Move(new Vector3(0.0f, 0.0f, -Camera3d.DEFAULTZOOM));
             }

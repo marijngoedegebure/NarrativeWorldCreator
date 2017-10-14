@@ -90,11 +90,11 @@ namespace NarrativeWorldCreator.GraphicScenes
             {
                 this.Move(new Vector2(0.0f, -Camera2d.DEFAULTMOVE));
             }
-            if (_keyboardState.IsKeyDown(Keys.OemMinus))
+            if (_keyboardState.IsKeyDown(Keys.OemMinus) || _keyboardState.IsKeyDown(Keys.Subtract))
             {
                 this.Zoom = this.Zoom - Camera2d.DEFAULTZOOM;
             }
-            if (_keyboardState.IsKeyDown(Keys.OemPlus))
+            if (_keyboardState.IsKeyDown(Keys.OemPlus) || _keyboardState.IsKeyDown(Keys.Add))
             {
                 this.Zoom = this.Zoom + Camera2d.DEFAULTZOOM;
             }

@@ -22,7 +22,9 @@ namespace NarrativeWorldCreator.GraphicScenes
             var raster = GraphicsDevice.RasterizerState;
             var sampler = GraphicsDevice.SamplerStates[0];
 
-            if (this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.Removal || this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.ManualChange)
+            if (this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.Removal ||
+                this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.ManualChange ||
+                this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.Freeze)
                 drawBoxSelect();
 
             if (this._currentRegionPage.CurrentFillingMode == ModeBaseRegionPage.MainFillingMode.ManualPlacement)
@@ -62,7 +64,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                 GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
-                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(BoxSelectInitialCoords.X, BoxSelectInitialCoords.Y, BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X, BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y), Color.White * 0.5f);
+                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(BoxSelectInitialCoords.X, BoxSelectInitialCoords.Y, BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X, BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y), Color.Black * 0.5f);
 
                 _spriteBatch.End();
                 GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };

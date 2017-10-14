@@ -8,29 +8,12 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Grid.Row="0" Margin="10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Current selected timepoint: " FontWeight="Bold" />
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding NarrativeTimePoint.TimePoint}" />
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Name of action: " FontWeight="Bold" />
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding NarrativeTimePoint.NarrativeEvent.NarrativeAction.Name}"/>
-            </Grid>
-        </Grid>
-        <Grid Grid.Column="0" Grid.Row="1">
+        <Grid Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -38,7 +21,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Remaining goals: " FontSize="20" FontWeight="Bold" />
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Remaining required objects to place: " Margin="10" FontWeight="Bold" TextWrapping="Wrap" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           Grid.Column="0"
                           Grid.Row="1">
@@ -54,14 +37,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Name="item" Orientation="Vertical" Margin="5">
-                                <TextBlock Text="{Binding Path = PredicateType.Name, Mode = OneWay, StringFormat='Predicate type: {0}'}" FontWeight="Bold"/>
-                                <ItemsControl ItemsSource="{Binding Path=EntikaClassNames }">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                                <TextBlock Text="{Binding EntikaClassNames[0]}"/>
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding Path=Achieved}" Value="True">

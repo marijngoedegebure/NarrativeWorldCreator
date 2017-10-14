@@ -363,19 +363,25 @@ namespace NarrativeWorldCreator.GraphicScenes
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.EnableDefaultLighting();
-                    if (!_currentRegionPage.SelectedEntikaInstances.Contains(instance))
+                    if (_currentRegionPage.CurrentFillingMode.Equals(MainModeRegionPage.MainFillingMode.Freeze) ||
+                        _currentRegionPage.CurrentFillingMode.Equals(MainModeRegionPage.MainFillingMode.Removal) ||
+                        _currentRegionPage.CurrentFillingMode.Equals(MainModeRegionPage.MainFillingMode.ManualChange))
                     {
-                        if (instance.Frozen)
-                            effect.AmbientLightColor = new Vector3(0, 1.0f, 0);
+                        if (!_currentRegionPage.SelectedEntikaInstances.Contains(instance))
+                        {
+                            if (instance.Frozen)
+                                effect.AmbientLightColor = new Vector3(0, 1.0f, 0);
+                            else
+                                effect.AmbientLightColor = new Vector3(0, 0, 0);
+                        }
                         else
-                            effect.AmbientLightColor = new Vector3(0, 0, 0);
-                    }
-                    else
-                    {
-                        if (instance.Frozen)
-                            effect.AmbientLightColor = new Vector3(1.0f, 1.0f, 0);
-                        else
-                            effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
+                        {
+                            if (instance.Frozen)
+                                effect.AmbientLightColor = new Vector3(1.0f, 1.0f, 0);
+                            else
+                                effect.AmbientLightColor = new Vector3(1.0f, 0, 0);
+                        }
+
                     }
                     effect.View = this.view;
                     effect.World = transforms[mesh.ParentBone.Index] * Matrix.CreateRotationZ(modelRotation) * Matrix.CreateTranslation(modelPosition) * this.world;
