@@ -15,7 +15,7 @@ namespace NarrativeWorldCreator.Solvers
     public class CudaGPUWrapper
     {
         [DllImport("Kernel.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr KernelWrapper(RelationshipStruct[] rss, PositionAndRotation[] currentConfig, Rectangle[] clearances, Rectangle[] offlimits, Vertex[] vertices, Vertex[] surfaceRectangle, [MarshalAs(UnmanagedType.Struct)] ref Surface srf, [MarshalAs(UnmanagedType.Struct)] ref gpuConfig gpuCfg);
+        internal static extern IntPtr KernelWrapper(RelationshipStruct[] rss, Point[] previousCfgs, Rectangle[] clearances, Rectangle[] offlimits, Vertex[] vertices, Vertex[] surfaceRectangle, [MarshalAs(UnmanagedType.Struct)] ref Surface srf, [MarshalAs(UnmanagedType.Struct)] ref gpuConfig gpuCfg);
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
         public struct TargetRangeStruct
@@ -114,6 +114,11 @@ namespace NarrativeWorldCreator.Solvers
             public float rotX;
             public float rotY;
             public float rotZ;
+
+            public bool frozen;
+
+            public double length;
+            public double width;
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
@@ -244,24 +249,31 @@ namespace NarrativeWorldCreator.Solvers
             int N = instances.Count;
             int NRel = valuedRelationships.Count;
 
-            var currentConfig = new PositionAndRotation[N];
             int numberOfClearances = 0;
-            for (int i = 0; i < currentConfig.Length; i++)
+            for (int i = 0; i < N; i++)
             {
                 numberOfClearances += instances[i].Clearances.Count();
+            }
 
-                currentConfig[i] = new PositionAndRotation
+            var previousCfgs = new Point[N * SystemStateTracker.gridxDim];
+            for (int i = 0; i < SystemStateTracker.gridxDim; i++)
+            {
+                for (int j = 0; j < N; j++)
                 {
-                    x = instances[i].Position.X,
-                    y = instances[i].Position.Y,
-                    z = instances[i].Position.Z,
-                    rotX = instances[i].Rotation.X,
-                    rotY = instances[i].Rotation.Y,
-                    rotZ = instances[i].Rotation.Z,
-                    frozen = instances[i].Frozen,
-                    length = instances[i].BoundingBox.Max.X - instances[i].BoundingBox.Min.X,
-                    width = instances[i].BoundingBox.Max.Y - instances[i].BoundingBox.Min.Y,
-                };
+                    var index = i * N + j;
+                    previousCfgs[index] = new Point
+                    {
+                        x = instances[j].Position.X,
+                        y = instances[j].Position.Y,
+                        z = instances[j].Position.Z,
+                        rotX = instances[j].Rotation.X,
+                        rotY = instances[j].Rotation.Y,
+                        rotZ = instances[j].Rotation.Z,
+                        frozen = instances[j].Frozen,
+                        length = instances[j].BoundingBox.Max.X - instances[j].BoundingBox.Min.X,
+                        width = instances[j].BoundingBox.Max.Y - instances[j].BoundingBox.Min.Y,
+                    };
+                }
             }
 
 
@@ -401,50 +413,50 @@ namespace NarrativeWorldCreator.Solvers
                 blockxDim = SystemStateTracker.blockxDim,
                 blockyDim = SystemStateTracker.blockyDim,
                 blockzDim = SystemStateTracker.blockzDim,
-                iterations = SystemStateTracker.iterations
+                iterations = SystemStateTracker.iterationsStep
             };
 
-            IntPtr pointer = new IntPtr();
-
-            try
+            GPUConfigurationResult[] configs = new GPUConfigurationResult[4];
+            GPUConfigurationResult temp = new GPUConfigurationResult();
+            for (int i = 0; i < SystemStateTracker.iterations; i += SystemStateTracker.iterationsStep)
             {
                 var watch = Stopwatch.StartNew();
-                pointer = KernelWrapper(rss, currentConfig, clearances, offlimits, vertices, surfaceRectangle, ref surface, ref gpuCfg);
+                var pointer = KernelWrapper(rss, previousCfgs, clearances, offlimits, vertices, surfaceRectangle, ref surface, ref gpuCfg);
                 watch.Stop();
                 Console.WriteLine(watch.ElapsedMilliseconds);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
 
-            List<GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
-            GPUConfigurationResult temp = new GPUConfigurationResult();
-            // Do the initial one
-            if (!pointer.Equals(new IntPtr()))
-            {
-                for (int j = 0; j < gpuCfg.gridxDim; j++)
+                // Do the initial one
+                if (!pointer.Equals(new IntPtr()))
                 {
-                    IntPtr resultPointer = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Result)) * j);
-                    Result r = (Result)Marshal.PtrToStructure(resultPointer, typeof(Result));
-                    temp.TotalCosts = r.costs.totalCosts;
-                    temp.FocalPointCosts = r.costs.FocalPointCosts;
-                    temp.PairWiseCosts = r.costs.PairWiseCosts;
-                    temp.SymmetryCosts = r.costs.SymmetryCosts;
-                    temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
-                    temp.OffLimitsCosts = r.costs.OffLimitsCosts;
-                    temp.ClearanceCosts = r.costs.ClearanceCosts;
-                    temp.SurfaceAreaCosts = r.costs.SurfaceAreaCosts;
-
-                    // Retrieve all points of result:
-                    for (int k = 0; k < N; k++)
+                    for (int j = 0; j < gpuCfg.gridxDim; j++)
                     {
-                        IntPtr pointsPointer = new IntPtr(r.points.ToInt64() + Marshal.SizeOf(typeof(Point)) * k);
-                        Point point = (Point)Marshal.PtrToStructure(pointsPointer, typeof(Point));
-                        temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[k], point));
+                        IntPtr resultPointer = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Result)) * j);
+                        Result r = (Result)Marshal.PtrToStructure(resultPointer, typeof(Result));
+                        temp.TotalCosts = r.costs.totalCosts;
+                        temp.FocalPointCosts = r.costs.FocalPointCosts;
+                        temp.PairWiseCosts = r.costs.PairWiseCosts;
+                        temp.SymmetryCosts = r.costs.SymmetryCosts;
+                        temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
+                        temp.OffLimitsCosts = r.costs.OffLimitsCosts;
+                        temp.ClearanceCosts = r.costs.ClearanceCosts;
+                        temp.SurfaceAreaCosts = r.costs.SurfaceAreaCosts;
+
+                        // Retrieve all points of result:
+                        for (int k = 0; k < N; k++)
+                        {
+                            IntPtr pointsPointer = new IntPtr(r.points.ToInt64() + Marshal.SizeOf(typeof(Point)) * k);
+                            Point point = (Point)Marshal.PtrToStructure(pointsPointer, typeof(Point));
+                            var index = j * N + k;
+                            previousCfgs[index] = point;
+                            temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[k], point));
+                        }
+                        configs[j] = temp;
+                        temp = new GPUConfigurationResult();
                     }
-                    configs.Add(temp);
-                    temp = new GPUConfigurationResult();
+                }
+                else
+                {
+                    break;
                 }
             }
 
@@ -466,7 +478,7 @@ namespace NarrativeWorldCreator.Solvers
             //    temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[objectIndex], ms));
             //    Console.WriteLine();
             //}
-            return configs;
+            return configs.ToList();
         }
     }
 }
