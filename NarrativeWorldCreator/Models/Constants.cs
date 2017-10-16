@@ -58,7 +58,7 @@ namespace NarrativeWorldCreator.Models
 
         public static string ModelPath = "model path";
 
-        public static string All = "All";
+        public static string Neutral = "Neutral";
         public static string Decoration = "Decoration";
         public static string Required = "Required";
 

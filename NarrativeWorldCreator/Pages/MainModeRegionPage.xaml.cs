@@ -616,6 +616,10 @@ namespace NarrativeWorldCreator
                         }
                         else
                         {
+                            if (this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Count == 0)
+                            {
+                                return;
+                            }
                             var additionDeltaOfInstance = this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(WIPinstance)).FirstOrDefault();
                             if (additionDeltaOfInstance == null && !WIPAdditionDelta.RelatedInstance.Equals(WIPinstance))
                             {

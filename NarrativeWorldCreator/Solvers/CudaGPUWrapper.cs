@@ -4,6 +4,7 @@ using NarrativeWorldCreator.Models.NarrativeRegionFill;
 using NarrativeWorldCreator.Models.NarrativeTime;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -403,33 +404,48 @@ namespace NarrativeWorldCreator.Solvers
                 iterations = SystemStateTracker.iterations
             };
 
-            var pointer = KernelWrapper(rss, currentConfig, clearances, offlimits, vertices, surfaceRectangle, ref surface, ref gpuCfg);
+            IntPtr pointer = new IntPtr();
+
+            try
+            {
+                var watch = Stopwatch.StartNew();
+                pointer = KernelWrapper(rss, currentConfig, clearances, offlimits, vertices, surfaceRectangle, ref surface, ref gpuCfg);
+                watch.Stop();
+                Console.WriteLine(watch.ElapsedMilliseconds);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             List<GPUConfigurationResult> configs = new List<GPUConfigurationResult>();
             GPUConfigurationResult temp = new GPUConfigurationResult();
             // Do the initial one
-            for (int j = 0; j < gpuCfg.gridxDim; j++)
+            if (!pointer.Equals(new IntPtr()))
             {
-                IntPtr resultPointer = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Result)) * j);
-                Result r = (Result)Marshal.PtrToStructure(resultPointer, typeof(Result));
-                temp.TotalCosts = r.costs.totalCosts;
-                temp.FocalPointCosts = r.costs.FocalPointCosts;
-                temp.PairWiseCosts = r.costs.PairWiseCosts;
-                temp.SymmetryCosts = r.costs.SymmetryCosts;
-                temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
-                temp.OffLimitsCosts = r.costs.OffLimitsCosts;
-                temp.ClearanceCosts = r.costs.ClearanceCosts;
-                temp.SurfaceAreaCosts = r.costs.SurfaceAreaCosts;
-
-                // Retrieve all points of result:
-                for (int k = 0; k < N; k++)
+                for (int j = 0; j < gpuCfg.gridxDim; j++)
                 {
-                    IntPtr pointsPointer = new IntPtr(r.points.ToInt64() + Marshal.SizeOf(typeof(Point)) * k);
-                    Point point = (Point)Marshal.PtrToStructure(pointsPointer, typeof(Point));
-                    temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[k], point));
+                    IntPtr resultPointer = new IntPtr(pointer.ToInt64() + Marshal.SizeOf(typeof(Result)) * j);
+                    Result r = (Result)Marshal.PtrToStructure(resultPointer, typeof(Result));
+                    temp.TotalCosts = r.costs.totalCosts;
+                    temp.FocalPointCosts = r.costs.FocalPointCosts;
+                    temp.PairWiseCosts = r.costs.PairWiseCosts;
+                    temp.SymmetryCosts = r.costs.SymmetryCosts;
+                    temp.VisualBalanceCosts = r.costs.VisualBalanceCosts;
+                    temp.OffLimitsCosts = r.costs.OffLimitsCosts;
+                    temp.ClearanceCosts = r.costs.ClearanceCosts;
+                    temp.SurfaceAreaCosts = r.costs.SurfaceAreaCosts;
+
+                    // Retrieve all points of result:
+                    for (int k = 0; k < N; k++)
+                    {
+                        IntPtr pointsPointer = new IntPtr(r.points.ToInt64() + Marshal.SizeOf(typeof(Point)) * k);
+                        Point point = (Point)Marshal.PtrToStructure(pointsPointer, typeof(Point));
+                        temp.Instances.Add(new GPUInstanceResult(configuration.InstancedObjects[k], point));
+                    }
+                    configs.Add(temp);
+                    temp = new GPUConfigurationResult();
                 }
-                configs.Add(temp);
-                temp = new GPUConfigurationResult();
             }
 
             //Point ms = (Point)Marshal.PtrToStructure(data, typeof(Point));

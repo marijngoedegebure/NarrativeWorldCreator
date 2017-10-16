@@ -1,0 +1,9 @@
+<Databases>
+  <Semantics Database="castle" />
+  <Values>
+    <Database>castle</Database>
+  </Values>
+  <Localization>
+    <Database>castle</Database>
+  </Localization>
+</Databases>

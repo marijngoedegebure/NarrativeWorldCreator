@@ -28,6 +28,7 @@ namespace NarrativeWorldCreator
     {
         public static String redCapDatabase = "redcapV2.edp";
         public static String castleDatabase = "castle.edp";
+        public static String castleCopyDatabase = "castle - Copy.edp";
 
         public MainWindow()
         {
@@ -36,7 +37,7 @@ namespace NarrativeWorldCreator
             GameDatabase.Initialize();
             SystemStateTracker.EntikaPath = "..\\..\\..\\Entika databases\\";
 
-            SystemStateTracker.LoadedFileName = castleDatabase;
+            SystemStateTracker.LoadedFileName = castleCopyDatabase;
             GameDatabase.LoadProject(SystemStateTracker.EntikaPath + SystemStateTracker.LoadedFileName);
 
             GameSemanticsEngine.GameSemanticsEngine.Initialize();
@@ -162,6 +163,9 @@ namespace NarrativeWorldCreator
                         file.WriteLine("{0};{1};{2}", entry.Key.Item1, entry.Key.Item2, entry.Value);
                 }
             }
+
+            GameSemanticsEngine.GameSemanticsEngine.Uninitialize();
+
             base.OnClosing(e);
         }
     }

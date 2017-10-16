@@ -48,10 +48,10 @@ namespace NarrativeWorldCreator
 
         // GPGPU settings
         // Number of results generated (threadblocks started):
-        public static int gridxDim = 10;
+        public static int gridxDim = 4;
         public const int gridyDim = 0;
         // Number of threads used for each threadblock, should be a multiple of 32 (probably 256)
-        public const int blockxDim = 256;
+        public const int blockxDim = 1;
         public const int blockyDim = 0;
         public const int blockzDim = 0;
         // Number of iterations a configuration will see before the best encountered configuration is returned

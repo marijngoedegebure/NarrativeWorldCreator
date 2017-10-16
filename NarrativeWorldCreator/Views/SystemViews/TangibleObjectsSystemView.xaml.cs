@@ -55,7 +55,7 @@ namespace NarrativeWorldCreator.Views
         {
             var regionPage = GetRegionPage();
             RadioButton rb = (RadioButton)sender;
-            if (rb.Content.Equals(Constants.All))
+            if (rb.Content.Equals(Constants.Neutral))
             {
                 var tovVM = (TangibleObjectsValuedViewModel)this.DataContext;
                 tovVM.LoadAll(regionPage.selectedNode, regionPage.selectedNode.TimePoints[regionPage.SelectedTimePoint], regionPage.Configuration);
