@@ -357,6 +357,14 @@ namespace NarrativeWorldCreator.GraphicScenes
                             repositioningObject = null;
                         }
                     }
+                    else if (_previousKeyboardState.IsKeyDown(Keys.M) && _keyboardState.IsKeyUp(Keys.M))
+                    {
+                        foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
+                        {
+                            instance.UpdateBoundingBoxAndShape();
+                        }
+                        repositioningObject = null;
+                    }
                     else
                     {
                         // Single selection
