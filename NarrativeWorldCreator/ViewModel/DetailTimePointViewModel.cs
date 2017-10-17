@@ -89,7 +89,7 @@ namespace NarrativeWorldCreator.ViewModel
             remainingPredicates.CopyTo(temp);
             var copyOfRemaining = temp.ToList();
             // Determine remaining at predicates
-            foreach (var pred in ntp.PredicatesFilteredByCurrentLocation)
+            foreach (var pred in ntp.PredicatesFilteredByCurrentLocation.Where(p => p.PredicateType.Name.Equals(Constants.At)))
             {
                 if (copyOfRemaining.Contains(pred))
                 {

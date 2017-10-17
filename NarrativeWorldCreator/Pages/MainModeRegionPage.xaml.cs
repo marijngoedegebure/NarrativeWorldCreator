@@ -663,9 +663,12 @@ namespace NarrativeWorldCreator
                 this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
             }
 
-            this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
+
 
             UpdateConfiguration();
+
+            this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
+            UpdateDetailView(this.selectedNode.TimePoints[SelectedTimePoint]);
 
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();

@@ -41,7 +41,7 @@
                             </StackPanel>
                             <DataTemplate.Triggers>
                                 <DataTrigger Binding="{Binding Path=Achieved}" Value="True">
-                                    <Setter TargetName="item" Property="Background" Value="Green"/>
+                                    <Setter TargetName="item" Property="Background" Value="LightGreen"/>
                                 </DataTrigger>
                             </DataTemplate.Triggers>
                         </DataTemplate>

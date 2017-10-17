@@ -169,7 +169,7 @@ namespace NarrativeWorldCreator.Models.NarrativeTime
             var temp = new InstancedPredicate[this.PredicatesCausedByInstancedObjectsAndRelations.Count];
             this.PredicatesCausedByInstancedObjectsAndRelations.CopyTo(temp);
             var predicatesOfInstancesCopy = temp.ToList();
-            foreach (var predicateFiltered in PredicatesFilteredByCurrentLocation)
+            foreach (var predicateFiltered in PredicatesFilteredByCurrentLocation.Where(p => p.PredicateType.Name.Equals(Constants.At)))
             {
                 InstancedPredicate foundPredicate = null;
                 foreach (var placedPredicate in predicatesOfInstancesCopy)
