@@ -101,7 +101,7 @@ namespace NarrativeWorldCreator.ViewModel
             }
             else
             {
-                this.TextblockText = "(as source)";
+                this.TextblockText = this.Relationship.RelationshipType.DefaultName + "(as source)" + " with " + this.SubjectInstance.Name;
             }
             this.Required = false;
         }

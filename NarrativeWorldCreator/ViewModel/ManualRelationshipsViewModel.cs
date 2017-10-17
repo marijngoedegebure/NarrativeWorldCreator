@@ -121,7 +121,7 @@ namespace NarrativeWorldCreator.ViewModel
                 {
                     foreach (var instance in instancedObjects)
                     {
-                        if (rel.Source.Equals(instance.TangibleObject))
+                        if (rel.Targets[0].Equals(instance.TangibleObject))
                         {
                             var otherRVM = new OtherRelationshipViewModel();
                             otherRVM.Load(instance, rel, false);
