@@ -310,10 +310,23 @@ namespace NarrativeWorldCreator.GraphicScenes
                     }
                     else if (_previousKeyboardState.IsKeyDown(Keys.R) && _keyboardState.IsKeyUp(Keys.R))
                     {
+                        // Apply changes in selected entika instances to delta's and updateconfiguration
                         foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
                         {
-                            instance.UpdateBoundingBoxAndShape();
+                            var additionDeltaOfInstance = this._currentRegionPage.selectedNode.TimePoints[this._currentRegionPage.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(instance)).FirstOrDefault();
+                            if (additionDeltaOfInstance == null)
+                            {
+                                this._currentRegionPage.selectedNode.TimePoints[this._currentRegionPage.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this._currentRegionPage.SelectedTimePoint, instance, InstanceDeltaType.Change, instance.Position, instance.Rotation));
+                            }
+                            else
+                            {
+                                additionDeltaOfInstance.Position = instance.Position;
+                                additionDeltaOfInstance.Rotation = instance.Rotation;
+                            }
                         }
+                        
+
+                        this._currentRegionPage.UpdateConfiguration();
                     }
                     // Move
                     else if (_keyboardState.IsKeyDown(Keys.M))
@@ -321,7 +334,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                         if (_previousMouseState.LeftButton == ButtonState.Released && _mouseState.LeftButton == ButtonState.Pressed)
                         {
                             Ray ray = CalculateMouseRay();
-                            foreach (EntikaInstance ieo in _currentRegionPage.Configuration.GetEntikaInstancesWithoutFloor())
+                            foreach (EntikaInstance ieo in _currentRegionPage.SelectedEntikaInstances)
                             {
                                 // Create translated boundingbox
                                 var min = ieo.BoundingBox.Min;
@@ -359,10 +372,23 @@ namespace NarrativeWorldCreator.GraphicScenes
                     }
                     else if (_previousKeyboardState.IsKeyDown(Keys.M) && _keyboardState.IsKeyUp(Keys.M))
                     {
+                        // Apply changes in selected entika instances to delta's and updateconfiguration
                         foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
                         {
-                            instance.UpdateBoundingBoxAndShape();
+                            var additionDeltaOfInstance = this._currentRegionPage.selectedNode.TimePoints[this._currentRegionPage.SelectedTimePoint].InstanceDeltas.Where(id => id.DT.Equals(InstanceDeltaType.Add) && id.RelatedInstance.Equals(instance)).FirstOrDefault();
+                            if (additionDeltaOfInstance == null)
+                            {
+                                this._currentRegionPage.selectedNode.TimePoints[this._currentRegionPage.SelectedTimePoint].InstanceDeltas.Add(new InstanceDelta(this._currentRegionPage.SelectedTimePoint, instance, InstanceDeltaType.Change, instance.Position, instance.Rotation));
+                            }
+                            else
+                            {
+                                additionDeltaOfInstance.Position = instance.Position;
+                                additionDeltaOfInstance.Rotation = instance.Rotation;
+                            }
                         }
+
+
+                        this._currentRegionPage.UpdateConfiguration();
                         repositioningObject = null;
                     }
                     else

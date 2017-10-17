@@ -98,6 +98,7 @@ namespace NarrativeWorldCreator.GraphicScenes
                 modelPath = "Models/" + modelPath + "/" + modelPath;
                 SystemStateTracker.NarrativeWorld.ModelsForTangibleObjects.Add(to, Content.Load<Model>(modelPath));
             }
+            this._currentRegionPage.UpdateConfiguration();
         }
 
         protected Model LoadModel(string assetName)

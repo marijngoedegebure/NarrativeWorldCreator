@@ -54,7 +54,7 @@ namespace NarrativeWorldCreator
             this.SelectedTimePoint = 0;
             SelectedEntikaInstances = new List<EntikaInstance>();
 
-            UpdateConfiguration();
+            // UpdateConfiguration();
 
             // Set content of header
             this.PageHeader.Text = "Environment filling - " + this.selectedNode.LocationName;
@@ -653,16 +653,19 @@ namespace NarrativeWorldCreator
                 }
             }
 
-            this.Configuration = WorkInProgressConfiguration;
-
             // Save deltas
             foreach (var WIPRelationshipDelta in WIPRelationshipDeltas)
             {
                 this.selectedNode.TimePoints[this.SelectedTimePoint].RelationshipDeltas.Add(WIPRelationshipDelta);
             }
-            this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
+            if (WIPAdditionDelta != null)
+            {
+                this.selectedNode.TimePoints[this.SelectedTimePoint].InstanceDeltas.Add(WIPAdditionDelta);
+            }
 
             this.selectedNode.TimePoints[SelectedTimePoint].RegeneratePredicates(this.Configuration);
+
+            UpdateConfiguration();
 
             // Reset used variables
             WorkInProgressConfiguration = new Configuration();
