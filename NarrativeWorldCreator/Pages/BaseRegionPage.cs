@@ -135,6 +135,7 @@ namespace NarrativeWorldCreator.Pages
             {
                 this.selectedNode.TimePoints[SelectedTimePoint].RelationshipDeltas.Add(removalDelta);
             }
+            UpdateConfiguration();
             // Determine on relationships with this instance as source and cascade deletion to those
             foreach (var relation in relationsToRemove)
             {

@@ -416,7 +416,7 @@ namespace NarrativeWorldCreator.Solvers
                 iterations = SystemStateTracker.iterationsStep
             };
 
-            GPUConfigurationResult[] configs = new GPUConfigurationResult[4];
+            GPUConfigurationResult[] configs = new GPUConfigurationResult[SystemStateTracker.gridxDim];
             GPUConfigurationResult temp = new GPUConfigurationResult();
             for (int i = 0; i < SystemStateTracker.iterations; i += SystemStateTracker.iterationsStep)
             {
