@@ -19,7 +19,7 @@ namespace NarrativeWorldCreator.Solvers
         {
             var rnd = new Random();
             // This stores the unique solutions
-            ObservableCollection<AutomatedRelationshipSelectionViewModel> resultsOC = new ObservableCollection<AutomatedRelationshipSelectionViewModel>();
+            List<AutomatedRelationshipSelectionViewModel> results = new List<AutomatedRelationshipSelectionViewModel>();
 
             for (int i = 0; i < NumberOfTries; i++)
             {
@@ -105,12 +105,19 @@ namespace NarrativeWorldCreator.Solvers
                         }
                     }
                     arsVM.OtherRelationships = OtherRelationshipsOC;
-                    if (!resultsOC.Contains(arsVM))
-                        resultsOC.Add(arsVM);
+                    if (!results.Contains(arsVM))
+                        results.Add(arsVM);
                 }
-                vM.CurrentInstance = instanceOfObjectToAdd;
-                vM.Results = resultsOC;
             }
+            vM.CurrentInstance = instanceOfObjectToAdd;
+            // Convert list to observable collection
+            ObservableCollection<AutomatedRelationshipSelectionViewModel> resultsOC = new ObservableCollection<AutomatedRelationshipSelectionViewModel>();
+            foreach (var result in results)
+            {
+                resultsOC.Add(result);
+            }
+
+            vM.Results = resultsOC;
             return vM;
         }
         
