@@ -487,7 +487,7 @@ namespace NarrativeWorldCreator
             InstanceOfObjectToAdd.RelationshipsAsTarget.Add(onRelationshipInstance);
             onRelationshipInstance.Source.RelationshipsAsSource.Add(onRelationshipInstance);
             // Set start position of instance to add
-            InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z);
+            InstanceOfObjectToAdd.Position = new Vector3(onRelationshipInstance.Source.Position.X, onRelationshipInstance.Source.Position.Y, onRelationshipInstance.Source.BoundingBox.Max.Z+0.1f);
 
             // Add on relationship to work in progress configuration
             this.WorkInProgressConfiguration.InstancedRelations.Add(onRelationshipInstance);
