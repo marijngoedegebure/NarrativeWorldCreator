@@ -597,7 +597,10 @@ namespace NarrativeWorldCreator
             if (SystemStateTracker.AutomationDictionary[this.selectedNode.LocationName])
             {
                 GPUConfigurationResult gpuConfig;
-                gpuConfig = (this.InspectGeneratedConfigurationsSystemView.ConfigurationsList.DataContext as GenerateConfigurationsViewModel).GPUConfigurationResults[this.TopLeftSelectedGPUConfigurationResult].GPUConfigurationResult;
+                var selected = 0;
+                if (this.TopLeftSelectedGPUConfigurationResult != -1)
+                    selected = this.TopLeftSelectedGPUConfigurationResult;
+                gpuConfig = (this.InspectGeneratedConfigurationsSystemView.ConfigurationsList.DataContext as GenerateConfigurationsViewModel).GPUConfigurationResults[selected].GPUConfigurationResult;
 
                 for (int i = 0; i < gpuConfig.Instances.Count; i++)
                 {
