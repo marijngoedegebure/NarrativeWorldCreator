@@ -35,7 +35,14 @@ namespace NarrativeWorldCreator.Views
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
             }
-            regionPage.WorkInProgressConfiguration = regionPage.Configuration.Copy();
+            // Freeze items part of work in progress configuration, if it exists
+            if (regionPage.WorkInProgressConfiguration != null)
+            {
+                foreach (var instance in data.SelectedInstancedEntikaInstances)
+                {
+                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = true;
+                }
+            }
             regionPage.RefreshViewsUsingSelected();
         }
 
@@ -53,7 +60,14 @@ namespace NarrativeWorldCreator.Views
             {
                 regionPage.SelectedEntikaInstances.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;
             }
-            regionPage.WorkInProgressConfiguration = regionPage.Configuration.Copy();
+            // Unfreeze items part of work in progress configuration, if it exists
+            if (regionPage.WorkInProgressConfiguration != null)
+            {
+                foreach (var instance in data.SelectedInstancedEntikaInstances)
+                {
+                    regionPage.WorkInProgressConfiguration.InstancedObjects.Where(sei => sei.Equals(instance)).FirstOrDefault().Frozen = false;
+                }
+            }
             regionPage.RefreshViewsUsingSelected();
         }
 
