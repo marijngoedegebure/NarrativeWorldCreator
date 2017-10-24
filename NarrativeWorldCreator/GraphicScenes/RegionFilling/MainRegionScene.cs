@@ -61,13 +61,41 @@ namespace NarrativeWorldCreator.GraphicScenes
         {
             if (!BoxSelectInitialCoords.Equals(new Point()))
             {
+                GraphicsDevice.RasterizerState = RasterizerState.CullNone;
                 GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = false };
-                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 
-                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(BoxSelectInitialCoords.X, BoxSelectInitialCoords.Y, BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X, BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y), Color.Black * 0.5f);
+                // Determine points using current and initial coords:
+                int topLeftX = 0;
+                int topLeftY = 0;
+                int width = 0;
+                int height = 0;
+                if (BoxSelectInitialCoords.X > BoxSelectCurrentCoords.X)
+                {
+                    topLeftX = BoxSelectCurrentCoords.X;
+                    width = BoxSelectInitialCoords.X - BoxSelectCurrentCoords.X;
+                }
+                else
+                {
+                    topLeftX = BoxSelectInitialCoords.X;
+                    width = BoxSelectCurrentCoords.X - BoxSelectInitialCoords.X;
+                }
+                if (BoxSelectInitialCoords.Y > BoxSelectCurrentCoords.Y)
+                {
+                    topLeftY = BoxSelectCurrentCoords.Y;
+                    height = BoxSelectInitialCoords.Y - BoxSelectCurrentCoords.Y;
+                }
+                else
+                {
+                    topLeftY = BoxSelectInitialCoords.Y;
+                    height = BoxSelectCurrentCoords.Y - BoxSelectInitialCoords.Y;
+                }
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                _spriteBatch.Draw(SystemStateTracker.BoxSelectTexture, new Rectangle(topLeftX, topLeftY, width, height), Color.Black * 0.5f);
 
                 _spriteBatch.End();
                 GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+                GraphicsDevice.RasterizerState = RasterizerState.CullClockwise;
             }
         }
 
