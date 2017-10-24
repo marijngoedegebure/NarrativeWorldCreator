@@ -307,34 +307,31 @@ namespace NarrativeWorldCreator.GraphicScenes
                     {
                         // When multiple selected rotate around 0,0,0
                         var rotationPos = new Vector3(0, 0, 0);
-                        if (this._currentRegionPage.SelectedEntikaInstances.Count == 1)
+                        if (this._currentRegionPage.SelectedEntikaInstances.Count > 0)
                         {
                             rotationPos = this._currentRegionPage.SelectedEntikaInstances[0].Position;
+
+                            // Save rotation
+                            // Handle continuous update of rotation
+                            var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
+                            // Move hit around 0,0,0
+                            hit = hit - rotationPos;
+                            hit.Normalize();
+                            // Calculate angle between forward vector (Y positive) and the hit)
+                            var angle = 0.0;
+                            if ((hit.X > 0 && hit.Y > 0) || (hit.X > 0 && hit.Y < 0))
+                            {
+                                angle = Math.Acos(Vector3.Dot(new Vector3(0, -1, 0), hit));
+                                angle += Math.PI;
+                            }
+                            else
+                            {
+                                angle = Math.Acos(Vector3.Dot(new Vector3(0, 1, 0), hit));
+                            }
+                            var delta = _currentRegionPage.manualPlacementRotation.Y - angle;
+                            this._currentRegionPage.SelectedEntikaInstances[0].Rotation = new Vector3(0, (float)angle, 0);
                         }
 
-                        // Save rotation
-                        // Handle continuous update of rotation
-                        var hit = CalculateHitOnSurface(_mouseState.Position, new Microsoft.Xna.Framework.Plane(new Vector3(0, 0, 1), 0));
-                        // Move hit around 0,0,0
-                        hit = hit - rotationPos;
-                        hit.Normalize();
-                        // Calculate angle between forward vector (Y positive) and the hit)
-                        var angle = 0.0;
-                        if ((hit.X > 0 && hit.Y > 0) || (hit.X > 0 && hit.Y < 0))
-                        {
-                            angle = Math.Acos(Vector3.Dot(new Vector3(0, -1, 0), hit));
-                            angle += Math.PI;
-                        }
-                        else
-                        {
-                            angle = Math.Acos(Vector3.Dot(new Vector3(0, 1, 0), hit));
-                        }
-                        var delta = _currentRegionPage.manualPlacementRotation.Y - angle;
-                        foreach (var instance in this._currentRegionPage.SelectedEntikaInstances)
-                        {
-                            instance.Rotation = new Vector3(0, (float)angle, 0);
-                            // CascadeRotation(instance, delta);
-                        }
                     }
                     else if (_previousKeyboardState.IsKeyDown(Keys.R) && _keyboardState.IsKeyUp(Keys.R))
                     {
