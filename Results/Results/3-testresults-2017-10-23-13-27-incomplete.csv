@@ -1,0 +1,46 @@
+Interface usage;;;;;
+TotalNumberOfAddActions;39;;;;
+TotalNumberOfTotalChangeActions;14;;;;
+TotalNumberOfManualChangeActions;9;;;;
+TotalNumberOfAutomatedChangeActions;5;;;;
+TotalNumberOfRemoveActions;2;;;;
+Time spent;;;;;
+TotalTimeSpent;42369334672;;;;
+TimeSpentTotalPerLocation;;;;;
+throneroom1;5650558367;;;;
+bedroomprincess1;8112781836;;;;
+guestroom1;1243855353;;;;
+diningroom1;0;;;;
+kitchen1;129768301;;;;
+prison1;11420004724;;;;
+corridor1;3008529412;;;;
+TimeSpentOnActionsPerLocation;;;;;
+Location;TimeSpentOnAddActions;TimeSpentOnAllChangeActions;TimeSpentOnManualChangeActions;TimeSpentOnAutomatedChangeActions;TimeSpentOnRemoveActions
+throneroom1;3226245142;120004773;120004773;0;0
+bedroomprincess1;5110435314;789868779;789868779;0;0
+guestroom1;478974274;299987880;299987880;0;0
+diningroom1;0;0;0;0;0
+kitchen1;0;0;0;0;0
+prison1;2143714290;746431537;746431537;0;0
+corridor1;1651292891;714900502;0;714900502;0
+Semantic usage;;;;;
+TimesATangibleObjectIsUsed;;;;;
+floor;7;;;;
+bed;1;;;;
+prince;1;;;;
+TimesARelationshipIsUsed;;;;;
+on;1;;;;
+on;1;;;;
+UsageOfTangibleObjectsPerLocation;;;;;
+throneroom1;floor;1;;;
+bedroomprincess1;floor;1;;;
+guestroom1;floor;1;;;
+guestroom1;bed;1;;;
+guestroom1;prince;1;;;
+diningroom1;floor;1;;;
+kitchen1;floor;1;;;
+prison1;floor;1;;;
+corridor1;floor;1;;;
+UsageOfRelationshipsPerLocation;;;;;
+guestroom1;on;1;;;
+guestroom1;on;1;;;

@@ -1,0 +1,2 @@
+ParticipantID, Condition,Collaboration1,Enjoyment1,Exploration1,Expressiveness1,Immersion1,ResultsWorthEffort1,Collaboration2,Enjoyment2,Exploration2,Expressiveness2,Immersion2,ResultsWorthEffort2,Collaboration_Average, Enjoyment_Average, Exploration_Average, Expressiveness_Average,Immersion_Average, ResultsWorthEffort_Average,Collaboration_Count,Enjoyment_Count,Exploration_Count,Expressiveness_Count,Immersion_Count,ResultsWorthEffort_Count, CSIScore
+10_2,1,0,7,6,6,4,7,0,9,6,6,6,9,0.0,8.0,6.0,6.0,5.0,8.0,0,1,4,3,2,5,66.666664
