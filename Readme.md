@@ -1,7 +1,7 @@
 # Readme for NarrativeWorldCreator project
 This WPF C# application was implemented to be used in the user study of the thesis "Narrative world creation with assisted environment filling" by Marijn Goedegebure. The thesis itself can be found here: https://repository.tudelft.nl/islandora/object/uuid%3A819b3f0e-bcac-4501-86aa-f23199fee8e1?collection=education.
 
-Next to this application a GPGPU algorithm was implemented based on the research "Interactive Furniture Layout Using Interior Design Guidelines" and implementation by Paul Merrel et al. The GPGPU algorithm can also be found on github: 
+Next to this application a GPGPU algorithm was implemented based on the research "Interactive Furniture Layout Using Interior Design Guidelines" and implementation by Paul Merrel et al. The GPGPU algorithm can be found here: https://bitbucket.org/marijngoedegebure/metropolis-hastings-gpgpu/src/master/
 
 This WPF C# application and the GPGPU algorithm are both available to the public under the MIT licence, see below.
 
