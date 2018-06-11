@@ -3,6 +3,8 @@ This WPF C# application was implemented to be used in the user study of the thes
 
 Next to this application a GPGPU algorithm was implemented based on the research "Interactive Furniture Layout Using Interior Design Guidelines" and implementation by Paul Merrel et al. The GPGPU algorithm can be found here: https://bitbucket.org/marijngoedegebure/metropolis-hastings-gpgpu/src/master/
 
+If you have any questions regarding the implementation you can contact me at marijngoedegebure @ gmail.com.
+
 This WPF C# application and the GPGPU algorithm are both available to the public under the MIT licence, see below.
 
 ----------------------------------------------------
